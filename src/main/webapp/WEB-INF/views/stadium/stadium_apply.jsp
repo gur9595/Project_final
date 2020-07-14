@@ -30,7 +30,7 @@
 		style="background-image: url('./../resources/img/stadium.png');">
 		<div id="breadcrumb" class="hoc clear">
 			<!--이미지 위에 글쓰는곳-->
-		</div>
+		</div>    
 	</div>     
 	<div class="wrapper row3">
 		<main class="hoc container clear">
