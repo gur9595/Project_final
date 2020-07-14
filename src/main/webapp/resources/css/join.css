@@ -8,7 +8,7 @@ body { background: #f1f1f1 url(../image/member/bg_join.gif) repeat-y 50% 0; }
 
 .n-member-area { max-width: 700px; min-height: 100%; padding: 0 15px 100px 15px; box-sizing: border-box; position: relative; margin: 0 auto; }
 .n-member-area.form-area { min-height: 140vh; }
-.n-member-area.form-area .member-btn { position: static; padding: 10px 0; margin: 40px auto 0 auto; }
+.n-member-area.form-area .member-btn {  padding: 10px 0; margin: 40px auto 0 auto; }
 .n-member-area .n-btn { font-size: 16px; font-weight: bold; }
 .n-member-area .member-header { padding: 60px 0 20px 0; position: relative; }
 .n-member-area .member-header .logo { text-align: center; margin: 18px 0 -2px 0; }

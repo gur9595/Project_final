@@ -41,167 +41,20 @@
         </script>
         <!-- End Google Tag Manager -->
 
-    
-        
-
     <link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
     <link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
     <link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
-    
 
-
-        
 
     <script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
-    
-
-    <script>
-        var THIS_PAGE_GF = "" ;
-        var USE_GLOBAL_FILTER = "N";
-
-        function appInterfaceOnloadFunc() {
-            var isApp = false;
-            var serviceCode = "M".toLowerCase();
-
-            if (!isApp) {
-                return false;
-            }
-
-            AppInterface.setBottomMenu(serviceCode);
-
-            var isLowerVersion = _AppInfo.LowerVersion('2.22.0');
-            if (isLowerVersion) {
-                setSkinForLowerVersion();
-            }
-            return false;
-
-            function setSkinForLowerVersion() {
-                $(".musinsa-wrapper").attr("class", "musinsa-wrapper wrapper-" + mss.ui.config.get().service);
-
-                var mainUrl = getMainUrl(serviceCode);
-                $(".util.right > a").attr("href", mainUrl);
-            }
-
-            function getMainUrl (serviceCode) {
-                switch (serviceCode) {
-                    case "m":
-                        return "https:\/\/m.store.musinsa.com";
-                    case "w":
-                        return "https:\/\/mwusinsa.musinsa.com";
-                    case "p":
-                        return "https:\/\/mplayer.musinsa.com";
-                    default:
-                        return "https:\/\/m.store.musinsa.com";
-                }
-            }
-
-
-        }
-
-        // Microsoft
-        if (window.attachEvent) {
-            window.attachEvent('onload', appInterfaceOnloadFunc);
-        }
-        // W3C standard
-        else {
-            window.addEventListener('load', appInterfaceOnloadFunc, false); // NB **not** 'onload'
-        }
-    </script>
     <script src="https://static.msscdn.net/skin/m_musinsa/js/appinterface.js?20200701180800" type="text/javascript"></script>
     <script src="https://static.msscdn.net/static/member/js/appinterface-member.js?20200701180800" type="text/javascript"></script>
-
-
     <script src="https://static.msscdn.net/static/member/js/constant.js?20200701180800" type="text/javascript"></script>
     <script src="https://static.msscdn.net/static/member/js/ui/config.js?20200701180800" type="text/javascript"></script>
     <script src="https://static.msscdn.net/static/member/js/ui.js?20200701180800" type="text/javascript"></script>
     <script type="text/javascript" src="https://static.msscdn.net/static/member/js/backforward.js?20200701180800"></script>
-
     <script src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800" type="text/javascript"></script>
-    <script type="text/javascript">
 
-        // Called when my app has identified the user.
-        authenticated = function (appInsights, signInId) {
-            if (signInId != '') {
-                var validatedId = signInId.replace(/[,;=| ]+/g, "_");
-                appInsights.setAuthenticatedUserContext(validatedId);
-            }
-        }
-
-        var sdkInstance = "appInsightsSDK";
-        window[sdkInstance] = "appInsights";
-        var aiName = window[sdkInstance], aisdk = window[aiName] || function (e) {
-            function n(e) {
-                t[e] = function () {
-                    var n = arguments;
-                    t.queue.push(function () {
-                        t[e].apply(t, n)
-                    });
-                }
-            }
-
-            var t = {config: e};
-            t.initialize = !0;
-            var i = document, a = window;
-            setTimeout(function () {
-                var n = i.createElement("script");
-                n.src = e.url || "https://az416426.vo.msecnd.net/scripts/b/ai.2.min.js", i.getElementsByTagName("script")[0].parentNode.appendChild(n)
-            });
-            try {
-                t.cookie = i.cookie
-            } catch (e) {
-            }
-            t.queue = [], t.version = 2;
-            for (var r = ["Event", "PageView", "Exception", "Trace", "DependencyData", "Metric", "PageViewPerformance"]; r.length;) n("track" + r.pop());
-            n("startTrackPage"), n("stopTrackPage");
-            var s = "Track" + r[0];
-            if (n("start" + s), n("stop" + s), n("addTelemetryInitializer"), n("setAuthenticatedUserContext"), n("clearAuthenticatedUserContext"), n("flush"), t.SeverityLevel = {
-                Verbose: 0,
-                Information: 1,
-                Warning: 2,
-                Error: 3,
-                Critical: 4
-            }, !(!0 === e.disableExceptionTracking || e.extensionConfig && e.extensionConfig.ApplicationInsightsAnalytics && !0 === e.extensionConfig.ApplicationInsightsAnalytics.disableExceptionTracking)) {
-                n("_" + (r = "onerror"));
-                var o = a[r];
-                a[r] = function (e, n, i, a, s) {
-                    var c = o && o(e, n, i, a, s);
-                    return !0 !== c && t["_" + r]({message: e, url: n, lineNumber: i, columnNumber: a, error: s}), c
-                }, e.autoExceptionInstrumented = !0
-            }
-            return t
-        }(
-            {
-                instrumentationKey: '8a438365-9092-4204-b21b-01ead487ce1e'
-            }
-        );
-        window[aiName] = aisdk, aisdk.queue && 0 === aisdk.queue.length && aisdk.trackPageView({});
-
-        authenticated(window[aiName], '');
-
-        try {
-            var filter = ["hotjar.io", "doubleclick.net"];
-            var filteringFunction = function(envelope) {
-                var filterNum = 0;
-                var target = envelope.baseData.target;
-                filter.forEach(function(item) {
-                    var indexNum = target.indexOf(item);
-                    if(indexNum > 0) {
-                        filterNum = indexNum;
-                    }
-                });
-
-                if (filterNum > 0) {
-                    return false;
-                }
-                return true;
-            };
-            appInsights.addTelemetryInitializer(filteringFunction);
-        } catch(err) {
-            console.error(err);
-        }
-        
-     
-    </script>
 </head>
 <body id="top">
 <!--top-->
@@ -212,7 +65,6 @@
     <!--이미지 위에 글쓰는곳-->
   </div>
 </div>
-
   <main class="hoc container clear"> 
 	<table border=1>  
     <div class="musinsa-wrapper wrapper-member">
@@ -239,7 +91,7 @@
                
                     </div>
                     <h2 class="title-join" style="font-size:40px;">회&nbsp;원&nbsp;가&nbsp;입</h2>
-                    <button type="button" class="btn-back" onclick="location.href='./join01.jsp'"><i class="ic-30-line-arrow-left">이전 페이지로 이동</i></button>
+                    <button type="button" class="btn-back" onclick="location.href='${pageContext.request.contextPath }'"><i class="ic-30-line-arrow-left">이전 페이지로 이동</i></button>
                 </header>
                 <!-- //Header -->
 
@@ -247,7 +99,7 @@
                 <div class="join-form">
                     <div class="n-form-set">
                         <label for="memberId" class="n-form-label">아이디 <span class="essential">필수 입력</span></label><br/>
-                        <input type="text" class="n-input input" id="memberId" name="memberId" placeholder="아이디 입력(8자이상)" minlength="4" maxlength="20" style="width:300px;">
+                        <input type="text" class="n-input input" id="memberId" name="memberId" placeholder="아이디 입력(8자이상)" minlength="8" maxlength="20" style="width:400px;">
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
                     <div class="n-form-set">
@@ -306,10 +158,8 @@
                         <label for="address" class="n-form-label">주소<span class="essential">필수 입력</span></label>
                         <div>                                     
                             <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px;" readonly />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="button" class="n-input" onclick="DaumPostcode()" value="우편번호 찾기" style="width:150px; margin-top:5px; font-weight:bold; color: #424242; background:#A4A4A4; " /><br>                       
-                            
-                            <input type="text" id="address" name="addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" /><br>
+                            <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="우편번호 찾기" style="width:130px; height:50px; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
+                            <input type="text" id="address" name="addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" />
                             <input type="text" id="detailAddress" name="addr2" placeholder="상세주소"  class="n-input" style="margin-top: 5px;" />
                             <input type="text" id="extraAddress" name="addr3" placeholder="참고항목"  class="n-input" style="margin-top: 5px;" />
                                 <p class="n-validation" id="searchValidPhone" style="display: none">주소형식이 올바르지 않습니다.</p>
@@ -324,7 +174,7 @@
                             <label for="checkAll" class="all">약관 전체동의</label>
                         </div>
                         <div>
-                            <input type="checkbox" class="n-check agree-item required-agree-item" id="agreeCheckbox" name="agreeCheckbox">
+                            <input type="checkbox" class="n-check" id="agreeCheckbox" name="agreeCheckbox">
                             <label for="agreeCheckbox">개인정보 수집 이용동의(필수)</label>
                             <button type="button" class="link" onclick="privacyAgreeUsagePopBtnClickHandler()">약관보기</button>
                         </div>
@@ -338,7 +188,7 @@
                 </div>
 
                 <div id="joinBtnDiv" class="member-btn">
-                    <button type="submit" id="joinBtn" class="n-btn btn-primary">가입완료</button>
+                    <button type="submit" id="joinBtn" class="n-btn btn-primary" onclick="location.href= 'memberAgree2.do'">다음</button>
                 </div>
             </form>
         </div>
@@ -365,7 +215,7 @@
 
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                } else { // 사용자가 지번 주소를 선택했을 경우
                     addr = data.jibunAddress;
                 }
     	
@@ -499,10 +349,6 @@
                 return isResult;
             }
         }
-        
-        
-        
-
 
         function validatePassword() {
             var password = $("#password").val().trim();
@@ -687,10 +533,7 @@
                 }
             }
         }
-        
-     
-        
-        
+
         var changeFndTarget = function(t){
             switch(t){
                 case 'email':
@@ -832,7 +675,7 @@
             return isPassMemberId && isPassPassword && isConfirmPassPassword && isPassEmail && isPassAgree;
         }
 
-      
+        //비밀번호 가리기/보이기
         function togglePassword(_id, _this) {
             var _password = $("#" + _id);
             if (_password.attr("type") == "password") {
@@ -1170,7 +1013,7 @@
             }
 
             setSessionStorage();
-            window.open('./join04.jsp', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+            window.open('./article.jsp', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
 
         }
 
@@ -1182,7 +1025,7 @@
             }
 
             setSessionStorage();
-            window.open('./join04.jsp', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+            window.open('./article.jsp', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
         }
 
 
