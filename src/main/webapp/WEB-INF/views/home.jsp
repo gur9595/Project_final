@@ -57,19 +57,19 @@ Licence URI: https://www.os-templates.com/template-terms
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="#"><i class="fas fa-chess-queen"></i></a>
+          <article><a href="./stadium/stadiumMain.do"><i class="fas fa-chess-queen"></i></a>
             <h6 class="heading">Stadium</h6>
             <p>경기장을 예약하여 보다 편하게!!</p>
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="#"><i class="fas fa-shopping-cart"></i></a>
+          <article><a href="./market/marketMain.do"><i class="fas fa-shopping-cart"></i></a>
             <h6 class="heading">Market</h6>
             <p>장비가 없어요? 여기에요 여기!!</p>
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="#"><i class="fas fa-futbol"></i></a>
+          <article><a href="./member/memberAgree.do"><i class="fas fa-futbol"></i></a>
             <h6 class="heading">Join</h6>
             <p>회원가입을 하세요!!</p>
           </article>
