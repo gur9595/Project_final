@@ -12,6 +12,14 @@ public class MemberController {
 		return "member/member_agree";
 	}
 	
+	
+	 @RequestMapping("/member/memberAgree2.do")
+	 public String memberAgree2() {
+		 
+		 return"member/member_agree2";
+	 }
+	 
+	
 	@RequestMapping("/member/login.do")
 	public String login() {
 		

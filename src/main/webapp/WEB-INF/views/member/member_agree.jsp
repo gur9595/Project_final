@@ -158,7 +158,7 @@
                         <label for="address" class="n-form-label">주소<span class="essential">필수 입력</span></label>
                         <div>                                     
                             <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px;" readonly />
-                            <input type="button" class="n-input" onclick="DaumPostcode()" value="우편번호 찾기" style="width:150px; margin-top:5px; font-weight:bold; color: #424242; background:#A4A4A4; " /><br>                       
+                            <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="우편번호 찾기" style="width:130px; height:50px; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
                             <input type="text" id="address" name="addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" />
                             <input type="text" id="detailAddress" name="addr2" placeholder="상세주소"  class="n-input" style="margin-top: 5px;" />
                             <input type="text" id="extraAddress" name="addr3" placeholder="참고항목"  class="n-input" style="margin-top: 5px;" />
@@ -188,7 +188,7 @@
                 </div>
 
                 <div id="joinBtnDiv" class="member-btn">
-                    <button type="submit" id="joinBtn" class="n-btn btn-primary">가입완료</button>
+                    <button type="submit" id="joinBtn" class="n-btn btn-primary" onclick="location.href= 'memberAgree2.do'">다음</button>
                 </div>
             </form>
         </div>
