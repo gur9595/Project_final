@@ -20,11 +20,9 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
 	border-bottom : 3px solid #000066;
 }
 
-
-
 .box select {
-  background-color: #000000;
-  color: white;
+  background-color: #FFFFFF;
+  color: black;
   padding: 12px;
   width: 250px;
   border: none;
@@ -60,9 +58,17 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
   padding: 30px;
 }
 
+.position {
+	box-sizing : content-box;
+}
+
+.position input{
+	box-sizing : content-box;
+}
+
 input[type=checkbox]
 {
-	width : 25px; height : 25px;
+	width : 20px; height : 20px; 
 }
 
 </style>
@@ -92,61 +98,31 @@ input[type=checkbox]
 		<!-- //Header -->
         
 		<h2>주 포지션 체크</h2>
-		<table style="background-color: white;">
-			<tr>
-				<td>	
-					<input type="checkbox" name="position" value="ST" style="width:25px;height:25px;"/><span>ST</span>
-				</td>
-				<td>
-					<input type="checkbox" name="position" value="RW"/>RW
-				</td>
-				<td>
-					<input type="checkbox" name="position" value="LW"/>LW
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="position" value="RM"/>RM
-				</td>
-				<td>	
-					<input type="checkbox" name="position" value="AM"/>AM
-				</td>	
-				<td>
-					<input type="checkbox" name="position" value="LM"/>LM
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" name="position" value="CW"/>CM
-				</td>
-				<td>
-					<input type="checkbox" name="position" value="CB"/>CB
-				</td>
-				<td>	
-					<input type="checkbox" name="position" value="DM"/>DM
-				</td>
-			</tr>	
-			<tr>
-				<td>	
-					<input type="checkbox" name="position" value="LB"/>LB
-				</td>
-				<td>
-					<input type="checkbox" name="position" value="GK"/>GK
-				</td>
-				<td>
-					<input type="checkbox" name="position" value="RB"/>RB
-				</td>
-			</tr>
-			<tr>
-				
-			</tr>				
-		</table>
-		
-
+		<div class="row">
+            <div class="col"><input type="checkbox" name="position" value="LW"/>LW</div>
+            <div class="col"><input type="checkbox" name="position" value="ST"/>ST</div>
+            <div class="col"><input type="checkbox" name="position" value="RW"/>RW</div>
+        </div>
+        <div class="row">
+            <div class="col"><input type="checkbox" name="position" value="LM"/>LM</div>
+            <div class="col"><input type="checkbox" name="position" value="AM"/>AM</div>
+            <div class="col"><input type="checkbox" name="position" value="RM"/>RM</div>
+        </div>
+        <div class="row">
+            <div class="col"><input type="checkbox" name="position" value="CM"/>CM</div>
+            <div class="col"><input type="checkbox" name="position" value="CB"/>CB</div>
+            <div class="col"><input type="checkbox" name="position" value="DM"/>DM</div>
+        </div>
+        <div class="row">
+            <div class="col"><input type="checkbox" name="position" value="LB"/>LB</div>
+            <div class="col"><input type="checkbox" name="position" value="GK"/>GK</div>
+            <div class="col"><input type="checkbox" name="position" value="RB"/>RB</div>
+        </div>
+        
 		<h2>주관적인 실력</h2>
 		<table style="background-color: white;">
 			<tr>
-				<td width=50 style="word-break:break-all">
+				<td align="center">
 	        		<input type="radio" name="abil" value="best">최상
 	        	</td>
 	        	<td>
@@ -216,14 +192,10 @@ input[type=checkbox]
         
         <div style="text-align:center">
         	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberAgree.do'">이전페이지</button>  
-	        <button class="btn btn-outline-success" type="submit" style="font-size:20px;" >가입완료!!</button>
+	        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">가입완료!!</button>
         </div>
     </form>
 </div>
-<script src="/js/jquery-3.2.1.js"></script>
-<script>
-    
-</script>    
 		<div class="clear"></div>
 	</main>
 	<!-- footer -->
@@ -234,6 +206,7 @@ input[type=checkbox]
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
 <script src="./../resources/js/jquery.mobilemenu.js"></script>
+
 </body>  
 </html> 
   
