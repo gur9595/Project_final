@@ -11,4 +11,10 @@ public class StadiumController {
 		
 		return "stadium/stadium_main";
 	}
+	
+	@RequestMapping("/stadium/stadiumNormalApply.do")
+	public String stadiumApply() {
+		
+		return "stadium/stadium_apply";
+	}
 }
