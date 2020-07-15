@@ -298,18 +298,13 @@ td{border-width:0 1px;}
 .faicon-vk:hover{background-color:#4E658E;}
 
 
-/* ------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------ */
 
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
 body{color:#A5A6AA; background-color:#282E39;}
 a{color:#97A9BD;}
-a:active, a:focus{background:transparent !important;}/* IE10 + 11 Bugfix - prevents grey background */
+a:active, a:focus{background:transparent !important;}
 hr, .borderedbox{border-color:#D7D7D7;}
 label span{color:#FF0000; background-color:inherit;}
 input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
@@ -431,9 +426,9 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 
 /* Tables + Comments */
 table, th, td, #comments .avatar, #comments input, #comments textarea{border-color:#D7D7D7;}
-th{color:#FFFFFF; background-color:#373737;}
+/*th{color:#FFFFFF; background-color:#373737;}
 tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{color:inherit; background-color:#FBFBFB;}
-tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
+tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}*/
 table a, #comments a{background-color:inherit;} 
 
 
