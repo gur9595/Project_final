@@ -73,125 +73,133 @@ label {
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+<div class="bgded overlay">
 	<div id="breadcrumb" class="hoc clear"> 
 	  <!-- 이미지 위에 글쓰는곳 -->
 	</div>
 </div>
-  <main class="hoc container clear">
-    <div class="container">
-    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
-    <form action="" method="post" id="myForm">
-        
-		<!-- Header -->
-		<header class="member-header">
-		    <div class="logo">
-		
-		    </div>
-		
-		</header>
-		<!-- //Header -->
-        
-		<h2>주 포지션 체크</h2>
-		<table class="table table-borderless">
-			<tr>
-	          	<td width="20px;"><input type="checkbox" name="position" id="LW" value="LW"/></td>
-	          	<td><label for="LW">LW</label></td>
-	            <td width="20px;"><input type="checkbox" name="position" id="ST" value="ST"/></td>
-	            <td><label for="ST">ST</label></td>
-	            <td width="20px;"><input type="checkbox" name="position" id="RW" value="RW"/></td>
-	            <td><label for="RW">RW</label></td>
-	        </tr>
-			<tr>
-	          	<td><input type="checkbox" name="position" id="LM" value="LM"/></td>
-	          	<td><label for="LM">LM</label></td>
-	            <td><input type="checkbox" name="position" id="AM" value="AM"/></td>
-	            <td><label for="AM">AM</label></td>
-	            <td><input type="checkbox" name="position" id="RM" value="RM"/></td>
-	            <td><label for="RM">RM</label></td>
-	        </tr>
-			<tr>
-	          	<td ><input type="checkbox" name="position" id="CM" value="CM"/></td>
-	          	<td ><label for="CM">CM</label></td>
-	            <td ><input type="checkbox" name="position" id="CB" value="CB"/></td>
-	            <td ><label for="CB">CB</label></td>
-	            <td ><input type="checkbox" name="position" id="DM" value="DM"/></td>
-	            <td ><label for="DM">DM</label></td>
-	        </tr>
-	  		<tr>
-	          	<td ><input type="checkbox" name="position" id="LB" value="LB"/></td>
-	          	<td ><label for="LB">LB</label></td>
-	            <td ><input type="checkbox" name="position" id="GK" value="GK"/></td>
-	            <td ><label for="GK">GK</label></td>
-	            <td ><input type="checkbox" name="position" id="RB" value="RB"/></td>
-	            <td ><label for="RB">RB</label></td>
-	        </tr>
-        </table>
-        
-		<h2>주관적인 실력</h2>
-		<div class="row">
-            <div ><input type="radio" name="abil" id="best" value="best" ><label for="best">최상</label></div>
-            <div ><input type="radio" name="abil" id="top" value="top"><label for="top">상</label></div>
-            <div ><input type="radio" name="abil" id="mediumhigh" value="mediumhigh"><label for="mediumhigh">중상</label></div>
-        </div>
-        <div class="row">
-            <div ><input type="radio" name="abil" id="medium" value="medium">중</div>
-            <div ><input type="radio" name="abil" id="mediumlow" value="mediumlow">중하</div>
-            <div ><input type="radio" name="abil" id="low" value="low">하</div>
-        </div>
-        
-        <h2>주로쓰는 발</h2>
-        <ul>
-        	<li>
-        		<input type="radio" name="foot" value="LF">왼발
-        	</li>
-        	<li>
-        		<input type="radio" name="foot" value="RF">오른발
-        	</li>
-        	<li>
-        		<input type="radio" name="foot" value="ALL">양발
-        	</li>
-        </ul>
-        
-        <h2>사는 지역</h2>
-		<div class="box">
-		    <select id="selectbox" title="선택 구분">
-		        <option selected="selected">선택해 주세요</option>
-		        <option>강남구</option>
-		        <option>강동구</option>
-		        <option>강북구</option>
-		        <option>강서구</option>
-		        <option>관악구</option>
-		        <option>광진구</option>
-		        <option>구로구</option>
-		        <option>금천구</option>
-		        <option>노원구</option>
-		        <option>도봉구</option>
-		        <option>동대문구</option>
-		        <option>동작구</option>
-		        <option>마포구</option>
-		        <option>서대문구</option>
-		        <option>서초구</option>
-		        <option>성동구</option>
-		        <option>성북구</option>
-		        <option>송파구</option>
-		        <option>양천구</option>
-		        <option>영등포구</option>
-		        <option>용산구</option>
-		        <option>은평구</option>
-		        <option>종로구</option>
-		        <option>중구</option>
-		        <option>중랑구</option>  
-		    </select>
+	<main class="hoc container clear">
+	    <div class="container">
+	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
+	    <form action="/member/v2/join/complete" method="post" id="myForm" novalidate>
+			<!-- Header -->
+			<header class="member-header">
+			    <div class="logo">
+			
+			    </div>
+			</header>
+			<!-- //Header -->
+	        
+	        <h2>사는 지역</h2>
+			<div class="box">
+			    <select id="selectbox" title="선택 구분">
+			        <option selected="selected">선택해 주세요</option>
+			        <option>강남구</option>
+			        <option>강동구</option>
+			        <option>강북구</option>
+			        <option>강서구</option>
+			        <option>관악구</option>
+			        <option>광진구</option>
+			        <option>구로구</option>
+			        <option>금천구</option>
+			        <option>노원구</option>
+			        <option>도봉구</option>
+			        <option>동대문구</option>
+			        <option>동작구</option>
+			        <option>마포구</option>
+			        <option>서대문구</option>
+			        <option>서초구</option>
+			        <option>성동구</option>
+			        <option>성북구</option>
+			        <option>송파구</option>
+			        <option>양천구</option>
+			        <option>영등포구</option>
+			        <option>용산구</option>
+			        <option>은평구</option>
+			        <option>종로구</option>
+			        <option>중구</option>
+			        <option>중랑구</option>  
+			    </select>
+			</div>
+	        
+	        
+	        
+			<h2>주 포지션 체크</h2>
+			<table class="table table-borderless">
+				<tr>
+		          	<td width="20px;"><input type="checkbox" name="position" id="LW" value="LW"/></td>
+		          	<td><label for="LW">LW</label></td>
+		            <td width="20px;"><input type="checkbox" name="position" id="ST" value="ST"/></td>
+		            <td><label for="ST">ST</label></td>
+		            <td width="20px;"><input type="checkbox" name="position" id="RW" value="RW"/></td>
+		            <td><label for="RW">RW</label></td>
+		        </tr>
+				<tr>
+		          	<td><input type="checkbox" name="position" id="LM" value="LM"/></td>
+		          	<td><label for="LM">LM</label></td>
+		            <td><input type="checkbox" name="position" id="AM" value="AM"/></td>
+		            <td><label for="AM">AM</label></td>
+		            <td><input type="checkbox" name="position" id="RM" value="RM"/></td>
+		            <td><label for="RM">RM</label></td>
+		        </tr>
+				<tr>
+		          	<td ><input type="checkbox" name="position" id="CM" value="CM"/></td>
+		          	<td ><label for="CM">CM</label></td>
+		            <td ><input type="checkbox" name="position" id="CB" value="CB"/></td>
+		            <td ><label for="CB">CB</label></td>
+		            <td ><input type="checkbox" name="position" id="DM" value="DM"/></td>
+		            <td ><label for="DM">DM</label></td>
+		        </tr>
+		  		<tr>
+		          	<td ><input type="checkbox" name="position" id="LB" value="LB"/></td>
+		          	<td ><label for="LB">LB</label></td>
+		            <td ><input type="checkbox" name="position" id="GK" value="GK"/></td>
+		            <td ><label for="GK">GK</label></td>
+		            <td ><input type="checkbox" name="position" id="RB" value="RB"/></td>
+		            <td ><label for="RB">RB</label></td>
+		        </tr>
+	        </table>
+	        
+			<h2>주관적인 실력</h2>
+			<table class="table table-borderless">
+				<tr>
+					<td width="20px;"><input type="radio" name="abil" id="best" value="best" ></td>
+					<td><label for="best">최상</label></td>
+					<td width="20px;"><input type="radio" name="abil" id="top" value="top"></td>
+					<td><label for="top">상</label></td>
+					<td width="20px;"><input type="radio" name="abil" id="mediumhigh" value="mediumhigh"></td>
+					<td><label for="mediumhigh">중상</label></td>
+				</tr>
+				<tr>
+					<td><input type="radio" name="abil" id="medium" value="medium"></td>
+					<td><label for="medium">중</label></td>
+					<td><input type="radio" name="abil" id="mediumlow" value="mediumlow"></td>
+					<td><label for="mediumlow">중하</label></td>
+					<td><input type="radio" name="abil" id="low" value="low"></td>
+					<td><label for="low">하</label></td>
+				</tr>
+			</table>
+	        
+	        <h2>주로쓰는 발</h2>
+	        <table class="table table-borderless">
+	        	<tr>
+	        		<td width="20px;"><input type="radio" name="foot" id="LF" value="LF"></td>
+	        		<td><label for="LF">왼발</label></td>
+	        		<td width="20px;"><input type="radio" name="foot" id="RF" value="RF"></td>
+	        		<td><label for="RF">오른발</label></td>
+					<td width="20px;"><input type="radio" name="foot" id="ALL" value="ALL"></td>
+					<td><label for="ALL">양발</label></td>
+	        	</tr>
+			</table>
+	        
+	
+	        
+	        <div style="text-align:center">
+	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberAgree.do'">이전페이지</button>  
+		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;" onclick="location.href= 'login.do'">가입완료!!</button>
+	        </div>
+	    	</form>
 		</div>
-        
-        
-        <div style="text-align:center">
-        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberAgree.do'">이전페이지</button>  
-	        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">가입완료!!</button>
-        </div>
-    </form>
-</div>
 		<div class="clear"></div>
 	</main>
 	<!-- footer -->
