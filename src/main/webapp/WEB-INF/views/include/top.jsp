@@ -38,14 +38,21 @@
             <li><a href="#">3</a></li>
           </ul>
         </li>
-        <li><a class="drop" href="${pageContext.request.contextPath }/customer/qnaMain.do">Q & A</a>
+        <li><a class="drop" href="${pageContext.request.contextPath }/member/managerMain.do">Manager</a>
         	<ul>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
           </ul>
         </li>
-        <li><a class="drop" href="${pageContext.request.contextPath }/member/memberAgree.do">Join</a>
+        <li><a class="drop" href="${pageContext.request.contextPath }/payment/paymentMain.do">Payment</a>
+        	<ul>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+          </ul>
+        </li>
+        <li><a class="drop" href="${pageContext.request.contextPath }/customer/qnaMain.do">Q & A</a>
         	<ul>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
