@@ -179,7 +179,7 @@ label {
 					<td><label for="low">하</label></td>
 				</tr>
 			</table>
-	        
+	          
 	        <h2>주로쓰는 발</h2>
 	        <table class="table table-borderless">
 	        	<tr>
