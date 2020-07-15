@@ -37,7 +37,7 @@ Licence URI: https://www.os-templates.com/template-terms
   <div class="jb-text"> 
     <!-- ################################################################################################ -->
     <article>
-      <p>정상혁 병신...</p>
+      <p>나는 프로지...ㅎ</p>
     </article>
     <!-- ################################################################################################ -->
   </div>
@@ -63,15 +63,15 @@ Licence URI: https://www.os-templates.com/template-terms
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="./market/marketMain.do"><i class="fas fa-shopping-cart"></i></a>
-            <h6 class="heading">Market</h6>
-            <p>장비가 없어요? 여기에요 여기!!</p>
+          <article><a href="./game/gameMain.do"><i class="fas fa-futbol"></i></a>
+            <h6 class="heading">Game</h6>
+            <p>회원님의 경기를 확인할 수 있어요!!</p>
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="./member/memberAgree.do"><i class="fas fa-futbol"></i></a>
-            <h6 class="heading">Join</h6>
-            <p>회원가입을 하세요!!</p>
+          <article><a href="./market/marketMain.do"><i class="fas fa-shopping-cart"></i></a>
+            <h6 class="heading">Market</h6>
+            <p>장비가 없어요? 여기에요 여기!!</p>
           </article>
         </li>
       </ul>
@@ -87,7 +87,7 @@ Licence URI: https://www.os-templates.com/template-terms
     </section>
     <!-- ################################################################################################ -->
     <!-- / main body -->
-    <div class="clear"></div>
+    
   </main>
 </div>
 <!-- ######################################## footer ########################################### -->

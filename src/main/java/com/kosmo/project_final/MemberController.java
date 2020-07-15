@@ -25,4 +25,11 @@ public class MemberController {
 		
 		return "member/login";
 	}
+	
+	@RequestMapping("/member/managerMain.do")
+	public String managerMain() {
+		
+		return "member/manager_main";
+	}
+	
 }
