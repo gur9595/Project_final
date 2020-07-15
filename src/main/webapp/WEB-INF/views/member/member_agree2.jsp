@@ -57,19 +57,14 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
 .box select option {
   padding: 30px;
 }
-
-.position {
-	box-sizing : content-box;
-}
-
-.position input{
-	box-sizing : content-box;
-}
-
-input[type=checkbox]
+input[type=checkbox], input[type=radio]
 {
-	width : 20px; height : 20px; 
+	width : 20px; height : 20px; cursor: pointer;
 }
+label {
+    cursor: pointer;
+}
+
 
 </style>
 
@@ -98,51 +93,52 @@ input[type=checkbox]
 		<!-- //Header -->
         
 		<h2>주 포지션 체크</h2>
-		<div class="row">
-            <div class="col"><input type="checkbox" name="position" value="LW"/>LW</div>
-            <div class="col"><input type="checkbox" name="position" value="ST"/>ST</div>
-            <div class="col"><input type="checkbox" name="position" value="RW"/>RW</div>
-        </div>
-        <div class="row">
-            <div class="col"><input type="checkbox" name="position" value="LM"/>LM</div>
-            <div class="col"><input type="checkbox" name="position" value="AM"/>AM</div>
-            <div class="col"><input type="checkbox" name="position" value="RM"/>RM</div>
-        </div>
-        <div class="row">
-            <div class="col"><input type="checkbox" name="position" value="CM"/>CM</div>
-            <div class="col"><input type="checkbox" name="position" value="CB"/>CB</div>
-            <div class="col"><input type="checkbox" name="position" value="DM"/>DM</div>
-        </div>
-        <div class="row">
-            <div class="col"><input type="checkbox" name="position" value="LB"/>LB</div>
-            <div class="col"><input type="checkbox" name="position" value="GK"/>GK</div>
-            <div class="col"><input type="checkbox" name="position" value="RB"/>RB</div>
-        </div>
-        
-		<h2>주관적인 실력</h2>
-		<table style="background-color: white;">
+		<table class="table table-borderless">
 			<tr>
-				<td align="center">
-	        		<input type="radio" name="abil" value="best">최상
-	        	</td>
-	        	<td>
-	        		<input type="radio" name="abil" value="top">상
-	        	</td>
-	        	<td>
-	        		<input type="radio" name="abil" value="mediumhigh">중상
-	        	</td>
-	        	<td>
-	        		<input type="radio" name="abil" value="medium">중
-	        	</td>
-	        	<td>
-	        		<input type="radio" name="abil" value="mediumlow">중하
-	        	</td>
-	        	<td>
-	        		<input type="radio" name="abil" value="low">하
-	        	</td>
+	          	<td width="20px;"><input type="checkbox" name="position" id="LW" value="LW"/></td>
+	          	<td><label for="LW">LW</label></td>
+	            <td width="20px;"><input type="checkbox" name="position" id="ST" value="ST"/></td>
+	            <td><label for="ST">ST</label></td>
+	            <td width="20px;"><input type="checkbox" name="position" id="RW" value="RW"/></td>
+	            <td><label for="RW">RW</label></td>
+	        </tr>
+			<tr>
+	          	<td><input type="checkbox" name="position" id="LM" value="LM"/></td>
+	          	<td><label for="LM">LM</label></td>
+	            <td><input type="checkbox" name="position" id="AM" value="AM"/></td>
+	            <td><label for="AM">AM</label></td>
+	            <td><input type="checkbox" name="position" id="RM" value="RM"/></td>
+	            <td><label for="RM">RM</label></td>
+	        </tr>
+			<tr>
+	          	<td ><input type="checkbox" name="position" id="CM" value="CM"/></td>
+	          	<td ><label for="CM">CM</label></td>
+	            <td ><input type="checkbox" name="position" id="CB" value="CB"/></td>
+	            <td ><label for="CB">CB</label></td>
+	            <td ><input type="checkbox" name="position" id="DM" value="DM"/></td>
+	            <td ><label for="DM">DM</label></td>
+	        </tr>
+	  		<tr>
+	          	<td ><input type="checkbox" name="position" id="LB" value="LB"/></td>
+	          	<td ><label for="LB">LB</label></td>
+	            <td ><input type="checkbox" name="position" id="GK" value="GK"/></td>
+	            <td ><label for="GK">GK</label></td>
+	            <td ><input type="checkbox" name="position" id="RB" value="RB"/></td>
+	            <td ><label for="RB">RB</label></td>
 	        </tr>
         </table>
         
+		<h2>주관적인 실력</h2>
+		<div class="row">
+            <div ><input type="radio" name="abil" id="best" value="best" ><label for="best">최상</label></div>
+            <div ><input type="radio" name="abil" id="top" value="top"><label for="top">상</label></div>
+            <div ><input type="radio" name="abil" id="mediumhigh" value="mediumhigh"><label for="mediumhigh">중상</label></div>
+        </div>
+        <div class="row">
+            <div ><input type="radio" name="abil" id="medium" value="medium">중</div>
+            <div ><input type="radio" name="abil" id="mediumlow" value="mediumlow">중하</div>
+            <div ><input type="radio" name="abil" id="low" value="low">하</div>
+        </div>
         
         <h2>주로쓰는 발</h2>
         <ul>
