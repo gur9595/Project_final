@@ -565,7 +565,7 @@
 					<tr>
 						<td>20:00</td>
 						<td>철산 풋살장</td>
-						<td>상상</td>
+						<td>상혁</td>
 						<td>20대</td>
 						<td>예약 완료</td>
 						<td><button>신청</button></td>
