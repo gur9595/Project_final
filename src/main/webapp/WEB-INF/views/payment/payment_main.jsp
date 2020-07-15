@@ -57,7 +57,7 @@
 				
 				<!-- Small Pricing Table -->
 	<section class="section-padding small-table-area">
-		
+		         
 			<div class="row">
 				<!-- Heading -->
 				<div class="col-md-12 text-center">
