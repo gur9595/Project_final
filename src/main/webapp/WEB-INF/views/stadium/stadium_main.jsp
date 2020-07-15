@@ -228,7 +228,7 @@
 			<!-- main body -->
 
 
-			<div class="one_quarter first">
+			<div class="one_half first">
 
 				<div class="map_wrap">
 					<div id="map"
@@ -491,7 +491,7 @@
 				</script>
 
 			<!-- ################################################################################################ -->
-			<div class="one_half">
+			<div class="one_quarter">
 				<h1>경기장 예약</h1>
 				<form action="./../stadium/stadiumNormalApply.do" method="get">
 				<table border="1" style="text-align: center;">
@@ -501,104 +501,78 @@
 					<tr>  
 						<th>시 간</th>
 						<th>구장 이름</th>
-						<th>실 력</th>
-						<th>나이대</th>
 						<th>현 황</th>
 						<th>신 청</th>
 					</tr>
 					<tr>
 						<td>12:00</td>
 						<td>가산 풋살장</td>
-						<td>하하</td>
-						<td>40대</td>
 						<td>1팀 남음</td>
 						<td><button >신청</button></td>
 					</tr>
 					<tr>
 						<td>20:00</td>
 						<td>철산 풋살장</td>
-						<td>중상</td>
-						<td>20대</td>
 						<td>예약 완료</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>16:00</td>
 						<td>구로 풋살장</td>
-						<td>중하</td>
-						<td>30대</td>
 						<td>예약 진행</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>10:00</td>
 						<td>영등포 풋살장</td>
-						<td>중하</td>
-						<td>20대</td>
 						<td>예약 진행</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>22:00</td>
 						<td>금정 풋살장</td>
-						<td>상하</td>
-						<td>30대</td>
 						<td>예약 완료</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>08:00</td>
 						<td>덕덕 풋살장</td>
-						<td>중중</td>
-						<td>20대</td>
 						<td>1팀 남음</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>12:00</td>
 						<td>가산 풋살장</td>
-						<td>중중</td>
-						<td>유소년</td>
 						<td>1팀 남음</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>20:00</td>
 						<td>철산 풋살장</td>
-						<td>상상</td>
-						<td>20대</td>
 						<td>예약 완료</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>16:00</td>
 						<td>구로 풋살장</td>
-						<td>중상</td>
-						<td>20대</td>
 						<td>예약 진행</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>10:00</td>
 						<td>영등포 풋살장</td>
-						<td>하중</td>
-						<td>청소년</td>
 						<td>예약 진행</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>22:00</td>
 						<td>금정 풋살장</td>
-						<td>중하</td>
-						<td>40대</td>
 						<td>예약 완료</td>
 						<td><button>신청</button></td>
 					</tr>
 					<tr>
 						<td>22:00</td>
 						<td>금정 풋살장</td>
-						<td>중하</td>
-						<td>80대</td>
 						<td>예약 완료</td>
 						<td><button>신청</button></td>
 					</tr>
