@@ -28,7 +28,7 @@
     <div class="content"> 
     	 
     </div>
-    <!-- / main body -->s
+    <!-- / main body -->
     <div class="clear"></div>
   </main>
 </div>

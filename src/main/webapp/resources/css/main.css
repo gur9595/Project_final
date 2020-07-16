@@ -30,7 +30,7 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+	
 }
 
 /*---------------------------------------------*/
@@ -50,14 +50,14 @@ a:focus {
 	outline: none !important;
 }
 
-a:hover {
+/* a:hover {
 	text-decoration: none;
 	color: #6a7dfe;
 	color: -webkit-linear-gradient(left, #21d4fd, #b721ff);
 	color: -o-linear-gradient(left, #21d4fd, #b721ff);
 	color: -moz-linear-gradient(left, #21d4fd, #b721ff);
 	color: linear-gradient(left, #21d4fd, #b721ff);
-}
+} */
 
 /*---------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
