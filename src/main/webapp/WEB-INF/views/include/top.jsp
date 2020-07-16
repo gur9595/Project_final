@@ -32,7 +32,7 @@
           </ul>
         </li>
         
-        <li><a class="drop" href="${pageContext.request.contextPath }/matching/matchingMain.do">Matching</a>
+        <li><a class="drop" href="${pageContext.request.contextPath }/match/matchMain.do">Matching</a>
           <ul>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
