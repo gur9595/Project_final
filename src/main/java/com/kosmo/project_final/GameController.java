@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PaymentController {
+public class GameController {
 	
-	@RequestMapping("/payment/paymentMain.do")
-	public String paymentMain() {
+	@RequestMapping("/game/gameMain.do")
+	public String gameMain() {
 		
-		return "payment/payment_main";
+		return "/game/game_main";
 	}
 }

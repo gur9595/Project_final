@@ -19,6 +19,52 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
 }
+
+
+
+.box select {
+  background-color: #000000;
+  color: white;
+  padding: 12px;
+  width: 250px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
+input[type=checkbox]
+{
+	width : 25px; height : 25px;
+}
+
 </style>
 
 </head>
@@ -49,7 +95,7 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
 		<table style="background-color: white;">
 			<tr>
 				<td>	
-					<input type="checkbox" name="position" value="ST"/>ST
+					<input type="checkbox" name="position" value="ST" style="width:25px;height:25px;"/><span>ST</span>
 				</td>
 				<td>
 					<input type="checkbox" name="position" value="RW"/>RW
@@ -136,14 +182,34 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
         </ul>
         
         <h2>사는 지역</h2>
-		<div class="select-box select-script">
-		    <label for="selectbox">선택해 주세요</label>
+		<div class="box">
 		    <select id="selectbox" title="선택 구분">
 		        <option selected="selected">선택해 주세요</option>
-		        <option>선택1</option>
-		        <option>선택2</option>
-		        <option>선택3</option>
-		        <option>선택4</option>
+		        <option>강남구</option>
+		        <option>강동구</option>
+		        <option>강북구</option>
+		        <option>강서구</option>
+		        <option>관악구</option>
+		        <option>광진구</option>
+		        <option>구로구</option>
+		        <option>금천구</option>
+		        <option>노원구</option>
+		        <option>도봉구</option>
+		        <option>동대문구</option>
+		        <option>동작구</option>
+		        <option>마포구</option>
+		        <option>서대문구</option>
+		        <option>서초구</option>
+		        <option>성동구</option>
+		        <option>성북구</option>
+		        <option>송파구</option>
+		        <option>양천구</option>
+		        <option>영등포구</option>
+		        <option>용산구</option>
+		        <option>은평구</option>
+		        <option>종로구</option>
+		        <option>중구</option>
+		        <option>중랑구</option>  
 		    </select>
 		</div>
         
