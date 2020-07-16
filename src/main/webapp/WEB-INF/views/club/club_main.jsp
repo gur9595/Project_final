@@ -32,42 +32,50 @@
     <div class="content"> 
     	
     	<div class="club">
-	    	<div class="clubBtn clubButton1">
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%; font-size:60px">클럽 검색</div>
-	    		<div style="height:20%;">
-					<i class='fas fa-search' style='font-size:120px;'></i>
-				</div>
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%;"></div>
-	    	</div>
-	    	<div class="clubBtn clubButton2">
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%; font-size:60px">내 클럽</div>
-	    		<div style="height:20%;">
-					<i class='fas fa-tshirt' style='font-size:120px;'></i>
-				</div>
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%;"></div>
-	    	</div>
-	    	<div class="clubBtn clubButton3"> 
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%; font-size:60px">클럽 생성</div>
-	    		<div style="height:20%;">
-					<i class='fas fa-pen' style='font-size:120px;'></i>
-				</div>
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%;"></div>
-	    	</div>
-	    	<div class="clubBtn clubButton4">
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%; font-size:60px">클럽 랭킹</div>
-	    		<div style="height:20%;">
-					<i class='fas fa-trophy' style='font-size:120px;'></i>
-				</div>
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%;"></div>
-	    	</div>
+    		<a href="#">
+		    	<div class="clubBtn clubButton1">
+		    		<div style="height:20%;"></div>
+		    		<div style="height:20%; font-size:60px">클럽 검색</div>
+		    		<div style="height:20%;">
+						<i class='fas fa-search' style='font-size:120px;'></i>
+					</div>
+		    		<div style="height:20%;"></div>
+		    		<div style="height:20%;"></div>
+		    	</div>
+	    	</a>
+	    	<a href="#">
+		    	<div class="clubBtn clubButton2">
+		    		<div style="height:20%;"></div>
+		    		<div style="height:20%; font-size:60px">내 클럽</div>
+		    		<div style="height:20%;">
+						<i class='fas fa-tshirt' style='font-size:120px;'></i>
+					</div>
+		    		<div style="height:20%;"></div>
+		    		<div style="height:20%;"></div>
+		    	</div>
+	    	</a>
+	    	<a href="#">
+		    	<div class="clubBtn clubButton3"> 
+		    		<div style="height:20%;"></div>
+		    		<div style="height:20%; font-size:60px">클럽 생성</div>
+		    		<div style="height:20%;">
+						<i class='fas fa-pen' style='font-size:120px;'></i>
+					</div>
+		    		<div style="height:20%;"></div>
+		    		<div style="height:20%;"></div>
+		    	</div>
+	    	</a>
+	    	<a href="#">
+		    	<div class="clubBtn clubButton4">
+		    		<div style="height:20%;"></div>
+		    		<div style="height:20%; font-size:60px">클럽 랭킹</div>
+		    		<div style="height:20%;">
+						<i class='fas fa-trophy' style='font-size:120px;'></i>
+					</div>
+		    		<div style="height:20%;"></div>
+		    		<div style="height:20%;"></div>
+		    	</div>
+	    	</a>
     	</div>
     	
     </div>
