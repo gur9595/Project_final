@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="">
 <meta charset="utf-8">
-
+ 
 <%
 request.setCharacterEncoding("UTF-8");
 String keyword = request.getParameter("keyword");

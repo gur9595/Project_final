@@ -21,7 +21,7 @@
 <link href="./../resources/css/layout.css" rel="stylesheet"
 	type="text/css" media="all">
 	
-
+ 
 <style>
 .map_wrap, .map_wrap * {
 	margin: 0;
