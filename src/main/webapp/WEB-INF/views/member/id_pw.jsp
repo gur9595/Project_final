@@ -14,40 +14,36 @@
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <!-- login css start -->
 <link rel="stylesheet" href="./../resources//css/util.css" />
-<link rel="stylesheet" href="./../resources/css/idpage.css" />
+<link rel="stylesheet" href="./../resources/css/id_pwpage.css" />
 <!-- login css end -->
 </head>
 <body id="top">
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('./../resources/img/축구공배너1.png');">
+<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
   <div id="breadcrumb" class="hoc clear"> 
-  
     <!--이미지 위에 글쓰는곳-->
   </div>
 </div>
 <div class="wrapper row3">
   <main class="hoc container clear"> 
-    <!-- main body -->
+    <!-- 아이디 찾기 -->
     <div class="content"> 
     <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
-					<!-- <span class="login100-form-title p-b-26">
-						로그인
-					</span> -->
-					<div class="icon">
-					<img src="./../resources/img/icon.png" style="width:160px; height:150px" alt="" />
-					</div>
+					<span class="login100-form-title p-b-26">
+						아이디 찾기
+					</span> 
 					<br />
 					<!-- <span class="login100-form-title p-b-48">
 						<i class="zmdi zmdi-font"></i>
 					</span> -->
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email" placeholder="아이디">
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="name" name="name" placeholder="이름">
 						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 
@@ -55,7 +51,7 @@
 						<!-- <span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i> 
 						</span> -->
-						<input class="input100" type="password" name="pass" placeholder="비밀번호">
+						<input class="input100" type="text" id="name" name="email" placeholder="이메일">
 						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 
@@ -63,33 +59,51 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								로그인
+							아 찾기 싫다
 							</button>
 						</div>
 						<div class="clear"></div>
 					</div>
 					<br /><br />
-					<div class="login100-api">
-<!-- 					<img src="./../resources/img/naver.png" alt="naverAPI" /><br><img src="./../resources/img/kakao.png" alt="kakaoAPI" width="320px" /> -->
-					<a href="#"><img src="./../resources/img/naver.png" alt="naverAPI" /></a><a href=""><img src="./../resources/img/kakao.png" alt="kakaoAPI"/></a>
-					</div>
-					<div class="text-center p-t-55">
-						<!-- <span class="txt1">
-							Don’t have an account?
-						</span> -->
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a class="txt2" href="./../member/memberAgree.do">
-							Sign Up
-						</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<!-- <span class="txt1">
-							Forget ID or Password?
-						</span> -->
+						<div class="clear"></div>
+				</form>
+			</div>
+		<!-- </div>
+    비밀번호 찾기
+		<div class="container-login100"> -->
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						비밀번호 찾기
+					</span> 
+					<br />
+					<!-- <span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span> -->
 
-						<a class="txt2" href="./../member/id_pw.do">
-							Find ID / Password 
-						</a>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="id" name="id" placeholder="아이디">
+						<span class="focus-input100" data-placeholder=""></span>
 					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i> 
+						</span>
+						<input class="input100" type="text" name="email" placeholder="이메일">
+						<span class="focus-input100" data-placeholder=""></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+							비밀번호 찾기
+							</button>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<br /><br />
 						<div class="clear"></div>
 				</form>
 			</div>
