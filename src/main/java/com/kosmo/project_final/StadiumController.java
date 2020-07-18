@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StadiumController {
 	
-	@RequestMapping("/stadium/stadiumMain.do")
+	@RequestMapping("/match/stadiumMain.do")
 	public String stadiumMain() {
 		
-		return "stadium/stadium_main";
+		return "match/stadium_main";
 	}
 	
 	@RequestMapping("/stadium/stadiumNormalApply.do")
