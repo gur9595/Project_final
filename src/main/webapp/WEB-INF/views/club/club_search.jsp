@@ -9,6 +9,8 @@ request.setCharacterEncoding("UTF-8");
 %>
 <body>
 	<div class="hoc container clear">
+	<center class="center">클럽 검색</center>
+		<br /><br />
 		<div class="one_half first">
 			<div class="s007">
 			  <form>
@@ -27,31 +29,43 @@ request.setCharacterEncoding("UTF-8");
 		            <div class="row">
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" name="choices-single-defaul">
-		                    <option placeholder="" value="">지역구</option>
-		                    <option>ACCESSORIES</option>
-		                    <option>SUBJECT B</option>
-		                    <option>SUBJECT C</option>
+		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                    <option placeholder="" value="">---지역구---</option>
+		                    <option value="강남구">강남구</option>
+                            <option value="강동구">강동구</option>
+                            <option value="강북구">강북구</option>
+                            <option value="강서구">강서구</option>
+                            <option value="관악구">관악구</option>
+                            <option value="광진구">광진구</option>
+                            <option value="구로구">구로구</option>
+                            <option value="금천구">금천구</option>
+                            <option value="노원구">노원구</option>
+                            <option value="도봉구">도봉구</option>
+                            <option value="동대문구">동대문구</option>
+                            <option value="동작구">동작구</option>
+                            <option value="마포구">마포구</option>
+                            <option value="서대문구">서대문구</option>
+                            <option value="서초구">서초구</option>
+                            <option value="성동구">성동구</option>
+                            <option value="성북구">성북구</option>
+                            <option value="송파구">송파구</option>
+                            <option value="양천구">양천구</option>
+                            <option value="영등포구">영등포구</option>
+                            <option value="용산구">용산구</option>
+                            <option value="은평구">은평구</option>
+                            <option value="종로구">종로구</option>
+                            <option value="중구">중구</option>
+                            <option value="중랑구">중랑구</option>
 		                  </select>
 		                </div>
 		              </div>
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" name="choices-single-defaul">
-		                    <option placeholder="" value="">COLOR</option>
-		                    <option>GREEN</option>
-		                    <option>SUBJECT B</option>
-		                    <option>SUBJECT C</option>
-		                  </select>
-		                </div>
-		              </div>
-		              <div class="input-field">
-		                <div class="input-select">
-		                  <select data-trigger="" name="choices-single-defaul">
-		                    <option placeholder="" value="">SIZE</option>
-		                    <option>SIZE</option>
-		                    <option>SUBJECT B</option>
-		                    <option>SUBJECT C</option>
+		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                    <option placeholder="" value="">---실력---</option>
+		                    <option value="h">상</option>
+		                    <option value="m">중</option>
+		                    <option value="l">하</option>
 		                  </select>
 		                </div>
 		              </div>
@@ -59,38 +73,29 @@ request.setCharacterEncoding("UTF-8");
 		            <div class="row second">
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" name="choices-single-defaul">
-		                    <option placeholder="" value="">SALE</option>
-		                    <option>SALE</option>
-		                    <option>SUBJECT B</option>
-		                    <option>SUBJECT C</option>
+		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                    <option placeholder="" value="">---성별---</option>
+		                    <option>남자</option>
+		                    <option>여자</option>
+		                    <option>혼성</option>
 		                  </select>
 		                </div>
 		              </div>
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" name="choices-single-defaul">
-		                    <option placeholder="" value="">TIME</option>
-		                    <option>THIS WEEK</option>
-		                    <option>SUBJECT B</option>
-		                    <option>SUBJECT C</option>
-		                  </select>
-		                </div>
-		              </div>
-		              <div class="input-field">
-		                <div class="input-select">
-		                  <select data-trigger="" name="choices-single-defaul">
-		                    <option placeholder="" value="">TYPE</option>
-		                    <option>TYPE</option>
-		                    <option>SUBJECT B</option>
-		                    <option>SUBJECT C</option>
+		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                    <option placeholder="" value="">---나이대---</option>
+		                    <option>장년부</option>
+		                    <option>청년부</option>
+		                    <option>청소년부</option>
+		                    <option>유소년부</option>
 		                  </select>
 		                </div>
 		              </div>
 		            </div>
 		            <div class="row third">
 		              <div class="input-field">
-		                <button class="btn-search">Search</button>
+		                <button class="btn-search">검색</button>
 		              </div>
 		            </div>
 		          </div>

@@ -984,7 +984,7 @@ legend {
 }
 
 .s007 form .inner-form .advance-search .input-field {
-  width: calc(33.3333% - 30px);
+  width: calc(50% - 30px);
 }
 
 .s007 form .inner-form .advance-search .input-select {
@@ -1127,7 +1127,6 @@ legend {
 }
 
 /* 클럽 리스트 */
-/* 클럽 리스트 */
 
 .club_list tr{
 	height : 60px; 
@@ -1152,3 +1151,6 @@ legend {
 	width:100%;
 }
   
+.center{
+	font-size : 100px;
+}
