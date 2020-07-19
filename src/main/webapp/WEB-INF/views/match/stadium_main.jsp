@@ -22,7 +22,6 @@ String keyword = request.getParameter("keyword");
 					<div id="map"
 						style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 				</div>
-
 			</div>
 			
 			<div class="one_half seconde mb-5">
@@ -54,7 +53,7 @@ String keyword = request.getParameter("keyword");
 						level : 3
 					// 지도의 확대 레벨
 					};
-
+					
 					// 지도를 생성합니다    
 					var map = new kakao.maps.Map(mapContainer, mapOption);
 					
@@ -106,7 +105,7 @@ String keyword = request.getParameter("keyword");
 					        for(var i = 0; i < result.length; i++) {
 					            // 행정동의 region_type 값은 'H' 이므로
 					            if (result[i].region_type === 'H') {
-					            	keyword += " " + result[i].address_name;
+					            	keyword += " " + result[i].region_2depth_name;
 					                break;
 					            }
 					        }
@@ -128,7 +127,7 @@ String keyword = request.getParameter("keyword");
 						// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 						ps.keywordSearch(keyword, placesSearchCB);
 					}
-
+					
 					// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 					function placesSearchCB(data, status, pagination) {
 						if (status === kakao.maps.services.Status.OK) {
@@ -257,7 +256,7 @@ String keyword = request.getParameter("keyword");
 									position : position, // 마커의 위치
 									image : markerImage
 								});
-
+						
 						marker.setMap(map); // 지도 위에 마커를 표출합니다
 						markers.push(marker); // 배열에 생성된 마커를 추가합니다
 
@@ -318,7 +317,9 @@ String keyword = request.getParameter("keyword");
 						while (el.hasChildNodes()) {
 							el.removeChild(el.lastChild);
 						}
-					} 
+					}
+					
+					
 				</script>
 
 			<!-- ################################################################################################ -->
