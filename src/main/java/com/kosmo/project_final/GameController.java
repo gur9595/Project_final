@@ -11,4 +11,5 @@ public class GameController {
 		
 		return "/game/game_main";
 	}
+	
 }

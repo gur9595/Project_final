@@ -254,6 +254,26 @@
             $('#close').show();
             
         });
+        
+        $('#game_apply').click(function() {
+        	$("#contents").load("gameInsert.do");
+            $('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+            
+        });
+        
+        $('#game_list').click(function() {
+        	$("#contents").load("game_list.do");
+            $('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+            
+        });
 
         $('#edit').click(function() {
           $("#contents").load("edit.html #edit");
