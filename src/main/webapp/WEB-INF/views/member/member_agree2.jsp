@@ -121,8 +121,15 @@ label {
 			        <option value="중랑구">중랑구</option>  
 			    </select>
 			</div>
-	        
-	        
+	        <h2>성별 체크</h2>
+	        <table class="table table-borderless">
+	        	<tr>
+					<td width="20px;"><input type="radio" name="gender" id="man" value="best" ></td>
+					<td><label for="man">남자</label></td>
+					<td width="20px;"><input type="radio" name="gender" id="wowan" value="top"></td>
+					<td><label for="wowan">여자</label></td>
+				</tr>
+	        </table>
 	        
 			<h2>주 포지션 체크</h2>
 			<table class="table table-borderless">

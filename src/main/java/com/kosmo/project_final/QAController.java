@@ -11,4 +11,22 @@ public class QAController {
 		
 		return "QA/QA_main";
 	}
+	
+	@RequestMapping("/customer/qnaList.do")
+	public String qnaList() {
+		
+		return "QA/QA_list";
+	}
+	
+	@RequestMapping("/customer/qnaWrite.do")
+	public String qnaWrite() {
+		
+		return "QA/QA_write";
+	}
+	
+	@RequestMapping("/customer/qnaView.do")
+	public String qnaView() {
+		
+		return "QA/QA_view";
+	}
 }
