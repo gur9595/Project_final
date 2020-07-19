@@ -270,7 +270,11 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Tables
 --------------------------------------------------------------------------------------------------------------- */
+<<<<<<< HEAD
+ table, th, td{border:1px solid; border-collapse:collapse; vertical-align:middle;}
+=======
 table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
+>>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 table, th{table-layout:auto;}
 table{width:100%; margin-bottom:15px;}
 th, td{padding:5px 8px;}
@@ -324,6 +328,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 
 .btn, .btn.inverse:hover{color:#FFFFFF; background-color:#97A9BD; border-color:#97A9BD;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
+
 
 .imgover:hover::before{background-color:rgba(151,169,189,.5);/* #97A9BD */}
 .imgover, .imgover:hover::after{color:#FFFFFF;}

@@ -70,7 +70,7 @@
 			</div>
 		</div>
 	</div>
-
+<!-- ################ 모달 끝 #################-->
 
 	<!--top-->
 	<%@ include file="./../include/top.jsp"%>
@@ -93,7 +93,7 @@
 				<form action="./../match/stadiumNormalApply.do" method="get">
 					<table border="1" style="text-align: center;">
 						<tr>
-							<th colspan="6"><input type="date"
+							<th colspan="6"><input type="date" class="form-control"
 								style="width: 100%; height: 100%;" /></th>
 						</tr>
 						<tr>
