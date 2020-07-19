@@ -811,7 +811,7 @@ legend {
 }
 
 .s007 form {
-  width: 100%;
+  width: 95%;
   max-width: 790px;
   margin: 0;
 }
@@ -1125,3 +1125,30 @@ legend {
     margin-bottom: 20px;
   }
 }
+
+/* 클럽 리스트 */
+/* 클럽 리스트 */
+
+.club_list tr{
+	height : 60px; 
+}
+.club_list img{
+	height:50px;
+	width:50px;
+}
+.club_list .t1{
+	width : 10px;
+}
+.club_list .t2{
+	width : 45px;
+}
+.club_list .t3{
+	width : 60px;
+}
+.club_list .t4{
+	width : 90px;
+}
+.club_list button{
+	width:100%;
+}
+  

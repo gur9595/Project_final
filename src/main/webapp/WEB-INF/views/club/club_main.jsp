@@ -13,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link href="./../resources/css/club.css" rel="stylesheet" />   
+<link href="./../resources/css/search.css" rel="stylesheet"	type="text/css" media="all">
 </head>
 <body id="top"> 
 <!--top-->
