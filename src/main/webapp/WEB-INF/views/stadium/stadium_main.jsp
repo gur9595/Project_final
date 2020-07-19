@@ -496,7 +496,8 @@
 				<form action="./../stadium/stadiumNormalApply.do" method="get">
 				<table border="1" style="text-align: center;">
 					<tr>
-						<th colspan="6">달력</th>
+						<th colspan="6">
+						<input type="date" id="start" name="trip-start" min="2020-07-01" max="2020-12-31"></th>
 					</tr>
 					<tr>  
 						<th>시 간</th>

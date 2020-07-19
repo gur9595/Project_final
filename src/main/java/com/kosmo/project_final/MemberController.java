@@ -32,4 +32,10 @@ public class MemberController {
 		return "member/manager_main";
 	}
 	
+	@RequestMapping("/member/id_pw.do")
+	public String id_pw() {
+		
+		return "/member/id_pw";
+	}
+	
 }

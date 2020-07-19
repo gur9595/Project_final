@@ -62,9 +62,9 @@ input[type=checkbox], input[type=radio]
 	width : 20px; height : 20px; cursor: pointer;
 }
 label {
-    cursor: pointer;
+    cursor: pointer; font-size : 18px;
 }
-
+#file { display:none; } 
 
 </style>
 
@@ -192,8 +192,24 @@ label {
 	        	</tr>
 			</table>
 	        
-	
-	        
+	        <h2>프로필 등록하기</h2>
+			<table border=1>
+				<tr >
+					<td>
+						<input type="text" style="width:200px; height:200px;">
+					</td>
+					<td>상세보기</td>
+				</tr>
+				<tr>
+		            <td>
+						<input type="file" name="userfile" size="40">		
+		            </td>
+		            <td>
+						<input type="file" name="userfile" size="40">		
+		            </td>
+				<tr>
+			</table>
+
 	        <div style="text-align:center">
 	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberAgree.do'">이전페이지</button>  
 		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;" onclick="location.href= 'login.do'">가입완료!!</button>
@@ -210,6 +226,7 @@ label {
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
 <script src="./../resources/js/jquery.mobilemenu.js"></script>
+
 
 </body>  
 </html> 

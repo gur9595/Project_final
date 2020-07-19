@@ -16,7 +16,7 @@
         </li>
         
         <li>
-        <a class="drop" href="${pageContext.request.contextPath }/club/myClubMain.do">Club</a>
+        <a class="drop" href="${pageContext.request.contextPath }/club/clubMain.do">Club</a>
           <ul>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
@@ -31,6 +31,15 @@
             <li><a href="#">3</a></li>
           </ul>
         </li>
+        
+        <li><a class="drop" href="${pageContext.request.contextPath }/match/matchMain.do">Matching</a>
+          <ul>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+          </ul>
+        </li>
+        
         <li><a class="drop" href="${pageContext.request.contextPath }/market/marketMain.do">Market</a>
         	<ul>
             <li><a href="#">1</a></li>
@@ -45,13 +54,6 @@
             <li><a href="#">3</a></li>
           </ul>
         </li>
-        <li><a class="drop" href="${pageContext.request.contextPath }/payment/paymentMain.do">Payment</a>
-        	<ul>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-          </ul>
-        </li>
         <li><a class="drop" href="${pageContext.request.contextPath }/customer/qnaMain.do">Q & A</a>
         	<ul>
             <li><a href="#">1</a></li>
@@ -59,8 +61,11 @@
             <li><a href="#">3</a></li>
           </ul>
         </li>
+        <li><a class="fas fa-donate" href="${pageContext.request.contextPath }/payment/paymentMain.do"></a>
+        	
+        </li>
         <li>
-			<a class="fas fa-user-circle" href="${pageContext.request.contextPath }/member/login.do">Login</a>
+			<a class="fas fa-user" href="${pageContext.request.contextPath }/member/login.do">Login</a>
         </li>
       </ul>
       <!-- ################################################################################################ -->

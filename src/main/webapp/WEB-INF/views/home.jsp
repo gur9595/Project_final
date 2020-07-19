@@ -51,8 +51,8 @@ Licence URI: https://www.os-templates.com/template-terms
     <section id="introblocks">
       <ul class="nospace group btmspace-80 elements elements-four">
         <li class="one_quarter">
-          <article><a href="./club/myClubMain.do"><i class="fas fa-trophy"></i></a>
-            <h6 class="heading">Club</h6>
+          <article><a href="./club/clubMain.do"><i class="fas fa-trophy"></i></a>
+            <h6 class="heading">Club</h6> 
             <p>클럽에 가입하여 함께 즐겨봐요!!</p>
           </article>
         </li>
