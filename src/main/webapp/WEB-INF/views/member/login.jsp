@@ -77,7 +77,7 @@
 							Don’t have an account?
 						</span> -->
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a class="txt2" href="./../member/memberAgree.do">
+						<a class="txt2" href="./../member/phoneCheck.do">
 							Sign Up
 						</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
