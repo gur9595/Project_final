@@ -24,4 +24,11 @@ public class MatchController {
 		return "match/stadium_apply";
 	}
 	
+	@RequestMapping("/match/player.do")
+	public String player() {
+		
+		return "match/player";
+	}
+	
+	
 }

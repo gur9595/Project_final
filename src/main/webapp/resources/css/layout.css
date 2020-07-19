@@ -266,7 +266,7 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Tables
 --------------------------------------------------------------------------------------------------------------- */
- table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
+ table, th, td{border:1px solid; border-collapse:collapse; vertical-align:middle;}
 table, th{table-layout:auto;}
 table{width:100%; margin-bottom:15px;}
 th, td{padding:5px 8px;}
@@ -317,6 +317,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 @media screen and (max-width:750px){/* Only the colours height has been changed */
 	.gradient{background:linear-gradient(to bottom, #F4F4F4 24%, #FFFFFF 19%, #FFFFFF 100%);}
 }
+
 
 
 .imgover:hover::before{background-color:rgba(151,169,189,.5);/* #97A9BD */}
