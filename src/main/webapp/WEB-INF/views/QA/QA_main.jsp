@@ -47,7 +47,7 @@
             <div class="CoveoStyleReplacer">
             	<input type="text" style="text-align: center; width:100%; height: 80px; color:#000000; " placeholder="그냥 찾지마세요"/>
             <a href="http://instagram.com">
-            	
+            	<button value="검색창"></button>
             	</a>
             </div>
         </div>
