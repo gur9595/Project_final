@@ -4,12 +4,18 @@
 <!DOCTYPE html>
 <html lang="">
 <meta charset="utf-8">
+ 
+<%
+request.setCharacterEncoding("UTF-8");
+String keyword = request.getParameter("keyword");
+%>
+
 <body id="top">
-	<div class="wrapper row3" id="stadium">
-		<main class="hoc container clear">
+	<div class="wrapper row4 bg_white" id="stadium">
+		<main class="ho c container clear">
 			<!-- main body -->
-
-
+			
+			<center><h6>경기장 검색</h6></center>
 			<div class="one_half first">
 
 				<div class="map_wrap">
@@ -18,27 +24,24 @@
 				</div>
 
 			</div>
-
-			<div class="one_quarter">
-				<h6>경기장 검색</h6>
+			
+			<div class="one_half seconde mb-5">
 				<div class="map_wrap">
-				<div id="menu_wrap" class="bg_white">
-					<div class="option">
-						<div>
+					<div id="menu_wrap" class="bg_white" style="width: 100%; height: 100%;">
+						<div class="option">
 							<form onsubmit="searchPlaces(); return false;">
-								키워드 : <input type="text" value="가산 풋살" id="keyword" size="15" style="display: inline;">
+								키워드 : <input type="text" value="<%=keyword %>" id="keyword" size="15" style="display: inline;">
 								<button type="submit" style="display: inline;">검색하기</button>
 							</form>
 						</div>
+						<hr>
+						<ul id="placesList"></ul>
+						<div id="pagination"></div>
 					</div>
-					<hr>
-					<ul id="placesList"></ul>
-					<div id="pagination"></div>
 				</div>
-				</div>
-
 			</div>
-
+			
+			<!-- ################################################################################################ -->
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
 			<script>
@@ -54,7 +57,39 @@
 
 					// 지도를 생성합니다    
 					var map = new kakao.maps.Map(mapContainer, mapOption);
+					
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();					
 
+					// 위도, 경도
+					var lat, lon;
+
+					//현재위치
+					var locPosition;
+
+					// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+					if (navigator.geolocation) {
+					    
+					    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+					    navigator.geolocation.getCurrentPosition(function(position) {
+					        
+					        lat = position.coords.latitude, // 위도
+					            lon = position.coords.longitude; // 경도
+					        
+					        // 접속위치
+					        locPosition = new kakao.maps.LatLng(lat, lon);
+					        
+							// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+						    searchAddrFromCoords(locPosition, displayCenterInfo);
+					            
+						});
+					}
+					
+					function searchAddrFromCoords(coords, callback) {
+					    // 좌표로 행정동 주소 정보를 요청합니다
+					    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+					}
+					
 					// 장소 검색 객체를 생성합니다
 					var ps = new kakao.maps.services.Places();
 
@@ -63,19 +98,33 @@
 						zIndex : 1
 					});
 
-					// 키워드로 장소를 검색합니다
-					searchPlaces();
+					// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+					function displayCenterInfo(result, status) {
+					    if (status === kakao.maps.services.Status.OK) {
+					        var keyword = document.getElementById('keyword').value;
+
+					        for(var i = 0; i < result.length; i++) {
+					            // 행정동의 region_type 값은 'H' 이므로
+					            if (result[i].region_type === 'H') {
+					            	keyword += " " + result[i].address_name;
+					                break;
+					            }
+					        }
+					        
+					     	// 키워드로 장소를 검색합니다
+							searchPlaces(keyword);
+					        
+					    }    
+					}
 
 					// 키워드 검색을 요청하는 함수입니다
-					function searchPlaces() {
-
-						var keyword = document.getElementById('keyword').value;
-
+					function searchPlaces(keyword) {
+						
 						if (!keyword.replace(/^\s+|\s+$/g, '')) {
 							alert('키워드를 입력해주세요!');
 							return false;
 						}
-
+						
 						// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 						ps.keywordSearch(keyword, placesSearchCB);
 					}
@@ -273,101 +322,100 @@
 				</script>
 
 			<!-- ################################################################################################ -->
-			<div class="one_quarter" id="stadium2">
-				<h1>경기장 예약</h1>
+			
+			
+			<center><h6>경기장 예약</h6></center>
+			<div class="map_wrap" id="stadium2">
 				<form action="./../stadium/stadiumNormalApply.do" method="get">
-				<table border="1" style="text-align: center;">
-					<tr>
-						<th colspan="6">
-						<input type="date" id="start" name="trip-start" min="2020-07-01" max="2020-12-31"></th>
-					</tr>
-					<tr>  
-						<th>시 간</th>
-						<th>구장 이름</th>
-						<th>현 황</th>
-						<th>신 청</th>
-					</tr>
-					<tr>
-						<td>12:00</td>
-						<td>가산 풋살장</td>
-						<td>1팀 남음</td>
-						<td><button >신청</button></td>
-					</tr>
-					<tr>
-						<td>20:00</td>
-						<td>철산 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>16:00</td>
-						<td>구로 풋살장</td>
-						<td>예약 진행</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>10:00</td>
-						<td>영등포 풋살장</td>
-						<td>예약 진행</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>22:00</td>
-						<td>금정 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>08:00</td>
-						<td>덕덕 풋살장</td>
-						<td>1팀 남음</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>12:00</td>
-						<td>가산 풋살장</td>
-						<td>1팀 남음</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>20:00</td>
-						<td>철산 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>16:00</td>
-						<td>구로 풋살장</td>
-						<td>예약 진행</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>10:00</td>
-						<td>영등포 풋살장</td>
-						<td>예약 진행</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>22:00</td>
-						<td>금정 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>22:00</td>
-						<td>금정 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-				</table>
+					<table border="1" style="text-align: center;">
+						<tr>
+							<th colspan="6">달력</th>
+						</tr>
+						<tr>  
+							<th>시 간</th>
+							<th>구장 이름</th>
+							<th>현 황</th>
+							<th>신 청</th>
+						</tr>
+						<tr>
+							<td>12:00</td>
+							<td>가산 풋살장</td>
+							<td>1팀 남음</td>
+							<td><button >신청</button></td>
+						</tr>
+						<tr>
+							<td>20:00</td>
+							<td>철산 풋살장</td>
+							<td>예약 완료</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>16:00</td>
+							<td>구로 풋살장</td>
+							<td>예약 진행</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>10:00</td>
+							<td>영등포 풋살장</td>
+							<td>예약 진행</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>22:00</td>
+							<td>금정 풋살장</td>
+							<td>예약 완료</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>08:00</td>
+							<td>덕덕 풋살장</td>
+							<td>1팀 남음</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>12:00</td>
+							<td>가산 풋살장</td>
+							<td>1팀 남음</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>20:00</td>
+							<td>철산 풋살장</td>
+							<td>예약 완료</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>16:00</td>
+							<td>구로 풋살장</td>
+							<td>예약 진행</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>10:00</td>
+							<td>영등포 풋살장</td>
+							<td>예약 진행</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>22:00</td>
+							<td>금정 풋살장</td>
+							<td>예약 완료</td>
+							<td><button>신청</button></td>
+						</tr>
+						<tr>
+							<td>22:00</td>
+							<td>금정 풋살장</td>
+							<td>예약 완료</td>
+							<td><button>신청</button></td>
+						</tr>
+					</table>
 				</form>
 			</div>
 			<!-- / main body -->
 			<div class="clear"></div>
 		</main>
 	</div>
-	<!-- footer -->
-	<%@ include file="./../include/footer.jsp"%>
 	<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
 	<!-- JAVASCRIPTS -->
 	<script src="./../resources/js/jquery.min.js"></script>

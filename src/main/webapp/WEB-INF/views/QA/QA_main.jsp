@@ -19,6 +19,13 @@
 <link rel="stylesheet" href="./../resources/css/Q&A.css" />
 <!-- dropbox css end -->
 </head>
+<script>
+function enter() {
+	if(event.keyCode==13){
+		location.href="http://instagram.com";
+	}
+}
+</script>
 <body id="top">
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
@@ -26,7 +33,6 @@
 <div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
   <div id="breadcrumb" class="hoc clear"> 
     <!--이미지 위에 글쓰는곳-->
-    <div class="h03-v2-hero-plank">
   </div>
 </div>
 <div class="wrapper row3">
@@ -35,6 +41,7 @@
     <div class="content"> 
     
     <!-- 검색창 -->
+    <div class="h03-v2-hero-plank">
     
        <div class="h03-v2-hero-plank">
        <div class=" h03-v2-hero-plank__wrapper plank--fused " style="background-image: url(/cms/content/dam/dropbox/www/en-us/help/optimized-hc/unified_home_hero_mobile.png); ">
@@ -45,10 +52,8 @@
         <div class="h03-v2-hero-plank__search-bar standalone-searchbox">
             <!-- <div class="CoveoSearchbox search-input" data-enable-omnibox="true" data-enable-query-suggest-addon="true" data-placeholder='도움말 검색'></div> -->
             <div class="CoveoStyleReplacer">
-            	<input type="text" style="text-align: center; width:100%; height: 80px; color:#000000; " placeholder="그냥 찾지마세요"/>
-            <a href="http://instagram.com">
-            	<button value="검색창"></button>
-            	</a>
+            	<input type="text" style="text-align: center; width:100%; height: 78px; color:#000000; " 
+            		placeholder="그냥 찾지마세요" onKeypress="enter();"/>
             </div>
         </div>
     </div>
@@ -84,13 +89,13 @@
 
 <div class="a04-support-tools__wrapper">
 
-<a class="a04-support-tools__link" href="https://instagram.com"></a>
+<a class="a04-support-tools__link" href="../customer/qnaList.do"></a>
 
 <div class="a04-support-tools__container accts ">
 
     <div class="a04-support-tools__icon">
 
-        <img src="./../resources/img/공지사항.png" alt="씨발"/>
+        <img src="./../resources/img/공지사항.png"/>
 
     </div>
 
@@ -134,13 +139,13 @@
 
 <div class="a04-support-tools__wrapper">
 
-<a class="a04-support-tools__link" href="https://instagram.com"></a>
+<a class="a04-support-tools__link" href="../customer/qnaList.do"></a>
 
-<div class="a04-support-tools__container accts ">
+<div class="a04-support-tools__container contact ">
 
     <div class="a04-support-tools__icon">
 
-        <img src="./../resources/img/구장관련.png" alt="씨발"/>
+        <img src="./../resources/img/구장관련.png" />
 
     </div>
 
@@ -184,13 +189,13 @@
 
 <div class="a04-support-tools__wrapper">
 
-<a class="a04-support-tools__link" href="https://instagram.com"></a>
+<a href="../customer/qnaList.do"></a>
 
-<div class="a04-support-tools__container accts ">
+<div class="a04-support-tools__container installs ">
 
     <div class="a04-support-tools__icon">
 
-        <img src="./../resources/img/매치취소.png" alt="씨발"/>
+        <img src="./../resources/img/매치취소.png" />
 
     </div>
 
@@ -235,65 +240,59 @@
         <h2 class="a02-article-list__header">자주 묻는 질문</h2>
         <div class="a02-article-list__articles" id="fallbackArticles">
             <ul class="a02-article-list__list">
-                
-    <li class="a02-article-list__list-item tags">
-        <a href="https://help.dropbox.com/ko-kr/accounts-billing/space-storage/get-more-space" class="a02-article-list__link">
-            <div class="a02-article-list__link--title">캐시 충전이 안돼요</div>
-            <div class="a02-article-list__articleTag">하지마세요</div>
-            <i aria-hidden="true" class="a02-article-list__arrow"></i>
-        </a>
-    </li>
-
-            
-                
-    <li class="a02-article-list__list-item tags">
-        <a href="https://help.dropbox.com/ko-kr/files-folders/share/share-with-others" class="a02-article-list__link">
-            <div class="a02-article-list__link--title">매치 신청하는 법이 궁금해요</div>
-            <div class="a02-article-list__articleTag">니 실력에 무슨 축구에요</div>
-            <i aria-hidden="true" class="a02-article-list__arrow"></i>
-        </a>
-    </li>
-
-            
-                
-    <li class="a02-article-list__list-item tags">
-        <a href="https://help.dropbox.com/ko-kr/files-folders/restore-delete/recover-older-versions" class="a02-article-list__link">
-            <div class="a02-article-list__link--title">신청한 경기를 취소 하고 싶어요</div>
-            <div class="a02-article-list__articleTag">고객님 생각을 한번 더 해보시는게</div>
-            <i aria-hidden="true" class="a02-article-list__arrow"></i>
-        </a>
-    </li>
-
-            
-                
-    <li class="a02-article-list__list-item tags">
-        <a href="https://help.dropbox.com/ko-kr/installs-integrations/photos/camera-uploads-overview" class="a02-article-list__link">
-            <div class="a02-article-list__link--title">우천시 경기가 진행되나요?</div>
-            <div class="a02-article-list__articleTag">되겠어요?</div>
-            <i aria-hidden="true" class="a02-article-list__arrow"></i>
-        </a>
-    </li>
-
-            
-                
-    <li class="a02-article-list__list-item tags">
-        <a href="https://help.dropbox.com/ko-kr/teams-admins/admin/delete-member" class="a02-article-list__link">
-            <div class="a02-article-list__link--title">​​페어플레이 제도 안내</div>
-            <div class="a02-article-list__articleTag">남자는 그런거 안합니다</div>
-            <i aria-hidden="true" class="a02-article-list__arrow"></i>
-        </a>
-    </li>
-
-            
-                
-
-
+			                
+			    <li class="a02-article-list__list-item tags">
+			        <a href="../customer/qnaList.do" class="a02-article-list__link">
+			            <div class="a02-article-list__link--title">캐시 충전이 안돼요</div>
+			            <div class="a02-article-list__articleTag">하지마세요</div>
+			            <i aria-hidden="true" class="a02-article-list__arrow"></i>
+			        </a>
+			    </li>
+			
+			            
+			                
+			    <li class="a02-article-list__list-item tags">
+			        <a href="../customer/qnaList.do" class="a02-article-list__link">
+			            <div class="a02-article-list__link--title">매치 신청하는 법이 궁금해요</div>
+			            <div class="a02-article-list__articleTag">니 실력에 무슨 축구에요</div>
+			            <i aria-hidden="true" class="a02-article-list__arrow"></i>
+			        </a>
+			    </li>
+			
+			            
+			                
+			    <li class="a02-article-list__list-item tags">
+			        <a href="../customer/qnaList.do" class="a02-article-list__link">
+			            <div class="a02-article-list__link--title">신청한 경기를 취소 하고 싶어요</div>
+			            <div class="a02-article-list__articleTag">고객님 생각을 한번 더 해보시는게</div>
+			            <i aria-hidden="true" class="a02-article-list__arrow"></i>
+			        </a>
+			    </li>
+			
+			            
+			                
+			    <li class="a02-article-list__list-item tags">
+			        <a href="../customer/qnaList.do" class="a02-article-list__link">
+			            <div class="a02-article-list__link--title">우천시 경기가 진행되나요?</div>
+			            <div class="a02-article-list__articleTag">되겠어요?</div>
+			            <i aria-hidden="true" class="a02-article-list__arrow"></i>
+			        </a>
+			    </li>
+			
+			            
+			                
+			    <li class="a02-article-list__list-item tags">
+			        <a href="../customer/qnaList.do" class="a02-article-list__link">
+			            <div class="a02-article-list__link--title">​​페어플레이 제도 안내</div>
+			            <div class="a02-article-list__articleTag">남자는 그런거 안합니다</div>
+			            <i aria-hidden="true" class="a02-article-list__arrow"></i>
+			        </a>
+			    </li>
             </ul>
-            
         </div>
-        <div class="a02-article-list__articles" id="gromitArticles" style="display:none">
+        <!-- <div class="a02-article-list__articles" id="gromitArticles" style="display:none">
             <ul class="a02-article-list__list" id="gromitArticleListing"></ul>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -306,6 +305,8 @@
 </div>
 
     </div><!-- end content -->
+    </div>
+    </div>
     <!-- / main body -->
     <div class="clear"></div>
   </main>
