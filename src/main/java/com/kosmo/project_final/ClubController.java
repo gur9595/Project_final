@@ -22,6 +22,10 @@ public class ClubController {
 	public String clubSearch() {		
 		return "club/club_search";
 	}
+	@RequestMapping("/club/clubCreate.do")
+	public String clubCreate() {		
+		return "club/club_create";
+	}
 	@RequestMapping("/club/clubView.do")
 	public String clubView() {
 		return "club/club_view";

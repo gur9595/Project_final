@@ -8,6 +8,6 @@ request.setCharacterEncoding("UTF-8");
 String keyword = request.getParameter("keyword");
 %>
 <body>
-	랭킹
+	생성
 </body>
 </html>
