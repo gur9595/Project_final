@@ -24,14 +24,6 @@
           </ul>
         </li>
         
-        <li><a class="drop" href="${pageContext.request.contextPath }/stadium/stadiumMain.do">Stadium</a>
-          <ul>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-          </ul>
-        </li>
-        
         <li><a class="drop" href="${pageContext.request.contextPath }/match/matchMain.do">Matching</a>
           <ul>
             <li><a href="#">1</a></li>

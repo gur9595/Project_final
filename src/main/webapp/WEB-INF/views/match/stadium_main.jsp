@@ -22,7 +22,6 @@ String keyword = request.getParameter("keyword");
 					<div id="map"
 						style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 				</div>
-
 			</div>
 			
 			<div class="one_half seconde mb-5">
@@ -54,7 +53,7 @@ String keyword = request.getParameter("keyword");
 						level : 3
 					// 지도의 확대 레벨
 					};
-
+					
 					// 지도를 생성합니다    
 					var map = new kakao.maps.Map(mapContainer, mapOption);
 					
@@ -106,7 +105,7 @@ String keyword = request.getParameter("keyword");
 					        for(var i = 0; i < result.length; i++) {
 					            // 행정동의 region_type 값은 'H' 이므로
 					            if (result[i].region_type === 'H') {
-					            	keyword += " " + result[i].address_name;
+					            	keyword += " " + result[i].region_2depth_name;
 					                break;
 					            }
 					        }
@@ -128,7 +127,7 @@ String keyword = request.getParameter("keyword");
 						// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 						ps.keywordSearch(keyword, placesSearchCB);
 					}
-
+					
 					// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 					function placesSearchCB(data, status, pagination) {
 						if (status === kakao.maps.services.Status.OK) {
@@ -219,8 +218,8 @@ String keyword = request.getParameter("keyword");
 								+ (index + 1)
 								+ '"></span>'
 								+ '<div class="info">'
-								+ '   <h5>'
-								+ places.place_name + '</h5>';
+								+ '   <h5><a href="stadiumNormalApply.do">'
+								+ places.place_name + '</a></h5>';
 
 						if (places.road_address_name) {
 							itemStr += '    <span>' + places.road_address_name
@@ -257,7 +256,7 @@ String keyword = request.getParameter("keyword");
 									position : position, // 마커의 위치
 									image : markerImage
 								});
-
+						
 						marker.setMap(map); // 지도 위에 마커를 표출합니다
 						markers.push(marker); // 배열에 생성된 마커를 추가합니다
 
@@ -318,100 +317,13 @@ String keyword = request.getParameter("keyword");
 						while (el.hasChildNodes()) {
 							el.removeChild(el.lastChild);
 						}
-					} 
+					}
+					
+					
 				</script>
 
 			<!-- ################################################################################################ -->
-			
-			
-			<center><h6>경기장 예약</h6></center>
-			<div class="map_wrap" id="stadium2">
-				<form action="./../stadium/stadiumNormalApply.do" method="get">
-					<table border="1" style="text-align: center;">
-						<tr>
-							<th colspan="6">달력</th>
-						</tr>
-						<tr>  
-							<th>시 간</th>
-							<th>구장 이름</th>
-							<th>현 황</th>
-							<th>신 청</th>
-						</tr>
-						<tr>
-							<td>12:00</td>
-							<td>가산 풋살장</td>
-							<td>1팀 남음</td>
-							<td><button >신청</button></td>
-						</tr>
-						<tr>
-							<td>20:00</td>
-							<td>철산 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>16:00</td>
-							<td>구로 풋살장</td>
-							<td>예약 진행</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>10:00</td>
-							<td>영등포 풋살장</td>
-							<td>예약 진행</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>08:00</td>
-							<td>덕덕 풋살장</td>
-							<td>1팀 남음</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>12:00</td>
-							<td>가산 풋살장</td>
-							<td>1팀 남음</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>20:00</td>
-							<td>철산 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>16:00</td>
-							<td>구로 풋살장</td>
-							<td>예약 진행</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>10:00</td>
-							<td>영등포 풋살장</td>
-							<td>예약 진행</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-					</table>
-				</form>
-			</div>
+					
 			<!-- / main body -->
 			<div class="clear"></div>
 		</main>
