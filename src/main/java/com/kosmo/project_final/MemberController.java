@@ -1,10 +1,5 @@
 package com.kosmo.project_final;
 
-import java.util.HashMap;
-
-import javax.servlet.http.HttpServletRequest;
-
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,7 +12,6 @@ public class MemberController {
 		
 		return "member/member_agree";
 	}
-	
 	
 	 @RequestMapping("/member/memberAgree2.do")
 	 public String memberAgree2() {
@@ -44,8 +38,14 @@ public class MemberController {
 		return "member/manager_main";
 	}
 	
-	
-	
-	
+	@RequestMapping("/member/id_pw.do")
+	public String id_pw() {
 		
+		return "/member/id_pw";
+	}
+	
+
+	
+	
+
 }

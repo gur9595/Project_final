@@ -36,6 +36,7 @@
 
 .blue-heading {
   background-color: #3498db;
+  
 }
 .aqua-heading {
   background-color: #1abc9c;
@@ -49,16 +50,20 @@
 }
 .small-table .single-pricing-table .price {
   font-weight: 700;
-  font-size: 70px;
+  font-size: 50px;
   color: #303030;
 }
 .small-table .single-pricing-table .pricing-table-heading h2 {
-  color: #656565;
+  color: #303030;
   text-transform: uppercase;
-  font-size: 18px;
+  font-weight: 200;
+  font-size: 30px;
 }
 .small-table .single-pricing-table .pricing-table-heading p {
-  color: #AFAFAF;
+  color: #303030;
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 30px;
 }
 .small-table .single-pricing-table .pricing-button {
   padding: 20px 0;

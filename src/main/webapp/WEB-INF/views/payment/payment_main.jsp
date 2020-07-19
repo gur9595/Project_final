@@ -75,12 +75,12 @@
 							</div>
 							<!-- Heading -->
 							<div class="pricing-table-heading">
-								<h2>서비스 1%</h2>
-								<p>10,000Ball</p>
+								<h2> + 0%</h2>
+								<p>10,100 Ball</p>
 							</div>
 							<!-- Button -->
 							<div class="pricing-button">
-								<a href="#" class="btn btn-pricing"><i class="fa fa-cart-plus"></i> Purchase</a>
+								<a href="#" class="btn btn-pricing"><i class="fa fa-cart-plus"></i> Buy</a>
 							</div>
 						</div>
 					</div>
@@ -89,16 +89,16 @@
 						<div class="single-pricing-table text-center clearfix">
 							<!-- Price -->
 							<div class="price">
-								<span>$89</span>
+								<span>30,000&#8361;</span>
 							</div>
 							<!-- Heading -->
 							<div class="pricing-table-heading">
-								<h2>Frammer</h2>
-								<p>Space and light and order, those are<br>the things that men.</p>
+								<h2> + 1%</h2>
+								<p>30,300 Ball</p>
 							</div>
 							<!-- Button -->
 							<div class="pricing-button">
-								<a href="#" class="btn btn-pricing"><i class="fa fa-cart-plus"></i> Purchase</a>
+								<a href="#" class="btn btn-pricing"><i class="fa fa-cart-plus"></i> Buy</a>
 							</div>
 						</div>
 					</div>
@@ -107,23 +107,74 @@
 						<div class="single-pricing-table text-center clearfix">
 							<!-- Price -->
 							<div class="price">
-								<span>$99</span>
+								<span>50,000&#8361;</span>
 							</div>
 							<!-- Heading -->
 							<div class="pricing-table-heading">
-								<h2>Trimmer</h2>
-								<p>Space and light and order, those are<br>the things that men.</p>
+								<h2> + 2%</h2>
+								<p>51,000 Ball</p>
 							</div>
 							<!-- Button -->
 							<div class="pricing-button">
-								<a href="#" class="btn btn-pricing"><i class="fa fa-cart-plus"></i> Purchase</a>
+								<a href="#" class="btn btn-pricing"><i class="fa fa-cart-plus"></i> Buy</a>
 							</div>
 						</div>
 					</div>
-					<!-- Credits -->
-					<div class="design-credit text-center col-md-12 mt-40">
-						<p>This pricing table was originaly designed by <a href="https://dribbble.com/shots/2316185-Slide-53" target="_blank">Vladimir Kudinov</a></p>
+					<!-- Single Table -->
+					<div class="col-md-4">
+						<div class="single-pricing-table text-center clearfix">
+							<!-- Price -->
+							<div class="price">
+								<span>70,000&#8361;</span>
+							</div>
+							<!-- Heading -->
+							<div class="pricing-table-heading">
+								<h2> + 3%</h2>
+								<p>72,100 Ball</p>
+							</div>
+							<!-- Button -->
+							<div class="pricing-button">
+								<a href="#" class="btn btn-pricing"><i class="fa fa-cart-plus"></i> Buy</a>
+							</div>
+						</div>
 					</div>
+					<!-- Single Table -->
+					<div class="col-md-4">
+						<div class="single-pricing-table text-center clearfix">
+							<!-- Price -->
+							<div class="price">
+								<span>100,000&#8361;</span>
+							</div>
+							<!-- Heading -->
+							<div class="pricing-table-heading">
+								<h2> + 4%</h2>
+								<p>104,000 Ball</p>
+							</div>
+							<!-- Button -->
+							<div class="pricing-button">
+								<a href="#" class="btn btn-pricing"><i class="fa fa-cart-plus"></i> Buy</a>
+							</div>
+						</div>
+					</div>
+					<!-- Single Table -->
+					<div class="col-md-4">
+						<div class="single-pricing-table text-center clearfix">
+							<!-- Price -->
+							<div class="price">
+								<span>200,000&#8361;</span> 
+							</div>
+							<!-- Heading -->
+							<div class="pricing-table-heading">
+								<h2> + 5%</h2>
+								<p>210,000 Ball</p>
+							</div>
+							<!-- Button -->
+							<div class="pricing-button">
+								<input type="image" src="./../resources/img/GoldenBall.png" style="display : block; margin : 0 auto; width: 80px; height: 60px">
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 	</section>
