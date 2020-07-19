@@ -244,6 +244,16 @@
             $('#close').show();
             
         });
+        
+        $('#stadium').click(function() {
+        	$("#contents").load("stadiumMain.do", {"keyword" : "축구 풋살"});
+            $('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+            
+        });
 
         $('#edit').click(function() {
           $("#contents").load("edit.html #edit");
@@ -310,7 +320,7 @@
         color: black;
       }
       .link:hover {
-        color: #71BC42;
+        color: #0006ff;
       }
       #close {
         color: black;
@@ -332,64 +342,53 @@
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
-    <div class="content"> 
-    	 
-    	 
-    	 
-    	 
-    	 
-    	 
-    	 
-    	 <div class="site-section first-section">
-      <div class="container">
-        <a name="target"></a>
-        <div class="row mb-5">
-          <div class="col-md-12 text-center target" data-aos="fade">
-            
-          </div>
-        </div>
-
-        <div class="row border-responsive">
-          
-          <div class="col-md-6 col-lg-6 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="">
-          	<p class="text-center h2"><small>경기장이 없다면?</small><br /><br />구장 예약</p> 
-            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-              <img src="./../resources/img/match/match_1.png" alt="" />
-              <br /> 
-              <h3 class="text-uppercase h4 mb-3">Stadium</h3>
-              <span style="cursor: pointer;" class="link" id="football">축구장</span> / 
-              <span style="cursor: pointer;" class="link" id="footsal">풋살장</span>
-            </div>
-          </div> 
-          
-          <div class="col-md-6 col-lg-6 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-          	<p class="text-center h2"><small>상대가 없다면?</small><br /><br />상대 찾기</p>
-            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-              <img src="./../resources/img/match/match_2.png" alt="" />
-              <br>
-              <h3 class="text-uppercase h4 mb-3">Game</h3>
-              <span style="cursor: pointer;" class="link" id="game_apply">게임 신청</span> / 
-              <span style="cursor: pointer;" class="link" id="game_list">게임 목록</span>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
-    
-    <br /><br />
-    <script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
-    <!-- 메뉴클릭 시 화면이동할 부분 -->
-    <div id="contents_target" style="height: 50px;"></div> 
-    <!-- 메뉴클릭 시 내용 출력 부분 -->
-    <div class="mt-0" id="contents"></div>
-    
-    
-    
-    
-    
-    </div>
+    <div class="content">
+    	<div class="site-section first-section">
+			<div class="container">
+		        <a name="target"></a>
+		        <div class="row mb-5">
+		        	<div class="col-md-12 text-center target" data-aos="fade"></div>
+		        </div>
+	        	<div class="row border-responsive">
+					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="">
+		          		<p class="text-center h2"><small>경기장이 없다면?</small><br /><br />구장 예약</p> 
+		            	<div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+							<img src="./../resources/img/match/match_1.png" id="stadium" alt="" />
+							<br /> 
+							<h3 class="text-uppercase h4 mb-3">Stadium</h3>
+							<span style="cursor: pointer;" class="link" id="football">축구장</span> / 
+							<span style="cursor: pointer;" class="link" id="footsal">풋살장</span>
+						</div>
+					</div> 
+					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100">
+						<p class="text-center h2"><small>상대가 없다면?</small><br /><br />상대 찾기</p>
+						<div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+							<img src="./../resources/img/match/match_2.png" alt="" />
+							<br>
+							<h3 class="text-uppercase h4 mb-3">Game</h3>
+							<span style="cursor: pointer;" class="link" id="game_apply">게임 신청</span> / 
+							<span style="cursor: pointer;" class="link" id="game_list">게임 목록</span>
+						</div>
+					</div>
+					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
+						<p class="text-center h2"><small>당장 뛰고싶다면?</small><br /><br />1인 신청</p>
+						<div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+							<img src="./../resources/img/match/mercenary.png" alt="" /> 
+							<br><br />
+							<h3 class="text-uppercase h4 mb-3 link">player</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br /><br />
+	    <script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
+	    <!-- 메뉴클릭 시 화면이동할 부분 -->
+	    <div id="contents_target" style="height: 50px;"></div> 
+	    <!-- 메뉴클릭 시 내용 출력 부분 -->
+	    <div class="mt-0" id="contents"></div>
+	</div>
     <!-- / main body -->
     <div class="clear"></div>
   </main>
@@ -401,8 +400,5 @@
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
 <script src="./../resources/js/jquery.mobilemenu.js"></script>
-
-
-
 </body>
 </html>
