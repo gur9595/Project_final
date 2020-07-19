@@ -57,8 +57,8 @@ Licence URI: https://www.os-templates.com/template-terms
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="./stadium/stadiumMain.do"><i class="fas fa-chess-queen"></i></a>
-            <h6 class="heading">Stadium</h6>
+          <article><a href="./match/matchMain.do"><i class="fas fa-chess-queen"></i></a>
+            <h6 class="heading">Matching</h6>
             <p>경기장을 예약하여 보다 편하게!!</p>
           </article>
         </li>
@@ -80,9 +80,11 @@ Licence URI: https://www.os-templates.com/template-terms
     <section class="group shout">
       <figure class="one_half first"><img src="images/demo/546x356.png" alt="">
         <figcaption class="heading"><a href="#">Club Ranking</a></figcaption>
+        	
       </figure>
       <figure class="one_half"><img src="images/demo/546x356.png" alt="">
         <figcaption class="heading"><a href="#">Notice</a></figcaption>
+        	
       </figure>
     </section>
     <!-- ################################################################################################ -->

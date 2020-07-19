@@ -12,4 +12,16 @@ public class MatchController {
 		return "match/match_main";
 	}
 	
+	@RequestMapping("/match/stadiumMain.do")
+	public String stadiumMain() {
+		
+		return "match/stadium_main";
+	}
+	
+	@RequestMapping("/match/stadiumNormalApply.do")
+	public String stadiumApply() {
+		
+		return "match/stadium_apply";
+	}
+	
 }

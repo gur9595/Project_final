@@ -219,8 +219,8 @@ String keyword = request.getParameter("keyword");
 								+ (index + 1)
 								+ '"></span>'
 								+ '<div class="info">'
-								+ '   <h5>'
-								+ places.place_name + '</h5>';
+								+ '   <h5><a href="stadiumNormalApply.do">'
+								+ places.place_name + '</a></h5>';
 
 						if (places.road_address_name) {
 							itemStr += '    <span>' + places.road_address_name
@@ -322,96 +322,7 @@ String keyword = request.getParameter("keyword");
 				</script>
 
 			<!-- ################################################################################################ -->
-			
-			
-			<center><h6>경기장 예약</h6></center>
-			<div class="map_wrap" id="stadium2">
-				<form action="./../stadium/stadiumNormalApply.do" method="get">
-					<table border="1" style="text-align: center;">
-						<tr>
-							<th colspan="6">달력</th>
-						</tr>
-						<tr>  
-							<th>시 간</th>
-							<th>구장 이름</th>
-							<th>현 황</th>
-							<th>신 청</th>
-						</tr>
-						<tr>
-							<td>12:00</td>
-							<td>가산 풋살장</td>
-							<td>1팀 남음</td>
-							<td><button >신청</button></td>
-						</tr>
-						<tr>
-							<td>20:00</td>
-							<td>철산 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>16:00</td>
-							<td>구로 풋살장</td>
-							<td>예약 진행</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>10:00</td>
-							<td>영등포 풋살장</td>
-							<td>예약 진행</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>08:00</td>
-							<td>덕덕 풋살장</td>
-							<td>1팀 남음</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>12:00</td>
-							<td>가산 풋살장</td>
-							<td>1팀 남음</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>20:00</td>
-							<td>철산 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>16:00</td>
-							<td>구로 풋살장</td>
-							<td>예약 진행</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>10:00</td>
-							<td>영등포 풋살장</td>
-							<td>예약 진행</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button>신청</button></td>
-						</tr>
-					</table>
-				</form>
-			</div>
+					
 			<!-- / main body -->
 			<div class="clear"></div>
 		</main>

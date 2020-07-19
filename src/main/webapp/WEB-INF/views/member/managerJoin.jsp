@@ -95,7 +95,7 @@ label {
 			    <textarea style="width: 100%; height: 100%;"></textarea>
 			</div>
 	        
-			<h2>현제 하는 일</h2>
+			<h2>현재 하는 일</h2>
 			<div class="box" style="width: 100%; height: 300px;">
 			    <textarea style="width: 100%; height: 100%;"></textarea>
 			</div>
@@ -194,7 +194,7 @@ label {
 	        </table>
 
 	        <div style="text-align:center">
-		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">지원 하기</button>
+		        <button class="btn btn-outline-success" style="font-size:20px;">지원 하기</button>
 	        </div>
 	    	</form>
 		</div>
