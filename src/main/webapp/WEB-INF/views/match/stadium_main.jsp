@@ -12,7 +12,7 @@ String keyword = request.getParameter("keyword");
 
 <body id="top">
 	<div class="wrapper row4 bg_white" id="stadium">
-		<main class="ho c container clear">
+		<main class=" ho c container clear">
 			<!-- main body -->
 			
 			<center><h6>경기장 검색</h6></center>

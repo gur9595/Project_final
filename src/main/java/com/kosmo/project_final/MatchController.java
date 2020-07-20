@@ -24,6 +24,18 @@ public class MatchController {
 		return "match/stadium_apply";
 	}
 	
+	@RequestMapping("/match/gameInsert.do")
+	public String gameInsert() {
+		
+		return "match/gameInsert";
+	}
+
+	@RequestMapping("/match/game_list.do")
+	public String game_list() {
+		
+		return "match/game_list";
+	}
+
 	@RequestMapping("/match/player.do")
 	public String player() {
 		

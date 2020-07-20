@@ -190,7 +190,11 @@ This gives a smooth transition to "ALL" elements used in the layout - other than
 If you don't want it to fade all elements, you have to list the ones you want to be faded individually
 Delete it completely to stop fading
 --------------------------------------------------------------------------------------------------------------- */
+<<<<<<< HEAD
+*{transition:all .25s ease-in-out;}
+=======
 * {transition:all .25s ease-in-out;}
+>>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 #mainav form *{transition:none !important;}
 
 
@@ -322,6 +326,8 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 	.gradient{background:linear-gradient(to bottom, #F4F4F4 24%, #FFFFFF 19%, #FFFFFF 100%);}
 }
 
+.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#97A9BD; border-color:#97A9BD;}
+.btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
 
 .imgover:hover::before{background-color:rgba(151,169,189,.5);/* #97A9BD */}

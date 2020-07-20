@@ -16,7 +16,7 @@
         </li>
         
         <li>
-        <a class="drop" href="${pageContext.request.contextPath }/club/myClubMain.do">Club</a>
+        <a class="drop" href="${pageContext.request.contextPath }/club/clubMain.do">Club</a>
           <ul>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>

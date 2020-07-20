@@ -66,14 +66,11 @@
 				</table>
 					
 				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal"> 결 제 </button>
-				</div>
+					<button type="button" class="btn" data-dismiss="modal"> 결 제 </button>
 			</div>
 		</div>
 	</div>
-
+<!-- ################ 모달 끝 #################-->
 
 	<!--top-->
 	<%@ include file="./../include/top.jsp"%>
@@ -110,7 +107,7 @@
 							<td>가산 풋살장</td>
 							<td>1팀 남음</td>
 							<td>
-								<button type="button" class="btn btn-primary"
+								<button type="button" class="btn"
 									data-toggle="modal" data-target="#myModal"
 									style="width: 100%; height: 100%;">신청</button>
 							</td>
