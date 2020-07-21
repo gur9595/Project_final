@@ -16,7 +16,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
@@ -26,7 +26,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var geocoder = new kakao.maps.services.Geocoder();
 
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+geocoder.addressSearch('서울 성동구 금호동3가 1127', function(result, status) {
 
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
@@ -43,12 +43,17 @@ geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function
         var infowindow = new kakao.maps.InfoWindow({
             content: '<div style="width:150px;text-align:center;padding:6px 0;">구장이름</div>'
         });
+        
         infowindow.open(map, marker);
 
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
+		setTimeout(function(){ map.relayout(); }, 1000);
+        
     } 
-});    
+       
+});
+
 </script>
 
 
@@ -58,6 +63,8 @@ geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function
 <!-- 모달창 신청폼 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" data-backdrop="static" style="color: black;">
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
+
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 
@@ -70,7 +77,7 @@ geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-
+				
 				<div class="modal-body">
 				날짜 : 2020-08-14 <br>
 				시간 : 18:00 <br>
@@ -126,7 +133,7 @@ d
 			<td>덕덕 풋살장</td>
 			<td>하이요 나는 정덕래다. 여기 구짱 나와라 5초준다 </td>
 			<td>덕덕</td>
-			<td><button type="button" class="btn btn-primary" data-toggle="modal" 
+			<td><button type="button" class="btn btn-primary" data-toggle="modal"
 			data-target="#myModal"style="width: 100%; height: 100%;">신청</button></td>
 		</tr>
 		<tr>
