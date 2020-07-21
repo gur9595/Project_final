@@ -12,7 +12,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link href="./../resources/css/club.css" rel="stylesheet" /> 
+<link href="./../resources/css/club.css" rel="stylesheet" />   
+<link href="./../resources/css/search.css" rel="stylesheet"	type="text/css" media="all">
 </head>
 <body id="top"> 
 <!--top-->
@@ -30,45 +31,63 @@
   <main class="hoc container clear"> 
     <!-- main body -->
     <div class="content"> 
+    
+    <div class="site-section first-section">
+      <div class="container">
+        <a name="target"></a>
+        <div class="row mb-5">
+          <div class="col-md-12 text-center target" data-aos="fade">
+            
+          </div>
+        </div>
+
+        <div class="row border-responsive">
+          
+          <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="" id="clubSearch">
+            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+              <i class='fas fa-search d-block ' style='font-size:62px;'></i>
+              <br />
+              <h3 class="text-uppercase h4 mb-3">클럽 검색</h3>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100"  id="clubMyList">
+            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)" style="cursor: pointer;">
+              <i class='fas fa-tshirt d-block' style='font-size:62px;'></i>
+              <br>              
+              <h3 class="text-uppercase h4 mb-3">내 클럽</h3>
+            </div>
+          </div>
+          
+          <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100" id="clubCreate"> 
+            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)" style="cursor: pointer;">
+              <i class='fas fa-pen d-block' style='font-size:62px;'></i>
+              <br>              
+              <h3 class="text-uppercase h4 mb-3">클럽 생성</h3>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-lg-3 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200" id="clubRanking">
+            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+              <i class='fas fa-trophy d-block' style='font-size:62px'></i>
+              <br>
+              <h3 class="text-uppercase h4 mb-3">클럽 랭킹</h3>
+              <span style="cursor: pointer;" class="link" id="clubTotalRanking">전체 랭킹</span>/
+              <span style="cursor: pointer;" class="link" id="clubGuRanking">구별 랭킹</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <br /><br />
+    
+    <!-- 메뉴클릭 시 화면이동할 부분 -->
+    <div id="contents_target" style="height: 50px;"></div> 
+    <!-- 메뉴클릭 시 내용 출력 부분 -->
+    <div class="mt-0" id="contents"></div>
     	
-    	<div class="club">
-	    	<div class="clubBtn clubButton1">
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%; font-size:60px">클럽 검색</div>
-	    		<div style="height:20%;">
-					<i class='fas fa-search' style='font-size:120px;'></i>
-				</div>
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%;"></div>
-	    	</div>
-	    	<div class="clubBtn clubButton2">
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%; font-size:60px">내 클럽</div>
-	    		<div style="height:20%;">
-					<i class='fas fa-tshirt' style='font-size:120px;'></i>
-				</div>
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%;"></div>
-	    	</div>
-	    	<div class="clubBtn clubButton3"> 
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%; font-size:60px">클럽 생성</div>
-	    		<div style="height:20%;">
-					<i class='fas fa-pen' style='font-size:120px;'></i>
-				</div>
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%;"></div>
-	    	</div>
-	    	<div class="clubBtn clubButton4">
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%; font-size:60px">클럽 랭킹</div>
-	    		<div style="height:20%;">
-					<i class='fas fa-trophy' style='font-size:120px;'></i>
-				</div>
-	    		<div style="height:20%;"></div>
-	    		<div style="height:20%;"></div>
-	    	</div>
-    	</div>
+    	
     	
     </div>
     <!-- / main body -->
@@ -83,6 +102,6 @@
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
 <script src="./../resources/js/jquery.mobilemenu.js"></script>
-<script src="./../resources/js/choices.js"></script>
+<script src="./../resources/js/moving.js"></script>
 </body>
 </html>

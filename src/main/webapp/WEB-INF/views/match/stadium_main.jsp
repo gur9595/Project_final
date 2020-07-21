@@ -12,7 +12,7 @@ String keyword = request.getParameter("keyword");
 
 <body id="top">
 	<div class="wrapper row4 bg_white" id="stadium">
-		<main class="ho c container clear">
+		<main class="hoc container clear">
 			<!-- main body -->
 			
 			<center><h6>경기장 검색</h6></center>
@@ -24,7 +24,11 @@ String keyword = request.getParameter("keyword");
 				</div>
 			</div>
 			
-			<div class="one_half seconde mb-5">
+<<<<<<< HEAD
+			<div class="one_half mb-5">
+=======
+			<div class="one_half seconde">
+>>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 				<div class="map_wrap">
 					<div id="menu_wrap" class="bg_white" style="width: 100%; height: 100%;">
 						<div class="option">

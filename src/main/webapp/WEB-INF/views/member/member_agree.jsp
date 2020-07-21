@@ -13,37 +13,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="./../resources/css/join.css">
-<link rel="shortcut icon" href="https://static.msscdn.net/favicon.ico?20200701180800" type="image/x-icon"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	   
-	   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	   
-	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	         
-
-        
-        <!-- Google Tag Manager -->
-        <script>
-            var dataLayer = dataLayer || [];
-            window.addEventListener("load", function() {
-                var memberGA = null;
-                if (memberGA != null && memberGA.dimension1 != "0") {
-                    dataLayer.push(memberGA);
-                }
-
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-TXDSFSF');
-            }, false);
-        </script>
-        <!-- End Google Tag Manager -->
-
-    <link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
-    <link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
-    <link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
+	<link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
+	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
+	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
 
 
     <script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
@@ -90,7 +67,7 @@
                     <div class="logo">
                
                     </div>
-                    <h2 class="title-join" style="font-size:40px;">회&nbsp;원&nbsp;가&nbsp;입</h2>
+                    <h2 style="font-size:40px; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h2>
                     <button type="button" class="btn-back" onclick="location.href='${pageContext.request.contextPath }'"><i class="ic-30-line-arrow-left">이전 페이지로 이동</i></button>
                 </header>
                 <!-- //Header -->
@@ -98,12 +75,12 @@
                 <!-- Join Form -->
                 <div class="join-form">
                     <div class="n-form-set">
-                        <label for="memberId" class="n-form-label">아이디 <span class="essential">필수 입력</span></label><br/>
+                        <label for="memberId">아이디 <span class="essential"></span></label><br/>
                         <input type="text" class="n-input input" id="memberId" name="memberId" placeholder="아이디 입력(8자이상)" minlength="8" maxlength="20" style="width:400px;">
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
                     <div class="n-form-set">
-                        <label for="password" class="n-form-label">비밀번호 <span class="essential">필수 입력</span></label>
+                        <label for="password">비밀번호 <span class="essential"></span></label>
                         <div class="n-form-icon">
                             <input type="password" class="n-input input" id="password" name="password" minlength="8" autocomplete="new-password"
                                    placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
@@ -114,7 +91,7 @@
                         </div>
                         <div class="n-form-icon">
                             <input type="password" class="n-input input" id="confirmPassword" name="confirmPassword" autocomplete="new-password"
-                                   minlength="8" placeholder="비밀번호 확인">
+                                   	 placeholder="비밀번호 확인">
                             <p class="n-validation" id="passwordConfirmValidMessage"></p>
                             <button type="button" class="btn" onclick="togglePassword('confirmPassword', this);">
                                 <i class="ic-30-solid-show ic-gray5">비밀번호 보기</i>
@@ -122,25 +99,25 @@
                         </div>
                     </div>
                     <div class="n-form-set">
-                        <label for="name" class="n-form-label">이름 <span class="essential">필수 입력</span></label>
-                        <input type="text" class="n-input input" id="name" name="name" placeholder="이름입력" minlength="2" maxlength="4">
+                        <label for="name" >이름 <span class="essential"></span></label>
+                        <input type="text" class="n-input input" id="name" name="name" placeholder="이름입력" minlength="2" maxlength="8">
                         <p class="n-validation" id="hLayername"></p>
                     </div>
                     
                     <div class="n-form-set">
-                        <label for="birth" class="n-form-label">생년월일 <span class="essential">필수 입력</span></label>
+                        <label for="birth" >생년월일 <span class="essential"></span></label>
                         <input type="text" class="n-input input" id="jumin1" name="jumin1" maxlength="8" placeholder="예)19970121">
                         <p class="n-validation" id="hLayerjumin"></p>
                     </div>
                     
                     <div class="n-form-set" id="input-div">
-                    	<label for="tel" class="n-form-label">휴대전화 <span class="essential">필수 입력</span></label>
+                    	<label for="tel">휴대전화 <span class="essential"></span></label>
 		                <input type="tel" class="n-input" id="phoneNumber" name="phoneNumber" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="11">
 		                <p class="n-validation" id="searchValidPhone" style="display: none">번호 형식이 올바르지 않습니다</p>
             		</div>
                     
                     <div class="n-form-set">
-                        <label for="email" class="n-form-label">이메일 <span class="essential">필수 입력</span></label>
+                        <label for="email" >이메일 <span class="essential"></span></label>
                         <div class="n-form-layer" id = "emailFromLayer">
                             <input type="email" class="n-input input" id="email" name="email" maxlength="50" placeholder="이메일" autocomplete="off">
                             <p class="n-validation" id="hLayeremail"></p>
@@ -155,7 +132,7 @@
                     </div>
                     
                     <div class="n-form-set" id="input-div">
-                        <label for="address" class="n-form-label">주소<span class="essential">필수 입력</span></label>
+                        <label for="address" >주소<span class="essential"></span></label>
                         <div>                                     
                             <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
                             <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="우편번호 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
@@ -171,7 +148,7 @@
                     <div id="agreementDivArea" class="agreement">
                         <div>
                             <input type="checkbox" class="n-check" id="checkAll">
-                            <label for="checkAll" class="all">약관 전체동의</label>
+                            <label for="checkAll">약관 전체동의</label>
                         </div>
                         <div>
                             <input type="checkbox" class="n-check" id="agreeCheckbox" name="agreeCheckbox">

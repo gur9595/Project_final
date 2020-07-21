@@ -14,7 +14,7 @@
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
-h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen Script;
+h2 { font-size : 24px; color:#000066; line-height:30px;;
 	margin:52px auto 10px 0px;
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
@@ -35,7 +35,6 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
 
 .box::before {
   content: "\f13a";
-  font-family: FontAwesome;
   position: absolute;
   top: 0;
   right: 0;
@@ -80,7 +79,7 @@ label {
 </div>
 	<main class="hoc container clear">
 	    <div class="container">
-	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
+	    <h1 class="title-join" style="font-size:40px; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h1>
 	    <form action="/member/v2/join/complete" method="post" id="myForm" novalidate>
 			<!-- Header -->
 			<header class="member-header">
@@ -94,40 +93,40 @@ label {
 			<div class="box">
 			    <select id="selectbox" title="선택 구분">
 			        <option selected="selected">선택해 주세요</option>
-			        <option>강남구</option>
-			        <option>강동구</option>
-			        <option>강북구</option>
-			        <option>강서구</option>
-			        <option>관악구</option>
-			        <option>광진구</option>
-			        <option>구로구</option>
-			        <option>금천구</option>
-			        <option>노원구</option>
-			        <option>도봉구</option>
-			        <option>동대문구</option>
-			        <option>동작구</option>
-			        <option>마포구</option>
-			        <option>서대문구</option>
-			        <option>서초구</option>
-			        <option>성동구</option>
-			        <option>성북구</option>
-			        <option>송파구</option>
-			        <option>양천구</option>
-			        <option>영등포구</option>
-			        <option>용산구</option>
-			        <option>은평구</option>
-			        <option>종로구</option>
-			        <option>중구</option>
-			        <option>중랑구</option>  
+			        <option value="강남구">강남구</option>
+			        <option value="강동구">강동구</option>
+			        <option value="강북구">강북구</option>
+			        <option value="강서구">강서구</option>
+			        <option value="관악구">관악구</option>
+			        <option value="광진구">광진구</option>
+			        <option value="구로구">구로구</option>
+			        <option value="금천구">금천구</option>
+			        <option value="노원구">노원구</option>
+			        <option value="도봉구">도봉구</option>
+			        <option value="동대문구">동대문구</option>
+			        <option value="동작구">동작구</option>
+			        <option value="마포구">마포구</option>
+			        <option value="서대문구">서대문구</option>
+			        <option value="서초구">서초구</option>
+			        <option value="성동구">성동구</option>
+			        <option value="성북구">성북구</option>
+			        <option value="송파구">송파구</option>
+			        <option value="양천구">양천구</option>
+			        <option value="영등포구">영등포구</option>
+			        <option value="용산구">용산구</option>
+			        <option value="은평구">은평구</option>
+			        <option value="종로구">종로구</option>
+			        <option value="중구">중구</option>
+			        <option value="중랑구">중랑구</option>  
 			    </select>
 			</div>
 	        <h2>성별 체크</h2>
 	        <table class="table table-borderless">
 	        	<tr>
-					<td width="20px;"><input type="radio" name="gender" id="man" value="best" ></td>
+					<td width="20px;"><input type="radio" name="gender" id="man" value="man" ></td>
 					<td><label for="man">남자</label></td>
-					<td width="20px;"><input type="radio" name="gender" id="wowan" value="top"></td>
-					<td><label for="wowan">여자</label></td>
+					<td width="20px;"><input type="radio" name="gender" id="wowan" value="woman"></td>
+					<td><label for="woman">여자</label></td>
 				</tr>
 	        </table>
 	        
