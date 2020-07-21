@@ -11,3 +11,39 @@
   color: rgb(255, 0, 0);
 }
 
+.firstDiv {
+		margin-left:0;
+		clear:left;
+}
+
+.clubDiv {
+	height:620px;
+	display:inline-block;
+	float:left;
+	list-style:none;
+	width : 20%;
+	border-right: 1px solid gray;
+}
+
+.lastDiv {
+	height:620px;
+	display:inline-block;
+	float:left;
+	list-style:none;
+	width : 20%;
+}
+
+.clubTable{
+	height:100%;
+	text-align : center;
+}
+.pad{
+	height:15%;
+}
+.clubTable .clubName{
+	font-size : 25px;
+}
+.myClubEmb{
+	max-height : 265px ;
+	max-width: 265px;
+}
