@@ -81,7 +81,7 @@ label {
 	<main class="hoc container clear">
 	    <div class="container">
 	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
-	    <form action="/member/v2/join/complete" method="post" id="myForm" novalidate>
+	    <form action="<c:url value="/mybatis/modifyAction.do" />" method="post" id="myForm" novalidate>
 			<!-- Header -->
 			<header class="member-header">
 			    <div class="logo">
