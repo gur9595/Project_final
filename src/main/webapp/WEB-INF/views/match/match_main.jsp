@@ -20,8 +20,7 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet"
 	type="text/css" media="all">
-	
- 
+
 <style>
 .map_wrap, .map_wrap * {
 	margin: 0;
@@ -258,7 +257,7 @@
         $('#game_apply').click(function() {
         	$("#contents").load("gameInsert.do");
             $('html, body').stop().animate({
-              scrollTop : $('#contents_target').offset().top
+              scrollTop : $('#contents').offset().top
             });
             
             $('#close').show();
