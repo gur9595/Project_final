@@ -3,260 +3,44 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="">
-<head>
-<title>B-PRO</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="./../resources/css/layout.css" rel="stylesheet"
-	type="text/css" media="all">
+ 
+<%
+request.setCharacterEncoding("UTF-8");
+String keyword = request.getParameter("keyword");
+%>
 
-<style>
-.map_wrap, .map_wrap * {
-	margin: 0;
-	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	font-size: 12px;
-}
-
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-	color: #000;
-	text-decoration: none;
-}
-
-.map_wrap {
-	position: relative;
-	width: 100%;
-	height: 500px;
-}
-
-#menu_wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 350px;
-	margin: 10px 0 30px 10px;
-	padding: 5px;
-	overflow-y: auto;
-	background: rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 10px;
-}
-
-.bg_white {
-	background: #fff;
-}
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
-}
-
-#menu_wrap .option {
-	text-align: center;
-}
-
-#menu_wrap .option p {
-	margin: 10px 0;
-}
-
-#menu_wrap .option button {
-	margin-left: 5px;
-}
-
-#placesList li {
-	list-style: none;
-}
-
-#placesList .item {
-	position: relative;
-	border-bottom: 1px solid #888;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 65px;
-}
-
-#placesList .item span {
-	display: block;
-	margin-top: 4px;
-}
-
-#placesList .item h5, #placesList .item .info {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#placesList .item .info {
-	padding: 10px 0 10px 55px;
-}
-
-#placesList .info .gray {
-	color: #8a8a8a;
-}
-
-#placesList .info .jibun {
-	padding-left: 26px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-		no-repeat;
-}
-
-#placesList .info .tel {
-	color: #009900;
-}
-
-#placesList .item .markerbg {
-	float: left;
-	position: absolute;
-	width: 36px;
-	height: 37px;
-	margin: 10px 0 0 10px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
-		no-repeat;
-}
-
-#placesList .item .marker_1 {
-	background-position: 0 -10px;
-}
-
-#placesList .item .marker_2 {
-	background-position: 0 -56px;
-}
-
-#placesList .item .marker_3 {
-	background-position: 0 -102px
-}
-
-#placesList .item .marker_4 {
-	background-position: 0 -148px;
-}
-
-#placesList .item .marker_5 {
-	background-position: 0 -194px;
-}
-
-#placesList .item .marker_6 {
-	background-position: 0 -240px;
-}
-
-#placesList .item .marker_7 {
-	background-position: 0 -286px;
-}
-
-#placesList .item .marker_8 {
-	background-position: 0 -332px;
-}
-
-#placesList .item .marker_9 {
-	background-position: 0 -378px;
-}
-
-#placesList .item .marker_10 {
-	background-position: 0 -423px;
-}
-
-#placesList .item .marker_11 {
-	background-position: 0 -470px;
-}
-
-#placesList .item .marker_12 {
-	background-position: 0 -516px;
-}
-
-#placesList .item .marker_13 {
-	background-position: 0 -562px;
-}
-
-#placesList .item .marker_14 {
-	background-position: 0 -608px;
-}
-
-#placesList .item .marker_15 {
-	background-position: 0 -654px;
-}
-
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
-}
-</style>
-
-
-
-
-</head>
 <body id="top">
-	<!--top-->
-	<%@ include file="./../include/top.jsp"%>
-	<!--각 페이지 이미지-->
-	<div class="bgded overlay"
-		style="background-image: url('./../resources/img/stadium.png');">
-		<div id="breadcrumb" class="hoc clear">
-			<!--이미지 위에 글쓰는곳-->
-		</div>
-	</div>
-	<div class="wrapper row3">
-		<main class="hoc container clear">
+	<div class="wrapper row4 bg_white" id="stadium">
+		<main class=" ho c container clear">
 			<!-- main body -->
-
-
+			
+			<center><h6>경기장 검색</h6></center>
 			<div class="one_half first">
 
 				<div class="map_wrap">
 					<div id="map"
 						style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 				</div>
-
 			</div>
-
-			<div class="one_quarter">
-				<h6>경기장 검색</h6>
+			
+			<div class="one_half mb-5">
 				<div class="map_wrap">
-				<div id="menu_wrap" class="bg_white">
-					<div class="option">
-						<div>
+					<div id="menu_wrap" class="bg_white" style="width: 100%; height: 100%;">
+						<div class="option">
 							<form onsubmit="searchPlaces(); return false;">
-								키워드 : <input type="text" value="가산 풋살" id="keyword" size="15" style="display: inline;">
+								키워드 : <input type="text" value="<%=keyword %>" id="keyword" size="15" style="display: inline;">
 								<button type="submit" style="display: inline;">검색하기</button>
 							</form>
 						</div>
+						<hr>
+						<ul id="placesList"></ul>
+						<div id="pagination"></div>
 					</div>
-					<hr>
-					<ul id="placesList"></ul>
-					<div id="pagination"></div>
 				</div>
-				</div>
-
 			</div>
-
+			
+			<!-- ################################################################################################ -->
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
 			<script>
@@ -269,10 +53,42 @@
 						level : 3
 					// 지도의 확대 레벨
 					};
-
+					
 					// 지도를 생성합니다    
 					var map = new kakao.maps.Map(mapContainer, mapOption);
+					
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();					
 
+					// 위도, 경도
+					var lat, lon;
+
+					//현재위치
+					var locPosition;
+
+					// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+					if (navigator.geolocation) {
+					    
+					    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+					    navigator.geolocation.getCurrentPosition(function(position) {
+					        
+					        lat = position.coords.latitude, // 위도
+					            lon = position.coords.longitude; // 경도
+					        
+					        // 접속위치
+					        locPosition = new kakao.maps.LatLng(lat, lon);
+					        
+							// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+						    searchAddrFromCoords(locPosition, displayCenterInfo);
+					            
+						});
+					}
+					
+					function searchAddrFromCoords(coords, callback) {
+					    // 좌표로 행정동 주소 정보를 요청합니다
+					    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+					}
+					
 					// 장소 검색 객체를 생성합니다
 					var ps = new kakao.maps.services.Places();
 
@@ -281,23 +97,37 @@
 						zIndex : 1
 					});
 
-					// 키워드로 장소를 검색합니다
-					searchPlaces();
+					// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+					function displayCenterInfo(result, status) {
+					    if (status === kakao.maps.services.Status.OK) {
+					        var keyword = document.getElementById('keyword').value;
+
+					        for(var i = 0; i < result.length; i++) {
+					            // 행정동의 region_type 값은 'H' 이므로
+					            if (result[i].region_type === 'H') {
+					            	keyword += " " + result[i].region_2depth_name;
+					                break;
+					            }
+					        }
+					        
+					     	// 키워드로 장소를 검색합니다
+							searchPlaces(keyword);
+					        
+					    }    
+					}
 
 					// 키워드 검색을 요청하는 함수입니다
-					function searchPlaces() {
-
-						var keyword = document.getElementById('keyword').value;
-
+					function searchPlaces(keyword) {
+						
 						if (!keyword.replace(/^\s+|\s+$/g, '')) {
 							alert('키워드를 입력해주세요!');
 							return false;
 						}
-
+						
 						// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 						ps.keywordSearch(keyword, placesSearchCB);
 					}
-
+					
 					// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 					function placesSearchCB(data, status, pagination) {
 						if (status === kakao.maps.services.Status.OK) {
@@ -388,8 +218,8 @@
 								+ (index + 1)
 								+ '"></span>'
 								+ '<div class="info">'
-								+ '   <h5>'
-								+ places.place_name + '</h5>';
+								+ '   <h5><a href="stadiumNormalApply.do">'
+								+ places.place_name + '</a></h5>';
 
 						if (places.road_address_name) {
 							itemStr += '    <span>' + places.road_address_name
@@ -426,7 +256,7 @@
 									position : position, // 마커의 위치
 									image : markerImage
 								});
-
+						
 						marker.setMap(map); // 지도 위에 마커를 표출합니다
 						markers.push(marker); // 배열에 생성된 마커를 추가합니다
 
@@ -487,105 +317,17 @@
 						while (el.hasChildNodes()) {
 							el.removeChild(el.lastChild);
 						}
-					} 
+					}
+					
+					
 				</script>
 
 			<!-- ################################################################################################ -->
-			<div class="one_quarter">
-				<h1>경기장 예약</h1>
-				<form action="./../stadium/stadiumNormalApply.do" method="get">
-				<table border="1" style="text-align: center;">
-					<tr>
-						<th colspan="6">
-						<input type="date" id="start" name="trip-start" min="2020-07-01" max="2020-12-31"></th>
-					</tr>
-					<tr>  
-						<th>시 간</th>
-						<th>구장 이름</th>
-						<th>현 황</th>
-						<th>신 청</th>
-					</tr>
-					<tr>
-						<td>12:00</td>
-						<td>가산 풋살장</td>
-						<td>1팀 남음</td>
-						<td><button >신청</button></td>
-					</tr>
-					<tr>
-						<td>20:00</td>
-						<td>철산 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>16:00</td>
-						<td>구로 풋살장</td>
-						<td>예약 진행</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>10:00</td>
-						<td>영등포 풋살장</td>
-						<td>예약 진행</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>22:00</td>
-						<td>금정 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>08:00</td>
-						<td>덕덕 풋살장</td>
-						<td>1팀 남음</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>12:00</td>
-						<td>가산 풋살장</td>
-						<td>1팀 남음</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>20:00</td>
-						<td>철산 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>16:00</td>
-						<td>구로 풋살장</td>
-						<td>예약 진행</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>10:00</td>
-						<td>영등포 풋살장</td>
-						<td>예약 진행</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>22:00</td>
-						<td>금정 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-					<tr>
-						<td>22:00</td>
-						<td>금정 풋살장</td>
-						<td>예약 완료</td>
-						<td><button>신청</button></td>
-					</tr>
-				</table>
-				</form>
-			</div>
+					
 			<!-- / main body -->
 			<div class="clear"></div>
 		</main>
 	</div>
-	<!-- footer -->
-	<%@ include file="./../include/footer.jsp"%>
 	<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
 	<!-- JAVASCRIPTS -->
 	<script src="./../resources/js/jquery.min.js"></script>

@@ -16,15 +16,7 @@
         </li>
         
         <li>
-        <a class="drop" href="${pageContext.request.contextPath }/club/myClubMain.do">Club</a>
-          <ul>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-          </ul>
-        </li>
-        
-        <li><a class="drop" href="${pageContext.request.contextPath }/stadium/stadiumMain.do">Stadium</a>
+        <a class="drop" href="${pageContext.request.contextPath }/club/clubMain.do">Club</a>
           <ul>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>

@@ -242,7 +242,7 @@
            					
 						    <div class="row" style="text-align: center;">
 						    	<div class="" style="border: 1px solid black; background-color: white; padding: 10px; width: 150px; height: auto; 
-									margin-left:250px; cursor: pointer; font-size: 20px; color: black;" onclick="location.href=#;">장바구니</div>&nbsp;&nbsp;&nbsp;&nbsp;
+									margin-left:250px; cursor: pointer; font-size: 20px; color: black;" onclick="location.href=;">장바구니</div>&nbsp;&nbsp;&nbsp;&nbsp;
 						   
 						   	 	<div class="" style="border: 1px solid black; background-color: red; padding: 10px; width: 150px; height: auto; 
 									margin-right: 0px; cursor: pointer; font-size: 20px; color: white;" onclick="location.href=#;">구매하기</div>

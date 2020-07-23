@@ -157,8 +157,8 @@
                     <div class="n-form-set" id="input-div">
                         <label for="address" class="n-form-label">주소<span class="essential">필수 입력</span></label>
                         <div>                                     
-                            <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px;" readonly />
-                            <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="우편번호 찾기" style="width:130px; height:50px; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
+                            <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
+                            <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="우편번호 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
                             <input type="text" id="address" name="addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" />
                             <input type="text" id="detailAddress" name="addr2" placeholder="상세주소"  class="n-input" style="margin-top: 5px;" />
                             <input type="text" id="extraAddress" name="addr3" placeholder="참고항목"  class="n-input" style="margin-top: 5px;" />
@@ -1013,7 +1013,7 @@
             }
 
             setSessionStorage();
-            window.open('./article.jsp', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+            window.open('./../member/article.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
 
         }
 
@@ -1025,7 +1025,7 @@
             }
 
             setSessionStorage();
-            window.open('./article.jsp', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+            window.open('./../member/article.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
         }
 
 

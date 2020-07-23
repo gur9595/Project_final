@@ -13,14 +13,14 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
-	
+	 
 	<!-- 오라클JDBC 원격 레파지토리(저장소) -->
 	<repositories>
 		<repository>
 			<id>oracle</id>
 			<name>ORACLE JDBC Repository</name>
 			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
-		</repository>
+		</repository> 
 	</repositories>	
 	
 	<dependencies>
@@ -133,7 +133,7 @@
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.3</version>
-		</dependency>
+		</dependency> 
 		
 		<!-- Spring Security 의존설정 -->
 		<dependency>
@@ -151,8 +151,20 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>4.2.1.RELEASE</version>
 		</dependency>
-		
+		<!-- 카카오 로그인 -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.5</version>
+		</dependency>
+		<!-- 네이버 로그인 -->
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
 <!-- ************************************************************************** -->
+
 	</dependencies>
     <build>
         <plugins>

@@ -5,21 +5,218 @@
 <html lang="">
 <head>
 <title>B-PRO</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="./../resources/css/layout.css" rel="stylesheet"
+	type="text/css" media="all">
+	
+ 
+<style>
+.map_wrap, .map_wrap * {
+	margin: 0;
+	padding: 0;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	font-size: 12px;
+}
+
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
+	color: #000;
+	text-decoration: none;
+}
+
+.map_wrap {
+	position: relative;
+	width: 100%;
+	height: 500px;
+}
+
+#menu_wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 350px;
+	margin: 10px 0 30px 10px;
+	padding: 5px;
+	overflow-y: auto;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 1;
+	font-size: 12px;
+	border-radius: 10px;
+}
+
+.bg_white {
+	background: #fff;
+}
+
+#menu_wrap hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 2px solid #5F5F5F;
+	margin: 3px 0;
+}
+
+#menu_wrap .option {
+	text-align: center;
+}
+
+#menu_wrap .option p {
+	margin: 10px 0;
+}
+
+#menu_wrap .option button {
+	margin-left: 5px;
+}
+
+#placesList li {
+	list-style: none;
+}
+
+#placesList .item {
+	position: relative;
+	border-bottom: 1px solid #888;
+	overflow: hidden;
+	cursor: pointer;
+	min-height: 65px;
+}
+
+#placesList .item span {
+	display: block;
+	margin-top: 4px;
+}
+
+#placesList .item h5, #placesList .item .info {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#placesList .item .info {
+	padding: 10px 0 10px 55px;
+}
+
+#placesList .info .gray {
+	color: #8a8a8a;
+}
+
+#placesList .info .jibun {
+	padding-left: 26px;
+	background:
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+		no-repeat;
+}
+
+#placesList .info .tel {
+	color: #009900;
+}
+
+#placesList .item .markerbg {
+	float: left;
+	position: absolute;
+	width: 36px;
+	height: 37px;
+	margin: 10px 0 0 10px;
+	background:
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+		no-repeat;
+}
+
+#placesList .item .marker_1 {
+	background-position: 0 -10px;
+}
+
+#placesList .item .marker_2 {
+	background-position: 0 -56px;
+}
+
+#placesList .item .marker_3 {
+	background-position: 0 -102px
+}
+
+#placesList .item .marker_4 {
+	background-position: 0 -148px;
+}
+
+#placesList .item .marker_5 {
+	background-position: 0 -194px;
+}
+
+#placesList .item .marker_6 {
+	background-position: 0 -240px;
+}
+
+#placesList .item .marker_7 {
+	background-position: 0 -286px;
+}
+
+#placesList .item .marker_8 {
+	background-position: 0 -332px;
+}
+
+#placesList .item .marker_9 {
+	background-position: 0 -378px;
+}
+
+#placesList .item .marker_10 {
+	background-position: 0 -423px;
+}
+
+#placesList .item .marker_11 {
+	background-position: 0 -470px;
+}
+
+#placesList .item .marker_12 {
+	background-position: 0 -516px;
+}
+
+#placesList .item .marker_13 {
+	background-position: 0 -562px;
+}
+
+#placesList .item .marker_14 {
+	background-position: 0 -608px;
+}
+
+#placesList .item .marker_15 {
+	background-position: 0 -654px;
+}
+
+#pagination {
+	margin: 10px auto;
+	text-align: center;
+}
+
+#pagination a {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#pagination .on {
+	font-weight: bold;
+	cursor: default;
+	color: #777;
+}
+</style>
 
 
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script>
-
-      $(document).ready( function() {
-        
+	$(document).ready( function() {
+		
         $('#close').hide();
+        
         $('#close').click(function() {
           $("#contents").html("");
           $('#close').toggle();
@@ -28,14 +225,54 @@
           });
         });
 
-        $('#contact').click(function() {
-          $("#contents").load("contact.html #contact");
-          $('html, body').stop().animate({
-            scrollTop : $('#contents_target').offset().top
-          });
-          
-          $('#close').show();
-          
+        $('#football').click(function() {
+            $("#contents").load("stadiumMain.do", {"keyword" : "축구장"});
+            $('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+            
+        });
+        
+        $('#footsal').click(function() {
+        	$("#contents").load("stadiumMain.do", {"keyword" : "풋살장"});
+            $('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+            
+        });
+        
+        $('#player').click(function() {
+        	$("#contents").load("player.do", {"keyword" : "축구"});
+            $('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+            
+        });
+        
+        $('#game_apply').click(function() {
+        	$("#contents").load("gameInsert.do");
+            $('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+            
+        });
+        
+        $('#game_list').click(function() {
+        	$("#contents").load("game_list.do");
+            $('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+            
         });
 
         $('#edit').click(function() {
@@ -103,7 +340,7 @@
         color: black;
       }
       .link:hover {
-        color: #71BC42;
+        color: #0006ff;
       }
       #close {
         color: black;
@@ -125,80 +362,53 @@
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
-    <div class="content"> 
-    	 
-    	 
-    	 
-    	 
-    	 
-    	 
-    	 
-    	 <div class="site-section first-section">
-      <div class="container">
-        <a name="target"></a>
-        <div class="row mb-5">
-          <div class="col-md-12 text-center target" data-aos="fade">
-            
-          </div>
-        </div>
-
-        <div class="row border-responsive">
-          
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="">
-            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-              <i class='far fa-address-card d-block text-primary' style='font-size:62px;'></i>
-              <br />
-              <h3 class="text-uppercase h4 mb-3">축구 매칭</h3>
-              <span style="cursor: pointer;" class="link" id="edit">개인정보 확인 및 수정</span> / 
-              <span style="cursor: pointer;" class="link" id="credit">결제수단 관리</span>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100">
-            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)" style="cursor: pointer;">
-              <i class='fas fa-gift d-block text-primary' style='font-size:62px;'></i>
-              <br>              
-              <h3 class="text-uppercase h4 mb-3">풋살 매칭</h3>
-              <span style="cursor: pointer;" class="link" id="user_grade">등급관리</span> / 
-              <span style="cursor: pointer;" class="link" id="coupon">쿠폰함</span>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-              <i class='fas fa-cart-arrow-down d-block text-primary' style='font-size:62px'></i>
-              <br>
-              <h3 class="text-uppercase h4 mb-3">매칭 신청</h3>
-              <span style="cursor: pointer;" class="link" id="basket">장바구니 수정 및 삭제</span> / 
-              <span style="cursor: pointer;" class="link" id="order">상품주문</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <br /><br />
-    
-    <!-- 메뉴클릭 시 화면이동할 부분 -->
-    <div id="contents_target" style="height: 500px;"></div> 
-    <!-- 메뉴클릭 시 내용 출력 부분 -->
-    <div class="mt-0" id="contents"></div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    </div>
+    <div class="content">
+    	<div class="site-section first-section">
+			<div class="container">
+		        <a name="target"></a>
+		        <div class="row mb-5">
+		        	<div class="col-md-12 text-center target" data-aos="fade"></div>
+		        </div>
+	        	<div class="row border-responsive">
+					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="">
+		          		<p class="text-center h2"><small>경기장이 없다면?</small><br /><br />구장 예약</p> 
+		            	<div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+							<img src="./../resources/img/match/match_1.png" id="stadium" alt="" />
+							<br /> 
+							<h3 class="text-uppercase h4 mb-3">Stadium</h3>
+							<span style="cursor: pointer;" class="link" id="football">축구장</span> / 
+							<span style="cursor: pointer;" class="link" id="footsal">풋살장</span>
+						</div>
+					</div> 
+					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100">
+						<p class="text-center h2"><small>상대가 없다면?</small><br /><br />상대 찾기</p>
+						<div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+							<img src="./../resources/img/match/match_2.png" alt="" />
+							<br>
+							<h3 class="text-uppercase h4 mb-3">Game</h3>
+							<span style="cursor: pointer;" class="link" id="game_apply">게임 신청</span> / 
+							<span style="cursor: pointer;" class="link" id="game_list">게임 목록</span>
+						</div>
+					</div>
+					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
+						<p class="text-center h2"><small>당장 뛰고싶다면?</small><br /><br />1인 신청</p>
+						<div class="text-center" id="player" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+							<img src="./../resources/img/match/mercenary.png" alt="" /> 
+							<br><br />
+							<h3 class="text-uppercase h4 mb-3 link">player</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br /><br />
+	    <script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
+	    <!-- 메뉴클릭 시 화면이동할 부분 -->
+	    <div id="contents_target" style="height: 50px;"></div> 
+	    <!-- 메뉴클릭 시 내용 출력 부분 -->
+	    <div class="mt-0" id="contents"></div>
+	</div>
     <!-- / main body -->
     <div class="clear"></div>
   </main>

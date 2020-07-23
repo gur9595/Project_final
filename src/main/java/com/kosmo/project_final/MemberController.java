@@ -3,6 +3,7 @@ package com.kosmo.project_final;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 public class MemberController {
 	
@@ -12,14 +13,19 @@ public class MemberController {
 		return "member/member_agree";
 	}
 	
-	
 	 @RequestMapping("/member/memberAgree2.do")
 	 public String memberAgree2() {
 		 
-		 return"member/member_agree2";
+		 return "member/member_agree2";
 	 }
 	 
-	
+	 
+	 @RequestMapping("/member/article.do")
+	 public String article() {
+		 
+		 return "member/article";	
+	 }
+	 
 	@RequestMapping("/member/login.do")
 	public String login() {
 		
@@ -32,10 +38,20 @@ public class MemberController {
 		return "member/manager_main";
 	}
 	
+	@RequestMapping("/member/managerJoin.do")
+	 public String managerJoin() {
+		 
+		 return"member/managerJoin";
+	 }
+	
 	@RequestMapping("/member/id_pw.do")
 	public String id_pw() {
 		
 		return "/member/id_pw";
 	}
 	
+
+	
+	
+
 }
