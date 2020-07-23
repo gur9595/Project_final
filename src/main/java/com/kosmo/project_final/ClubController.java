@@ -10,10 +10,12 @@ public class ClubController {
 	public String clubMain() {		
 		return "club/club_main";
 	} 
+	
 	@RequestMapping("/club/clubMyList.do")
 	public String clubMyList() {		
 		return "club/club_mylist";
 	}
+	
 	@RequestMapping("/club/clubRanking.do")
 	public String clubRanking() {		
 		return "club/club_ranking";
@@ -22,10 +24,13 @@ public class ClubController {
 	public String clubSearch() {		
 		return "club/club_search";
 	}
+	
 	@RequestMapping("/club/clubCreate.do")
-	public String clubCreate() {		
+	public String clubCreate() {	
+		
 		return "club/club_create";
 	}
+	
 	@RequestMapping("/club/clubView.do")
 	public String clubView() {
 		return "club/club_view";

@@ -68,8 +68,13 @@ String keyword = request.getParameter("keyword");
 	<center class="center">클럽 생성</center>
 	<br /><br />
 	<h2>팀명</h2>
-	<div >
+	<div>
 		<input type="text" placeholder="팀명을 입력해주세요" style="width:250px; height:40px;">
+	</div>
+	
+	<h2>아이콘 넣기</h2>
+	<div>
+		<input type="text" placeholder="아이콘넣기" style="width:400px; height:300px;">
 	</div>
 	
 	<h2>주 활동지역</h2>
