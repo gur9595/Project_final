@@ -63,7 +63,7 @@
         <!-- Member -->
         <div class="n-member-area form-area" style="background:#FFFFFF;">
 
-            <form class="formBox" name="joinForm" id="joinForm" action="../member/memberAgree2.do" method="post">
+            <form class="formBox" name="joinForm" id="joinForm" action="<c:url value="/member/memberJoin1.do" />" method="post">
 
                 <!-- Header -->
                 <header class="member-header">

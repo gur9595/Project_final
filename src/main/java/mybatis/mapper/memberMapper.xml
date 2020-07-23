@@ -6,7 +6,7 @@
   <mapper namespace="mybatis.MemberDAOImpl">
   
    <!-- 회원가입 --> 
-	  <insert id="MemberJoin" parameterType="dto.MemberDTO"> 
+	  <insert id="memberJoin" parameterType="mybatis.MemberDTO"> 
 		  insert into member values( 
 		  	member_seq.nextval, #{m_id}, #{m_pw}, #{m_name}, #{m_birth}, #{m_email}, #{m_phone},
 		  	#{m_addr}, sysdate, #{position}, #{m_sex}, #{m_abil}, #{m_foot}, #{m_pic} ) 
