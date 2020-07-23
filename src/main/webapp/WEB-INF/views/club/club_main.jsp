@@ -12,37 +12,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link href="./../resources/css/club.css" rel="stylesheet" />   
-<link href="./../resources/css/search.css" rel="stylesheet"	type="text/css" media="all">
 </head>
 <body id="top"> 
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
 <div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
-  <div id="breadcrumb" class="hoc clear"> 
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Club</a></li>
-    </ul>
-  </div>
+  <div id="breadcrumb" class="hoc clear"></div>
 </div>
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
     <div class="content"> 
-    
     <div class="site-section first-section">
       <div class="container">
         <a name="target"></a>
         <div class="row mb-5">
           <div class="col-md-12 text-center target" data-aos="fade">
-            
           </div>
         </div>
-
-        <div class="row border-responsive">
-          
+        <div class="row border-responsive">        
           <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="" id="clubSearch">
             <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
               <i class='fas fa-search d-block ' style='font-size:62px;'></i>
@@ -50,7 +39,6 @@
               <h3 class="text-uppercase h4 mb-3">클럽 검색</h3>
             </div>
           </div>
-
           <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100"  id="clubMyList">
             <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)" style="cursor: pointer;">
               <i class='fas fa-tshirt d-block' style='font-size:62px;'></i>
@@ -58,7 +46,6 @@
               <h3 class="text-uppercase h4 mb-3">내 클럽</h3>
             </div>
           </div>
-          
           <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100" id="clubCreate"> 
             <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)" style="cursor: pointer;">
               <i class='fas fa-pen d-block' style='font-size:62px;'></i>
@@ -78,17 +65,12 @@
           </div>
         </div>
       </div>
-    </div>
-    
-    <br /><br />
-    
+    </div>    
+    <br /><br />    
     <!-- 메뉴클릭 시 화면이동할 부분 -->
     <div id="contents_target" style="height: 50px;"></div> 
     <!-- 메뉴클릭 시 내용 출력 부분 -->
-    <div class="mt-0" id="contents"></div>
-    	
-    	
-    	
+    <div class="mt-0" id="contents"></div>    	   	   	
     </div>
     <!-- / main body -->
     <div class="clear"></div>
