@@ -9,7 +9,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+<link href="./../resources/css/layout.css" rel="stylesheet"
+	type="text/css" media="all">
 
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -17,8 +18,8 @@
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 mapOption = {
-    center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-    level: 5 // 지도의 확대 레벨
+    center: new daum.maps.LatLng(37.549661, 126.989016), // 지도의 중심좌표
+    level: 9 // 지도의 확대 레벨
 };
 
 //지도를 미리 생성
@@ -27,7 +28,6 @@ var map = new daum.maps.Map(mapContainer, mapOption);
 var geocoder = new daum.maps.services.Geocoder();
 //마커를 미리 생성
 var marker = new daum.maps.Marker({
-position: new daum.maps.LatLng(37.537187, 127.005476),
 map: map
 });
 
@@ -53,8 +53,9 @@ new daum.Postcode({
                 map.relayout();
                 // 지도 중심을 변경한다.
                 map.setCenter(coords);
+                map.setLevel(3);
                 // 마커를 결과값으로 받은 위치로 옮긴다.
-                marker.setPosition(coords)
+                marker.setPosition(coords);
             }
         });
     }
@@ -65,34 +66,47 @@ new daum.Postcode({
 
 </head>
 <body>
-	<table>
-		<tr>
-			<th>날짜</th>
-			<td><input type="date" /></td>
-		</tr>
-		<tr>
-			<th>시간</th>
-			<td><input type="text" /></td>		
-		</tr>
-		<tr>
-			<th>구장 주소</th>
-			<td>
-				<input type="text" id="sample5_address" placeholder="주소" style="width: 300px; display: inline;">
-				<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" style="display: inline;"><br>
-				<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
-			</td>		
-		</tr>
-		<tr>
-			<th>
-				세부 사항
-			</th>
-			<td>
-				<textarea style="width: 100%; height: 300px;"></textarea>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" style="width: 100%; height: 100%;"/></td>
-		</tr>
-	</table>
+<div class="wrapper row4" style="background: #ffffff">
+	<main class=" ho c container clear">
+	
+		<div class="one_half first">
+			<!-- <center> -->
+			<table style="width: 100%;" border="1">
+				<tr>
+					<th>날짜</th>
+					<td><input type="date" class="form-control" style="width: 100%;" /></td>
+				</tr>
+				<tr>
+					<th>시간</th>
+					<td><input type="text" class="form-control" style="width: 100%;" /></td>		
+				</tr>
+				<tr>
+					<th>구장 주소</th>
+					<td>
+						<input type="text" class="form-control" id="sample5_address" placeholder="주소" 
+							style="width: 70%; display: inline;">
+						<input type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소 검색" 
+							style="width: 27%; display: inline;"><br>
+					</td>		
+				</tr>
+				<tr>
+					<th>
+						세부 사항
+					</th>
+					<td>
+						<textarea class="form-control" style="width: 100%; height: 300px;"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" class="btn btn-secondary" style="width: 100%; height: 100%;"/></td>
+				</tr>
+			</table>
+		</div>
+		<div class="one_half">
+			<div class="" id="map" style="width:100%; height:480px; margin-top:10px; display: no ne;"></div>
+		</div>
+		
+	</main>
+</div>
 </body>
 </html>

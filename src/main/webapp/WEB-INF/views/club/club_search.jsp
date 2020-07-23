@@ -115,18 +115,20 @@ request.setCharacterEncoding("UTF-8");
 				<td class="t4">활동지역</td>
 				<td>입단</td>
 			</tr>
+			<!-- 이거 반복 (글씨 색)  -->
 			<tr>
-				<td>1</td>
-				<td>
+				<td class="tcol">1</td>
+				<td class="tname">
 					<img src="./../resources/img/emb1.png" alt="" />
 					브라질
 				</td>
-				<td>상상</td>
-				<td>20대</td>
-				<td>남자</td>
-				<td>금천구</td>
+				<td class="tcol">상상</td>
+				<td class="tcol">20대</td>
+				<td class="tcol">남자</td>
+				<td class="tcol">금천구</td>
 				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
 			</tr>
+			
 			<tr>
 				<td>2</td>
 				<td>

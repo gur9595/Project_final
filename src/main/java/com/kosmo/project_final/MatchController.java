@@ -42,5 +42,10 @@ public class MatchController {
 		return "match/player";
 	}
 	
+	@RequestMapping("match/map.do")
+	public String map() {
+		
+		return "match/map";
+	}
 	
 }
