@@ -294,7 +294,7 @@
 						
 						<!-- 아이템 best -->
 							<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demob" 
-									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">BEST 상품</button><br /><br />
+									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">BEST 상품 미완</button><br /><br />
 							<div id="demob" class="collapse">
 								<table border= "1">
 									<tr style="height:150px;">
@@ -369,7 +369,7 @@
 							
 							<!-- 아이템 1 -->
 							<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo1" 
-									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">축구공</button><br /><br />
+									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">축구공 ok</button><br /><br />
 							<div id="demo1" class="collapse" >
 								<table border= "1" >
 									<tr style="height:150px; ">
@@ -444,7 +444,7 @@
 								
 							<!-- 아이템 2 -->
 							<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2" 
-									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">축구화</button><br /><br />
+									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">축구화 미완</button><br /><br />
 							<div id="demo2" class="collapse">
 								<table border= "1">
 									<tr style="height:150px;">
@@ -519,7 +519,7 @@
 							
 							<!-- 아이템 3 -->
 							<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3" 
-									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">유니폼</button><br /><br />
+									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">유니폼 미완</button><br /><br />
 							<div id="demo3" class="collapse">
 								<table border= "1">
 									<tr style="height:150px;">
@@ -594,7 +594,7 @@
 							
 							<!-- 아이템 4 -->
 							<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo4" 
-									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">축구용품</button><br /><br />
+									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">축구용품 미완</button><br /><br />
 							<div id="demo4" class="collapse">
 								<table border= "1">
 									<tr style="height:150px;">
@@ -669,7 +669,7 @@
 							
 							<!-- 아이템 5 -->
 							<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo5" 
-									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">기타용품</button>
+									style="width: 300px; margin-left: 30px; font-size: 20px; background-color: green;">기타용품 미완</button>
 							<div id="demo5" class="collapse">
 								<table border= "1">
 									<tr style="height:150px;">
