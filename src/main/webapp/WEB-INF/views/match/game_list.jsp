@@ -22,11 +22,12 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
+setTimeout(function(){ map.relayout(); }, 1000);
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+geocoder.addressSearch('서울 성동구 금호동3가 1127', function(result, status) {
 
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
@@ -38,17 +39,21 @@ geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function
             map: map,
             position: coords
         });
+        map.relayout();
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
             content: '<div style="width:150px;text-align:center;padding:6px 0;">구장이름</div>'
         });
+        
+        
         infowindow.open(map, marker);
 
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});    
+    }
+});  
+setTimeout(function(){ map.relayout(); }, 1000);
 </script>
 
 
@@ -75,10 +80,11 @@ geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function
 				날짜 : 2020-08-14 <br>
 				시간 : 18:00 <br>
 				장소 : 가산 조은디 풋살장 <br>
-				주소 : <input type="text" id="sample5_address" readonly="readonly" value="서울 성동구 금호동3가 1127" style="display:inline; width: 300px;">
+				주소 : <input type="text"  class="form-control"id="sample5_address" readonly="readonly" 
+					value="서울 성동구 금호동3가 1127" style="display:inline; width: 300px; background: #ffffff;">
 					<div id="map" style="width:100%;height:350px;"></div>
 				상세정보
-				<textarea style="width: 100%; height: 200px; " readonly="readonly">
+				<textarea class="form-control" style="width: 100%; height: 200px; background: #ffffff;" readonly="readonly">
 dsa
 d
 sa
