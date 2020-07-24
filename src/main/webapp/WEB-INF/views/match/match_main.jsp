@@ -72,7 +72,7 @@
 }
 
 #menu_wrap .option p {
-	margin: 10px 0;
+	margin: 10px 0px;
 }
 
 #menu_wrap .option button {

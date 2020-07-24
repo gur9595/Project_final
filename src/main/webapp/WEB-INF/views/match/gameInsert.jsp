@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +40,8 @@ new daum.Postcode({
         var name = data.buildingName; // 건물 이름
 
         // 주소 정보를 해당 필드에 넣는다.
-        document.getElementById("addr").value = addr;
-        document.getElementById("name").value = name;
+        document.getElementById("g_saddr").value = addr;
+        document.getElementById("g_sname").value = name;
         // 주소로 상세 정보를 검색
         geocoder.addressSearch(data.address, function(results, status) {
             // 정상적으로 검색이 완료됐으면
@@ -64,7 +65,68 @@ new daum.Postcode({
 }).open();
 }
 
-
+function writeValidate(f)
+{
+	if(f.date.value==""){
+		alert("경기 날짜를 선택하세요.");
+		f.date.focus();
+		return false;
+	}
+	
+	var s_time = document.getElementById("s_time");
+	var e_time = document.getElementById("e_time");
+	var type = document.getElementById("type");
+	
+	if(s_time.options[s_time.selectedIndex].value==""){
+		alert("게임 시작 시간을 선택하세요.");
+		f.s_time.focus();
+		return false;
+	}
+	if(e_time.options[e_time.selectedIndex].value==""){
+		alert("게임 끝나는 시간을 선택하세요.");
+		f.e_time.focus();
+		return false;
+	}
+	
+	if((s_time.options[s_time.selectedIndex].value) == (e_time.options[e_time.selectedIndex].value)){
+		alert("시작시간과 종료시간이 같을 수 없습니다.");
+		f.s_time.focus();
+		return false;
+	}
+	
+	if(!s_time.options[s_time.selectedIndex].value == "22" || 
+			!s_time.options[s_time.selectedIndex].value == "23" || 
+				!s_time.options[s_time.selectedIndex].value == "24" ){
+		
+		if(s_time.selectedIndex >= e_time.selectedIndex){
+			alert("시작시간이 종료시간보다 늦을 수 없습니다.");
+			f.s_time.focus();
+			return false;
+		}
+		
+	}
+	
+	if(type.options[type.selectedIndex].value==""){
+		alert("게임 종목을 선택하세요.");
+		f.type.focus();
+		return false;
+	}
+	if(f.name.value==""){
+		alert("경기장 이름을 입력하세요.");
+		f.name.focus();
+		return false;
+	}
+	if(f.addr.value==""){
+		alert("경기장 주소를 입력하세요.");
+		f.addr.focus();
+		return false;
+	}
+	if(f.memo.value==""){
+		alert("세부사항을 입력하세요.");
+		f.memo.focus(); 
+		return false;
+	} 
+}
 
 </script>
 
@@ -74,11 +136,26 @@ new daum.Postcode({
 	<main class=" ho c container clear">
 	
 		<div class="one_half first">
-			<form action="">
+			<form name="writeFrm" method="post" onsubmit="return writeValidate(this);" action="<c:url value="/match/gameApply.do" />" >
 				<table style="width: 100%;">
 					<tr>
-						<th>날짜</th>
-						<td><input type="date" name="date" id="date" class="form-control" style="width: 100%;" /></td>
+						<th>클럽명</th>
+						<td>
+							<%-- 
+							<select class="form-control" name="c_idx" id="c_idx">
+								<c:forEach var="club" items="${clubMap }" varStatus="status">
+									<option value="${club.key }">${club.value }</option>
+								</c:forEach>
+							</select>
+							--%>
+							<input type="text" name="c_idx" id="c_idx" class="form-control" value="9337" />
+						</td>
+					</tr>
+					<tr>
+						<th>경기 날짜</th>
+						<td>
+							<input type="date" name="g_date" id="g_date" class="form-control" style="width: 100%;" />
+						</td>
 					</tr>
 					<tr>
 						<th>
@@ -87,7 +164,7 @@ new daum.Postcode({
 						<th>
 							<select class="form-control" name="s_time" id="s_time" style="display: inline;">
 								<option value="">시작 시간을 선택하세요.</option>
-								<option value="1">01:00</option>
+								<option value="1">01:00</option> 
 								<option value="2">02:00</option>
 								<option value="3">03:00</option>
 								<option value="4">04:00</option>
@@ -144,7 +221,7 @@ new daum.Postcode({
 					<tr>
 						<th>게임 종목</th>
 						<td>
-							<select class="form-control" name="type" id="type">
+							<select class="form-control" name="g_type" id="g_type">
 								<option value="">종목을 선택하세요.</option>
 								<option value="축구">축구</option>
 								<option value="풋살">풋살</option>
@@ -155,11 +232,11 @@ new daum.Postcode({
 						<th>구장 주소</th>
 						<td>
 							<input type="text" class="form-control" placeholder="예약된 구장의 이름을 자세히 입력해주세요." 
-								style="width: 70%; display: inline;" id="name" name="name">
+								style="width: 70%; display: inline;" id="g_sname" name="g_sname">
 							<input type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소 검색" 
-								style="width: 27%; display: inline;"><br>
+								style="width: 28%; display: inline;"><br>
 							<input type="text" class="form-control" placeholder="예약된 구장의 주소를 자세히 입력해주세요." 
-								style="width: 100%; display: inline;" id="addr" name="addr">
+								style="width: 100%; display: inline;" id="g_saddr" name="g_saddr">
 						</td>		
 					</tr>
 					<tr>
@@ -167,7 +244,7 @@ new daum.Postcode({
 							세부 사항
 						</th>
 						<td>
-							<textarea class="form-control" id="memo" name="memo" 
+							<textarea class="form-control" id="g_memo" name="g_memo" 
 								style="width: 100%; height: 300px;" placeholder="Ex)가산 풋살장 제 1구장 입니다."></textarea>
 						</td>
 					</tr>
@@ -176,9 +253,10 @@ new daum.Postcode({
 					</tr>
 				</table>
 			</form>
+
 		</div>
 		<div class="one_half">
-			<div class="" id="map" style="width:100%; height:590px; margin-top:10px; display: no ne;"></div>
+			<div class="" id="map" style="width:100%; height:630px; margin-top:10px; display: no ne;"></div>
 		</div>
 		
 	</main>

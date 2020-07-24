@@ -30,6 +30,10 @@ String keyword = request.getParameter("keyword");
 			</div>
 			
 			<div class="one_half mb-5">
+
+
+			<div class="one_half seconde">
+
 				<div class="map_wrap">
 					<div id="menu_wrap" class="bg_white" style="width: 100%; height: 100%;">
 						<div class="option">
@@ -161,7 +165,6 @@ String keyword = request.getParameter("keyword");
 					        
 							// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
 						    searchAddrFromCoords(locPosition, displayCenterInfo);
-					            
 						});
 					}
 					
