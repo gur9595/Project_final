@@ -83,7 +83,7 @@ label {
 	<main class="hoc container clear">
 	    <div class="container">
 	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
-	    <form action="<c:url value="/member/memberJoin2.do" />" method="post" id="myForm" name="form" enctype="multipart/form-data" >
+	    <form action="../member/memberJoin2.do" method="post" enctype="multipart/form-data" id="myForm" name="form"  >
 			<!-- Header -->
 			
 			<input type="hid den" name="m_id" value="<%=request.getAttribute("m_id") %>"/>
@@ -185,7 +185,7 @@ label {
 						<input type="text" style="width:200px; height:200px;">
 					</td>
 					<td>
-						<input type="file" name="userfile1" />
+						<input type="file" name="m_pic" />
 					</td>
 				</tr>
 			</table>

@@ -2,6 +2,7 @@ package com.kosmo.project_final;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -93,7 +95,18 @@ public class MemberController {
 
 		return "member/member_agree2";
 	}
-
+	
+	//서버의 물리적 경로 확인하기 
+	@RequestMapping("/fileUpload/uploadPath.do")
+	public void uploadPath(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		
+		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
+		
+		resp.setContentType("text/html; charset=utf-8");
+		PrintWriter pw = resp.getWriter();
+		pw.print("/upload 디렉토리의 물리적 경로 ");
+		pw.print(path);
+	}
 	/*
 	 UUID:(Universally Unique Identifier)
 	  범용 고유 식별자 . randomUUID() 메소드를 통해 문자열을 생성하면
@@ -108,15 +121,16 @@ public class MemberController {
 		return uuid;
 	}
 
-	@RequestMapping(value = "/member/memberJoin2.do", method = RequestMethod.POST) 
-	public String memberJoinPro2(HttpSession session, MemberDTO dto, Model model , MultipartHttpServletRequest req) {
-
+	@RequestMapping(value="/member/memberJoin2.do",method=RequestMethod.POST) 
+	public String memberJoinPro2(MultipartHttpServletRequest req, HttpSession session, MemberDTO dto, Model model) {
+		System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111");
 		//서버의 물리적경로 가져오기
 		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
 
 		//폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
 		Map returnObj = new HashMap();
 		try {
+			
 			//업로드폼의 file속성의 필드를 가져온다. (여기서는 2개임)
 			Iterator itr= req.getFileNames();
 
@@ -171,7 +185,7 @@ public class MemberController {
 				file.put("serverFullName", serverFullName);//서버의 전체 경로
 				file.put("title", title);					//제목
 				
-				dto.setM_pic(originalName);
+				dto.setM_pic(saveFileName);
 				
 				//위4가지 정보를 저장한 Map을 ArrayList에 저장한다.
 				resultList.add(file);
