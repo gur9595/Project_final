@@ -7,6 +7,7 @@ public class ClubDTO {
 	private int c_idx;
 	private String c_name;
 	private String c_cash;
+	private String c_emb;
 	private String c_area;
 	private String c_type;
 	private Date c_date;
@@ -33,6 +34,12 @@ public class ClubDTO {
 	}
 	public void setC_cash(String c_cash) {
 		this.c_cash = c_cash;
+	}
+	public String getC_emb() {
+		return c_emb;
+	}
+	public void setC_emb(String c_emb) {
+		this.c_emb = c_emb;
 	}
 	public String getC_area() {
 		return c_area;

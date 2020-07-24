@@ -11,7 +11,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>	
 $(function(){
-
 });
 </script>
 </head>

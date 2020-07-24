@@ -75,17 +75,12 @@
                 <!-- Header -->
                 <header class="member-header">
                     <div class="logo">
-               
+      
                     </div>
-
                     <h2 style="font-size:40px; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h2>
                     <button type="button" class="btn-back" onclick="location.href='${pageContext.request.contextPath }'"><i class="ic-30-line-arrow-left">이전 페이지로 이동</i></button>
-
-
                 </header>
-                <!-- //Header -->
 
-                <!-- Join Form -->
                 <div class="join-form">
                     <div class="n-form-set">
 

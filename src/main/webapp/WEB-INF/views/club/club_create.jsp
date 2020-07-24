@@ -57,55 +57,28 @@ input[type=checkbox], input[type=radio]
 }
 label {
     cursor: pointer; font-size : 18px;
-
+}
+#joinBtn{
+	background:#0c9; color:#ff0; border-radius:5px 5px 0 0;
+	font-weight:bold; font-size:20px; width:130px; height:50px; border:1px #0c9 solid;
+}
+input[type=text] {
+	border-style: solid; border-width: 2px 2px 2px 8px; padding12px;
+	word-break; break-all;
+	border-color : DodgerBlue;
 }
 </style>
 <script>
-function isValidate(frm){
-	if(frm.name.value==""){
-		alert('이름을 입력하세요');
-		frm.name.focus();
-		return false;
+	function setEmblem(event) {
+		var reader = new FileReader();
+		
+		reader.onload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img);
+		};
+		reader.readAsDataURL(event.target.files[0]);
 	}
-	
-	if(frm.user_id.value==""){
-        alert('아이디를 입력하세요');
-        frm.id.focus();
-        return false;
-    }
-	
-    if(frm.user_pw.value=="" || frm.user_pw2.value==""){
-        alert('패스워드를 입력하세요');
-        return false;
-    }
-    
-	if (frm.user_pw.value != frm.user_pw2.value) {
-		alert("입력한 두 개의 비밀번호가 서로  일치하지 않습니다.");
-		return false;
-	}
-   
-    if(frm.tel1.value=="" || frm.tel2.value=="" || frm.tel3.value==""){
-    	alert("전화번호를 입력하세요");
-    	return false;
-    }
-    
-    if(frm.mobile1.value=="" || frm.mobile2.value=="" || frm.mobile3.value==""){
-    	alert("핸드폰번호를 입력하세요");
-    	return false;
-    }
-    
-    
-    if(frm.email_1.value=="" || frm.email_2.value==""){
-    	alert("이메일을 입력하세요");
-    	return false;
-    }
-    
-    if(frm.zip1.value=="" || frm.addr1.value=="" || frm.addr2.value=="" || frm.addr3.value==""){
-    	alert("우편번호를 입력하세요");
-    	return false;
-    }
-    
-}
 </script>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -114,21 +87,22 @@ String keyword = request.getParameter("keyword");
 <body>
 	<center class="center">클럽 생성</center>
 	<br /><br />
-	<form name="createForm" id="createForm" action="<c:url value="/club/clubCreate.do" />" method="post">
+	<form name="creFrm" id="creFrm" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
 		<h2>팀명</h2>
 		<div>
-			<input type="text" placeholder="팀명을 입력해주세요" id="c_name" name="c_name" style="width:250px; height:40px;">
+			<input type="text" class="team" placeholder="팀명을 입력해주세요" id="c_name" name="c_name" style="width:400px; height:40px;">
 		</div>
 		
-		<h2>아이콘 넣기</h2>
-		<div>
-			<input type="text" placeholder="아이콘넣기" id="c_emb" name="c_emb" style="width:400px; height:300px;">
+		<h2>엠블럼 넣기</h2>
+		<div class="selector">
+			<input type="file" id="c_emb" name="c_emb" accept="image/*" onchange="setEmblem(event)"/>
+			<div id="image_container"></div>
 		</div>
 		
 		<h2>주 활동지역</h2>
 		<div class="box">
-		    <select id="c_area" name="c_area" title="선택 구분">
-		        <option selected="selected">선택해 주세요</option>
+		    <select id="c_area" name="c_area">
+		        <option selected="" value="">선택해 주세요</option>
 		        <option value="강남구">강남구</option>
 		        <option value="강동구">강동구</option>
 		        <option value="강북구">강북구</option>
@@ -170,7 +144,7 @@ String keyword = request.getParameter("keyword");
 		
 		<h2>인원수 제한</h2>
 		<div class="box">
-		    <select id="c_memlimit" name="c_memlimit" title="선택 구분">
+		    <select id="c_memlimit" name="c_memlimit">
 				<option placeholder="" value="">선택해 주세요</option>
 				<option>30</option>
 				<option>40</option>
@@ -180,7 +154,7 @@ String keyword = request.getParameter("keyword");
 		
 		<h2>실력</h2>
 		<div class="box">
-			<select id="c_ability" name="c_ability" title="선택 구분">
+			<select id="c_ability" name="c_ability" >
 				<option selected="" value="">선택해 주세요</option>
 				<option>최상</option>
 				<option>상</option>
@@ -205,10 +179,69 @@ String keyword = request.getParameter("keyword");
 		<div>
 			<input type="text" placeholder="클럽을 자유롭게 소개해 주세요" id="c_momo" name="c_memo" style="width:500px; height:60px;">
 		</div>
-		
+		<br /><br />
 		<div style="text-align:center;">
-			<button type="submit" id="joinBtn" class="btn btn-outline-success">클럽생성</button>
+			<input type="submit" id="joinBtn" class="btn btn-outline-success" value="클럽생성">
 		</div>
 	</form>
 </body>
+<script>
+
+function isValidate (creFrm){
+	if(creFrm.c_name.value==""){
+		alert('팀명을 입력하세요');
+		creFrm.c_name.focus();
+		return false;
+	}
+	
+	if(creFrm.c_emb.value==""){
+		alert('엠블럼을 넣어주세요');
+		creFrm.c_emb.focus();
+		return false;
+	}
+	
+	if(creFrm.c_area.value==""){
+		alert('활동지역을 선택해 주세요');
+		creFrm.c_area.focus();
+		return false;
+	}
+	
+	if(creFrm.c_gender.value==""){
+		alert('성별을 선택해 주세요');
+		creFrm.c_gender.focus();
+		return false;
+	}
+	
+	if(creFrm.c_gender.value==""){
+		alert('성별을 선택해 주세요');
+		creFrm.c_gender.focus();
+		return false;
+	}
+	
+	if(creFrm.c_memlimit.value==""){
+		alert('인원수를 선택해 주세요');
+		creFrm.c_memlimit.focus();
+		return false;
+	}
+	
+	if(creFrm.c_ability.value==""){
+		alert('실력을 선택해 주세요');
+		creFrm.c_ability.focus();
+		return false;
+	}
+	
+	if(creFrm.c_type.value==""){
+		alert('선호종목을 선택해 주세요');
+		creFrm.c_type.focus();
+		return false;
+	}
+	
+	if(creFrm.c_memo.value==""){
+		alert('팀을 소개해주세요');
+		creFrm.c_memo.focus();
+		return false;
+	}
+}
+
+</script>
 </html>
