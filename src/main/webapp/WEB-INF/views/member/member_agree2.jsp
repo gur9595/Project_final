@@ -14,7 +14,7 @@
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
-h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen Script;
+h2 { font-size : 24px; color:#000066; line-height:30px;;
 	margin:52px auto 10px 0px;
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
@@ -35,7 +35,6 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
 
 .box::before {
   content: "\f13a";
-  font-family: FontAwesome;
   position: absolute;
   top: 0;
   right: 0;
@@ -80,7 +79,10 @@ label {
 </div>
 	<main class="hoc container clear">
 	    <div class="container">
-	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
+	    <h1 class="title-join" style="font-size:40px; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h1>
+	    <form action="/member/v2/join/complete" method="post" id="myForm" novalidate>
+
+	    
 	    <form action="<c:url value="/member/memberJoin2.do" />" method="post" id="myForm">
 			<!-- Header -->
 			
@@ -133,10 +135,10 @@ label {
 	        <h2>성별 체크</h2>
 	        <table class="table table-borderless">
 	        	<tr>
-					<td width="20px;"><input type="radio" name="gender" id="man" value="best" ></td>
+					<td width="20px;"><input type="radio" name="gender" id="man" value="man" ></td>
 					<td><label for="man">남자</label></td>
-					<td width="20px;"><input type="radio" name="gender" id="wowan" value="top"></td>
-					<td><label for="wowan">여자</label></td>
+					<td width="20px;"><input type="radio" name="gender" id="wowan" value="woman"></td>
+					<td><label for="woman">여자</label></td>
 				</tr>
 	        </table>
 	        

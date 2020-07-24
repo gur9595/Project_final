@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="mybatis.ClubDAOImpl">
+  
+   <!-- 클럽생성 --> 
+	  <insert id="clubCreate" parameterType="mybatis.ClubDTO"> 
+		  insert into club (c_idx,c_name,c_emb,c_area,c_gender,c_type,c_ability,c_memlimit,c_memo) values( 
+		  	club_seq.nextval, #{c_name}, #{c_emb}, #{c_area},#{c_gender}, #{c_type},
+		  	#{c_ability}, #{c_memlimit}, #{c_memo} ) 
+	  </insert> 
+	  
+<!-- 	<select id="clubSearch" resultType="mybatis.ClubDTO" parameterType="mybatis.ClubDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM (
+				SELECT * FROM club 
+				<if test="!searchTxt.equals('')">
+					WHERE #{c_area},#{c_ability},#{c_gender} like '%' ||#{searchTxt} || '%'
+				</if>
+				ORDER BY idx DESC
+			) Tb
+		)
+	</select> -->
+  </mapper>
