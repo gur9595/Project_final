@@ -78,7 +78,7 @@
                 <div class="join-form">
                     <div class="n-form-set">
                         <label for="m_id" class="n-form-label">아이디 <span class="essential">필수 입력</span></label><br/>
-                        <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(8자이상)" minlength="8" maxlength="20" style="width:400px;">
+                        <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(4자이상)" minlength="8" maxlength="20" style="width:400px;">
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
                     <div class="n-form-set">
@@ -268,10 +268,10 @@
                     $m_id.attr('class', 'n-input input-danger');
                     return false;
                 }
-                if ($m_id.val().length < 8) {
+                if ($m_id.val().length < 4) {
                     $("#hLayerid")
                         .removeClass('validation-passed')
-                        .html('아이디는 8자 이상이어야 합니다.');
+                        .html('아이디는 4자 이상이어야 합니다.');
                     $m_id.attr('class', 'n-input input-danger');
                     return false;
                 } else {
