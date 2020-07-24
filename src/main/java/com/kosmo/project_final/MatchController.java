@@ -1,5 +1,8 @@
 package com.kosmo.project_final;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import mybatis.AdminDAOImpl;
 import mybatis.GameDTO;
 import mybatis.MatchDAOImpl;
-import mybatis.MemberDTO;
 
 @Controller
 public class MatchController {
@@ -52,7 +55,36 @@ public class MatchController {
 	}
 
 	@RequestMapping("/match/game_list.do")
-	public String game_list() {
+	public String game_list(Model model, HttpServletRequest req) {
+		
+		//리스트 페이지에 출력할 게시물 가져오기
+		ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
+		
+//		//페이지 번호에 대한 처리
+//		String path = req.getContextPath() + "/mybatis/list.do?";
+//		String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, path);
+//		model.addAttribute("pagingImg", pagingImg);
+		String[] addr;
+		String date, g_gu, g_time;
+		for(GameDTO dto : lists) {
+			//내용에 대해 줄바꿈 처리
+			String temp = dto.getG_memo().replace("\r\n", "<br>");
+			dto.setG_memo(temp);
+			
+			date = dto.getG_date().substring(0, 10);			
+			g_time = dto.getG_date().substring(11, 13);
+			addr = dto.getG_saddr().split(" ");
+			g_gu = addr[1];
+			
+			dto.setG_date(date);
+			dto.setG_time(g_time);
+			dto.setG_gu(g_gu);
+			
+		}		
+		
+		//model 객체에 저장
+		model.addAttribute("lists", lists);
+
 		
 		return "match/game_list";
 	}
@@ -80,16 +112,21 @@ public class MatchController {
 		
 		String date = req.getParameter("g_date");
 		String time = req.getParameter("s_time") + req.getParameter("e_time");
+		int g_num = sqlSession.getMapper(AdminDAOImpl.class).get_Gnum();
+		g_num++;
 		
 		GameDTO gameDTO = new GameDTO();
 		gameDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));
 		gameDTO.setG_sname(req.getParameter("g_sname"));
 		gameDTO.setG_saddr(req.getParameter("g_saddr"));
 		gameDTO.setG_type(req.getParameter("g_type"));
-		gameDTO.setG_date(date + " " + time);
+		gameDTO.setG_date(date + ":" + time);
 		gameDTO.setG_memo(req.getParameter("g_memo"));
+		gameDTO.setG_num(g_num);
+		
 		
 		sqlSession.getMapper(MatchDAOImpl.class).gameApply(gameDTO);
+		sqlSession.getMapper(AdminDAOImpl.class).set_Gnum(g_num);
 		
 		
 //		//Mybatis사용
