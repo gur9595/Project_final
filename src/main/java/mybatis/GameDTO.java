@@ -15,13 +15,17 @@ public class GameDTO {
 	private int g_num;
 	private int g_rating;
 	private String g_memo;
+	
+	//리스트 출력을 위한 변수
+	private String g_time;
+	private String g_gu;
 
 	//기본생성자
 	public GameDTO() {}
 	
 	//인자생성자
 	public GameDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
-			String g_result, String g_date, int g_num, int g_rating, String g_memo) {
+			String g_result, String g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -35,6 +39,8 @@ public class GameDTO {
 		this.g_num = g_num;
 		this.g_rating = g_rating;
 		this.g_memo = g_memo;
+		this.g_time = g_time;
+		this.g_gu = g_gu;
 	}
 
 	// getter/setter
@@ -133,5 +139,22 @@ public class GameDTO {
 	public void setG_memo(String g_memo) {
 		this.g_memo = g_memo;
 	}
+
+	public String getG_time() {
+		return g_time;
+	}
+
+	public void setG_time(String g_time) {
+		this.g_time = g_time;
+	}
+
+	public String getG_gu() {
+		return g_gu;
+	}
+
+	public void setG_gu(String g_gu) {
+		this.g_gu = g_gu;
+	}
+	
 		
 }

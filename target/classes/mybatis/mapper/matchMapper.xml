@@ -7,10 +7,15 @@
   
 		<!-- 게임신청 --> 
 		<insert id="gameApply" parameterType="mybatis.GameDTO"> 
-			insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo)
+			insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num)
 				values( 
-				  	game_seq.nextval, #{c_idx}, #{g_sname}, #{g_saddr}, #{g_type}, #{g_date}, #{g_memo}) 
+				  	game_seq.nextval, #{c_idx}, #{g_sname}, #{g_saddr}, #{g_type}, #{g_date}, #{g_memo}, #{g_num}) 
 		</insert> 
+		
+		<!-- 게임리스트 -->
+		<select id="gameList" resultType="mybatis.GameDTO">
+			select * from game
+		</select>
 	  
 	</mapper>
 
