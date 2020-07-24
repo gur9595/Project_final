@@ -17,7 +17,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	         
 	<link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
 	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
 	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
@@ -31,6 +30,28 @@
     <script src="https://static.msscdn.net/static/member/js/ui.js?20200701180800" type="text/javascript"></script>
     <script type="text/javascript" src="https://static.msscdn.net/static/member/js/backforward.js?20200701180800"></script>
     <script src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800" type="text/javascript"></script>
+
+        <!-- Google Tag Manager -->
+        <script>
+            var dataLayer = dataLayer || [];
+            window.addEventListener("load", function() {
+                var memberGA = null;
+                if (memberGA != null && memberGA.dimension1 != "0") {
+                    dataLayer.push(memberGA);
+                }
+
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-TXDSFSF');
+            }, false);
+        </script>
+        <!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" type="text/css" href="./../resources/member_join1.css" />
+    <link rel="stylesheet" href="./../resources/css/member_join2.css">
+    <link rel="stylesheet" href="./../resources/css/member_join3.css">
 
 </head>
 <body id="top">
@@ -50,67 +71,60 @@
         <!-- Member -->
         <div class="n-member-area form-area" style="background:#FFFFFF;">
 
-            <form class="formBox" name="joinForm" id="joinForm" action="/member/v2/join/complete" method="post" novalidate>
-                <input type="hidden" name="checkId" value="0">
-                <input type="hidden" name="checkPassword" value="0">
-                <input type="hidden" name="checkConfirmPassword" value="0">
-                <input type="hidden" name="checkEmail" value="0">
-                <input type="hidden" name="checkRecommendMemberId" value="0">
-                <input type="hidden" name="checkPhoneNumber" value="0">
-                <input type="hidden" name="joinToken" value="608ac0790e8a1d61fea83edb615acd424c2d69aa"/>
-                <input type="hidden" name="joinPath" value=""/>
-                <input type="hidden" name="eventToken" value=""/>
-                <input type="hidden" id="partnerCode" name="partnerCode" value=""/>
-
+            <form class="formBox" name="joinForm" id="joinForm" action="<c:url value="/member/memberJoin1.do" />" method="post">
                 <!-- Header -->
                 <header class="member-header">
                     <div class="logo">
                
                     </div>
+
                     <h2 style="font-size:40px; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h2>
                     <button type="button" class="btn-back" onclick="location.href='${pageContext.request.contextPath }'"><i class="ic-30-line-arrow-left">이전 페이지로 이동</i></button>
+
+
                 </header>
                 <!-- //Header -->
 
                 <!-- Join Form -->
                 <div class="join-form">
                     <div class="n-form-set">
+
                         <label for="memberId">아이디 <span class="essential"></span></label><br/>
                         <input type="text" class="n-input input" id="memberId" name="memberId" placeholder="아이디 입력(8자이상)" minlength="8" maxlength="20" style="width:400px;">
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
+                    
                     <div class="n-form-set">
-                        <label for="password">비밀번호 <span class="essential"></span></label>
-                        <div class="n-form-icon">
-                            <input type="password" class="n-input input" id="password" name="password" minlength="8" autocomplete="new-password"
+						<label for="password">비밀번호 <span class="essential"></span></label>
+						<div class="n-form-icon">
+                            <input type="password" class="n-input input" id="m_pw" name="m_pw" minlength="8" autocomplete="new-password"
                                    placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
                             <p class="n-validation" id="passwordValidMessage"></p>
-                            <button type="button" class="btn" onclick="togglePassword('password', this);" >
-                                <i class="ic-30-solid-show ic-gray5">비밀번호 보기</i>
-                            </button>
+                         
                         </div>
                         <div class="n-form-icon">
                             <input type="password" class="n-input input" id="confirmPassword" name="confirmPassword" autocomplete="new-password"
                                    	 placeholder="비밀번호 확인">
                             <p class="n-validation" id="passwordConfirmValidMessage"></p>
-                            <button type="button" class="btn" onclick="togglePassword('confirmPassword', this);">
-                                <i class="ic-30-solid-show ic-gray5">비밀번호 보기</i>
-                            </button>
+                      
                         </div>
                     </div>
                     <div class="n-form-set">
+
                         <label for="name" >이름 <span class="essential"></span></label>
                         <input type="text" class="n-input input" id="name" name="name" placeholder="이름입력" minlength="2" maxlength="8">
                         <p class="n-validation" id="hLayername"></p>
                     </div>
                     
                     <div class="n-form-set">
+
                         <label for="birth" >생년월일 <span class="essential"></span></label>
                         <input type="text" class="n-input input" id="jumin1" name="jumin1" maxlength="8" placeholder="예)19970121">
                         <p class="n-validation" id="hLayerjumin"></p>
                     </div>
                     
                     <div class="n-form-set" id="input-div">
+
                     	<label for="tel">휴대전화 <span class="essential"></span></label>
 		                <input type="tel" class="n-input" id="phoneNumber" name="phoneNumber" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="11">
 		                <p class="n-validation" id="searchValidPhone" style="display: none">번호 형식이 올바르지 않습니다</p>
@@ -119,7 +133,7 @@
                     <div class="n-form-set">
                         <label for="email" >이메일 <span class="essential"></span></label>
                         <div class="n-form-layer" id = "emailFromLayer">
-                            <input type="email" class="n-input input" id="email" name="email" maxlength="50" placeholder="이메일" autocomplete="off">
+                            <input type="email" class="n-input input" id="m_email" name="m_email" maxlength="50" placeholder="이메일" autocomplete="off">
                             <p class="n-validation" id="hLayeremail"></p>
                             <ul id="emailDomainList" class="layer">
                                 <li><button type="button"><span></span><em>naver.com</em></button></li>
@@ -135,11 +149,10 @@
                         <label for="address" >주소<span class="essential"></span></label>
                         <div>                                     
                             <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
-                            <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="우편번호 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
-                            <input type="text" id="address" name="addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" />
-                            <input type="text" id="detailAddress" name="addr2" placeholder="상세주소"  class="n-input" style="margin-top: 5px;" />
-                            <input type="text" id="extraAddress" name="addr3" placeholder="참고항목"  class="n-input" style="margin-top: 5px;" />
-                                <p class="n-validation" id="searchValidPhone" style="display: none">주소형식이 올바르지 않습니다.</p>
+                            <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="주소 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
+                            <input type="text" id="m_addr1" name="m_addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" readonly/>
+                            <input type="text" id="m_addr2" name="m_addr2" placeholder="상세주소"  class="n-input" style="margin-top: 5px;" />
+                            <p class="n-validation" id="searchValidPhone" style="display: none">주소형식이 올바르지 않습니다.</p>
                            
                         </div>
                     </div>
@@ -165,7 +178,7 @@
                 </div>
 
                 <div id="joinBtnDiv" class="member-btn">
-                    <button type="submit" id="joinBtn" class="n-btn btn-primary" onclick="location.href= 'memberAgree2.do'">다음</button>
+                    <input type="submit" class="n-btn btn-primary" onsubmit="" value="다음"/>
                 </div>
             </form>
         </div>
@@ -210,17 +223,14 @@
                     if(extraAddr !== ''){
                         extraAddr = ' (' + extraAddr + ')';
                     }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("extraAddress").value = extraAddr;
+                  
                 
-                } else {
-                    document.getElementById("extraAddress").value = '';
                 }
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postcode').value = data.zonecode;
-                document.getElementById("address").value = addr;
+                document.getElementById("m_addr1").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("detailAddress").focus();
+                document.getElementById("m_addr2").focus();
             }
         }).open();
     }
@@ -239,11 +249,11 @@
         };
 
         function validateLengthMemberIdWhenKeyup() {
-            $('#memberId').val($('#memberId').val().trim());
-            var $memberId = $('#memberId');
-            if ($memberId.val().length > 20) {
-                var limitMemberId = $memberId.val().substring(0, 20);
-                $memberId.val(limitMemberId);
+            $('#m_id').val($('#m_id').val().trim());
+            var $m_id = $('#m_id');
+            if ($m_id.val().length > 20) {
+                var limitMemberId = $m_id.val().substring(0, 20);
+                $m_id.val(limitMemberId);
             }
         }
 
@@ -262,34 +272,34 @@
 
 
             function validationMemberIdHandler() {
-                var $memberId = $('#memberId');
+                var $m_id = $('#m_id');
 
                 $("input[name='checkId']").val('0');
 
                 
-                if ($memberId.val().length === 0) {
+                if ($m_id.val().length === 0) {
                     $("#hLayerid")
                         .removeClass('validation-passed')
                         .html('아이디는 필수정보 입니다.');
-                    $memberId.attr('class', 'n-input input-danger');
+                    $m_id.attr('class', 'n-input input-danger');
                     return false;
                 }
-                if ($memberId.val().length < 8) {
+                if ($m_id.val().length < 8) {
                     $("#hLayerid")
                         .removeClass('validation-passed')
                         .html('아이디는 8자 이상이어야 합니다.');
-                    $memberId.attr('class', 'n-input input-danger');
+                    $m_id.attr('class', 'n-input input-danger');
                     return false;
                 } else {
                     $("#hLayerid").html('');
-                    $memberId.attr('class', 'n-input input');
+                    $m_id.attr('class', 'n-input input');
                 }
 
-                if (!checkIdValue($memberId.val())) {
+                if (!checkIdValue($m_id.val())) {
                     $("#hLayerid")
                         .removeClass('validation-passed')
                         .html('아이디는 영문소문자, 숫자, 특수기호(_)만 사용 가능합니다.');
-                    $memberId.attr('class', 'n-input input-danger');
+                    $m_id.attr('class', 'n-input input-danger');
                     return false;
                 }
 
@@ -298,16 +308,16 @@
                     {
                         async: false,
                         type: 'POST',
-                        url: '/api/member/v2/join/memberId/exist',
+                        url: '/api/member/v2/join/m_id/exist',
                         data : {
-                            'memberId' : $memberId.val()
+                            'm_id' : $m_id.val()
                         },
                         success: function (response) {
                             var success = response.success;
 
                             if (success) {
                                 $("input[name='checkId']").val('1');
-                                $memberId.attr('class', 'n-input input');
+                                $m_id.attr('class', 'n-input input');
                                 $('#hLayerid').attr("class", "n-validation validation-passed");
                                 $("#hLayerid").html(response.message);
                                 isResult = true;
@@ -317,7 +327,7 @@
                                 $("#hLayerid")
                                     .removeClass('validation-passed')
                                     .html(response.message);
-                                $memberId.attr('class', 'n-input input-danger');
+                                $m_id.attr('class', 'n-input input-danger');
                                 return false;
                             }
                         }
@@ -328,15 +338,15 @@
         }
 
         function validatePassword() {
-            var password = $("#password").val().trim();
-            $("input[name='password']").val('');
-            $("input[name='password']").val(password);
+            var m_pw = $("#m_pw").val().trim();
+            $("input[name='m_pw']").val('');
+            $("input[name='m_pw']").val(m_pw);
 
             $("input[name='checkPassword']").val('0');
 
-            if (password === '') {
+            if (m_pw === '') {
                 $('#passwordValidMessage').html('비밀번호는 필수정보입니다.');
-                $("input[name='password']").attr('class', 'n-input input-danger');
+                $("input[name='m_pw']").attr('class', 'n-input input-danger');
                 $("input[name='confirmPassword']").attr('class', 'n-input input');
                 $("#passwordConfirmValidMessage").html('');
                 isPassPassword = false;
@@ -344,13 +354,13 @@
                 return;
             }
 
-            if (!passwordValidCheck(password)) {
+            if (!passwordValidCheck(m_pw)) {
                 isPassPassword = false;
                 joinBtnActive(false);
                 return;
             }
 
-            var isCheckValidPassword = callCheckValidPassword($("#password"));
+            var isCheckValidPassword = callCheckValidPassword($("#m_pw"));
             if (!isCheckValidPassword) {
                 isPassPassword = false;
                 joinBtnActive(false);
@@ -359,8 +369,8 @@
 
             var confirmPassword = $('#confirmPassword').val();
 
-            if (confirmPassword !== '' && password.length > 7) {
-                if (password !== confirmPassword) {
+            if (confirmPassword !== '' && m_pw.length > 7) {
+                if (m_pw !== confirmPassword) {
                     $("input[name='confirmPassword']").attr('class', 'n-input input-danger');
                     $("#passwordConfirmValidMessage").html('비밀번호가 일치하지 않습니다.');
                     isConfirmPassPassword = false;
@@ -403,72 +413,72 @@
 
                 if(!pw) {
                     $msgObj.html("<font>비밀번호는 필수정보입니다.</font>");
-                    $("input[name='password']").attr('class', 'n-input input-danger');
+                    $("input[name='m_pw']").attr('class', 'n-input input-danger');
                     return false;
                 }
 
                
                 if (pw.length < 8 || pw.length > 20) {  
                     $msgObj.html("<font>8~20자 이내로 입력해 주십시오.<font>");
-                    $("input[name='password']").attr('class', 'n-input input-danger');
+                    $("input[name='m_pw']").attr('class', 'n-input input-danger');
                     return false;
                 }
 
-                var isContainBlank = $("#password").val().indexOf(" ");
+                var isContainBlank = $("#m_pw").val().indexOf(" ");
                 if (isContainBlank != -1) {
                     $msgObj.html("<font>숫자 ,영문 대소문자, 특수문자 중 두가지 이상으로 조합해 주십시오.<font>");
-                    $("input[name='password']").attr('class', 'n-input input-danger');
+                    $("input[name='m_pw']").attr('class', 'n-input input-danger');
                     return false;
                 }
 
                 if(pob <= 1) {
                     $msgObj.html("<font>숫자 ,영문 대소문자, 특수문자 중 두가지 이상으로 조합해 주십시오.<font>");
-                    $("input[name='password']").attr('class', 'n-input input-danger');
+                    $("input[name='m_pw']").attr('class', 'n-input input-danger');
                     return false;
                 }
 
                 if(samePassword(pw)) {
                     $msgObj.html("<font>동일문자를 반복해서 4자 이상 사용할 수 없습니다.<font>");
-                    $("input[name='password']").attr('class', 'n-input input-danger');
+                    $("input[name='m_pw']").attr('class', 'n-input input-danger');
                     return false;
                 }
 
                 $msgObj.html("");
-                $("input[name='password']").attr('class', 'n-input input');
+                $("input[name='m_pw']").attr('class', 'n-input input');
                 return true;
             }
 
-            function samePassword(password) {
+            function samePassword(m_pw) {
                 var wordRegExp = new RegExp("(\\w)\\1\\1\\1");
                 var specialWordRegExp = new RegExp("(\\([~!@#$%^&*()_+|<>?:{}])\\1\\1\\1");
-                return wordRegExp.test(password) || specialWordRegExp.test(password);
+                return wordRegExp.test(m_pw) || specialWordRegExp.test(m_pw);
             }
 
-            function callCheckValidPassword(password) {
+            function callCheckValidPassword(m_pw) {
                 var invalidPassword = false;
 
                 mss.my.ajax.call(
                     {
                         async:false,
                         type: 'GET',
-                        url: '/api/member/v2/join/validation/password',
+                        url: '/api/member/v2/join/validation/m_pw',
                         async: false,
                         data : {
-                            password : password.val()
+                        	m_pw : m_pw.val()
                         },
                         success: function (response) {
                             var success = response.success;
 
                             if (success) {
                                 $("input[name='checkPassword']").val('1');
-                                $("input[name='password']").attr('class', 'n-input input');
+                                $("input[name='m_pw']").attr('class', 'n-input input');
                                 invalidPassword = true;
                                 isPassPassword = true;
                             } else {
                                 $("#passwordValidMessage")
                                     .removeClass('validation-passed')
                                     .html(response.message);
-                                $("input[name='password']").attr('class', 'n-input input-danger');
+                                $("input[name='m_pw']").attr('class', 'n-input input-danger');
                                 invalidPassword = false;
                                 isPassPassword = false;
                             }
@@ -482,18 +492,18 @@
 
         function validateConfirmPassword() {
             $("input[name='checkConfirmPassword']").val('0');
-            var password = $('#password').val();
+            var m_pw = $('#m_pw').val();
             var confirmPassword = $('#confirmPassword').val().trim();
             $("#confirmPassword").val('');
             $("#confirmPassword").val(confirmPassword);
 
-            if (password !== '' && password.length > 7) {
+            if (m_pw !== '' && m_pw.length > 7) {
                 if (confirmPassword === '') {
                     $("input[name='confirmPassword']").attr('class', 'n-input input-danger');
                     $("#passwordConfirmValidMessage").html('비밀번호 재확인은 필수정보입니다.');
                     isConfirmPassPassword = false;
                     joinBtnActive(false);
-                } else if (password !== confirmPassword) {
+                } else if (m_pw !== confirmPassword) {
                     $("input[name='confirmPassword']").attr('class', 'n-input input-danger');
                     $("#passwordConfirmValidMessage").html('비밀번호가 일치하지 않습니다.');
                     isConfirmPassPassword = false;
@@ -513,25 +523,25 @@
 
         var changeFndTarget = function(t){
             switch(t){
-                case 'email':
-                    $('#email').css('display','');
-                    $('#phoneNumber').css('display','none');
+                case 'm_email':
+                    $('#m_email').css('display','');
+                    $('#m_phone').css('display','none');
                     $('#sendCertPhoneBtn').css('display','none');
                     $('#reSendCertPhoneBtn').css('display','none');
                     $('#phoneCertification').css('display','none');
-                    $('#phoneNumber').attr("readonly", false);
-                    $('#phoneNumber').val('');
+                    $('#m_phone').attr("readonly", false);
+                    $('#m_phone').val('');
                     $("#searchIdBtn").prop("disabled", true);
                     $("#input-div").attr('class', 'n-form-set');
                     $('#certNumber').val('');
                     break;
                 case 'phone':
-                    $('#email').css('display','none');
-                    $('#phoneNumber').css('display','');
+                    $('#m_email').css('display','none');
+                    $('#m_phone').css('display','');
                     $('#sendCertPhoneBtn').css('display','');
                     $('#phoneCertification').css('display','none');
                     $('#reSendCertPhoneBtn').css('display','none');
-                    $('#email').val('');
+                    $('#m_email').val('');
                     $("#input-div").attr('class', 'n-form-item');
                     $("#searchIdBtn").prop("disabled", true);
                     $("#sendCertPhoneBtn").attr('disabled', false);
@@ -543,16 +553,16 @@
         
         function phoneValidation() {
 
-            var phoneNumber = $('#phoneNumber').val();
+            var m_phone = $('#m_phone').val();
 
-            if (!(phoneNumber.length >= 10 && phoneNumber.length <= 11)) {
+            if (!(m_phone.length >= 10 && m_phone.length <= 11)) {
                 return false;
             }
 
             var regNumber = /^[0-9]*$/;
-            if(!regNumber.test(phoneNumber)){
-                $("#phoneNumber").val(phoneNumber.replace(/[^0-9]/g,""));
-                $("#phoneNumber").focus();
+            if(!regNumber.test(m_phone)){
+                $("#m_phone").val(m_phone.replace(/[^0-9]/g,""));
+                $("#m_phone").focus();
                 return false;
             }
 
@@ -560,7 +570,7 @@
         }
 		
        function validatePhone() {
-    	   $('#phoneNumber').on("keyup", function () {
+    	   $('#m_phone').on("keyup", function () {
                if ($(this).val().length < 1) {
                    $("#searchValidPhone").show();
                    $("#searchValidPhone").text('휴대전화 번호를 입력해 주세요');
@@ -578,27 +588,27 @@
          
         function validateEmail () {
 
-            var trimedEmail = $("#email").val().trim();
-            $("#email").val('');
-            $("#email").val(trimedEmail);
+            var trimedEmail = $("#m_email").val().trim();
+            $("#m_email").val('');
+            $("#m_email").val(trimedEmail);
 
             $("#emailDomainList").hide();
 
-            if (!$("#email").val()) {
+            if (!$("#m_email").val()) {
                 $("#hLayeremail")
                     .removeClass('validation-passed')
                     .html('이메일은 필수정보입니다.');
-                $("input[name='email']").attr('class', 'n-input input-danger');
+                $("input[name='m_email']").attr('class', 'n-input input-danger');
                 isPassEmail = false;
                 joinBtnActive(false);
             } else {
                 // 이메일 유효성 체크
-                var email = $("#email").val();
-                var isInvalidEmail = email.indexOf('\@') === -1 || email.indexOf('.') === -1;
+                var m_email = $("#m_email").val();
+                var isInvalidEmail = m_email.indexOf('\@') === -1 || m_email.indexOf('.') === -1;
 
                 if (isInvalidEmail) {
                     $("input[name='checkEmail']").val("0");
-                    $("input[name='email']").attr('class', 'n-input input-danger');
+                    $("input[name='m_email']").attr('class', 'n-input input-danger');
                     $("#hLayeremail")
                         .removeClass('validation-passed')
                         .html("이메일 주소가 올바르지 않습니다.");
@@ -609,14 +619,14 @@
                     mss.my.ajax.call(
                         {
                             async: false,
-                            url: '/api/member/v2/join/email/'+ $("#email").val().trim() + '/exist',
+                            url: '/api/member/v2/join/m_email/'+ $("#m_email").val().trim() + '/exist',
                             method: 'GET',
                             dataType: 'json',
                             success: function (response) {
-                                $("#email").removeClass('valid');
+                                $("#m_email").removeClass('valid');
                                 if (response.success) {
                                     $("input[name='checkEmail']").val("1");
-                                    $("input[name='email']").attr('class', 'n-input input');
+                                    $("input[name='m_email']").attr('class', 'n-input input');
                                     $("#hLayeremail").html(response.message);
                                     $('#hLayeremail').attr("class", "n-validation validation-passed");
                                     isPassEmail = true;
@@ -626,7 +636,7 @@
                                     }
                                 } else {
                                     $("input[name='checkEmail']").val("0");
-                                    $("input[name='email']").attr('class', 'n-input input-danger');
+                                    $("input[name='m_email']").attr('class', 'n-input input-danger');
                                     $("#hLayeremail")
                                         .removeClass('validation-passed')
                                         .html(response.message);
@@ -652,18 +662,6 @@
             return isPassMemberId && isPassPassword && isConfirmPassPassword && isPassEmail && isPassAgree;
         }
 
-        //비밀번호 가리기/보이기
-        function togglePassword(_id, _this) {
-            var _password = $("#" + _id);
-            if (_password.attr("type") == "password") {
-                _password.attr("type", "text");
-                _this.childNodes[1].className = 'ic-30-solid-hide ic-gray5';
-            } else {
-                _password.attr("type", "password");
-                _this.childNodes[1].className = 'ic-30-solid-show ic-gray5';
-            }
-        }
-
         function moveScrollToTargetElement(elementId) {
             try {
                 var offset = $('#' + elementId).offset();
@@ -686,13 +684,13 @@
                 validatePhone();
 
                 if (!isPassMemberId) {
-                    moveScrollToTargetElement("memberId");
-                    $("#memberId").focus();
+                    moveScrollToTargetElement("m_id");
+                    $("#m_id").focus();
                     return false;
                 }
                 if(!isPassPassword) {
-                    moveScrollToTargetElement('password');
-                    $("#password").focus();
+                    moveScrollToTargetElement('m_pw');
+                    $("#m_pw").focus();
                     return false;
                 }
                 if(!isConfirmPassPassword) {
@@ -701,8 +699,8 @@
                     return false;
                 }
                 if(!isPassEmail) {
-                    moveScrollToTargetElement('email');
-                    $("#email").focus();
+                    moveScrollToTargetElement('m_email');
+                    $("#m_email").focus();
                     return false;
                 }
                 if (!$('#agreeCheckbox').prop('checked')) {
@@ -748,23 +746,23 @@
 
             $("#emailFromLayer ul").on("click","li button",function(e) {
                 e.preventDefault();
-                $("#email").val($(this).text());
+                $("#m_email").val($(this).text());
 
                 validateEmail();
                 return false;
             });
 
-            $('#memberId').on("keyup", validateLengthMemberIdWhenKeyup);
-            $('#memberId').on("blur", validateMemberId);
-            $("#password").on("blur", validatePassword);
+            $('#m_id').on("keyup", validateLengthMemberIdWhenKeyup);
+            $('#m_id').on("blur", validateMemberId);
+            $("#m_pw").on("blur", validatePassword);
             $("#confirmPassword").on("blur", validateConfirmPassword);
-            $("#email").on("blur", function(e){
+            $("#m_email").on("blur", function(e){
                 if(!mouseFlag) {
                     return false;
                 }
                 validateEmail();
             });
-            $("#email").on("keyup", function(e) {
+            $("#m_email").on("keyup", function(e) {
                 var value = e.currentTarget.value;
                 if (value.length > 1 && value[value.length-1] == "@") {
                     $("#emailFromLayer ul > li button span").text(value);
@@ -774,8 +772,8 @@
                     e.target.parentElement.className = "n-form-layer is-active";
                     $("#emailDomainList").show();
                     $("#emailDomainList li").show();
-                    var inputDomain = $("#email").val().split('@')[1];
-                    var emailId = $("#email").val().split('@')[0];
+                    var inputDomain = $("#m_email").val().split('@')[1];
+                    var emailId = $("#m_email").val().split('@')[0];
                     $("#emailFromLayer ul > li button span").text(emailId + '@');
                     $("#emailDomainList li em").each(function () {
                         if ($(this).text().indexOf(inputDomain) == -1) {
@@ -787,7 +785,7 @@
                 }
             });
 
-            $("#memberId, #password, #confirmPassword, #recommendMemberId").focusin(function () {
+            $("#m_id, #m_pw, #confirmPassword, #recommendMemberId").focusin(function () {
                 $("#emailFromLayer").removeClass('is-active');
             });
 
@@ -854,10 +852,10 @@
 
 
         function initSessionStorage() {
-            $("#memberId").val(sessionStorage.getItem("memberId"));
-            $("#password").val(sessionStorage.getItem("password"));
+            $("#m_id").val(sessionStorage.getItem("m_id"));
+            $("#m_pw").val(sessionStorage.getItem("m_pw"));
             $("#confirmPassword").val(sessionStorage.getItem("confirmPassword"));
-            $("#email").val(sessionStorage.getItem("email"));
+            $("#m_email").val(sessionStorage.getItem("m_email"));
 
 
 
@@ -865,13 +863,13 @@
             var invalidMsg = sessionStorage.getItem("memberIdInvalidMsg");
             if (invalidMsg) {
                 $("#hLayerid").html(invalidMsg);
-                $("#memberId").attr('class', 'n-input input-danger');
+                $("#m_id").attr('class', 'n-input input-danger');
             }
 
             invalidMsg = sessionStorage.getItem("passwordInvalidMsg");
             if (invalidMsg) {
                 $("#passwordValidMessage").html(invalidMsg);
-                $("input[name='password']").attr('class', 'n-input input-danger');
+                $("input[name='m_pw']").attr('class', 'n-input input-danger');
             }
 
             invalidMsg = sessionStorage.getItem("confirmPasswordInvalidMsg");
@@ -883,7 +881,7 @@
             invalidmsg = sessionStorage.getItem("nameInvalidMsg");
             if (invalidMsg) {
             	$("#hLayername").html(invalidMsg);
-            	$("#name").attr('class', 'n-input input-dangere');
+            	$("#m_name").attr('class', 'n-input input-dangere');
             }
             
             invalidMsg = sessionStorage.getItem("emailInvalidMsg");
@@ -891,7 +889,7 @@
                 $("#hLayeremail")
                     .removeClass('validation-passed')
                     .html(invalidMsg);
-                $("input[name='email']").attr('class', 'n-input input-danger');
+                $("input[name='m_email']").attr('class', 'n-input input-danger');
             }
 
             invalidMsg = sessionStorage.getItem("recommendMemberIdInvalidMsg");
@@ -923,10 +921,10 @@
         }
 
         function setSessionStorage() {
-            sessionStorage.setItem("memberId", $("#memberId").val());
-            sessionStorage.setItem("password", $("#password").val());
+            sessionStorage.setItem("m_id", $("#m_id").val());
+            sessionStorage.setItem("m_pw", $("#m_pw").val());
             sessionStorage.setItem("confirmPassword", $("#confirmPassword").val());
-            sessionStorage.setItem("email", $("#email").val());
+            sessionStorage.setItem("m_email", $("#m_email").val());
 
             if ($("input[name='checkId']").val() === '0') {
                 sessionStorage.setItem("memberIdInvalidMsg", $("#hLayerid").html());

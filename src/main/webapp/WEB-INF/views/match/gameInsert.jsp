@@ -71,7 +71,7 @@ new daum.Postcode({
 	
 		<div class="one_half first">
 			<!-- <center> -->
-			<table style="width: 100%;">
+			<table style="width: 100%;" border="1">
 				<tr>
 					<th>날짜</th>
 					<td><input type="date" class="form-control" style="width: 100%;" /></td>

@@ -114,7 +114,7 @@ String keyword = request.getParameter("keyword");
 <body>
 	<center class="center">클럽 생성</center>
 	<br /><br />
-	<form>
+	<form name="createForm" id="createForm" action="<c:url value="/club/clubCreate.do" />" method="post">
 		<h2>팀명</h2>
 		<div>
 			<input type="text" placeholder="팀명을 입력해주세요" id="c_name" name="c_name" style="width:250px; height:40px;">
@@ -122,7 +122,7 @@ String keyword = request.getParameter("keyword");
 		
 		<h2>아이콘 넣기</h2>
 		<div>
-			<input type="text" placeholder="아이콘넣기" id="c_pro" name="c_pro" style="width:400px; height:300px;">
+			<input type="text" placeholder="아이콘넣기" id="c_emb" name="c_emb" style="width:400px; height:300px;">
 		</div>
 		
 		<h2>주 활동지역</h2>
@@ -159,12 +159,12 @@ String keyword = request.getParameter("keyword");
 		<h2>성별</h2>
 		<table class="table table-borderless">
 	     	<tr>
-				<td width="20px;"><input type="radio" name="c_gender" id="man" value="man" ></td>
-				<td><label for="man">남자</label></td>
-				<td width="20px;"><input type="radio" name="c_gender" id="woman" value="woman"></td>
-				<td><label for="woman">여자</label></td>
-				<td width="20px;"><input type="radio" name="c_gender" id="mixed" value="mixed"></td>
-				<td><label for="mixed">혼성</label></td>
+				<td width="20px;"><input type="radio" name="c_gender" id="c_man" value="남자" ></td>
+				<td><label for="c_man">남자</label></td>
+				<td width="20px;"><input type="radio" name="c_gender" id="c_woman" value="여자"></td>
+				<td><label for="c_woman">여자</label></td>
+				<td width="20px;"><input type="radio" name="c_gender" id="c_mixed" value="혼성"></td>
+				<td><label for="c_mixed">혼성</label></td>
 			</tr>
 		</table>
 		
@@ -172,10 +172,9 @@ String keyword = request.getParameter("keyword");
 		<div class="box">
 		    <select id="c_memlimit" name="c_memlimit" title="선택 구분">
 				<option placeholder="" value="">선택해 주세요</option>
-				<option>30명미만</option>
-				<option>30명이상 40명미만</option>
-				<option>40명이상 50명미만</option>
-				<option>50명이상</option>
+				<option>30</option>
+				<option>40</option>
+				<option>50</option>
 		    </select>
 		</div>
 		
@@ -195,12 +194,17 @@ String keyword = request.getParameter("keyword");
 		<h2>선호 종목</h2>
 		<table class="table table-borderless">
 	     	<tr>
-				<td width="20px;"><input type="radio" name="c_type" id="soccer" value="socceer"></td>
-				<td><label for="soccer">축구</label></td>
-				<td width="20px;"><input type="radio" name="c_type" id="footsal" value="footsal" ></td>
-				<td><label for="footsal">풋살</label></td>
+				<td width="20px;"><input type="radio" name="c_type" id="c_soccer" value="축구"></td>
+				<td><label for="c_soccer">축구</label></td>
+				<td width="20px;"><input type="radio" name="c_type" id="c_footsal" value="풋살" ></td>
+				<td><label for="c_footsal">풋살</label></td>
 			</tr>
 		</table>
+		
+		<h2>클럽 소개글</h2>
+		<div>
+			<input type="text" placeholder="클럽을 자유롭게 소개해 주세요" id="c_momo" name="c_memo" style="width:500px; height:60px;">
+		</div>
 		
 		<div style="text-align:center;">
 			<button type="submit" id="joinBtn" class="btn btn-outline-success">클럽생성</button>

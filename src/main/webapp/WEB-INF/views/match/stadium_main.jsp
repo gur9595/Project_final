@@ -25,6 +25,10 @@ String keyword = request.getParameter("keyword");
 			</div>
 			
 			<div class="one_half mb-5">
+
+
+			<div class="one_half seconde">
+
 				<div class="map_wrap">
 					<div id="menu_wrap" class="bg_white" style="width: 100%; height: 100%;">
 						<div class="option">
