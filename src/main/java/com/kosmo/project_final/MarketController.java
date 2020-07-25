@@ -11,4 +11,22 @@ public class MarketController {
 		
 		return "market/market_main";
 	}
+	
+	@RequestMapping("/market/marketUniform.do")
+	public String marketUniform() {
+		
+		return "market/market_uniform";
+	}
+	
+	@RequestMapping("/market/marketRental.do")
+	public String marketRental() {
+		
+		return "market/market_rental";
+	}
+	
+	@RequestMapping("/market/marketBasket.do")
+	public String marketBasket() {
+		
+		return "market/market_basket";
+	}
 }

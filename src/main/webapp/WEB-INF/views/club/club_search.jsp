@@ -13,7 +13,7 @@ request.setCharacterEncoding("UTF-8");
 		<br /><br />
 		<div class="one_half first">
 			<div class="s007">
-			  <form>
+			  <form method="get">
 		        <div class="inner-form">
 		          <div class="basic-search">
 		            <div class="input-field">
@@ -95,7 +95,7 @@ request.setCharacterEncoding("UTF-8");
 		            </div>
 		            <div class="row third">
 		              <div class="input-field">
-		                <button class="btn-search">검색</button>
+		                <input type="submit" class="btn-search" value="검색"></button>
 		              </div>
 		            </div>
 		          </div>

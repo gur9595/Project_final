@@ -81,8 +81,17 @@ label {
 	<main class="hoc container clear">
 	    <div class="container">
 	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
-	    <form action="/member/v2/join/complete" method="post" id="myForm" novalidate>
+	    <form action="<c:url value="/member/memberJoin2.do" />" method="post" id="myForm">
 			<!-- Header -->
+			
+			<input type="hid den" name="m_id" value=""/>
+			<input type="hid den" name="m_pw" value=""/>
+			<input type="hid den" name="m_name" value=""/>
+			<input type="hid den" name="m_birth" value=""/>
+			<input type="hid den" name="m_phone" value=""/>
+			<input type="hid den" name="m_email" value=""/>
+			<input type="hid den" name="m_addr" value=""/>
+			
 			<header class="member-header">
 			    <div class="logo">
 			
@@ -219,7 +228,7 @@ label {
 
 	        <div style="text-align:center">
 	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberAgree.do'">이전페이지</button>  
-		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;" onclick="location.href= 'login.do'">가입완료!!</button>
+		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">가입완료!!</button>
 	        </div>
 	    	</form>
 		</div>
