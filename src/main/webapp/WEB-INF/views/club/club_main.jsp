@@ -83,7 +83,6 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
-<script src="./../resources/js/jquery.mobilemenu.js"></script>
 <script src="./../resources/js/moving.js"></script>
 </body>
 </html>

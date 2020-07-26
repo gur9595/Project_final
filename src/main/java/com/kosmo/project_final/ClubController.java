@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
-
+import mybatis.ClubMemberDTO;
 @Controller
 public class ClubController {
    
@@ -82,6 +82,21 @@ public class ClubController {
 	   
 	   model.addAttribute("lists", lists);
       return "club/club_search";
+   }
+   
+   @RequestMapping(value="/club/clubApplyAction.do", method=RequestMethod.POST)
+   public String clubApplyAction(Model model, HttpServletRequest req, HttpSession session)
+   {      
+	   ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
+	   clubMemberDTO.setC_idx(req.getParameter("c_idx"));
+	   clubMemberDTO.setM_id(req.getParameter("m_id"));
+	   clubMemberDTO.setCm_memo(req.getParameter("memo"));
+	   //Mybatis 사용
+	   int suc = sqlSession.getMapper(ClubDAOImpl.class).clubApply(clubMemberDTO);
+      
+	   System.out.println(suc);
+	   
+      return "club";
    }
    
    @RequestMapping("/club/clubCreate.do")

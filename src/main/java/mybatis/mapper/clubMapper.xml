@@ -84,27 +84,10 @@
 		</if>
 			order by c_idx desc
 		
-		<!-- select * from ( 
-			select tb.*, rownum rNum from (
-				select * from club 
-				<if test="searchTxt!=null and !searchTxt.equals('')">
-					where ${searchField} like '%'||#{searchTxt}||'%'
-				</if>
-				order by idx desc
-			) tb
-		)
-		where rNum between #{start} and #{end}  -->
 	  </select>
 	  
-<!-- 	<select id="clubSearch" resultType="mybatis.ClubDTO" parameterType="mybatis.ClubDTO">
-		SELECT * FROM (
-			SELECT Tb.*, rownum rNum FROM (
-				SELECT * FROM club 
-				<if test="!searchTxt.equals('')">
-					WHERE #{c_area},#{c_ability},#{c_gender} like '%' ||#{searchTxt} || '%'
-				</if>
-				ORDER BY idx DESC
-			) Tb
-		)
-	</select> -->
+	<insert id="clubApply" parameterType="mybatis.ClubMemberDTO">
+		insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
+	</insert>
+	  
   </mapper>

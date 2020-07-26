@@ -119,6 +119,7 @@ request.setCharacterEncoding("UTF-8");
 			<!-- 이거 반복 (글씨 색)  -->
 			<c:forEach items="${lists }" var="row">
 				<tr>
+					<input type="hidden" value="${row.c_idx }" />
 					<td class="tcol">1</td>
 					<td class="tname">
 						<img src="./../resources/img/emb1.png" alt="" />
@@ -128,64 +129,72 @@ request.setCharacterEncoding("UTF-8");
 					<td class="tcol">20대</td>
 					<td class="tcol">${row.c_gender }</td>
 					<td class="tcol">${row.c_area }</td>
-					<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
+					<td><button type="button" class="btn" data-toggle="modal"
+							onclick="modal('${row.c_idx}', '${row.c_name}', '${row.c_ability}', '${row.c_age}', '${row.c_gender}', '${row.c_area}');"
+							data-target="#myModal" style="width: 100%; height: 100%;"> 입단 </button>
+					</td>
 				</tr>
 			</c:forEach>
 			
 		</table>
 	</div>
+	<!-- 모달창 신청폼 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" data-backdrop="static"
+		style="color: black;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+	
+				<div class="modal-header">
+					<h2 class="modal-title"
+						style="font-size: 20px; text-align: center;" id="myModalLabel">입단 신청</h2>
+	
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form name="writeFrm" method="post" action="<c:url value="/club/clubApplyAction.do" />" >
+					<div class="modal-body">
+					
+						클럽명 : <span id="list_name"></span><br />
+						실력 : <span id="list_ability"></span><br />
+						나이대 : <span id="list_age"></span><br />
+						성별 : <span id="list_gender"></span><br />
+						활동지역 : <span id="list_area"></span><br />				
+						<input type="hidden" name="c_idx" id="list_idx" value=""/>
+						<input type="hidden" name="m_id" value="duck" />
+						당찬 포부의 한마디 : <br />
+						<textarea class="form-control" name="memo"
+							style="width: 100%; height: 100px; background: #ffffff;"></textarea>
+		
+					</div>
+		
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-danger" data-dismiss="modal">
+							신청하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- ################ 모달 끝 #################-->
+
 </body>
 <script>
 
-function modal(name, ability, age, gender, area) {
+function modal(idx, name, ability, age, gender, area) {
 	
+	$('#list_idx').val(idx);
 	document.getElementById("list_name").innerHTML = name;
 	document.getElementById("list_ability").innerHTML = ability;
 	document.getElementById("list_age").innerHTML = age;
 	document.getElementById("list_gender").innerHTML = gender;
-	document.getElementById("list_area").value = area;
+	document.getElementById("list_area").innerHTML = area;
 	
 }
 
 </script>
-<!-- 모달창 신청폼 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" data-backdrop="static"
-	style="color: black;">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
 
-			<div class="modal-header">
-				<h2 class="modal-title"
-					style="font-size: 20px; text-align: center;" id="myModalLabel">입단 신청</h2>
-
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-			
-				클럽명 : <span id="list_name"></span><br />
-				실력 : <span id="list_ability"></span><br />
-				나이대 : <span id="list_age"></span><br />
-				성별 : <span id="list_gender"></span><br />
-				활동지역 : <span id="list_area"></span><br />
-				
-				당찬 포부의 한마디 : <br />
-				<textarea class="form-control" id="list_memo"
-					style="width: 100%; height: 100px; background: #ffffff;">
-				</textarea>
-
-			</div>
-
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">
-					신청하기</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- ################ 모달 끝 #################-->
 <script src="./../resources/js/choices.js"/>
 </html>
