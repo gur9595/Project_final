@@ -17,6 +17,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
+	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
+	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
 
 
     <script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
@@ -74,7 +77,7 @@
                     <div class="logo">
       
                     </div>
-                    <h2 style="font-size:40px; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h2>
+                    <h2 style="font-size:40px; text-align:center;">회원정보 수정</h2>
                     <button type="button" class="btn-back" onclick="location.href='${pageContext.request.contextPath }'"><i class="ic-30-line-arrow-left">이전 페이지로 이동</i></button>
                 </header>
 

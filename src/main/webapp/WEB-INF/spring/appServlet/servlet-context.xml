@@ -24,16 +24,12 @@
 	
 	<context:component-scan base-package="com.kosmo.project_final" />
 	
+	
 	<!-- 파일업로드를 위한 빈 생성 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10000000" /> <!-- 1메가바이트 -->
 	</beans:bean>
-	
-	<!-- 파일다운로드를 위한 빈 생성 : 조금후에...-->
-	<beans:bean id="fileDownloadView" class="utils.FileDownloadView"/>
-	<beans:bean id="fileViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<beans:property name="order" value="0" />
-	</beans:bean> 
+
 	
 	<!-- DB연결 -->
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

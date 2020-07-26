@@ -13,7 +13,7 @@ request.setCharacterEncoding("UTF-8");
 		<br /><br />
 		<div class="one_half first">
 			<div class="s007">
-			  <form>
+			  <form name="seaFrom">
 		        <div class="inner-form">
 		          <div class="basic-search">
 		            <div class="input-field">
@@ -22,14 +22,14 @@ request.setCharacterEncoding("UTF-8");
 		                  <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
 		                </svg>
 		              </div>
-		              <input id="search" type="text" placeholder="클럽명 입력" />
+		              <input id="searchTxt" name="searchTxt" type="text" placeholder="클럽명 입력" />
 		          </div>
 		          <div class="advance-search">
 		            <span class="desc">세부 검색</span>
 		            <div class="row">
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                  <select data-trigger="" class="form-control" name="searchTxt">
 		                    <option placeholder="" value="">---지역구---</option>
 		                    <option value="강남구">강남구</option>
                             <option value="강동구">강동구</option>
@@ -61,7 +61,7 @@ request.setCharacterEncoding("UTF-8");
 		              </div>
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                  <select data-trigger="" class="form-control" name="searchTxt">
 		                    <option placeholder="" value="">---실력---</option>
 		                    <option value="h">상</option>
 		                    <option value="m">중</option>
@@ -73,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
 		            <div class="row second">
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                  <select data-trigger="" class="form-control" name="searchTxt">
 		                    <option placeholder="" value="">---성별---</option>
 		                    <option>남자</option>
 		                    <option>여자</option>
@@ -83,7 +83,7 @@ request.setCharacterEncoding("UTF-8");
 		              </div>
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                  <select data-trigger="" class="form-control" name="searchTxt">
 		                    <option placeholder="" value="">---나이대---</option>
 		                    <option>장년부</option>
 		                    <option>청년부</option>

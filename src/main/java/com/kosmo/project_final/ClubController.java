@@ -1,19 +1,49 @@
 package com.kosmo.project_final;
 
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import mybatis.ClubDAOImpl;
+import mybatis.ClubDTO;
+import mybatis.ParameterDTO;
 
 @Controller
 public class ClubController {
+	
+	@Autowired
+	SqlSession sqlSession;
 	
 	@RequestMapping("/club/clubMain.do")
 	public String clubMain() {		
 		return "club/club_main";
 	} 
+	
 	@RequestMapping("/club/clubMyList.do")
 	public String clubMyList() {		
 		return "club/club_mylist";
 	}
+	
 	@RequestMapping("/club/clubRanking.do")
 	public String clubRanking() {		
 		return "club/club_ranking";
@@ -22,14 +52,153 @@ public class ClubController {
 	public String clubSearch() {		
 		return "club/club_search";
 	}
+	
 	@RequestMapping("/club/clubCreate.do")
-	public String clubCreate() {		
+	public String clubCreate() {	
+
 		return "club/club_create";
 	}
+	
 	@RequestMapping("/club/clubView.do")
 	public String clubView() {
 		return "club/club_view";
 	}
 	
 	
+	//서버의 물리적 경로 확인하기 
+	@RequestMapping("/fileUpload/uploadPath.do")
+	public void uploadPath(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		
+		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
+		
+		resp.setContentType("text/html; charset=utf-8");
+		PrintWriter pw = resp.getWriter();
+		pw.print("/upload 디렉토리의 물리적 경로 ");
+		pw.print(path);
+	}
+	
+	/*
+	 UUID:(Universally Unique Identifier)
+	  범용 고유 식별자 . randomUUID() 메소드를 통해 문자열을 생성하면
+	  하이픈이 4개 포함된 32자의 랜덤하고 유니크한 문자열이 생성된다
+	  JDK에서 기본적으로 제공되는 클래스이다
+	 */
+	public static String getUuid() {
+		String uuid= UUID.randomUUID().toString();
+		System.out.println("생성된UUID-1: "+uuid);
+		uuid = uuid.replaceAll("-", "");
+		System.out.println("생성된UUID-2: "+uuid);
+		return uuid;
+	}
+	
+	//클럽 생성
+	@RequestMapping(value="/club/clubCreate.do", method = RequestMethod.POST)
+	public String clubCreatePro(Model model , MultipartHttpServletRequest req) {
+		ClubDTO clubdto = new ClubDTO();
+		System.out.println("컨트롤러 들어옴!!");
+		//서버의 물리적경로 가져오기
+				String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
+				
+				//폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
+				Map returnObj = new HashMap();
+				try {
+					//업로드폼의 file속성의 필드를 가져온다. (여기서는 2개임)
+					Iterator itr= req.getFileNames();
+					
+					MultipartFile mfile = null;
+					String fileName = "";
+					List resultList = new ArrayList();
+					
+					//파일외의 폼값 받음(여기서는 제목만 있음)
+					String title = req.getParameter("title");
+					System.out.println("title="+ title);
+					
+					/*
+					 물리적 경로를 기반으로 File 객체를 생성한후 
+					 디렉토리가 존재하는지 확인함 만약 없다면 생성함 
+					 */
+					File directory = new File(path);
+					if(!directory.isDirectory()) {
+						directory.mkdirs();
+					}
+					//업로드폼의 file속성의 필드갯수만큼 반복
+					while(itr.hasNext()) {
+						
+						//전송된 파일의 이름을 읽어옴
+						fileName = (String)itr.next();
+						mfile = req.getFile(fileName);
+						System.out.println("mfile= "+mfile);
+						
+						//한글꺠짐방지 처리후 전송된파일명을 가져옴
+						String originalName= new String(mfile.getOriginalFilename().getBytes(),"UTF-8");
+						
+						//서버로 전송된 파일이 없다면 while문의 처음으로 돌아간다
+						if("".equals(originalName)) {
+							continue;
+						}
+						
+						//파일명에서 확장자 부분을 가져옴
+						String ext = originalName.substring(originalName.lastIndexOf('.'));
+						
+						//UUID를 통해 생성된 문자열과 확장자를 합침
+						String saveFileName = getUuid() +ext;
+						
+						//물리적경로에 새롭게 생성된 파일명으로 파일저장 
+						File serverFullName = new File(path+File.separator+saveFileName);
+						mfile.transferTo(serverFullName);
+						
+						clubdto.setC_emb(saveFileName);
+						
+						//서버에 파일업로드 완료후...
+						Map file = new HashMap();
+						file.put("originalName", originalName); 	//원본파일명
+						file.put("saveFileName", saveFileName);		//저장된파일명
+						file.put("serverFullName", serverFullName);//서버의 전체 경로
+						file.put("title", title);					//제목
+						//위4가지 정보를 저장한 Map을 ArrayList에 저장한다.
+						resultList.add(file);
+						
+						sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
+					}
+					returnObj.put("files", resultList);
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				model.addAttribute("returnObj", returnObj);
+		
+		
+		return "club/club_main";
+	}
+	
+	//클럽 검색
+	/*
+	 * @RequestMapping(value="/club/clubSearch.do") public String
+	 * clubSearchPro(Model model, HttpServletRequest req) {
+	 * 
+	 * ParameterDTO parameterDTO = new ParameterDTO();
+	 * parameterDTO.setSearchTxt(req.getParameter("searchTxt"));
+	 * System.out.println("검색어:"+parameterDTO.getSearchTxt());
+	 * 
+	 * //리스트 페이지에 출력할 게시물 가져오기 ArrayList<ClubDTO>lists =
+	 * sqlSession.getMapper(ClubDAOImpl.class) .listsPage(parameterDTO);
+	 * 
+	 * //model객체에 저장 model.addAttribute("lists", lists);
+	 * 
+	 * return "club/club_main"; }
+	 */
+	
+	
 }
+
+
+
+
+
+
+
+
+
+

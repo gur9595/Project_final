@@ -16,6 +16,14 @@
         </li>
         
         <li>
+        <a class="drop" href="#">MyPage</a>
+          <ul>
+            <li><a href="${pageContext.request.contextPath }/member/memberEdit.do">개인 정보 수정</a></li>
+            <li><a href="${pageContext.request.contextPath }/member/memberHistory.do">개인 전적 보기</a></li>
+          </ul>
+        </li>
+        
+        <li>
         <a class="drop" href="${pageContext.request.contextPath }/club/clubMain.do">Club</a>
           <ul>
             <li><a href="#">1</a></li>
