@@ -246,7 +246,7 @@
 							<!-- Button -->
 							<div class="pricing-button" >
 								<input type="image" src="./../resources/img/GoldenBall.png" style="display : block; margin : 0 auto; width: 80px; height: 60px" onclick="payment(200000, '210,000 Ball (+ 5%)');">
-							</div>
+							</div> 
 						</div>
 					</div>
 					
