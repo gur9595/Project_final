@@ -10,9 +10,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+<%
+request.setCharacterEncoding("UTF-8");
+String g_saddr = request.getParameter("g_saddr");
+String g_sname = request.getParameter("g_sname");
+%>
 
 </head>
 <body>
+<input type="hidden" value="<%=g_saddr %>" id="g_saddr" />
+<input type="hidden" value="<%=g_sname %>" id="g_sname" />
 <div id="map" style="width: 700px; height: 700px;"></div>
 
 <script type="text/javascript"
@@ -32,8 +39,11 @@ setTimeout(function(){ map.relayout(); }, 1000);
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 
+var g_saddr = document.getElementById("g_saddr").value;
+var g_sname = document.getElementById("g_sname").value;
+
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch('서울 성동구 금호동3가 1127', function(result, status) {
+geocoder.addressSearch(g_saddr, function(result, status) {
 
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
@@ -51,7 +61,7 @@ geocoder.addressSearch('서울 성동구 금호동3가 1127', function(result, s
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">조은디 풋살장</div>'
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">' + g_sname + '</div>'
         });
         
         infowindow.open(map, marker);

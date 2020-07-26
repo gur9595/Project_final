@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.tables {
+	margin-left:5%;
+	width : 90%;
+	height : 70%;
+}
+.trs{
+	height : 90px;
+}
+.ths{
+	vertical-align: middle;
+	font-size : 20px;
+}
+
+.center{
+	font-size : 50px;
+}
+
+.image-con{
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            height: 300px;
+}

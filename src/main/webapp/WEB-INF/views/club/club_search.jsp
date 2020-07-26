@@ -22,14 +22,14 @@ request.setCharacterEncoding("UTF-8");
 		                  <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
 		                </svg>
 		              </div>
-		              <input id="search" type="text" placeholder="클럽명 입력" />
+		              <input id="searchTxt" name="clubName" type="text" placeholder="클럽명 입력" />
 		          </div>
 		          <div class="advance-search">
 		            <span class="desc">세부 검색</span>
 		            <div class="row">
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                  <select data-trigger="" class="form-control" name="area">
 		                    <option placeholder="" value="">---지역구---</option>
 		                    <option value="강남구">강남구</option>
                             <option value="강동구">강동구</option>
@@ -61,7 +61,7 @@ request.setCharacterEncoding("UTF-8");
 		              </div>
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                  <select data-trigger="" class="form-control" name="ability">
 		                    <option placeholder="" value="">---실력---</option>
 		                    <option value="h">상</option>
 		                    <option value="m">중</option>
@@ -73,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
 		            <div class="row second">
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                  <select data-trigger="" class="form-control" name="gender">
 		                    <option placeholder="" value="">---성별---</option>
 		                    <option>남자</option>
 		                    <option>여자</option>
@@ -83,7 +83,7 @@ request.setCharacterEncoding("UTF-8");
 		              </div>
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="choices-single-defaul">
+		                  <select data-trigger="" class="form-control" name="age">
 		                    <option placeholder="" value="">---나이대---</option>
 		                    <option>장년부</option>
 		                    <option>청년부</option>
@@ -115,130 +115,77 @@ request.setCharacterEncoding("UTF-8");
 				<td class="t4">활동지역</td>
 				<td>입단</td>
 			</tr>
-			<!-- 이거 반복 (글씨 색)  -->
-			<tr>
-				<td class="tcol">1</td>
-				<td class="tname">
-					<img src="./../resources/img/emb1.png" alt="" />
-					브라질
-				</td>
-				<td class="tcol">상상</td>
-				<td class="tcol">20대</td>
-				<td class="tcol">남자</td>
-				<td class="tcol">금천구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
 			
-			<tr>
-				<td>2</td>
-				<td>
-					<img src="./../resources/img/emb2.png" alt="" />
-					도르트문트
-				</td>
-				<td>중중</td>
-				<td>30대</td>
-				<td>혼성</td>
-				<td>구로구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>
-					<img src="./../resources/img/emb3.png" alt="" />
-					첼시
-				</td>
-				<td>하하</td>
-				<td>40대</td>
-				<td>여자</td>
-				<td>중구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>
-					<img src="./../resources/img/emb1.png" alt="" />
-					브라질
-				</td>
-				<td>하하</td>
-				<td>20대</td>
-				<td>남자</td>
-				<td>금천구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
-			<tr>
-				<td>5</td>
-				<td>
-					<img src="./../resources/img/emb2.png" alt="" />
-					도르트문트
-				</td>
-				<td>하하</td>
-				<td>20대</td>
-				<td>남자</td>
-				<td>금천구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
-			<tr>
-				<td>6</td>
-				<td>
-					<img src="./../resources/img/emb3.png" alt="" />
-					첼시
-				</td>
-				<td>하하</td>
-				<td>20대</td>
-				<td>남자</td>
-				<td>금천구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
-			<tr>
-				<td>7</td>
-				<td>
-					<img src="./../resources/img/emb1.png" alt="" />
-					브라질
-				</td>
-				<td>하하</td>
-				<td>20대</td>
-				<td>남자</td>
-				<td>금천구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
-			<tr>
-				<td>8</td>
-				<td>
-					<img src="./../resources/img/emb2.png" alt="" />
-					도르트문트
-				</td>
-				<td>하하</td>
-				<td>20대</td>
-				<td>남자</td>
-				<td>금천구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
-			<tr>
-				<td>9</td>
-				<td>
-					<img src="./../resources/img/emb3.png" alt="" />
-					첼시
-				</td>
-				<td>하하</td>
-				<td>20대</td>
-				<td>남자</td>
-				<td>금천구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
-			<tr>
-				<td>10</td>
-				<td>
-					<img src="./../resources/img/emb1.png" alt="" />
-					브라질
-				</td>
-				<td>하하</td>
-				<td>20대</td>
-				<td>남자</td>
-				<td>금천구</td>
-				<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
-			</tr>
+			<!-- 이거 반복 (글씨 색)  -->
+			<c:forEach items="${lists }" var="row">
+				<tr>
+					<td class="tcol">1</td>
+					<td class="tname">
+						<img src="./../resources/img/emb1.png" alt="" />
+						${row.c_name }
+					</td>
+					<td class="tcol">${row.c_ability }</td>
+					<td class="tcol">20대</td>
+					<td class="tcol">${row.c_gender }</td>
+					<td class="tcol">${row.c_area }</td>
+					<td><button type="button" class="btn" data-dismiss="modal"> 입단 </button></td>
+				</tr>
+			</c:forEach>
+			
 		</table>
 	</div>
 </body>
+<script>
+
+function modal(name, ability, age, gender, area) {
+	
+	document.getElementById("list_name").innerHTML = name;
+	document.getElementById("list_ability").innerHTML = ability;
+	document.getElementById("list_age").innerHTML = age;
+	document.getElementById("list_gender").innerHTML = gender;
+	document.getElementById("list_area").value = area;
+	
+}
+
+</script>
+<!-- 모달창 신청폼 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" data-backdrop="static"
+	style="color: black;">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h2 class="modal-title"
+					style="font-size: 20px; text-align: center;" id="myModalLabel">입단 신청</h2>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+			
+				클럽명 : <span id="list_name"></span><br />
+				실력 : <span id="list_ability"></span><br />
+				나이대 : <span id="list_age"></span><br />
+				성별 : <span id="list_gender"></span><br />
+				활동지역 : <span id="list_area"></span><br />
+				
+				당찬 포부의 한마디 : <br />
+				<textarea class="form-control" id="list_memo"
+					style="width: 100%; height: 100px; background: #ffffff;">
+				</textarea>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">
+					신청하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ################ 모달 끝 #################-->
 <script src="./../resources/js/choices.js"/>
 </html>

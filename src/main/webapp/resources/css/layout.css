@@ -270,11 +270,8 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Tables
 --------------------------------------------------------------------------------------------------------------- */
-<<<<<<< HEAD
- table, th, td{border:1px solid; border-collapse:collapse; vertical-align:middle;}
-=======
+
 table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
->>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 table, th{table-layout:auto;}
 table{width:100%; margin-bottom:15px;}
 th, td{padding:5px 8px;}

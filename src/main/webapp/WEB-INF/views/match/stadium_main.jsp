@@ -15,10 +15,6 @@ String keyword = request.getParameter("keyword");
 		<main class=" ho c container clear">
 			<!-- main body -->
 			
-			<div class="map_wrap">
-				<div id="map"
-					style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-			</div>
 			
 			<center><h6>경기장 검색</h6></center>
 			<div class="one_half first">
@@ -29,7 +25,7 @@ String keyword = request.getParameter("keyword");
 				</div>
 			</div>
 			
-			<div class="one_half mb-5">
+			
 
 
 			<div class="one_half seconde">
@@ -52,82 +48,6 @@ String keyword = request.getParameter("keyword");
 			<!-- ################################################################################################ -->
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
-			
-			<script>
-			
-				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				mapOption = {
-					center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-					level : 3
-				// 지도의 확대 레벨
-				};
-				
-				// 지도를 생성합니다    
-				var map = new kakao.maps.Map(mapContainer, mapOption);
-				
-				// 주소-좌표 변환 객체를 생성합니다
-				var geocoder = new kakao.maps.services.Geocoder();					
-	
-				// 위도, 경도
-				var lat, lon;
-	
-				//현재위치
-				var locPosition;
-	
-				// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-				if (navigator.geolocation) {
-				    
-				    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-				    navigator.geolocation.getCurrentPosition(function(position) {
-				        
-				        lat = position.coords.latitude, // 위도
-				            lon = position.coords.longitude; // 경도
-				        
-				        // 접속위치
-				        locPosition = new kakao.maps.LatLng(lat, lon);
-				        
-						// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
-					    searchAddrFromCoords(locPosition, displayCenterInfo);
-				            
-					});
-				}
-				
-				function searchAddrFromCoords(coords, callback) {
-				    // 좌표로 행정동 주소 정보를 요청합니다
-				    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
-				}
-				
-				// 장소 검색 객체를 생성합니다
-				var ps = new kakao.maps.services.Places();
-	
-				// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-				var infowindow = new kakao.maps.InfoWindow({
-					zIndex : 1
-				});
-	
-				// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
-				function displayCenterInfo(result, status) {
-				    if (status === kakao.maps.services.Status.OK) {
-				        var keyword = '<%=keyword %>'
-				        var gu;
-	
-				        for(var i = 0; i < result.length; i++) {
-				            // 행정동의 region_type 값은 'H' 이므로
-				            if (result[i].region_type === 'H') {
-				            	gu = result[i].region_2depth_name;
-				            	gu += " " + keyword;
-				                break;
-				            }
-				        }
-				        
-				        document.getElementById("keyword").value = gu;
-				        				        
-				    }    
-				}
-			
-			</script>
-			
-<!------------------------------------------------------------------------------------------>
 			<script>
 					// 마커를 담을 배열입니다
 					var markers = [];
@@ -181,7 +101,7 @@ String keyword = request.getParameter("keyword");
 						zIndex : 1
 					});
 
-					<%-- 
+					
 					// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
 					function displayCenterInfo(result, status) {
 					    if (status === kakao.maps.services.Status.OK) {
@@ -204,7 +124,7 @@ String keyword = request.getParameter("keyword");
 					        
 					    }    
 					}
-					 --%>
+					
 
 					// 키워드 검색을 요청하는 함수입니다
 					function searchPlaces(keyword) {
