@@ -9,5 +9,6 @@ public interface MatchDAOImpl {
 	
 	public int gameApply(GameDTO gameDTO);
 	public ArrayList<GameDTO> gameList();
+	public ArrayList<GameDTO> listSearch(GameDTO gameDTO);
 	
 }

@@ -1,5 +1,7 @@
 package mybatis;
 
+import java.sql.Date;
+
 public class GameDTO {
 	
 	//멤버변수
@@ -11,21 +13,21 @@ public class GameDTO {
 	private String g_type;
 	private String g_score;
 	private String g_result;
-	private String g_date;
+	private java.sql.Date g_date;
 	private int g_num;
 	private int g_rating;
 	private String g_memo;
-	
-	//리스트 출력을 위한 변수
 	private String g_time;
 	private String g_gu;
+	
+	private String search_date;
 
 	//기본생성자
 	public GameDTO() {}
-	
+
 	//인자생성자
 	public GameDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
-			String g_result, String g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu) {
+			String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu, String search_date) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -41,9 +43,10 @@ public class GameDTO {
 		this.g_memo = g_memo;
 		this.g_time = g_time;
 		this.g_gu = g_gu;
+		this.search_date = search_date;
 	}
-
-	// getter/setter
+	
+	// getter/setter	
 	public int getG_idx() {
 		return g_idx;
 	}
@@ -108,11 +111,11 @@ public class GameDTO {
 		this.g_result = g_result;
 	}
 
-	public String getG_date() {
+	public java.sql.Date getG_date() {
 		return g_date;
 	}
 
-	public void setG_date(String g_date) {
+	public void setG_date(java.sql.Date g_date) {
 		this.g_date = g_date;
 	}
 
@@ -155,6 +158,15 @@ public class GameDTO {
 	public void setG_gu(String g_gu) {
 		this.g_gu = g_gu;
 	}
+
+	public String getSearch_date() {
+		return search_date;
+	}
+
+	public void setSearch_date(String search_date) {
+		this.search_date = search_date;
+	}
 	
-		
+	
+
 }
