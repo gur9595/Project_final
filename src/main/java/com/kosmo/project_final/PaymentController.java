@@ -13,10 +13,4 @@ public class PaymentController {
 	}
 	
 	
-	@RequestMapping("/payment/iampoartApi.do")
-	public String iampoartApi() {
-		
-		return "payment/iampoartApi";
-	}
-	
 }

@@ -95,8 +95,7 @@ function writeValidate(f)
 	}
 	
 	if(!s_time.options[s_time.selectedIndex].value == "22" || 
-			!s_time.options[s_time.selectedIndex].value == "23" || 
-				!s_time.options[s_time.selectedIndex].value == "24" ){
+			!s_time.options[s_time.selectedIndex].value == "23"){
 		
 		if(s_time.selectedIndex >= e_time.selectedIndex){
 			alert("시작시간이 종료시간보다 늦을 수 없습니다.");
@@ -130,13 +129,19 @@ function writeValidate(f)
 
 </script>
 
+<style>
+table, th, td{ 
+	border: 0px;
+}
+</style>
+
 </head>
 <body>
 <div class="wrapper row4" style="background: #ffffff">
 	<main class=" ho c container clear">
 	
 		<div class="one_half first">
-			<form name="writeFrm" method="post" onsubmit="return writeValidate(this);" action="<c:url value="/match/gameApply.do" />" >
+			<form name="gameFrm" method="post" onsubmit="return insertValidate(this);" action="<c:url value="/match/gameApply.do" />" >
 				<table style="width: 100%;">
 					<tr>
 						<th>클럽명</th>
@@ -164,15 +169,16 @@ function writeValidate(f)
 						<th>
 							<select class="form-control" name="s_time" id="s_time" style="display: inline;">
 								<option value="">시작 시간을 선택하세요.</option>
-								<option value="1">01:00</option> 
-								<option value="2">02:00</option>
-								<option value="3">03:00</option>
-								<option value="4">04:00</option>
-								<option value="5">05:00</option>
-								<option value="6">06:00</option>
-								<option value="7">07:00</option>
-								<option value="8">08:00</option>
-								<option value="9">09:00</option>
+								<option value="00">00:00</option> 
+								<option value="01">01:00</option> 
+								<option value="02">02:00</option>
+								<option value="03">03:00</option>
+								<option value="04">04:00</option>
+								<option value="05">05:00</option>
+								<option value="06">06:00</option>
+								<option value="07">07:00</option>
+								<option value="08">08:00</option>
+								<option value="09">09:00</option>
 								<option value="10">10:00</option>
 								<option value="11">11:00</option>
 								<option value="12">12:00</option>
@@ -187,10 +193,10 @@ function writeValidate(f)
 								<option value="21">21:00</option>
 								<option value="22">22:00</option>
 								<option value="23">23:00</option>
-								<option value="24">24:00</option>
 							</select>
 							<select class="form-control" name="e_time" id="e_time" style="display: inline;">
 								<option value="">끝나는 시간을 선택하세요.</option>
+								<option value="0">00:00</option>
 								<option value="1">01:00</option>
 								<option value="2">02:00</option>
 								<option value="3">03:00</option>
@@ -249,14 +255,14 @@ function writeValidate(f)
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" class="btn btn-secondary" style="width: 100%; height: 100%;"/></td>
+						<td colspan="2"><input type="submit" class="btn btn-secondary" value="매칭신청" style="width: 100%; height: 100%;"/></td>
 					</tr>
 				</table>
 			</form>
 
 		</div>
 		<div class="one_half">
-			<div class="" id="map" style="width:100%; height:630px; margin-top:10px; display: no ne;"></div>
+			<div class="" id="map" style="width:100%; height:630px; margin-top:10px;"></div>
 		</div>
 		
 	</main>

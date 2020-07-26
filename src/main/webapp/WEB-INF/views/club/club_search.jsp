@@ -155,25 +155,25 @@ request.setCharacterEncoding("UTF-8");
 					</button>
 				</div>
 				<form name="writeFrm" method="post" action="<c:url value="/club/clubApplyAction.do" />" >
-					<div class="modal-body">
-					
-						클럽명 : <span id="list_name"></span><br />
-						실력 : <span id="list_ability"></span><br />
-						나이대 : <span id="list_age"></span><br />
-						성별 : <span id="list_gender"></span><br />
-						활동지역 : <span id="list_area"></span><br />				
-						<input type="hidden" name="c_idx" id="list_idx" value=""/>
-						<input type="hidden" name="m_id" value="duck" />
-						당찬 포부의 한마디 : <br />
-						<textarea class="form-control" name="memo"
-							style="width: 100%; height: 100px; background: #ffffff;"></textarea>
-		
-					</div>
-		
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-danger" data-dismiss="modal">
-							신청하기</button>
-					</div>
+				<div class="modal-body">
+				
+					클럽명 : <span id="list_name"></span><br />
+					실력 : <span id="list_ability"></span><br />
+					나이대 : <span id="list_age"></span><br />
+					성별 : <span id="list_gender"></span><br />
+					활동지역 : <span id="list_area"></span><br />				
+					<input type="hidden" name="c_idx" id="list_idx" value=""/>
+					<input type="hidden" name="m_id" value="duck" />
+					당찬 포부의 한마디 : <br />
+					<textarea class="form-control" name="memo"
+						style="width: 100%; height: 100px; background: #ffffff;"></textarea>
+	
+				</div>
+	
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-danger" >
+						신청하기</button>
+				</div>
 				</form>
 			</div>
 		</div>
@@ -195,6 +195,7 @@ function modal(idx, name, ability, age, gender, area) {
 }
 
 </script>
+
 
 <script src="./../resources/js/choices.js"/>
 </html>

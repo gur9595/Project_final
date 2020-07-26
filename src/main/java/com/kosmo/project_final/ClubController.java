@@ -85,7 +85,7 @@ public class ClubController {
    }
    
    @RequestMapping(value="/club/clubApplyAction.do", method=RequestMethod.POST)
-   public String clubApplyAction(Model model, HttpServletRequest req, HttpSession session)
+   public String clubApplyAction(HttpServletRequest req)
    {      
 	   ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
 	   clubMemberDTO.setC_idx(req.getParameter("c_idx"));
@@ -96,7 +96,7 @@ public class ClubController {
       
 	   System.out.println(suc);
 	   
-      return "club";
+      return "club/club_main";
    }
    
    @RequestMapping("/club/clubCreate.do")
