@@ -206,31 +206,7 @@ public class ClubController {
 		return "club/club_main";
 	}
 
-	//클럽 검색
-	/*
-	 * @RequestMapping(value="/club/clubSearch.do") public String
-	 * clubSearchPro(Model model, HttpServletRequest req) {
-	 * 
-	 * ParameterDTO parameterDTO = new ParameterDTO();
-	 * parameterDTO.setSearchTxt(req.getParameter("searchTxt"));
-	 * System.out.println("검색어:"+parameterDTO.getSearchTxt());
-	 * 
-	 * //리스트 페이지에 출력할 게시물 가져오기 ArrayList<ClubDTO>lists =
-	 * sqlSession.getMapper(ClubDAOImpl.class) .listsPage(parameterDTO);
-	 * 
-	 * //model객체에 저장 model.addAttribute("lists", lists);
-	 * 
-	 * return "club/club_main"; }
-	 */
 
 
 
 }
-
-
-
-
-
-
-
-

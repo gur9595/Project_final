@@ -3,21 +3,27 @@ package mybatis;
 import java.sql.Date;
 
 public class ClubDTO {
-   
-   private int c_idx;
-   private String c_name;
-   private String c_cash;
-   private String c_emb;
-   private String c_area;
-   private String c_type;
-   private Date c_date;
-   private String c_memo;
-   private String c_color;
-   private String c_ability;
-   private String c_gender;
-   private String c_age;
-   private int c_memlimit; 
 	
+	private int c_idx;
+	private String c_name;
+	private String c_cash;
+	private String c_emb;
+	private String c_area;
+	private String c_type;
+	private Date c_date;
+	private String c_memo;
+	private String c_color;
+	private String c_ability;
+	private String c_gender;
+	private int c_memlimit;
+	private String c_age;
+	
+	public String getC_age() {
+		return c_age;
+	}
+	public void setC_age(String c_age) {
+		this.c_age = c_age;
+	}
 	public int getC_idx() {
       return c_idx;
    }
@@ -90,12 +96,6 @@ public class ClubDTO {
    public void setC_memlimit(int c_memlimit) {
       this.c_memlimit = c_memlimit;
    }
-	public String getC_age() {
-		return c_age;
-	}
-	public void setC_age(String c_age) {
-		this.c_age = c_age;
-	}
    
    
 }

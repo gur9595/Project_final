@@ -226,7 +226,7 @@ public class MatchController {
 		
 		sqlSession.getMapper(MatchDAOImpl.class).matchApply(gameDTO);		
 		
-		return "redirect:matchMain.do";
+		return "	";
 	}
 	
 }

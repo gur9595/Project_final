@@ -27,7 +27,6 @@ h2 { font-size : 24px; color:#000066; line-height:30px;
   appearance: button;
   outline: none;
 }
-
 .box::before {
   content: "\f13a";
   position: absolute;
@@ -42,12 +41,10 @@ h2 { font-size : 24px; color:#000066; line-height:30px;
   background-color: rgba(255, 255, 255, 0.1);
   pointer-events: none;
 }
-
 .box:hover::before {
   color: rgba(255, 255, 255, 0.6);
   background-color: rgba(255, 255, 255, 0.2);
 }
-
 .box select option {
   padding: 30px;
 }
@@ -186,7 +183,6 @@ String keyword = request.getParameter("keyword");
 	</form>
 </body>
 <script>
-
 function isValidate (creFrm){
 	if(creFrm.c_name.value==""){
 		alert('팀명을 입력하세요');
@@ -242,6 +238,5 @@ function isValidate (creFrm){
 		return false;
 	}
 }
-
 </script>
 </html>
