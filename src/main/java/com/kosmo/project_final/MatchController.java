@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mybatis.AdminDAOImpl;
+import mybatis.ClubDTO;
 import mybatis.GameDTO;
 import mybatis.MatchDAOImpl;
 
@@ -35,7 +36,8 @@ public class MatchController {
 	*/
 	@Autowired
 	private SqlSession sqlSession;
-		
+	
+	//기본 메인 페이지
 	@RequestMapping("/match/matchMain.do")
 	public String matchMain() {
 		
@@ -53,40 +55,15 @@ public class MatchController {
 		
 		return "match/stadium_apply";
 	}
-	
-	@RequestMapping("/match/gameInsert.do")
-	public String gameInsert() {
-		
-		// 로그인한 아이디값으로 Member DB 접근해서 소속 클럽명 가져와서 리턴하기
-		
-		return "match/gameInsert";
-	}
 
-	@RequestMapping("/match/game_list.do")
-	public String game_list(Model model, HttpServletRequest req) {
+	//용병페이지
+	@RequestMapping("/match/player.do")
+	public String player(Model model, HttpServletRequest req, HttpSession session) {
 		
-		String search_gu = req.getParameter("g_gu");
-        String search_date = req.getParameter("g_date");
-        
-        GameDTO gameDTO = new GameDTO();
-        gameDTO.setSearch_date(search_date);
-        gameDTO.setG_gu(search_gu);
-        
-        ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).listSearch(gameDTO);
-		
-		//리스트 페이지에 출력할 게시물 가져오기
-//		ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
-		
-//		//페이지 번호에 대한 처리
-//		String path = req.getContextPath() + "/mybatis/list.do?";
-//		String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, path);
-//		model.addAttribute("pagingImg", pagingImg);
+		ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).playerList();
 		
 		for(GameDTO dto : lists) {
-			//내용에 대해 줄바꿈 처리
-			String temp = dto.getG_memo().replace("\r\n", "<br>");
-			dto.setG_memo(temp);
-
+			//시작시간 쪼개기
 			String[] g_time = dto.getG_time().split("~");
 			dto.setG_time(g_time[0]);
 		}
@@ -106,26 +83,89 @@ public class MatchController {
 				}
 				return 3;
 			}
-		});		
+		});
 		
-		//model 객체에 저장
 		model.addAttribute("lists", lists);
-
-		return "match/game_list";
-	}
-
-	@RequestMapping("/match/player.do")
-	public String player() {
 		
 		return "match/player";
 	}
 	
+	//용병리스트 모달창에서 용병신청
+	@RequestMapping("/match/extraApply.do")
+	public String extraApply(Model model, HttpServletRequest req, HttpSession session) {
+				
+		
+		String m_id = (String) (session.getAttribute("m_id"));		
+		int g_idx = (Integer.parseInt(req.getParameter("list_idx")));
+		
+		sqlSession.getMapper(MatchDAOImpl.class).extraApply(m_id, g_idx);		
+		
+		return "redirect:matchMain.do";
+	}
+		
+	//게임리스트에서 경기장이름 클릭 시 카카오맵을 보여주는 페이지
 	@RequestMapping("match/map.do")
 	public String map() {
 		
 		return "match/map";
 	}
+
+	//게임 리스트 출력
+	@RequestMapping("/match/game_list.do")
+	public String game_list(Model model, HttpServletRequest req, HttpSession session) {
+        
+        ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
+		
+		for(GameDTO dto : lists) {
+			//내용에 대해 줄바꿈 처리
+			String temp = dto.getG_memo().replace("\r\n", "<br>");
+			dto.setG_memo(temp);
+			//시작시간 쪼개기
+			String[] g_time = dto.getG_time().split("~");
+			dto.setG_time(g_time[0]);
+		}
+		
+		Collections.sort(lists, new Comparator<GameDTO>() {
+			@Override
+			public int compare(GameDTO g1, GameDTO g2) {
+				
+				if(g1.getG_date().equals(g2.getG_date())) {					
+					if(Integer.parseInt(g1.getG_time()) < Integer.parseInt(g2.getG_time())) {
+						return -1;
+					}
+					else if(Integer.parseInt(g1.getG_time()) > Integer.parseInt(g2.getG_time())) {
+						return 1;
+					}
+					return 0;
+				}
+				return 3;
+			}
+		});
+		
+		String m_id = (String) session.getAttribute("m_id");
+		
+		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
+		
+		model.addAttribute("c_list", c_list);
+		model.addAttribute("lists", lists);
+
+		return "match/game_list";
+	}
+
+	//매칭신청(리스트 등록)시 로그인한 사용자가 가입되어있는 클럽 리스트 가져오기
+	@RequestMapping("/match/gameInsert.do")
+	public String gameInsert(Model model, HttpServletRequest req, HttpSession session) {
+		
+		String m_id = (String) session.getAttribute("m_id");
+		
+		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
+		
+		model.addAttribute("c_list", c_list);
+
+		return "match/gameInsert";
+	}
 	
+	//매칭신청(리스트 등록)
 	@RequestMapping("/match/gameApply.do")
 	public String gameApply(Model model, HttpServletRequest req, HttpSession session) {
 		
@@ -134,7 +174,7 @@ public class MatchController {
 //			//로그인이 해제된 상태라면 로그인 페이지로 이동한다.
 //			return "redirect:login.do";
 //		}
-		
+				
 		String req_date = req.getParameter("g_date");
 		Date date = Date.valueOf(req_date);
 		String[] addr = req.getParameter("g_saddr").split(" ");
@@ -173,64 +213,21 @@ public class MatchController {
 		sqlSession.getMapper(MatchDAOImpl.class).gameApply(gameDTO);
 		sqlSession.getMapper(AdminDAOImpl.class).set_Gnum(g_num);
 		
+		return "redirect:matchMain.do";
+	}
+			
+	//게임리스트 모달창에서 매치신청
+	@RequestMapping("/match/matchApply.do")
+	public String matchApply(Model model, HttpServletRequest req, HttpSession session) {
+				
+		GameDTO gameDTO = new GameDTO();
+		gameDTO.setG_idx(Integer.parseInt(req.getParameter("list_idx")));
+		gameDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));		
 		
-//		//Mybatis사용
-//		sqlSession.getMapper(MatchDAOImpl.class).gameApply(
-//				req.getParameter("name"), req.getParameter("contents"), 
-//					((MemberDTO)session.getAttribute("siteUserInfo")).getId());
-		/*
-		세션영역에 저장된 MemberVo객체에서 아이디 가져오기
-		1. Object타입으로 저장된 VO객체를 가져온다.
-		2. MemberVo 타입으로 형 변환 한다.
-		3. 형 변환된 객체를 통해 getter()를 호출하여 아이디를 얻어온다.
-		*/
+		sqlSession.getMapper(MatchDAOImpl.class).matchApply(gameDTO);		
 		
 		return "redirect:matchMain.do";
 	}
-	
-//	@RequestMapping(value="/match/list_search.do", method=RequestMethod.POST)
-//    @ResponseBody
-//    public Object list_search(@RequestParam Map<String,Object> map) {
-//        
-//        String search_gu = (String) map.get("search_gu");    //검색코드
-//        String s_date = (String) map.get("search_date");    //검색코드
-//        Date search_date = Date.valueOf(s_date);
-//        
-//        ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).listSearch(search_gu, search_date);
-// 
-//        for(GameDTO dto : lists) {
-//			//내용에 대해 줄바꿈 처리
-//			String temp = dto.getG_memo().replace("\r\n", "<br>");
-//			dto.setG_memo(temp);
-//
-//			String[] g_time = dto.getG_time().split("~");
-//			dto.setG_time(g_time[0]);
-//		}
-//		
-//		Collections.sort(lists, new Comparator<GameDTO>() {
-//			@Override
-//			public int compare(GameDTO g1, GameDTO g2) {
-//				
-//				if(g1.getG_date().equals(g2.getG_date())) {					
-//					if(Integer.parseInt(g1.getG_time()) < Integer.parseInt(g2.getG_time())) {
-//						return -1;
-//					}
-//					else if(Integer.parseInt(g1.getG_time()) > Integer.parseInt(g2.getG_time())) {
-//						return 1;
-//					}
-//					return 0;
-//				}
-//				return 3;
-//			}
-//		});
-//        
-//        Map<String, Object> retVal = new HashMap<String, Object>();
-//        
-//        retVal.put("lists", lists);
-//        retVal.put("code", "OK");
-//        
-//        return retVal;
-//    }
 	
 }
 

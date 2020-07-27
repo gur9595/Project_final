@@ -214,14 +214,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/error.do")
-	  public String error(){
-		  
-		  return "/member/error";
-	  }
-
-
-
-
+	public String error(){  
+		return "/member/error";
+	}
+	
 	@RequestMapping("/member/memberEdit.do")
 	public String memberMyPage() {
 
@@ -233,6 +229,7 @@ public class MemberController {
 
 		return"member/memberHistory";
 	}
+
 
 
 }
