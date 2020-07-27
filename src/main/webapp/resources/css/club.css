@@ -34,8 +34,13 @@
 }
 
 .clubTable{
+	border : 0;
 	height:100%;
 	text-align : center;
+}
+
+.clubTable tr,td{
+	border : 0;
 }
 .pad{
 	height:15%;
@@ -44,6 +49,7 @@
 	font-size : 25px;
 }
 .myClubEmb{
-	max-height : 265px ;
-	max-width: 265px;
+	width:auto;
+	max-height:265px;
 }
+
