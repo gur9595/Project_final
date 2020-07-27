@@ -35,7 +35,7 @@ public class MemberController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping("/member/member_select.do")
+	@RequestMapping("/member/memberSelect.do")
 	public String member_select() {
 
 		return "/member/member_select";
