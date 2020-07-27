@@ -58,7 +58,7 @@
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+<div class="bgded overlay" style="background-image:url('');">
   <div id="breadcrumb" class="hoc clear"> 
     <!--이미지 위에 글쓰는곳-->
   </div>
@@ -84,8 +84,8 @@
                 <div class="join-form">
                     <div class="n-form-set">
 
-                        <label for="m_id" class="n-form-label">아이디 <span class="essential">필수 입력</span></label><br/>
-                        <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(4자이상)" minlength="8" maxlength="20" style="width:400px;">
+                        <label for="m_id" class="n-form-label">아이디<span class="essential">필수 입력</span></label><br/>
+                        <input type="text" class="n-input input" id="m_id" name="m_id" value="${m_id }" style="width:400px;">
                         
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
@@ -108,7 +108,7 @@
                     <div class="n-form-set">
 
                         <label for="name" >이름 <span class="essential"></span></label>
-                        <input type="text" class="n-input input" id="m_name" name="m_name" placeholder="이름입력" minlength="2" maxlength="8">
+                        <input type="text" class="n-input input" id="m_name" name="m_name" placeholder="이름입력" value="">
                         <p class="n-validation" id="hLayername"></p>
                     </div>
                     
