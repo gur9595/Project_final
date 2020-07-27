@@ -149,6 +149,12 @@ public class MemberController {
 
 		return"member/memberHistory";
 	}
+	
+	@RequestMapping("/member/error.do")
+	public String error(){
+		return "/member/error";
+	}
+
 
 
 }

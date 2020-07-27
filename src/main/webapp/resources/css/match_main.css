@@ -219,7 +219,7 @@ a:hover.tip span {
     display: block;
 }
 
-tr:hover {
+tr:hover.game_list, tr:hover.extra_list {
 	background-color: #EAEAEA;
 }
 

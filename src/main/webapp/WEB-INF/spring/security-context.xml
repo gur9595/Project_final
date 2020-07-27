@@ -25,6 +25,7 @@
 		logout-url="/member/logout"
 		logout-success-url="/"/>
 	<security:access-denied-handler error-page="/member/error.do"/>
+	<security:csrf disabled="true"/>
 	</security:http>
 
 	<security:authentication-manager>
