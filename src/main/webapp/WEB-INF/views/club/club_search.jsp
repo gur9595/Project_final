@@ -163,7 +163,7 @@ request.setCharacterEncoding("UTF-8");
 					성별 : <span id="list_gender"></span><br />
 					활동지역 : <span id="list_area"></span><br />				
 					<input type="hidden" name="c_idx" id="list_idx" value=""/>
-					<input type="hidden" name="m_id" value="duck" />
+					<input type="hidden" name="m_id" value="${m_id }" />
 					당찬 포부의 한마디 : <br />
 					<textarea class="form-control" name="memo"
 						style="width: 100%; height: 100px; background: #ffffff;"></textarea>

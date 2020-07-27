@@ -65,7 +65,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-						<p class="text-center h2"><small>당장 뛰고싶다면?</small><br /><br />1인 신청</p>
+						<p class="text-center h2"><small>혼자 뛰고싶다면?</small><br /><br />1인 신청</p>
 						<div class="text-center" id="player" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
 							<img src="./../resources/img/match/mercenary.png" alt="" /> 
 							<br><br />
@@ -93,6 +93,5 @@
 <!-- JAVASCRIPTS -->
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
-<script src="./../resources/js/jquery.mobilemenu.js"></script>
 </body>
 </html>
