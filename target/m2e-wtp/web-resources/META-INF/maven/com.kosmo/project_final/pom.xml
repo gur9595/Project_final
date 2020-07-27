@@ -163,6 +163,7 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>4.2.1.RELEASE</version>
 		</dependency>
+		
 		<!-- SPRING JDBC(JDBCTemplate)을 사용하기 위한 의존설정 -->
 		<dependency>
 			<groupId>org.springframework</groupId>

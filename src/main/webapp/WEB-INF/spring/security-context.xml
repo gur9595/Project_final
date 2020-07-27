@@ -5,4 +5,41 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 	
+	
+	<security:http>
+
+		<!-- <security:intercept-url pattern="/security2/login.do" access="permitAll "/>
+		<security:intercept-url pattern="/security2/admin/**" access="hasRole('ADMIN')"/>
+		<security:intercept-url pattern="/security2/**" access="hasAnyRole('USER', 'ADMIN')"/> -->
+		<security:intercept-url pattern="/**" access="permitAll"/>
+
+	<security:form-login 
+		login-page="/member/login.do"
+		default-target-url="/member/home.do"
+		authentication-failure-url="/member/error.do"
+		login-processing-url="/loginAction"
+		username-parameter="m_id"
+		password-parameter="m_pw"
+		/>
+	<security:logout
+		logout-url="/member/logout"
+		logout-success-url="/"/>
+	<security:access-denied-handler error-page="/member/error.do"/>
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				role-prefix=""
+				users-by-username-query="SELECT 
+				m_id, m_pw, enabled
+				FROM member WHERE m_id=?"
+				authorities-by-username-query="SELECT 
+				m_id, authority 
+				FROM member WHERE m_id=?"
+			/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
 </beans>
