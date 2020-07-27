@@ -84,14 +84,14 @@ table, th, td{
 					<tr>
 						<th>클럽명</th>
 						<td>
-							<%-- 
+							
 							<select class="form-control" name="c_idx" id="c_idx">
-								<c:forEach var="club" items="${clubMap }" varStatus="status">
-									<option value="${club.key }">${club.value }</option>
+								<option value="" selected="selected">클럽을 선택하세요</option>
+								<c:forEach var="club" items="${c_list }">
+									<option value="${club.c_idx }">${club.c_name }</option>
 								</c:forEach>
 							</select>
-							--%>
-							<input type="text" name="c_idx" id="c_idx" class="form-control" value="9337" />
+							
 						</td>
 					</tr>
 					<tr>
