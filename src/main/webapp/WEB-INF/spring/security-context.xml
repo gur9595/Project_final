@@ -12,7 +12,7 @@
 		<security:intercept-url pattern="/security2/admin/**" access="hasRole('ADMIN')"/>
 		<security:intercept-url pattern="/security2/**" access="hasAnyRole('USER', 'ADMIN')"/> -->
 		<security:intercept-url pattern="/**" access="permitAll"/>
-
+		<security:csrf disabled="true"/>
 	<security:form-login 
 		login-page="/member/login.do"
 		default-target-url="/member/home.do"

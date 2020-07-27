@@ -50,4 +50,3 @@
 <script src="./../resources/js/jquery.mobilemenu.js"></script>
 </body>
 </html>
-
