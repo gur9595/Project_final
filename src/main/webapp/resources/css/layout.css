@@ -12,6 +12,19 @@ File: Layout CSS
 @import url("fontawesome-all.min.css");
 @import url("framework.css");
 
+@font-face {
+	font-family:Raleway;
+	src:url("../webfonts/Raleway-SemiBold.ttf");
+	unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
+}
+@font-face {
+	font-family:NanumSquare;
+	src:url("../webfonts/NanumSquareR.ttf");
+	unicode-range:U+AC00-U+D7A3; 
+}
+	
+body{font-family :'Raleway', 'NanumSquare';}
+
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
 .row0, .row0 a{}
@@ -534,3 +547,11 @@ table a, #comments a{background-color:inherit;}
 	.font-x2{font-size:1.6rem;}
 	.font-x3{font-size:1.8rem;}
 }
+
+/* .wrapper{
+	background-color: #E9EDF0;
+}
+
+.content{
+	background-color: #ffffff;
+} */

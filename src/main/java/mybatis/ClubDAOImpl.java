@@ -10,6 +10,12 @@ public interface ClubDAOImpl {
 	//클럽생성
 	public int clubCreate(ClubDTO clubDTO);
 	
+	public int getTotalCount(ClubDTO clubDTO);
+	
+	public ArrayList<ClubDTO> listPage(ClubDTO clubDTO);
+	
+	public int clubApply(ClubMemberDTO clubMemberDTO);
+	
 	//클럽검색
 //	public ArrayList<ClubDTO> listPage(ParameterDTO parameterDTO);
 	
