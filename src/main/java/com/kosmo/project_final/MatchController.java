@@ -185,7 +185,7 @@ public class MatchController {
 		3. 형 변환된 객체를 통해 getter()를 호출하여 아이디를 얻어온다.
 		*/
 		
-		return "redirect:matchMain.do";
+		return "	";
 	}
 	
 //	@RequestMapping(value="/match/list_search.do", method=RequestMethod.POST)

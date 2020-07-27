@@ -219,6 +219,9 @@ a:hover.tip span {
     display: block;
 }
 
+tr:hover {
+	background-color: #EAEAEA;
+}
 
 
 

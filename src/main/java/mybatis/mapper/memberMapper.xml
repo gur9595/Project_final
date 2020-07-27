@@ -12,9 +12,7 @@
 		  	#{m_addr}, sysdate, #{m_position}, #{m_sex}, #{m_abil}, #{m_foot}, #{m_pic}, 'normal') 
 	  </insert> 
 	  
-	  
-	  
-	  
+	
 	  
   </mapper>
 
