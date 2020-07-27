@@ -186,7 +186,6 @@
 <!-- JAVASCRIPTS -->
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
-<script src="./../resources/js/jquery.mobilemenu.js"></script>
 </body>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>

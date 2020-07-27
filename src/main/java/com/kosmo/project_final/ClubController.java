@@ -1,18 +1,9 @@
 package com.kosmo.project_final;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
@@ -38,110 +27,12 @@ public class ClubController {
       return "club/club_main";
    } 
    
-	//서버의 물리적 경로 확인하기 
-	@RequestMapping("/fileUpload/uploadPath.do")
-	public void uploadPath(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-		
-		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
-		
-		resp.setContentType("text/html; charset=utf-8");
-		PrintWriter pw = resp.getWriter();
-		pw.print("/upload 디렉토리의 물리적 경로 ");
-		pw.print(path);
-	}
-	
-	/*
-	 UUID:(Universally Unique Identifier)
-	  범용 고유 식별자 . randomUUID() 메소드를 통해 문자열을 생성하면
-	  하이픈이 4개 포함된 32자의 랜덤하고 유니크한 문자열이 생성된다
-	  JDK에서 기본적으로 제공되는 클래스이다
-	 */
-	public static String getUuid() {
-		String uuid= UUID.randomUUID().toString();
-		System.out.println("생성된UUID-1: "+uuid);
-		uuid = uuid.replaceAll("-", "");
-		System.out.println("생성된UUID-2: "+uuid);
-		return uuid;
-	}
-	
-	//클럽 생성
-	@RequestMapping(value="/club/clubCreate.do", method = RequestMethod.POST)
-	public String clubCreatePro(Model model , MultipartHttpServletRequest req) {
-		ClubDTO clubdto = new ClubDTO();
-		System.out.println("컨트롤러 들어옴!!");
-		//서버의 물리적경로 가져오기
-				String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
-				
-				//폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
-				Map returnObj = new HashMap();
-				try {
-					//업로드폼의 file속성의 필드를 가져온다. (여기서는 2개임)
-					Iterator itr= req.getFileNames();
-					
-					MultipartFile mfile = null;
-					String fileName = "";
-					List resultList = new ArrayList();
-					
-					//파일외의 폼값 받음(여기서는 제목만 있음)
-					String title = req.getParameter("title");
-					System.out.println("title="+ title);
-					
-					/*
-					 물리적 경로를 기반으로 File 객체를 생성한후 
-					 디렉토리가 존재하는지 확인함 만약 없다면 생성함 
-					 */
-					File directory = new File(path);
-					if(!directory.isDirectory()) {
-						directory.mkdirs();
-					}
-					//업로드폼의 file속성의 필드갯수만큼 반복
-					while(itr.hasNext()) {
-						
-						//전송된 파일의 이름을 읽어옴
-						fileName = (String)itr.next();
-						mfile = req.getFile(fileName);
-						System.out.println("mfile= "+mfile);
-						
-						//한글꺠짐방지 처리후 전송된파일명을 가져옴
-						String originalName= new String(mfile.getOriginalFilename().getBytes(),"UTF-8");
-						
-						//서버로 전송된 파일이 없다면 while문의 처음으로 돌아간다
-						if("".equals(originalName)) {
-							continue;
-						}
-						
-						//파일명에서 확장자 부분을 가져옴
-						String ext = originalName.substring(originalName.lastIndexOf('.'));
-						
-						//UUID를 통해 생성된 문자열과 확장자를 합침
-						String saveFileName = getUuid() +ext;
-						
-						//물리적경로에 새롭게 생성된 파일명으로 파일저장 
-						File serverFullName = new File(path+File.separator+saveFileName);
-						mfile.transferTo(serverFullName);
-						
-						clubdto.setC_emb(saveFileName);
-						
-						//서버에 파일업로드 완료후...
-						Map file = new HashMap();
-						file.put("originalName", originalName); 	//원본파일명
-						file.put("saveFileName", saveFileName);		//저장된파일명
-						file.put("serverFullName", serverFullName);//서버의 전체 경로
-						file.put("title", title);					//제목
-						//위4가지 정보를 저장한 Map을 ArrayList에 저장한다.
-						resultList.add(file);
-						
-						sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
-					}
-					returnObj.put("files", resultList);
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (Exception e) {
-					e.printStackTrace(); 
-				}
-				
-				model.addAttribute("returnObj", returnObj);
+   @RequestMapping("/club/clubMyList.do")
+   public String clubMyList(Model model, HttpServletRequest req) {
+      
 
+      
+   
       return "club/club_mylist";
    }
    
@@ -152,56 +43,59 @@ public class ClubController {
    
    @RequestMapping("/club/clubSearch.do")
    public String clubSearch(Model model, HttpServletRequest req) { 
-	   
-	   ClubDTO clubDTO = new ClubDTO(); 
-	   clubDTO.setC_name(req.getParameter("clubName"));
-	   clubDTO.setC_area(req.getParameter("area"));
-	   clubDTO.setC_ability(req.getParameter("ability"));
-	   clubDTO.setC_gender(req.getParameter("gender"));
-	   clubDTO.setC_age(req.getParameter("age"));
-	   
-	   int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCount(clubDTO);
-	   
-	 //페이지 처리를 위한 설정값.
-		/*
-		 * int pageSize =
-		 * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
-		 * "springBoard.pageSize")); int blockPage =
-		 * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
-		 * "springBoard.blockPage"));
-		 * 
-		 * //전체 페이지 수 계산 int totalPage
-		 * =(int)Math.ceil((double)totalRecordCount/pageSize);
-		 * 
-		 * int nowPage = req.getParameter("nowPage")==null ? 1 :
-		 * Integer.parseInt(req.getParameter("nowPage"));
-		 * 
-		 * int start =(nowPage-1) * pageSize + 1; int end = nowPage * pageSize;
-		 * 
-		 * parameterDTO.setStart(start); parameterDTO.setEnd(end);
-		 */
-	   ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).listPage(clubDTO);
-	   //model.addAttribute("pagingImg", pagingImg);
-		
-	   //model객체에 저장
-	   System.out.println(totalRecordCount);
-	   
-	   model.addAttribute("lists", lists);
+      
+      ClubDTO clubDTO = new ClubDTO(); 
+      clubDTO.setC_name(req.getParameter("clubName"));
+      clubDTO.setC_area(req.getParameter("area"));
+      clubDTO.setC_ability(req.getParameter("ability"));
+      clubDTO.setC_gender(req.getParameter("gender"));
+      clubDTO.setC_age(req.getParameter("age"));
+      
+      int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCount(clubDTO);
+      
+    //페이지 처리를 위한 설정값.
+      /*
+       * int pageSize =
+       * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
+       * "springBoard.pageSize")); int blockPage =
+       * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
+       * "springBoard.blockPage"));
+       * 
+       * //전체 페이지 수 계산 int totalPage
+       * =(int)Math.ceil((double)totalRecordCount/pageSize);
+       * 
+       * int nowPage = req.getParameter("nowPage")==null ? 1 :
+       * Integer.parseInt(req.getParameter("nowPage"));
+       * 
+       * int start =(nowPage-1) * pageSize + 1; int end = nowPage * pageSize;
+       * 
+       * parameterDTO.setStart(start); parameterDTO.setEnd(end);
+       */
+      ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).listPage(clubDTO);
+      
+      //String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath() + "/mybatis/list.do?");
+      
+      //model.addAttribute("pagingImg", pagingImg);
+      
+      //model객체에 저장
+      System.out.println(totalRecordCount);
+      
+      model.addAttribute("lists", lists);
       return "club/club_search";
    }
    
    @RequestMapping(value="/club/clubApplyAction.do", method=RequestMethod.POST)
    public String clubApplyAction(HttpServletRequest req)
    {      
-	   ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
-	   clubMemberDTO.setC_idx(req.getParameter("c_idx"));
-	   clubMemberDTO.setM_id(req.getParameter("m_id"));
-	   clubMemberDTO.setCm_memo(req.getParameter("memo"));
-	   //Mybatis 사용
-	   int suc = sqlSession.getMapper(ClubDAOImpl.class).clubApply(clubMemberDTO);
+      ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
+      clubMemberDTO.setC_idx(req.getParameter("c_idx"));
+      clubMemberDTO.setM_id(req.getParameter("m_id"));
+      clubMemberDTO.setCm_memo(req.getParameter("memo"));
+      //Mybatis 사용
+      int suc = sqlSession.getMapper(ClubDAOImpl.class).clubApply(clubMemberDTO);
       
-	   System.out.println(suc);
-	   
+      System.out.println(suc);
+      
       return "club/club_main";
    }
    
@@ -245,7 +139,6 @@ public class ClubController {
    
    
 }
-
 
 
 
