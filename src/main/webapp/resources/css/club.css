@@ -12,8 +12,14 @@
 }
 
 .firstDiv {
-		margin-left:0;
-		clear:left;
+	margin-left:0;
+	clear:left;
+	height:620px;
+	display:inline-block;
+	float:left;
+	list-style:none;
+	width : 20%;
+	border-right: 1px solid gray;
 }
 
 .clubDiv {

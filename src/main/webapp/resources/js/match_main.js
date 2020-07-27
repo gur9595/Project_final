@@ -210,20 +210,28 @@ function reset_list() {
 //리스트 검색
 function search_list() {
 
-	var g_gu, g_date, filter, table, tr, td, i, txtValue;
+	var g_gu, g_date, filter, table, tr, td, i, txtValue, cnt;
 	g_gu = document.getElementById("g_gu");
 	g_date = document.getElementById("g_date");
 	gu_filter = g_gu.value.toUpperCase();
 	date_filter = g_date.value;
 	table = document.getElementById("list");
 	tr = table.getElementsByTagName("tr");
-
+	cnt = 0;
 	
-//	for (i = 0; i < tr.length; i++) {
-//		if(tr[i].style.display = "none"){
-//			table.innerHTML = "<tr><td rowspan='7'>검색정보가 없습니다.</td></tr>";
-//		}
-//	}
+	for (i = 0; i < tr.length; i++) {
+		if(tr[i].style.display = "none"){
+			cnt++;
+		}
+	}
+	if(cnt == tr.length){
+		for (i = 0; i < tr.length; i++) {
+			tr[i].style.display = "";
+		}
+		g_gu.value = ""; g_date.value = ""; cnt = 0;
+		alert("검색된 내용이 없습니다.");
+		return false;
+	}
 	
 	if(g_gu.options[g_gu.selectedIndex].value=="" && g_date.value==""){
 		alert("검색필터를 선택하세요.");

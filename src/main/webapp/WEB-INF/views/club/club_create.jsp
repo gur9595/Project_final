@@ -95,7 +95,7 @@ String keyword = request.getParameter("keyword");
 		
 		<h2>엠블럼 넣기</h2>
 		<div class="selector">
-			<input type="file" id="c_emb" name="c_emb" accept="image/*" onchange="setEmblem(event)"/>
+			<input type="file" id="c_emb" name="file" accept="image/*" onchange="setEmblem(event)"/>
 			<div id="image_container"></div>
 		</div>
 		

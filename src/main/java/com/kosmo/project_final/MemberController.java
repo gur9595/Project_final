@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import mybatis.ClubDAOImpl;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
 import mybatis.StadiumDAOImpl;
@@ -35,7 +36,7 @@ public class MemberController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping("/member/member_select.do")
+	@RequestMapping("/member/memberSelect.do")
 	public String member_select() {
 
 		return "/member/member_select";
@@ -106,12 +107,88 @@ public class MemberController {
 		return "member/member_agree2";
 	}
 
-
+	public static String getUuid() {
+		String uuid= UUID.randomUUID().toString();
+		System.out.println("생성된UUID-1: "+uuid);
+		uuid = uuid.replaceAll("-", "");
+		System.out.println("생성된UUID-2: "+uuid);
+		return uuid;
+	}
 
 	@RequestMapping(value="/member/memberJoin2.do",method=RequestMethod.POST)
-	public String memberJoinPro2(HttpSession session, MemberDTO dto) {
+	public String memberJoinPro2(HttpSession session, MemberDTO dto, Model model , MultipartHttpServletRequest req) {
+		
+		//서버의 물리적경로 가져오기
+				String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
 
-		sqlSession.getMapper(MemberDAOImpl.class).memberJoin(dto);
+				//폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
+				Map returnObj = new HashMap();
+				try {
+					//업로드폼의 file속성의 필드를 가져온다. (여기서는 2개임)
+					Iterator itr= req.getFileNames();
+
+					MultipartFile mfile = null;
+					String fileName = "";
+					List resultList = new ArrayList();
+
+					//파일외의 폼값 받음(여기서는 제목만 있음)
+					String title = req.getParameter("title");
+					System.out.println("title="+ title);
+
+					/*
+							 물리적 경로를 기반으로 File 객체를 생성한후 
+							 디렉토리가 존재하는지 확인함 만약 없다면 생성함 
+					 */
+					File directory = new File(path);
+					if(!directory.isDirectory()) {
+						directory.mkdirs();
+					}
+					//업로드폼의 file속성의 필드갯수만큼 반복
+					while(itr.hasNext()) {
+
+						//전송된 파일의 이름을 읽어옴
+						fileName = (String)itr.next();
+						mfile = req.getFile(fileName);
+						System.out.println("mfile= "+mfile);
+
+						//한글꺠짐방지 처리후 전송된파일명을 가져옴
+						String originalName= new String(mfile.getOriginalFilename().getBytes(),"UTF-8");
+
+						//서버로 전송된 파일이 없다면 while문의 처음으로 돌아간다
+						if("".equals(originalName)) {
+							continue;
+						}
+
+						//파일명에서 확장자 부분을 가져옴
+						String ext = originalName.substring(originalName.lastIndexOf('.'));
+
+						//UUID를 통해 생성된 문자열과 확장자를 합침
+						String saveFileName = getUuid() +ext;
+
+						//물리적경로에 새롭게 생성된 파일명으로 파일저장 
+						File serverFullName = new File(path+File.separator+saveFileName);
+						mfile.transferTo(serverFullName);
+
+						//서버에 파일업로드 완료후...
+						Map file = new HashMap();
+						file.put("originalName", originalName); 	//원본파일명
+						file.put("saveFileName", saveFileName);		//저장된파일명
+						file.put("serverFullName", serverFullName);//서버의 전체 경로
+						file.put("title", title);					//제목
+						//위4가지 정보를 저장한 Map을 ArrayList에 저장한다.
+						resultList.add(file);
+
+						dto.setM_pic(saveFileName);
+
+						sqlSession.getMapper(MemberDAOImpl.class).memberJoin(dto);
+					}
+					returnObj.put("files", resultList);
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 
 		return "member/login"; 
 	}
@@ -135,6 +212,13 @@ public class MemberController {
 		
 		return"member/member_select";
 	}
+	
+	@RequestMapping("/member/error.do")
+	  public String error(){
+		  
+		  return "/member/error";
+	  }
+
 
 
 

@@ -16,6 +16,10 @@ public interface ClubDAOImpl {
 	
 	public int clubApply(ClubMemberDTO clubMemberDTO);
 	
+	public ArrayList<ClubDTO> myClubList(String id);
+	
+	public int myClubListCount(String id);
+	
 	//클럽검색
 //	public ArrayList<ClubDTO> listPage(ParameterDTO parameterDTO);
 	

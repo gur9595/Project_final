@@ -117,12 +117,12 @@ request.setCharacterEncoding("UTF-8");
 			</tr>
 			
 			<!-- 이거 반복 (글씨 색)  -->
-			<c:forEach items="${lists }" var="row">
+			<c:forEach items="${lists }" var="row" varStatus="status"> 
 				<tr>
 					<input type="hidden" value="${row.c_idx }" />
-					<td class="tcol">1</td>
+					<td class="tcol">${status.count }</td>
 					<td class="tname">
-						<img src="./../resources/img/emb1.png" alt="" />
+						<img src="./../resources/uploadsFile/${row.c_emb }" alt="" />
 						${row.c_name }
 					</td>
 					<td class="tcol">${row.c_ability }</td>

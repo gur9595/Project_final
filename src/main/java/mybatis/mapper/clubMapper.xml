@@ -89,5 +89,19 @@
 	<insert id="clubApply" parameterType="mybatis.ClubMemberDTO">
 		insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
 	</insert>
+	
+	<select id="myClubList" resultType="mybatis.ClubDTO">
+		select * 
+		from club c inner join clubmember cm
+			on c.c_idx = cm.c_idx
+		where cm.m_id like #{param1} 
+	</select>
+	
+	<select id="myClubListCount" resultType="int">
+		select count(*) 
+		from club c inner join clubmember cm
+			on c.c_idx = cm.c_idx
+		where cm.m_id like #{param1} 
+	</select>
 	  
   </mapper>
