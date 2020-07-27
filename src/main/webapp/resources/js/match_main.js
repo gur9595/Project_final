@@ -197,6 +197,16 @@ $(document).ready( function() {
   	alert("매칭 신청이 완료되었습니다.\n게임 목록 탭에서 확인하세요!");
   }
 
+//리스트 검색 리셋
+function reset_list() {
+	var table = document.getElementById("list");
+	var tr = table.getElementsByTagName("tr");
+	
+	for (i = 0; i < tr.length; i++) {
+		tr[i].style.display = "";
+	}
+}
+  
 //리스트 검색
 function search_list() {
 
@@ -208,11 +218,15 @@ function search_list() {
 	table = document.getElementById("list");
 	tr = table.getElementsByTagName("tr");
 
+	
+//	for (i = 0; i < tr.length; i++) {
+//		if(tr[i].style.display = "none"){
+//			table.innerHTML = "<tr><td rowspan='7'>검색정보가 없습니다.</td></tr>";
+//		}
+//	}
+	
 	if(g_gu.options[g_gu.selectedIndex].value=="" && g_date.value==""){
 		alert("검색필터를 선택하세요.");
-		for (i = 0; i < tr.length; i++) {
-			tr[i].style.display = "";
-		}
 		return false;
 	}
 	  

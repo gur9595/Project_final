@@ -48,7 +48,7 @@
 	<form action="">
 		<div class="ml-auto mb-3" align="right">
 			<select class="form-control ml-auto" name="g_gu" id="g_gu" style="width: 230px; display: inline;">
-				<option value="" selected="selected">선택해주세요</option>
+				<option value="" selected="selected">지역을 선택하세요.</option>
 		        <option value="강남구">강남구</option>
 		        <option value="강동구">강동구</option>
 		        <option value="강북구">강북구</option>
@@ -77,7 +77,7 @@
 			</select>
 			<input type="date" id="g_date" name="g_date" class="form-control ml-auto" style="width: 230px; display: inline;" />
 			<input type="button" onclick="search_list();" class="btn btn-secondary" id="search" style="width: 100px; display: inline;" value="검색하기" />
-			<input type="reset" class="btn btn-secondary" id="reset" style="width: 100px; display: inline;" value="필터리셋" />
+			<input type="reset" onclick="reset_list();" class="btn btn-secondary" id="reset" style="width: 100px; display: inline;" value="필터리셋" />
 		</div>
 	</form>
 	<table id="list" style="text-align: center;" border="1">
@@ -100,9 +100,9 @@
 				<td>${row.g_time }:00</td>
 				<td>${row.g_gu }</td>
 				<td>
-					<a href="map.do?g_saddr=${row.g_saddr}&g_sname=${row.g_sname}" style="color: red;" onclick=
+					<a href="map.do?g_saddr=${row.g_saddr}&g_sname=${row.g_sname}" class="tip" style="color: red;" onclick=
 						"window.open(this.href, '_blank', 'width=700px,height=700px,toolbars=no,scrollbars=no'); return false;">
-						${row.g_sname }
+						${row.g_sname } <span style="width: 200px;">${row.g_sname } <br />위치보기</span>
 					</a>
 				</td>
 				<td>${row.g_saddr }</td>
