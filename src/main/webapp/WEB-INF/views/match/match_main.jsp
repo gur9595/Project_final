@@ -14,7 +14,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -65,7 +64,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-						<p class="text-center h2"><small>당장 뛰고싶다면?</small><br /><br />1인 신청</p>
+						<p class="text-center h2"><small>혼자 뛰고싶다면?</small><br /><br />1인 신청</p>
 						<div class="text-center" id="player" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
 							<img src="./../resources/img/match/mercenary.png" alt="" /> 
 							<br><br />
