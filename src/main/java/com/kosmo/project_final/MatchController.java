@@ -1,6 +1,11 @@
 package com.kosmo.project_final;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import mybatis.AdminDAOImpl;
 import mybatis.GameDTO;
@@ -57,35 +65,52 @@ public class MatchController {
 	@RequestMapping("/match/game_list.do")
 	public String game_list(Model model, HttpServletRequest req) {
 		
+		String search_gu = req.getParameter("g_gu");
+        String search_date = req.getParameter("g_date");
+        
+        GameDTO gameDTO = new GameDTO();
+        gameDTO.setSearch_date(search_date);
+        gameDTO.setG_gu(search_gu);
+        
+        ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).listSearch(gameDTO);
+		
 		//리스트 페이지에 출력할 게시물 가져오기
-		ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
+//		ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
 		
 //		//페이지 번호에 대한 처리
 //		String path = req.getContextPath() + "/mybatis/list.do?";
 //		String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, path);
 //		model.addAttribute("pagingImg", pagingImg);
-		String[] addr;
-		String date, g_gu, g_time;
+		
 		for(GameDTO dto : lists) {
 			//내용에 대해 줄바꿈 처리
 			String temp = dto.getG_memo().replace("\r\n", "<br>");
 			dto.setG_memo(temp);
-			
-			date = dto.getG_date().substring(0, 10);			
-			g_time = dto.getG_date().substring(11, 13);
-			addr = dto.getG_saddr().split(" ");
-			g_gu = addr[1];
-			
-			dto.setG_date(date);
-			dto.setG_time(g_time);
-			dto.setG_gu(g_gu);
-			
-		}		
+
+			String[] g_time = dto.getG_time().split("~");
+			dto.setG_time(g_time[0]);
+		}
+		
+		Collections.sort(lists, new Comparator<GameDTO>() {
+			@Override
+			public int compare(GameDTO g1, GameDTO g2) {
+				
+				if(g1.getG_date().equals(g2.getG_date())) {					
+					if(Integer.parseInt(g1.getG_time()) < Integer.parseInt(g2.getG_time())) {
+						return -1;
+					}
+					else if(Integer.parseInt(g1.getG_time()) > Integer.parseInt(g2.getG_time())) {
+						return 1;
+					}
+					return 0;
+				}
+				return 3;
+			}
+		});		
 		
 		//model 객체에 저장
 		model.addAttribute("lists", lists);
 
-		
 		return "match/game_list";
 	}
 
@@ -110,8 +135,26 @@ public class MatchController {
 //			return "redirect:login.do";
 //		}
 		
-		String date = req.getParameter("g_date");
-		String time = req.getParameter("s_time") + req.getParameter("e_time");
+		String req_date = req.getParameter("g_date");
+		Date date = Date.valueOf(req_date);
+		String[] addr = req.getParameter("g_saddr").split(" ");
+		String s_time = req.getParameter("s_time");
+		String e_time = req.getParameter("e_time");
+		
+		if(s_time.length() == 1) {
+			s_time = "0" + s_time;
+		}
+		if(e_time.length() == 1) {
+			e_time = "0" + e_time;
+		}
+		if(s_time.length() == 0) {
+			s_time = "00";
+		}
+		if(e_time.length() == 0) {
+			e_time = "00";
+		}
+		String time = s_time + "~" + e_time;
+		
 		int g_num = sqlSession.getMapper(AdminDAOImpl.class).get_Gnum();
 		g_num++;
 		
@@ -120,9 +163,11 @@ public class MatchController {
 		gameDTO.setG_sname(req.getParameter("g_sname"));
 		gameDTO.setG_saddr(req.getParameter("g_saddr"));
 		gameDTO.setG_type(req.getParameter("g_type"));
-		gameDTO.setG_date(date + ":" + time);
+		gameDTO.setG_date(date);
 		gameDTO.setG_memo(req.getParameter("g_memo"));
 		gameDTO.setG_num(g_num);
+		gameDTO.setG_gu(addr[1]);
+		gameDTO.setG_time(time);
 		
 		
 		sqlSession.getMapper(MatchDAOImpl.class).gameApply(gameDTO);
@@ -142,6 +187,50 @@ public class MatchController {
 		
 		return "redirect:matchMain.do";
 	}
+	
+//	@RequestMapping(value="/match/list_search.do", method=RequestMethod.POST)
+//    @ResponseBody
+//    public Object list_search(@RequestParam Map<String,Object> map) {
+//        
+//        String search_gu = (String) map.get("search_gu");    //검색코드
+//        String s_date = (String) map.get("search_date");    //검색코드
+//        Date search_date = Date.valueOf(s_date);
+//        
+//        ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).listSearch(search_gu, search_date);
+// 
+//        for(GameDTO dto : lists) {
+//			//내용에 대해 줄바꿈 처리
+//			String temp = dto.getG_memo().replace("\r\n", "<br>");
+//			dto.setG_memo(temp);
+//
+//			String[] g_time = dto.getG_time().split("~");
+//			dto.setG_time(g_time[0]);
+//		}
+//		
+//		Collections.sort(lists, new Comparator<GameDTO>() {
+//			@Override
+//			public int compare(GameDTO g1, GameDTO g2) {
+//				
+//				if(g1.getG_date().equals(g2.getG_date())) {					
+//					if(Integer.parseInt(g1.getG_time()) < Integer.parseInt(g2.getG_time())) {
+//						return -1;
+//					}
+//					else if(Integer.parseInt(g1.getG_time()) > Integer.parseInt(g2.getG_time())) {
+//						return 1;
+//					}
+//					return 0;
+//				}
+//				return 3;
+//			}
+//		});
+//        
+//        Map<String, Object> retVal = new HashMap<String, Object>();
+//        
+//        retVal.put("lists", lists);
+//        retVal.put("code", "OK");
+//        
+//        return retVal;
+//    }
 	
 }
 

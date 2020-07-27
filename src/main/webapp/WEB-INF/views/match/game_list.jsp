@@ -3,38 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>타이틀</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<link href="./../resources/css/layout.css" rel="stylesheet"
-	type="text/css" media="all">
-
-
-<script>
-
-function modal(date, time, name, addr, memo) {
-	
-	document.getElementById("list_date").innerHTML = date;
-	document.getElementById("list_time").innerHTML = time;
-	document.getElementById("list_name").innerHTML = name;
-	document.getElementById("list_addr").innerHTML = addr;
-	document.getElementById("list_memo").value = memo;
-	
-}
-
-</script>
-
-</head>
 <body>
-
+<main class=" ho c container clear" id="main">
 	<!-- 모달창 신청폼 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" data-backdrop="static"
-		style="color: black;">
+		style="color: black; width: 100%; margin: 0;">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 
@@ -49,6 +23,7 @@ function modal(date, time, name, addr, memo) {
 				</div>
 				<div class="modal-body">
 				
+					<input type="hidden" id="list_idx" />
 					경기 날짜 : <span id="list_date"></span><br />
 					경기 시간 : <span id="list_time"></span>:00<br />
 					구장 이름 : <span id="list_name"></span><br />
@@ -70,12 +45,10 @@ function modal(date, time, name, addr, memo) {
 		</div>
 	</div>
 	<!-- ################ 모달 끝 #################-->
-
-<main class=" ho c container clear">
 	<form action="">
-		<div class="ml-auto" align="right">
-			<select class="form-control ml-auto" name="gu" id="gu" style="width: 230px; display: inline;">
-				<option selected="selected">선택해 주세요</option>
+		<div class="ml-auto mb-3" align="right">
+			<select class="form-control ml-auto" name="g_gu" id="g_gu" style="width: 230px; display: inline;">
+				<option value="" selected="selected">선택해주세요</option>
 		        <option value="강남구">강남구</option>
 		        <option value="강동구">강동구</option>
 		        <option value="강북구">강북구</option>
@@ -102,41 +75,47 @@ function modal(date, time, name, addr, memo) {
 		        <option value="중구">중구</option>
 		        <option value="중랑구">중랑구</option>
 			</select>
-			<input type="date" class="form-control ml-auto" style="width: 230px; display: inline;" />
-			<input type="button" class="btn btn-secondary " style="width: 100px; display: inline;" value="검색하기" />
+			<input type="date" id="g_date" name="g_date" class="form-control ml-auto" style="width: 230px; display: inline;" />
+			<input type="button" onclick="search_list();" class="btn btn-secondary" id="search" style="width: 100px; display: inline;" value="검색하기" />
+			<input type="reset" class="btn btn-secondary" id="reset" style="width: 100px; display: inline;" value="필터리셋" />
 		</div>
-		<table style="text-align: center;" border="1">
-			<tr>
-				<th>날짜</th>
-				<th>시간</th>
-				<th>지역</th>
-				<th>구장 이름</th>
-				<th>구장 주소</th>
-				<th>클럽명</th>
-				<th>신청</th>
-			</tr>
-			<c:forEach items="${lists }" var="row">
-				<tr>
-					<td>${row.g_date }</td>
-					<td>${row.g_time }:00</td>
-					<td>${row.g_gu }</td>
-					<td>
-						<a href="map.do?g_saddr=${row.g_saddr}&g_sname=${row.g_sname}" style="color: red;" onclick=
-							"window.open(this.href, '_blank', 'width=700px,height=700px,toolbars=no,scrollbars=no'); return false;">
-							${row.g_sname }
-						</a>
-					</td>
-					<td>${row.g_saddr }</td>
-					<td>${row.c_idx }</td>
-					<td>
-						<button type="button" class="btn btn-primary" data-toggle="modal" 
-							onclick="modal('${row.g_date}', '${row.g_time}', '${row.g_sname}', '${row.g_saddr}', '${row.g_memo}');"
-							data-target="#myModal" style="width: 100%; height: 100%;">신청</button>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
 	</form>
+	<table id="list" style="text-align: center;" border="1">
+		<tr>
+			<th>날짜</th>
+			<th>시간</th>
+			<th>지역</th>
+			<th>구장 이름</th>
+			<th>구장 주소</th>
+			<th>클럽명</th>
+			<th>신청</th>
+		</tr>
+		<tbody id="tbody">
+		<c:forEach items="${lists }" var="row">
+			<tr>
+				<td>
+					<input type="hidden" value="${row.g_idx }" />
+					${row.g_date }
+				</td>
+				<td>${row.g_time }:00</td>
+				<td>${row.g_gu }</td>
+				<td>
+					<a href="map.do?g_saddr=${row.g_saddr}&g_sname=${row.g_sname}" style="color: red;" onclick=
+						"window.open(this.href, '_blank', 'width=700px,height=700px,toolbars=no,scrollbars=no'); return false;">
+						${row.g_sname }
+					</a>
+				</td>
+				<td>${row.g_saddr }</td>
+				<td>${row.c_idx }</td>
+				<td>
+					<button type="button" class="btn btn-primary" data-toggle="modal" 
+						onclick="modal('${row.g_date}', '${row.g_time}', '${row.g_sname}', '${row.g_saddr}', '${row.g_memo}', '${row.g_idx}');"
+						data-target="#myModal" style="width: 100%; height: 100%;">매치 신청</button>
+				</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
 </main>
 </body>
 </html>
