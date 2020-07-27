@@ -131,9 +131,6 @@ request.setCharacterEncoding("UTF-8");
 	<div style="height : 100px"></div>
 </body>
 <script>
-	function openClubView(c_idx){
-		window.open("/club/clubMain.do?c_idx="+c_idx, '_blank',
-				"width=1000,height=700, toolbar=no, menubar=no, resizable=yes");
-	}
+	 
 </script>
 </html>
