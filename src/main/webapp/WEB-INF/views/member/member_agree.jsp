@@ -171,7 +171,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="joinBtnDiv" class="member-btn">
                     <input type="submit" class="n-btn btn-primary" onsubmit="" value="다음"/>
                 </div>

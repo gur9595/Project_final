@@ -16,7 +16,15 @@ public class ClubDTO {
 	private String c_ability;
 	private String c_gender;
 	private int c_memlimit;
+	private String c_age;
 	
+	
+	public String getC_age() {
+		return c_age;
+	}
+	public void setC_age(String c_age) {
+		this.c_age = c_age;
+	}
 	public int getC_idx() {
 		return c_idx;
 	}

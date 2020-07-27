@@ -11,4 +11,12 @@ public class PaymentController {
 		
 		return "payment/payment_main";
 	}
+	
+	
+	@RequestMapping("/payment/iampoartApi.do")
+	public String iampoartApi() {
+		
+		return "payment/iampoartApi";
+	}
+	
 }

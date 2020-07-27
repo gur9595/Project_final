@@ -7,9 +7,9 @@
   
    <!-- 클럽생성 --> 
 	  <insert id="clubCreate" parameterType="mybatis.ClubDTO"> 
-		  insert into club (c_idx,c_name,c_emb,c_area,c_gender,c_type,c_ability,c_memlimit,c_memo) values( 
+		  insert into club (c_idx,c_name,c_emb,c_area,c_gender,c_type,c_ability,c_memlimit,c_memo,c_age) values( 
 		  	club_seq.nextval, #{c_name}, #{c_emb}, #{c_area},#{c_gender}, #{c_type},
-		  	#{c_ability}, #{c_memlimit}, #{c_memo} ) 
+		  	#{c_ability}, #{c_memlimit}, #{c_memo}, #{c_age} ) 
 	  </insert> 
 	  
 <!-- 	<select id="clubSearch" resultType="mybatis.ClubDTO" parameterType="mybatis.ClubDTO">
@@ -22,5 +22,5 @@
 				ORDER BY idx DESC
 			) Tb
 		)
-	</select> -->
+		</select> -->
   </mapper>

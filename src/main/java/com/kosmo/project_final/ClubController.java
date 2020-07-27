@@ -54,12 +54,13 @@ public class ClubController {
 	}
 	
 	//클럽 생성
-	@RequestMapping(value="/club/clubCreate.do", method = RequestMethod.POST)
+	@RequestMapping(value="/club/createAction.do", method = RequestMethod.POST)
 	public String clubCreatePro(HttpSession session, ClubDTO clubdto) {
+		
 		
 		sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
 		
-		return "club/club_main";
+		return "redirect:clubMain.do";
 	}
 	
 	//클럽 검색

@@ -87,7 +87,7 @@ String keyword = request.getParameter("keyword");
 <body>
 	<center class="center">클럽 생성</center>
 	<br /><br />
-	<form name="creFrm" id="creFrm" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
+	<form name="creFrm" id="creFrm" action="<c:url value="/club/createAction.do"/>" method="post" onsubmit="return isValidate(creFrm);">
 		<h2>팀명</h2>
 		<div>
 			<input type="text" class="team" placeholder="팀명을 입력해주세요" id="c_name" name="c_name" style="width:400px; height:40px;">
@@ -150,6 +150,17 @@ String keyword = request.getParameter("keyword");
 				<option>40</option>
 				<option>50</option>
 		    </select>
+		</div>
+		
+		<h2>나이대</h2>
+		<div class="box">
+			<select id="c_age" name="c_age" >
+				<option selected="" value="">선택해 주세요</option>
+				<option>유소년부</option>
+				<option>청소년부</option>
+				<option>청년부</option>
+				<option>장년부</option>
+			</select>
 		</div>
 		
 		<h2>실력</h2>
@@ -224,6 +235,12 @@ function isValidate (creFrm){
 		return false;
 	}
 	
+	if(creFrm.c_age.value==""){
+		alert('나이대를 선택해주세요');
+		creFrm.c_age.focus();
+		return false;
+	}
+	
 	if(creFrm.c_ability.value==""){
 		alert('실력을 선택해 주세요');
 		creFrm.c_ability.focus();
@@ -241,6 +258,7 @@ function isValidate (creFrm){
 		creFrm.c_memo.focus();
 		return false;
 	}
+
 }
 
 </script>
