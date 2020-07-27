@@ -9,6 +9,10 @@
 	<configs>
 	</configs>
 	<autoconfigs>
+<<<<<<< HEAD
+=======
+		<config>src/main/webapp/WEB-INF/spring/security-context.xml</config>
+>>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
 	</autoconfigs>

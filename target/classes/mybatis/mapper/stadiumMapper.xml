@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="mybatis.StadiumDAOImpl">
+  
+   <!-- 회원가입 --> 
+	  <insert id="stadiumInsert" parameterType="mybatis.StadiumDTO"> 
+		  insert into stadium values(stadium_seq.nextval, #{s_id}, #{s_pw}, #{s_name}, #{s_phone}, #{s_addr}, #{s_gu},
+		  	#{s_type}, #{s_pic}, #{s_size}, #{s_cv}, #{s_price}, #{s_memo}, #{s_starttime}, #{s_endtime}) 
+	  </insert> 
+	
+	  
+  </mapper>

@@ -87,7 +87,10 @@ String keyword = request.getParameter("keyword");
 <body>
 	<center class="center">클럽 생성</center>
 	<br /><br />
+
 	<form name="creFrm" id="creFrm" action="<c:url value="/club/createAction.do"/>" method="post" onsubmit="return isValidate(creFrm);">
+
+
 		<h2>팀명</h2>
 		<div>
 			<input type="text" class="team" placeholder="팀명을 입력해주세요" id="c_name" name="c_name" style="width:400px; height:40px;">
@@ -258,7 +261,6 @@ function isValidate (creFrm){
 		creFrm.c_memo.focus();
 		return false;
 	}
-
 }
 
 </script>
