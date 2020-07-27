@@ -12,15 +12,82 @@
 		  	#{c_ability}, #{c_memlimit}, #{c_memo} ) 
 	  </insert> 
 	  
-<!-- 	<select id="clubSearch" resultType="mybatis.ClubDTO" parameterType="mybatis.ClubDTO">
-		SELECT * FROM (
-			SELECT Tb.*, rownum rNum FROM (
-				SELECT * FROM club 
-				<if test="!searchTxt.equals('')">
-					WHERE #{c_area},#{c_ability},#{c_gender} like '%' ||#{searchTxt} || '%'
-				</if>
-				ORDER BY idx DESC
-			) Tb
-		)
-	</select> -->
+	  <select id="getTotalCount" resultType="int" parameterType="mybatis.ClubDTO">
+		select count(*) from club 
+		<if test="c_name!=null or c_area!=null or c_ability!=null or c_gender!=null or c_age!=null" >
+			where
+			<if test="c_name!=null">
+				    c_name like '%'||#{c_name}||'%'
+			</if>
+			<if test="c_name!=null">
+				  and  
+			</if>
+			<if test="c_area!=null">
+				    c_area like '%'||#{c_area}||'%'
+			</if>
+			<if test="c_name!=null or c_area!=null">
+				  and  
+			</if>
+			<if test="c_ability!=null">
+				    c_ability like '%'||#{c_ability}||'%'
+			</if>
+			<if test="c_name!=null or c_area!=null or c_ability!=null">
+				  and  
+			</if>
+			<if test="c_gender!=null">
+				    c_gender like '%'||#{c_gender}||'%'
+			</if>
+			<if test="c_name!=null or c_area!=null or c_ability!=null or c_gender!=null">
+				  and  
+			</if>
+			<if test="c_age!=null">
+				    c_age like '%'||#{c_age}||'%'
+			</if>
+		</if>
+			order by c_idx desc
+		<!-- <if test="searchTxt!=null and !searchTxt.equals('')">
+		where ${searchField} like '%'||#{searchTxt}||'%'
+		</if> -->
+	  </select>
+	  
+	  <select id="listPage" resultType="mybatis.ClubDTO" parameterType="mybatis.ClubDTO">
+		select * from club 
+		<if test="c_name!=null or c_area!=null or c_ability!=null or c_gender!=null or c_age!=null" >
+			where
+			<if test="c_name!=null">
+				    c_name like '%'||#{c_name}||'%'
+			</if>
+			<if test="c_name!=null">
+				  and  
+			</if>
+			<if test="c_area!=null">
+				    c_area like '%'||#{c_area}||'%'
+			</if>
+			<if test="c_name!=null or c_area!=null">
+				  and  
+			</if>
+			<if test="c_ability!=null">
+				    c_ability like '%'||#{c_ability}||'%'
+			</if>
+			<if test="c_name!=null or c_area!=null or c_ability!=null">
+				  and  
+			</if>
+			<if test="c_gender!=null">
+				    c_gender like '%'||#{c_gender}||'%'
+			</if>
+			<if test="c_name!=null or c_area!=null or c_ability!=null or c_gender!=null">
+				  and  
+			</if>
+			<if test="c_age!=null">
+				    c_age like '%'||#{c_age}||'%'
+			</if>
+		</if>
+			order by c_idx desc
+		
+	  </select>
+	  
+	<insert id="clubApply" parameterType="mybatis.ClubMemberDTO">
+		insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
+	</insert>
+	  
   </mapper>

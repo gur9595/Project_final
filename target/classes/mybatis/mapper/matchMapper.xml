@@ -7,14 +7,30 @@
   
 		<!-- 게임신청 --> 
 		<insert id="gameApply" parameterType="mybatis.GameDTO"> 
-			insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num)
+			insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu)
 				values( 
-				  	game_seq.nextval, #{c_idx}, #{g_sname}, #{g_saddr}, #{g_type}, #{g_date}, #{g_memo}, #{g_num}) 
+				  	game_seq.nextval, #{c_idx}, #{g_sname}, #{g_saddr}, #{g_type}, #{g_date}, #{g_memo}, #{g_num}, #{g_time}, #{g_gu}) 
 		</insert> 
 		
 		<!-- 게임리스트 -->
 		<select id="gameList" resultType="mybatis.GameDTO">
+			select * from game order by g_date
+		</select>
+		
+		<!-- 리스트검색 -->
+		<select id="listSearch" resultType="mybatis.GameDTO" parameterType="mybatis.GameDTO">
 			select * from game
+			<if test="search_date == null and g_gu != null">
+				where g_gu like #{g_gu}
+			</if>
+			<if test="g_gu == null and search_date != null">
+				where to_char(g_date, 'YYYY-MM-DD') like #{search_date}
+			</if>
+			<if test="g_gu != null and search_date != null">
+				where g_gu like #{g_gu} and to_char(g_date, 'YYYY-MM-DD') like #{search_date} 
+			</if>
+			
+			order by g_date
 		</select>
 	  
 	</mapper>
