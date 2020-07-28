@@ -3,6 +3,7 @@ package com.kosmo.project_final;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -66,18 +67,33 @@ public class MemberController {
 		return "member/manager_main";
 	}
 
-	@RequestMapping("/member/managerJoin.do")
-	public String managerJoin() {
-
-		return"member/managerJoin";
-	}
 
 	@RequestMapping("/member/id_pw.do")
 	public String id_pw() {
 
 		return "/member/id_pw";
 	}
+	
+	@RequestMapping("/member/memberPay.do")
+	public String memberPay() {
+		
+		return "member/memberPay";
+	}
+	
+	@RequestMapping("/member/member_stadiumIn.do")
+	public String member_stadiumIn() {
 
+		return"member/member_stadiumIn";
+	}
+
+	@RequestMapping("/member/managerJoin.do")
+	public String managerJoin(Principal principal) {
+		
+		principal.getName();
+		System.out.println(principal.getName());
+		
+		return"member/managerJoin";
+	}
 
 
 	@RequestMapping(value = "/member/memberJoin1.do", method = RequestMethod.POST) 
@@ -92,7 +108,7 @@ public class MemberController {
 		String m_addr1 = req.getParameter("m_addr1");
 		String m_addr2 = req.getParameter("m_addr2");
 
-		String m_addr = m_addr1+" "+m_addr2;
+		String m_addr = m_addr1+","+m_addr2;
 
 		model.addAttribute("m_id",m_id);
 		model.addAttribute("m_pw",m_pw);
@@ -116,115 +132,114 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/member/memberJoin2.do",method=RequestMethod.POST)
-	public String memberJoinPro2(HttpSession session, MemberDTO dto, Model model , MultipartHttpServletRequest req) {
-		
-		//서버의 물리적경로 가져오기
-				String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
+	public String memberJoinPro2(MemberDTO dto, Model model , MultipartHttpServletRequest req) {
 
-				//폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
-				Map returnObj = new HashMap();
-				try {
-					//업로드폼의 file속성의 필드를 가져온다. (여기서는 2개임)
-					Iterator itr= req.getFileNames();
+		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
 
-					MultipartFile mfile = null;
-					String fileName = "";
-					List resultList = new ArrayList();
+		Map returnObj = new HashMap();
+		try {
+			Iterator itr= req.getFileNames();
 
-					//파일외의 폼값 받음(여기서는 제목만 있음)
-					String title = req.getParameter("title");
-					System.out.println("title="+ title);
+			MultipartFile mfile = null;
+			String fileName = "";
+			List resultList = new ArrayList();
 
-					/*
-							 물리적 경로를 기반으로 File 객체를 생성한후 
-							 디렉토리가 존재하는지 확인함 만약 없다면 생성함 
-					 */
-					File directory = new File(path);
-					if(!directory.isDirectory()) {
-						directory.mkdirs();
-					}
-					//업로드폼의 file속성의 필드갯수만큼 반복
-					while(itr.hasNext()) {
+			String title = req.getParameter("title");
+			System.out.println("title="+ title);
 
-						//전송된 파일의 이름을 읽어옴
-						fileName = (String)itr.next();
-						mfile = req.getFile(fileName);
-						System.out.println("mfile= "+mfile);
+			File directory = new File(path);
+			if(!directory.isDirectory()) {
+				directory.mkdirs();
+			}
+			while(itr.hasNext()) {
 
-						//한글꺠짐방지 처리후 전송된파일명을 가져옴
-						String originalName= new String(mfile.getOriginalFilename().getBytes(),"UTF-8");
+				fileName = (String)itr.next();
+				mfile = req.getFile(fileName);
+				System.out.println("mfile= "+mfile);
 
-						//서버로 전송된 파일이 없다면 while문의 처음으로 돌아간다
-						if("".equals(originalName)) {
-							continue;
-						}
+				String originalName= new String(mfile.getOriginalFilename().getBytes(),"UTF-8");
 
-						//파일명에서 확장자 부분을 가져옴
-						String ext = originalName.substring(originalName.lastIndexOf('.'));
-
-						//UUID를 통해 생성된 문자열과 확장자를 합침
-						String saveFileName = getUuid() +ext;
-
-						//물리적경로에 새롭게 생성된 파일명으로 파일저장 
-						File serverFullName = new File(path+File.separator+saveFileName);
-						mfile.transferTo(serverFullName);
-
-						//서버에 파일업로드 완료후...
-						Map file = new HashMap();
-						file.put("originalName", originalName); 	//원본파일명
-						file.put("saveFileName", saveFileName);		//저장된파일명
-						file.put("serverFullName", serverFullName);//서버의 전체 경로
-						file.put("title", title);					//제목
-						//위4가지 정보를 저장한 Map을 ArrayList에 저장한다.
-						resultList.add(file);
-
-						dto.setM_pic(saveFileName);
-
-						sqlSession.getMapper(MemberDAOImpl.class).memberJoin(dto);
-					}
-					returnObj.put("files", resultList);
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (Exception e) {
-					e.printStackTrace();
+				if("".equals(originalName)) {
+					continue;
 				}
-				
+
+				String ext = originalName.substring(originalName.lastIndexOf('.'));
+				String saveFileName = getUuid() +ext;
+
+				File serverFullName = new File(path+File.separator+saveFileName);
+				mfile.transferTo(serverFullName);
+
+				Map file = new HashMap();
+				file.put("originalName", originalName); 	
+				file.put("saveFileName", saveFileName);		
+				file.put("serverFullName", serverFullName);
+				file.put("title", title);				
+				resultList.add(file);
+
+				dto.setM_pic(saveFileName);
+
+				sqlSession.getMapper(MemberDAOImpl.class).memberJoin(dto);
+			}
+			returnObj.put("files", resultList);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 
 		return "member/login"; 
 	}
 
-	@RequestMapping("/member/member_stadiumIn.do")
-	public String member_stadiumIn() {
-
-		return"member/member_stadiumIn";
-	}
-
 	@RequestMapping("/member/member_stadiumInsert.do")
 	public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req) {
-		
+
 		String s_addr1 = req.getParameter("s_addr1");
 		String s_addr2 = req.getParameter("s_addr2");
-		String s_addr = s_addr1+" "+s_addr2;
-		
+		String s_addr = s_addr1+"||"+s_addr2;
+
 		dto.setS_addr(s_addr);
-		
+
 		sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
-		
+
 		return"member/member_select";
 	}
-	
+
 	@RequestMapping("/member/error.do")
-	  public String error(){
-		  
-		  return "/member/error";
-	  }
+	public String error( ){
+		
+
+
+		return "/member/error";
+	}
 
 
 
 
 	@RequestMapping("/member/memberEdit.do")
-	public String memberMyPage() {
-
+	public String memberMyPage(Model model , HttpServletRequest req,Principal principal) {
+		String m_id = principal.getName();
+		
+		if(m_id =="") {
+			return "redirect:login.do";
+		}
+		
+		MemberDTO dto = new MemberDTO();
+		dto.setM_id(m_id);
+		
+		dto = sqlSession.getMapper(MemberDAOImpl.class).memberInfo(dto);
+		
+		String addr = dto.getM_addr();
+		
+		System.out.println(addr);
+		
+		String[] addrArr = addr.split(",");
+		
+		req.setAttribute("addr1", addrArr[0]);
+		req.setAttribute("addr2", addrArr[1]);
+		
+		model.addAttribute("dto",dto);
+		
 		return"member/memberEdit";
 	}
 
@@ -233,6 +248,106 @@ public class MemberController {
 
 		return"member/memberHistory";
 	}
+	
+	@RequestMapping(value = "/member/memberEdit2.do", method = RequestMethod.POST) 
+	public String memberEdit2(HttpServletRequest req, Model model, Principal principal) {
 
+		String m_id = req.getParameter("m_id");
+		String m_pw = req.getParameter("m_pw");
+		String m_name = req.getParameter("m_name");
+		String m_birth = req.getParameter("m_birth");
+		String m_phone = req.getParameter("m_phone");
+		String m_email = req.getParameter("m_email");
+		String m_addr1 = req.getParameter("m_addr1");
+		String m_addr2 = req.getParameter("m_addr2");
+
+		String m_addr = m_addr1+","+m_addr2;
+
+		model.addAttribute("m_id",m_id);
+		model.addAttribute("m_pw",m_pw);
+		model.addAttribute("m_name",m_name);
+		model.addAttribute("m_birth",m_birth);
+		model.addAttribute("m_phone",m_phone);
+		model.addAttribute("m_email",m_email);
+		model.addAttribute("m_addr",m_addr);
+		
+		principal.getName();
+
+
+		return "member/memberEdit2";
+	}
+	
+	@RequestMapping(value = "/member/memberEditAction.do", method = RequestMethod.POST)
+	public String memberEditAction(MemberDTO dto, Model model , MultipartHttpServletRequest req) {
+		
+		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
+
+		Map returnObj = new HashMap();
+		try {
+			Iterator itr= req.getFileNames();
+
+			MultipartFile mfile = null;
+			String fileName = "";
+			List resultList = new ArrayList();
+
+			String title = req.getParameter("title");
+			System.out.println("title="+ title);
+
+			File directory = new File(path);
+			if(!directory.isDirectory()) {
+				directory.mkdirs();
+			}
+			while(itr.hasNext()) {
+
+				fileName = (String)itr.next();
+				mfile = req.getFile(fileName);
+				System.out.println("mfile= "+mfile);
+
+				String originalName= new String(mfile.getOriginalFilename().getBytes(),"UTF-8");
+
+				if("".equals(originalName)) {
+					continue;
+				}
+
+				String ext = originalName.substring(originalName.lastIndexOf('.'));
+				String saveFileName = getUuid() +ext;
+
+				File serverFullName = new File(path+File.separator+saveFileName);
+				mfile.transferTo(serverFullName);
+
+				Map file = new HashMap();
+				file.put("originalName", originalName); 	
+				file.put("saveFileName", saveFileName);		
+				file.put("serverFullName", serverFullName);
+				file.put("title", title);				
+				resultList.add(file);
+
+				dto.setM_pic(saveFileName);
+				
+				sqlSession.getMapper(MemberDAOImpl.class).memberUpdate(dto);
+			}
+			returnObj.put("files", resultList);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/member/managerUpdate.do", method = RequestMethod.POST)
+	public String managerUpdate(MemberDTO dto,Principal principal) {
+		
+		dto.setM_id(principal.getName());
+		
+		sqlSession.getMapper(MemberDAOImpl.class).managerUpdate(dto);
+		
+		return "redirect:/";
+	}
+	
+	
+	
 
 }

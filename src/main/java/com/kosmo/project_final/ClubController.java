@@ -40,8 +40,6 @@ public class ClubController {
 	public String clubMyList(Model model, HttpServletRequest req) {
 
 
-
-
 		return "club/club_mylist";
 	}
 

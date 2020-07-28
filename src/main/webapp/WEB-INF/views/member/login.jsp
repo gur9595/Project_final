@@ -58,7 +58,7 @@
 					</c:when>
 					<c:otherwise>
 						<c:url value="/loginAction" var="loginUrl" />
-						<form:form class="login100-form validate-form" name="loginFrm" action="${loginUrl }" method="post">
+						<form:form  method="post" class="login100-form validate-form" name="loginFrm" action="${loginUrl }">
 						<div class="wrap-input100 validate-input" >
 						<!-- data-validate = "Valid email is: a@b.c" -->
 							<input class="input100" type="text" name="m_id" placeholder="아이디">
