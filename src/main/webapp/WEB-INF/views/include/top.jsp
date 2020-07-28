@@ -21,7 +21,7 @@
 				</li>
 
 				<c:if test="${not empty m_id}">
-		       		<li><a href="${pageContext.request.contextPath }/member/memberMain.do">MyPage</a></li>
+		       		<li><a href="${pageContext.request.contextPath }/member/mypageMain.do">MyPage</a></li>
 		        </c:if>
 
 	        	<li><a class="dr op" href="${pageContext.request.contextPath }/customer/qnaMain.do">Q & A</a></li>

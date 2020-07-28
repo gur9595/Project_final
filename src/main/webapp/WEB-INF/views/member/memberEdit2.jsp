@@ -91,7 +91,7 @@ label {
 	  <!-- 이미지 위에 글쓰는곳 -->
 	</div>
 </div>
-	<main class="hoc container clear">
+	<main class="hoc container clear" id="main">
 	    <div class="container">
 	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
 	    <form action="../member/memberEditAction.do" enctype="multipart/form-data" method="post"id="myForm" name="form"  >
