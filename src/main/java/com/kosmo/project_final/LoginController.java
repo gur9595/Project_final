@@ -52,7 +52,7 @@ public class LoginController {
 	}
 
 
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String printUser(Model model, Principal principal) {
 
 		String m_name = principal.getName();//get logged in username

@@ -23,6 +23,7 @@
 <script src="./../resources/js/match_main.js"></script>
 </head>
 <body id="top">
+
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 

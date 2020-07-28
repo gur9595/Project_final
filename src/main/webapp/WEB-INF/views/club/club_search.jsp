@@ -117,12 +117,12 @@ request.setCharacterEncoding("UTF-8");
 			</tr>
 			
 			<!-- 이거 반복 (글씨 색)  -->
-			<c:forEach items="${lists }" var="row">
+			<c:forEach items="${lists }" var="row" varStatus="status"> 
 				<tr>
 					<input type="hidden" value="${row.c_idx }" />
-					<td class="tcol">1</td>
+					<td class="tcol">${status.count }</td>
 					<td class="tname">
-						<img src="./../resources/img/emb1.png" alt="" />
+						<img src="./../resources/uploadsFile/${row.c_emb }" alt="" />
 						${row.c_name }
 					</td>
 					<td class="tcol">${row.c_ability }</td>
@@ -163,7 +163,7 @@ request.setCharacterEncoding("UTF-8");
 					성별 : <span id="list_gender"></span><br />
 					활동지역 : <span id="list_area"></span><br />				
 					<input type="hidden" name="c_idx" id="list_idx" value=""/>
-					<input type="hidden" name="m_id" value="duck" />
+					<input type="hidden" name="m_id" value="${m_id }" />
 					당찬 포부의 한마디 : <br />
 					<textarea class="form-control" name="memo"
 						style="width: 100%; height: 100px; background: #ffffff;"></textarea>

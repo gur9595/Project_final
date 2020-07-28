@@ -293,6 +293,14 @@ function search_game_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
 				}
 			}
 		}
@@ -308,6 +316,14 @@ function search_game_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
 				}
 			}
 		}
@@ -323,6 +339,15 @@ function search_game_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
 				}
 			}
 		}
@@ -335,26 +360,20 @@ function search_game_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
 				}
 			}
 		}
 		return false;
 	}
-	
-	for (i = 0; i < tr.length; i++) {
-		if(tr[i].style.display = "none"){
-			cnt++;
-		}
-	}
-	if(cnt == tr.length){
-		for (i = 0; i < tr.length; i++) {
-			tr[i].style.display = "";
-		}
-		g_gu.options[g_gu.selectedIndex].value = ""; g_date.value = ""; cnt = 0;
-		alert("검색된 내용이 없습니다.");
-		return false;
-	}
-	  
 }
 
 //용병 리스트 검색 리셋
@@ -395,6 +414,14 @@ function search_extra_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
 				}
 			}
 		}
@@ -410,6 +437,14 @@ function search_extra_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}					
 				}
 			}
 		}
@@ -425,6 +460,15 @@ function search_extra_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
 				}
 			}
 		}
@@ -437,26 +481,20 @@ function search_extra_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
 				}
 			}
 		}
 		return false;
 	}
-	
-	for (i = 0; i < tr.length; i++) {
-		if(tr[i].style.display = "none"){
-			cnt++;
-		}
-	}
-	if(cnt == tr.length){
-		for (i = 0; i < tr.length; i++) {
-			tr[i].style.display = "";
-		}
-		e_gu.value = ""; e_date.value = ""; cnt = 0;
-		alert("검색된 내용이 없습니다.");
-		return false;
-	}
-	
 }
   
   
