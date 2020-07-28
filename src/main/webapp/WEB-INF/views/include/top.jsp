@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<div style="width:100%; height:40px; background-color:#282E39">
+	<div class="" style="max-width:1400px; color: #ffffff; display:block; box-sizing: border-box;">
+		LOGIN
+	</div>
+</div>
 <div class="wrapper row1" style="background-color: #ffffff">
   <header id="header" class="hoc clear">
   <!-- <hr color="green" style="margin-top: 5px;margin-bottom: 0px;"> -->

@@ -23,4 +23,8 @@ public interface ClubDAOImpl {
 	
 	public ClubDTO clubView(int c_idx);
 	
+	public int clubIdx(ClubDTO clubDTO);
+
+	public int clubCreateMember(String m_id, int idx);
+	
 }

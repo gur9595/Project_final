@@ -150,8 +150,9 @@ public class ClubController {
 
 	//클럽 생성
 	@RequestMapping(value="/club/clubCreate.do", method = RequestMethod.POST)
-	public String clubCreatePro(HttpSession session, ClubDTO clubdto, Model model , MultipartHttpServletRequest req) {
+	public String clubCreatePro(Principal principal, HttpSession session, ClubDTO clubdto, Model model , MultipartHttpServletRequest req) {
 
+		String m_id = principal.getName();
 		//서버의 물리적경로 가져오기
 		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
 
@@ -215,6 +216,11 @@ public class ClubController {
 				clubdto.setC_emb(saveFileName);
 
 				sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
+				
+				int idx = sqlSession.getMapper(ClubDAOImpl.class).clubIdx(clubdto);
+				
+				sqlSession.getMapper(ClubDAOImpl.class).clubCreateMember(m_id, idx);
+				
 			}
 			returnObj.put("files", resultList);
 		} catch (IOException e) {
