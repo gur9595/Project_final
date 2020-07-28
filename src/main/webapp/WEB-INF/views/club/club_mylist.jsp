@@ -63,7 +63,7 @@ request.setCharacterEncoding("UTF-8");
 			</c:otherwise>
 		</c:choose>
 			
-		</div>
+		</div> 
 	</c:forEach>
 		<!-- <div class ="firstDiv clubDiv">
 			<table class="clubTable" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
