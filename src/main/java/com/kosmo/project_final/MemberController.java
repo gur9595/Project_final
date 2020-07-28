@@ -2,7 +2,7 @@ package com.kosmo.project_final;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import mybatis.ClubDAOImpl;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
 import mybatis.StadiumDAOImpl;
@@ -77,8 +76,6 @@ public class MemberController {
       return "/member/id_pw";
    }
 
-
-
    @RequestMapping(value = "/member/memberJoin1.do", method = RequestMethod.POST) 
    public String memberJoinPro1(HttpServletRequest req, Model model) {
 
@@ -105,7 +102,7 @@ public class MemberController {
 
       return "member/member_agree2";
    }
-
+   
    public static String getUuid() {
       String uuid= UUID.randomUUID().toString();
       System.out.println("생성된UUID-1: "+uuid);
@@ -186,8 +183,7 @@ public class MemberController {
                e.printStackTrace();
             } catch (Exception e) {
                e.printStackTrace();
-            }
-            
+            }     
 
       return "member/login"; 
    }
@@ -269,12 +265,6 @@ public class MemberController {
 
       return "redirect:/"; 
    }
-   
-   @RequestMapping("/member/memberEdit2.do")
-   public String memberEdit2() {
-
-      return"member/memberEdit2";
-   }
 
    @RequestMapping("/member/member_stadiumIn.do")
    public String member_stadiumIn() {
@@ -301,11 +291,7 @@ public class MemberController {
       return "/member/error";
    }
    
-   @RequestMapping("/member/memberEdit.do")
-   public String memberMyPage() {
 
-      return"member/memberEdit";
-   }
 
    @RequestMapping("/member/memberHistory.do")
    public String memberOMyPage() {

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin5">
@@ -34,9 +36,9 @@
                             <img src="./../resources/img/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                             
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                             
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-
+                             <form:form method="post" action="${pageContext.request.contextPath }/admin/adminLogout">
+                                <a class="dropdown-item" href="javascript:void(0)"><button style="width: 100; height: 100%;" class="fa fa-power-off m-r-5 m-l-5" type="submit">Logout</button></a>
+							 </form:form>
                             </div>
                         </li>
                     </ul>
