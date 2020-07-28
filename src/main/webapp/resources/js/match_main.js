@@ -288,92 +288,92 @@ function search_game_list() {
          if (td) {
             txtValue = td.textContent || td.innerText;
 
-            if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
-               tr[i].style.display = "";
-            } 
-            else {
-               tr[i].style.display = "none";
-               cnt++;
-               if(cnt == tr.length-1){
-                  for (i = 0; i < tr.length; i++) {
-                     tr[i].style.display = "";
-                     g_gu.value = ""; g_date.value = ""; cnt = 0;
-                  }
-                  alert("검색된 내용이 없습니다.");
-               }
-            }
-         }
-      }
-      return false;
-   }
-   if(gu_filter == "" && date_filter != "") {
-      for (i = 0; i < tr.length; i++) {
-         td = tr[i].getElementsByTagName("td")[0];
-         if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue == date_filter) {
-               tr[i].style.display = "";
-            } 
-            else {
-               tr[i].style.display = "none";
-               cnt++;
-               if(cnt == tr.length-1){
-                  for (i = 0; i < tr.length; i++) {
-                     tr[i].style.display = "";
-                     g_gu.value = ""; g_date.value = ""; cnt = 0;
-                  }
-                  alert("검색된 내용이 없습니다.");
-               }
-            }
-         }
-      }
-      return false;
-   }
-   if(gu_filter != "" && date_filter != "") {
-      for (i = 0; i < tr.length; i++) {
-         td = tr[i].getElementsByTagName("td")[0];
-         if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue == date_filter) {
-               tr[i].style.display = "";
-            } 
-            else {
-               tr[i].style.display = "none";
-               cnt++;
-               if(cnt == tr.length-1){
-                  for (i = 0; i < tr.length; i++) {
-                     tr[i].style.display = "";
-                     g_gu.value = ""; g_date.value = ""; cnt = 0;
-                  }
-                  alert("검색된 내용이 없습니다.");
-                  return false;
-               }
-            }
-         }
-      }
-      for (i = 0; i < tr.length; i++) {
-         td = tr[i].getElementsByTagName("td")[2];
-         if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
-               tr[i].style.display = "";
-            } 
-            else {
-               tr[i].style.display = "none";
-               cnt++;
-               if(cnt == tr.length-1){
-                  for (i = 0; i < tr.length; i++) {
-                     tr[i].style.display = "";
-                     g_gu.value = ""; g_date.value = ""; cnt = 0;
-                  }
-                  alert("검색된 내용이 없습니다.");
-                  return false;
-               }
-            }
-         }
-      }
-      return false;
-   }
+				if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
+				}
+			}
+		}
+		return false;
+	}
+	if(gu_filter == "" && date_filter != "") {
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue == date_filter) {
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
+				}
+			}
+		}
+		return false;
+	}
+	if(gu_filter != "" && date_filter != "") {
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue == date_filter) {
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
+				}
+			}
+		}
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[2];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
+				}
+			}
+		}
+		return false;
+	}
 }
 
 //용병 리스트 검색 리셋
@@ -390,111 +390,111 @@ function reset_extra_list() {
 //용병 리스트 검색
 function search_extra_list() {
 
-   var e_gu, e_date, gu_filter, date_filter, table, tr, td, i, txtValue, cnt;
-   e_gu = document.getElementById("e_gu");
-   e_date = document.getElementById("e_date");
-   gu_filter = e_gu.value.toUpperCase();
-   date_filter = e_date.value;
-   table = document.getElementById("extra_table");
-   tr = table.getElementsByTagName("tr");
-   cnt = 0;
-   
-   if(e_gu.options[e_gu.selectedIndex].value=="" && e_date.value==""){
-      alert("검색필터를 선택하세요.");
-      return false;
-   }
-   
-   if(e_gu.value != "" && e_date.value == "") {
-      for (i = 0; i < tr.length; i++) {
-         td = tr[i].getElementsByTagName("td")[2];
-         if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
-               tr[i].style.display = "";
-            } 
-            else {
-               tr[i].style.display = "none";
-               cnt++;
-               if(cnt == tr.length-1){
-                  for (i = 0; i < tr.length; i++) {
-                     tr[i].style.display = "";
-                     e_gu.value = ""; e_date.value = ""; cnt = 0;
-                  }
-                  alert("검색된 내용이 없습니다.");
-               }
-            }
-         }
-      }
-      return false;
-   }
-   if(e_gu.value == "" && e_date.value != "") {
-      for (i = 0; i < tr.length; i++) {
-         td = tr[i].getElementsByTagName("td")[0];
-         if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue == date_filter) {
-               tr[i].style.display = "";
-            } 
-            else {
-               tr[i].style.display = "none";
-               cnt++;
-               if(cnt == tr.length-1){
-                  for (i = 0; i < tr.length; i++) {
-                     tr[i].style.display = "";
-                     e_gu.value = ""; e_date.value = ""; cnt = 0;
-                  }
-                  alert("검색된 내용이 없습니다.");
-               }               
-            }
-         }
-      }
-      return false;
-   }
-   if(e_gu.value != "" && e_date.value != "") {
-      for (i = 0; i < tr.length; i++) {
-         td = tr[i].getElementsByTagName("td")[0];
-         if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue == date_filter) {
-               tr[i].style.display = "";
-            } 
-            else {
-               tr[i].style.display = "none";
-               cnt++;
-               if(cnt == tr.length-1){
-                  for (i = 0; i < tr.length; i++) {
-                     tr[i].style.display = "";
-                     e_gu.value = ""; e_date.value = ""; cnt = 0;
-                  }
-                  alert("검색된 내용이 없습니다.");
-                  return false;
-               }
-            }
-         }
-      }
-      for (i = 0; i < tr.length; i++) {
-         td = tr[i].getElementsByTagName("td")[2];
-         if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
-               tr[i].style.display = "";
-            } 
-            else {
-               tr[i].style.display = "none";
-               cnt++;
-               if(cnt == tr.length-1){
-                  for (i = 0; i < tr.length; i++) {
-                     tr[i].style.display = "";
-                     e_gu.value = ""; e_date.value = ""; cnt = 0;
-                  }
-                  alert("검색된 내용이 없습니다.");
-                  return false;
-               }
-            }
-         }
-      }
-      return false;
-   }
+	var e_gu, e_date, gu_filter, date_filter, table, tr, td, i, txtValue, cnt;
+	e_gu = document.getElementById("e_gu");
+	e_date = document.getElementById("e_date");
+	gu_filter = e_gu.value.toUpperCase();
+	date_filter = e_date.value;
+	table = document.getElementById("extra_table");
+	tr = table.getElementsByTagName("tr");
+	cnt = 0;
+	
+	if(e_gu.options[e_gu.selectedIndex].value=="" && e_date.value==""){
+		alert("검색필터를 선택하세요.");
+		return false;
+	}
+	
+	if(e_gu.value != "" && e_date.value == "") {
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[2];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
+				}
+			}
+		}
+		return false;
+	}
+	if(e_gu.value == "" && e_date.value != "") {
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue == date_filter) {
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}					
+				}
+			}
+		}
+		return false;
+	}
+	if(e_gu.value != "" && e_date.value != "") {
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue == date_filter) {
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
+				}
+			}
+		}
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[2];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
+				}
+			}
+		}
+		return false;
+	}
 }
   
   

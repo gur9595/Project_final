@@ -42,7 +42,7 @@ public class ClubController {
 	public String clubMyList(Principal principal, Model model, HttpServletRequest req) {
 
 		String m_id = principal.getName();
-
+		
 		ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).myClubList(m_id);
 		
 		int check = sqlSession.getMapper(ClubDAOImpl.class).myClubListCount(m_id);
@@ -51,7 +51,7 @@ public class ClubController {
 			lists.add(new ClubDTO());
 		}
 		model.addAttribute("lists", lists);
-		
+	
 		return "club/club_mylist";
 	}
 
@@ -199,6 +199,48 @@ public class ClubController {
 		
 		return "club/club_view";
 	}
+	@RequestMapping("/club/clubViewMember.do")
+	public String clubViewMember(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_member";
+	}
+	@RequestMapping("/club/clubViewRank.do")
+	public String clubViewRank(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_rank";
+	}
+	@RequestMapping("/club/clubViewMatch.do")
+	public String clubViewMatch(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_match";
+	}
+	@RequestMapping("/club/clubViewFormation.do")
+	public String clubViewFormation(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_formation";
+	}
+	
+	
 
 	public static String getUuid() {
 		String uuid= UUID.randomUUID().toString();

@@ -1,38 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="">
 <head>
 <title>B-PRO</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="./../resources/css/layout.css" rel="stylesheet"
+	type="text/css" media="all">
 <link rel="stylesheet" href="./../resources/css/join.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
-	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
-	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
+<link rel="stylesheet"
+	href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
+<link rel="stylesheet"
+	href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
 
 
-    <script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/skin/m_musinsa/js/appinterface.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/static/member/js/appinterface-member.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/static/member/js/constant.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/static/member/js/ui/config.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/static/member/js/ui.js?20200701180800" type="text/javascript"></script>
-    <script type="text/javascript" src="https://static.msscdn.net/static/member/js/backforward.js?20200701180800"></script>
-    <script src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800" type="text/javascript"></script>
+<script
+	src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800"
+	type="text/javascript"></script>
+<script
+	src="https://static.msscdn.net/skin/m_musinsa/js/appinterface.js?20200701180800"
+	type="text/javascript"></script>
+<script
+	src="https://static.msscdn.net/static/member/js/appinterface-member.js?20200701180800"
+	type="text/javascript"></script>
+<script
+	src="https://static.msscdn.net/static/member/js/constant.js?20200701180800"
+	type="text/javascript"></script>
+<script
+	src="https://static.msscdn.net/static/member/js/ui/config.js?20200701180800"
+	type="text/javascript"></script>
+<script
+	src="https://static.msscdn.net/static/member/js/ui.js?20200701180800"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="https://static.msscdn.net/static/member/js/backforward.js?20200701180800"></script>
+<script
+	src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800"
+	type="text/javascript"></script>
 
-        <!-- Google Tag Manager -->
-        <script>
+<!-- Google Tag Manager -->
+<script>
             var dataLayer = dataLayer || [];
             window.addEventListener("load", function() {
                 var memberGA = null;
@@ -47,151 +75,169 @@
                 })(window,document,'script','dataLayer','GTM-TXDSFSF');
             }, false);
         </script>
-        <!-- End Google Tag Manager -->
+<!-- End Google Tag Manager -->
 
-    <link rel="stylesheet" type="text/css" href="./../resources/member_join1.css" />
-    <link rel="stylesheet" href="./../resources/css/member_join2.css">
-    <link rel="stylesheet" href="./../resources/css/member_join3.css">
+<link rel="stylesheet" type="text/css"
+	href="./../resources/member_join1.css" />
+<link rel="stylesheet" href="./../resources/css/member_join2.css">
+<link rel="stylesheet" href="./../resources/css/member_join3.css">
 
 </head>
 <body id="top">
-<!--top-->
-<%@ include file="./../include/top.jsp"%>
-<!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('');">
-  <div id="breadcrumb" class="hoc clear"> 
-    <!--이미지 위에 글쓰는곳-->
-  </div>
-</div>
-  <main class="hoc container clear"> 
-	<table border=1>  
-    <div class="musinsa-wrapper wrapper-member">
-        <h1 class="n-hidden">Be-Pro</h1>
+	<!--top-->
+	<%@ include file="./../include/top.jsp"%>
+	<!--각 페이지 이미지-->
+	<div class="bgded overlay" style="background-image: url('');">
+		<div id="breadcrumb" class="hoc clear">
+			<!--이미지 위에 글쓰는곳-->
+		</div>
+	</div>
+	<main class="hoc container clear">
+		<table border=1>
+			<div class="musinsa-wrapper wrapper-member">
+				<h1 class="n-hidden">Be-Pro</h1>
 
-        <!-- Member -->
-        <div class="n-member-area form-area" style="background:#FFFFFF;">
+				<!-- Member -->
+				<div class="n-member-area form-area" style="background: #FFFFFF;">
 
-            <form class="formBox" name="joinForm" id="joinForm" action="<c:url value="/member/memberJoin1.do" />" method="post">
-                <!-- Header -->
-                <header class="member-header">
-                    <div class="logo">
-      
-                    </div>
-                    <h2 style="font-size:40px; text-align:center;">회원정보 수정</h2>
-                    <button type="button" class="btn-back" onclick="location.href='${pageContext.request.contextPath }'"><i class="ic-30-line-arrow-left">이전 페이지로 이동</i></button>
-                </header>
+					<form class="formBox" name="joinForm" id="joinForm"
+						action="<c:url value="/member/memberEdit2.do" />" method="post">
+						<!-- Header -->
+						<header class="member-header">
+							<div class="logo"></div>
+							<h2 style="font-size: 40px; text-align: center;">회원정보 수정</h2>
+							<button type="button" class="btn-back"
+								onclick="location.href='${pageContext.request.contextPath }'">
+								<i class="ic-30-line-arrow-left">이전 페이지로 이동</i>
+							</button>
+						</header>
 
-                <div class="join-form">
-                    <div class="n-form-set">
+						<div class="join-form">
+							<div class="n-form-set">
 
-                        <label for="m_id" class="n-form-label">아이디<span class="essential">필수 입력</span></label><br/>
-                        <input type="text" class="n-input input" id="m_id" name="m_id" value="${m_id }" style="width:400px;">
-                        
-                        <p class="n-validation" id="hLayerid"></p>
-                    </div>
-                    
-                    <div class="n-form-set">
-						<label for="password">비밀번호 <span class="essential"></span></label>
-						<div class="n-form-icon">
-                            <input type="password" class="n-input input" id="m_pw" name="m_pw" minlength="8" autocomplete="new-password"
-                                   placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
-                            <p class="n-validation" id="passwordValidMessage"></p>
-                         
-                        </div>
-                        <div class="n-form-icon">
-                            <input type="password" class="n-input input" id="confirmPassword" name="confirmPassword" autocomplete="new-password"
-                                   	 placeholder="비밀번호 확인">
-                            <p class="n-validation" id="passwordConfirmValidMessage"></p>
-                      
-                        </div>
-                    </div>
-                    <div class="n-form-set">
+								<label for="m_id" class="n-form-label">아이디<span
+									class="essential">필수 입력</span></label><br /> <input type="text"
+									class="n-input" id="m_id" name="m_id" value="${dto.m_id }"
+									style="width: 400px;">
 
-                        <label for="name" >이름 <span class="essential"></span></label>
-                        <input type="text" class="n-input input" id="m_name" name="m_name" placeholder="이름입력" value="">
-                        <p class="n-validation" id="hLayername"></p>
-                    </div>
-                    
-                    <div class="n-form-set">
+								<p class="n-validation" id="hLayerid"></p>
+							</div>
+							<br>
+							<div class="n-form-set">
+								<label for="password">비밀번호 <span class="essential"></span></label>
+								<div class="n-form-icon">
+									<input type="password" class="n-input input" id="m_pw"
+										name="m_pw" minlength="8" autocomplete="new-password"
+										placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
+									<p class="n-validation" id="passwordValidMessage"></p>
 
-                        <label for="birth" >생년월일 <span class="essential"></span></label>
-                        <input type="text" class="n-input input" id="m_birth" name="m_birth" maxlength="8" placeholder="예)19970121">
-                        <p class="n-validation" id="hLayerjumin"></p>
-                    </div>
-                    
-                    <div class="n-form-set" id="input-div">
+								</div>
+								<br>
+								<div class="n-form-icon">
+									<input type="password" class="n-input input"
+										id="confirmPassword" name="confirmPassword"
+										autocomplete="new-password" placeholder="비밀번호 확인">
+									<p class="n-validation" id="passwordConfirmValidMessage"></p>
 
-                    	<label for="tel">휴대전화 <span class="essential"></span></label>
-		                <input type="tel" class="n-input" id="m_phone" name="m_phone" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="11">
-		                <p class="n-validation" id="searchValidPhone" style="display: none">번호 형식이 올바르지 않습니다</p>
-            		</div>
-                    
-                    <div class="n-form-set">
-                        <label for="email" >이메일 <span class="essential"></span></label>
-                        <div class="n-form-layer" id = "emailFromLayer">
-                            <input type="email" class="n-input input" id="m_email" name="m_email" maxlength="50" placeholder="이메일" autocomplete="off">
-                            <p class="n-validation" id="hLayeremail"></p>
-                            <ul id="emailDomainList" class="layer">
-                                <li><button type="button"><span></span><em>naver.com</em></button></li>
-                                <li><button type="button"><span></span><em>gmail.com</em></button></li>
-                                <li><button type="button"><span></span><em>hanmail.net</em></button></li>
-                                <li><button type="button"><span></span><em>nate.com</em></button></li>
-                                <li><button type="button"><span></span><em>daum.net</em></button></li>
-                            </ul>
-                        </div> 
-                    </div>
-                    
-                    <div class="n-form-set" id="input-div">
-                        <label for="address" >주소<span class="essential"></span></label>
-                        <div>                                     
-                            <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
-                            <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="주소 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
-                            <input type="text" id="m_addr1" name="m_addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" readonly/>
-                            <input type="text" id="m_addr2" name="m_addr2" placeholder="상세주소"  class="n-input" style="margin-top: 5px;" />
-                            <p class="n-validation" id="searchValidPhone" style="display: none">주소형식이 올바르지 않습니다.</p>
-                           
-                        </div>
-                    </div>
-            		
-            		
-                    <div id="agreementDivArea" class="agreement">
-                        <div>
-                            <input type="checkbox" class="n-check" id="checkAll">
-                            <label for="checkAll">약관 전체동의</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" class="n-check" id="agreeCheckbox" name="agreeCheckbox">
-                            <label for="agreeCheckbox">개인정보 수집 이용동의(필수)</label>
-                            <button type="button" class="link" onclick="privacyAgreeUsagePopBtnClickHandler()">약관보기</button>
-                        </div>
+								</div>
+							</div>
+							<br>
+							<div class="n-form-set">
 
-                        <div>
-                            <input type="checkbox" class="n-check agree-item required-agree-item" id="useTermsCheckbox" name="useTermsCheckbox">
-                            <label for="useTermsCheckbox">축구장 이용약관(필수)</label>
-                            <button type="button" class="link" onclick="serviceAgreementPopBtnClickHandler()">약관보기</button>
-                        </div>
-                    </div>
-                </div>
+								<label for="name">이름 <span class="essential"></span></label> <input
+									type="text" class="n-input input" id="m_name" name="m_name"
+									placeholder="이름입력" minlength="2" maxlength="8"
+									value="${dto.m_name }">
+								<p class="n-validation" id="hLayername"></p>
+							</div>
+							<br>
+							<div class="n-form-set">
 
-                <div id="joinBtnDiv" class="member-btn">
-                    <input type="submit" class="n-btn btn-primary" onsubmit="" value="다음"/>
-                </div>
-            </form>
-        </div>
-    </div>
-	</table> 
-    <!-- / main body -->
-    <div class="clear"></div>
-  </main>
-<!-- footer -->
-<%@ include file="./../include/footer.jsp"%>
-<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
-<!-- JAVASCRIPTS -->
-<script src="./../resources/js/jquery.min.js"></script>
-<script src="./../resources/js/jquery.backtotop.js"></script>
+								<label for="birth">생년월일 <span class="essential"></span></label>
+								<input type="text" class="n-input input" id="m_birth"
+									name="m_birth" maxlength="8" placeholder="예)19970121"
+									value="${dto.m_birth }">
+								<p class="n-validation" id="hLayerjumin"></p>
+							</div>
+							<br>
+							<div class="n-form-set" id="input-div">
+
+								<label for="tel">휴대전화 <span class="essential"></span></label> <input
+									type="tel" class="n-input" id="m_phone" name="m_phone"
+									placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="11"
+									value="${dto.m_phone }">
+								<p class="n-validation" id="searchValidPhone"
+									style="display: none">번호 형식이 올바르지 않습니다</p>
+							</div>
+							<br>
+							<div class="n-form-set">
+								<label for="email">이메일 <span class="essential"></span></label>
+								<div class="n-form-layer" id="emailFromLayer">
+									<input type="email" class="n-input" id="m_email" name="m_email"
+										maxlength="50" placeholder="이메일" value="${dto.m_email }">
+									<p class="n-validation" id="hLayeremail"></p>
+									<ul id="emailDomainList" class="layer">
+										<li><button type="button">
+												<span></span><em>naver.com</em>
+											</button></li>
+										<li><button type="button">
+												<span></span><em>gmail.com</em>
+											</button></li>
+										<li><button type="button">
+												<span></span><em>hanmail.net</em>
+											</button></li>
+										<li><button type="button">
+												<span></span><em>nate.com</em>
+											</button></li>
+										<li><button type="button">
+												<span></span><em>daum.net</em>
+											</button></li>
+									</ul>
+								</div>
+							</div>
+							<br>
+							<div class="n-form-set" id="input-div">
+								<label for="address">주소<span class="essential"></span></label>
+								<div>
+								
+									<input type="button" class="btn btn-warning "
+										onclick="DaumPostcode()" value="주소 찾기"
+										style="width: 130px; height: 50px; display: inline; margin-top: 5px; color: #424242; font-weight: bold" /><br>
+		                            <input type="hidden" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
+									<input type="text" id="m_addr1" name="m_addr1" placeholder="주소"
+										class="n-input" style="margin-top: 5px;" readonly
+											value="<%=request.getAttribute("addr1") %>" /> <input type="text" id="m_addr2"
+										name="m_addr2" placeholder="상세주소" class="n-input" style="margin-top: 5px;" 
+											value="<%=request.getAttribute("addr2") %>"/>
+									<p class="n-validation" id="searchValidPhone"
+										style="display: none">주소형식이 올바르지 않습니다.</p>
+
+								</div>
+							</div>
+							<br><br>
+							<div id="joinBtnDiv" class="member-btn">
+								<input type="submit" class="n-btn btn-primary" onsubmit=""
+									value="다음" />
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</table>
+		<!-- / main body -->
+		<div class="clear"></div>
+	</main>
+	<!-- footer -->
+	<%@ include file="./../include/footer.jsp"%>
+	<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+	<!-- JAVASCRIPTS -->
+	<script src="./../resources/js/jquery.min.js"></script>
+	<script src="./../resources/js/jquery.backtotop.js"></script>
 </body>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
     function DaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -231,7 +277,7 @@
     }
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         var isPassMemberId = false;
         var isPassPassword = false;
         
@@ -847,10 +893,8 @@
 
 
         function initSessionStorage() {
-            $("#m_id").val(sessionStorage.getItem("m_id"));
             $("#m_pw").val(sessionStorage.getItem("m_pw"));
             $("#confirmPassword").val(sessionStorage.getItem("confirmPassword"));
-            $("#m_email").val(sessionStorage.getItem("m_email"));
 
 
 
