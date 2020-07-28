@@ -41,13 +41,12 @@
 
 <script>
 
-	function payment(price_cash, price_charge, plus_bonus) {
+	function payment(price_cash, price_charge) {
         var IMP = window.IMP;
         var code = "imp44765322";  // FIXME: 가맹점 식별코드
         
         var cash = price_cash; // 구매가격
-        var charge = price_charge; // 상품명 (입금될 마일리지)       
-        var bonus = plus_bonus; // 추가 마일리지
+        var charge = price_charge; // 입금될 마일리지
       
         IMP.init(code);
 
@@ -57,7 +56,7 @@
 		    pg : 'inicis', // version 1.1.0부터 지원.
 		    pay_method :'phone', // 테스트는 phone 발표시는 card로 교체할 것.
 		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : charge + bonus,
+		    name : charge,
 		    amount : cash,
 		    buyer_email : 'iamport@siot.do',
 		    buyer_name : '구매자이름',
@@ -77,12 +76,42 @@
 		        var msg = '====== 결제에 실패하였습니다. ======';
 		        msg += '\n에러내용 : ' + rsp.error_msg;
 		    }
-		   	alert(msg);	
+		   alert(msg);	
 		  
 		});
 	}  
-    </script>  
+    </script>
+  
+<!----------------------------------------------------------------------------------------------------------------->
 
+<!-- 모달창 일단 남겨놓음 ---------------------------------------------------------------------------------------->
+ <%-- <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header" >
+          <h4 class="modal-title" >======= Charge the B-PRO's BALL =======</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+       <!--  Modal body -->
+        <div class="modal-body" style="text-align: center;">
+          확인버튼을 누르면 결제페이지로 이동합니다.
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <input type="summit" value="Confirm" class="btn btn-success" data-dismiss="modal" style="width: 100px;"
+          	onclick="location.href='./../payment/iampoartApi.do?price=';">
+          onclick="location.href='./../payment/iampoartApi.do?price=<%=dto.price %>';">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 100px;">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div> --%>
+<!------------------------------------------------------------------------------------------>
 </head>
 
 <body id="top">
@@ -107,8 +136,8 @@
 				<!-- Heading -->
 				<div class="col-md-12 text-center">
 					<h1 class="section-title aqua-heading">P A Y M E N T</h1>
-					<p style="font-size: 20px; margin-left: 900px;">현재 나의 마일리지<br />
-						<b style="color: red;"><script>document.write(payment.price_charge);</script></b> BALL</p>
+					<p style="font-size: 20px; margin-left: 900px;">현재 나의 마일리지<br /><b style="color: red;">
+						<script>document.write('charge');</script></b> BALL</p>
 				</div>
 				<!-- Pricing Table Area -->
 				<div class="gg-pricing-table small-table col-md-12 mt-50">
@@ -127,7 +156,8 @@
 							<!-- Button -->
 							<div class="pricing-button">
 								<!-- 테스트용으로 100원 설정. 발표시 10000으로 수정할 것 -->
-								<a href="#" class="btn btn-pricing" onclick="payment(10, 10000, '	Ball (+ 0%)');"><i class="fa fa-cart-plus"></i> Buy</a>
+								<a href="#" class="btn btn-pricing" onclick="payment(100, '10,000 Ball (+ 0%)');"><i class="fa fa-cart-plus"></i> Buy</a>
+							<!-- <a href="#myModal" class="btn btn-pricing" data-toggle="modal" data-target="#myModal"><i class="fa fa-cart-plus"></i> Buy</a> -->
 							</div>
 							<script>
 								
@@ -148,7 +178,7 @@
 							</div>
 							<!-- Button -->
 							<div class="pricing-button">
-								<a href="#" class="btn btn-pricing" onclick="payment(30000, 30300, '	Ball (+ 1%)');"><i class="fa fa-cart-plus"></i> Buy</a>
+								<a href="#" class="btn btn-pricing" onclick="payment(30000, '30,300 Ball (+ 1%)');"><i class="fa fa-cart-plus"></i> Buy</a>
 							</div>
 						</div>
 					</div>
@@ -166,7 +196,7 @@
 							</div>
 							<!-- Button -->
 							<div class="pricing-button">
-								<a href="#" class="btn btn-pricing" onclick="payment(50000, 51000, '	Ball (+ 2%)');"><i class="fa fa-cart-plus"></i> Buy</a>
+								<a href="#" class="btn btn-pricing" onclick="payment(50000, '51,000 Ball (+ 2%)');"><i class="fa fa-cart-plus"></i> Buy</a>
 							</div>
 						</div>
 					</div>
@@ -184,7 +214,7 @@
 							</div>
 							<!-- Button -->
 							<div class="pricing-button">
-								<a href="#" class="btn btn-pricing" onclick="payment(70000, 72100, '	Ball (+ 3%)');"><i class="fa fa-cart-plus"></i> Buy</a>
+								<a href="#" class="btn btn-pricing" onclick="payment(70000, '72,100 Ball (+ 3%)');"><i class="fa fa-cart-plus"></i> Buy</a>
 							</div>
 						</div>
 					</div>
@@ -202,7 +232,7 @@
 							</div>
 							<!-- Button -->
 							<div class="pricing-button">
-								<a href="#" class="btn btn-pricing" onclick="payment(100000, 104000, '	Ball (+ 4%)');"><i class="fa fa-cart-plus"></i> Buy</a>
+								<a href="#" class="btn btn-pricing" onclick="payment(100000, '104,000 Ball (+ 4%)');"><i class="fa fa-cart-plus"></i> Buy</a>
 							</div>
 						</div>
 					</div>
@@ -220,7 +250,7 @@
 							</div>
 							<!-- Button -->
 							<div class="pricing-button" >
-								<input type="image" src="./../resources/img/GoldenBall.png" style="display : block; margin : 0 auto; width: 80px; height: 60px" onclick="payment(200000, 210000, '	Ball (+ 5%)');">
+								<input type="image" src="./../resources/img/GoldenBall.png" style="display : block; margin : 0 auto; width: 80px; height: 60px" onclick="payment(200000, '210,000 Ball (+ 5%)');">
 							</div> 
 						</div>   
 					</div>
@@ -229,6 +259,16 @@
 			</div>
 	</section>
 	
+	
+	
+	
+
+
+  
+
+	
+				
+				
 			<!-- / main body -->
 	
 		</main>
