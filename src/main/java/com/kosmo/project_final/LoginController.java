@@ -14,28 +14,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
-	
-	@RequestMapping("/member/home.do")
-	public String securityIndex2_1(Principal principal) {
-		
-		String m_id = principal.getName();
-		System.out.println("m_id = "+m_id);
-		
-		return "redirect:/";
-		
-	}
+   
+   @RequestMapping("/member/home.do")
+   public String securityIndex2_1(Principal principal, HttpSession session) {
+	   
+      String m_id = principal.getName();
+      System.out.println("m_id = "+m_id);
+
+      session.setAttribute("m_id",m_id);
+      
+      return "redirect:/";
+      
+   }
 
 
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String printUser(Model model, Principal principal) {
+   @RequestMapping(value="/login.do", method = RequestMethod.POST)
+   public String printUser(Model model, Principal principal) {
 
-		String m_name = principal.getName();//get logged in username
+      String m_name = principal.getName();//get logged in username
 
-		model.addAttribute("m_name", m_name);
+      model.addAttribute("m_name", m_name);
 
-		System.out.println("m_name : "+m_name);
+      System.out.println("m_name : "+m_name);
 
-		return "home";
+      return "home";
 
-	}
+   }
 }

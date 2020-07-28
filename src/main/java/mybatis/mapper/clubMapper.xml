@@ -7,11 +7,11 @@
   
    <!-- 클럽생성 --> 
 	  <insert id="clubCreate" parameterType="mybatis.ClubDTO"> 
-		  insert into club (c_idx,c_name,c_emb,c_area,c_gender,c_type,c_ability,c_memlimit,c_memo) values( 
+		  insert into club (c_idx,c_name,c_emb,c_area,c_gender,c_type,c_ability,c_memlimit,c_memo,c_age) values( 
 		  	club_seq.nextval, #{c_name}, #{c_emb}, #{c_area},#{c_gender}, #{c_type},
-		  	#{c_ability}, #{c_memlimit}, #{c_memo} ) 
+		  	#{c_ability}, #{c_memlimit}, #{c_memo}, #{c_age} ) 
 	  </insert> 
-	  
+
 	  <select id="getTotalCount" resultType="int" parameterType="mybatis.ClubDTO">
 		select count(*) from club 
 		<if test="c_name!=null or c_area!=null or c_ability!=null or c_gender!=null or c_age!=null" >
@@ -89,5 +89,37 @@
 	<insert id="clubApply" parameterType="mybatis.ClubMemberDTO">
 		insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
 	</insert>
+	
+	<select id="myClubList" resultType="mybatis.ClubDTO">
+		select * 
+		from club c inner join clubmember cm
+			on c.c_idx = cm.c_idx
+		where cm.m_id like #{param1} 
+	</select>
+	
+	<select id="myClubListCount" resultType="int">
+		select count(*) 
+		from club c inner join clubmember cm
+			on c.c_idx = cm.c_idx
+		where cm.m_id like #{param1} 
+	</select>
+	
+	<select id="clubView" resultType="mybatis.ClubDTO">
+		select *
+		from club
+		where c_idx = #{param1} 
+	</select>
+	
+	<select id="clubIdx" resultType="int" parameterType="mybatis.ClubDTO">
+		select c_idx
+		from club
+		where c_name like #{c_name}
+	</select>
+	
+	<insert id="clubCreateMember"> 
+		  insert into clubmember (cm_idx,c_idx,m_id,cm_check,cm_date, cm_grade, cm_memo) values( 
+		  	clubmember_seq.nextval, #{param2}, #{param1}, 'yes', default, 'head',
+		  	'클럽 생성자' ) 
+	  </insert> 
 	  
   </mapper>

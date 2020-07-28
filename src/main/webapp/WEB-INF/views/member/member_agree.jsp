@@ -19,36 +19,36 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 
-    <script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/skin/m_musinsa/js/appinterface.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/static/member/js/appinterface-member.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/static/member/js/constant.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/static/member/js/ui/config.js?20200701180800" type="text/javascript"></script>
-    <script src="https://static.msscdn.net/static/member/js/ui.js?20200701180800" type="text/javascript"></script>
-    <script type="text/javascript" src="https://static.msscdn.net/static/member/js/backforward.js?20200701180800"></script>
-    <script src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/skin/m_musinsa/js/appinterface.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/appinterface-member.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/constant.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/ui/config.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/ui.js?20200701180800" type="text/javascript"></script>
+<script type="text/javascript" src="https://static.msscdn.net/static/member/js/backforward.js?20200701180800"></script>
+<script src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800" type="text/javascript"></script>
 
-        <!-- Google Tag Manager -->
-        <script>
-            var dataLayer = dataLayer || [];
-            window.addEventListener("load", function() {
-                var memberGA = null;
-                if (memberGA != null && memberGA.dimension1 != "0") {
-                    dataLayer.push(memberGA);
-                }
+<!-- Google Tag Manager -->
+<script>
+    var dataLayer = dataLayer || [];
+    window.addEventListener("load", function() {
+        var memberGA = null;
+        if (memberGA != null && memberGA.dimension1 != "0") {
+            dataLayer.push(memberGA);
+        }
 
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-TXDSFSF');
-            }, false);
-        </script>
-        <!-- End Google Tag Manager -->
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TXDSFSF');
+    }, false);
+</script>
+<!-- End Google Tag Manager -->
 
-    <link rel="stylesheet" type="text/css" href="./../resources/member_join1.css" />
-    <link rel="stylesheet" href="./../resources/css/member_join2.css">
-    <link rel="stylesheet" href="./../resources/css/member_join3.css">
+<link rel="stylesheet" type="text/css" href="./../resources/member_join1.css" />
+<link rel="stylesheet" href="./../resources/css/member_join2.css">
+<link rel="stylesheet" href="./../resources/css/member_join3.css">
 
 </head>
 <body id="top">
@@ -82,11 +82,11 @@
                     <div class="n-form-set">
 
                         <label for="m_id" class="n-form-label">아이디 <span class="essential">필수 입력</span></label><br/>
-                        <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(4자이상)" minlength="4" maxlength="20" style="width:400px;">
-                        
+
+                        <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(4자이상)" minlength="8" maxlength="20" style="width:400px; display: inline;  margin-top:3px;">
+                        <input type="button" class="btn btn-warning " onclick="()" value="중복 확인" style="width:130px; height:50px; display:inline; color: #424242; font-weight: bold" /><br>
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
-                    
                     <div class="n-form-set">
 						<label for="password">비밀번호 <span class="essential"></span></label>
 						<div class="n-form-icon">
@@ -169,7 +169,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="joinBtnDiv" class="member-btn">
                     <input type="submit" class="n-btn btn-primary" onsubmit="" value="다음"/>
                 </div>

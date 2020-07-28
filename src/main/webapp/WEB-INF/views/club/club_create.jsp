@@ -27,7 +27,6 @@ h2 { font-size : 24px; color:#000066; line-height:30px;
   appearance: button;
   outline: none;
 }
-
 .box::before {
   content: "\f13a";
   position: absolute;
@@ -42,12 +41,10 @@ h2 { font-size : 24px; color:#000066; line-height:30px;
   background-color: rgba(255, 255, 255, 0.1);
   pointer-events: none;
 }
-
 .box:hover::before {
   color: rgba(255, 255, 255, 0.6);
   background-color: rgba(255, 255, 255, 0.2);
 }
-
 .box select option {
   padding: 30px;
 }
@@ -152,6 +149,17 @@ String keyword = request.getParameter("keyword");
 		    </select>
 		</div>
 		
+		<h2>선수 나이대</h2>
+		<div class="box">
+		    <select id="c_age" name="c_age">
+				<option placeholder="" value="">선택해 주세요</option>
+				<option>유소년부</option>
+				<option>청소년부</option>
+				<option>청년부</option>
+				<option>중년부</option>
+		    </select>
+		</div>
+		
 		<h2>실력</h2>
 		<div class="box">
 			<select id="c_ability" name="c_ability" >
@@ -172,6 +180,8 @@ String keyword = request.getParameter("keyword");
 				<td><label for="c_soccer">축구</label></td>
 				<td width="20px;"><input type="radio" name="c_type" id="c_footsal" value="풋살" ></td>
 				<td><label for="c_footsal">풋살</label></td>
+				<td width="20px;"><input type="radio" name="c_type" id="c_both" value="혼합" ></td>
+				<td><label for="c_both">혼합</label></td>
 			</tr>
 		</table>
 		
@@ -186,7 +196,6 @@ String keyword = request.getParameter("keyword");
 	</form>
 </body>
 <script>
-
 function isValidate (creFrm){
 	if(creFrm.c_name.value==""){
 		alert('팀명을 입력하세요');
@@ -242,6 +251,5 @@ function isValidate (creFrm){
 		return false;
 	}
 }
-
 </script>
 </html>

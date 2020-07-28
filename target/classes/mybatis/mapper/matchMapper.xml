@@ -5,33 +5,57 @@
   
 	<mapper namespace="mybatis.MatchDAOImpl">
   
-		<!-- 게임신청 --> 
+		<!-- 게임신청(리스트등록) --> 
 		<insert id="gameApply" parameterType="mybatis.GameDTO"> 
-			insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu)
+			insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, g_check)
 				values( 
-				  	game_seq.nextval, #{c_idx}, #{g_sname}, #{g_saddr}, #{g_type}, #{g_date}, #{g_memo}, #{g_num}, #{g_time}, #{g_gu}) 
+				  	game_seq.nextval, #{c_idx}, #{g_sname}, #{g_saddr}, #{g_type}, #{g_date}, #{g_memo}, #{g_num}, #{g_time}, #{g_gu}, 'owner') 
 		</insert> 
 		
+		<!-- 대결신청(게임 리스트에서 신청) --> 
+		<insert id="matchApply" parameterType="mybatis.GameDTO"> 
+			insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, g_check)
+				select game_seq.nextval, #{c_idx}, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, 'no'
+				from game
+				where g_idx = #{g_idx}
+		</insert> 
+				
 		<!-- 게임리스트 -->
 		<select id="gameList" resultType="mybatis.GameDTO">
-			select * from game order by g_date
-		</select>
-		
-		<!-- 리스트검색 -->
-		<select id="listSearch" resultType="mybatis.GameDTO" parameterType="mybatis.GameDTO">
-			select * from game
-			<if test="search_date == null and g_gu != null">
-				where g_gu like #{g_gu}
-			</if>
-			<if test="g_gu == null and search_date != null">
-				where to_char(g_date, 'YYYY-MM-DD') like #{search_date}
-			</if>
-			<if test="g_gu != null and search_date != null">
-				where g_gu like #{g_gu} and to_char(g_date, 'YYYY-MM-DD') like #{search_date} 
-			</if>
-			
+			select *
+			from game g inner join club c
+				on g.c_idx = c.c_idx 
+			where 
+				to_char(g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')
+				and g.g_check like 'owner' 
 			order by g_date
 		</select>
+		
+		<!-- 용병리스트 -->
+		<select id="playerList" resultType="mybatis.GameDTO">
+			select *
+			from game g inner join club c
+				on g.c_idx = c.c_idx 
+			where 
+				to_char(g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')
+				and g_extra <![CDATA[ > ]]> 0 and g_extra <![CDATA[ < ]]> 100 
+			order by g_date
+		</select>
+		
+		<!-- 용병신청(용병 리스트에서 신청) --> 
+		<insert id="extraApply"> 
+			insert into extra (x_idx, m_id, g_idx)
+				values (extra_seq.nextval, #{param1}, #{param2})
+		</insert> 
+		
+		<!-- 로그인한 사용자가 가입된 클럽이름 가져오기 -->
+		<select id="getC_name" resultType="mybatis.ClubDTO">
+			select c.c_name, c.c_idx
+			from club c inner join clubmember cm
+			    on c.c_idx = cm.c_idx
+			where cm.m_id like #{m_id}
+		</select>
+		
 	  
 	</mapper>
 

@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MatchDAOImpl {
 	
-	public int gameApply(GameDTO gameDTO);
+	public void gameApply(GameDTO gameDTO);
+	public void  matchApply(GameDTO gameDTO);
+	public void extraApply(String m_id, int g_idx);
 	public ArrayList<GameDTO> gameList();
-	public ArrayList<GameDTO> listSearch(GameDTO gameDTO);
+	public ArrayList<ClubDTO> getC_name(String m_id);
+	public ArrayList<GameDTO> playerList();
 	
 }

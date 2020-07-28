@@ -23,11 +23,12 @@
 <script src="./../resources/js/match_main.js"></script>
 </head>
 <body id="top">
+
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+<div class="bgded overlay" style="background-image:url('./../resources/img/top.png');">
   <div id="breadcrumb" class="hoc clear"> 
     <!--이미지 위에 글쓰는곳-->
   </div>

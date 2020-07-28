@@ -1,6 +1,7 @@
 package com.kosmo.project_final;
 
 
+import java.security.Principal;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import mybatis.ClubMemberDTO;
 @Controller
 public class ClubController {
 
+
 	@Autowired
 	private SqlSession sqlSession;
 
@@ -37,9 +39,19 @@ public class ClubController {
 	} 
 
 	@RequestMapping("/club/clubMyList.do")
-	public String clubMyList(Model model, HttpServletRequest req) {
+	public String clubMyList(Principal principal, Model model, HttpServletRequest req) {
 
-
+		String m_id = principal.getName();
+		
+		ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).myClubList(m_id);
+		
+		int check = sqlSession.getMapper(ClubDAOImpl.class).myClubListCount(m_id);
+		
+		for(int i = 0; i<5-check; i++) {
+			lists.add(new ClubDTO());
+		}
+		model.addAttribute("lists", lists);
+	
 		return "club/club_mylist";
 	}
 
@@ -49,62 +61,66 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubSearch.do")
-	public String clubSearch(Model model, HttpServletRequest req) { 
-
-		ClubDTO clubDTO = new ClubDTO(); 
-		clubDTO.setC_name(req.getParameter("clubName"));
-		clubDTO.setC_area(req.getParameter("area"));
-		clubDTO.setC_ability(req.getParameter("ability"));
-		clubDTO.setC_gender(req.getParameter("gender"));
-		clubDTO.setC_age(req.getParameter("age"));
-
-		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCount(clubDTO);
-
-		//페이지 처리를 위한 설정값.
-		/*
-		 * int pageSize =
-		 * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
-		 * "springBoard.pageSize")); int blockPage =
-		 * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
-		 * "springBoard.blockPage"));
-		 * 
-		 * //전체 페이지 수 계산 int totalPage
-		 * =(int)Math.ceil((double)totalRecordCount/pageSize);
-		 * 
-		 * int nowPage = req.getParameter("nowPage")==null ? 1 :
-		 * Integer.parseInt(req.getParameter("nowPage"));
-		 * 
-		 * int start =(nowPage-1) * pageSize + 1; int end = nowPage * pageSize;
-		 * 
-		 * parameterDTO.setStart(start); parameterDTO.setEnd(end);
-		 */
-		ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).listPage(clubDTO);
-
-		//String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath() + "/mybatis/list.do?");
-
-		//model.addAttribute("pagingImg", pagingImg);
-
-		//model객체에 저장
-		System.out.println(totalRecordCount);
-
-		model.addAttribute("lists", lists);
-		return "club/club_search";
-	}
-
-	@RequestMapping(value="/club/clubApplyAction.do", method=RequestMethod.POST)
-	public String clubApplyAction(HttpServletRequest req)
-	{      
-		ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
-		clubMemberDTO.setC_idx(req.getParameter("c_idx"));
-		clubMemberDTO.setM_id(req.getParameter("m_id"));
-		clubMemberDTO.setCm_memo(req.getParameter("memo"));
-		//Mybatis 사용
-		int suc = sqlSession.getMapper(ClubDAOImpl.class).clubApply(clubMemberDTO);
-
-		System.out.println(suc);
-
-		return "club/club_main";
-	}
+   public String clubSearch(Principal principal, Model model, HttpSession session, HttpServletRequest req) { 
+      
+	  String m_id = principal.getName();
+	  session.setAttribute("m_id",m_id);
+	   
+	  ClubDTO clubDTO = new ClubDTO(); 
+      clubDTO.setC_name(req.getParameter("clubName"));
+      clubDTO.setC_area(req.getParameter("area"));
+      clubDTO.setC_ability(req.getParameter("ability"));
+      clubDTO.setC_gender(req.getParameter("gender"));
+      clubDTO.setC_age(req.getParameter("age"));
+      
+      int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCount(clubDTO);
+      
+    //페이지 처리를 위한 설정값.
+      /*
+       * int pageSize =
+       * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
+       * "springBoard.pageSize")); int blockPage =
+       * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
+       * "springBoard.blockPage"));
+       * 
+       * //전체 페이지 수 계산 int totalPage
+       * =(int)Math.ceil((double)totalRecordCount/pageSize);
+       * 
+       * int nowPage = req.getParameter("nowPage")==null ? 1 :
+       * Integer.parseInt(req.getParameter("nowPage"));
+       * 
+       * int start =(nowPage-1) * pageSize + 1; int end = nowPage * pageSize;
+       * 
+       * parameterDTO.setStart(start); parameterDTO.setEnd(end);
+       */
+      ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).listPage(clubDTO);
+      
+      //String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath() + "/mybatis/list.do?");
+      
+      //model.addAttribute("pagingImg", pagingImg);
+      
+      //model객체에 저장
+      System.out.println(totalRecordCount);
+      
+      model.addAttribute("lists", lists);
+      return "club/club_search";
+   }
+   
+   @RequestMapping(value="/club/clubApplyAction.do", method=RequestMethod.POST)
+   public String clubApplyAction(HttpServletRequest req)
+   {  
+	  
+      ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
+      clubMemberDTO.setC_idx(req.getParameter("c_idx"));
+      clubMemberDTO.setM_id(req.getParameter("m_id"));
+      clubMemberDTO.setCm_memo(req.getParameter("memo"));
+      //Mybatis 사용
+      int suc = sqlSession.getMapper(ClubDAOImpl.class).clubApply(clubMemberDTO);
+      
+      System.out.println(suc);
+      
+      return "club/club_main";
+   }
 
 	@RequestMapping("/club/clubCreate.do")
 	public String clubCreate() {   
@@ -113,9 +129,57 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubView.do")
-	public String clubView() {
+	public String clubView(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
 		return "club/club_view";
 	}
+	@RequestMapping("/club/clubViewMember.do")
+	public String clubViewMember(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_member";
+	}
+	@RequestMapping("/club/clubViewRank.do")
+	public String clubViewRank(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_rank";
+	}
+	@RequestMapping("/club/clubViewMatch.do")
+	public String clubViewMatch(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_match";
+	}
+	@RequestMapping("/club/clubViewFormation.do")
+	public String clubViewFormation(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_formation";
+	}
+	
+	
 
 	public static String getUuid() {
 		String uuid= UUID.randomUUID().toString();
@@ -128,8 +192,9 @@ public class ClubController {
 
 	//클럽 생성
 	@RequestMapping(value="/club/clubCreate.do", method = RequestMethod.POST)
-	public String clubCreatePro(HttpSession session, ClubDTO clubdto, Model model , MultipartHttpServletRequest req) {
+	public String clubCreatePro(Principal principal, HttpSession session, ClubDTO clubdto, Model model , MultipartHttpServletRequest req) {
 
+		String m_id = principal.getName();
 		//서버의 물리적경로 가져오기
 		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
 
@@ -193,6 +258,11 @@ public class ClubController {
 				clubdto.setC_emb(saveFileName);
 
 				sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
+				
+				int idx = sqlSession.getMapper(ClubDAOImpl.class).clubIdx(clubdto);
+				
+				sqlSession.getMapper(ClubDAOImpl.class).clubCreateMember(m_id, idx);
+				
 			}
 			returnObj.put("files", resultList);
 		} catch (IOException e) {
@@ -204,31 +274,7 @@ public class ClubController {
 		return "club/club_main";
 	}
 
-	//클럽 검색
-	/*
-	 * @RequestMapping(value="/club/clubSearch.do") public String
-	 * clubSearchPro(Model model, HttpServletRequest req) {
-	 * 
-	 * ParameterDTO parameterDTO = new ParameterDTO();
-	 * parameterDTO.setSearchTxt(req.getParameter("searchTxt"));
-	 * System.out.println("검색어:"+parameterDTO.getSearchTxt());
-	 * 
-	 * //리스트 페이지에 출력할 게시물 가져오기 ArrayList<ClubDTO>lists =
-	 * sqlSession.getMapper(ClubDAOImpl.class) .listsPage(parameterDTO);
-	 * 
-	 * //model객체에 저장 model.addAttribute("lists", lists);
-	 * 
-	 * return "club/club_main"; }
-	 */
 
 
 
 }
-
-
-
-
-
-
-
-

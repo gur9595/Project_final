@@ -24,7 +24,6 @@
 	
 	<context:component-scan base-package="com.kosmo.project_final" />
 	
-	
 	<!-- 파일업로드를 위한 빈 생성 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10000000" /> <!-- 1메가바이트 -->
@@ -46,8 +45,20 @@
 	</beans:bean>
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"/>
-	</beans:bean>
-
+	</beans:bean> 
 	
+	<!-- Gmail -->
+  <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <beans:property name="host" value="smtp.gmail.com" />
+    <beans:property name="port" value="587" />
+    <beans:property name="username" value="wjvnsej@gmail.com" />
+    <beans:property name="password" value="btnkxacvoahcrtsv" />
+    <beans:property name="javaMailProperties">
+    <beans:props>
+      <beans:prop key="mail.smtp.auth">true</beans:prop>
+      <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+    </beans:props>
+    </beans:property>
+  </beans:bean>
 	
 </beans:beans>
