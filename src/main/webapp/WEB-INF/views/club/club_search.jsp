@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <link href="./../resources/css/search.css" rel="stylesheet"	type="text/css" media="all">
 <html>
+<script>
+$('#clubSearchSubmit').click(function() {
+	$("#contents").load("clubSearchFilter.do?clubName="+$("#clubName").val() +"&area="+$('#area').val() +"&ability="+$('#ability').val() +"&gender="+$('#gender').val() +"&age="+$('#age').val());
+});
+</script>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -13,7 +18,7 @@ request.setCharacterEncoding("UTF-8");
 		<br /><br />
 		<div class="one_half first">
 			<div class="s007">
-			  <form method="get">
+			  <form method="post" id="searchForm">
 		        <div class="inner-form">
 		          <div class="basic-search">
 		            <div class="input-field">
@@ -22,14 +27,14 @@ request.setCharacterEncoding("UTF-8");
 		                  <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
 		                </svg>
 		              </div>
-		              <input id="searchTxt" name="clubName" type="text" placeholder="클럽명 입력" />
+		              <input id="clubName" name="clubName" type="text" placeholder="클럽명 입력" />
 		          </div>
 		          <div class="advance-search">
 		            <span class="desc">세부 검색</span>
 		            <div class="row">
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="area">
+		                  <select data-trigger="" class="form-control" id="area" name="area">
 		                    <option placeholder="" value="">---지역구---</option>
 		                    <option value="강남구">강남구</option>
                             <option value="강동구">강동구</option>
@@ -61,11 +66,14 @@ request.setCharacterEncoding("UTF-8");
 		              </div>
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="ability">
+		                  <select data-trigger="" class="form-control" id="ability" name="ability">
 		                    <option placeholder="" value="">---실력---</option>
-		                    <option value="h">상</option>
-		                    <option value="m">중</option>
-		                    <option value="l">하</option>
+		                    <option value="최상">최상</option>
+		                    <option value="상">상</option>
+		                    <option value="중상">중상</option>
+		                    <option value="중">중</option>
+		                    <option value="중하">중하</option>
+		                    <option value="하">하</option>
 		                  </select>
 		                </div>
 		              </div>
@@ -73,29 +81,29 @@ request.setCharacterEncoding("UTF-8");
 		            <div class="row second">
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="gender">
+		                  <select data-trigger="" class="form-control" id="gender" name="gender">
 		                    <option placeholder="" value="">---성별---</option>
-		                    <option>남자</option>
-		                    <option>여자</option>
-		                    <option>혼성</option>
+		                    <option value="남자">남자</option>
+		                    <option value="여자">여자</option>
+		                    <option value="혼성">혼성</option>
 		                  </select>
 		                </div>
 		              </div>
 		              <div class="input-field">
 		                <div class="input-select">
-		                  <select data-trigger="" class="form-control" name="age">
+		                  <select data-trigger="" class="form-control" id="age" name="age">
 		                    <option placeholder="" value="">---나이대---</option>
-		                    <option>장년부</option>
-		                    <option>청년부</option>
-		                    <option>청소년부</option>
-		                    <option>유소년부</option>
+		                    <option value="장년부">장년부</option>
+		                    <option value="청년부">청년부</option>
+		                    <option value="청소년부">청소년부</option>
+		                    <option value="유소년부">유소년부</option>
 		                  </select>
 		                </div>
 		              </div>
 		            </div>
 		            <div class="row third">
 		              <div class="input-field">
-		                <input type="submit" class="btn-search" value="검색"></button>
+		                <input type="button" id="clubSearchSubmit" class="btn-search" value="검색"></input>
 		              </div>
 		            </div>
 		          </div>
