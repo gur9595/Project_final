@@ -10,11 +10,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +37,9 @@ public class MemberController {
 
    @Autowired
    private SqlSession sqlSession;
+   
+   @Autowired
+   private JavaMailSender mailSender;
 
    @RequestMapping("/member/memberSelect.do")
    public String member_select() {
@@ -77,7 +83,89 @@ public class MemberController {
       return "/member/id_pw";
    }
 
+// id찾기 메일전송
+	@RequestMapping(value = "/member/id_mailSending.do")
+	public String id_mailSending(HttpServletRequest request) {
 
+		MemberDTO memberDTO = new MemberDTO();
+
+		// 보내는 사람 이메일
+		String setfrom = "wjvnsej";
+		// 받는 사람 이름
+		String name = request.getParameter("id_name");
+		// 받는 사람 이메일
+		String tomail = request.getParameter("id_email");
+		// 제목
+		String title = "<B-PRO>고객님의 아이디 찾기 결과를 알려드립니다."; 
+		// 내용
+		String content = "고객님의 아이디는 '";
+
+		memberDTO.setM_name(name);
+		memberDTO.setM_email(tomail);
+
+		String id = sqlSession.getMapper(MemberDAOImpl.class).id_mailSending(memberDTO);
+
+		content += id + "' 입니다.\n저희 B-PRO를 이용해주셔서 감사합니다!\n좋은하루되세요!";
+
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+					true, "UTF-8");
+
+			messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+			messageHelper.setTo(tomail); // 받는사람 이메일
+			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+			messageHelper.setText(content); // 메일 내용
+
+			mailSender.send(message);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return "/member/id_pw";
+	}
+
+	// pw찾기 메일전송
+	@RequestMapping(value = "/member/pw_mailSending.do")
+	public String pw_mailSending(HttpServletRequest request) {
+
+		MemberDTO memberDTO = new MemberDTO();
+
+		// 보내는 사람 이메일
+		String setfrom = "wjvnsej";
+		// 받는 사람 아이디
+		String id = request.getParameter("pw_id");
+		// 받는 사람 이메일
+		String tomail = request.getParameter("pw_email");
+		// 제목
+		String title = "<B-PRO>고객님의 비밀번호 찾기 결과를 알려드립니다."; 
+		// 내용
+		String content = "고객님의 비밀번호는 '";
+
+		memberDTO.setM_id(id);
+		memberDTO.setM_email(tomail);
+
+		String pass = sqlSession.getMapper(MemberDAOImpl.class).pw_mailSending(memberDTO);
+
+		content += pass + "' 입니다.\n저희 B-PRO를 이용해주셔서 감사합니다!\n좋은하루되세요!";
+
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+					true, "UTF-8");
+
+			messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+			messageHelper.setTo(tomail); // 받는사람 이메일
+			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+			messageHelper.setText(content); // 메일 내용
+
+			mailSender.send(message);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return "/member/id_pw";
+	}
 
    @RequestMapping(value = "/member/memberJoin1.do", method = RequestMethod.POST) 
    public String memberJoinPro1(HttpServletRequest req, Model model) {
@@ -100,9 +188,7 @@ public class MemberController {
       model.addAttribute("m_phone",m_phone);
       model.addAttribute("m_email",m_email);
       model.addAttribute("m_addr",m_addr);
-
-
-
+      
       return "member/member_agree2";
    }
 
