@@ -81,7 +81,7 @@
 		}, 
 		function(rsp) { // callback : 고객이 결제를 완료한 후 실행되는 함수
 		    if ( rsp.success ) { // 결제 성공시 로직
-		        var msg = '====== 결제가 완료되었습니다. ======';
+		        var msg = '====== 결제가 완료되었습니다. ======';   
 		        msg += '\n고유ID : ' + rsp.imp_uid;
 		        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
 		        msg += '\n주문 상품명 : ' + payment.charge;
