@@ -2,33 +2,33 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<div class="row hoc" style="background-color: #282e39">
-   <div class="col-md-12 right" >
-      <nav id="mainav" class="right text-right" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px;">
-         <ul class="cl ear ml-auto mb-0" style="font-size: 15px; color: #fff;">
-            <li>
-               <c:choose>
-                  <c:when test="${not empty m_id }">
-                     <form:form method="post" action="${pageContext.request.contextPath }/member/logout">
-                        <button type="submit" style="border:0; background-color: #282e39; padding-bottom: 2px;" >LOGOUT</button>
-                     </form:form>    
-                  </c:when>
-                  <c:otherwise>
-                     <a class="" href="${pageContext.request.contextPath }/member/login.do">Login</a>
-                  </c:otherwise>
-               </c:choose>
-            </li>
-           
-            <c:if test="${not empty m_id}">
-                   <li><a href="${pageContext.request.contextPath }/member/memberEdit.do">MyPage</a></li>
-              </c:if>
-           
-              <li><a class="dr op" href="${pageContext.request.contextPath }/customer/qnaMain.do">Q & A</a></li>
-              
-              <li><a class="" href="${pageContext.request.contextPath }/payment/paymentMain.do">charge</a></li>
-           
-         </ul>
-       </nav>
+<div class="row hoc">
+	<div class="col-md-12 right" style="background-color: #282e39">
+		<nav id="mainav" class="right text-right" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px;">
+			<ul class="cl ear ml-auto mb-0" style="font-size: 15px; color: #fff;">
+				<li>
+					<c:choose>
+						<c:when test="${not empty m_id }">
+							<form:form method="post" action="${pageContext.request.contextPath }/member/logout">
+								<button type="submit" style="border:0; background-color: #282e39; padding-bottom: 2px;" >LOGOUT</button>
+							</form:form>	 
+						</c:when>
+						<c:otherwise>
+							<a class="" href="${pageContext.request.contextPath }/member/login.do">Login</a>
+						</c:otherwise>
+					</c:choose>
+				</li>
+
+				<c:if test="${not empty m_id}">
+		       		<li><a href="${pageContext.request.contextPath }/member/mypageMain.do">MyPage</a></li>
+		        </c:if>
+
+	        	<li><a class="dr op" href="${pageContext.request.contextPath }/customer/qnaMain.do">Q & A</a></li>
+	        	
+	        	<li><a class="" href="${pageContext.request.contextPath }/payment/paymentMain.do">charge</a></li>
+	        
+			</ul>
+	    </nav>
     </div>
 </div>
 <div style="background-color: #fff">
@@ -58,5 +58,5 @@
     
    </div>
 </div>
- </header>
- </div> 
+</header>
+</div> 

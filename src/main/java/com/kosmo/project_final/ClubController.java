@@ -61,7 +61,7 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubSearch.do")
-   public String clubSearch(Principal principal, Model model, HttpSession session, HttpServletRequest req) { 
+	public String clubSearch(Principal principal, Model model, HttpSession session, HttpServletRequest req) { 
       
 	  String m_id = principal.getName();
 	  session.setAttribute("m_id",m_id);
@@ -93,7 +93,68 @@ public class ClubController {
        * 
        * parameterDTO.setStart(start); parameterDTO.setEnd(end);
        */
+      System.out.println(req.getParameter("clubName")+""+req.getParameter("area")+""+req.getParameter("ability")+""+req.getParameter("gender")+""+req.getParameter("age"));
+      
+      
       ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).listPage(clubDTO);
+      
+      //String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath() + "/mybatis/list.do?");
+      
+      //model.addAttribute("pagingImg", pagingImg);
+      
+      //model객체에 저장
+      System.out.println(totalRecordCount);
+      
+      model.addAttribute("lists", lists);
+      return "club/club_search";
+   }
+	
+	@RequestMapping("/club/clubSearchFilter.do")
+	public String clubSearchFilter(Principal principal, Model model, HttpSession session, HttpServletRequest req) { 
+      
+	  String m_id = principal.getName();
+	  session.setAttribute("m_id",m_id);
+	   
+	  ClubDTO clubDTO = new ClubDTO(); 
+      String clubName = req.getParameter("clubName");
+      String area = req.getParameter("area");
+      String ability = req.getParameter("ability");
+      String gender = req.getParameter("gender");
+      String age = req.getParameter("age");
+      
+      if (clubName==null) {
+    	  
+      }
+      
+      clubDTO.setC_name(req.getParameter("clubName"));
+      clubDTO.setC_area(req.getParameter("area"));
+      clubDTO.setC_ability(req.getParameter("ability"));
+      clubDTO.setC_gender(req.getParameter("gender"));
+      clubDTO.setC_age(req.getParameter("age"));
+      
+      System.out.println(req.getParameter("clubName")+""+req.getParameter("area")+""+req.getParameter("ability")+""+req.getParameter("gender")+""+req.getParameter("age"));
+      
+      int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCount(clubDTO);
+      
+    //페이지 처리를 위한 설정값.
+      /*
+       * int pageSize =
+       * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
+       * "springBoard.pageSize")); int blockPage =
+       * Integer.parseInt(EnvFileReader.getValue("SpringBbsInit.properties",
+       * "springBoard.blockPage"));
+       * 
+       * //전체 페이지 수 계산 int totalPage
+       * =(int)Math.ceil((double)totalRecordCount/pageSize);
+       * 
+       * int nowPage = req.getParameter("nowPage")==null ? 1 :
+       * Integer.parseInt(req.getParameter("nowPage"));
+       * 
+       * int start =(nowPage-1) * pageSize + 1; int end = nowPage * pageSize;
+       * 
+       * parameterDTO.setStart(start); parameterDTO.setEnd(end);
+       */
+      ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).listPageFilter(clubDTO);
       
       //String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath() + "/mybatis/list.do?");
       
