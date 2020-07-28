@@ -36,7 +36,7 @@
 <div class="row" style="padding-top: 25px; padding-bottom: 25px;">    
 	<div class="col-md-6"> 
 		<nav id="mainav" class="left text-left">
-			<ul class="cl ear ml-auto mb-0" style="font-size: 10px; color: #000000; padding-left: 20px; ">
+			<ul class="cl ear ml-auto mb-0" style="font-size: 10px; color: #000000; padding-left: 20px;">
 		    	<li style="font-size: 30px;"><a href="${pageContext.request.contextPath }">B-PRO</a></li>
 			</ul>
 		</nav>

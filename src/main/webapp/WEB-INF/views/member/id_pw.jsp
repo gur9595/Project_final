@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="./../resources//css/util.css" />
 <link rel="stylesheet" href="./../resources/css/id_pwpage.css" />
 <!-- login css end -->
+
+<script src="./../resources/js/member.js"></script>
 </head>
 <body id="top">
 <!--top-->
@@ -33,7 +35,10 @@
     <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+			
+				<form class="login100-form validate-form" name="idFrm" method="post" 
+					onsubmit="return id_search(this);" action="<c:url value="/member/id_mailSending.do" />" >
+					
 					<span class="login100-form-title p-b-26">
 						아이디 찾기
 					</span> 
@@ -43,36 +48,36 @@
 					</span> -->
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" id="name" name="name" placeholder="이름">
+						<input class="input100" type="text" id="id_name" name="id_name" placeholder="이름" style="width: 260px;">
 						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<!-- <span class="btn-show-pass">
+						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i> 
-						</span> -->
-						<input class="input100" type="text" id="name" name="email" placeholder="이메일">
+						</span>
+						<input class="input100" type="text" name="id_email" id="id_email" placeholder="회원가입시 입력한 이메일" style="width: 260px;">
 						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-							아 찾기 싫다
-							</button>
+							<button class="login100-form-btn">아이디 찾기</button>
 						</div>
 						<div class="clear"></div>
 					</div>
 					<br /><br />
-						<div class="clear"></div>
+					<div class="clear"></div>
 				</form>
 			</div>
 		<!-- </div>
     비밀번호 찾기
 		<div class="container-login100"> -->
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" name="pwFrm" method="post" 
+					onsubmit="return pw_search(this);" action="<c:url value="/member/pw_mailSending.do" />" >
+					
 					<span class="login100-form-title p-b-26">
 						비밀번호 찾기
 					</span> 
@@ -82,7 +87,7 @@
 					</span> -->
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" id="id" name="id" placeholder="아이디">
+						<input class="input100" type="text" id="pw_id" name="pw_id" placeholder="아이디" style="width: 260px;">
 						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 
@@ -90,21 +95,19 @@
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i> 
 						</span>
-						<input class="input100" type="text" name="email" placeholder="이메일">
+						<input class="input100" type="text" name="pw_email" id="pw_email" placeholder="회원가입시 입력한 이메일" style="width: 260px;">
 						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-							비밀번호 찾기
-							</button>
+							<button class="login100-form-btn">비밀번호 찾기</button>
 						</div>
 						<div class="clear"></div>
 					</div>
 					<br /><br />
-						<div class="clear"></div>
+					<div class="clear"></div>
 				</form>
 			</div>
 		</div>
