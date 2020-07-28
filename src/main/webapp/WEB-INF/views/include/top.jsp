@@ -31,7 +31,6 @@
 	    </nav>
     </div>
 </div>
-
 <div style="background-color: #fff">
 <header id="header" class="hoc clear"> 
 <div class="row" style="padding-top: 25px; padding-bottom: 25px;">    

@@ -199,7 +199,9 @@
                                                       <div style="height:100%;">
                                                         <div style="margin:auto; display:table; height:120px;width:200px;">
                                                             <div style="display:table-cell; ">
-                                                                <div style="background-color: white; height: 250px;width:200px; margin-left:25px;"></div>
+                                                                <div style=" height: 250px;width:200px; margin-left:25px; align-content: center">
+                                                      	          <img src="./../resources/uploadsFile/${clubDTO.c_emb }" style="max-height: 200px; max-width: 200px;" alt="" />
+                                                                </div>
                                                             </div>
                                                     
                                                         </div>
@@ -210,14 +212,14 @@
                                                   <div class="col-xs-8" style="color:white; height:100%; padding-left: 0px;">
                                                     <div class="row" style="margin:0; padding:0; margin-top:20px;">
                                                       <div class="col-xs-12" style="margin:0; padding:0;">
-                                                        <h1 style="margin:0; font-size:26px; font-weight:600">토트넘</h1>
+                                                        <h1 style="margin:0; font-size:26px; font-weight:600">${clubDTO.c_name }</h1>
                                                       </div>
                                                       <div class="col-xs-4">
                                                       </div>
                                                     </div>
                                                     <div class="row" style="margin:0; padding:0;">
                                                       <div>
-                                                        <h6 style="margin:0;font-size:18px; font-weight:600; color:#7F7F7F; margin-top:4px;">팀 등록일 : 2020-07-27</h6>
+                                                        <h6 style="margin:0;font-size:18px; font-weight:600; color:#7F7F7F; margin-top:4px;">팀 등록일 : ${clubDTO.c_date }</h6>
                                                       </div>
                                                     </div>
                                                     <div class="container-fluid" style="margin-top:20px;">
@@ -229,27 +231,27 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·연령대</td>
-                                                                <td style="border-bottom: none">중년층</td>
+                                                                <td style="border-bottom: none">${clubDTO.c_age }</td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·성별</td>
-                                                                <td style="border-bottom: none">혼성</td>
+                                                                <td style="border-bottom: none">${clubDTO.c_gender }</td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·회원수</td>
-                                                                <td style="border-bottom: none">30명</td>
+                                                                <td style="border-bottom: none">${clubDTO.c_memlimit }명</td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·실력</td>
-                                                                <td style="border-bottom: none">중하</td>
+                                                                <td style="border-bottom: none">${clubDTO.c_ability }</td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·유형</td>
-                                                                <td style="border-bottom: none">축구</td>
+                                                                <td style="border-bottom: none">${clubDTO.c_type }</td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·활동지역</td>
-                                                                <td style="border-bottom: none">금천구</td>
+                                                                <td style="border-bottom: none">${clubDTO.c_area }</td>
                                                             </tr>
                                                         </table>
                                                       </div>
@@ -257,7 +259,7 @@
                                                         <div class="row" style="margin:0; padding:0; margin-bottom:15px;">
                                                           <h6 style="margin:0; padding:0; color:#BFBFBF; font-size:20px; font-weight:600; margin-bottom:15px;">팀 소개</h6>
                                                           <div class="col-xs-12" style="margin:0; padding:0; background-color:#ADADAD;height:100%; border-radius:15px;padding:10px; height:100px">
-                                                            안녕하세요 토트넘 클럽입니다.
+                                                            ${clubDTO.c_memo }
                                                             <div style="overflow-y:hidden;height:100%;width:100%;">
                                                               <h6 style="margin:0; padding:0; color:black;white-space:pre-line"></h6>
                                                             </div>
