@@ -14,7 +14,7 @@
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
-h2 { font-size : 24px; color:#000066; line-height:30px;;
+h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen Script;
 	margin:52px auto 10px 0px;
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
@@ -35,6 +35,7 @@ h2 { font-size : 24px; color:#000066; line-height:30px;;
 
 .box::before {
   content: "\f13a";
+  font-family: FontAwesome;
   position: absolute;
   top: 0;
   right: 0;
@@ -66,6 +67,19 @@ label {
 #file { display:none; } 
 
 </style>
+<script>
+	function setPic(event) {
+		var reader = new FileReader();
+		
+		reader.onload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img);
+		};
+		reader.readAsDataURL(event.target.files[0]);
+	}
+</script>
+
 
 </head>
 <body id="top">
@@ -79,20 +93,17 @@ label {
 </div>
 	<main class="hoc container clear">
 	    <div class="container">
-	    <h1 class="title-join" style="font-size:40px; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h1>
-	    <form action="/member/v2/join/complete" method="post" id="myForm" novalidate>
-
-	    
-	    <form action="<c:url value="/member/memberJoin2.do" />" method="post" id="myForm">
+	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
+	    <form action="../member/memberJoin2.do" enctype="multipart/form-data" method="post"id="myForm" name="form"  >
 			<!-- Header -->
 			
-			<input type="hid den" name="m_id" value=""/>
-			<input type="hid den" name="m_pw" value=""/>
-			<input type="hid den" name="m_name" value=""/>
-			<input type="hid den" name="m_birth" value=""/>
-			<input type="hid den" name="m_phone" value=""/>
-			<input type="hid den" name="m_email" value=""/>
-			<input type="hid den" name="m_addr" value=""/>
+			<input type="hid den" name="m_id" value="<%=request.getAttribute("m_id") %>"/>
+			<input type="hid den" name="m_pw" value="<%=request.getAttribute("m_pw") %>"/>
+			<input type="hid den" name="m_name" value="<%=request.getAttribute("m_name") %>"/>
+			<input type="hid den" name="m_birth" value="<%=request.getAttribute("m_birth") %>"/>
+			<input type="hid den" name="m_phone" value="<%=request.getAttribute("m_phone") %>"/>
+			<input type="hid den" name="m_email" value="<%=request.getAttribute("m_email") %>"/>
+			<input type="hid den" name="m_addr" value="<%=request.getAttribute("m_addr") %>"/>
 			
 			<header class="member-header">
 			    <div class="logo">
@@ -100,80 +111,48 @@ label {
 			    </div>
 			</header>
 			<!-- //Header -->
-	        
-	        <h2>사는 지역</h2>
-			<div class="box">
-			    <select id="selectbox" title="선택 구분">
-			        <option selected="selected">선택해 주세요</option>
-			        <option value="강남구">강남구</option>
-			        <option value="강동구">강동구</option>
-			        <option value="강북구">강북구</option>
-			        <option value="강서구">강서구</option>
-			        <option value="관악구">관악구</option>
-			        <option value="광진구">광진구</option>
-			        <option value="구로구">구로구</option>
-			        <option value="금천구">금천구</option>
-			        <option value="노원구">노원구</option>
-			        <option value="도봉구">도봉구</option>
-			        <option value="동대문구">동대문구</option>
-			        <option value="동작구">동작구</option>
-			        <option value="마포구">마포구</option>
-			        <option value="서대문구">서대문구</option>
-			        <option value="서초구">서초구</option>
-			        <option value="성동구">성동구</option>
-			        <option value="성북구">성북구</option>
-			        <option value="송파구">송파구</option>
-			        <option value="양천구">양천구</option>
-			        <option value="영등포구">영등포구</option>
-			        <option value="용산구">용산구</option>
-			        <option value="은평구">은평구</option>
-			        <option value="종로구">종로구</option>
-			        <option value="중구">중구</option>
-			        <option value="중랑구">중랑구</option>  
-			    </select>
-			</div>
 	        <h2>성별 체크</h2>
 	        <table class="table table-borderless">
 	        	<tr>
-					<td width="20px;"><input type="radio" name="gender" id="man" value="man" ></td>
+					<td width="20px;"><input type="radio" name="m_sex" id="man" value="남자" ></td>
 					<td><label for="man">남자</label></td>
-					<td width="20px;"><input type="radio" name="gender" id="wowan" value="woman"></td>
-					<td><label for="woman">여자</label></td>
+					<td width="20px;"><input type="radio" name="m_sex" id="wowan" value="여자"></td>
+					<td><label for="wowan">여자</label></td>
 				</tr>
 	        </table>
 	        
 			<h2>주 포지션 체크</h2>
 			<table class="table table-borderless">
 				<tr>
-		          	<td width="20px;"><input type="checkbox" name="position" id="LW" value="LW"/></td>
+		          	<td width="20px;"><input type="checkbox" name="m_position" id="LW" value="LW"/></td>
 		          	<td><label for="LW">LW</label></td>
-		            <td width="20px;"><input type="checkbox" name="position" id="ST" value="ST"/></td>
+		            <td width="20px;"><input type="checkbox" name="m_position" id="ST" value="ST"/></td>
 		            <td><label for="ST">ST</label></td>
-		            <td width="20px;"><input type="checkbox" name="position" id="RW" value="RW"/></td>
+		            <td width="20px;"><input type="checkbox" name="m_position" id="RW" value="RW"/></td>
 		            <td><label for="RW">RW</label></td>
 		        </tr>
 				<tr>
-		          	<td><input type="checkbox" name="position" id="LM" value="LM"/></td>
+		          	<td><input type="checkbox" name="m_position" id="LM" value="LM"/></td>
 		          	<td><label for="LM">LM</label></td>
-		            <td><input type="checkbox" name="position" id="AM" value="AM"/></td>
+		            <td><input type="checkbox" name="m_position" id="AM" value="AM"/></td>
 		            <td><label for="AM">AM</label></td>
-		            <td><input type="checkbox" name="position" id="RM" value="RM"/></td>
+		            <td><input type="checkbox" name="m_position" id="RM" value="RM"/></td>
 		            <td><label for="RM">RM</label></td>
 		        </tr>
 				<tr>
-		          	<td ><input type="checkbox" name="position" id="CM" value="CM"/></td>
+		          	<td ><input type="checkbox" name="m_position" id="CM" value="CM"/></td>
 		          	<td ><label for="CM">CM</label></td>
-		            <td ><input type="checkbox" name="position" id="CB" value="CB"/></td>
+		            <td ><input type="checkbox" name="m_position" id="CB" value="CB"/></td>
 		            <td ><label for="CB">CB</label></td>
-		            <td ><input type="checkbox" name="position" id="DM" value="DM"/></td>
+		            <td ><input type="checkbox" name="m_position" id="DM" value="DM"/></td>
 		            <td ><label for="DM">DM</label></td>
 		        </tr>
 		  		<tr>
-		          	<td ><input type="checkbox" name="position" id="LB" value="LB"/></td>
+		          	<td ><input type="checkbox" name="m_position" id="LB" value="LB"/></td>
 		          	<td ><label for="LB">LB</label></td>
-		            <td ><input type="checkbox" name="position" id="GK" value="GK"/></td>
+		            <td ><input type="checkbox" name="m_position" id="GK" value="GK"/></td>
 		            <td ><label for="GK">GK</label></td>
-		            <td ><input type="checkbox" name="position" id="RB" value="RB"/></td>
+		            <td ><input type="checkbox" name="m_position" id="RB" value="RB"/></td>
 		            <td ><label for="RB">RB</label></td>
 		        </tr>
 	        </table>
@@ -181,19 +160,19 @@ label {
 			<h2>주관적인 실력</h2>
 			<table class="table table-borderless">
 				<tr>
-					<td width="20px;"><input type="radio" name="abil" id="best" value="best" ></td>
+					<td width="20px;"><input type="radio" name="m_abil" id="best" value="best" ></td>
 					<td><label for="best">최상</label></td>
-					<td width="20px;"><input type="radio" name="abil" id="top" value="top"></td>
+					<td width="20px;"><input type="radio" name="m_abil" id="top" value="top"></td>
 					<td><label for="top">상</label></td>
-					<td width="20px;"><input type="radio" name="abil" id="mediumhigh" value="mediumhigh"></td>
+					<td width="20px;"><input type="radio" name="m_abil" id="mediumhigh" value="mediumhigh"></td>
 					<td><label for="mediumhigh">중상</label></td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="abil" id="medium" value="medium"></td>
+					<td><input type="radio" name="m_abil" id="medium" value="medium"></td>
 					<td><label for="medium">중</label></td>
-					<td><input type="radio" name="abil" id="mediumlow" value="mediumlow"></td>
+					<td><input type="radio" name="m_abil" id="mediumlow" value="mediumlow"></td>
 					<td><label for="mediumlow">중하</label></td>
-					<td><input type="radio" name="abil" id="low" value="low"></td>
+					<td><input type="radio" name="m_abil" id="low" value="low"></td>
 					<td><label for="low">하</label></td>
 				</tr>
 			</table>
@@ -201,31 +180,25 @@ label {
 	        <h2>주로쓰는 발</h2>
 	        <table class="table table-borderless">
 	        	<tr>
-	        		<td width="20px;"><input type="radio" name="foot" id="LF" value="LF"></td>
+	        		<td width="20px;"><input type="radio" name="m_foot" id="LF" value="LF"></td>
 	        		<td><label for="LF">왼발</label></td>
-	        		<td width="20px;"><input type="radio" name="foot" id="RF" value="RF"></td>
+	        		<td width="20px;"><input type="radio" name="m_foot" id="RF" value="RF"></td>
 	        		<td><label for="RF">오른발</label></td>
-					<td width="20px;"><input type="radio" name="foot" id="ALL" value="ALL"></td>
+					<td width="20px;"><input type="radio" name="m_foot" id="ALL" value="ALL"></td>
 					<td><label for="ALL">양발</label></td>
 	        	</tr>
 			</table>
 	        
 	        <h2>프로필 등록하기</h2>
-			<table border=1>
+			<table>
 				<tr >
 					<td>
-						<input type="text" style="width:200px; height:200px;">
+						<div id="image_container" style="width: 300px; height: 180px"></div>
 					</td>
-					<td>상세보기</td>
+					<td>
+						<input type="file" name="file"  accept="image/*" onchange="setPic(event)"/>
+					</td>
 				</tr>
-				<tr>
-		            <td>
-						<input type="file" name="userfile" size="40">		
-		            </td>
-		            <td>
-						<input type="file" name="userfile" size="40">		
-		            </td>
-				<tr>
 			</table>
 
 	        <div style="text-align:center">
@@ -243,7 +216,6 @@ label {
 <!-- JAVASCRIPTS -->
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
-<script src="./../resources/js/jquery.mobilemenu.js"></script>
 
 
 </body>  

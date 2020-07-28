@@ -27,7 +27,6 @@ h2 { font-size : 24px; color:#000066; line-height:30px;
   appearance: button;
   outline: none;
 }
-
 .box::before {
   content: "\f13a";
   position: absolute;
@@ -42,12 +41,10 @@ h2 { font-size : 24px; color:#000066; line-height:30px;
   background-color: rgba(255, 255, 255, 0.1);
   pointer-events: none;
 }
-
 .box:hover::before {
   color: rgba(255, 255, 255, 0.6);
   background-color: rgba(255, 255, 255, 0.2);
 }
-
 .box select option {
   padding: 30px;
 }
@@ -87,7 +84,7 @@ String keyword = request.getParameter("keyword");
 <body>
 	<center class="center">클럽 생성</center>
 	<br /><br />
-	<form name="creFrm" id="creFrm" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
+	<form name="creFrm" id="creFrm" enctype="multipart/form-data" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
 		<h2>팀명</h2>
 		<div>
 			<input type="text" class="team" placeholder="팀명을 입력해주세요" id="c_name" name="c_name" style="width:400px; height:40px;">
@@ -95,7 +92,7 @@ String keyword = request.getParameter("keyword");
 		
 		<h2>엠블럼 넣기</h2>
 		<div class="selector">
-			<input type="file" id="c_emb" name="c_emb" accept="image/*" onchange="setEmblem(event)"/>
+			<input type="file" id="c_emb" name="file" accept="image/*" onchange="setEmblem(event)"/>
 			<div id="image_container"></div>
 		</div>
 		
@@ -186,7 +183,6 @@ String keyword = request.getParameter("keyword");
 	</form>
 </body>
 <script>
-
 function isValidate (creFrm){
 	if(creFrm.c_name.value==""){
 		alert('팀명을 입력하세요');
@@ -242,6 +238,5 @@ function isValidate (creFrm){
 		return false;
 	}
 }
-
 </script>
 </html>

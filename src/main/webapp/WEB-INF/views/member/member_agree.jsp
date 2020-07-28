@@ -17,9 +17,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
-	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
-	<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
 
 
     <script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
@@ -84,8 +81,9 @@
                 <div class="join-form">
                     <div class="n-form-set">
 
-                        <label for="memberId">아이디 <span class="essential"></span></label><br/>
-                        <input type="text" class="n-input input" id="memberId" name="memberId" placeholder="아이디 입력(8자이상)" minlength="8" maxlength="20" style="width:400px;">
+                        <label for="m_id" class="n-form-label">아이디 <span class="essential">필수 입력</span></label><br/>
+                        <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(4자이상)" minlength="8" maxlength="20" style="width:400px;">
+                        
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
                     
@@ -107,21 +105,21 @@
                     <div class="n-form-set">
 
                         <label for="name" >이름 <span class="essential"></span></label>
-                        <input type="text" class="n-input input" id="name" name="name" placeholder="이름입력" minlength="2" maxlength="8">
+                        <input type="text" class="n-input input" id="m_name" name="m_name" placeholder="이름입력" minlength="2" maxlength="8">
                         <p class="n-validation" id="hLayername"></p>
                     </div>
                     
                     <div class="n-form-set">
 
                         <label for="birth" >생년월일 <span class="essential"></span></label>
-                        <input type="text" class="n-input input" id="jumin1" name="jumin1" maxlength="8" placeholder="예)19970121">
+                        <input type="text" class="n-input input" id="m_birth" name="m_birth" maxlength="8" placeholder="예)19970121">
                         <p class="n-validation" id="hLayerjumin"></p>
                     </div>
                     
                     <div class="n-form-set" id="input-div">
 
                     	<label for="tel">휴대전화 <span class="essential"></span></label>
-		                <input type="tel" class="n-input" id="phoneNumber" name="phoneNumber" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="11">
+		                <input type="tel" class="n-input" id="m_phone" name="m_phone" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="11">
 		                <p class="n-validation" id="searchValidPhone" style="display: none">번호 형식이 올바르지 않습니다</p>
             		</div>
                     
@@ -171,7 +169,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="joinBtnDiv" class="member-btn">
                     <input type="submit" class="n-btn btn-primary" onsubmit="" value="다음"/>
                 </div>
@@ -188,7 +185,6 @@
 <!-- JAVASCRIPTS -->
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
-<script src="./../resources/js/jquery.mobilemenu.js"></script>
 </body>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -279,10 +275,10 @@
                     $m_id.attr('class', 'n-input input-danger');
                     return false;
                 }
-                if ($m_id.val().length < 8) {
+                if ($m_id.val().length < 4) {
                     $("#hLayerid")
                         .removeClass('validation-passed')
-                        .html('아이디는 8자 이상이어야 합니다.');
+                        .html('아이디는 4자 이상이어야 합니다.');
                     $m_id.attr('class', 'n-input input-danger');
                     return false;
                 } else {

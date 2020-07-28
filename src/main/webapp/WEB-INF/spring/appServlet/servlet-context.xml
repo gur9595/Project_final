@@ -14,6 +14,7 @@
 
 	<!--Spring Framework  에서 이미지나 ,jsm css파일등의 리소스를 사용하시 위해 생성된 폴더   -->	
 	<resources mapping="/resources/**" location="/resources/" />
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,6 +24,11 @@
 	
 	<context:component-scan base-package="com.kosmo.project_final" />
 	
+	<!-- 파일업로드를 위한 빈 생성 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10000000" /> <!-- 1메가바이트 -->
+	</beans:bean>
+
 	
 	<!-- DB연결 -->
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -39,7 +45,7 @@
 	</beans:bean>
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"/>
-	</beans:bean>
-
+	</beans:bean> 
+	
 	
 </beans:beans>

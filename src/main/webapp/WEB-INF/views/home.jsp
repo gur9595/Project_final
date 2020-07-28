@@ -99,7 +99,6 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- JAVASCRIPTS -->
 <script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/jquery.backtotop.js"></script>
-<script src="./resources/js/jquery.mobilemenu.js"></script>
 <!-- Homepage specific -->
 <script src="./resources/js/jquery.easypiechart.min.js"></script>
 <!-- / Homepage specific -->

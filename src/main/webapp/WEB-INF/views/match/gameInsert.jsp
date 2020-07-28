@@ -65,68 +65,6 @@ new daum.Postcode({
 }).open();
 }
 
-function writeValidate(f)
-{
-	if(f.date.value==""){
-		alert("경기 날짜를 선택하세요.");
-		f.date.focus();
-		return false;
-	}
-	
-	var s_time = document.getElementById("s_time");
-	var e_time = document.getElementById("e_time");
-	var type = document.getElementById("type");
-	
-	if(s_time.options[s_time.selectedIndex].value==""){
-		alert("게임 시작 시간을 선택하세요.");
-		f.s_time.focus();
-		return false;
-	}
-	if(e_time.options[e_time.selectedIndex].value==""){
-		alert("게임 끝나는 시간을 선택하세요.");
-		f.e_time.focus();
-		return false;
-	}
-	
-	if((s_time.options[s_time.selectedIndex].value) == (e_time.options[e_time.selectedIndex].value)){
-		alert("시작시간과 종료시간이 같을 수 없습니다.");
-		f.s_time.focus();
-		return false;
-	}
-	
-	if(!s_time.options[s_time.selectedIndex].value == "22" || 
-			!s_time.options[s_time.selectedIndex].value == "23"){
-		
-		if(s_time.selectedIndex >= e_time.selectedIndex){
-			alert("시작시간이 종료시간보다 늦을 수 없습니다.");
-			f.s_time.focus();
-			return false;
-		}
-		
-	}
-	
-	if(type.options[type.selectedIndex].value==""){
-		alert("게임 종목을 선택하세요.");
-		f.type.focus();
-		return false;
-	}
-	if(f.name.value==""){
-		alert("경기장 이름을 입력하세요.");
-		f.name.focus();
-		return false;
-	}
-	if(f.addr.value==""){
-		alert("경기장 주소를 입력하세요.");
-		f.addr.focus();
-		return false;
-	}
-	if(f.memo.value==""){
-		alert("세부사항을 입력하세요.");
-		f.memo.focus(); 
-		return false;
-	} 
-}
-
 </script>
 
 <style>
@@ -146,14 +84,14 @@ table, th, td{
 					<tr>
 						<th>클럽명</th>
 						<td>
-							<%-- 
+							
 							<select class="form-control" name="c_idx" id="c_idx">
-								<c:forEach var="club" items="${clubMap }" varStatus="status">
-									<option value="${club.key }">${club.value }</option>
+								<option value="" selected="selected">클럽을 선택하세요</option>
+								<c:forEach var="club" items="${c_list }">
+									<option value="${club.c_idx }">${club.c_name }</option>
 								</c:forEach>
 							</select>
-							--%>
-							<input type="text" name="c_idx" id="c_idx" class="form-control" value="9337" />
+							
 						</td>
 					</tr>
 					<tr>

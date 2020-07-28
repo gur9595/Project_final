@@ -157,6 +157,13 @@
 							<div class="pricing-button">
 								<!-- 테스트용으로 100원 설정. 발표시 10000으로 수정할 것 -->
 								<a href="#" class="btn btn-pricing" onclick="payment(100, '10,000 Ball (+ 0%)');"><i class="fa fa-cart-plus"></i> Buy</a>
+							
+								<!-- 
+								<form action="paymentMain.do" method="post">
+								테스트용으로 100원 설정. 발표시 10000으로 수정할 것
+								<a href="#" class="btn btn-pricing" onclick="payment(10, 10000, '	Ball (+ 0%)');"><i class="fa fa-cart-plus"></i> Buy</a>
+								</form> 
+								-->
 							<!-- <a href="#myModal" class="btn btn-pricing" data-toggle="modal" data-target="#myModal"><i class="fa fa-cart-plus"></i> Buy</a> -->
 							</div>
 							<script>
