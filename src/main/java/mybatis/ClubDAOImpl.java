@@ -1,5 +1,6 @@
 package mybatis;
 
+
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
@@ -20,7 +21,6 @@ public interface ClubDAOImpl {
 	
 	public int myClubListCount(String id);
 	
-	//클럽검색
-//	public ArrayList<ClubDTO> listPage(ParameterDTO parameterDTO);
+	public ClubDTO clubView(int c_idx);
 	
 }
