@@ -17,5 +17,10 @@ public interface ClubDAOImpl {
 	
 	public int clubApply(ClubMemberDTO clubMemberDTO);
 	
+	public ArrayList<ClubDTO> myClubList(String id);
+	
+	public int myClubListCount(String id);
+	
+	public ClubDTO clubView(int c_idx);
 	
 }

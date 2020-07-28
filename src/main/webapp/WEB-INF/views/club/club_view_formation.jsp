@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +14,7 @@
 
 </head>
 <style>
-    h2 {  
+    h2 { 
         font-size: 250%;
         font-weight: bold;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -47,19 +46,31 @@
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                     <a class="navbar-brand" href="introduce.html">
                         <!-- Logo icon -->
-                        <b class="logo-icon p-l-10"></b>
-                            <img src="../../assets/images/logo-icon.png" alt="마크" class="light-logo" /> 
-                        </b>
-                        <span class="logo-text">  
-                             <img src="../../assets/images/logo-text.png" alt="B_PRO" class="light-logo" />
-                        </span>
+                        <b class="logo-icon p-l-10">
 
+                            <img src="../../assets/images/logo-icon.png" alt="마크" class="light-logo" />
+                           
+                        </b>
+                        <span class="logo-text">
+                            
+                             <img src="../../assets/images/logo-text.png" alt="B-PRO" class="light-logo" />
+                            
+                        </span>
+                        <!-- Logo icon -->
+                        <!-- <b class="logo-icon"> -->
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                            
+                        <!-- </b> -->
+                        <!--End Logo icon -->
                     </a>
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
                 </div>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
                     <ul class="navbar-nav float-left mr-auto">
                         <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
@@ -84,6 +95,7 @@
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
                             </a>
@@ -91,6 +103,7 @@
                                 <ul class="list-style-none">
                                     <li>
                                         <div class="">
+                                             <!-- Message -->
                                             <a href="javascript:void(0)" class="link border-top">
                                                 <div class="d-flex no-block align-items-center p-10">
                                                     <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
@@ -100,6 +113,7 @@
                                                     </div>
                                                 </div>
                                             </a>
+                                            <!-- Message -->
                                             <a href="javascript:void(0)" class="link border-top">
                                                 <div class="d-flex no-block align-items-center p-10">
                                                     <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
@@ -109,6 +123,7 @@
                                                     </div>
                                                 </div>
                                             </a>
+                                            <!-- Message -->
                                             <a href="javascript:void(0)" class="link border-top">
                                                 <div class="d-flex no-block align-items-center p-10">
                                                     <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
@@ -118,6 +133,7 @@
                                                     </div>
                                                 </div>
                                             </a>
+                                            <!-- Message -->
                                             <a href="javascript:void(0)" class="link border-top">
                                                 <div class="d-flex no-block align-items-center p-10">
                                                     <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
@@ -151,23 +167,27 @@
             </nav>
         </header>
         <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubView.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">클럽 소개</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewMember.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">클럽회원</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewRank.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">랭킹</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewMatch.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">클럽경기</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewFormation.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">전술</span></a>                        
-                    </ul>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewFormation.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">전술</span></a>
+                    </ul>  
                 </nav>
             </div>
         </aside>
-        <div class="page-wrapper">
+
+        
+<div class="page-wrapper">
              <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h2 class="page-title" style="font-size: 40px;">&nbsp;클럽 소개</h2>
+                        <h2 class="page-title" style="font-size: 40px;">&nbsp;전술</h2>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -181,165 +201,44 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-9"> 
+                    <!-- column -->
+                    <div class="col-lg-9">
+                        <!-- Tabs -->
                         <div class="card">
                             <div class="tab-content tabcontent-border">
                                 <div>
                                     <div class="p-20">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">클럽 소개</h4>
+                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">전술</h4>
                                             </div>
-                                            <div class="comment-widgets scrollable">                           
-                                                <div class="container-fluid" id="mainHolder">
-                                                    <div class="row teamheader">
-                                                      <div class="col-xs-12" style="background-color:#333333; height:350px; width:100%;">
-                                                  <div class="col-xs-4" style="height:100%;margin:0; padding:0;">
-                                                    <div class="row" style="position:relative;height:80%;margin:0; padding:0; margin-top:20px;">
-                                                      
-                                                      <div style="height:100%;">
-                                                        <div style="margin:auto; display:table; height:120px;width:200px;">
-                                                            <div style="display:table-cell; ">
-                                                                <div style=" height: 250px;width:200px; margin-left:25px; align-content: center">
-                                                      	          <img src="./../resources/uploadsFile/${clubDTO.c_emb }" style="max-height: 200px; max-width: 200px;" alt="" />
-                                                                </div>
-                                                            </div>
-                                                    
-                                                        </div>
-                                                      </div>
-                                                      <div class="col-xs-2"></div>
-                                                    </div>
-                                                  </div>
-                                                  <div class="col-xs-8" style="color:white; height:100%; padding-left: 0px;">
-                                                    <div class="row" style="margin:0; padding:0; margin-top:20px;">
-                                                      <div class="col-xs-12" style="margin:0; padding:0;">
-                                                        <h1 style="margin:0; font-size:26px; font-weight:600">${clubDTO.c_name }</h1>
-                                                      </div>
-                                                      <div class="col-xs-4">
-                                                      </div>
-                                                    </div>
-                                                    <div class="row" style="margin:0; padding:0;">
-                                                      <div>
-                                                        <h6 style="margin:0;font-size:18px; font-weight:600; color:#7F7F7F; margin-top:4px;">팀 등록일 : ${clubDTO.c_date }</h6>
-                                                      </div>
-                                                    </div>
-                                                    <div class="container-fluid" style="margin-top:20px;">
-                                                      <div class="col-xs-6" style="padding-right: 50px; padding-left: 0px;" >
-                                                        <table style="width: 100%;">
-                                                            <tr>
-                                                                <td style="border-bottom: none; width: 50px;">·팀장</td>
-                                                                <td style="border-bottom: none">김희철</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·연령대</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_age }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·성별</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_gender }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·회원수</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_memlimit }명</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·실력</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_ability }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·유형</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_type }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·활동지역</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_area }</td>
-                                                            </tr>
-                                                        </table>
-                                                      </div>
-                                                      <div class="col-xs-6">
-                                                        <div class="row" style="margin:0; padding:0; margin-bottom:15px;">
-                                                          <h6 style="margin:0; padding:0; color:#BFBFBF; font-size:20px; font-weight:600; margin-bottom:15px;">팀 소개</h6>
-                                                          <div class="col-xs-12" style="margin:0; padding:0; background-color:#ADADAD;height:100%; border-radius:15px;padding:10px; height:100px">
-                                                            ${clubDTO.c_memo }
-                                                            <div style="overflow-y:hidden;height:100%;width:100%;">
-                                                              <h6 style="margin:0; padding:0; color:black;white-space:pre-line"></h6>
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                    </div>
-                                                    <div class="row status" style="height:250px;">
-                                                    <div class="col-xs-6 log-outer-holder">
-                                                        <div class="log-inner-holder">
-                                                        <table class="table log" style="height: 170px;">
-                                                            <thead>
-                                                            <tr>
-                                                                <th rowspan="2">총</th>
-                                                                <th rowspan="2">승</th>
-                                                                <th rowspan="2">무</th>
-                                                                <th rowspan="2">패</th>
-                                                                <th colspan="2">경기당</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>득점</th>
-                                                                <th>실점</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr style="font-weight: bolder;">
-                                                                <td style="vertical-align: middle;">20</td>
-                                                                <td style="vertical-align: middle;">10</td>
-                                                                <td style="vertical-align: middle;">0</td>
-                                                                <td style="vertical-align: middle;">10</td>
-                                                                <td style="vertical-align: middle;">20</td>
-                                                                <td style="vertical-align: middle;">10</td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-6 log-outer-holder">
-                                                        <div class="m-t-20">
-                                                            <div class="d-flex no-block align-items-center">
-                                                                <span style="font-size: 30px; color: white;">승률</span>
-                                                                <div class="ml-auto">
-                                                                    <span style="color: white;">50%</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div class="d-flex no-block align-items-center m-t-25">
-                                                                <span style="font-size: 30px; color: white;">인원수</span>
-                                                                <div class="ml-auto">
-                                                                    <span style="color: white;">60%</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>    
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            <table style="margin: 0px; width: 900px;" >
+                                                <tr>
+                                                    <td style="text-align: center;">포메이션</td>
+                                                    <td style="text-align: center;">선수명단</td> 
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="./../resources/img/socfield.jpg" alt="축구경기장">
+                                                    </td> 
+                                                </tr>
+                                            </table>
+                                        </div>    
                                     </div>
                                 </div>
-                            </div>    
+                            </div>
                         </div>
                     </div>
+                    <!-- column -->
                     <div class="col-lg-3">
+                        <!-- Card -->
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Chat Option</h4>
                                 <div class="chat-box scrollable" style="height:475px;">
+                                    <!--chat Row -->
                                     <ul class="chat-list">
+                                        <!--chat Row -->
                                         <li class="chat-item">
                                             <div class="chat-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>
                                             <div class="chat-content">
@@ -348,6 +247,7 @@
                                             </div>
                                             <div class="chat-time">10:56 am</div>
                                         </li>
+                                        <!--chat Row -->
                                         <li class="chat-item">
                                             <div class="chat-img"><img src="../../assets/images/users/2.jpg" alt="user"></div>
                                             <div class="chat-content">
@@ -356,12 +256,14 @@
                                             </div>
                                             <div class="chat-time">10:57 am</div>
                                         </li>
+                                        <!--chat Row -->
                                         <li class="odd chat-item">
                                             <div class="chat-content">
                                                 <div class="box bg-light-inverse">I would love to join the team.</div>
                                                 <br>
                                             </div>
                                         </li>
+                                        <!--chat Row -->
                                         <li class="odd chat-item">
                                             <div class="chat-content">
                                                 <div class="box bg-light-inverse">Whats budget of the new project.</div>
@@ -369,6 +271,7 @@
                                             </div>
                                             <div class="chat-time">10:59 am</div>
                                         </li>
+                                        <!--chat Row -->
                                         <li class="chat-item">
                                             <div class="chat-img"><img src="../../assets/images/users/3.jpg" alt="user"></div>
                                             <div class="chat-content">
@@ -377,6 +280,7 @@
                                             </div>
                                             <div class="chat-time">11:00 am</div>
                                         </li>
+                                        <!--chat Row -->
                                     </ul>
                                 </div>
                             </div>
@@ -397,8 +301,7 @@
                 </div>
             </div>
             <footer class="footer text-center">
-                Copyright © 2020 - All Rights Reserved <a href="#" onclick="window.open('${pageContext.request.contextPath }', '_blank','width=#, height=#'); return false">Be-Pro</a>.
-
+				Copyright © 2020 - All Rights Reserved <a href="${pageContext.request.contextPath }">Be-Pro</a>.
             </footer>
         </div>
     </div>

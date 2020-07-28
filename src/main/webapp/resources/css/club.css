@@ -12,8 +12,14 @@
 }
 
 .firstDiv {
-		margin-left:0;
-		clear:left;
+	margin-left:0;
+	clear:left;
+	height:620px;
+	display:inline-block;
+	float:left;
+	list-style:none;
+	width : 20%;
+	border-right: 1px solid gray;
 }
 
 .clubDiv {
@@ -34,8 +40,13 @@
 }
 
 .clubTable{
+	border : 0;
 	height:100%;
 	text-align : center;
+}
+
+.clubTable tr,td{
+	border : 0;
 }
 .pad{
 	height:15%;
@@ -44,6 +55,7 @@
 	font-size : 25px;
 }
 .myClubEmb{
-	max-height : 265px ;
-	max-width: 265px;
+	width:auto;
+	max-height:265px;
 }
+

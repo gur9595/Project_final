@@ -70,7 +70,7 @@
 			<c:choose>
 				<c:when test="${not empty m_id }">
 					<form:form method="post" action="${pageContext.request.contextPath }/member/logout">
-						${m_id }<button style="border: 0; outline: 0; background: white;" class="fas fa-user-alt-slash" type="submit" src="./../resources/logout.png" alt="로그아웃" >LOGOUT</button>
+						${m_id }<button style="border: 0; outline: 0; background: white;" class="fas fa-user-alt-slash" type="submit" alt="로그아웃" >LOGOUT</button>
 					</form:form>	
 				</c:when>
 				<c:otherwise>					
