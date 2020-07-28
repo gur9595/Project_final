@@ -18,11 +18,11 @@
 						</c:otherwise>
 					</c:choose>
 				</li>
-	        
+
 				<c:if test="${not empty m_id}">
-		       		<li><a href="${pageContext.request.contextPath }/member/memberEdit.do">MyPage</a></li>
+		       		<li><a href="${pageContext.request.contextPath }/member/memberMain.do">MyPage</a></li>
 		        </c:if>
-	        
+
 	        	<li><a class="dr op" href="${pageContext.request.contextPath }/customer/qnaMain.do">Q & A</a></li>
 	        	
 	        	<li><a class="" href="${pageContext.request.contextPath }/payment/paymentMain.do">charge</a></li>
@@ -58,5 +58,5 @@
     
 	</div>
 </div>
- </header>
- </div> 
+</header>
+</div> 

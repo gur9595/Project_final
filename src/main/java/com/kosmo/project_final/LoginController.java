@@ -57,7 +57,7 @@ public class LoginController {
 
 		String m_name = principal.getName();//get logged in username
 
-		model.addAttribute("m_name", m_name);
+		model.addAttribute("m_id", m_name);
 
 		System.out.println("m_name : "+m_name);
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,10 @@
 
 	<link href="./../resources/css/club_view2.css" rel="stylesheet">
     <link href="./../resources/css/club_view_page.css" rel="stylesheet">
-    <script src="./..resources/js/view_custommin.js"></script>
-    <script src="./..resources/js/club_view.js"></script>
-    <script src="./..resources/js/club_sidebarmenu.js"></script>
+    <link href="./../resources/css/chat.css" rel="stylesheet">
+    <script src="/resources/js/view_custommin.js"></script>
+    <script src="/resources/js/club_view.js"></script>
+    <script src="/resources/js/club_sidebarmenu.js"></script>
 
 </head>
 <style>
@@ -47,10 +49,10 @@
                     <a class="navbar-brand" href="introduce.html">
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10"></b>
-                            <img src="../../assets/images/logo-icon.png" alt="homepage" class="light-logo" /> 
+                            <img src="../../assets/images/logo-icon.png" alt="마크" class="light-logo" /> 
                         </b>
                         <span class="logo-text">  
-                             <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                             <img src="../../assets/images/logo-text.png" alt="B_PRO" class="light-logo" />
                         </span>
 
                     </a>
@@ -132,7 +134,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
@@ -153,11 +155,11 @@
             <div class="scroll-sidebar">
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="introduce.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">클럽 소개</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubmember.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">클럽회원</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="rank.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">랭킹</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="match.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">클럽경기</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="formation.html" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">전술</span></a>                        
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubView.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">클럽 소개</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewMember.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">클럽회원</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewRank.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">랭킹</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewMatch.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">클럽경기</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewFormation.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">전술</span></a>                        
                     </ul>
                 </nav>
             </div>
@@ -178,17 +180,14 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid" >
                 <div class="row">
                     <div class="col-lg-9"> 
                         <div class="card">
-                            <div class="tab-content tabcontent-border">
+                            <div class="tab-content tabcontent-border" style="background-color : #eeeeee;">
                                 <div>
                                     <div class="p-20">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">클럽 소개</h4>
-                                            </div>
+                                        <div class="card" style="background-color : #eeeeee;">
                                             <div class="comment-widgets scrollable">                           
                                                 <div class="container-fluid" id="mainHolder">
                                                     <div class="row teamheader">
@@ -197,16 +196,15 @@
                                                     <div class="row" style="position:relative;height:80%;margin:0; padding:0; margin-top:20px;">
                                                       
                                                       <div style="height:100%;">
-                                                        <div style="margin:auto; display:table; height:120px;width:200px;">
-                                                            <div style="display:table-cell; ">
-                                                                <div style=" height: 250px;width:200px; margin-left:25px; align-content: center">
-                                                      	          <img src="./../resources/uploadsFile/${clubDTO.c_emb }" style="max-height: 200px; max-width: 200px;" alt="" />
-                                                                </div>
+                                                        <div style="margin:0; display:table; height:120px;width:200px;">
+                                                            <div style="display:table-cell;">
+                                                                <div style="border:12px solid white;border-radius:50%; background-color:white; height:300px; width:300px;">
+         							 								<div style="height:100%; width: 100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb });background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
+																</div>
                                                             </div>
-                                                    
-                                                        </div>
+                                                         </div> 
                                                       </div>
-                                                      <div class="col-xs-2"></div>
+                                                      <div class="col-xs-2"></div>	
                                                     </div>
                                                   </div>
                                                   <div class="col-xs-8" style="color:white; height:100%; padding-left: 0px;">
@@ -226,7 +224,7 @@
                                                       <div class="col-xs-6" style="padding-right: 50px; padding-left: 0px;" >
                                                         <table style="width: 100%;">
                                                             <tr>
-                                                                <td style="border-bottom: none; width: 20px;">·팀장</td>
+                                                                <td style="border-bottom: none; width: 50px;">·팀장</td>
                                                                 <td style="border-bottom: none">김희철</td>
                                                             </tr>
                                                             <tr>
@@ -333,62 +331,24 @@
                             </div>    
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" style="height:600px;">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Chat Option</h4>
-                                <div class="chat-box scrollable" style="height:475px;">
-                                    <ul class="chat-list">
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">James Anderson</h6>
-                                                <div class="box bg-light-info">Lorem Ipsum is simply dummy text of the printing &amp; type setting industry.</div>
-                                            </div>
-                                            <div class="chat-time">10:56 am</div>
-                                        </li>
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/2.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Bianca Doe</h6>
-                                                <div class="box bg-light-info">It’s Great opportunity to work.</div>
-                                            </div>
-                                            <div class="chat-time">10:57 am</div>
-                                        </li>
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">I would love to join the team.</div>
-                                                <br>
-                                            </div>
-                                        </li>
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">Whats budget of the new project.</div>
-                                                <br>
-                                            </div>
-                                            <div class="chat-time">10:59 am</div>
-                                        </li>
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/3.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Angelina Rhodes</h6>
-                                                <div class="box bg-light-info">Well we have good budget for the project</div>
-                                            </div>
-                                            <div class="chat-time">11:00 am</div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <h4 class="card-title">채팅</h4>
+								<div >
+									<input type="hid-den" id="chat_id" value="${param.chat_id }" style="border:1px dotted red;" />
+									<div id="chat-container" style="height:500px;overflow:auto;">		
+									</div>
+								</div>
                             </div>
                             <div class="card-body border-top">
                                 <div class="row">
                                     <div class="col-9">
                                         <div class="input-field m-t-0 m-b-0">
-                                            <textarea id="textarea1" placeholder="Type and enter" class="form-control border-0"></textarea>
+                                            <textarea id="inputMessage" placeholder="Type and enter" onkeyup="enterkey();" class="form-control border-0"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-3">
-                                        <a class="btn-circle btn-lg btn-cyan float-right text-white" href="javascript:void(0)"><i class="fas fa-paper-plane"></i></a>
-                                    </div>
+										<button type="button" onclick="sendMessage();">보내기</button>
                                 </div>
                             </div>
                         </div>
@@ -396,9 +356,141 @@
                 </div>
             </div>
             <footer class="footer text-center">
-                Copyright © 2018 - All Rights Reserved <a href="https://wrappixel.com">Be-Pro</a>.
+                Copyright © 2020 - All Rights Reserved <a href="#" onclick="window.open('${pageContext.request.contextPath }', '_blank','width=#, height=#'); return false">Be-Pro</a>.
+
             </footer>
         </div>
     </div>
 </body>
+<script type="text/javascript">
+var messageWindow;
+var inputMessage;
+var chat_id;
+var webSocket;
+
+window.onload = function(){
+	
+	//대화가 디스플레이 되는 영역
+	messageWindow = document.getElementById("chat-container");
+	
+	//대화영역의 스크롤바를 항상 아래로 내려준다.
+	messageWindow.scrollTop =  messageWindow.scrollHeight;
+	
+	inputMessage = document.getElementById('inputMessage');
+	
+	chat_id = document.getElementById('chat_id').value;
+	
+	webSocket =
+		new WebSocket('ws://localhost:8282/K07JSPServlet/ChatServer02');
+	webSocket.onopen = function(event){
+		wsOpen(event);
+	};
+	//연결되었을 때
+	webSocket.onopen = function(event) {
+		wsOpen(event);
+	};
+	//메세지가 전송될 때
+	webSocket.onmessage = function(event) {
+		wsMessage(event);
+	};
+	//웹소켓이 닫혔을 때
+	webSocket.onclose = function(event) {
+		wsClose(event);
+	};
+	//에러가 발생했을 때
+	webSocket.onerror = function(event) {
+		wsError(event);
+	};
+}
+	function wsOpen(event) {
+		messageWindow.value += "연결성공\n";
+	}
+	
+function wsMessage(event) {
+	
+	var message = event.data.split("|");
+	var sender = message[0];
+	var content = message[1];
+	var msg;
+	 
+	if(content == "") {
+		//전송한 메세지가 없다면 아무일도 하지 않는다.
+	}
+	else{
+		//보낸 메세지에...
+		if(content.match("/")){
+			//슬러쉬가 포함되어있다면 명령어로 인식...
+			if(content.match(("/" + chat_id))) {
+				//귓속말 명령어를 한글로 대체한 후
+				var temp = content.replace(("/" + chat_id), "[귓속말]:");
+				msg = makeBalloon(sender, temp);
+				messageWindow.innerHTML += msg;
+				//스크롤바 처리
+				messageWindow.scrollTop = messageWindow.scrollHeight;
+			}
+		}
+		else{
+			//귓속말이 아니면 모두에게 디스플레이 한다.
+			msg = makeBalloon(sender, content);
+			messageWindow.innerHTML += msg;
+			//스크롤바 처리 
+			messageWindow.scrollTop = messageWindow.scrollHeight;
+		}
+	}
+}
+
+//상대방이 보낸 메세지를 출력하기 위한 부분
+function makeBalloon(id, cont){
+	var msg = '';
+	msg += '<div class="chat chat-left">';
+	msg += '	<!-- 프로필 이미지 -->';
+	msg += '	<span class="profile profile-img-b"></span>';
+	msg += '	<div class="chat-box">';
+	msg += '		<p style="font-weight:bold; font-size:1.1em; margin-bottom:5px;">'+id+'</p>';
+	msg += '		<p class="bubble">'+cont+'</p>';
+	msg += '		<span class="bubble-tail"></span>';
+	msg += '	</div>';
+	msg += '</div>';
+	return msg;
+}
+function wsClose(event){
+	messageWindow.value += "연결끊기성공\n";
+}
+function wsError(event){
+	alert(event.data);
+}
+
+function sendMessage() {
+	
+	//웹소켓 서버로 대화내용을 전송한다.
+	webSocket.send(chat_id+'|' +inputMessage.value);
+	
+	var msg = '';
+	msg += '<div class="chat chat-right">';
+	msg += '	<!-- 프로필 이미지 -->';
+	msg += '	<span class="profile profile-img-a"></span>';
+	msg += '	<div class="chat-box">';
+	msg += '		<p class="bubble-me">'+inputMessage.value+'</p>';
+	msg += '		<span class="bubble-tail"></span>';
+	msg += '	</div>';
+	msg += '</div>';
+	
+	//내가 보낸 메세지를 대화창에 출력한다.
+	messageWindow.innerHTML += msg;
+	inputMessage.value = "";
+	
+	//대화영역의 스크롤바를 아래로 내려준다.
+	messsageWindow.scrollTop = messageWindow.scrollHeight;
+}
+
+function enterkey(){
+	/*
+	키보드를 눌렀다가 땠을 때 호출되며, 눌려진 키보드의 키코드가
+	13일 때, 즉 엔터일 때 아래 함수를 호출한다.
+	*/
+	if(window.event.keyCode==13){
+		sendMessage();
+	}
+}
+</script>
 </html>

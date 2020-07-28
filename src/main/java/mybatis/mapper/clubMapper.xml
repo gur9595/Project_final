@@ -107,7 +107,7 @@
 	<select id="clubView" resultType="mybatis.ClubDTO">
 		select *
 		from club
-		where c_idx = #{param1}
+		where c_idx = #{param1} 
 	</select>
 	
 	<select id="clubIdx" resultType="int" parameterType="mybatis.ClubDTO">
