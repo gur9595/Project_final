@@ -149,6 +149,17 @@ String keyword = request.getParameter("keyword");
 		    </select>
 		</div>
 		
+		<h2>선수 나이대</h2>
+		<div class="box">
+		    <select id="c_age" name="c_age">
+				<option placeholder="" value="">선택해 주세요</option>
+				<option>유소년부</option>
+				<option>청소년부</option>
+				<option>청년부</option>
+				<option>중년부</option>
+		    </select>
+		</div>
+		
 		<h2>실력</h2>
 		<div class="box">
 			<select id="c_ability" name="c_ability" >
@@ -169,6 +180,8 @@ String keyword = request.getParameter("keyword");
 				<td><label for="c_soccer">축구</label></td>
 				<td width="20px;"><input type="radio" name="c_type" id="c_footsal" value="풋살" ></td>
 				<td><label for="c_footsal">풋살</label></td>
+				<td width="20px;"><input type="radio" name="c_type" id="c_both" value="혼합" ></td>
+				<td><label for="c_both">혼합</label></td>
 			</tr>
 		</table>
 		

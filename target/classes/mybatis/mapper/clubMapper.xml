@@ -107,7 +107,19 @@
 	<select id="clubView" resultType="mybatis.ClubDTO">
 		select *
 		from club
-		where c_idx = #{param1}
+		where c_idx = #{param1} 
 	</select>
+	
+	<select id="clubIdx" resultType="int" parameterType="mybatis.ClubDTO">
+		select c_idx
+		from club
+		where c_name like #{c_name}
+	</select>
+	
+	<insert id="clubCreateMember"> 
+		  insert into clubmember (cm_idx,c_idx,m_id,cm_check,cm_date, cm_grade, cm_memo) values( 
+		  	clubmember_seq.nextval, #{param2}, #{param1}, 'yes', default, 'head',
+		  	'클럽 생성자' ) 
+	  </insert> 
 	  
   </mapper>
