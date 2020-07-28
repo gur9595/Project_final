@@ -22,7 +22,7 @@
       password-parameter="m_pw"
       />
    <security:logout
-      logout-url="/member/logout"
+      logout-url="/member/logout" 
       logout-success-url="/"/>
    <security:access-denied-handler error-page="/member/error.do"/>
    </security:http>
