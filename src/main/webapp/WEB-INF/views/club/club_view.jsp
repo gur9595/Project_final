@@ -202,7 +202,7 @@
          							 								<div style="height:100%; width: 100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb });background-position:50% 50%; background-size:cover; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
 																</div>
                                                             </div>
-                                                        </div> 
+                                                         </div> 
                                                       </div>
                                                       <div class="col-xs-2"></div>	
                                                     </div>
