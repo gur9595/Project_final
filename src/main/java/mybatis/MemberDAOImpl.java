@@ -9,4 +9,12 @@ public interface MemberDAOImpl {
 	public String id_mailSending(MemberDTO memberDTO);
 	public String pw_mailSending(MemberDTO memberDTO);
 	
+	public MemberDTO memberInfo(MemberDTO memberDTO);
+	
+	public int memberUpdate(MemberDTO memberDTO);
+	
+	public int managerUpdate(MemberDTO memberDTO);
+	
+	
+	
 }

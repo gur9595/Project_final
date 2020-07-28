@@ -82,11 +82,11 @@
                     <div class="n-form-set">
 
                         <label for="m_id" class="n-form-label">아이디 <span class="essential">필수 입력</span></label><br/>
+
                         <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(4자이상)" minlength="8" maxlength="20" style="width:400px; display: inline;  margin-top:3px;">
                         <input type="button" class="btn btn-warning " onclick="()" value="중복 확인" style="width:130px; height:50px; display:inline; color: #424242; font-weight: bold" /><br>
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
-                    
                     <div class="n-form-set">
 						<label for="password">비밀번호 <span class="essential"></span></label>
 						<div class="n-form-icon">
@@ -141,7 +141,7 @@
                     <div class="n-form-set" id="input-div">
                         <label for="address" >주소<span class="essential"></span></label>
                         <div>                                     
-                            <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
+                            <input type="hidden" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
                             <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="주소 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
                             <input type="text" id="m_addr1" name="m_addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" readonly/>
                             <input type="text" id="m_addr2" name="m_addr2" placeholder="상세주소"  class="n-input" style="margin-top: 5px;" />

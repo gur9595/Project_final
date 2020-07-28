@@ -42,7 +42,7 @@ public class ClubController {
 	public String clubMyList(Principal principal, Model model, HttpServletRequest req) {
 
 		String m_id = principal.getName();
-
+		
 		ArrayList<ClubDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).myClubList(m_id);
 		
 		int check = sqlSession.getMapper(ClubDAOImpl.class).myClubListCount(m_id);
@@ -51,7 +51,7 @@ public class ClubController {
 			lists.add(new ClubDTO());
 		}
 		model.addAttribute("lists", lists);
-		
+	
 		return "club/club_mylist";
 	}
 
