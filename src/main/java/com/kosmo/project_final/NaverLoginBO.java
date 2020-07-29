@@ -13,6 +13,7 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
+
 public class NaverLoginBO {
 
 	 private final static String CLIENT_ID = "r4PU_DTi6cG3OA7vVOux";       //네이버API Client ID
@@ -57,6 +58,7 @@ public class NaverLoginBO {
 
 	            /* Scribe에서 제공하는 AccessToken 획득 기능으로 네아로 Access Token을 획득 */
 	            OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
+	            System.out.println("token test3:  " + accessToken);
 	            return accessToken;
 	        }
 	        return null;
@@ -78,16 +80,14 @@ public class NaverLoginBO {
 	    }
 	    /* Access Token을 이용하여 네이버 사용자 프로필 API를 호출 */
 	    public String getUserProfile(OAuth2AccessToken oauthToken) throws IOException{
-
-	        OAuth20Service oauthService =new ServiceBuilder()
-	                .apiKey(CLIENT_ID)
-	                .apiSecret(CLIENT_SECRET)
-	                .callback(REDIRECT_URI).build(NaverLoginApi.instance());
-
-	            OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
-	        oauthService.signRequest(oauthToken, request);
-	        Response response = request.send();
-	        return response.getBody();
+			OAuth20Service oauthService =new ServiceBuilder()
+					.apiKey(CLIENT_ID)
+					.apiSecret(CLIENT_SECRET)
+					.callback(REDIRECT_URI).build(NaverLoginApi.instance());
+			OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
+			oauthService.signRequest(oauthToken, request);
+			Response response = request.send();
+			return response.getBody();
 	    }
 
 	
