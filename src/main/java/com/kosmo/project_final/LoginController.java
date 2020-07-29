@@ -23,6 +23,8 @@ public class LoginController {
 
       session.setAttribute("m_id",m_id);
       
+      
+      
       return "redirect:/";
       
    }
