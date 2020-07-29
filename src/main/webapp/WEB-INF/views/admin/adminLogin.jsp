@@ -42,7 +42,7 @@
                         <span class="db"><h2 style="color: white;">B-PRO ADMIN LOGIN</h2></span>
                     </div>
                     <!-- Form -->
-                    <c:url value="/adminLoginAction" var="adminLoginUrl"></c:url>
+                    <c:url value="/admin/adminLoginAction" var="adminLoginUrl"></c:url>
                     <form:form name="loginFrm" action="${adminLoginUrl }" method="post">
                         <div class="row p-b-30">
                             <div class="col-12">

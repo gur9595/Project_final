@@ -190,7 +190,7 @@ public class MemberController {
       
       return "member/member_agree2";
    }
-
+   
    public static String getUuid() {
       String uuid= UUID.randomUUID().toString();
       System.out.println("생성된UUID-1: "+uuid);
@@ -271,8 +271,8 @@ public class MemberController {
                e.printStackTrace();
             } catch (Exception e) {
                e.printStackTrace();
-            }
-            
+            }     
+
       return "member/login"; 
    }
    
@@ -358,7 +358,7 @@ public class MemberController {
 
       return "redirect:/"; 
    }
-   
+
    @RequestMapping("/member/member_stadiumIn.do")
    public String member_stadiumIn() {
 
@@ -384,6 +384,7 @@ public class MemberController {
       return "/member/error";
    }
    
+
    @RequestMapping("/member/memberEdit.do")
    public String memberEdit(Model model , HttpServletRequest req, Principal principal) {
       String m_id = principal.getName();
@@ -407,7 +408,7 @@ public class MemberController {
       req.setAttribute("addr2", addrArr[1]);
 
       model.addAttribute("dto",dto);
-
+      
       return"member/memberEdit";
    }
    
