@@ -20,8 +20,6 @@ public class LoginController {
 	   
       String m_id = principal.getName();
       System.out.println("m_id = "+m_id);
-
-      session.setAttribute("m_id",m_id);
       
       return "redirect:/";
       
@@ -31,11 +29,11 @@ public class LoginController {
    @RequestMapping(value="/login.do", method = RequestMethod.POST)
    public String printUser(Model model, Principal principal) {
 
-      String m_name = principal.getName();//get logged in username
+      String m_id = principal.getName();//get logged in username
 
-      model.addAttribute("m_name", m_name);
+      model.addAttribute("m_id", m_id);
 
-      System.out.println("m_name : "+m_name);
+      System.out.println("m_id : "+m_id);
 
       return "home";
 
