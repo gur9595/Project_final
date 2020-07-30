@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="mybatis.ManagerDAOImpl">
+  	
+  	<insert id="managerRequest" parameterType="mybatis.ManagerRequestDTO">
+	  	insert into managerrequest (mr_idx, m_id, mr_rfa, mr_work, mr_area, mr_duration, mr_career)  
+	  	values(managerrequest_seq.nextval, #{m_id}, #{mr_rfa}, #{mr_work}, #{mr_area}, #{mr_duration}, #{mr_career})
+	  </insert>
+	  
+	  <update id="managerUpdate" parameterType="mybatis.MemberDTO">
+	  	update member set m_rfa=#{m_rfa}, m_work=#{m_work}, m_career=#{m_career}, m_area=#{m_area}, m_duration=#{m_duration}, authority='manager'
+	  	where m_id=#{m_id}
+	  </update>
+  
+  </mapper>

@@ -22,10 +22,7 @@
 	  		where m_id=#{m_id} 
 	  </update>
 	  
-	  <update id="managerUpdate" parameterType="mybatis.MemberDTO">
-	  	update member set m_rfa=#{m_rfa}, m_work=#{m_work}, m_career=#{m_career}, m_area=#{m_area}, m_duration=#{m_duration}, authority='manager'
-	  	where m_id=#{m_id}
-	  </update>
+	  
 	  
 	
 	<!-- id찾기 -->

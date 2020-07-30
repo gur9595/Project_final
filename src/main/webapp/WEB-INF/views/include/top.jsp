@@ -56,7 +56,7 @@
               
               <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/market/marketMain.do">Market</a></li>
               
-              <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/member/managerMain.do">Manager</a></li>
+              <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/manager/managerMain.do">Manager</a></li>
               
          </ul>
       </nav>
