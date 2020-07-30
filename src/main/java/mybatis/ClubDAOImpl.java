@@ -3,6 +3,7 @@ package mybatis;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,9 +12,10 @@ public interface ClubDAOImpl {
 	//클럽생성
 	public int clubCreate(ClubDTO clubDTO);
 	
-	public int getTotalCount(ClubDTO clubDTO);
+	public int getTotalCount();
+	public int getTotalCountFilter(ClubDTO clubDTO);
 	
-	public ArrayList<ClubDTO> listPage(ClubDTO clubDTO);
+	public ArrayList<ClubDTO> listPage(int start, int end);
 	public ArrayList<ClubDTO> listPageFilter(ClubDTO clubDTO);
 	
 	public int clubApply(ClubMemberDTO clubMemberDTO);
@@ -28,7 +30,12 @@ public interface ClubDAOImpl {
 
 	public int clubCreateMember(String m_id, int idx);
 	
-	//클럽 상세보기
+	public ArrayList<MemberDTO> clubManageApplyList(ClubDTO clubDTO);
+	
+	public int clubMemberApply(int cm_idx);
+	
+	public int clubMemberReject(int cm_idx);
+	
 	public ArrayList<MemberDTO> clubViewMember(int c_idx);
 	
 	public ArrayList<GameDTO> clubViewMatch(int c_idx);

@@ -24,148 +24,143 @@
 		</select>
 		
 		
-		<select id="getTotalCount" resultType="int" parameterType="mybatis.ClubDTO">
-			select count(*) from club 
-		<if test="c_name!=null or c_area!=null or c_ability!=null or c_gender!=null or c_age!=null" >
+	  <select id="getTotalCount" resultType="int" >
+		select count(*) from club 
+	  </select>
+	  
+	  <select id="getTotalCountFilter" resultType="int" parameterType="mybatis.ClubDTO">
+		select count(*) from club 
+			<if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
 			where
-			<if test="c_name!=null">
-				    c_name like #{c_name} 
+			<if test="c_name!=''">
+				    c_name like #{c_name}
 			</if>
-			<if test="c_name!=null">
+			<if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
 				  and  
 			</if>
-			<if test="c_area!=null">
+			<if test="c_area!=''">
 				    c_area like #{c_area}
 			</if>
-			<if test="c_name!=null or c_area!=null">
+			<if test="c_area!='' and ( c_ability!='' or c_gender!='' or c_age!='' )">
 				  and  
 			</if>
-			<if test="c_ability!=null">
+			<if test="c_ability!=''">
 				    c_ability like #{c_ability}
 			</if>
-			<if test="c_name!=null or c_area!=null or c_ability!=null">
+			<if test="c_ability!='' and (c_gender!='' or c_age!='' )">
 				  and  
 			</if>
-			<if test="c_gender!=null">
+			<if test="c_gender!=''">
 				    c_gender like #{c_gender}
 			</if>
-			<if test="c_name!=null or c_area!=null or c_ability!=null or c_gender!=null">
+			<if test="c_gender!='' and c_age!=''">
 				  and  
 			</if>
-			<if test="c_age!=null">
+			<if test="c_age!=''">
 				    c_age like #{c_age}
 			</if>
 		</if>
-			order by c_idx desc
-		<!-- <if test="searchTxt!=null and !searchTxt.equals('')">
-		where ${searchField} like '%'||#{searchTxt}||'%'
-		</if> -->
-		</select>
-		  
-		<select id="listPage" resultType="mybatis.ClubDTO" parameterType="mybatis.ClubDTO">
-			select * from club 
-			<if test="c_name!=null or c_area!=null or c_ability!=null or c_gender!=null or c_age!=null" >
-				where
-				<if test="c_name!=null">
-					    c_name like #{c_name}
+	  </select>
+	  
+	  
+	  <select id="listPage" resultType="mybatis.ClubDTO">
+		select * from ( 
+			select tb.*, rownum rNum from (
+				select * from club order by c_idx desc		
+			) tb 
+		)
+		where rNum between #{param1} and #{param2}		
+	  </select>
+	  
+	  <select id="listPageFilter" resultType="mybatis.ClubDTO" parameterType="mybatis.ClubDTO">
+	 	select * from ( 
+			 select tb.*, rownum rNum from( 
+			 	select * from club 
+				<if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
+					where
+					<if test="c_name!=''">
+						    c_name like #{c_name}
+					</if>
+					<if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
+						  and  
+					</if>
+					<if test="c_area!=''">
+						    c_area like #{c_area}
+					</if>
+					<if test="c_area!='' and ( c_ability!='' or c_gender!='' or c_age!='' )">
+						  and  
+					</if>
+					<if test="c_ability!=''">
+						    c_ability like #{c_ability}
+					</if>
+					<if test="c_ability!='' and (c_gender!='' or c_age!='' )">
+						  and  
+					</if>
+					<if test="c_gender!=''">
+						    c_gender like #{c_gender}
+					</if>
+					<if test="c_gender!='' and c_age!=''">
+						  and  
+					</if>
+					<if test="c_age!=''">
+						    c_age like #{c_age}
+					</if>
 				</if>
-				<if test="c_name!=null and ( c_area!=null or c_ability!=null or c_gender!=null or c_age!=null )">
-					  and  
-				</if>
-				<if test="c_area!=null">
-					    c_area like #{c_area}
-				</if>
-				<if test="c_area!=null and ( c_ability!=null or c_gender!=null or c_age!=null )">
-					  and  
-				</if>
-				<if test="c_ability!=null">
-					    c_ability like #{c_ability}
-				</if>
-				<if test="c_ability!=null and (c_gender!=null or c_age!=null )">
-					  and  
-				</if>
-				<if test="c_gender!=null">
-					    c_gender like #{c_gender}
-				</if>
-				<if test="c_gender!=null and c_age!=null">
-					  and  
-				</if>
-				<if test="c_age!=null">
-					    c_age like #{c_age}
-				</if>
-			</if>
-				order by c_idx desc		
-		</select>
-		  
-		<select id="listPageFilter" resultType="mybatis.ClubDTO" parameterType="mybatis.ClubDTO">
-			select * from club 
-			<if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
-				where
-				<if test="c_name!=''">
-					    c_name like #{c_name}
-				</if>
-				<if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
-					  and  
-				</if>
-				<if test="c_area!=''">
-					    c_area like #{c_area}
-				</if>
-				<if test="c_area!='' and ( c_ability!='' or c_gender!='' or c_age!='' )">
-					  and  
-				</if>
-				<if test="c_ability!=''">
-					    c_ability like #{c_ability}
-				</if>
-				<if test="c_ability!='' and (c_gender!='' or c_age!='' )">
-					  and  
-				</if>
-				<if test="c_gender!=''">
-					    c_gender like #{c_gender}
-				</if>
-				<if test="c_gender!='' and c_age!=''">
-					  and  
-				</if>
-				<if test="c_age!=''">
-					    c_age like #{c_age}
-				</if>
-			</if>
-				order by c_idx desc		
-		  </select>
-		  
-		<insert id="clubApply" parameterType="mybatis.ClubMemberDTO">
-			insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
-		</insert>
-		
-		<select id="myClubList" resultType="mybatis.ClubDTO">
-			select * 
-			from club c inner join clubmember cm
-				on c.c_idx = cm.c_idx
-			where cm.m_id like #{param1} 
-		</select>
-		
-		<select id="myClubListCount" resultType="int">
-			select count(*) 
-			from club c inner join clubmember cm
-				on c.c_idx = cm.c_idx
-			where cm.m_id like #{param1} 
-		</select>
-		
-		<select id="clubView" resultType="mybatis.ClubDTO">
-			select *
-			from club
-			where c_idx = #{param1} 
-		</select>
-		
-		<select id="clubIdx" resultType="int" parameterType="mybatis.ClubDTO">
-			select c_idx
-			from club
-			where c_name like #{c_name}
-		</select>
-		
-		<insert id="clubCreateMember"> 
-			  insert into clubmember (cm_idx,c_idx,m_id,cm_check,cm_date, cm_grade, cm_memo) values( 
-			  	clubmember_seq.nextval, #{param2}, #{param1}, 'yes', default, 'head',
-			  	'클럽 생성자' ) 
-		</insert> 
+				 	order by c_idx desc		 
+			 	) tb 
+		 	) 
+		 where rNum between #{start} and #{end} 
+	  </select>
+	  
+	<insert id="clubApply" parameterType="mybatis.ClubMemberDTO">
+		insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
+	</insert>
+	
+	<select id="myClubList" resultType="mybatis.ClubDTO">
+		select * 
+		from club c inner join clubmember cm
+			on c.c_idx = cm.c_idx
+		where cm.m_id like #{param1} 
+	</select>
+	
+	<select id="myClubListCount" resultType="int">
+		select count(*) 
+		from club c inner join clubmember cm
+			on c.c_idx = cm.c_idx
+		where cm.m_id like #{param1} 
+	</select>
+	
+	<select id="clubView" resultType="mybatis.ClubDTO">
+		select *
+		from club
+		where c_idx = #{param1} 
+	</select>
+	
+	<select id="clubIdx" resultType="int" parameterType="mybatis.ClubDTO">
+		select c_idx
+		from club
+		where c_name like #{c_name}
+	</select>
+	
+	<insert id="clubCreateMember"> 
+		  insert into clubmember (cm_idx,c_idx,m_id,cm_check,cm_date, cm_grade, cm_memo) values( 
+		  	clubmember_seq.nextval, #{param2}, #{param1}, 'yes', default, 'head',
+		  	'클럽 생성자' ) 
+	  </insert> 
+	  
+	  <select id="clubManageApplyList" resultType="mybatis.MemberDTO" parameterType="mybatis.ClubDTO">
+		select m.*, cm.cm_memo, cm.cm_idx
+		from member m inner join clubmember cm
+			on m.m_id = cm.m_id
+		where cm.c_idx = #{c_idx} and cm.cm_check = 'no'
+	</select>
+	
+	<update id="clubMemberApply">
+		update clubmember set cm_check = 'yes' where cm_idx = #{param1}
+	</update>
+	
+	<delete id="clubMemberReject">
+		delete from clubmember where cm_idx = #{param1}
+	</delete>
 	  
   </mapper>
