@@ -27,7 +27,7 @@
 	        <div class="lds-pos"></div>
 	        <div class="lds-pos"></div>
 	    </div>
-	</div>
+	</div>    
     <div id="main-wrapper">
         <!-- 탑바 -->
 		<%@ include file="./../include/adminTopBar.jsp" %>
