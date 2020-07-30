@@ -14,6 +14,7 @@ public interface ClubDAOImpl {
 	public int getTotalCount(ClubDTO clubDTO);
 	
 	public ArrayList<ClubDTO> listPage(ClubDTO clubDTO);
+	public ArrayList<ClubDTO> listPageFilter(ClubDTO clubDTO);
 	
 	public int clubApply(ClubMemberDTO clubMemberDTO);
 	
@@ -26,5 +27,7 @@ public interface ClubDAOImpl {
 	public int clubIdx(ClubDTO clubDTO);
 
 	public int clubCreateMember(String m_id, int idx);
+	
+	public ArrayList<MemberDTO> clubViewMember(int c_idx);
 	
 }

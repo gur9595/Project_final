@@ -67,7 +67,18 @@ label {
 #file { display:none; } 
 
 </style>
-
+<script>
+	function setPic(event) {
+		var reader = new FileReader();
+		
+		reader.onload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img);
+		};
+		reader.readAsDataURL(event.target.files[0]);
+	}
+</script>
 
 
 </head>
@@ -80,10 +91,10 @@ label {
 	  <!-- 이미지 위에 글쓰는곳 -->
 	</div>
 </div>
-	<main class="hoc container clear">
+	<main class="hoc container clear" id="main">
 	    <div class="container">
 	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
-	    <form action="../member/memberJoin2.do" method="post"id="myForm" name="form"  >
+	    <form action="../member/memberEditAction.do" enctype="multipart/form-data" method="post"id="myForm" name="form"  >
 			<!-- Header -->
 			
 			<input type="hid den" name="m_id" value="<%=request.getAttribute("m_id") %>"/>
@@ -182,10 +193,10 @@ label {
 			<table>
 				<tr >
 					<td>
-						<input type="text" style="width:200px; height:200px;">
+						<div id="image_container" style="width: 300px; height: 180px"></div>
 					</td>
 					<td>
-						<input type="file" name="m_pic" />
+						<input type="file" name="file"  accept="image/*" onchange="setPic(event)"/>
 					</td>
 				</tr>
 			</table>

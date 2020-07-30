@@ -255,44 +255,52 @@ function extra_insert(f){
 
 //게임리스트 검색 리셋
 function reset_game_list() {
-	var table = document.getElementById("game_table");
-	var tr = table.getElementsByTagName("tr");
-	
-	for (i = 0; i < tr.length; i++) {
-		tr[i].style.display = "";
-	}
+   var table = document.getElementById("game_table");
+   var tr = table.getElementsByTagName("tr");
+   
+   for (i = 0; i < tr.length; i++) {
+      tr[i].style.display = "";
+   }
 }
   
 //게임 리스트 검색
 function search_game_list() {
 
-	var g_gu, g_date, gu_filter, date_filter, table, tr, td, i, txtValue, cnt;
-	g_gu = document.getElementById("g_gu");
-	g_date = document.getElementById("g_date");
-	gu_filter = g_gu.options[g_gu.selectedIndex].value;
-	date_filter = g_date.value;
-	table = document.getElementById("game_table");
-	tr = table.getElementsByTagName("tr");
-	cnt = 0;
-	
-	if(g_gu.options[g_gu.selectedIndex].value=="" && g_date.value==""){
-		alert("검색필터를 선택하세요.");
-		return false;
-	}
-	  
-	if(gu_filter != "" && date_filter == "") {
+   var g_gu, g_date, gu_filter, date_filter, table, tr, td, i, txtValue, cnt;
+   g_gu = document.getElementById("g_gu");
+   g_date = document.getElementById("g_date");
+   gu_filter = g_gu.options[g_gu.selectedIndex].value;
+   date_filter = g_date.value;
+   table = document.getElementById("game_table");
+   tr = table.getElementsByTagName("tr");
+   cnt = 0;
+   
+   if(g_gu.options[g_gu.selectedIndex].value=="" && g_date.value==""){
+      alert("검색필터를 선택하세요.");
+      return false;
+   }
+     
+   if(gu_filter != "" && date_filter == "") {
 
-		for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName("td")[2];
+      for (i = 0; i < tr.length; i++) {
+         td = tr[i].getElementsByTagName("td")[2];
 
-			if (td) {
-				txtValue = td.textContent || td.innerText;
+         if (td) {
+            txtValue = td.textContent || td.innerText;
 
 				if (txtValue.toUpperCase().indexOf(gu_filter) > -1) {
 					tr[i].style.display = "";
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
 				}
 			}
 		}
@@ -308,6 +316,14 @@ function search_game_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
 				}
 			}
 		}
@@ -323,6 +339,15 @@ function search_game_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
 				}
 			}
 		}
@@ -335,37 +360,31 @@ function search_game_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							g_gu.value = ""; g_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
 				}
 			}
 		}
 		return false;
 	}
-	
-	for (i = 0; i < tr.length; i++) {
-		if(tr[i].style.display = "none"){
-			cnt++;
-		}
-	}
-	if(cnt == tr.length){
-		for (i = 0; i < tr.length; i++) {
-			tr[i].style.display = "";
-		}
-		g_gu.options[g_gu.selectedIndex].value = ""; g_date.value = ""; cnt = 0;
-		alert("검색된 내용이 없습니다.");
-		return false;
-	}
-	  
 }
 
 //용병 리스트 검색 리셋
 function reset_extra_list() {
 
-	var table = document.getElementById("extra_table");
-	var tr = table.getElementsByTagName("tr");
-	
-	for (i = 0; i < tr.length; i++) {
-		tr[i].style.display = "";
-	}
+   var table = document.getElementById("extra_table");
+   var tr = table.getElementsByTagName("tr");
+   
+   for (i = 0; i < tr.length; i++) {
+      tr[i].style.display = "";
+   }
 }
 
 //용병 리스트 검색
@@ -395,6 +414,14 @@ function search_extra_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}
 				}
 			}
 		}
@@ -410,6 +437,14 @@ function search_extra_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+					}					
 				}
 			}
 		}
@@ -425,6 +460,15 @@ function search_extra_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
 				}
 			}
 		}
@@ -437,26 +481,20 @@ function search_extra_list() {
 				} 
 				else {
 					tr[i].style.display = "none";
+					cnt++;
+					if(cnt == tr.length-1){
+						for (i = 0; i < tr.length; i++) {
+							tr[i].style.display = "";
+							e_gu.value = ""; e_date.value = ""; cnt = 0;
+						}
+						alert("검색된 내용이 없습니다.");
+						return false;
+					}
 				}
 			}
 		}
 		return false;
 	}
-	
-	for (i = 0; i < tr.length; i++) {
-		if(tr[i].style.display = "none"){
-			cnt++;
-		}
-	}
-	if(cnt == tr.length){
-		for (i = 0; i < tr.length; i++) {
-			tr[i].style.display = "";
-		}
-		e_gu.value = ""; e_date.value = ""; cnt = 0;
-		alert("검색된 내용이 없습니다.");
-		return false;
-	}
-	
 }
   
   

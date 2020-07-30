@@ -1,5 +1,6 @@
 package com.kosmo.project_final;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -154,9 +155,9 @@ public class MatchController {
 
 	//매칭신청(리스트 등록)시 로그인한 사용자가 가입되어있는 클럽 리스트 가져오기
 	@RequestMapping("/match/gameInsert.do")
-	public String gameInsert(Model model, HttpServletRequest req, HttpSession session) {
+	public String gameInsert(Model model, HttpServletRequest req, Principal principal) {
 		
-		String m_id = (String) session.getAttribute("m_id");
+		String m_id = principal.getName();
 		
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
 		

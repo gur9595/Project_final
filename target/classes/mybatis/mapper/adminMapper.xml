@@ -3,18 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-	<mapper namespace="mybatis.AdminDAOImpl">
-  
-		<!-- 게임카운트조회 -->
-		<select id="get_Gnum" resultType="int">
-			select g_num from admin where a_id like 'game_manager'
-		</select>
-		
-		<!-- 게임카운트 추가 -->
-		<update id="set_Gnum" parameterType="int">
-			update admin set g_num = #{g_num} where a_id like 'game_manager'
-		</update>
-		
-	  
-	</mapper>
+<mapper namespace="mybatis.AdminDAOImpl">
+ 
+	<!-- 게임카운트조회 -->
+	<select id="get_Gnum" resultType="int">
+		select g_num from admin where a_id like 'game_manager'
+	</select>
+	
+	<!-- 게임카운트 추가 -->
+	<update id="set_Gnum" parameterType="int">
+		update admin set g_num = #{g_num} where a_id like 'game_manager'
+	</update>
+	
+	
+	<select id="adminMember" resultType="mybatis.MemberDTO">
+		select * from member where AUTHORITY='ROLE_USER' order by m_date asc
+	</select>
+</mapper>
 
