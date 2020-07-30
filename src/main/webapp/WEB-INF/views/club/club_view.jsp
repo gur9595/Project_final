@@ -10,12 +10,16 @@
 	<link href="./../resources/css/club_view2.css" rel="stylesheet">
     <link href="./../resources/css/club_view_page.css" rel="stylesheet">
     <link href="./../resources/css/chat.css" rel="stylesheet">
+    <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
     <script src="/resources/js/view_custommin.js"></script>
     <script src="/resources/js/club_view.js"></script>
     <script src="/resources/js/club_sidebarmenu.js"></script>
 
 </head>
 <style>
+	body{
+		font-size: 150%;
+	}
     h2 {  
         font-size: 250%;
         font-weight: bold;
@@ -47,14 +51,9 @@
                 <div class="navbar-header" data-logobg="skin5">
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                     <a class="navbar-brand" href="introduce.html">
-                        <!-- Logo icon -->
-                        <b class="logo-icon p-l-10"></b>
-                            <img src="../../assets/images/logo-icon.png" alt="마크" class="light-logo" /> 
-                        </b>
                         <span class="logo-text">  
-                             <img src="../../assets/images/logo-text.png" alt="B_PRO" class="light-logo" />
+                             <a  style="color: white;" href="${pageContext.request.contextPath }"><h1>&nbsp;B-PRO</h1></a>
                         </span>
-
                     </a>
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
                 </div>

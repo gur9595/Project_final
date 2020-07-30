@@ -2,6 +2,7 @@ package com.kosmo.project_final;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,8 +23,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import mybatis.ClubDAOImpl;
 
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
@@ -57,6 +67,7 @@ public class MemberController {
 
       return "member/article";   
    }
+
 
    @RequestMapping("/member/login.do")
    public String login() {

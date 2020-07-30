@@ -9,12 +9,17 @@
 
 	<link href="./../resources/css/club_view2.css" rel="stylesheet">
     <link href="./../resources/css/club_view_page.css" rel="stylesheet">
+    <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
     <script src="/resources/js/view_custommin.js"></script>
     <script src="/resources/js/club_view.js"></script>
     <script src="/resources/js/club_sidebarmenu.js"></script>
 
 </head>
 <style>
+	body{
+		font-size: 150%;
+	}
+	
     h2 { 
         font-size: 250%;
         font-weight: bold;
@@ -46,16 +51,9 @@
                 <div class="navbar-header" data-logobg="skin5">
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                     <a class="navbar-brand" href="introduce.html">
-                        <!-- Logo icon -->
-                        <b class="logo-icon p-l-10">
 
-                            <img src="../../assets/images/logo-icon.png" alt="마크" class="light-logo" />
-                           
-                        </b>
                         <span class="logo-text">
-                            
-                             <img src="../../assets/images/logo-text.png" alt="B-PRO" class="light-logo" />
-                            
+                            <a  style="color: white;" href="${pageContext.request.contextPath }"><h1>&nbsp;B-PRO</h1></a>
                         </span>
                         <!-- Logo icon -->
                         <!-- <b class="logo-icon"> -->
@@ -225,18 +223,15 @@
                                                         <th>주로 쓰는 발</th>
                                                         <th>득점</th>
                                                     </tr>
-                                                    <!-- 이거 반복 (글씨 색)  -->
 													<c:forEach items="${lists }" var="row" varStatus="status"> 
 														<tr>
-															<input type="hidden" value="${row.c_idx }" />
-															<td class="tcol">${row.m_name }</td>
-															<td class="tcol">${row.m_birth }</td>
-															<td class="tcol">${row.m_sex }</td>
-															<td class="tcol">20대</td>
-															<td class="tcol">${row.m_area }</td>
-															<td class="tcol">${row.m_position }</td>
-															<td class="tol">${row.m_foot }</td>
-															<td class="tol">5골</td>
+															<th>${row.m_name }</th>
+															<th>${row.m_birth }</th>
+															<th>${row.m_sex }</th>
+															<th>${row.m_area }</th>
+															<th>${row.m_position }</th>
+															<th>${row.m_foot }</th>
+															<th>5골</th>
 														</tr>
 													</c:forEach>
                                                 </table>

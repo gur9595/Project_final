@@ -86,7 +86,7 @@ public class GameDTO {
 	
 	public String getG_sname() {
 		return g_sname;
-	}
+	} 
 	
 	public void setG_sname(String g_sname) {
 		this.g_sname = g_sname;

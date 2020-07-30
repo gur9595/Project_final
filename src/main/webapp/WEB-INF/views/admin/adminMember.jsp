@@ -21,13 +21,23 @@
     <link href="./../resources/admin_css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
 </head>
+<style>
+    table{
+        margin-left: auto; margin-right: auto;
+        width: 1100px;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+    td{
+        border-bottom: 1px solid #444444;
+        width: 70px; height: 30px;
+    }
+    th{
+        height:40px; text-align: center;
+                border-bottom: 1px solid #444444;
+    }
+</style>
 <body>
-	<div class="preloader">
-	    <div class="lds-ripple">
-	        <div class="lds-pos"></div>
-	        <div class="lds-pos"></div>
-	    </div>
-	</div>    
     <div id="main-wrapper">
         <!-- 탑바 -->
 		<%@ include file="./../include/adminTopBar.jsp" %>
@@ -35,8 +45,54 @@
 		<%@ include file="./../include/adminSideBar.jsp" %>
 		<!-- 페이지 내용 -->
         <div class="page-wrapper">
-            
-
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12">
+                        <!-- Tabs -->
+                        <div class="card">
+                            <!-- Tab panes -->
+                            <div class="tab-content tabcontent-border">
+                                <div>
+                                    <div class="p-20">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h2 style="text-align:center;">회원 관리</h2>
+                                            </div>
+                                            <div class="comment-widgets scrollable">
+                                                <table>
+                                                    <tr style="border-bottom: 3px solid #036">
+                                                    	<th>No</th>
+                                                        <th>이름</th>
+                                                        <th>ID</th>   
+                                                        <th>생년월일</th>
+                                                        <th style="width:150px;">E-mail</th>
+                                                        <th>전화번호</th>
+                                                        <th style="width:350px;">주소</th>
+                                                        <th>가입날짜</th>
+                                                    </tr>
+													<c:forEach items="${lists }" var="row" varStatus="status"> 
+														<tr>
+															<th>${status.count }</th>
+															<th>${row.m_name }</th>
+															<th>${row.m_id }</th>
+															<th>${row.m_birth }</th>
+															<th>${row.m_email }</th>
+															<th>${row.m_phone }</th>
+															<th>${row.m_addr }</th>
+															<th>${row.m_date }</th>
+														</tr>
+													</c:forEach>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
             
         <!-- 페이지 내용 끝 -->
             <footer class="footer text-center">

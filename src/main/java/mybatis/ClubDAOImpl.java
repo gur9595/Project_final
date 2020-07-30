@@ -28,4 +28,9 @@ public interface ClubDAOImpl {
 
 	public int clubCreateMember(String m_id, int idx);
 	
+	//클럽 상세보기
+	public ArrayList<MemberDTO> clubViewMember(int c_idx);
+	
+	public ArrayList<GameDTO> clubViewMatch(int c_idx);
+	
 }

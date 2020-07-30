@@ -8,12 +8,16 @@
 
 	<link href="./../resources/css/club_view2.css" rel="stylesheet">
     <link href="./../resources/css/club_view_page.css" rel="stylesheet">
+    <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
     <script src="/resources/js/view_custommin.js"></script>
     <script src="/resources/js/club_view.js"></script>
     <script src="/resources/js/club_sidebarmenu.js"></script>
 
 </head>
 <style>
+	body{
+		font-size: 150%;
+	}
     h2 { 
         font-size: 250%;
         font-weight: bold;
@@ -45,32 +49,15 @@
                 <div class="navbar-header" data-logobg="skin5">
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                     <a class="navbar-brand" href="introduce.html">
-                        <!-- Logo icon -->
-                        <b class="logo-icon p-l-10">
-
-                            <img src="../../assets/images/logo-icon.png" alt="마크" class="light-logo" />
-                           
-                        </b>
-                        <span class="logo-text">
-                            
-                             <img src="../../assets/images/logo-text.png" alt="B-PRO" class="light-logo" />
-                            
+ 						<span class="logo-text">  
+                             <a  style="color: white;" href="${pageContext.request.contextPath }"><h1>&nbsp;B-PRO</h1></a>
                         </span>
-                        <!-- Logo icon -->
-                        <!-- <b class="logo-icon"> -->
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <!-- <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
-                            
-                        <!-- </b> -->
-                        <!--End Logo icon -->
                     </a>
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
                 </div>
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
                     <ul class="navbar-nav float-left mr-auto">
                         <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
@@ -451,5 +438,5 @@
             </footer>
         </div>
     </div>
-</body>
+</body>    
 </html>
