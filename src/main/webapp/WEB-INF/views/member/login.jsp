@@ -20,6 +20,11 @@
 <!-- login css start -->
 <link rel="stylesheet" href="./../resources//css/util.css" />
 <link rel="stylesheet" href="./../resources/css/idpage.css" />
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal.username" var="m_id" />
+</sec:authorize>
 <!-- login css end -->
 </head>
 <body id="top">

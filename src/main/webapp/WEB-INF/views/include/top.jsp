@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal.username" var="m_id" />
+</sec:authorize>
+
 <div class="row hoc">
 	<div class="col-md-12 right" style="background-color: #282e39">
 		<nav id="mainav" class="right text-right" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px;">
@@ -51,7 +56,7 @@
               
               <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/market/marketMain.do">Market</a></li>
               
-              <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/member/managerMain.do">Manager</a></li>
+              <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/manager/managerMain.do">Manager</a></li>
               
          </ul>
       </nav>
