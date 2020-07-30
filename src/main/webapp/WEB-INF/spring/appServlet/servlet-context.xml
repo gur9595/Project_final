@@ -47,6 +47,9 @@
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"/>
 	</beans:bean> 
 	
+	<!-- NaverLoginBO Class에 대한 Bean 설정 추가 -->
+ 	<beans:bean id="naverLoginBO" class="com.kosmo.project_final.NaverLoginBO" />
+
 	<!-- Gmail -->
   <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <beans:property name="host" value="smtp.gmail.com" />

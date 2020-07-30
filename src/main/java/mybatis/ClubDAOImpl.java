@@ -36,4 +36,6 @@ public interface ClubDAOImpl {
 	
 	public int clubMemberReject(int cm_idx);
 	
+	public ArrayList<MemberDTO> clubViewMember(int c_idx);
+	
 }

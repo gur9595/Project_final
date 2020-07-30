@@ -86,18 +86,15 @@
                                                         <th>주로 쓰는 발</th>
                                                         <th>득점</th>
                                                     </tr>
-                                                    <!-- 이거 반복 (글씨 색)  -->
 													<c:forEach items="${lists }" var="row" varStatus="status"> 
 														<tr>
-															<input type="hidden" value="${row.c_idx }" />
-															<td class="tcol">${row.m_name }</td>
-															<td class="tcol">${row.m_birth }</td>
-															<td class="tcol">${row.m_sex }</td>
-															<td class="tcol">20대</td>
-															<td class="tcol">${row.m_area }</td>
-															<td class="tcol">${row.m_position }</td>
-															<td class="tol">${row.m_foot }</td>
-															<td class="tol">5골</td>
+															<th>${row.m_name }</th>
+															<th>${row.m_birth }</th>
+															<th>${row.m_sex }</th>
+															<th>${row.m_area }</th>
+															<th>${row.m_position }</th>
+															<th>${row.m_foot }</th>
+															<th>5골</th>
 														</tr>
 													</c:forEach>
                                                 </table>

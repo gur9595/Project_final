@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import mybatis.AdminDAOImpl;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.ClubMemberDTO;
 import mybatis.MemberDTO;
 import utils.PagingUtil;
-
 @Controller
 public class ClubController {
 
@@ -180,15 +180,18 @@ public class ClubController {
 
 	@RequestMapping("/club/clubViewMember.do")
 	public String clubViewMember(HttpServletRequest req, Model model) {
-
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
-
+		ArrayList<MemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMember(c_idx);
+		
+		model.addAttribute("lists", lists);
 		model.addAttribute("clubDTO", clubDTO);
-
+		
 		return "club/club_view_member";
 	}
-
+	
 	@RequestMapping("/club/clubViewRank.do")
 	public String clubViewRank(HttpServletRequest req, Model model) {
 
