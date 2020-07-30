@@ -2,6 +2,7 @@ package com.kosmo.project_final;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,8 +23,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import mybatis.ClubDAOImpl;
 
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
@@ -58,17 +68,13 @@ public class MemberController {
       return "member/article";   
    }
 
+
    @RequestMapping("/member/login.do")
    public String login() {
 
       return "member/login";
    }
 
-   @RequestMapping("/member/managerMain.do")
-   public String managerMain() {
-
-      return "member/manager_main";
-   }
 
    @RequestMapping("/member/managerJoin.do")
    public String managerJoin() {
@@ -165,7 +171,8 @@ public class MemberController {
 
 		return "/member/id_pw";
 	}
-
+	
+	//회원가입 1페이지에서 2페이지로 데이터를 보냄
    @RequestMapping(value = "/member/memberJoin1.do", method = RequestMethod.POST) 
    public String memberJoinPro1(HttpServletRequest req, Model model) {
 
@@ -198,7 +205,8 @@ public class MemberController {
       System.out.println("생성된UUID-2: "+uuid);
       return uuid;
    }
-
+   
+   //회원가입 2페이지에서 파일업로드후 DB저장
    @RequestMapping(value="/member/memberJoin2.do",method=RequestMethod.POST)
    public String memberJoinPro2(HttpSession session, MemberDTO dto, Model model , MultipartHttpServletRequest req) {
       
@@ -276,6 +284,7 @@ public class MemberController {
       return "member/login"; 
    }
    
+   //회원정보 수정
    @RequestMapping(value="/member/memberEditAction.do",method=RequestMethod.POST)
    public String memberEditAction(HttpSession session, MemberDTO dto, Model model , MultipartHttpServletRequest req) {
       
@@ -358,13 +367,15 @@ public class MemberController {
 
       return "redirect:/"; 
    }
-
+   
+   //경기장 등록페이지
    @RequestMapping("/member/member_stadiumIn.do")
    public String member_stadiumIn() {
 
       return"member/member_stadiumIn";
    }
-
+   
+   //경기장 등록
    @RequestMapping("/member/member_stadiumInsert.do")
    public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req) {
       
@@ -374,17 +385,19 @@ public class MemberController {
       
       dto.setS_addr(s_addr);
       
+      System.out.println("s_memo : "+dto.getS_memo());
       sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
       
       return"member/member_select";
    }
    
+   //접근 에러
    @RequestMapping("/member/error.do")
    public String error(){  
       return "/member/error";
    }
    
-
+   //회원정보를 가지고 회원수정 페이지 이동
    @RequestMapping("/member/memberEdit.do")
    public String memberEdit(Model model , HttpServletRequest req, Principal principal) {
       String m_id = principal.getName();
@@ -412,6 +425,7 @@ public class MemberController {
       return"member/memberEdit";
    }
    
+
    @RequestMapping("/member/memberEdit2.do")
    public String memberEdit2(HttpServletRequest req, Model model, Principal principal) {
 
@@ -449,11 +463,8 @@ public class MemberController {
    @RequestMapping("/member/mypageMain.do")
    public String mypageMain() {
 
-	   
-	   
       return"member/mypage_main";
    }
-
 
 
 }

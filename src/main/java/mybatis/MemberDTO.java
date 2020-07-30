@@ -23,6 +23,8 @@ public class MemberDTO {
 	private String m_career;
 	private String m_area;
 	private String m_duration;
+	private String cm_memo;
+	private String cm_idx;
 	
 	
 	
@@ -140,9 +142,17 @@ public class MemberDTO {
 	public void setM_duration(String m_duration) {
 		this.m_duration = m_duration;
 	}
-	
-	
-	
-	
+	public String getCm_memo() {
+		return cm_memo;
+	}
+	public void setCm_memo(String cm_memo) {
+		this.cm_memo = cm_memo;
+	}
+	public String getCm_idx() {
+		return cm_idx;
+	}
+	public void setCm_idx(String cm_idx) {
+		this.cm_idx = cm_idx;
+	}
 	
 }
