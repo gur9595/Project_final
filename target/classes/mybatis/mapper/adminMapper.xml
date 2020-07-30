@@ -15,9 +15,22 @@
 		update admin set g_num = #{g_num} where a_id like 'game_manager'
 	</update>
 	
-	
 	<select id="adminMember" resultType="mybatis.MemberDTO">
 		select * from member where AUTHORITY='ROLE_USER' order by m_date asc
 	</select>
+
+	<!-- 메니저 리스트 -->
+	<select id="listPage" resultType="mybatis.ManagerRequestDTO" parameterType="mybatis.ManagerRequestDTO">
+		select * from managerRequest 
+	</select>
+	
+	<update id="managerUpdate" parameterType="mybatis.MemberDTO">
+		update member set authority = 'ROLE_MANAGER' where m_id = #{m_id}
+	</update>
+	
+	<delete id="managerDelete">
+		delete from managerRequest where m_id = #{m_id}
+	</delete>
+
 </mapper>
 

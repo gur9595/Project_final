@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
-
 @Controller
 public class LoginController {
-
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 
@@ -54,20 +52,8 @@ public class LoginController {
 		return "member/login";
 	}
 	*/
-   @RequestMapping(value="/login.do", method = RequestMethod.POST)
-   public String printUser(Model model, Principal principal) {
 
-
-      String m_id = principal.getName();//get logged in username
-
-      model.addAttribute("m_id", m_id);
-
-      System.out.println("m_id : "+m_id);
-
-      return "home";
-
-	}
-	
+		
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException {
@@ -80,6 +66,27 @@ public class LoginController {
 
 		/* 네이버 로그인 성공 페이지 View 호출 */
 		return "member/naverSuccess";
+	}
+
+
+	@RequestMapping(value="/login.do", method = RequestMethod.POST)
+	public String printUser(Model model, Principal principal, HttpSession session) {
+
+		String m_id = principal.getName();//get logged in username
+
+		model.addAttribute("m_id", m_id);
+
+		System.out.println("m_id : "+m_id);
+
+		/*
+		 * String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		 * 
+		 * System.out.println("네이버:" + naverAuthUrl); model.addAttribute("url",
+		 * naverAuthUrl);
+		 */
+
+		return "home";
+
 	}
 
 }

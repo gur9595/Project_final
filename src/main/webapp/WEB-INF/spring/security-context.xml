@@ -8,7 +8,8 @@
  <!-- <security:intercept-url pattern="/security2/login.do" access="permitAll "/>
       <security:intercept-url pattern="/security2/admin/**" access="hasRole('ADMIN')"/>
       <security:intercept-url pattern="/security2/**" access="hasAnyRole('USER', 'ADMIN')"/> -->
-   
+      
+   <!-- 관리자 -->
    <security:http pattern="/admin/**" auto-config="true" disable-url-rewriting="true" use-expressions="true">
       <security:intercept-url pattern="/admin/adminLogin.do" access="permitAll"/>
       <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
@@ -27,11 +28,14 @@
    <security:access-denied-handler error-page="/member/error.do"/>
    </security:http>
    
+   <!-- 일반 회원 페이지 -->
    <security:http pattern="/**" auto-config="true" disable-url-rewriting="true" use-expressions="true">
-		<security:intercept-url pattern="/club/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/match/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/manager/managerJoin.do" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-		<security:csrf disabled="true"/>
+
+      <security:intercept-url pattern="/club/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+      <security:intercept-url pattern="/match/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+      <security:intercept-url pattern="/manager/managerJoin.do" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+      <security:csrf disabled="true"/>
+
    <security:form-login 
       login-page="/member/login.do"
       default-target-url="/member/home.do"

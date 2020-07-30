@@ -75,11 +75,6 @@ public class MemberController {
       return "member/login";
    }
 
-   @RequestMapping("/member/managerMain.do")
-   public String managerMain() {
-
-      return "member/manager_main";
-   }
 
    @RequestMapping("/member/managerJoin.do")
    public String managerJoin() {
@@ -176,7 +171,8 @@ public class MemberController {
 
 		return "/member/id_pw";
 	}
-
+	
+	//회원가입 1페이지에서 2페이지로 데이터를 보냄
    @RequestMapping(value = "/member/memberJoin1.do", method = RequestMethod.POST) 
    public String memberJoinPro1(HttpServletRequest req, Model model) {
 
@@ -189,7 +185,7 @@ public class MemberController {
       String m_addr1 = req.getParameter("m_addr1");
       String m_addr2 = req.getParameter("m_addr2");
 
-      String m_addr = m_addr1+" "+m_addr2;
+      String m_addr = m_addr1+","+m_addr2;
 
       model.addAttribute("m_id",m_id);
       model.addAttribute("m_pw",m_pw);
@@ -209,7 +205,8 @@ public class MemberController {
       System.out.println("생성된UUID-2: "+uuid);
       return uuid;
    }
-
+   
+   //회원가입 2페이지에서 파일업로드후 DB저장
    @RequestMapping(value="/member/memberJoin2.do",method=RequestMethod.POST)
    public String memberJoinPro2(HttpSession session, MemberDTO dto, Model model , MultipartHttpServletRequest req) {
       
@@ -287,12 +284,14 @@ public class MemberController {
       return "member/login"; 
    }
    
+   //회원정보 수정
    @RequestMapping(value="/member/memberEditAction.do",method=RequestMethod.POST)
    public String memberEditAction(HttpSession session, MemberDTO dto, Model model , MultipartHttpServletRequest req) {
       
 	   	//서버의 물리적경로 가져오기
+	   
 		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
-		
+				
 		//폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
 		Map returnObj = new HashMap();
 		try {
@@ -352,7 +351,8 @@ public class MemberController {
 
               dto.setM_pic(saveFileName);
 
-              sqlSession.getMapper(MemberDAOImpl.class).memberUpdate(dto);
+              int aa=sqlSession.getMapper(MemberDAOImpl.class).memberUpdate(dto);
+              System.out.println("aa : " + aa);
            }
            		
        		returnObj.put("files", resultList);
@@ -367,13 +367,15 @@ public class MemberController {
 
       return "redirect:/"; 
    }
-
+   
+   //경기장 등록페이지
    @RequestMapping("/member/member_stadiumIn.do")
    public String member_stadiumIn() {
 
       return"member/member_stadiumIn";
    }
-
+   
+   //경기장 등록
    @RequestMapping("/member/member_stadiumInsert.do")
    public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req) {
       
@@ -383,17 +385,19 @@ public class MemberController {
       
       dto.setS_addr(s_addr);
       
+      System.out.println("s_memo : "+dto.getS_memo());
       sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
       
       return"member/member_select";
    }
    
+   //접근 에러
    @RequestMapping("/member/error.do")
    public String error(){  
       return "/member/error";
    }
    
-
+   //회원정보를 가지고 회원수정 페이지 이동
    @RequestMapping("/member/memberEdit.do")
    public String memberEdit(Model model , HttpServletRequest req, Principal principal) {
       String m_id = principal.getName();
@@ -421,41 +425,46 @@ public class MemberController {
       return"member/memberEdit";
    }
    
-   @RequestMapping(value = "/member/memberEdit2.do", method = RequestMethod.POST) 
+
+   @RequestMapping("/member/memberEdit2.do")
    public String memberEdit2(HttpServletRequest req, Model model, Principal principal) {
 
-      String m_id = req.getParameter("m_id");
-      String m_pw = req.getParameter("m_pw");
-      String m_name = req.getParameter("m_name");
-      String m_birth = req.getParameter("m_birth");
-      String m_phone = req.getParameter("m_phone");
-      String m_email = req.getParameter("m_email");
+	   String m_id = principal.getName();
+
+      if(m_id =="") {
+         return "redirect:login.do";
+      }
+
+      MemberDTO dto = new MemberDTO();
+      dto.setM_id(m_id);
+      
+      dto = sqlSession.getMapper(MemberDAOImpl.class).memberInfo(dto);
+	  
       String m_addr1 = req.getParameter("m_addr1");
       String m_addr2 = req.getParameter("m_addr2");
 
       String m_addr = m_addr1+","+m_addr2;
-
-      model.addAttribute("m_id",m_id);
-      model.addAttribute("m_pw",m_pw);
-      model.addAttribute("m_name",m_name);
-      model.addAttribute("m_birth",m_birth);
-      model.addAttribute("m_phone",m_phone);
-      model.addAttribute("m_email",m_email);
-      model.addAttribute("m_addr",m_addr);
+      
+      dto.setM_id(req.getParameter("m_id"));
+      dto.setM_pw(req.getParameter("m_pw"));
+      dto.setM_name(req.getParameter("m_name"));
+      dto.setM_birth(req.getParameter("m_birth"));
+      dto.setM_phone(req.getParameter("m_phone"));
+      dto.setM_email(req.getParameter("m_email"));
+      dto.setM_addr(m_addr);
+      
+      model.addAttribute("dto", dto);
 
       principal.getName();
 
-      return "member/memberEdit";
+      return "member/memberEdit2";
    }
 
    @RequestMapping("/member/mypageMain.do")
    public String mypageMain() {
 
-	   
-	   
       return"member/mypage_main";
    }
-
 
 
 }

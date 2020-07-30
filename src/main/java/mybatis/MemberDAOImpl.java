@@ -13,8 +13,7 @@ public interface MemberDAOImpl {
 	
 	public int memberUpdate(MemberDTO memberDTO);
 	
-	public int managerUpdate(MemberDTO memberDTO);
-	
+
 	
 	
 }
