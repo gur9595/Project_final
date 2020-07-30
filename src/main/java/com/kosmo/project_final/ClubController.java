@@ -66,7 +66,6 @@ public class ClubController {
 	public String clubSearch(Principal principal, Model model, HttpSession session, HttpServletRequest req) {
 
 		String m_id = principal.getName();
-		session.setAttribute("m_id", m_id);
 
 		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCount();
 
@@ -89,6 +88,8 @@ public class ClubController {
 		blockPage, nowPage, req.getContextPath() + "/club/clubMain.do?");
 
 		model.addAttribute("pagingImg", pagingImg);
+		
+		model.addAttribute("m_id", m_id);
 
 		System.out.println(totalRecordCount);
 
@@ -100,7 +101,6 @@ public class ClubController {
 	public String clubSearchFilter(Principal principal, Model model, HttpSession session, HttpServletRequest req) {
 
 		String m_id = principal.getName();
-		session.setAttribute("m_id", m_id);
 
 		ClubDTO clubDTO = new ClubDTO();
 		String clubName = req.getParameter("clubName");
@@ -276,6 +276,21 @@ public class ClubController {
 		model.addAttribute("clubDTO", clubDTO);
 		
 		return "redirect:/club/clubViewManage.do?c_idx="+ c_idx;
+	}
+	
+	@RequestMapping("/club/clubMemberRelease.do")
+	public String clubMemberRelease(HttpServletRequest req, Model model) {
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+
+		sqlSession.getMapper(ClubDAOImpl.class).clubMemberReject(Integer.parseInt(req.getParameter("cm_idx")));
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "redirect:/club/clubViewMember.do?c_idx="+ c_idx;
 	}
 
 	public static String getUuid() {

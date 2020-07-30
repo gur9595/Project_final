@@ -106,15 +106,22 @@ th {
 															<th style="cursor: pointer;">${row.m_name }</th>
 															<th>${row.m_birth }</th>
 															<th>${row.m_position }</th>
-															<th>모달 버튼</th>  
+															<th>
+																<input type="button" id="memberApply" onclick="modal('${row.cm_memo}');"
+																class="btn btn-outline-warning" data-target="#myModal"
+																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900;"
+																value="수락">
+															</th>  
 															<th><input type="button" id="memberApply" onclick="return memberApply(${clubDTO.c_idx },${row.cm_idx});"
 																class="btn btn-outline-success"
 																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900;"
-																value="수락"></th>
+																value="수락">
+															</th>
 															<th><input type="button" id="memberReject" onclick="return memberReject(${clubDTO.c_idx },${row.cm_idx});"
 																class="btn btn-outline-danger"
 																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900;"
-																value="거절"></th>
+																value="거절">
+															</th>
 														</tr>
 													</c:forEach>
 												</table>
@@ -123,24 +130,10 @@ th {
 									</div>
 								</div>
 								<div class="tab-pane  p-20" id="profile" role="tabpanel">
-									<div class="p-20">
-										<img src="../../assets/images/background/img4.jpg"
-											class="img-fluid">
-										<p class="m-t-10">And is full of waffle to It has multiple
-											paragraphs and is full of waffle to pad out the comment.
-											Usually, you just wish these sorts of comments would come to
-											an end.multiple paragraphs and is full of waffle to pad out
-											the comment..</p>
-									</div>
+									<div class="p-20">									</div>
 								</div>
 								<div class="tab-pane p-20" id="messages" role="tabpanel">
 									<div class="p-20">
-										<p>And is full of waffle to It has multiple paragraphs and
-											is full of waffle to pad out the comment. Usually, you just
-											wish these sorts of comments would come to an end.multiple
-											paragraphs and is full of waffle to pad out the comment..</p>
-										<img src="../../assets/images/background/img4.jpg"
-											class="img-fluid">
 									</div>
 								</div>
 							</div>
@@ -179,16 +172,38 @@ th {
 			</footer>
 		</div>
 	</div>
+	
+	<!-- 모달창 신청폼 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" data-backdrop="static"
+		style="color: black;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+	
+				<div class="modal-header">
+					<h2 class="modal-title"
+						style="font-size: 20px; text-align: center;" id="myModalLabel">가입 인사</h2>
+	
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+					당찬 포부의 한마디 : <br />
+					<textarea class="form-control" id="memo" name="memo"
+						style="width: 100%; height: 100px; background: #ffffff;" readonly></textarea>
+	
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ################ 모달 끝 #################-->
 </body>
 <script>
-function modal(idx, name, ability, age, gender, area) {
+function modal(memo) {
 	
-	$('#list_idx').val(idx);
-	document.getElementById("list_name").innerHTML = name;
-	document.getElementById("list_ability").innerHTML = ability;
-	document.getElementById("list_age").innerHTML = age;
-	document.getElementById("list_gender").innerHTML = gender;
-	document.getElementById("list_area").innerHTML = area;
+	
+	document.getElementById("memo").innerHTML = area;
 	
 }
 
@@ -200,134 +215,5 @@ function memberReject(c_idx, cm_idx){
 	location.href="../club/clubMemberReject.do?c_idx="+ c_idx +"&cm_idx="+cm_idx;
 }
 </script>
-<script type="text/javascript">
-	var messageWindow;
-	var inputMessage;
-	var chat_id;
-	var webSocket;
 
-	window.onload = function() {
-
-		//대화가 디스플레이 되는 영역
-		messageWindow = document.getElementById("chat-container");
-
-		//대화영역의 스크롤바를 항상 아래로 내려준다.
-		messageWindow.scrollTop = messageWindow.scrollHeight;
-
-		inputMessage = document.getElementById('inputMessage');
-
-		chat_id = document.getElementById('chat_id').value;
-
-		webSocket = new WebSocket(
-				'ws://localhost:8282/K07JSPServlet/ChatServer02');
-		webSocket.onopen = function(event) {
-			wsOpen(event);
-		};
-		//연결되었을 때
-		webSocket.onopen = function(event) {
-			wsOpen(event);
-		};
-		//메세지가 전송될 때
-		webSocket.onmessage = function(event) {
-			wsMessage(event);
-		};
-		//웹소켓이 닫혔을 때
-		webSocket.onclose = function(event) {
-			wsClose(event);
-		};
-		//에러가 발생했을 때
-		webSocket.onerror = function(event) {
-			wsError(event);
-		};
-	}
-	function wsOpen(event) {
-		messageWindow.value += "연결성공\n";
-	}
-
-	function wsMessage(event) {
-
-		var message = event.data.split("|");
-		var sender = message[0];
-		var content = message[1];
-		var msg;
-
-		if (content == "") {
-			//전송한 메세지가 없다면 아무일도 하지 않는다.
-		} else {
-			//보낸 메세지에...
-			if (content.match("/")) {
-				//슬러쉬가 포함되어있다면 명령어로 인식...
-				if (content.match(("/" + chat_id))) {
-					//귓속말 명령어를 한글로 대체한 후
-					var temp = content.replace(("/" + chat_id), "[귓속말]:");
-					msg = makeBalloon(sender, temp);
-					messageWindow.innerHTML += msg;
-					//스크롤바 처리
-					messageWindow.scrollTop = messageWindow.scrollHeight;
-				}
-			} else {
-				//귓속말이 아니면 모두에게 디스플레이 한다.
-				msg = makeBalloon(sender, content);
-				messageWindow.innerHTML += msg;
-				//스크롤바 처리 
-				messageWindow.scrollTop = messageWindow.scrollHeight;
-			}
-		}
-	}
-
-	//상대방이 보낸 메세지를 출력하기 위한 부분
-	function makeBalloon(id, cont) {
-		var msg = '';
-		msg += '<div class="chat chat-left">';
-		msg += '	<!-- 프로필 이미지 -->';
-		msg += '	<span class="profile profile-img-b"></span>';
-		msg += '	<div class="chat-box">';
-		msg += '		<p style="font-weight:bold; font-size:1.1em; margin-bottom:5px;">'
-				+ id + '</p>';
-		msg += '		<p class="bubble">' + cont + '</p>';
-		msg += '		<span class="bubble-tail"></span>';
-		msg += '	</div>';
-		msg += '</div>';
-		return msg;
-	}
-	function wsClose(event) {
-		messageWindow.value += "연결끊기성공\n";
-	}
-	function wsError(event) {
-		alert(event.data);
-	}
-
-	function sendMessage() {
-
-		//웹소켓 서버로 대화내용을 전송한다.
-		webSocket.send(chat_id + '|' + inputMessage.value);
-
-		var msg = '';
-		msg += '<div class="chat chat-right">';
-		msg += '	<!-- 프로필 이미지 -->';
-		msg += '	<span class="profile profile-img-a"></span>';
-		msg += '	<div class="chat-box">';
-		msg += '		<p class="bubble-me">' + inputMessage.value + '</p>';
-		msg += '		<span class="bubble-tail"></span>';
-		msg += '	</div>';
-		msg += '</div>';
-
-		//내가 보낸 메세지를 대화창에 출력한다.
-		messageWindow.innerHTML += msg;
-		inputMessage.value = "";
-
-		//대화영역의 스크롤바를 아래로 내려준다.
-		messsageWindow.scrollTop = messageWindow.scrollHeight;
-	}
-
-	function enterkey() {
-		/*
-		키보드를 눌렀다가 땠을 때 호출되며, 눌려진 키보드의 키코드가
-		13일 때, 즉 엔터일 때 아래 함수를 호출한다.
-		 */
-		if (window.event.keyCode == 13) {
-			sendMessage();
-		}
-	}
-</script>
 </html>
