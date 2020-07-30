@@ -1,19 +1,24 @@
-<<<<<<< HEAD
-=======
+
+
+body {
+   position: relative;
+   background-color: #fff;
+   margin: 0;
+   min-height: 100%
+}
 
 a {
-	color: #0061ff;
-	text-decoration: none
+   color: #0061ff;
+   text-decoration: none
 }
 
 a:hover {
-	text-decoration: underline
+   text-decoration: underline
 }
 
 img {
-	max-width: 100%
+   max-width: 100%
 }
->>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 
 .base-hide {
    display: none

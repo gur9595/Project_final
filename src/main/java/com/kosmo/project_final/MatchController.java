@@ -2,14 +2,9 @@ package com.kosmo.project_final;
 
 import java.security.Principal;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import mybatis.AdminDAOImpl;
 import mybatis.ClubDTO;
@@ -113,7 +105,7 @@ public class MatchController {
 
 	//게임 리스트 출력
 	@RequestMapping("/match/game_list.do")
-	public String game_list(Model model, HttpServletRequest req, HttpSession session) {
+	public String game_list(Model model, HttpServletRequest req, Principal principal) {
         
         ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
 		
@@ -143,7 +135,7 @@ public class MatchController {
 			}
 		});
 		
-		String m_id = (String) session.getAttribute("m_id");
+		String m_id = (String)principal.getName();
 		
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
 		

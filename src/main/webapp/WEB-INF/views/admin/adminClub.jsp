@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -21,13 +22,23 @@
     <link href="./../resources/admin_css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
 </head>
+<style>
+    table{
+        margin-left: auto; margin-right: auto;
+        width: 1100px;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+    td{
+        border-bottom: 1px solid #444444;
+        width: 70px; height: 30px;
+    }
+    th{
+        height:40px; text-align: center;
+                border-bottom: 1px solid #444444;
+    }
+</style>
 <body>
-	<div class="preloader">
-	    <div class="lds-ripple">
-	        <div class="lds-pos"></div>
-	        <div class="lds-pos"></div>
-	    </div>
-	</div>
     <div id="main-wrapper">
         <!-- 탑바 -->
 		<%@ include file="./../include/adminTopBar.jsp" %>
@@ -35,6 +46,58 @@
 		<%@ include file="./../include/adminSideBar.jsp" %>
 		<!-- 페이지 내용 -->
         <div class="page-wrapper">
+                    <div class="container-fluid">
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12">
+                        <!-- Tabs -->
+                        <div class="card">
+                            <!-- Tab panes -->
+                            <div class="tab-content tabcontent-border">
+                                <div>
+                                    <div class="p-20">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h2 style="text-align:center;">클럽 관리</h2>
+                                            </div>
+                                            <div class="comment-widgets scrollable">
+                                                <table>
+                                                    <tr style="border-bottom: 3px solid #036">
+                                                    	<th>No</th>
+                                                        <th>클럽명</th>
+                                                        <th>클럽캐시</th>   
+                                                        <th>활동지역</th>
+                                                        <th>선호종목</th>
+                                                        <th>생성날짜</th>
+                                                        <th>실력</th>
+                                                        <th>성별</th>
+                                                        <th>인원수제한</th>
+                                                        <th>연령대</th>
+                                                    </tr>
+													<c:forEach items="${lists }" var="row" varStatus="status"> 
+														<tr>
+															<th>${status.count }</th>
+															<th>${row.c_name }</th>
+															<th>${row.c_cash }</th>
+															<th>${row.c_area }</th>
+															<th>${row.c_type }</th>
+															<th>${row.c_date }</th>
+															<th>${row.c_ability }</th>
+															<th>${row.c_gender }</th>
+															<th>${row.c_memlimit }</th>															
+															<th>${row.c_age }</th>
+														</tr>
+													</c:forEach>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
             
 
             

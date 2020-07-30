@@ -109,11 +109,11 @@
 		<tbody id="tbody">
 		<c:forEach items="${lists }" var="row">
 			<tr class="game_list">
+				<td>${row.g_date }</td>
 				<td>
 					<input type="hidden" value="${row.g_idx }" />
-					${row.g_date }
+					${row.g_time }:00
 				</td>
-				<td>${row.g_time }:00</td>
 				<td>${row.g_gu }</td>
 				<td>
 					<a href="map.do?g_saddr=${row.g_saddr}&g_sname=${row.g_sname}" class="tip" style="color: red;" onclick=
