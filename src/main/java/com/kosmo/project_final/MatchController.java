@@ -113,7 +113,7 @@ public class MatchController {
 
 	//게임 리스트 출력
 	@RequestMapping("/match/game_list.do")
-	public String game_list(Model model, HttpServletRequest req, HttpSession session) {
+	public String game_list(Model model, HttpServletRequest req, Principal principal) {
         
         ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
 		
@@ -143,7 +143,7 @@ public class MatchController {
 			}
 		});
 		
-		String m_id = (String) session.getAttribute("m_id");
+		String m_id = (String)principal.getName();
 		
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
 		
