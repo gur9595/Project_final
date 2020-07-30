@@ -26,11 +26,11 @@
 <script src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800" type="text/javascript"></script> -->
 <link href="./../resources/css/match_main.css" rel="stylesheet" type="text/css" media="all">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<link rel="stylesheet" type="text/css" href="./../resources/member_join1.css" />
-<link rel="stylesheet" href="./../resources/css/member_join2.css">
-<link rel="stylesheet" href="./../resources/css/member_join3.css">
+
+
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="./../resources/js/mypage_main.js"></script>
+<link rel="stylesheet" href="./../resources/css/mypage_main.css">
 </head>
 <body id="top">
 

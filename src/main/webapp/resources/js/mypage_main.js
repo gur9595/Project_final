@@ -1,7 +1,17 @@
 $(document).ready( function() {
 	
     $('#profile').click(function() {
-    	$("#contents").load("memberEdit.do #main");
+    	$("#contents").load("memberEdit.do");
+        $('html, body').stop().animate({
+          scrollTop : $('#contents').offset().top
+        });
+        
+        $('#close').show();
+        
+    });
+    
+    $('#backpage').click(function() {
+    	$("#contents").load("memberEdit.do");
         $('html, body').stop().animate({
           scrollTop : $('#contents').offset().top
         });
@@ -11,47 +21,94 @@ $(document).ready( function() {
     });
     
     $('#nextpage').click(function() {
-
-    	console.log("ㅅㅂ");
     	
     	var m_id = $("#m_id").val();
-    	var m_pw = $("#m_pw").val();
-    	var m_name = $("m_name").val();
+    	var m_pw = $("#m_pw1").val();
+    	var m_pw2 = $("#m_pw2").val();
+    	var m_name = $("#m_name").val();
     	var m_birth = $("#m_birth").val();
     	var m_phone = $("#m_phone").val();
     	var m_email = $("#m_email").val();
     	var m_addr1 = $("#m_addr1").val();
     	var m_addr2 = $("#m_addr2").val();
     	
-    	$("#contents").load("memberEdit2.do?m_id=" + m_id + "&m_pw="+ m_pw + "&m_name="+ m_name + "&m_birth="+ m_birth + 
-    			"&m_phone="+ m_phone + "&m_email="+ m_email + "&m_addr1="+ m_addr1 + "&m_addr2=" + m_addr2 + " #main");
+    	if(m_pw == ""){
+    		alert("비밀번호 입력 칸을 입력해주세요.");
+    		return false;
+    	}
+    	if(m_pw2 == ""){
+    		alert("비밀번호 확인 칸을 입력해주세요.");
+    		return false;
+    	}
+    	if(m_pw != m_pw2){
+    		alert("두 칸의 비밀번호가 다릅니다. 다시 입력하세요.");
+    		return false;
+    	}
+    	
+    	$("#contents").load("/project_final/member/memberEdit2.do", "m_id=" + m_id + "&m_pw="+ m_pw + "&m_name="+ m_name + "&m_birth="+ m_birth + "&m_phone="+ m_phone + "&m_email="+ m_email + "&m_addr1="+ m_addr1 + "&m_addr2=" + m_addr2 + " #main");
         $('html, body').stop().animate({
-          scrollTop : $('#contents_target').offset().top
+            scrollTop : $('#contents').offset().top
         });
         
-        $('#close').show();
-        
-    });
-
-    $('#edit').click(function() {
-      $("#contents").load("edit.html #edit");
-      $('html, body').stop().animate({
-        scrollTop : $('#contents_target').offset().top
-      });
-
-      $('#close').show();
     });
     
-    $('#order_tracking').click(function() {
-      $("#contents").load("order_tracking.html #order_tracking");
-      $('html, body').stop().animate({
-        scrollTop : $('#contents_target').offset().top
-      });
+    //성별 체크
+	if($("#sex").val() == "남자"){
+		$("input:radio[id='man']").prop("checked", true);
+	}
+	else if($("#sex").val() == "여자"){
+		$("input:radio[id='woman']").prop("checked", true);
+	}
+	
+	//포지션 체크
+	var positions = $("#position").val().split(",");
+	var posCheck = $("input:checkbox[name=m_position]");
+	for(j = 0; j < posCheck.length; j++) {
+		for(i = 0; i < positions.length; i++) {
+			if(positions[i] == posCheck[j].value){
+				$("input:checkbox[id=" + positions[i] + "]").prop("checked", true);
+			}
+		}
+	}
+	
+	//실력 체크
+	var abils = $("input:radio[name=m_abil]");
+	for(i = 0; i < abils.length; i++) {
+		if($("#abil").val() == abils[i].value){
+			$("input:radio[id=" + $("#abil").val() + "]").prop("checked", true);
+		}
+	}
+	
+	//주발 체크
+	var foots = $("input:radio[name=m_foot]");
+	for(i = 0; i < foots.length; i++) {
+		if($("#foot").val() == foots[i].value){
+			$("input:radio[id=" + $("#foot").val() + "]").prop("checked", true);
+		}
+	}
+    
 
-      $('#close').show();
-    });
+});
 
-  });
+function setPic(event) {
+	var reader = new FileReader();
+	
+	reader.onload = function(event) {
+		if(document.getElementById('newImg')){
+			var el = document.getElementById('newImg');
+			el.remove();
+		}
+		
+		var img = document.createElement("img");
+		img.style.align = "center";
+		img.setAttribute("width", 150);
+		img.setAttribute("height", 200);
+		img.setAttribute("id", "newImg");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("#image_container").appendChild(img);
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
 
   // 메뉴 줌 인/아웃
   function zoomIn(event) {
@@ -71,21 +128,6 @@ $(document).ready( function() {
         scrollTop : $('.target span').eq(0).offset().top
     });
   }
-
-var dataLayer = dataLayer || [];
-window.addEventListener("load", function() {
-    var memberGA = null;
-    if (memberGA != null && memberGA.dimension1 != "0") {
-        dataLayer.push(memberGA);
-    }
-
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TXDSFSF');
-}, false);
-
 function DaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -143,7 +185,6 @@ function validateLengthMemberIdWhenKeyup() {
         $m_id.val(limitMemberId);
     }
 }
-
 function validateMemberId() {
     if (!validationMemberIdHandler()) {
         joinBtnActive(false);
