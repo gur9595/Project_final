@@ -12,4 +12,6 @@ public interface StadiumDAOImpl {
 	public ArrayList<StadiumDTO> stadiumList(
 			StadiumDTO stadiumDTO);
 
+	public int stadiumInsert(StadiumDTO dto);
+	
 }

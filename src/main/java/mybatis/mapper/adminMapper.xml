@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mybatis.AdminDAOImpl">
+ 
+	<!-- 게임카운트조회 -->
+	<select id="get_Gnum" resultType="int">
+		select g_num from admin where a_id like 'game_manager'
+	</select>
+	
+	<!-- 게임카운트 추가 -->
+	<update id="set_Gnum" parameterType="int">
+		update admin set g_num = #{g_num} where a_id like 'game_manager'
+	</update>
+	
+	<!-- 회원 리스트 -->
+	<select id="adminMember" resultType="mybatis.MemberDTO">
+		select * from member where AUTHORITY='ROLE_USER' order by m_date asc
+	</select>
+	
+	<!-- 클럽 리스트 -->
+	<select id="adminClub" resultType="mybatis.ClubDTO">
+		select * from club order by c_date asc
+	</select>
+
+	<!-- 메니저 리스트 -->
+	<select id="listPage" resultType="mybatis.ManagerRequestDTO" parameterType="mybatis.ManagerRequestDTO">
+		select * from managerRequest 
+	</select>
+	
+	<update id="managerUpdate" parameterType="mybatis.MemberDTO">
+		update member set authority = 'ROLE_MANAGER' where m_id = #{m_id}
+	</update>
+	
+	<delete id="managerDelete">
+		delete from managerRequest where m_id = #{m_id}
+	</delete>
+
+</mapper>
+

@@ -13,37 +13,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="./../resources/css/join.css">
-<link rel="shortcut icon" href="https://static.msscdn.net/favicon.ico?20200701180800" type="image/x-icon"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	   
-	   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	   
-	   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	         
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-        
-        <!-- Google Tag Manager -->
-        <script>
-            var dataLayer = dataLayer || [];
-            window.addEventListener("load", function() {
-                var memberGA = null;
-                if (memberGA != null && memberGA.dimension1 != "0") {
-                    dataLayer.push(memberGA);
-                }
 
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-TXDSFSF');
-            }, false);
-        </script>
-        <!-- End Google Tag Manager -->
+<script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/skin/m_musinsa/js/appinterface.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/appinterface-member.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/constant.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/ui/config.js?20200701180800" type="text/javascript"></script>
+<script src="https://static.msscdn.net/static/member/js/ui.js?20200701180800" type="text/javascript"></script>
+<script type="text/javascript" src="https://static.msscdn.net/static/member/js/backforward.js?20200701180800"></script>
+<script src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800" type="text/javascript"></script>
 
-    <link rel="stylesheet" type="text/css" href="./../resources/member_join1.css" />
-    <link rel="stylesheet" href="./../resources/css/member_join2.css">
-    <link rel="stylesheet" href="./../resources/css/member_join3.css">
+<!-- Google Tag Manager -->
+<script>
+    var dataLayer = dataLayer || [];
+    window.addEventListener("load", function() {
+        var memberGA = null;
+        if (memberGA != null && memberGA.dimension1 != "0") {
+            dataLayer.push(memberGA);
+        }
+
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TXDSFSF');
+    }, false);
+</script>
+<!-- End Google Tag Manager -->
+
+<link rel="stylesheet" type="text/css" href="./../resources/member_join1.css" />
+<link rel="stylesheet" href="./../resources/css/member_join2.css">
+<link rel="stylesheet" href="./../resources/css/member_join3.css">
 
 </head>
 <body id="top">
@@ -64,26 +69,27 @@
         <div class="n-member-area form-area" style="background:#FFFFFF;">
 
             <form class="formBox" name="joinForm" id="joinForm" action="<c:url value="/member/memberJoin1.do" />" method="post">
-
                 <!-- Header -->
                 <header class="member-header">
                     <div class="logo">
-               
+      
                     </div>
-                    <h2 class="title-join" style="font-size:40px;">회&nbsp;원&nbsp;가&nbsp;입</h2>
+                    <h2 style="font-size:40px; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h2>
+                    <button type="button" class="btn-back" onclick="location.href='${pageContext.request.contextPath }'"><i class="ic-30-line-arrow-left">이전 페이지로 이동</i></button>
                 </header>
-                <!-- //Header -->
 
-                <!-- Join Form -->
                 <div class="join-form">
                     <div class="n-form-set">
+
                         <label for="m_id" class="n-form-label">아이디 <span class="essential">필수 입력</span></label><br/>
-                        <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(8자이상)" minlength="8" maxlength="20" style="width:400px;">
+
+                        <input type="text" class="n-input input" id="m_id" name="m_id" placeholder="아이디 입력(4자이상)" minlength="8" maxlength="20" style="width:400px; display: inline;  margin-top:3px;">
+                        <input type="button" class="btn btn-warning " onclick="()" value="중복 확인" style="width:130px; height:50px; display:inline; color: #424242; font-weight: bold" /><br>
                         <p class="n-validation" id="hLayerid"></p>
                     </div>
                     <div class="n-form-set">
-                        <label for="m_pw" class="n-form-label">비밀번호 <span class="essential">필수 입력</span></label>
-                        <div class="n-form-icon">
+						<label for="password">비밀번호 <span class="essential"></span></label>
+						<div class="n-form-icon">
                             <input type="password" class="n-input input" id="m_pw" name="m_pw" minlength="8" autocomplete="new-password"
                                    placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
                             <p class="n-validation" id="passwordValidMessage"></p>
@@ -91,31 +97,34 @@
                         </div>
                         <div class="n-form-icon">
                             <input type="password" class="n-input input" id="confirmPassword" name="confirmPassword" autocomplete="new-password"
-                                   minlength="8" placeholder="비밀번호 확인">
+                                   	 placeholder="비밀번호 확인">
                             <p class="n-validation" id="passwordConfirmValidMessage"></p>
                       
                         </div>
                     </div>
                     <div class="n-form-set">
-                        <label for="m_name" class="n-form-label">이름 <span class="essential">필수 입력</span></label>
-                        <input type="text" class="n-input input" id="m_name" name="m_name" placeholder="이름입력" minlength="2" maxlength="4">
+
+                        <label for="name" >이름 <span class="essential"></span></label>
+                        <input type="text" class="n-input input" id="m_name" name="m_name" placeholder="이름입력" minlength="2" maxlength="8">
                         <p class="n-validation" id="hLayername"></p>
                     </div>
                     
                     <div class="n-form-set">
-                        <label for="birth" class="n-form-label">생년월일 <span class="essential">필수 입력</span></label>
+
+                        <label for="birth" >생년월일 <span class="essential"></span></label>
                         <input type="text" class="n-input input" id="m_birth" name="m_birth" maxlength="8" placeholder="예)19970121">
                         <p class="n-validation" id="hLayerjumin"></p>
                     </div>
                     
                     <div class="n-form-set" id="input-div">
-                    	<label for="tel" class="n-form-label">휴대전화 <span class="essential">필수 입력</span></label>
+
+                    	<label for="tel">휴대전화 <span class="essential"></span></label>
 		                <input type="tel" class="n-input" id="m_phone" name="m_phone" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="11">
 		                <p class="n-validation" id="searchValidPhone" style="display: none">번호 형식이 올바르지 않습니다</p>
             		</div>
                     
                     <div class="n-form-set">
-                        <label for="email" class="n-form-label">이메일 <span class="essential">필수 입력</span></label>
+                        <label for="email" >이메일 <span class="essential"></span></label>
                         <div class="n-form-layer" id = "emailFromLayer">
                             <input type="email" class="n-input input" id="m_email" name="m_email" maxlength="50" placeholder="이메일" autocomplete="off">
                             <p class="n-validation" id="hLayeremail"></p>
@@ -130,13 +139,13 @@
                     </div>
                     
                     <div class="n-form-set" id="input-div">
-                        <label for="address" class="n-form-label">주소<span class="essential">필수 입력</span></label>
+                        <label for="address" >주소<span class="essential"></span></label>
                         <div>                                     
-                            <input type="text" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
+                            <input type="hidden" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
                             <input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="주소 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
                             <input type="text" id="m_addr1" name="m_addr1" placeholder="주소"  class="n-input" style="margin-top: 5px;" readonly/>
                             <input type="text" id="m_addr2" name="m_addr2" placeholder="상세주소"  class="n-input" style="margin-top: 5px;" />
-                                <p class="n-validation" id="searchValidPhone" style="display: none">주소형식이 올바르지 않습니다.</p>
+                            <p class="n-validation" id="searchValidPhone" style="display: none">주소형식이 올바르지 않습니다.</p>
                            
                         </div>
                     </div>
@@ -145,7 +154,7 @@
                     <div id="agreementDivArea" class="agreement">
                         <div>
                             <input type="checkbox" class="n-check" id="checkAll">
-                            <label for="checkAll" class="all">약관 전체동의</label>
+                            <label for="checkAll">약관 전체동의</label>
                         </div>
                         <div>
                             <input type="checkbox" class="n-check" id="agreeCheckbox" name="agreeCheckbox">
@@ -160,7 +169,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="joinBtnDiv" class="member-btn">
                     <input type="submit" class="n-btn btn-primary" onsubmit="" value="다음"/>
                 </div>
@@ -177,7 +185,6 @@
 <!-- JAVASCRIPTS -->
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
-<script src="./../resources/js/jquery.mobilemenu.js"></script>
 </body>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -268,10 +275,10 @@
                     $m_id.attr('class', 'n-input input-danger');
                     return false;
                 }
-                if ($m_id.val().length < 8) {
+                if ($m_id.val().length < 4) {
                     $("#hLayerid")
                         .removeClass('validation-passed')
-                        .html('아이디는 8자 이상이어야 합니다.');
+                        .html('아이디는 4자 이상이어야 합니다.');
                     $m_id.attr('class', 'n-input input-danger');
                     return false;
                 } else {

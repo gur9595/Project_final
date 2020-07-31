@@ -18,6 +18,14 @@ public class MemberDTO {
 	private String m_abil;
 	private String m_foot;
 	private String m_pic;
+	private String m_rfa;
+	private String m_work;
+	private String m_career;
+	private String m_area;
+	private String m_duration;
+	private String cm_memo;
+	private String cm_idx;
+	
 	
 	
 	public int getM_idx() {
@@ -104,9 +112,47 @@ public class MemberDTO {
 	public void setM_pic(String m_pic) {
 		this.m_pic = m_pic;
 	}
-	
-	
-	
-	
+	public String getM_rfa() {
+		return m_rfa;
+	}
+	public void setM_rfa(String m_rfa) {
+		this.m_rfa = m_rfa;
+	}
+	public String getM_work() {
+		return m_work;
+	}
+	public void setM_work(String m_work) {
+		this.m_work = m_work;
+	}
+	public String getM_career() {
+		return m_career;
+	}
+	public void setM_career(String m_career) {
+		this.m_career = m_career;
+	}
+	public String getM_area() {
+		return m_area;
+	}
+	public void setM_area(String m_area) {
+		this.m_area = m_area;
+	}
+	public String getM_duration() {
+		return m_duration;
+	}
+	public void setM_duration(String m_duration) {
+		this.m_duration = m_duration;
+	}
+	public String getCm_memo() {
+		return cm_memo;
+	}
+	public void setCm_memo(String cm_memo) {
+		this.cm_memo = cm_memo;
+	}
+	public String getCm_idx() {
+		return cm_idx;
+	}
+	public void setCm_idx(String cm_idx) {
+		this.cm_idx = cm_idx;
+	}
 	
 }

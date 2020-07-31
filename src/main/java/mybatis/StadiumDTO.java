@@ -216,6 +216,7 @@ public class StadiumDTO {
 
 	public void setEnd(int end) {
 		this.end = end;
-	}
+	}	
+	
 	
 }

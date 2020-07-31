@@ -1,8 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
-	
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:security="http://www.springframework.org/schema/security"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+   
+ <!-- <security:intercept-url pattern="/security2/login.do" access="permitAll "/>
+      <security:intercept-url pattern="/security2/admin/**" access="hasRole('ADMIN')"/>
+      <security:intercept-url pattern="/security2/**" access="hasAnyRole('USER', 'ADMIN')"/> -->
+      
+   <!-- 관리자 -->
+   <security:http pattern="/admin/**" auto-config="true" disable-url-rewriting="true" use-expressions="true">
+      <security:intercept-url pattern="/admin/adminLogin.do" access="permitAll"/>
+      <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+      <security:csrf disabled="true"/>
+   <security:form-login 
+      login-page="/admin/adminLogin.do"
+      default-target-url="/admin/adminMain.do"
+      authentication-failure-url="/admin/adminLogin.do"
+      login-processing-url="/admin/adminLoginAction"
+      username-parameter="m_id"
+      password-parameter="m_pw"
+      />
+   <security:logout
+      logout-url="/admin/adminLogout" 
+      logout-success-url="/admin/adminLogin.do"/>
+   <security:access-denied-handler error-page="/member/error.do"/>
+   </security:http>
+   
+   <!-- 일반 회원 페이지 -->
+   <security:http pattern="/**" auto-config="true" disable-url-rewriting="true" use-expressions="true">
+
+      <security:intercept-url pattern="/club/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+      <security:intercept-url pattern="/match/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+      <security:intercept-url pattern="/manager/managerJoin.do" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+      <security:csrf disabled="true"/>
+
+   <security:form-login 
+      login-page="/member/login.do"
+      default-target-url="/member/home.do"
+      authentication-failure-url="/member/login.do?error"
+      login-processing-url="/member/loginAction"
+      username-parameter="m_id"
+      password-parameter="m_pw"
+      />
+   <security:logout
+      logout-url="/member/logout" 
+      logout-success-url="/"/>
+   <security:access-denied-handler error-page="/member/error.do"/>
+   </security:http>
+   
+
+   <security:authentication-manager>
+      <security:authentication-provider>
+         <security:jdbc-user-service
+            data-source-ref="dataSource"
+            role-prefix=""
+            users-by-username-query="SELECT 
+            m_id, m_pw, enabled
+            FROM member WHERE m_id=?"
+            authorities-by-username-query="SELECT 
+            m_id, authority 
+            FROM member WHERE m_id=?"
+         />
+      </security:authentication-provider>
+   </security:authentication-manager>
+   
 </beans>

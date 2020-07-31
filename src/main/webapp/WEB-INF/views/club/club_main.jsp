@@ -59,7 +59,7 @@
               <i class='fas fa-trophy d-block' style='font-size:62px'></i>
               <br>
               <h3 class="text-uppercase h4 mb-3">클럽 랭킹</h3>
-              <span style="cursor: pointer;" class="link" id="clubTotalRanking">전체 랭킹</span> / 
+              <span style="cursor: pointer;" class="link" id="clubTotalRanking">전체 랭킹</span>/
               <span style="cursor: pointer;" class="link" id="clubGuRanking">구별 랭킹</span>
             </div>
           </div>
@@ -83,7 +83,6 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
-<script src="./../resources/js/jquery.mobilemenu.js"></script>
 <script src="./../resources/js/moving.js"></script>
 </body>
 </html>

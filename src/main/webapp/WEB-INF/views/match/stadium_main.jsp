@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="">
@@ -454,6 +454,7 @@ function removeAllChildNods(el) {
 	</main>
 </div>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+
 </body>
 <script>
 	$('#btn1').click(function(){
