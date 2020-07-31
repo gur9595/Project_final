@@ -13,6 +13,9 @@ public interface MemberDAOImpl {
 	
 	public int memberUpdate(MemberDTO memberDTO);
 	
+	public MemberDTO memberLogin(MemberDTO memberDTO);
+	
+	
 
 	
 	
