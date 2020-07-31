@@ -66,7 +66,7 @@
                                     <div class="p-20">
                                         <div class="card" style="background-color : #eeeeee;">
                                             <div class="comment-widgets scrollable">                           
-                                                <div class="container-fluid" id="mainHolder">
+                                                <div class="container-fluid" id="mainHolder" style="padding-top: 0">
                                                     <div class="row teamheader">
                                                       <div class="col-xs-12" style="background-color:#333333; height:350px; width:100%;">
                                                   <div class="col-xs-4" style=" position:relative; height:100%;margin:0; padding:0; display:table;">
@@ -125,7 +125,7 @@
                                                       <div class="col-xs-6">
                                                         <div class="row" style="margin:0; padding:0; margin-bottom:15px;">
                                                           <h6 style="margin:0; padding:0; color:#BFBFBF; font-size:20px; font-weight:600; margin-bottom:15px;">팀 소개</h6>
-                                                          <div class="col-xs-12" style="margin:0; padding:0; background-color:#ADADAD;height:100%; border-radius:15px;padding:10px; height:100px">
+                                                          <div class="col-xs-12" style="margin:0; padding:0; background-color:#ADADAD;height:165px; border-radius:15px;padding:10px;">
                                                             ${clubDTO.c_memo }
                                                             <div style="overflow-y:hidden;height:100%;width:100%;">
                                                               <h6 style="margin:0; padding:0; color:black;white-space:pre-line"></h6>

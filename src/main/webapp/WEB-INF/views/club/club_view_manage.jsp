@@ -95,10 +95,10 @@ th {
 													<tr style="border-bottom: 3px solid rgb(59, 209, 116)">
 														<th style="width: 70px;">번호</th>
 														<th style="width: 100px;">이름</th>
-														<th style="width: 70px;">생년월일</th>
+														<th style="width: 80px;">생년월일</th>
 														<th style="width: 150px;">선호 포지션</th>
 														<th style="width: 150px;">가입 인사</th>
-														<th colspan="2" style="width: 100px;">수락/거절</th>
+														<th colspan="2" style="width: 150px;">수락/거절</th>
 													</tr>
 													<c:forEach items="${applylists }" var="row" varStatus="status">
 														<tr>
@@ -107,21 +107,19 @@ th {
 															<th>${row.m_birth }</th>
 															<th>${row.m_position }</th>
 															<th>
-																<input type="button" id="memberApply" onclick="modal('${row.cm_memo}');"
+																<input type="button" id="memoModal" onclick="modal('${row.cm_memo}');"
 																class="btn btn-outline-warning" data-target="#myModal"
 																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900;"
-																value="수락">
+																value="가입인사">
 															</th>  
 															<th><input type="button" id="memberApply" onclick="return memberApply(${clubDTO.c_idx },${row.cm_idx});"
 																class="btn btn-outline-success"
-																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900;"
-																value="수락">
-															</th>
+																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size:20px;"
+																value="수락"></th>
 															<th><input type="button" id="memberReject" onclick="return memberReject(${clubDTO.c_idx },${row.cm_idx});"
 																class="btn btn-outline-danger"
-																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900;"
-																value="거절">
-															</th>
+																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size:20px;"
+																value="거절"></th>
 														</tr>
 													</c:forEach>
 												</table>
@@ -203,7 +201,7 @@ th {
 function modal(memo) {
 	
 	
-	document.getElementById("memo").innerHTML = area;
+	document.getElementById("memo").innerHTML = memo;
 	
 }
 

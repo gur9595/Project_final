@@ -12,6 +12,14 @@
 		  	#{c_ability}, #{c_memlimit}, #{c_memo}, #{c_age} ) 
 		</insert> 
 		
+		<select id="clubView" resultType="mybatis.ClubDTO">
+			select *
+			from club
+			where c_idx = #{param1} 
+		</select>
+		
+		
+		
 		<!-- 클럽 상세보기 회원정보 -->
 		<select id="clubViewMember" resultType="mybatis.MemberDTO">
 		     select m.m_name, m.m_birth, m.m_sex, m.m_position, m.m_foot, m.m_pic, m.m_phone, cm.cm_idx
@@ -20,9 +28,15 @@
 		
 		<!-- 클럽 상세보기 모든경기정보 -->
 		<select id="clubViewMatch" resultType="mybatis.GameDTO">
-			select * from game where c_idx = #{param1}
+			select g.*,c.c_name from game g inner join club c on g.c_idx = c.c_idx where g.c_idx = #{c_idx}
 		</select>
 		
+		<!-- 클럽 상세보기 접수현황 -->
+		<select id="clubViewAccept" resultType="mybatis.GameDTO">
+			select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
+			where g.g_num in ( select g_num from game where c_idx=#{c_idx} )
+			and g.g_check = 'no' order by g.g_date 
+		</select>
 		
 	  <select id="getTotalCount" resultType="int" >
 		select count(*) from club 
@@ -130,11 +144,7 @@
 		where cm.m_id like #{param1} 
 	</select>
 	
-	<select id="clubView" resultType="mybatis.ClubDTO">
-		select *
-		from club
-		where c_idx = #{param1} 
-	</select>
+
 	
 	<select id="clubIdx" resultType="int" parameterType="mybatis.ClubDTO">
 		select c_idx

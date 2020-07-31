@@ -69,8 +69,8 @@ public class ClubController {
 
 		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCount();
 
-		int pageSize = 3;
-		int blockPage = 3;
+		int pageSize = 10;
+		int blockPage = 5;
 
 		int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
 
@@ -120,7 +120,7 @@ public class ClubController {
 
 		// 페이지 처리를 위한 설정값.
 
-		int pageSize = 15;
+		int pageSize = 10;
 		int blockPage = 5;
 
 		// 전체 페이지 수 계산 int totalPage
@@ -215,22 +215,52 @@ public class ClubController {
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		
 		ArrayList<GameDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
+		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
 		
 		model.addAttribute("lists", lists); 
+		model.addAttribute("lists2", lists2); 
 		model.addAttribute("clubDTO", clubDTO);   
 		    
 
 		return "club/club_view_match";
 	}
+	
 	@RequestMapping("/club/clubViewFormation.do")
-	public String clubViewFormation(HttpServletRequest req, Model model) {
-
+	public String clubViewForm(HttpServletRequest req, Model model) {
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		System.out.println("c_idx:"+ c_idx);
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
-
-		model.addAttribute("clubDTO", clubDTO);
+		
+		ArrayList<GameDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
+		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
+		
+		model.addAttribute("lists", lists); 
+		model.addAttribute("lists2", lists2); 
+		model.addAttribute("clubDTO", clubDTO);   
+		    
 
 		return "club/club_view_formation";
+	}
+	
+	@RequestMapping("/club/clubMakeFormation.do")
+	public String clubMakeForm(HttpServletRequest req, Model model) {
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		System.out.println("c_idx:"+ c_idx);
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		ArrayList<GameDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
+		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
+		
+		model.addAttribute("lists", lists); 
+		model.addAttribute("lists2", lists2); 
+		model.addAttribute("clubDTO", clubDTO);   
+		    
+
+		return "club/club_view_formmake";
 	}
 
 	@RequestMapping("/club/clubViewManage.do")
