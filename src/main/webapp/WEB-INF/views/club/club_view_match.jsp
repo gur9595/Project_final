@@ -95,7 +95,7 @@
 															<th>${row.g_date }</th>
 															<th>${row.g_time }</th>
 															<th>${row.g_sname }</th>
-															<th>없음</th>
+															<th>${row.c_name }</th>
 															<th><input type="button" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
 	                                                        <th><input type="button" class="btn btn-outline-danger" style=" width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="불참" ></th>
 	                                                        <th><input type="button" class="btn btn-outline-primary" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:16px;" value="용병고용"></th>
@@ -109,7 +109,7 @@
                                                 <h4 style="margin-left: 80px;">신청 접수 현황</h4>
                                             </div>
                                             <div class="comment-widgets scrollable">
-                                                <table style="width:1000px;">
+                                                <table style="width:800px;">
                                                     <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
                                                         <th style="width:180px;">날짜</th>
                                                         <th style="width:100px;">시간</th>
@@ -117,13 +117,14 @@
                                                         <th style="width:200px;">상대팀</th>
                                                         <th colspan="2" style="width:120px;">수락/거절</th>
                                                     </tr>
-                                                    <c:forEach items="${lists }" var="row" varStatus="status"> 
+                                                    <c:forEach items="${lists2 }" var="row" varStatus="status"> 
 														<tr>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
+															<th>${row.g_date }</th>
+															<th>${row.g_time }</th>
+															<th>${row.g_sname }</th>
+															<th>${row.c_name }</th>
+															<th><input type="button" class="btn btn-outline-success" style="width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="수락" ></th>
+                                                        	<th><input type="button" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" ></th>
 														</tr>
 													</c:forEach>
                                                 </table>

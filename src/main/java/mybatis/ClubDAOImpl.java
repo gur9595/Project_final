@@ -40,4 +40,7 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<GameDTO> clubViewMatch(int c_idx);
 	
+	public ArrayList<GameDTO> clubViewAccept(int c_idx);
+	
+	
 }

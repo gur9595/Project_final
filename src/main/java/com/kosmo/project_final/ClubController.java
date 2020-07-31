@@ -215,8 +215,10 @@ public class ClubController {
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		
 		ArrayList<GameDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
+		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
 		
 		model.addAttribute("lists", lists); 
+		model.addAttribute("lists2", lists2); 
 		model.addAttribute("clubDTO", clubDTO);   
 		    
 
