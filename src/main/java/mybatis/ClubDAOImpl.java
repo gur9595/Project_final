@@ -42,5 +42,5 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<GameDTO> clubViewAccept(int c_idx);
 	
-	
+	public int clubMemberCount(int c_idx);
 }

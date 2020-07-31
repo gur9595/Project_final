@@ -12,12 +12,17 @@
 		  	#{c_ability}, #{c_memlimit}, #{c_memo}, #{c_age} ) 
 		</insert> 
 		
+		<!-- 클럽 상세보기 메인 -->
 		<select id="clubView" resultType="mybatis.ClubDTO">
 			select *
 			from club
 			where c_idx = #{param1} 
 		</select>
 		
+		<!-- 클럽회원 수 체크 -->
+		<select id="clubMemberCount" resultType="int">
+			select count(*) from clubmember where c_idx=#{c_idx}
+		</select>
 		
 		
 		<!-- 클럽 상세보기 회원정보 -->
