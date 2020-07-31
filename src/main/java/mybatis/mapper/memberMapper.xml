@@ -22,6 +22,10 @@
 	  		where m_id=#{m_id} 
 	  </update>
 	  
+	  <!-- 안드로이드 로그인 검사 -->
+	  <select id="memberLogin" resultType="mybatis.MemberDTO" parameterType="mybatis.MemberDTO">
+		SELECT * FROM member WHERE m_id=#{m_id} and m_pw=#{m_pw}
+	  </select>
 	  
 	  
 	
