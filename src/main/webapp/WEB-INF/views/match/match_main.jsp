@@ -224,8 +224,19 @@
             scrollTop : $('.target span').offset().top
           });
         });
-
-        $('#football').click(function() {
+		
+        //구장 예약 버튼 눌렀을 때
+        $('#booking').click(function(){
+        	$('#contents').load("stadiumMain.do");
+        	$('html, body').stop().animate({
+              scrollTop : $('#contents_target').offset().top
+            });
+            
+            $('#close').show();
+        });
+        
+        //축구장 / 풋살장 클릭 버튼
+        /* $('#football').click(function() {
             $("#contents").load("stadiumMain.do", {"keyword" : "축구장"});
             $('html, body').stop().animate({
               scrollTop : $('#contents_target').offset().top
@@ -243,7 +254,7 @@
             
             $('#close').show();
             
-        });
+        }); */
         
         $('#player').click(function() {
         	$("#contents").load("player.do", {"keyword" : "축구"});
@@ -371,13 +382,14 @@
 		        </div>
 	        	<div class="row border-responsive">
 					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="">
-		          		<p class="text-center h2"><small>경기장이 없다면?</small><br /><br />구장 예약</p> 
-		            	<div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
+		          		<p class="text-center h2"><small>경기장이 없다면?</small><br /><br />구장 예약</p>
+		          		
+		            	<div class="text-center" id="booking" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
 							<img src="./../resources/img/match/match_1.png" id="stadium" alt="" />
 							<br /> 
 							<h3 class="text-uppercase h4 mb-3">Stadium</h3>
-							<span style="cursor: pointer;" class="link" id="football">축구장</span> / 
-							<span style="cursor: pointer;" class="link" id="footsal">풋살장</span>
+							<!-- <span style="cursor: pointer;" class="link" id="football">축구장</span> / 
+							<span style="cursor: pointer;" class="link" id="footsal">풋살장</span> -->
 						</div>
 					</div> 
 					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100">

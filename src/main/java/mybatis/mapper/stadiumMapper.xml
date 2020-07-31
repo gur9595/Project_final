@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.StadiumDAOImpl">
+	
+	<!-- 전체 경기장 갯수 -->
+	<select id="getTotalCount" resultType="int" parameterType="mybatis.StadiumDTO">
+		SELECT COUNT(*) FROM stadium
+		<if test="s_gu!=null and !s_gu.equals('')">
+			WHERE s_gu=#{s_gu}
+			<if test="s_type!=''">
+				and s_type=#{s_type}
+			</if>
+		</if>
+		<if test="searchTxt!=null and !searchTxt.equals('')">
+			WHERE s_name like '%'||#{searchTxt}||'%'
+		</if>
+	</select>
+	
+	<!-- 경기장 리스트 가져오기 -->
+	<select id="stadiumList" resultType="mybatis.StadiumDTO" 
+		parameterType="mybatis.StadiumDTO">
+		<!-- 전체 출력 -->
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM (
+				SELECT * FROM stadium
+					<if test="s_gu!=null and !s_gu.equals('')">
+						WHERE s_gu=#{s_gu}
+						<if test="s_type!=''">
+							and s_type=#{s_type}
+						</if>
+					</if>
+					<if test="searchTxt!=null and !searchTxt.equals('')">
+						WHERE s_name like '%'||#{searchTxt}||'%'
+					</if>
+					ORDER BY s_gu ASC
+			) Tb
+		) 
+		WHERE rNum BETWEEN #{start} AND #{end}
+	</select>
+</mapper>
