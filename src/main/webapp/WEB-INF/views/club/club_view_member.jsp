@@ -77,31 +77,28 @@
                                     <div class="p-20">
                                         <div class="card">
                                             <div class="card-body">
-                                                
+                                                <h4 class="page-title" style="text-align: center; font-size: 30px;">&nbsp;클럽회원</h4>
                                             </div>
                                             <div class="comment-widgets scrollable">
                                                 <table>
                                                     <tr style="border-bottom: 3px solid #036">
                                                         <th>이름</th>
                                                         <th>생년월일</th>
+                                                        <th style="width:100px;">전화번호</th>
                                                         <th>성별</th>
                                                         <th>주 포지션</th>
                                                         <th>주로 쓰는 발</th>
                                                         <th>득점</th>
-                                                        <th>방출</th>
                                                     </tr>
 													<c:forEach items="${lists }" var="row" varStatus="status"> 
 														<tr>
 															<th>${row.m_name }</th>
 															<th>${row.m_birth }</th>
+															<th>${row.m_phone }</th>
 															<th>${row.m_sex }</th>
 															<th>${row.m_position }</th>
 															<th>${row.m_foot }</th>
 															<th>5골</th>
-															<th><input type="button" id="memberRelease" onclick="return memberReject(${clubDTO.c_idx },${row.cm_idx});"
-																class="btn btn-outline-danger"
-																style="width: 70px; height: 30px; text-align: center; padding: 0; font-weight: 900;"
-																value="방출"></th>
 														</tr>
 													</c:forEach>
                                                 </table>
@@ -189,13 +186,4 @@
         </div>
     </div>
 </body>
-<script>
-
-function memberReject(c_idx, cm_idx){
-	if(confirm("정말 방출하시겠습니까?")) {
-		location.href="../club/clubMemberRelease.do?c_idx="+ c_idx +"&cm_idx="+cm_idx;
-	}
-	
-}
-</script>
 </html>

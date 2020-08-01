@@ -29,6 +29,7 @@ import mybatis.ClubMemberDTO;
 import mybatis.GameDTO;
 import mybatis.GameMemberDTO;
 import mybatis.MatchDTO;
+import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
 import utils.PagingUtil;
 @Controller
@@ -172,10 +173,13 @@ public class ClubController {
 
 	@RequestMapping("/club/clubView.do")
 	public String clubView(HttpServletRequest req, Model model) {
-
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
-
+		int clubMemberCount = sqlSession.getMapper(ClubDAOImpl.class).clubMemberCount(c_idx);
+		
+		model.addAttribute("clubMemberCount", clubMemberCount);
 		model.addAttribute("clubDTO", clubDTO);
 
 		return "club/club_view_main";
@@ -278,18 +282,42 @@ public class ClubController {
 
 	@RequestMapping("/club/clubViewManage.do")
 	public String clubViewManage(HttpServletRequest req, Model model) {
-
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		System.out.println("c_idx : "+c_idx);
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		
-		ArrayList<MemberDTO> applylists=  sqlSession.getMapper(ClubDAOImpl.class).clubManageApplyList(clubDTO);
+		ArrayList<MemberDTO> applylists = sqlSession.getMapper(ClubDAOImpl.class).clubManageApplyList(clubDTO);
+		ArrayList<MemberDTO> gradelists = sqlSession.getMapper(ClubDAOImpl.class).clubViewGrade(c_idx);
+		
 		
 		model.addAttribute("clubDTO", clubDTO);
-		
 		model.addAttribute("applylists", applylists);
+		model.addAttribute("gradelists", gradelists);
 
 		return "club/club_view_manage";
 	}
+	
+	
+	@RequestMapping(value="/club/clubManageEdit.do", method = RequestMethod.POST)
+	public String clubManageEdit(HttpServletRequest req, Model model) {
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		String cm_grade = req.getParameter("cm_grade");
+		String m_id = req.getParameter("m_id");
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		int clubManageEdit = sqlSession.getMapper(ClubDAOImpl.class).clubViewUpdate(c_idx, cm_grade, m_id);
+        
+        model.addAttribute("clubManageEdit", clubManageEdit);
+		return "redirect:/club/clubViewManage.do?c_idx="+ c_idx;
+	}
+	
+	
+	
 	
 	@RequestMapping("/club/clubMemberApply.do")
 	public String clubMemberApply(HttpServletRequest req, Model model) {

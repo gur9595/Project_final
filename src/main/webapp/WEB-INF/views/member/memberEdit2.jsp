@@ -125,7 +125,7 @@
 
 	        <div style="text-align:center">
 
-	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberEidt.do'">이전페이지</button>  
+	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberEdit.do'">이전페이지</button>  
 		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">가입완료!!</button>
 
 	        </div>
