@@ -11,12 +11,9 @@
                     <a class="navbar-brand" href="introduce.html">
                         <b class="logo-icon p-l-10">
 
-                            <img src="./../resources/img/duck.PNG" width="50px" height="50px" alt="마크" class="light-logo" />
+                            <img src="./../resources/img/bprologo.png" height="30px" alt="마크" style="padding-left: 10px; color: #fff; -webkit-filter : opacity(.5) drop-shadow(0 0 0 white); filter :opacity(.5) drop-shadow(0 0 0 white);" />
                            
                         </b>
-                        <span class="logo-text">
-                             B-PRO
-                        </span>
                     </a>
                     <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
                 </div>

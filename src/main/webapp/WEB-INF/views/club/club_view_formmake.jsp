@@ -75,32 +75,77 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title" style="text-align: center; font-size: 30px;">전술</h4>
-                                            </div><div>
-                                                <h4 style="margin-left: 80px;">경기 리스트</h4>
                                             </div>
-                                            <div class="comment-widgets scrollable">
-                                                <table style="width:800px;">
-                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
-                                                        <th style="width:120px;">날짜</th>
-                                                        <th style="width:50px;">시간</th>
-                                                        <th style="width:200px;">구장 이름</th>
-                                                        <th style="width:100px;">상대팀</th>
-                                                        <th style="width:100px;">포메이션 확인</th>
-                                                        <th style="width:120px;">포메이션 작성</th>         
-                                                    </tr>
-
-                                                    <c:forEach items="${lists }" var="row" varStatus="status"> 
-														<tr>
-															<th>${row.g_date }</th>
-															<th>${row.g_time }</th>
-															<th>${row.g_sname }</th>
-															<th>${row.c_name }</th>
-															<th><input type="button" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="확인" ></th>
-	                                                        <th><input type="button" class="btn btn-outline-primary" onclick="location.href='../club/clubMakeFormation.do?c_idx=${clubDTO.c_idx}'" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="작성"></th>
-														</tr>
-													</c:forEach>
-                                                </table>
-                                            </div>
+                                            <div class="col-lg-7">
+	                                            <div id="field" class="more_topspaced">
+									                <table style="height: 613px; width: 416px; background:url(http://static.footballuser.com/images/field.jpg); background-size:100% 100%; background-repeat: no-repeat;">
+									                    <tr>
+									                        <td class="pos" id="pos0"><input type="hidden" id="pos0" value=""></td>
+									                        <td class="pos" id="pos1"><input type="hidden" id="pos1" value=""></td>
+									                        <td class="pos" id="pos2"><input type="hidden" id="pos2" value=""></td>
+									                        <td class="pos" id="pos3"><input type="hidden" id="pos3" value=""></td>
+									                        <td class="pos" id="pos4"><input type="hidden" id="pos4" value=""></td>
+									                    </tr>
+									                    <tr>
+									                        <td class="pos" id="pos5"><input type="hidden" id="pos5" value=""></td>
+									                        <td class="pos" id="pos6"><input type="hidden" id="pos6" value=""></td>
+									                        <td class="pos" id="pos7"><input type="hidden" id="pos7" value=""></td>
+									                        <td class="pos" id="pos8"><input type="hidden" id="pos8" value=""></td>
+									                        <td class="pos" id="pos9"><input type="hidden" id="pos9" value=""></td>
+									                    </tr>
+									                    <tr>
+									                        <td class="pos" id="pos10"><input type="hidden" id="pos10" value=""></td>
+									                        <td class="pos" id="pos11"><input type="hidden" id="pos11" value=""></td>
+									                        <td class="pos" id="pos12"><input type="hidden" id="pos12" value=""></td>
+									                        <td class="pos" id="pos13"><input type="hidden" id="pos13" value=""></td>
+									                        <td class="pos" id="pos14"><input type="hidden" id="pos14" value=""></td>
+									                    </tr>
+									                    <tr>
+									                        <td class="pos" id="pos15"><input type="hidden" id="pos15" value=""></td>
+									                        <td class="pos" id="pos16"><input type="hidden" id="pos16" value=""></td>
+									                        <td class="pos" id="pos17"><input type="hidden" id="pos17" value=""></td>
+									                        <td class="pos" id="pos18"><input type="hidden" id="pos18" value=""></td>
+									                        <td class="pos" id="pos19"><input type="hidden" id="pos19" value=""></td>
+									                    </tr>
+									                    <tr>
+									                        <td class="pos" id="pos20"><input type="hidden" id="pos20" value=""></td>
+									                        <td class="pos" id="pos21"><input type="hidden" id="pos21" value=""></td>
+									                        <td class="pos" id="pos22"><input type="hidden" id="pos22" value=""></td>
+									                        <td class="pos" id="pos23"><input type="hidden" id="pos23" value=""></td>
+									                        <td class="pos" id="pos24"><input type="hidden" id="pos24" value=""></td>
+									                    </tr>
+									                    <tr>
+									                        <td></td>
+									                        <td></td>
+									                        <td class="pos" id="pos25"><input type="hidden" id="pos25" value=""></td>
+									                        <td></td>
+									                        <td></td>
+									                    </tr>   
+									                </table>
+									                <!-- <img id="field_image" height="613" width="416" src="http://static.footballuser.com/images/field.jpg" alt="" /> -->
+									            </div>
+								            </div>
+								            <div class="col-lg-4">
+								            	<div class="topspaced">
+										            <input id="playername" class="less_topspaced" type="text" value="" size="30" name="playername" />
+										            <input id="playerid" class="less_topspaced" type="text" value="" size="30" name="playerid" />
+										            <input style="margin-left:20px; height: 33px" class="button" value="add" type="submit" id="addplayer" />
+										        </div>        
+										        <div id="player_list" class="player_list">
+										            <table id="player_table" cellspacing="0" cellpadding="0" border="0" width="100px">
+										                <tbody>
+										                    <tr>
+										                        <td height="22" align="left" class="player_header">
+										                            <strong>Name</strong>
+										                        </td>
+										                        <td height="22" align="right" class="player_header">
+										                            <a href="#" class="delete_players no_underline"><strong> « Remove all</strong></a>
+										                        </td>
+										                     </tr>
+										                </tbody>
+										            </table>
+										        </div>
+								            </div>
                                         </div>    
                                     </div>
                                 </div>

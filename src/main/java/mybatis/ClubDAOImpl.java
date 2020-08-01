@@ -43,4 +43,8 @@ public interface ClubDAOImpl {
 	public ArrayList<GameDTO> clubViewAccept(int c_idx);
 	
 	public int clubMemberCount(int c_idx);
+	
+	public ArrayList<MemberDTO> clubViewGrade(int c_idx);
+	
+	public int clubViewUpdate(int c_idx, String cm_grade, String m_id);
 }
