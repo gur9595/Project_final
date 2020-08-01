@@ -27,8 +27,27 @@
 		</select>	
 		
 		<!-- 클럽 상세보기 모든경기정보 -->
-		<select id="clubViewMatch" resultType="mybatis.GameDTO">
-			select g.*,c.c_name from game g inner join club c on g.c_idx = c.c_idx where g.c_idx = #{c_idx}
+		<select id="clubViewMatch" resultType="mybatis.MatchDTO">
+			select g.* 
+			from game g inner join club c 
+				on g.c_idx = c.c_idx 
+			where g.c_idx = #{param1} and g.g_check not like 'no'  order by g.g_date asc
+		</select>
+		
+		<select id="clubMatchOpponent" resultType="mybatis.MatchDTO">
+			select * 
+			from club
+			where c_idx in (select c_idx
+			from game
+			where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
+		</select>
+		
+		<select id="clubMatchOpponentCount" resultType="int">
+			select count(*) 
+			from club
+			where c_idx in (select c_idx
+			from game
+			where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
 		</select>
 		
 		<!-- 클럽 상세보기 접수현황 -->
@@ -172,5 +191,11 @@
 	<delete id="clubMemberReject">
 		delete from clubmember where cm_idx = #{param1}
 	</delete>
+	
+	<select id="clubMakingForm" resultType="mybatis.GameMemberDTO">
+		select *
+		from gamemember
+		where g_idx like #{param1}
+	</select>
 	  
   </mapper>

@@ -123,7 +123,7 @@
 				</td>
 				<td>${row.g_saddr }</td>
 				<td>
-					<a href="clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip">
+					<a href="../club/clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip">
 						${row.c_name } <span style="width: 200px;">${row.c_name }<br />클럽 페이지 이동</span>
 					</a>
 				</td>

@@ -38,9 +38,15 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<MemberDTO> clubViewMember(int c_idx);
 	
-	public ArrayList<GameDTO> clubViewMatch(int c_idx);
+	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
+	
+	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
+	
+	public int clubMatchOpponentCount(int g_num, int c_idx);
 	
 	public ArrayList<GameDTO> clubViewAccept(int c_idx);
+	
+	public ArrayList<GameMemberDTO> clubMakingForm(int g_idx);
 	
 	
 }
