@@ -55,6 +55,10 @@
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
 
 <script>
+/* 메인화면 ui*/
+
+
+
 	function payment(price_cash, price_charge) {
         var IMP = window.IMP; // 생략가능부분
         var code = "imp44765322";  // FIXME: 가맹점 식별코드
@@ -84,26 +88,41 @@
 		        var msg = '====== 결제가 완료되었습니다. ======';   
 		        msg += '\n고유ID : ' + rsp.imp_uid;
 		        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-		        msg += '\n주문 상품명 : ' + payment.charge;
+		        msg += '\n주문 상품명 : ' + charge + "Ball";
 		        msg += '\n결제 금액 : ' + rsp.paid_amount;
 		        msg += '\n카드 승인번호 : ' + rsp.apply_num;	
 		        
 		       	var result = document.getElementById("ballResult").value;
 		       	var spanResult = document.getElementById("result");
-		       	
+		       	/* spanResult.innerText = result; */
 		       	result = rsp.name;
 		       	spanResult.innerHTML = rsp.name;		     
 		       	
-		       /* 	console.log(rsp.name);		       	
-		       	console.log(result);	      */  	
+		        console.log(rsp.name);		       	
+		       	console.log(result);
+		       	
+		       	location.href="./paymentDeposit.do?cs_charge=" + charge;
+		      
 		    } 
 		    else { // 결제 실패시 로직
 		        var msg = '====== 결제에 실패하였습니다. ======';
 		    	msg += '\n에러내용 : ' + rsp.error_msg;		    	
 		    }
-		   	alert(msg);	
+		    	alert(msg);	 
 		});
 	}  
+	
+	
+	
+	/* $(function(){
+		var result = document.getElementById("ballResult").value;
+	   	var spanResult = document.getElementById("result");
+	   	spanResult.innerText = result; 
+		
+	}); */
+
+	
+	
 </script>  
 <!-- end of 결제 api ---------------------------------------------------------------------------------------------->
 
@@ -132,8 +151,13 @@
 				<div class="col-md-12 text-center">
 					<h1 class="section-title aqua-heading">P A Y M E N T</h1>
 					<p style="font-size: 20px; margin-left: 900px;">현재 나의 마일리지<br />
-						<input type="hidden" id="ballResult"  value="" /> 
-						<b><span id="result" style="color: red; font-size: 20px;"></span></b>&nbsp;BALL
+						 
+						<!-- ballResult 화면 -->
+						<input type="hidden" id="ballResult"  value="" />
+						<b>
+						<span id="result" style="color: red; font-size: 20px;">
+						
+						</span></b>&nbsp;BALL
 					</p>
 				</div>
 				<!-- Pricing Table Area -->

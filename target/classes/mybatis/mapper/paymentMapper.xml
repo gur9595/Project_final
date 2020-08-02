@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mybatis.CashDAOImpl">
+
+	<!-- 볼 충전 -->
+	<select id="ballResult" resultType="mybatis.CashDTO">
+		insert into cash (cs_idx, m_id, cs_current, cs_charge, cs_date)  
+			 values(cash_seq.nextval, #{m_id}, #{cs_current}, #{cs_charge}, sysdate)
+	</select>	
+
+</mapper>  
