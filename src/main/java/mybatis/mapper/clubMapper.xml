@@ -164,6 +164,10 @@
 		insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
 	</insert>
 	
+	<insert id="gameMemberApply" parameterType="mybatis.GameMemberDTO">
+		insert into gamemember values(gamemember_seq.nextval, #{g_idx}, #{m_id}, default)
+	</insert>
+	
 	<select id="myClubList" resultType="mybatis.ClubDTO">
 		select * 
 		from club c inner join clubmember cm
