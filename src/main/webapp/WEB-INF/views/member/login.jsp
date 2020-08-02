@@ -45,16 +45,10 @@
     <div class="limiter">
       <div class="container-login100">
          <div class="wrap-login100">
-               <!-- <span class="login100-form-title p-b-26">
-                  로그인
-               </span> -->
-               <div class="icon">
-               <img src="./../resources/img/icon.png" style="width:160px; height:150px" alt="" />
-               </div>
-               <br />
-               <!-- <span class="login100-form-title p-b-48">
-                  <i class="zmdi zmdi-font"></i>
-               </span> -->
+               <div style="margin-left:185px;" >
+					<img src="./../resources/img/bprologo2.png" style="height:300px; width:300px;" alt=""/>
+               </div> 
+               <br /> 
             <c:choose>
                <c:when test="${not empty m_id }">
                   ${m_id }님 하잉

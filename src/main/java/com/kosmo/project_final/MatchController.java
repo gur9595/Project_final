@@ -180,7 +180,6 @@ public class MatchController {
 				return 3;
 			}
 		});
-		
 
 		String m_id = (String)principal.getName();
 		
@@ -209,12 +208,6 @@ public class MatchController {
 	@RequestMapping("/match/gameApply.do")
 	public String gameApply(Model model, HttpServletRequest req, HttpSession session) {
 		
-//		//세션영역에 사용자정보가 이쓴ㄴ지 확인
-//		if(session.getAttribute("siteUserInfo") == null) {
-//			//로그인이 해제된 상태라면 로그인 페이지로 이동한다.
-//			return "redirect:login.do";
-//		}
-				
 		String req_date = req.getParameter("g_date");
 		Date date = Date.valueOf(req_date);
 		String[] addr = req.getParameter("g_saddr").split(" ");
@@ -238,17 +231,22 @@ public class MatchController {
 		int g_num = sqlSession.getMapper(AdminDAOImpl.class).get_Gnum();
 		g_num++;
 		
+		String g_memo = req.getParameter("g_memo");
+		
+		if(g_memo.equals("")) {
+			g_memo = "특이사항 없음";
+		}
+		
 		GameDTO gameDTO = new GameDTO();
 		gameDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));
 		gameDTO.setG_sname(req.getParameter("g_sname"));
 		gameDTO.setG_saddr(req.getParameter("g_saddr"));
 		gameDTO.setG_type(req.getParameter("g_type"));
 		gameDTO.setG_date(date);
-		gameDTO.setG_memo(req.getParameter("g_memo"));
+		gameDTO.setG_memo(g_memo);
 		gameDTO.setG_num(g_num);
 		gameDTO.setG_gu(addr[1]);
 		gameDTO.setG_time(time);
-		
 		
 		sqlSession.getMapper(MatchDAOImpl.class).gameApply(gameDTO);
 		sqlSession.getMapper(AdminDAOImpl.class).set_Gnum(g_num);

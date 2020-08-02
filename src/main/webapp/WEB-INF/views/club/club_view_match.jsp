@@ -103,8 +103,19 @@
 																	<c:otherwise><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></c:otherwise>
 																</c:choose>
 															</th>
-															<th><input type="button" onclick="javascript:GameMemberApply(${row.c_idx},${row.g_idx},${m_id })" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
-	                                                        <th><input type="button" class="btn btn-outline-danger" style=" width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="불참" ></th>
+															<th>
+																<c:choose>
+																	<c:when test="${row.c_name == '' }">
+																		<input type="button" onclick="javascript:GameMemberApply(${row.c_idx},${row.g_idx},${m_id })" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" >
+																	</c:when>
+																	<c:otherwise>
+																		<input type="button" onclick="javascript:GameMemberApply(${row.c_idx},${row.g_idx},${m_id })" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" >
+																	</c:otherwise>
+																</c:choose>
+															</th>
+	                                                        <th>
+	                                                        	<input type="button" class="btn btn-outline-danger" style=" width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="불참" >
+	                                                        </th>
 	                                                        <th><input type="button" class="btn btn-outline-primary" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:16px;" value="용병고용"></th>
 	                                                        <th><input type="button" class="btn btn-outline-secondary" style="width:50px; height:30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="취소"></th>
 														</tr>
