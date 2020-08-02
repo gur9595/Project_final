@@ -24,7 +24,10 @@
 	  
 	  <!-- 안드로이드 로그인 검사 -->
 	  <select id="memberLogin" resultType="mybatis.MemberDTO" parameterType="mybatis.MemberDTO">
-		SELECT * FROM member WHERE m_id=#{m_id} and m_pw=#{m_pw}
+		select * from club c
+		  	inner join clubmember cm on c.c_idx = cm.c_idx
+		    inner join member m on cm.m_id = m.m_id
+		where m.m_id = #{m_id} and m.m_pw=#{m_pw}
 	  </select>
 	  
 	  

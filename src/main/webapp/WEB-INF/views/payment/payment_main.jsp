@@ -96,14 +96,17 @@
 		       	
 		       /* 	console.log(rsp.name);		       	
 		       	console.log(result);	      */  	
+		       	
+		   		location.href="?cs_charge="+rsp.paid_amount;
 		    } 
 		    else { // 결제 실패시 로직
 		        var msg = '====== 결제에 실패하였습니다. ======';
 		    	msg += '\n에러내용 : ' + rsp.error_msg;		    	
 		    }
+		    
 		   	alert(msg);	
 		});
-	}  
+	}
 </script>  
 <!-- end of 결제 api ---------------------------------------------------------------------------------------------->
 

@@ -40,4 +40,6 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<GameDTO> clubViewMatch(int c_idx);
 	
+	public ClubDTO myClubListA(ClubDTO clubDTO);
+	
 }

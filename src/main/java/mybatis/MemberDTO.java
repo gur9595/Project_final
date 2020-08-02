@@ -27,7 +27,6 @@ public class MemberDTO {
 	private String cm_idx;
 	
 	
-	
 	public int getM_idx() {
 		return m_idx;
 	}
