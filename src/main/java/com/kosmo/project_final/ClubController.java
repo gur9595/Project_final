@@ -27,6 +27,9 @@ import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.ClubMemberDTO;
 import mybatis.GameDTO;
+import mybatis.GameMemberDTO;
+import mybatis.MatchDTO;
+import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
 import utils.PagingUtil;
 @Controller
@@ -170,10 +173,13 @@ public class ClubController {
 
 	@RequestMapping("/club/clubView.do")
 	public String clubView(HttpServletRequest req, Model model) {
-
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
-
+		int clubMemberCount = sqlSession.getMapper(ClubDAOImpl.class).clubMemberCount(c_idx);
+		
+		model.addAttribute("clubMemberCount", clubMemberCount);
 		model.addAttribute("clubDTO", clubDTO);
 
 		return "club/club_view_main";
@@ -212,13 +218,33 @@ public class ClubController {
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		System.out.println("c_idx:"+ c_idx);
 		ClubDTO clubDTO = new ClubDTO();
-		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(c_idx);
 		
-		ArrayList<GameDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
+		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
+ 
+		for(MatchDTO matchDTO : lists) {
+			
+			int g_num = matchDTO.getG_num();
+			
+			MatchDTO matchDTO2 = sqlSession.getMapper(ClubDAOImpl.class).clubMatchOpponent(g_num, c_idx);
+			
+			
+			if(sqlSession.getMapper(ClubDAOImpl.class).clubMatchOpponentCount(g_num, c_idx)>0) {
+				matchDTO.setC_idx(matchDTO2.getC_idx());
+				matchDTO.setC_name(matchDTO2.getC_name());
+			}
+			else {
+				matchDTO.setC_name("");
+			}
+			
+		}
+				
 		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
 		
 		model.addAttribute("lists", lists); 
+				
 		model.addAttribute("lists2", lists2); 
+		
 		model.addAttribute("clubDTO", clubDTO);   
 		    
 
@@ -233,11 +259,9 @@ public class ClubController {
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		
-		ArrayList<GameDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
-		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
+		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
 		
 		model.addAttribute("lists", lists); 
-		model.addAttribute("lists2", lists2); 
 		model.addAttribute("clubDTO", clubDTO);   
 		    
 
@@ -247,36 +271,53 @@ public class ClubController {
 	@RequestMapping("/club/clubMakeFormation.do")
 	public String clubMakeForm(HttpServletRequest req, Model model) {
 		
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
-		System.out.println("c_idx:"+ c_idx);
-		ClubDTO clubDTO = new ClubDTO();
-		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
 		
-		ArrayList<GameDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
-		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
+		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx); 
 		
-		model.addAttribute("lists", lists); 
-		model.addAttribute("lists2", lists2); 
-		model.addAttribute("clubDTO", clubDTO);   
-		    
+		model.addAttribute("lists", lists);  
 
 		return "club/club_view_formmake";
 	}
 
 	@RequestMapping("/club/clubViewManage.do")
 	public String clubViewManage(HttpServletRequest req, Model model) {
-
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		System.out.println("c_idx : "+c_idx);
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		
-		ArrayList<MemberDTO> applylists=  sqlSession.getMapper(ClubDAOImpl.class).clubManageApplyList(clubDTO);
+		ArrayList<MemberDTO> applylists = sqlSession.getMapper(ClubDAOImpl.class).clubManageApplyList(clubDTO);
+		ArrayList<MemberDTO> gradelists = sqlSession.getMapper(ClubDAOImpl.class).clubViewGrade(c_idx);
+		
 		
 		model.addAttribute("clubDTO", clubDTO);
-		
 		model.addAttribute("applylists", applylists);
+		model.addAttribute("gradelists", gradelists);
 
 		return "club/club_view_manage";
 	}
+	
+	
+	@RequestMapping(value="/club/clubManageEdit.do", method = RequestMethod.POST)
+	public String clubManageEdit(HttpServletRequest req, Model model) {
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		String cm_grade = req.getParameter("cm_grade");
+		String m_id = req.getParameter("m_id");
+		
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		
+		int clubManageEdit = sqlSession.getMapper(ClubDAOImpl.class).clubViewUpdate(c_idx, cm_grade, m_id);
+        
+        model.addAttribute("clubManageEdit", clubManageEdit);
+		return "redirect:/club/clubViewManage.do?c_idx="+ c_idx;
+	}
+	
+	
+	
 	
 	@RequestMapping("/club/clubMemberApply.do")
 	public String clubMemberApply(HttpServletRequest req, Model model) {

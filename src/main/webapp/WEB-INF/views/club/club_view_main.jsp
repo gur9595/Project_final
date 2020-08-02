@@ -43,6 +43,7 @@
         height:40px; text-align: center;
         border-bottom: 1px solid #444444;
     }
+}
 </style>
 <body>
     <div id="main-wrapper">
@@ -70,11 +71,12 @@
                                                     <div class="row teamheader">
                                                       <div class="col-xs-12" style="background-color:#333333; height:350px; width:100%;">
                                                   <div class="col-xs-4" style=" position:relative; height:100%;margin:0; padding:0; display:table;">
-                                                    <div class="row" style="height:80%;margin:0; padding:0; vertical-align:middle; margin-top:20px; display:table-cell;">
-                                                       <div style="border:12px solid white;border-radius:50%; background-color:white; height:200px; width:200px; display:block;margin:0 auto;">
- 							 								<div style="height:100%; width: 100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb });background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
+                                                     <div class="row" style="height:80%;margin:0; padding:0; vertical-align:middle; margin-top:20px; display:table-cell;">
+                                                       <div style="border:12px solid white;border-radius:50%; background-color:white; height:250px; width:250px; display:block;margin:0 auto;">
+ 							 								<div style="height:100%; width:100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb });background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
 														</div>
                                                     </div>
+                                                  	   
                                                   </div>
                                                   <div class="col-xs-8" style="color:white; height:100%; padding-left: 0px;">
                                                     <div class="row" style="margin:0; padding:0; margin-top:20px;">
@@ -106,8 +108,8 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·회원수</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_memlimit }명</td>
-                                                            </tr>
+                                                                <td style="border-bottom: none">${clubMemberCount}명</td>
+                                                            </tr>  
                                                             <tr>
                                                                 <td style="border-bottom: none">·실력</td>
                                                                 <td style="border-bottom: none">${clubDTO.c_ability }</td>
@@ -181,13 +183,13 @@
                                                         </div>
                                                         <div>
                                                             <div class="d-flex no-block align-items-center m-t-25">
-                                                                <span style="font-size: 30px; color: white;">인원수</span>
+                                                                <span style="font-size: 30px; color: white;"></span>
                                                                 <div class="ml-auto">
-                                                                    <span style="color: white;">60%</span>
+                                                                    <span style="color: white;">${clubMemberCount}%</span>
                                                                 </div>
                                                             </div>
                                                             <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${clubMemberCount}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                             </div>
                                                         </div>    
                                                     </div>
