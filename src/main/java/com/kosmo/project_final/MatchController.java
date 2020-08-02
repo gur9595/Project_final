@@ -187,6 +187,7 @@ public class MatchController {
 			}
 		});
 		
+
 		String m_id = (String)principal.getName();
 		
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
@@ -271,7 +272,7 @@ public class MatchController {
 		
 		sqlSession.getMapper(MatchDAOImpl.class).matchApply(gameDTO);		
 		
-		return "	";
+		return "redirect:matchMain.do";
 	}
 	
 }

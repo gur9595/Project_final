@@ -21,16 +21,6 @@ $(document).ready( function() {
         
     });
     
-    /*$('#footsal').click(function() {
-    	$("#contents").load("stadiumMain.do", {"keyword" : "풋살장"});
-        $('html, body').stop().animate({
-          scrollTop : $('#contents_target').offset().top
-        });
-        
-        $('#close').show();
-        
-    });
-    
     $('#player').click(function() {
     	$("#contents").load("player.do", {"keyword" : "축구"});
         $('html, body').stop().animate({
@@ -39,7 +29,7 @@ $(document).ready( function() {
         
         $('#close').show();
         
-    });*/
+    });
     
     $('#game_apply').click(function() {
     	$("#contents").load("gameInsert.do");

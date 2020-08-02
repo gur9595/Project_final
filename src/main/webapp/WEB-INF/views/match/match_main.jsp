@@ -46,7 +46,6 @@
 		        </div>
 	        	<div class="row border-responsive">
 					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="">
-		          		<p class="text-center h2"><small>경기장이 없다면?</small><br /><br />구장 예약</p>
 		          		
 		            	<div class="text-center" id="booking" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
 							<img src="./../resources/img/match/match_1.png" id="stadium" alt="" />
@@ -57,7 +56,6 @@
 						</div>
 					</div> 
 					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100">
-						<p class="text-center h2"><small>상대가 없다면?</small><br /><br />상대 찾기</p>
 						<div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
 							<img src="./../resources/img/match/match_2.png" alt="" />
 							<br>
@@ -67,7 +65,6 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-						<p class="text-center h2"><small>혼자 뛰고싶다면?</small><br /><br />1인 신청</p>
 						<div class="text-center" id="player" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
 							<img src="./../resources/img/match/mercenary.png" alt="" /> 
 							<br><br />

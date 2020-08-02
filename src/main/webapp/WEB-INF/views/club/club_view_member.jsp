@@ -77,15 +77,15 @@
                                     <div class="p-20">
                                         <div class="card">
                                             <div class="card-body">
-                                                
+                                                <h4 class="page-title" style="text-align: center; font-size: 30px;">&nbsp;클럽회원</h4>
                                             </div>
                                             <div class="comment-widgets scrollable">
                                                 <table>
                                                     <tr style="border-bottom: 3px solid #036">
                                                         <th>이름</th>
                                                         <th>생년월일</th>
+                                                        <th style="width:100px;">전화번호</th>
                                                         <th>성별</th>
-                                                        <th>활동지역</th>
                                                         <th>주 포지션</th>
                                                         <th>주로 쓰는 발</th>
                                                         <th>득점</th>
@@ -94,8 +94,8 @@
 														<tr>
 															<th>${row.m_name }</th>
 															<th>${row.m_birth }</th>
+															<th>${row.m_phone }</th>
 															<th>${row.m_sex }</th>
-															<th>${row.m_area }</th>
 															<th>${row.m_position }</th>
 															<th>${row.m_foot }</th>
 															<th>5골</th>
