@@ -30,8 +30,9 @@
 
 	        	<li><a class="dr op" href="${pageContext.request.contextPath }/customer/qnaMain.do">Q & A</a></li>
 	        	
-	        	<li><a class="" href="${pageContext.request.contextPath }/payment/paymentMain.do">charge</a></li>
-	        
+	        	<li><a class="" href="${pageContext.request.contextPath }/manager/managerMain.do">Manager</a></li>
+	        	
+	        	<li><a class="" href="${pageContext.request.contextPath }/payment/paymentMain.do">Charge</a></li>
 			</ul>
 	    </nav>
     </div>
@@ -56,8 +57,7 @@
               
               <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/market/marketMain.do">Market</a></li>
               
-              <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/manager/managerMain.do">Manager</a></li>
-              
+              <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/event/eventMain.do">Event</a></li>
          </ul>
       </nav>
     

@@ -60,7 +60,7 @@ public class MatchController {
 		
 		//페이지 처리를 위한 설정값
 		int pageSize = 15;
-		int blockPage = 3;
+		int blockPage = 2;
 		
 		//현재 페이지에 대한 파라미터 처리 및 시작/끝의 rownum구하기
 		int nowPage = req.getParameter("nowPage")==null ?
@@ -89,8 +89,14 @@ public class MatchController {
 		return "match/stadium_main";
 	}
 	
+	//경기장 예약
 	@RequestMapping("/match/stadiumNormalApply.do")
-	public String stadiumApply() {
+	public String stadiumApply(Model model, HttpServletRequest req) {
+		
+		//파라미터 저장을 위한 DTO객체 생성
+		StadiumDTO stadiumDTO = new StadiumDTO();
+		stadiumDTO.setS_name("s_name");
+		
 		
 		return "match/stadium_apply";
 	}

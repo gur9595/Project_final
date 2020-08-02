@@ -27,11 +27,11 @@ public class StadiumPaging {
 			//두번째 페이지 블럭부터 출력됨.
 			pagingStr += ""
 				+ "<a href='javascript:paging(1);'>"
-				+ "<img src='../images/paging/paging1.gif'></a>";
+				+ "<i class='fas fa-angle-double-left'></i></a>";
 			pagingStr += "&nbsp;";
 			pagingStr += ""
 				+ "<a href='javascript:paging("+(intTemp-blockPage)+");'>"
-				+ "<img src='../images/paging/paging2.gif'></a>";
+				+ "<i class='fas fa-angle-left'></i></a>";
 		}
 		
 		//페이지표시 제어를 위한 변수
@@ -57,10 +57,10 @@ public class StadiumPaging {
 		//5.다음페이지블럭 & 마지막페이지 바로가기
 			if(intTemp <= totalPage) {
 				pagingStr += "<a href='javascript:paging("+intTemp+");'>"
-					+ "<img src='../images/paging/paging3.gif'></a>";
+					+ "<i class='fas fa-angle-right'></i></a>";
 				pagingStr += "&nbsp;";
 				pagingStr += "<a href='javascript:paging("+totalPage+");'>"
-					+ "<img src='../images/paging4.gif'></a>";
+					+ "<i class='fas fa-angle-double-right'></i></a>";
 			}
 		
 		return pagingStr;
