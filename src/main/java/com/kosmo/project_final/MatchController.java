@@ -27,8 +27,7 @@ import mybatis.MatchDAOImpl;
 @Controller
 public class MatchController {
 	
-
-	/*
+00	/*
 	servlet-context.xml에서 생성한 빈을 자동으로 주입받아 Mybatis를
 	사용할 준비를 한다. @Autowired는 타입만 일치하면 자동으로 주입 받을 수 있다.
 	*/
