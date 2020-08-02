@@ -94,7 +94,9 @@
                </c:choose>
                <br /><br />
                <div class="login100-api">
+               <h5 style="font-style:bold; padding-left:130px; ">소셜 로그인</h5>
 <!--                <img src="./../resources/img/naver.png" alt="naverAPI" /><br><img src="./../resources/img/kakao.png" alt="kakaoAPI" width="320px" /> -->
+				<br />
                <a href="${url }">
                <img src="./../resources/img/naver.png" alt="naverAPI" />
                </a>

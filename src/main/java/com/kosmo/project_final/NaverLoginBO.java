@@ -16,8 +16,8 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 
 public class NaverLoginBO {
 
-	 private final static String CLIENT_ID = "r4PU_DTi6cG3OA7vVOux";       //네이버API Client ID
-	    private final static String CLIENT_SECRET = "0K2ck8Oq5s";                      
+	 private final static String CLIENT_ID = "k1ss0PkmQcIZeUt6zBFx";       //네이버API Client ID
+	    private final static String CLIENT_SECRET = "zyjOruJvbt";                      
 	    private final static String REDIRECT_URI = "http://localhost:8282/project_final/member/callback.do";
 	    private final static String SESSION_STATE = "oauth_state";
 	    /* 프로필 조회 API URL */

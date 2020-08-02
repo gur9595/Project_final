@@ -72,18 +72,18 @@ public class LoginController {
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String printUser(Model model, Principal principal, HttpSession session) {
 
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		
+		System.out.println("네이버:" + naverAuthUrl); 
+		model.addAttribute("url", naverAuthUrl);
+		
 		String m_id = principal.getName();//get logged in username
 
 		model.addAttribute("m_id", m_id);
 
 		System.out.println("m_id : "+m_id);
 
-		/*
-		 * String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		 * 
-		 * System.out.println("네이버:" + naverAuthUrl); model.addAttribute("url",
-		 * naverAuthUrl);
-		 */
+		
 
 		return "home";
 
