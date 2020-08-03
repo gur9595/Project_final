@@ -38,8 +38,16 @@
 			where g.c_idx = #{param1} and g.g_check not like 'no'  order by g.g_date asc
 		</select>
 		
+		<!-- 클럽 상세보기 접수현황 -->
+		<select id="clubViewAccept" resultType="mybatis.GameDTO">
+			select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
+			where g.g_num in ( select g_num from game where c_idx=#{c_idx} and g_check ='owner' )
+			and g.g_check = 'no' order by g.g_date 
+		</select>
+		
+		<!-- 클럽 상세보기 전술 모든경기리스트  -->
 		<select id="clubMatchOpponent" resultType="mybatis.MatchDTO">
-			select * 
+			select *
 			from club
 			where c_idx in (select c_idx
 			from game
@@ -54,12 +62,7 @@
 			where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
 		</select>
 		
-		<!-- 클럽 상세보기 접수현황 -->
-		<select id="clubViewAccept" resultType="mybatis.GameDTO">
-			select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
-			where g.g_num in ( select g_num from game where c_idx=#{c_idx} )
-			and g.g_check = 'no' order by g.g_date 
-		</select>
+
 		
 		<!-- 클럽 상세보기 권한관리 -->
 		<select id="clubViewGrade" resultType="mybatis.MemberDTO">
@@ -70,6 +73,10 @@
 		<!-- 권한관리 수정 -->
 		<update id="clubViewUpdate" parameterType="mybatis.MemberDTO">
 			update clubmember set cm_grade = #{param2} where c_idx = #{param1} and m_id like #{param3}
+		</update>
+		
+		<update id="paymentUpdate">
+			update 
 		</update>
 		
 	  <select id="getTotalCount" resultType="int" >
