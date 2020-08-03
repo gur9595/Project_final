@@ -184,7 +184,6 @@ a {
 			<input type="hid den" name="m_pw" value="<%=request.getAttribute("m_pw") %>"/>
 			<input type="hid den" name="m_name" value="<%=request.getAttribute("m_name") %>"/>
 			<input type="hid den" name="m_birth" value="<%=request.getAttribute("m_birth") %>"/>
-			<input type="hid den" name="m_sex" value="<%=request.getAttribute("m_sex") %>"/>
 			<input type="hid den" name="m_phone" value="<%=request.getAttribute("m_phone") %>"/>
 			<input type="hid den" name="m_email" value="<%=request.getAttribute("m_email") %>"/>
 			
@@ -232,22 +231,34 @@ a {
 		        </tr>
 	        </table>
 	        
+			<h2>성별 체크</h2>
+			<table class="table table-borderless">
+				<tr>
+					<td width="20px;"><input type="radio" name="m_sex" id="man" value="남자" ></td>
+					<td><label for="man">남자</label></td>
+					<td width="20px;"><input type="radio" name="m_sex" id="wowan" value="여자"></td>
+					<td><label for="wowan">여자</label></td>
+				</tr>
+			</table>
+	        
 			<h2>주관적인 실력</h2>
 			<table class="table table-borderless">
 				<tr>
-					<td width="20px;"><input type="radio" name="m_abil" id="best" value="best" ></td>
+					<td width="20px;"><input type="radio" name="m_abil" id="best" value="최상" ></td>
 					<td><label for="best">최상</label></td>
-					<td width="20px;"><input type="radio" name="m_abil" id="top" value="top"></td>
-					<td><label for="top">상</label></td>
-					<td width="20px;"><input type="radio" name="m_abil" id="mediumhigh" value="mediumhigh"></td>
+
+					<td width="20px;"><input type="radio" name="m_abil" id="tops" value="상" ></td>
+					<td><label for="tops">상</label></td>
+						
+					<td width="20px;"><input type="radio" name="m_abil" id="mediumhigh" value="중상"></td>
 					<td><label for="mediumhigh">중상</label></td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="m_abil" id="medium" value="medium"></td>
+					<td><input type="radio" name="m_abil" id="medium" value="중"></td>
 					<td><label for="medium">중</label></td>
-					<td><input type="radio" name="m_abil" id="mediumlow" value="mediumlow"></td>
+					<td><input type="radio" name="m_abil" id="mediumlow" value="중하"></td>
 					<td><label for="mediumlow">중하</label></td>
-					<td><input type="radio" name="m_abil" id="low" value="low"></td>
+					<td><input type="radio" name="m_abil" id="low" value="하"></td>
 					<td><label for="low">하</label></td>
 				</tr>
 			</table>
@@ -255,11 +266,11 @@ a {
 	        <h2>주로쓰는 발</h2>
 	        <table class="table table-borderless">
 	        	<tr>
-	        		<td width="20px;"><input type="radio" name="m_foot" id="LF" value="LF"></td>
+	        		<td width="20px;"><input type="radio" name="m_foot" id="LF" value="왼박"></td>
 	        		<td><label for="LF">왼발</label></td>
-	        		<td width="20px;"><input type="radio" name="m_foot" id="RF" value="RF"></td>
+	        		<td width="20px;"><input type="radio" name="m_foot" id="RF" value="오른발"></td>
 	        		<td><label for="RF">오른발</label></td>
-					<td width="20px;"><input type="radio" name="m_foot" id="ALL" value="ALL"></td>
+					<td width="20px;"><input type="radio" name="m_foot" id="ALL" value="양발"></td>
 					<td><label for="ALL">양발</label></td>
 	        	</tr>
 			</table>
@@ -274,7 +285,6 @@ a {
                 </div>
             </div>
             
-	        
 	        <h2>프로필 등록하기</h2>
 			<table>
 				<tr>
@@ -287,23 +297,23 @@ a {
 				</tr>
 			</table>
             <div id="agreementDivArea" class="agreement">
-               <div>
+				<div>
                    <input type="checkbox" id="all" name="all" class="check-all" style="display:inline;">
                    <label for="all" style="display:inline;">약관 전체동의</label>
-               </div>
-               <br />
-               <div>
+               	</div>
+               	<br />
+               	<div>
                    <input type="checkbox"  id="checkbox1" name="agreeCheckbox" class="ab" style="display:inline;">
                    <label for="checkbox1" style="display:inline;">개인정보 수집 이용동의(필수)</label>
                    <button type="button"  onclick="privacyAgreeUsagePopBtnClickHandler()" style="display:inline;" class="button2">약관보기</button>
-               </div>
-			<br />
-               <div>
-                   <input type="checkbox" id="useTermsCheckbox" name="useTermsCheckbox" class="ab"  style="display:inline;">
-                   <label for="useTermsCheckbox" style="display:inline;" >축구장 이용약관(필수)</label>
-                   <button type="button"  onclick="serviceAgreementPopBtnClickHandler()" style="display:inline;" class="button">약관보기</button>
-               </div>
-           </div>
+               	</div>
+				<br />
+				<div>
+				    <input type="checkbox" id="useTermsCheckbox" name="useTermsCheckbox" class="ab"  style="display:inline;">
+					<label for="useTermsCheckbox" style="display:inline;" >축구장 이용약관(필수)</label>
+					<button type="button"  onclick="serviceAgreementPopBtnClickHandler()" style="display:inline;" class="button">약관보기</button>
+				</div>
+			</div>
 
 	        <div style="text-align:center">
 	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="javascript:goBack();">이전페이지</button>  

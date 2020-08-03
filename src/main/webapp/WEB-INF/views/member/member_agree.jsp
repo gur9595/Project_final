@@ -72,15 +72,6 @@ label {
 				<h2>생년월일</h2>
 					<input type="text" class="txtBox31" id="m_birth" name="m_birth" placeholder="예)19970121" minlength="7" maxlength="8" >
 				
-				 <h2>성별 체크</h2>
-			        <table class="table table-borderless">
-			        	<tr>
-							<td width="20px;"><input type="radio" name="m_sex" id="man" value="남자" ></td>
-							<td><label for="man">남자</label></td>
-							<td width="20px;"><input type="radio" name="m_sex" id="wowan" value="여자"></td>
-							<td><label for="wowan">여자</label></td>
-						</tr>
-			        </table>
 			    <h2>휴대전화</h2>
 	                <input type="tel" class="txtBox31" id="m_phone" name="m_phone" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="12">
 		        
