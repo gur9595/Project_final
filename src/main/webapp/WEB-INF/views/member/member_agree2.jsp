@@ -13,6 +13,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function DaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우
+                    addr = data.jibunAddress;
+                }
+    	
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                  
+                
+                }
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("m_addr1").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("m_addr2").focus();
+            }
+        }).open();
+    }
+</script>
 <style>
 h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen Script;
 	margin:52px auto 10px 0px;
@@ -66,7 +107,47 @@ label {
 }
 #file { display:none; } 
 
+
+a {
+	-webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	display: block;
+	margin: 20px auto;
+	max-width: 180px;
+	text-decoration: none;
+	border-radius: 4px;
+	padding: 20px 30px;
+}
+
+.button {
+	color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+	height:30px;
+	background-color: white;
+}
+
+.button:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+
+.button2 {
+	color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+	height:30px;
+	background-color: white;
+}
+
+.button2:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
+}
+
 </style>
+
 <script>
 	function setPic(event) {
 		var reader = new FileReader();
@@ -78,6 +159,8 @@ label {
 		};
 		reader.readAsDataURL(event.target.files[0]);
 	}
+	
+
 </script>
 
 
@@ -93,7 +176,7 @@ label {
 </div>
 	<main class="hoc container clear">
 	    <div class="container">
-	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">회&nbsp;원&nbsp;가&nbsp;입</h1>
+	    <h1 style="font-size:40px; font-weight:bold; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h1>
 	    <form action="../member/memberJoin2.do" enctype="multipart/form-data" method="post"id="myForm" name="form"  >
 			<!-- Header -->
 			
@@ -101,9 +184,9 @@ label {
 			<input type="hid den" name="m_pw" value="<%=request.getAttribute("m_pw") %>"/>
 			<input type="hid den" name="m_name" value="<%=request.getAttribute("m_name") %>"/>
 			<input type="hid den" name="m_birth" value="<%=request.getAttribute("m_birth") %>"/>
+			<input type="hid den" name="m_sex" value="<%=request.getAttribute("m_sex") %>"/>
 			<input type="hid den" name="m_phone" value="<%=request.getAttribute("m_phone") %>"/>
 			<input type="hid den" name="m_email" value="<%=request.getAttribute("m_email") %>"/>
-			<input type="hid den" name="m_addr" value="<%=request.getAttribute("m_addr") %>"/>
 			
 			<header class="member-header">
 			    <div class="logo">
@@ -111,15 +194,7 @@ label {
 			    </div>
 			</header>
 			<!-- //Header -->
-	        <h2>성별 체크</h2>
-	        <table class="table table-borderless">
-	        	<tr>
-					<td width="20px;"><input type="radio" name="m_sex" id="man" value="남자" ></td>
-					<td><label for="man">남자</label></td>
-					<td width="20px;"><input type="radio" name="m_sex" id="wowan" value="여자"></td>
-					<td><label for="wowan">여자</label></td>
-				</tr>
-	        </table>
+
 	        
 			<h2>주 포지션 체크</h2>
 			<table class="table table-borderless">
@@ -140,12 +215,12 @@ label {
 		            <td><label for="RM">RM</label></td>
 		        </tr>
 				<tr>
-		          	<td ><input type="checkbox" name="m_position" id="CM" value="CM"/></td>
-		          	<td ><label for="CM">CM</label></td>
-		            <td ><input type="checkbox" name="m_position" id="CB" value="CB"/></td>
-		            <td ><label for="CB">CB</label></td>
-		            <td ><input type="checkbox" name="m_position" id="DM" value="DM"/></td>
-		            <td ><label for="DM">DM</label></td>
+		          	<td><input type="checkbox" name="m_position" id="CM" value="CM"/></td>
+		          	<td><label for="CM">CM</label></td>
+		            <td><input type="checkbox" name="m_position" id="CB" value="CB"/></td>
+		            <td><label for="CB">CB</label></td>
+		            <td><input type="checkbox" name="m_position" id="DM" value="DM"/></td>
+		            <td><label for="DM">DM</label></td>
 		        </tr>
 		  		<tr>
 		          	<td ><input type="checkbox" name="m_position" id="LB" value="LB"/></td>
@@ -188,10 +263,21 @@ label {
 					<td><label for="ALL">양발</label></td>
 	        	</tr>
 			</table>
+			
+			<div class="n-form-set" id="input-div">
+                <h2>주소</h2>
+                <div>                                     
+                    <input type="hidden" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:130px; height:50px; margin-top:5px; display:inline;" readonly/>
+                    <input type="button" class="btn btn-warning" onclick="DaumPostcode()" value="주소 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
+                    <input type="text" id="m_addr1" name="m_addr" placeholder="주소"  class="n-input" style="margin-top: 5px; width:600px; height:50px; font-size:20px; " readonly/>
+                    <input type="text" id="m_addr2" name="m_addr" placeholder="상세주소"  class="n-input" style="margin-top: 5px; width:600px; height:50px; font-size:20px;" /> 
+                </div>
+            </div>
+            
 	        
 	        <h2>프로필 등록하기</h2>
 			<table>
-				<tr >
+				<tr>
 					<td>
 						<div id="image_container" style="width: 300px; height: 180px"></div>
 					</td>
@@ -200,12 +286,30 @@ label {
 					</td>
 				</tr>
 			</table>
+            <div id="agreementDivArea" class="agreement">
+               <div>
+                   <input type="checkbox" id="all" name="all" class="check-all" style="display:inline;">
+                   <label for="all" style="display:inline;">약관 전체동의</label>
+               </div>
+               <br />
+               <div>
+                   <input type="checkbox"  id="checkbox1" name="agreeCheckbox" class="ab" style="display:inline;">
+                   <label for="checkbox1" style="display:inline;">개인정보 수집 이용동의(필수)</label>
+                   <button type="button"  onclick="privacyAgreeUsagePopBtnClickHandler()" style="display:inline;" class="button2">약관보기</button>
+               </div>
+			<br />
+               <div>
+                   <input type="checkbox" id="useTermsCheckbox" name="useTermsCheckbox" class="ab"  style="display:inline;">
+                   <label for="useTermsCheckbox" style="display:inline;" >축구장 이용약관(필수)</label>
+                   <button type="button"  onclick="serviceAgreementPopBtnClickHandler()" style="display:inline;" class="button">약관보기</button>
+               </div>
+           </div>
 
 	        <div style="text-align:center">
-	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberAgree.do'">이전페이지</button>  
+	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="javascript:goBack();">이전페이지</button>  
 		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">가입완료!!</button>
 	        </div>
-	    	</form>
+	    	</form> 
 		</div>
 		<div class="clear"></div>
 	</main>
@@ -216,7 +320,34 @@ label {
 <!-- JAVASCRIPTS -->
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
+<script>
+function goBack() {
+	history.go(-1);
+}
 
+function privacyAgreeUsagePopBtnClickHandler() {
+var popSizeOnMobile = '';
+    if(false) {
+        popSizeOnMobile = 'width=100%,height=100%,';
+    }
+    window.open('./../member/article.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+}
+
+function serviceAgreementPopBtnClickHandler() {
+    var popSizeOnMobile = '';
+    if(false) {
+        popSizeOnMobile = 'width=100%,height=100%,';
+    }
+    window.open('./../member/article.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+}
+
+$( document ).ready(function() {
+    $( '.check-all' ).click( function() {
+      $( '.ab' ).prop( 'checked', this.checked );
+    } );
+  } );
+  
+</script>
 
 </body>  
 </html> 

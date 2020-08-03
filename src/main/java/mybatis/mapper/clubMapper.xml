@@ -41,7 +41,7 @@
 		<!-- 클럽 상세보기 접수현황 -->
 		<select id="clubViewAccept" resultType="mybatis.GameDTO">
 			select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
-			where g.g_num in ( select g_num from game where c_idx=#{c_idx} )
+			where g.g_num in ( select g_num from game where c_idx=#{c_idx} and g_check ='owner' )
 			and g.g_check = 'no' order by g.g_date 
 		</select>
 		
@@ -169,6 +169,10 @@
 	  
 	<insert id="clubApply" parameterType="mybatis.ClubMemberDTO">
 		insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
+	</insert>
+	
+	<insert id="gameMemberApply" parameterType="mybatis.GameMemberDTO">
+		insert into gamemember values(gamemember_seq.nextval, #{g_idx}, #{m_id}, default)
 	</insert>
 	
 	<select id="myClubList" resultType="mybatis.ClubDTO">

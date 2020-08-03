@@ -7,9 +7,9 @@
 
    <!-- 회원가입 --> 
 	  <insert id="memberJoin" parameterType="mybatis.MemberDTO">  
-		  insert into member (m_idx, m_id, m_pw, m_name, m_birth, m_email, m_phone, m_addr, m_date, m_position, m_sex, m_abil, m_foot, m_pic, AUTHORITY) values( 
-		  	member_seq.nextval, #{m_id}, #{m_pw}, #{m_name}, #{m_birth}, #{m_email}, #{m_phone},
-		  	#{m_addr}, sysdate, #{m_position}, #{m_sex}, #{m_abil}, #{m_foot}, #{m_pic}, default) 
+		  insert into member (m_idx, m_id, m_pw, m_name, m_birth, m_sex, m_email, m_phone, m_addr, m_date, m_position,  m_abil, m_foot, m_pic, AUTHORITY) values( 
+		  	member_seq.nextval, #{m_id}, #{m_pw}, #{m_name}, #{m_birth}, #{m_sex}, #{m_email}, #{m_phone},
+		  	#{m_addr}, sysdate, #{m_position}, #{m_abil}, #{m_foot}, #{m_pic}, default) 
 	  </insert> 
 	   
 	  <select id="memberInfo" resultType="mybatis.MemberDTO" parameterType="mybatis.MemberDTO">
