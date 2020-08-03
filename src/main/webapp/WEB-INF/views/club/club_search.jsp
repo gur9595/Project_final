@@ -200,7 +200,7 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 	
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-danger" >
+					<button type="submit" class="btn btn-danger" id="clubSubmit" >
 						신청하기</button>
 				</div>
 				</form>
@@ -227,6 +227,10 @@ function openClubView(c_idx){
 	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
 			"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
 }
+
+$('#writeFrm').submit(function(){
+	alert("신청 완료!");
+});
 
 </script>
 

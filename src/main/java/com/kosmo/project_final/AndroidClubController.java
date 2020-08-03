@@ -1,9 +1,12 @@
 package com.kosmo.project_final;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
+import mybatis.ClubMemberDTO;
 
 @Controller
 public class AndroidClubController {
@@ -21,19 +25,13 @@ public class AndroidClubController {
 	
 	@RequestMapping("/android/listView.do")
 	@ResponseBody
-	public Map<String , Object> clubListView(ClubDTO clubDTO){
+	public ArrayList<ClubDTO> clubListView(ClubMemberDTO clubMemberDTO){
 		
-		Map<String, Object> myIdInfo = new HashMap<String, Object>();
-		ClubDTO myclubList = sqlSession.getMapper(ClubDAOImpl.class).myClubListA(clubDTO);
+		ArrayList<ClubDTO> myclubList = sqlSession.getMapper(ClubDAOImpl.class).myClubListA(clubMemberDTO);
 		
-		if(myclubList == null) {
-			myIdInfo.put("isList", 0);
-		}else {
-			myIdInfo.put("myClubList", myclubList);
-			myIdInfo.put("isList", 1);
-		}
 		
-		return myIdInfo;
+		return myclubList;
 		
 	}
+
 }

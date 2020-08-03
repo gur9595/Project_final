@@ -91,12 +91,19 @@
                                                     </tr>
 
                                                     <c:forEach items="${lists }" var="row" varStatus="status"> 
+                                                    	
 														<tr>
+															<input type="hidden" value="${row.g_num }" />
 															<th>${row.g_date }</th>
 															<th>${row.g_time }</th>
 															<th>${row.g_sname }</th>
-															<th>없음</th>
-															<th><input type="button" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
+															<th>
+																<c:choose>
+																	<c:when test="${row.c_name == '' }">없음</c:when>
+																	<c:otherwise><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></c:otherwise>
+																</c:choose>
+															</th>
+															<th><input type="button" onclick="javascript:GameMemberApply(${row.c_idx},${row.g_idx},${m_id })" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
 	                                                        <th><input type="button" class="btn btn-outline-danger" style=" width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="불참" ></th>
 	                                                        <th><input type="button" class="btn btn-outline-primary" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:16px;" value="용병고용"></th>
 	                                                        <th><input type="button" class="btn btn-outline-secondary" style="width:50px; height:30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="취소"></th>
@@ -109,7 +116,7 @@
                                                 <h4 style="margin-left: 80px;">신청 접수 현황</h4>
                                             </div>
                                             <div class="comment-widgets scrollable">
-                                                <table style="width:1000px;">
+                                                <table style="width:800px;">
                                                     <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
                                                         <th style="width:180px;">날짜</th>
                                                         <th style="width:100px;">시간</th>
@@ -117,13 +124,14 @@
                                                         <th style="width:200px;">상대팀</th>
                                                         <th colspan="2" style="width:120px;">수락/거절</th>
                                                     </tr>
-                                                    <c:forEach items="${lists }" var="row" varStatus="status"> 
+                                                    <c:forEach items="${lists2 }" var="row" varStatus="status"> 
 														<tr>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
+															<th>${row.g_date }</th>
+															<th>${row.g_time }</th>
+															<th>${row.g_sname }</th>
+															<th><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></th>
+															<th><input type="button" class="btn btn-outline-success" style="width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="수락" ></th>
+                                                        	<th><input type="button" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" ></th>
 														</tr>
 													</c:forEach>
                                                 </table>
@@ -211,4 +219,15 @@
         </div>
     </div>
 </body>
+<script>
+	function openClubView(c_idx){
+		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
+				"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+	}
+	
+	function GameMemberApply(c_idx,g_idx,m_id){
+		alert("신청 완료!");
+		location.href="../club/gameMemberApply.do?c_idx="+c_idx+"&g_idx="+ g_idx +"&m_id="+m_id;
+	}
+</script>
 </html>

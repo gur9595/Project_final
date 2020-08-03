@@ -25,7 +25,8 @@
 					<div class="modal-body">
 					
 						<input type="hidden" id="list_idx" name="list_idx" />
-						<span>우리 클럽 : </span><select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline;">
+						<span>우리 클럽 : </span>
+						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline;">
 							<option value="" selected="selected">클럽을 선택하세요.</option>
 							<c:forEach var="club" items="${c_list }">
 								<option value="${club.c_idx }">${club.c_name }</option>
@@ -44,7 +45,6 @@
 					</div>
 	
 					<div class="modal-footer">
-						
 						<input type="submit" class="btn btn-danger" value="신청하기">
 					</div>
 				</div>
@@ -123,7 +123,7 @@
 				</td>
 				<td>${row.g_saddr }</td>
 				<td>
-					<a href="clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip">
+					<a href="../club/clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip">
 						${row.c_name } <span style="width: 200px;">${row.c_name }<br />클럽 페이지 이동</span>
 					</a>
 				</td>

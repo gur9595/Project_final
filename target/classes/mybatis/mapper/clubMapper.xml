@@ -12,17 +12,65 @@
 		  	#{c_ability}, #{c_memlimit}, #{c_memo}, #{c_age} ) 
 		</insert> 
 		
+		<!-- 클럽 상세보기 메인 -->
+		<select id="clubView" resultType="mybatis.ClubDTO">
+			select *
+			from club
+			where c_idx = #{param1} 
+		</select>
+		
+		<!-- 클럽회원 수 체크 -->
+		<select id="clubMemberCount" resultType="int">
+			select count(*) from clubmember where c_idx=#{c_idx}
+		</select>
+		
 		<!-- 클럽 상세보기 회원정보 -->
 		<select id="clubViewMember" resultType="mybatis.MemberDTO">
-		     select m.m_name, m.m_birth, m.m_sex, m.m_position, m.m_foot, m.m_pic, m.m_phone
+		     select m.m_name, m.m_birth, m.m_sex, m.m_position, m.m_foot, m.m_pic, m.m_phone, cm.cm_idx
 		     from member m inner join clubmember cm on m.m_id = cm.m_id where cm.c_idx = #{c_idx} order by cm_grade asc
 		</select>	
 		
 		<!-- 클럽 상세보기 모든경기정보 -->
-		<select id="clubViewMatch" resultType="mybatis.GameDTO">
-			select * from game where c_idx = #{param1}
+		<select id="clubViewMatch" resultType="mybatis.MatchDTO">
+			select g.* 
+			from game g inner join club c 
+				on g.c_idx = c.c_idx 
+			where g.c_idx = #{param1} and g.g_check not like 'no'  order by g.g_date asc
 		</select>
 		
+		<select id="clubMatchOpponent" resultType="mybatis.MatchDTO">
+			select * 
+			from club
+			where c_idx in (select c_idx
+			from game
+			where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
+		</select>
+		
+		<select id="clubMatchOpponentCount" resultType="int">
+			select count(*) 
+			from club
+			where c_idx in (select c_idx
+			from game
+			where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
+		</select>
+		
+		<!-- 클럽 상세보기 접수현황 -->
+		<select id="clubViewAccept" resultType="mybatis.GameDTO">
+			select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
+			where g.g_num in ( select g_num from game where c_idx=#{c_idx} )
+			and g.g_check = 'no' order by g.g_date 
+		</select>
+		
+		<!-- 클럽 상세보기 권한관리 -->
+		<select id="clubViewGrade" resultType="mybatis.MemberDTO">
+			select m.m_id, m.m_name, m.m_birth, m.m_phone, m.m_sex, m.m_addr, cm.cm_grade
+			from member m inner join clubmember cm on m.m_id = cm.m_id where cm.c_idx = #{c_idx} 
+		</select>
+		
+		<!-- 권한관리 수정 -->
+		<update id="clubViewUpdate" parameterType="mybatis.MemberDTO">
+			update clubmember set cm_grade = #{param2} where c_idx = #{param1} and m_id like #{param3}
+		</update>
 		
 	  <select id="getTotalCount" resultType="int" >
 		select count(*) from club 
@@ -116,6 +164,10 @@
 		insert into clubmember values(clubmember_seq.nextval, #{c_idx}, #{m_id}, default, default, default, #{cm_memo})
 	</insert>
 	
+	<insert id="gameMemberApply" parameterType="mybatis.GameMemberDTO">
+		insert into gamemember values(gamemember_seq.nextval, #{g_idx}, #{m_id}, default)
+	</insert>
+	
 	<select id="myClubList" resultType="mybatis.ClubDTO">
 		select * 
 		from club c inner join clubmember cm
@@ -127,7 +179,7 @@
 		select * 
 		from club c inner join clubmember cm
 			on c.c_idx = cm.c_idx
-		where cm.m_id like #{param1} 
+		where cm.m_id = #{m_id} 
 	</select>
 	
 	<select id="myClubListCount" resultType="int">
@@ -137,11 +189,7 @@
 		where cm.m_id like #{param1} 
 	</select>
 	
-	<select id="clubView" resultType="mybatis.ClubDTO">
-		select *
-		from club
-		where c_idx = #{param1} 
-	</select>
+
 	
 	<select id="clubIdx" resultType="int" parameterType="mybatis.ClubDTO">
 		select c_idx
@@ -169,5 +217,11 @@
 	<delete id="clubMemberReject">
 		delete from clubmember where cm_idx = #{param1}
 	</delete>
+	
+	<select id="clubMakingForm" resultType="mybatis.GameMemberDTO">
+		select *
+		from gamemember
+		where g_idx like #{param1}
+	</select>
 	  
   </mapper>

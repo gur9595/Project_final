@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,21 +49,7 @@
     	<%@ include file="./club_view_sidebar.jsp" %>
         
 <div class="page-wrapper">
-             <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h2 class="page-title" style="font-size: 40px;">&nbsp;전술</h2>
-                        <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
@@ -75,18 +62,32 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title" style="text-align: center; font-size: 30px;">전술</h4>
+                                            </div><div>
+                                                <h4 style="margin-left: 80px;">경기 리스트</h4>
                                             </div>
-                                            <table style="margin: 0px; width: 900px;" >
-                                                <tr>
-                                                    <td style="text-align: center;">포메이션</td>
-                                                    <td style="text-align: center;">선수명단</td> 
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <img src="./../resources/img/socfield.jpg" alt="축구경기장">
-                                                    </td> 
-                                                </tr>
-                                            </table>
+                                            <div class="comment-widgets scrollable">
+                                                <table style="width:800px;">
+                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
+                                                        <th style="width:120px;">날짜</th>
+                                                        <th style="width:50px;">시간</th>
+                                                        <th style="width:200px;">구장 이름</th>
+                                                        <th style="width:100px;">상대팀</th>
+                                                        <th style="width:100px;">포메이션 확인</th>
+                                                        <th style="width:120px;">포메이션 작성</th>         
+                                                    </tr>
+
+                                                    <c:forEach items="${lists }" var="row" varStatus="status"> 
+														<tr>
+															<th>${row.g_date }</th>
+															<th>${row.g_time }</th>
+															<th>${row.g_sname }</th>
+															<th>${row.c_name }</th>
+															<th><input type="button" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="확인" ></th>
+	                                                        <th><input type="button" class="btn btn-outline-primary" onclick="javascript:openFormMake(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="작성"></th>
+														</tr>
+													</c:forEach>
+                                                </table>
+                                            </div>
                                         </div>    
                                     </div>
                                 </div>
@@ -170,4 +171,11 @@
         </div>
     </div>
 </body>
+<script>
+	function openFormMake(g_idx){
+		
+		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank',
+				"width=1000,height=800, toolbar=no, menubar=no, resizable=no");
+	}
+</script>
 </html>

@@ -76,7 +76,7 @@ public class LoginController {
 
 		model.addAttribute("m_id", m_id);
 
-		System.out.println("m_id : "+m_id);
+		System.out.println("m_id : "+m_id); 
 
 		/*
 		 * String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
