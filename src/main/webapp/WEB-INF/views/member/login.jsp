@@ -83,9 +83,7 @@
                   <div class="container-login100-form-btn">
                   <div class="wrap-login100-form-btn">
                      <div class="login100-form-bgbtn"></div>
-                     <button class="login100-form-btn">
-                        당연히 로그인이겠지?
-                     </button>
+                     <button class="login100-form-btn">로그인</button>
                   </div>
                      <div class="clear"></div>
                   </div>

@@ -122,8 +122,6 @@ $(document).ready( function() {
     });
   }
 
-
-  
 //게임 리스트 모달 창 값 전송
 function game_modal(date, time, name, addr, memo, idx, c_name) {
 	document.getElementById("list_date").innerHTML = date;

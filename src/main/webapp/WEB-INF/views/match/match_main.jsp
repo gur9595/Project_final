@@ -34,7 +34,7 @@
   </div>
 </div>
 <div class="wrapper row3">
-  <main class="hoc container clear"> 
+  <main class="hoc container clear">
     <!-- main body -->
     <div class="content">
     	<div class="site-section first-section">

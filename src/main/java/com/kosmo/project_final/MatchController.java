@@ -85,10 +85,10 @@ public class MatchController {
 	
 	//용병리스트 모달창에서 용병신청
 	@RequestMapping("/match/extraApply.do")
-	public String extraApply(Model model, HttpServletRequest req, HttpSession session) {
+	public String extraApply(Model model, HttpServletRequest req, Principal principal) {
 				
 		
-		String m_id = (String) (session.getAttribute("m_id"));		
+		String m_id = (String) (principal.getName());
 		int g_idx = (Integer.parseInt(req.getParameter("list_idx")));
 		
 		sqlSession.getMapper(MatchDAOImpl.class).extraApply(m_id, g_idx);		
@@ -149,7 +149,7 @@ public class MatchController {
 	@RequestMapping("/match/gameInsert.do")
 	public String gameInsert(Model model, HttpServletRequest req, Principal principal) {
 		
-		String m_id = principal.getName();
+		String m_id = (String)principal.getName();
 		
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
 		
@@ -211,7 +211,7 @@ public class MatchController {
 			
 	//게임리스트 모달창에서 매치신청
 	@RequestMapping("/match/matchApply.do")
-	public String matchApply(Model model, HttpServletRequest req, HttpSession session) {
+	public String matchApply(Model model, HttpServletRequest req) {
 				
 		GameDTO gameDTO = new GameDTO();
 		gameDTO.setG_idx(Integer.parseInt(req.getParameter("list_idx")));
