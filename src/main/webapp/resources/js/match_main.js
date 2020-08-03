@@ -11,18 +11,8 @@ $(document).ready( function() {
       });
     });
 
-    $('#football').click(function() {
-        $("#contents").load("stadiumMain.do", {"keyword" : "축구장"});
-        $('html, body').stop().animate({
-          scrollTop : $('#contents_target').offset().top
-        });
-        
-        $('#close').show();
-        
-    });
-    
-    $('#footsal').click(function() {
-    	$("#contents").load("stadiumMain.do", {"keyword" : "풋살장"});
+    $('#stadium').click(function() {
+        $("#contents").load("stadiumMain.do");
         $('html, body').stop().animate({
           scrollTop : $('#contents_target').offset().top
         });

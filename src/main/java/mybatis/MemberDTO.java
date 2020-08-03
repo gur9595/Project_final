@@ -26,8 +26,16 @@ public class MemberDTO {
 	private String cm_memo;
 	private String cm_idx;
 	
+	//join용 변수
+	private String cm_grade;
 	
 	
+	public String getCm_grade() {
+		return cm_grade;
+	}
+	public void setCm_grade(String cm_grade) {
+		this.cm_grade = cm_grade;
+	}
 	public int getM_idx() {
 		return m_idx;
 	}
