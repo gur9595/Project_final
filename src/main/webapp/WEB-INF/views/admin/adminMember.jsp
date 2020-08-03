@@ -22,7 +22,6 @@
     <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
 </head>
 <style>
-
     table{
         margin-left: auto; margin-right: auto;
         width: 1100px;
@@ -39,7 +38,6 @@
     }
 </style>
 <body>
-
     <div id="main-wrapper">
         <!-- 탑바 -->
 		<%@ include file="./../include/adminTopBar.jsp" %>
@@ -64,7 +62,7 @@
                                             <div class="comment-widgets scrollable">
                                                 <table>
                                                     <tr style="border-bottom: 3px solid #036">
-                                                    	<th>번호</th>
+                                                    	<th>No</th>
                                                         <th>이름</th>
                                                         <th>ID</th>   
                                                         <th>생년월일</th>

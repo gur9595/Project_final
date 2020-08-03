@@ -69,11 +69,11 @@ public class MemberController {
    }
 
 
-   @RequestMapping("/member/login.do")
+   /*@RequestMapping("/member/login.do")
    public String login() {
 
       return "member/login";
-   }
+   }*/
 
 
    @RequestMapping("/member/managerJoin.do")
@@ -286,7 +286,7 @@ public class MemberController {
    
    //회원정보 수정
    @RequestMapping(value="/member/memberEditAction.do",method=RequestMethod.POST)
-   public String memberEditAction(HttpSession session, MemberDTO dto, Model model , MultipartHttpServletRequest req) {
+   public String memberEditAction(MemberDTO dto, MultipartHttpServletRequest req) {
       
 	   	//서버의 물리적경로 가져오기
 	   

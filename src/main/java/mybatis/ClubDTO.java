@@ -17,6 +17,8 @@ public class ClubDTO {
 	private String c_gender;
 	private int c_memlimit;
 	private String c_age;
+	private int start;
+	private int end;
 	
 	public String getC_age() {
 		return c_age;
@@ -96,6 +98,19 @@ public class ClubDTO {
    public void setC_memlimit(int c_memlimit) {
       this.c_memlimit = c_memlimit;
    }
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
+   
    
    
 }

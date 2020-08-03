@@ -64,67 +64,7 @@ request.setCharacterEncoding("UTF-8");
 		</c:choose>
 			
 		</div>  
-	</c:forEach>
-		<!-- <div class ="firstDiv clubDiv">
-			<table class="clubTable" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-				<tr class="pad">
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-						<img class="myClubEmb" src="./../resources/img/emb1.png" alt="" />
-					</td>
-				</tr>
-				<tr>
-					<td  class="clubName">브라질리언 왁싱</td>
-				</tr>
-				<tr class="pad">
-					<td></td>
-				</tr>
-			</table>
-		</div> -->
-		
-		
-		
-		<!-- <div class ="clubDiv">
-			<table class="clubTable" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-				<tr class="pad">
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-						<img class="myClubEmb" src="./../resources/img/emb3.png" alt="" />
-					</td>
-				</tr>
-				<tr>
-					<td  class="clubName">첼쉬</td>
-				</tr>
-				<tr class="pad">
-					<td></td>
-				</tr>
-			</table>
-		</div>
-		
-		<div class ="clubDiv">
-			<table class="clubTable" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-				<tr class="pad">
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-						<img class="myClubEmb" src="./../resources/img/emb2.png" alt="" />
-					</td>
-				</tr>
-				<tr>
-					<td class="clubName">도떼기 시장</td>
-				</tr>
-				<tr class="pad">
-					<td></td>
-				</tr>
-			</table>
-		</div> -->
-		
-		
+	</c:forEach>	
 			
 	</div>
 	
@@ -133,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
 <script>
 	function openClubView(c_idx){
 		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
-				"width=1700,height=800, toolbar=no, menubar=no, resizable=no");
+				"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
 	}
 </script>
 </html>

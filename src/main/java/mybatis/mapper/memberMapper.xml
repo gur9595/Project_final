@@ -11,6 +11,10 @@
 		  	member_seq.nextval, #{m_id}, #{m_pw}, #{m_name}, #{m_birth}, #{m_email}, #{m_phone},
 		  	#{m_addr}, sysdate, #{m_position}, #{m_sex}, #{m_abil}, #{m_foot}, #{m_pic}, default) 
 	  </insert> 
+	  
+	  <select id="naverSuccess" parameterType="mybatis.MemberDTO" resultType="int">
+	  		select count(*) from member where m_id = #{m_id}
+	  </select>
 	   
 	  <select id="memberInfo" resultType="mybatis.MemberDTO" parameterType="mybatis.MemberDTO">
 	  	select * from member where m_id = #{m_id}
@@ -22,6 +26,10 @@
 	  		where m_id=#{m_id} 
 	  </update>
 	  
+	  <!-- 안드로이드 로그인 검사 -->
+	  <select id="memberLogin" resultType="mybatis.MemberDTO" parameterType="mybatis.MemberDTO">
+		SELECT * FROM member WHERE m_id=#{m_id} and m_pw=#{m_pw}
+	  </select>
 	  
 	  
 	

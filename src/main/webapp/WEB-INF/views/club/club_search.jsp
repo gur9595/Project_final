@@ -6,8 +6,23 @@
 <html>
 <script>
 $('#clubSearchSubmit').click(function() {
-	$("#contents").load("clubSearchFilter.do?clubName="+$("#clubName").val() +"&area="+$('#area').val() +"&ability="+$('#ability').val() +"&gender="+$('#gender').val() +"&age="+$('#age').val());
+	var clubName = $("#clubName").val();
+	clubName = clubName.replace(/\s/gi, "+");
+	console.log(clubName);
+	$("#contents").load("clubSearchFilter.do?clubName="+ clubName +"&area="+$('#area').val() +"&ability="+$('#ability').val() +"&gender="+$('#gender').val() +"&age="+$('#age').val());
 });
+
+function paging(pNum){
+	$("#contents").load("clubSearch.do?nowPage=" + pNum);
+}
+
+function pagingFilter(pNum){
+	var clubName = $("#clubName").val();
+	clubName = clubName.replace(/\s/gi, "+");
+	console.log(clubName);
+	$("#contents").load("clubSearchFilter.do?nowPage=" + pNum + "&clubName="+ clubName +"&area="+$('#area').val() +"&ability="+$('#ability').val() +"&gender="+$('#gender').val() +"&age="+$('#age').val());
+
+}
 </script>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -118,7 +133,7 @@ request.setCharacterEncoding("UTF-8");
 				<td class="t1"></td>
 				<td>팀명</td>
 				<td class="t2">실력</td>
-				<td class="t3">나이대</td>
+				<td class="t4">나이대</td>
 				<td class="t2">성별</td>
 				<td class="t4">활동지역</td>
 				<td>입단</td>
@@ -130,11 +145,13 @@ request.setCharacterEncoding("UTF-8");
 					<input type="hidden" value="${row.c_idx }" />
 					<td class="tcol">${status.count }</td>
 					<td class="tname">
-						<img src="./../resources/uploadsFile/${row.c_emb }" alt="" />
-						${row.c_name }
+						<a href='javascript:openClubView(${row.c_idx });'>
+							<img src="./../resources/uploadsFile/${row.c_emb }" alt="" />
+							${row.c_name }
+						</a>
 					</td>
 					<td class="tcol">${row.c_ability }</td>
-					<td class="tcol">20대</td>
+					<td class="tcol">${row.c_age }</td>
 					<td class="tcol">${row.c_gender }</td>
 					<td class="tcol">${row.c_area }</td>
 					<td><button type="button" class="btn" data-toggle="modal"
@@ -143,7 +160,11 @@ request.setCharacterEncoding("UTF-8");
 					</td>
 				</tr>
 			</c:forEach>
-			
+			<tr>
+				<td colspan='7' style="text-align: center; font-size: 25px;">
+					${pagingImg }
+				</td>
+			</tr>
 		</table>
 	</div>
 	<!-- 모달창 신청폼 -->
@@ -179,7 +200,7 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 	
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-danger" >
+					<button type="submit" class="btn btn-danger" id="clubSubmit" >
 						신청하기</button>
 				</div>
 				</form>
@@ -201,6 +222,15 @@ function modal(idx, name, ability, age, gender, area) {
 	document.getElementById("list_area").innerHTML = area;
 	
 }
+
+function openClubView(c_idx){
+	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
+			"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+}
+
+$('#writeFrm').submit(function(){
+	alert("신청 완료!");
+});
 
 </script>
 

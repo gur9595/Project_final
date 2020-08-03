@@ -103,7 +103,7 @@ label {
 			<input type="hid den" name="m_birth" value="<%=request.getAttribute("m_birth") %>"/>
 			<input type="hid den" name="m_phone" value="<%=request.getAttribute("m_phone") %>"/>
 			<input type="hid den" name="m_email" value="<%=request.getAttribute("m_email") %>"/>
-			<input type="hid den" name="m_addr" value="<%=request.getAttribute("m_addr") %>"/>
+			<%-- <input type="hid den" name="m_addr" value="<%=request.getAttribute("m_addr") %>"/> --%>
 			
 			<header class="member-header">
 			    <div class="logo">

@@ -11,6 +11,7 @@ public interface AdminDAOImpl {
 	public int set_Gnum(int g_num);
 	
 	public ArrayList<MemberDTO> adminMember(MemberDTO memberDTO);
+	public ArrayList<ClubDTO> adminClub(ClubDTO clubDTO);
 	public ArrayList<ManagerRequestDTO> listPage(ManagerRequestDTO managerRequestDTO);
 	
 	public int managerUpdate(String m_id);

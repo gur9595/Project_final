@@ -7,8 +7,8 @@
     <sec:authentication property="principal.username" var="m_id" />
 </sec:authorize>
 
-<div class="row hoc">
-	<div class="col-md-12 right" style="background-color: #282e39">
+<div class="row hoc" style="background-color: #282e39">
+	<div class="col-md-12 right" >
 		<nav id="mainav" class="right text-right" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px;">
 			<ul class="cl ear ml-auto mb-0" style="font-size: 15px; color: #fff;">
 				<li>
@@ -42,12 +42,12 @@
    <div class="col-md-6"> 
       <nav id="mainav" class="left text-left">
          <ul class="cl ear ml-auto mb-0" style="font-size: 10px; color: #000000; padding-left: 20px; ">
-             <li style="font-size: 30px;"><a href="${pageContext.request.contextPath }">B-PRO</a></li>
+             <li style="font-size: 30px;"><a href="${pageContext.request.contextPath }"><img src="${pageContext.request.contextPath }/resources/img/bprologo.png" style = "width:auto;height:40px; "alt="" /></a></li>
          </ul>
       </nav>
    </div>
    <div class="col-md-6">
-      <nav id="mainav" class="right text-right">
+      <nav id="mainav" class="right text-right"> 
          <ul class="cl ear ml-auto mb-0" style="font-size: 10px; color: #000000; padding-right: 20px; ">
               
               <li style="font-size: 30px;"><a class="dr op" href="${pageContext.request.contextPath }/club/clubMain.do">Club</a></li>

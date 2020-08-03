@@ -90,20 +90,19 @@
                      <div class="clear"></div>
                   </div>
                   </form:form>
-                  </c:otherwise>
-               </c:choose>
                <br /><br />
                <div class="login100-api">
                <h5 style="font-style:bold; padding-left:130px; ">소셜 로그인</h5>
 <!--                <img src="./../resources/img/naver.png" alt="naverAPI" /><br><img src="./../resources/img/kakao.png" alt="kakaoAPI" width="320px" /> -->
 				<br />
-               <a href="${url }">
-               <img src="./../resources/img/naver.png" alt="naverAPI" />
-               </a>
+              <div id="naver_id_login"><a href="${url }">
+				<img src="./../resources/img//naver.png"/></a></div>
                 
                <a href="https://kauth.kakao.com/oauth/authorize?client_id=5218cc19e9315bbdcf407a1a0b47ca0c&redirect_uri=http://localhost:8282/auth/kakao/callback&response_type=code">    
                <img src="./../resources/img/kakao.png" alt="kakaoAPI"/></a>
                </div>
+                  </c:otherwise>
+               </c:choose>
                <div class="text-center p-t-55">
                   <!-- <span class="txt1">
                      Don’t have an account?

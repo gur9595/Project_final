@@ -23,10 +23,13 @@ public class GameDTO {
 	private int g_extra;
 	
 	//Join용 변수
+	
 	private String search_date;
 	private String c_name;
 	private String c_ability;
 	private String c_gender;
+	
+	private ClubDTO clubDTO;
 
 	//기본생성자
 	public GameDTO() {}
@@ -35,7 +38,7 @@ public class GameDTO {
 	//인자생성자
 	public GameDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
 			String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu,
-			String g_check, int g_extra, String search_date, String c_name, String c_ability, String c_gender) {
+			String g_check, int g_extra, String search_date, String c_name, String c_ability, String c_gender, ClubDTO clubDTO) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -57,6 +60,7 @@ public class GameDTO {
 		this.c_name = c_name;
 		this.c_ability = c_ability;
 		this.c_gender = c_gender;
+		this.clubDTO = clubDTO;
 	}
 
 	// getter / setter
@@ -86,7 +90,7 @@ public class GameDTO {
 	
 	public String getG_sname() {
 		return g_sname;
-	}
+	} 
 	
 	public void setG_sname(String g_sname) {
 		this.g_sname = g_sname;
@@ -218,6 +222,16 @@ public class GameDTO {
 	
 	public void setC_gender(String c_gender) {
 		this.c_gender = c_gender;
+	}
+
+
+	public ClubDTO getClubDTO() {
+		return clubDTO;
+	}
+
+
+	public void setClubDTO(ClubDTO clubDTO) {
+		this.clubDTO = clubDTO;
 	}
 	
 	

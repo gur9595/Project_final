@@ -23,9 +23,19 @@ public class MemberDTO {
 	private String m_career;
 	private String m_area;
 	private String m_duration;
+	private String cm_memo;
+	private String cm_idx;
+	
+	//join용 변수
+	private String cm_grade;
 	
 	
-	
+	public String getCm_grade() {
+		return cm_grade;
+	}
+	public void setCm_grade(String cm_grade) {
+		this.cm_grade = cm_grade;
+	}
 	public int getM_idx() {
 		return m_idx;
 	}
@@ -140,9 +150,17 @@ public class MemberDTO {
 	public void setM_duration(String m_duration) {
 		this.m_duration = m_duration;
 	}
-	
-	
-	
-	
+	public String getCm_memo() {
+		return cm_memo;
+	}
+	public void setCm_memo(String cm_memo) {
+		this.cm_memo = cm_memo;
+	}
+	public String getCm_idx() {
+		return cm_idx;
+	}
+	public void setCm_idx(String cm_idx) {
+		this.cm_idx = cm_idx;
+	}
 	
 }
