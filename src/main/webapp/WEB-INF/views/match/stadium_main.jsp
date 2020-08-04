@@ -70,6 +70,8 @@ function displayCenterInfo(result, status) {
 
 //※2. 맵을 생성해준다.※
 
+kakao.maps.disableHD();
+
 var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할div
 	center: new kakao.maps.LatLng(33.450701, 126.570667) // 지도의 중심좌표(초기값)
 });
@@ -97,7 +99,7 @@ function displayPlaces(locPosition) {
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
 	
-    // 사용자의 위치를 표시하는 마커(고정)
+    /* // 사용자의 위치를 표시하는 마커(고정)
     var marker = new kakao.maps.Marker({  
         position : locPosition,
         map : map // 마커가 지도 위에 표시되도록 설정합니다
@@ -118,7 +120,7 @@ function displayPlaces(locPosition) {
     
  	// 마커 위에 인포윈도우를 표시합니다.(내 위치 인포윈도우는 삭제 예정)
  	// 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-    infowindowUser.open(map, marker);
+    infowindowUser.open(map, marker); */
     
     // 시설을 맵에 표시
     var locations = [
@@ -128,15 +130,35 @@ function displayPlaces(locPosition) {
     	</c:forEach>
     ];
     
-    var i, marker;
-    
-    var draggable = false;
-    
-	for(i=0; i<locations.length; i++){
+//----------------------------------for문 시작---------------------------------------    
+	
+	for(var i=0; i<locations.length; i++){
 		
 		var placePosition = new kakao.maps.LatLng(locations[i][1], locations[i][2])
 		
-		marker = addMarker(placePosition, i);				
+		var marker = addMarker(placePosition, i);
+		
+		/* var marker = new kakao.maps.Marker({
+			map : map,
+			position : placePosition
+		}); */
+		
+		var content = 
+			'<div class="customInfo-wrap">'+
+				'<div class="customInfo">' +
+					locations[i][0] +
+				'</div>' +
+			'</div>';
+		
+		var overlay = new kakao.maps.CustomOverlay({
+			content : content,
+			position : marker.getPosition()
+		});
+		
+		//마커 리스너
+	 	kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(marker, overlay));
+	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(overlay));
+	    kakao.maps.event.addListener(marker, 'click', makeClickListener(marker));
 		
 		// 검색 결과 항목 Element를 생성합니다
 		var itemEl = getListItem(i, locations[i][0], locations[i][3], locations[i][4]);
@@ -145,40 +167,37 @@ function displayPlaces(locPosition) {
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
 		
-		// 마커와 검색결과 항목에 mouseover 했을때
-        // 해당 장소에 인포윈도우에 장소명을 표시합니다
-        // mouseout 했을 때는 인포윈도우를 닫습니다
-        (function(marker, title) {
-            kakao.maps.event.addListener(marker, 'mouseover', function() {
-            	displayInfowindow(marker, title);
-            });
-
-            kakao.maps.event.addListener(marker, 'mouseout', function() {
-                infowindow.close();
-            });
-            
-            kakao.maps.event.addListener(marker, 'click', function() {
-                map.setLevel(4);
-        		map.setCenter(marker.getPosition());
-            });
-
-            itemEl.onmouseover =  function () {
-            	displayInfowindow(marker, title);
-            };
-            
-            itemEl.onmouseout =  function () {
-                infowindow.close();
-            };
-            
-            itemEl.onclick =  function () {
-	            map.setLevel(4);
-	    		map.setCenter(marker.getPosition());
-        	};
-        	
-        })(marker, locations[i][0]);
+		//목록 리스너
+		itemEl.onmouseover = makeOverListener(marker, overlay);
+		itemEl.onmouseout = makeOutListener(overlay);
 
         fragment.appendChild(itemEl);
-    } //END OF FOR
+    }//End of for
+    
+ 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+    function makeOverListener(marker, overlay) {
+        return function() {
+        	// 마커 위에 인포윈도우를 표시합니다. 
+        	// 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+            overlay.setMap(map, marker);
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+    function makeOutListener(overlay) {
+        return function() {
+        	overlay.setMap(null);
+        };
+    }
+    
+    function makeClickListener(marker) {
+    	return function() {
+	    	map.setLevel(4);
+	    	map.setCenter(marker.getPosition());
+    	};
+    }
+    
+//----------------------------------for문 끝---------------------------------------     
     
     // 결과가 없다면
     if(locations==0){
@@ -204,14 +223,16 @@ function displayPlaces(locPosition) {
 function getListItem(index, s_name, s_locations, s_phone) {
 
     var el = document.createElement('li'),
-    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-              '		<div class="info">' +
-	          '		<h5>' + s_name + '</h5>';
+    itemStr =  '<div class="mapList">';
+   	itemStr += '	<span class="markerbg marker_' + (index+1) + '"></span>' +
+               '	<div class="info">' +
+	           '		<span class="booking" onclick="booking('+ s_name +');">' + s_name + '</span>';
 
-	itemStr +='		<span>' + s_locations + '</span>';
+	itemStr += '		<span>' + s_locations + '</span>';
                  
-	itemStr +='  	<span class="tel">' + s_phone  + '</span>' +
-	          '</div>';           
+	itemStr += '		<span class="tel">' + s_phone  + '</span>' +
+	           '	</div>';
+    itemStr += '</div>';
 
     el.innerHTML = itemStr;
     el.className = 'item';
@@ -248,9 +269,8 @@ function removeMarker() {
 
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
-function displayInfowindow(marker, title) {
-    infowindow.setContent(title);
-    infowindow.open(map, marker);
+function displayInfowindow(marker, overlay) {
+	overlay.setMap(map, marker);
 }
 
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다
@@ -291,22 +311,26 @@ function removeAllChildNods(el) {
 		display : bloack;
 		text-align: center;
 	}
-	.hAddr{
-		position:absolute;left:10px;top:10px;border-radius: 2px;
-		background-color: black; color: white; z-index:1;padding:5px;
-		opacity: 60%; border-radius: 5px;
-	}
 	.mapTopMenu{
-		position:absolute; top:5px;
+		position:absolute; top:0px;
 		z-index: 1;
 		width: 100%;
-		padding: 10px;
-	}
-	.mapMenuTB td{
-		border: 1px solid black;
-		background-color: white;
 		height: 40px;
-		width: 30%;
+	}
+	.hAddr{
+		background-color: black; color: white; z-index:1;
+		opacity: 60%; height: 100%; width: 49.99%;
+		line-height: 40px;
+		text-align: center;
+		float: left;
+	}
+	.seeAllBtn{
+		border: none;
+		width: 49.99%;
+		height: 100%;
+		color: white;
+		float: left;
+		background-color: #6799FF;
 	}
 	.stadium-option{
 		height : 40px;
@@ -343,6 +367,44 @@ function removeAllChildNods(el) {
 	}
 	.search-text::placeholder{
 		color: #BDBDBD;
+	}
+	table{border: none;}
+	
+	/* 커스텀 인포의 위치를
+		마커에 맞추기 위해 css이용 */
+	.customInfo-wrap{
+		position: absolute;
+		bottom: 20px;
+		margin-bottom: 0px;
+		
+		/* 아래 두가지 요소로 컨텐츠의 길이에 상관없이 가운데 정렬을 유지한다 */
+		left: 50%;
+		transform: translate(-50%, -50%);
+		
+		text-align: center;
+		font-size: 1.0em;
+	}
+	.customInfo{
+		position: relative;
+		width: 100%;
+		height: 30px;
+		border: 1px solid #6799FF;
+		border-radius: 6px;
+		background-color: white;
+		padding: 5px;
+		color: black;
+	}
+	.mapList{
+		cursor: default;
+	}
+	.mapList:hover {
+		background-color: #FFF2F2;
+	}
+	.booking{
+		font-size: 1.3em; color: blue; cursor: pointer;
+	}
+	.booking:hover {
+		text-decoration: underline;
 	}
 </style>
 
@@ -411,25 +473,16 @@ function removeAllChildNods(el) {
 		
 		<!-- 맵 영역 -->
 		<div id="outBox">
-			<div id="mapBox" style="border: 0px solid black;">
-				<div id="con" style="border: 0px solid black; overflow: hidden;">
+			<div id="mapBox" >
+				<div id="con" style="overflow: hidden;">
 					<div class="one_half first">
 						<div class="map_wrap">
 							<div id="map" class="map"></div>
 							<div class="mapTopMenu" id="mapTopMenu">
-								<table class="mapMenuTB">
-									<tr>
-										<td>
-											<div class="hAddr" id="hAddr">
-												<div id="userAddr"></div>
-											</div>
-										</td>
-										<td>토</td>
-										<td style="text-align: right;">
-											<input type="button" id="seeAllBtn" value="전체보기" />
-										</td>
-									</tr>
-								</table>
+								<div class="hAddr" id="hAddr">
+									<div id="userAddr"></div>
+								</div>
+								<input type="button" class="seeAllBtn" id="seeAllBtn" value="전체보기" />
 							</div>
 						</div>
 					</div>
@@ -459,10 +512,7 @@ function removeAllChildNods(el) {
 <script>
 	$('#btn1').click(function(){
 		if($('#select_gugun option:selected').val()!=''){
-			/* var selected = $('#select_gugun option:selected').val();
-			console.log("selected=" + selected); */
 			$('#contents').load("stadiumMain.do?select_gugun=" + $('#select_gugun').val() + "&select_s_type=" + $('#select_s_type').val());
-			console.log("stadiumMain.do?select_gugun=" + $('#select_gugun').val() + "&select_s_type=" + $('#select_s_type').val());
 		}
 		else{
 			alert("지역선택은 필수입니다.");
@@ -475,11 +525,15 @@ function removeAllChildNods(el) {
 			return false;
 		}
 		$('#contents').load("stadiumMain.do?searchTxt=" + $('#searchTxt').val());
-		console.log("stadiumMain.do?searchTxt=" + $('#searchTxt').val());
 	});
 	
 	function paging(pNum){
 		$('#contents').load("stadiumMain.do?nowPage=" + pNum);
+	}
+	
+	function booking(s_name){
+		//하는중
+		location.href = "stadiumNormalApply.do?s_name=" + s_name;
 	}
 </script>
 </html>

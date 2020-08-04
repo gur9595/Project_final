@@ -38,8 +38,7 @@ public class NaverLoginBO {
 		System.out.println("token test2");
 		
 
-			
-	
+
 		return oauthService.getAuthorizationUrl();
 		
 	}

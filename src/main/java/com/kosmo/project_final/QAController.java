@@ -52,18 +52,19 @@ public class QAController {
 		parameterDTO.setStart(start);
 		parameterDTO.setEnd(end);
 
+		//리스트 페이지에 출력 할 게시물 가져오기
+		ArrayList<BoardDTO> lists = sqlSession.getMapper(BoardDAOImpl.class).listPage(parameterDTO);
 
 		//페이지 번호 처리
 		String pagingImg = 
 				PagingUtil.pagingImg(totalRecordCount,pageSize,blockPage,nowPage,req.getContextPath()+"/customer/qnaList.do?");
 		model.addAttribute("pagingImg",pagingImg);
 
-		ArrayList<BoardDTO> lists = sqlSession.getMapper(BoardDAOImpl.class).listPage(parameterDTO);
 
 		for(BoardDTO dto : lists) {
 			//내용에 대해 줄바꿈 처리
-			String temp = dto.getB_content().replace("\r\n", "<br/>");
-			dto.setB_content(temp);
+			String temp = dto.getB_title();
+			dto.setB_title(temp);
 		}
 		//model객체에 저장
 		model.addAttribute("lists",lists);

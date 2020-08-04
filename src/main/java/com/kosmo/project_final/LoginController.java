@@ -2,9 +2,8 @@ package com.kosmo.project_final;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,6 +37,9 @@ public class LoginController {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private KakaoAPI kakao;
 
 	@RequestMapping("/member/home.do")
 	public String securityIndex2_1(Principal principal, HttpSession session) {
@@ -70,10 +72,8 @@ public class LoginController {
 
 	@RequestMapping(value="/member/login.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(Model model, Principal principal, HttpSession session) {
-
-		System.out.println("여기는 네이버");
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		System.out.println("네이버:" + naverAuthUrl); 
+		System.out.println("NaverToken : " + naverAuthUrl); 
 		model.addAttribute("url", naverAuthUrl);
 
 		/*String m_id = principal.getName();//get logged in username
@@ -164,5 +164,49 @@ public class LoginController {
 			return "member/member_agree2";			
 		}
 	}
+	
+	 @RequestMapping(value = "/member/kakaocallback.do")
+	   public String kakaocallback(@RequestParam("code") String code, HttpSession session,Model model) {
+		   String access_Token = kakao.getAccessToken(code);
+		   HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+		   System.out.println("카카오정보 : " + userInfo);
+		   
+		   
+		   String m_id = (String)userInfo.get("m_id");
+		   String m_pw = (String)userInfo.get("m_pw");
+		   String m_name = (String)userInfo.get("m_name" );
+		   String m_email = (String)userInfo.get("m_email");
+		   String m_birth = (String)userInfo.get("m_birth");
+		   String m_phone = (String)userInfo.get("m_phone");
+		   
+		   MemberDTO memberDTO = new MemberDTO();
+		   memberDTO.setM_id(m_id);
+		   
+		   int affected = 0;
+		   affected = sqlSession.getMapper(MemberDAOImpl.class).kakaoSuccess(memberDTO); 
+		   
+		   /*if(userInfo.get("email") != null) {
+			   session.setAttribute("userId",userInfo.get("email"));
+			   session.setAttribute("access_Token", access_Token);
+		   }
+		   return "member/login";*/
+		   if(affected==1) {
+				model.addAttribute("m_id",m_id);
+				model.addAttribute("m_pw",m_pw);
+				return "member/kakaoSuccess";
+			}
+			else{
+				model.addAttribute("m_id",m_id);
+				model.addAttribute("m_pw",m_pw);
+				model.addAttribute("m_name",m_name);
+				model.addAttribute("m_birth",m_birth);
+				model.addAttribute("m_phone",m_phone);
+				model.addAttribute("m_email",m_email);
+				//model.addAttribute(m_sex);
+				//model.addAttribute("dto",dto);
+
+				return "member/member_agree2";			
+			}
+	   }
 
 } 

@@ -9,6 +9,8 @@ public interface BoardDAOImpl {
 	
 	public int boardRequest(BoardDTO boardDTO);
 	
+	public BoardDTO view(ParameterDTO parameterDTO);
+	
 	public ArrayList<MemberDTO>boardinpdate(MemberDTO memberDTO);
 	
 	public ArrayList<BoardDTO> listPage(ParameterDTO parameterDTO);

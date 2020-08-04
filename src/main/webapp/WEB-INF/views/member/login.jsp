@@ -15,6 +15,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script type="text/javascript" src="./../resources/js/kakao.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -83,9 +84,7 @@
                   <div class="container-login100-form-btn">
                   <div class="wrap-login100-form-btn">
                      <div class="login100-form-bgbtn"></div>
-                     <button class="login100-form-btn">
-                        당연히 로그인이겠지?
-                     </button>
+                     <button class="login100-form-btn">로그인</button>
                   </div>
                      <div class="clear"></div>
                   </div>
@@ -98,8 +97,9 @@
               <div id="naver_id_login"><a href="${url }">
 				<img src="./../resources/img//naver.png"/></a></div>
                 
-               <a href="https://kauth.kakao.com/oauth/authorize?client_id=5218cc19e9315bbdcf407a1a0b47ca0c&redirect_uri=http://localhost:8282/auth/kakao/callback&response_type=code">    
+               <a href="https://kauth.kakao.com/oauth/authorize?client_id=9c8f598ffd995a555f5185fea47f693d&redirect_uri=http://localhost:8282/project_final/member/kakaocallback.do&response_type=code">    
                <img src="./../resources/img/kakao.png" alt="kakaoAPI"/></a>
+               <a id="kakao-login-btn"></a>
                </div>
                   </c:otherwise>
                </c:choose>
@@ -136,6 +136,23 @@
 <%@ include file="./../include/footer.jsp"%>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
 <!-- 로그인 script -->
+ <script type='text/javascript'>
+    //<![CDATA[
+   // 사용할 앱의 JavaScript 키를 설정해 주세요.
+   Kakao.init('YOUR APP KEY');
+   
+   // 카카오 로그인 버튼을 생성합니다.
+   Kakao.Auth.createLoginButton({
+     container: '#kakao-login-btn',
+     success: function(authObj) {
+    alert(JSON.stringify(authObj));
+     },
+     fail: function(err) {
+     alert(JSON.stringify(err));
+     }
+   });
+    //
+  </script>
 <script src="js/main.js"></script>
 <!-- JAVASCRIPTS -->
 <script src="./../resources/js/jquery.min.js"></script>

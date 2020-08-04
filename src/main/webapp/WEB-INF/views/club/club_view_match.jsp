@@ -86,7 +86,7 @@
                                                         <th style="width:50px;">시간</th>
                                                         <th style="width:200px;">구장 이름</th>
                                                         <th style="width:100px;">상대팀</th>
-                                                        <th style="width:60px;">참가여부</th>
+                                                        <th colspan="2" style="width:100px;">참가여부</th>
                                                         <th colspan="2" style="width:120px;">용병고용/경기취소</th>         
                                                     </tr>
 
@@ -103,7 +103,8 @@
 																	<c:otherwise><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></c:otherwise>
 																</c:choose>
 															</th>
-															<th><input type="button" onclick="" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
+															<th><input type="button" onclick="javascript:GameMemberApply(${row.c_idx},${row.g_idx},${m_id })" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
+	                                                        <th><input type="button" class="btn btn-outline-danger" style=" width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="불참" ></th>
 	                                                        <th><input type="button" class="btn btn-outline-primary" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:16px;" value="용병고용"></th>
 	                                                        <th><input type="button" class="btn btn-outline-secondary" style="width:50px; height:30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="취소"></th>
 														</tr>
@@ -222,6 +223,11 @@
 	function openClubView(c_idx){
 		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
 				"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+	}
+	
+	function GameMemberApply(c_idx,g_idx,m_id){
+		alert("신청 완료!");
+		location.href="../club/gameMemberApply.do?c_idx="+c_idx+"&g_idx="+ g_idx +"&m_id="+m_id;
 	}
 </script>
 </html>

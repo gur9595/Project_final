@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -68,6 +69,7 @@ public class MemberController {
       return "member/article";   
    }
 
+  
 
    /*@RequestMapping("/member/login.do")
    public String login() {
@@ -85,7 +87,7 @@ public class MemberController {
    @RequestMapping("/member/id_pw.do")
    public String id_pw() {
 
-      return "/member/id_pw";
+      return "member/id_pw";
    }
 
 // id찾기 메일전송
@@ -180,21 +182,18 @@ public class MemberController {
       String m_pw = req.getParameter("m_pw");
       String m_name = req.getParameter("m_name");
       String m_birth = req.getParameter("m_birth");
+      String m_sex = req.getParameter("m_sex");
       String m_phone = req.getParameter("m_phone");
       String m_email = req.getParameter("m_email");
-      String m_addr1 = req.getParameter("m_addr1");
-      String m_addr2 = req.getParameter("m_addr2");
-
-      String m_addr = m_addr1+","+m_addr2;
 
       model.addAttribute("m_id",m_id);
       model.addAttribute("m_pw",m_pw);
       model.addAttribute("m_name",m_name);
       model.addAttribute("m_birth",m_birth);
+      model.addAttribute("m_sex", m_sex);
       model.addAttribute("m_phone",m_phone);
       model.addAttribute("m_email",m_email);
-      model.addAttribute("m_addr",m_addr);
-      
+       
       return "member/member_agree2";
    }
    
@@ -271,7 +270,7 @@ public class MemberController {
                   resultList.add(file);
 
                   dto.setM_pic(saveFileName);
-
+                  
                   sqlSession.getMapper(MemberDAOImpl.class).memberJoin(dto);
                }
                returnObj.put("files", resultList);
