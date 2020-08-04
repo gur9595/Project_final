@@ -43,10 +43,6 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
 	
-
-	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
-	
-
 	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
 	
 	public int clubMatchOpponentCount(int g_num, int c_idx);
@@ -60,4 +56,11 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewGrade(int c_idx);
 	
 	public int clubViewUpdate(int c_idx, String cm_grade, String m_id);
+	
+//	안드로이드********************************************************
+	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
+	public ArrayList<MemberDTO> clubViewMemberA(ClubMemberDTO clubMemberDTO);
+	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
+	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);
+	
 }

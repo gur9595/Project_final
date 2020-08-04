@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.ClubMemberDTO;
+import mybatis.GameDTO;
+import mybatis.MatchDTO;
+import mybatis.MemberDTO;
 
 @Controller
 public class AndroidClubController {
@@ -33,5 +36,41 @@ public class AndroidClubController {
 		return myclubList;
 		
 	}
+	
+	@RequestMapping("/android/clubMember.do")
+	@ResponseBody
+	public ArrayList<MemberDTO> clubMember(ClubMemberDTO clubMemberDTO){
+		
+		ArrayList<MemberDTO> clubMemberList = sqlSession.getMapper(ClubDAOImpl.class).clubViewMemberA(clubMemberDTO);
+		
+		
+		return clubMemberList;
+		
+	}
+	
+	@RequestMapping("/android/clubViewMatch.do")
+	@ResponseBody
+	public ArrayList<MatchDTO> clubViewMatch(ClubDTO clubDTO){
+		
+		ArrayList<MatchDTO> clubViewMatch = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatchA(clubDTO);
+		
+		
+		return clubViewMatch;
+		
+	}
+	
+	@RequestMapping("/android/clubViewAccept.do")
+	@ResponseBody
+	public ArrayList<GameDTO> clubViewAccept(ClubDTO clubDTO){
+		
+		ArrayList<GameDTO> clubViewAccept = sqlSession.getMapper(ClubDAOImpl.class).clubViewAcceptA(clubDTO);
+		
+		
+		return clubViewAccept;
+		
+	}
+	
+	
+	
 
 }
