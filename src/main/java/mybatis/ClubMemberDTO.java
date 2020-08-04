@@ -1,6 +1,6 @@
 package mybatis;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class ClubMemberDTO {
 
@@ -8,7 +8,7 @@ public class ClubMemberDTO {
 	private String c_idx;
 	private String m_id;
 	private String cm_check;
-	private java.sql.Date cm_date;
+	private Date cm_date;
 	private String cm_memo;
 	
 	public ClubMemberDTO() {
@@ -57,11 +57,11 @@ public class ClubMemberDTO {
 		this.cm_check = cm_check;
 	}
 
-	public java.sql.Date getCm_date() {
+	public Date getCm_date() {
 		return cm_date;
 	}
 
-	public void setCm_date(java.sql.Date cm_date) {
+	public void setCm_date(Date cm_date) {
 		this.cm_date = cm_date;
 	}
 

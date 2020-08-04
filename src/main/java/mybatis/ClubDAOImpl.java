@@ -66,4 +66,10 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewGrade(int c_idx);
 	
 	public int clubViewUpdate(int c_idx, String cm_grade, String m_id);
+	
+//	안드로이드********************************************************
+	public ArrayList<MemberDTO> clubViewMemberA(ClubMemberDTO clubMemberDTO);
+	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
+	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);
+	
 }
