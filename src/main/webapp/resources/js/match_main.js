@@ -11,7 +11,7 @@ $(document).ready( function() {
       });
     });
 
-    $('#booking').click(function() {
+    $('#stadium').click(function() {
         $("#contents").load("stadiumMain.do");
         $('html, body').stop().animate({
           scrollTop : $('#contents_target').offset().top

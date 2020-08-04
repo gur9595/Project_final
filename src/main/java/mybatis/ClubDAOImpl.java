@@ -36,6 +36,12 @@ public interface ClubDAOImpl {
 	
 	public int gameMemberApply(GameMemberDTO gameMemberDTO);
 	
+	public int ClubMatchApply(GameDTO gameDTO);
+	
+	public int ClubMatchApplyDelete(GameDTO gameDTO);
+	
+	public int ClubMatchReject(GameDTO gameDTO);
+	
 	public int clubMemberReject(int cm_idx);
 	
 	public ArrayList<MemberDTO> clubViewMember(int c_idx);
@@ -47,6 +53,8 @@ public interface ClubDAOImpl {
 	public int clubMatchOpponentCount(int g_num, int c_idx);
 	
 	public ArrayList<GameDTO> clubViewAccept(int c_idx);
+	
+	public ArrayList<GameDTO> clubViewMyApply(int c_idx);
 	
 	public ArrayList<GameMemberDTO> clubMakingForm(int g_idx);
 	
