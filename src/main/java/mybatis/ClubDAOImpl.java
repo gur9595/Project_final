@@ -2,6 +2,7 @@ package mybatis;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
@@ -59,4 +60,10 @@ public interface ClubDAOImpl {
 	public MemberDTO clubHeadName(int c_idx);
 	
 	public ClubMemberDTO getCmgrade(int c_idx, String m_id);
+//	안드로이드********************************************************
+	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
+	public ArrayList<MemberDTO> clubViewMemberA(ClubMemberDTO clubMemberDTO);
+	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
+	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);
+	
 }

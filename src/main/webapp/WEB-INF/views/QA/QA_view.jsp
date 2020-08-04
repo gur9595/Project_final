@@ -150,28 +150,26 @@ function enter() {
 				<col width="*" />
 			</colgroup>
 			<tbody>
-				<tr>
-					<th class="text-center table-active align-middle">아이디</th>
-					<td>B-PRO</td>
-			<th class="text-center table-active align-middle">작성일</th>
-			<td>2020/07/19</td>
-		</tr>
-		<tr>
-			<th class="text-center table-active align-middle">작성자</th>
-			<td>이태랑</td>
-			<th class="text-center table-active align-middle">조회수</th>
-			<td>999</td>
-		</tr>
-		<tr>
-			<th class="text-center table-active align-middle">제목</th>
-			<td colspan="3">성공띠</td>
-		</tr>
-		<tr>
-			<th class="text-center table-active align-middle">내용</th>
-			<td colspan="3" class="align-middle" style="height: 200px;">
-				여기 사이트 너무 좋아영 잇힝  ٩( ᐛ )و 
-			</td>
-		</tr>
+			<tr>
+				<th class="text-center table-active align-middle">작성자</th>
+				<td>${row.m_name }</td>
+			<!-- 	<th class="text-center table-active align-middle">조회수</th>
+				<td>999</td> -->
+				<th class="text-center table-active align-middle">작성일</th>
+				<td>${row.b_postdate }</td>
+			</tr>
+<!-- 			<tr>
+			</tr> -->
+			<tr>
+				<th class="text-center table-active align-middle">제목</th>
+				<td colspan="3">${row.b_title }</td>
+			</tr>
+			<tr>
+				<th class="text-center table-active align-middle">내용</th>
+				<td colspan="3" class="align-middle" style="height: 200px;">
+					${row.b_content }
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </div>

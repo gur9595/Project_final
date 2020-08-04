@@ -49,7 +49,11 @@ function enter() {
         <h2 class="h03-v2-hero-plank__headline">B-PRO 도움말 센터</h2>
         <div class="h03-v2-hero-plank__search-bar standalone-searchbox">
             <div class="CoveoStyleReplacer">
-            	<input type="text" style="text-align: center; width:100%; height: 78px; color:#000000; " 
+            	<select name="searchField" id="searchField">
+            		<option value="contents">내용</option>
+            		<option value="name">작성자</option>
+            	</select>
+            	<input type="text" name="searchTxt" id="searchTxt" style="text-align: center; width:100%; height: 78px; color:#000000; " 
             		placeholder="그냥 찾지마세요" onKeypress="enter();"/>
             </div>
         </div>
@@ -179,18 +183,20 @@ function enter() {
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>조회수</th>
-					
 				</tr>
 			</thead>
-			<tbody>
-			
+			<tbody>			
+		<c:forEach items="${lists }" var="row">
 			<tr>
-				<td colspan="5" align="center" height="50">
+				<input type="hid den" value="${row.b_idx }" />
+				<td class="text-center">${b_idx }</td>
+				<td class="text-left">
 					<a href="./../customer/qnaView.do">
-					등록된 게시물이 없습니다.
+					${b_title }
 					</a>
 				</td>
+				<td class="text-center">${b_id }</td>
+				<td class="text-center">${b_postdate }</td>
 			</tr>
 			
 			</tbody>
@@ -209,11 +215,12 @@ function enter() {
 			<button type="submit" class="btn btn-danger">전송하기</button> -->
 		</div>
 	</div>
+		</c:forEach>
 	<div class="row mt-3">
 		<div class="col">
 			<!-- 페이지번호 부분 -->
 			<ul class="pagination justify-content-center">
-		
+			${pagingImg }
 			</ul>
 		</div>
 			</div>

@@ -33,8 +33,6 @@ label {
 .txtBox31 { border-color: DodgerBlue; width: 300px; }
 
 
-
-
 </style>
 </head>
 <body id="top">
@@ -73,8 +71,10 @@ label {
 					<input type="text" class="txtBox31" id="m_birth" name="m_birth" placeholder="예)19970121" minlength="7" maxlength="8" >
 				
 			    <h2>휴대전화</h2>
-	                <input type="tel" class="txtBox31" id="m_phone" name="m_phone" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="12">
-		        
+		        	<input type="text" id="m_phone" name="m_phone1" value="" maxlength="3" class="txtBox31" style="width: 80px; display:inline;" />&nbsp;-&nbsp;
+					<input type="text" id="m_phone2" name="m_phone2" value="" maxlength="4" class="txtBox31" style="width: 80px; display:inline;" />&nbsp;-&nbsp;
+					<input type="text" id="m_phone3" name="m_phone3" value="" maxlength="4" class="txtBox31" style="width: 80px; display:inline;"/>
+					
 		        <h2>이메일</h2>
 		         <div class="n-form-layer" id = "emailFromLayer">
 					<input type="email" class="txtBox31" id="m_email" name="m_email" maxlength="50" placeholder="이메일을 입력하세요"  style="width:350px; height:45px;">
@@ -408,3 +408,4 @@ function goBack() {
 
     </script>
 </html>
+
