@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -13,63 +15,199 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet"
 	type="text/css" media="all">
 
+<link href="./../resources/css/match_main.css" rel="stylesheet" type="text/css" media="all">
+<script src="./../resources/js/match_main.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script>
+
+/* $(document).ready( function() {
+    var now = new Date();
+    var month = (now.getMonth() + 1);               
+    var day = now.getDate();
+    if (month < 10) 
+        month = "0" + month;
+    if (day < 10) 
+        day = "0" + day;
+    var today = now.getFullYear() + '-' + month + '-' + day;
+    $('#s_date').val(today);
+});
+ */
+var index = 0;
+window.onload = function() {
+	slideShow();
+	cv();
+}
+
+//경기장 이미지 슬라이드
+function slideShow(){
+	var i;
+	var x = document.getElementsByClassName("slide");
+	
+	for(i = 0; i < x.length; i++) {
+		x[i].style.display = "none";
+	}
+	index++;
+	if(index > x.length) {
+		index = 1;
+	}
+	x[index - 1].style.display = "block";
+	setTimeout(slideShow, 2000);
+}
+
+//편의사항 아이콘
+function cv() {
+	
+	var cvs = document.getElementById("cv").value.split("||");
+	for(i = 0; i < cvs.length; i++) {
+		if(cvs[i] == "주차장"){
+			document.getElementById("parking").style.display = "inline";
+		}
+		else if(cvs[i] == "신발대여"){
+			document.getElementById("shoes").style.display = "inline";
+		}
+		else if(cvs[i] == "샤워장"){
+			document.getElementById("shower").style.display = "inline";
+		}
+		else if(cvs[i] == "운동복대여"){
+			document.getElementById("suit").style.display = "inline";
+		}
+	}
+}
+
+//검색
+function search() {
+	var date = document.getElementById("s_date").value;
+	var s_name = document.getElementById("s_name").value;
+	var s_addr = document.getElementById("s_addr").value;
+	var s_dong = document.getElementById("s_dong").value;
+	
+	location.href="../match/stadiumApplySearch.do?s_idx=" + ${param.s_idx} + "&dong=" + s_dong + "&s_name" + s_name + "&s_addr" + s_addr + "&date=" + date;
+}
+
+//검색값 초기화
+function reset() {
+	var date = document.getElementById("s_date").value;
+	var s_name = document.getElementById("s_name").value;
+	var s_addr = document.getElementById("s_addr").value;
+	var s_dong = document.getElementById("s_dong").value;
+	var now = document.getElementById("now").value;
+	
+	location.href="../match/stadiumApply.do?s_idx=" + ${param.s_idx} + "&dong=" + s_dong + "&s_name" + s_name + "&s_addr" + s_addr + "&date=" + now;
+}
+
+//모달
+function apply(time, c_name, c_idx, g_idx) {
+	var table, tr, td, date, s_name, addr, price;
+	table = document.getElementById("stadium_list");
+	tr = table.getElementsByTagName("tr");
+	for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+	}
+	date = td.innerText;
+	s_name = document.getElementById("s_name").value;
+	addr = document.getElementById("s_addr").value;
+	price = document.getElementById("price").value;
+	ball = document.getElementById("ball").value;
+	type = document.getElementById("type").value;
+	
+	if(c_name == "" || c_name == null){
+		c_name = "없음";
+	}
+
+  	document.getElementById("list_c_idx").value = c_idx;
+  	document.getElementById("list_g_idx").value = g_idx;
+  	document.getElementById("match_date").value = date;
+  	document.getElementById("match_time").value = time;
+  	document.getElementById("match_name").value = s_name;
+  	document.getElementById("match_addr").value = addr;
+  	document.getElementById("match_type").value = type;
+  	document.getElementById("result").value = ball - price;
+	
+	document.getElementById("list_date").innerHTML = date;
+	document.getElementById("list_time").innerHTML = time;
+	document.getElementById("list_sname").innerHTML = s_name;
+	document.getElementById("list_addr").innerHTML = addr;
+	document.getElementById("list_c_name").innerHTML = c_name;
+	document.getElementById("list_price").innerHTML = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ball";
+	document.getElementById("list_ball").innerHTML = ball.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ball";
+}
+
+//매칭신청 모달
+function match_insert(f){
+	
+	var c_idx = document.getElementById("c_idx");
+	var list_idx = document.getElementById("list_c_idx");
+	
+	if(c_idx.options[c_idx.selectedIndex].value==""){
+		alert("클럽을 선택해주세요.");
+		f.c_idx.focus();
+		return false;
+	}
+	if(list_idx.value==""){
+		alert("잘못된 접근입니다.");
+		return false;
+	}
+	
+	alert("경기장 예약이 완료되었습니다.");
+}
+
+</script>
 
 </head>
 <body id="top">
 <!-- 모달창 신청폼 -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" data-backdrop="static" style="color: black;">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h2 class="modal-title" style="font-size: 20px; text-align: center;"
-						id="myModalLabel">구장 신청하기</h2>
-
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+	<form name="stadiumFrm" method="post" onsubmit="return stadium_apply(this);" action="<c:url value="/stadium/stadiumApply.do" />" >
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" data-backdrop="static" style="color: black;">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+	
+					<div class="modal-header">
+						<h2 class="modal-title" style="font-size: 20px; text-align: center;"
+							id="myModalLabel">경기장 예약하기</h2>
+	
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+	
+					<div class="modal-body">
+						<span>우리 클럽 : </span>
+						<select class="form-control" name="we_c_idx" id="c_idx" style="width: 250px; display: inline; line-height: 30px;">
+							<option value="" selected="selected">클럽을 선택하세요.</option>
+							<c:forEach var="club" items="${c_list }">
+								<option value="${club.c_idx }">${club.c_name }</option>
+							</c:forEach>
+						</select><br />
+						<input type="hid den" id="list_c_idx" name="c_idx" />
+						<input type="hid den" id="list_g_idx" name="g_idx" />
+						<input type="hid den" id="result" name="result_ball" /> 
+						<input type="hid den" id="match_name" name="name" />
+						<input type="hid den" id="match_date" name="date" /> 
+						<input type="hid den" id="match_time" name="time" /> 
+						<input type="hidd en" id="match_addr" name="addr" /> 
+						<input type="hid den" id="match_type" name="type" /> 
+						상대 클럽 : <span id="list_c_name" style="line-height: 30px;"></span><br />
+						경기 날짜 : <span id="list_date" style="line-height: 30px;"></span><br />
+						경기 시간 : <span id="list_time" style="line-height: 30px;"></span><br />
+						구장 이름 : <span id="list_sname" style="line-height: 30px;"></span><br />
+						구장 주소 : <span id="list_addr" style="line-height: 30px;"></span><br />
+						사용 금액 : <span id="list_price" style="line-height: 30px;"></span><br /><br />
+						<div align="center">보유중인 ball : <span id="list_ball"></span><br /></div>
+					</div>
+						<input type="submit" class="btn btn-danger" value="예약하기">
 				</div>
-
-				<div class="modal-body">
-				장소 : 가산 조은디 풋살장 <br>
-				날짜 : 2020-08-14 <br>
-				시간 : 18:00 <br>
-				<table  class="table table-borderless">
-					<tr>
-						<td>예약</td>
-						<td width="20px;"><input type="radio" name="field" id="full" value="전체"/></td>
-			          	<td><label for="full">전체 예약</label></td>  
-			            <td width="20px;"><input type="radio" name="field" id="half" value="절반"/></td>
-			            <td><label for="half">절반 예약</label></td>
-					</tr>
-					<tr>
-						<td>공 유/무</td>
-						<td width="20px;"><input type="radio" name="ball" id="ball_o" value="유"/></td>
-			          	<td><label for="ball_o">유</label></td>  
-			            <td width="20px;"><input type="radio" name="ball" id="ball_x" value="무"/></td>
-			            <td><label for="ball_x">무</label></td>
-					</tr>
-					<tr>
-						<td>결제 금액</td>
-						<td colspan="4">150,000</td>
-					</tr>
-				</table>
-					
-				</div>
-					<button type="button" class="btn" data-dismiss="modal"> 결 제 </button>
 			</div>
 		</div>
-	</div>
+</form>
 <!-- ################ 모달 끝 #################-->
 
 	<!--top-->
@@ -81,149 +219,128 @@
 			<!--이미지 위에 글쓰는곳-->
 		</div>
 	</div>
-	<div class="wrapper row3">
+	<div class="wrapper row4" style="background-color: #fff">
+		<!-- main body -->
+		<br />
+		<input type="hid den" id="s_name" value="${name }" />
+		<input type="hidd en" id="s_addr" value="${addr }" />
+		<input type="hidd en" id="s_dong" value="${dong }" />
+		<input type="hidd en" id="price" value="${price }" />
+		<input type="hidd en" id="ball" value="${cash }" />
+		<input type="hidd en" id="type" value="${type }" />
+		<h2 style="text-align: center; font-weight: bold; font-size: 50px">${dong }&nbsp;${name }</h2>
+		
+		<div class="mr-5" style="text-align: right;">
+			<a href="map.do?g_saddr=${addr}&g_sname=${name}" style="display: inline;"
+				onclick="window.open(this.href, '_blank', 'width=700px,height=700px,toolbars=no,scrollbars=no'); return false;">
+					<span style="font-size: 20px;" id="addr">
+						<input type="text" id="s_addr" style="border: 0px; cursor: pointer; width: 400px; display: inline; text-align: right;" 
+							value="${addr }" />
+					</span>&nbsp;&nbsp;
+			</a>
+			<button onclick="copyFunc();" style="border: 0px; background-color: #fff; display: inline;">
+				<i class="material-icons">content_copy</i>
+			</button>
+			
+		</div>
+		<br />
+		<div> 
+			<img src="https://plab-football.s3.amazonaws.com/media/DSC08920.jpg" class="slide" style="width:100%; height: 400px;">
+			<img src="https://plab-football.s3.amazonaws.com/media/DSC08923.jpg" class="slide" style="width:100%; height: 400px;">
+			<img src="https://plab-football.s3.amazonaws.com/media/DSC08956.jpg" class="slide" style="width:100%; height: 400px;">
+		</div>
 		<main class="hoc container clear">
-			<!-- main body -->
-			<h2 style="text-align: center; font-weight: bold; font-size: 50px">가산동
-				조은디 풋살장</h2>
-			<img alt=""
-				src="https://plab-football.s3.amazonaws.com/media/coner_dutNIKf.jpg"
-				style="width: 100%; height: 400px;"> <br> <br> <br>
-			<div class="one_half first" id="stadium2">
+			<br> <br> <br>
+
+			<div class="one_half first" id="stadium2" style="height: 800px;">
+				<div align="center">
+					<span style="font-size: 20px; color: black; font-weight: bold;">경기장 예약내역</span> <br /><br /> 
+				</div>
+				<div class="ml-auto mb-3" align="right">
+					<input type="date" id="s_date" name="s_date" class="form-control ml-auto" style="width: 230px; display: inline;" value="${param.date }" />
+					<input type="button" class="btn btn-secondary" onclick="search();" id="stadium_search" style="width: 100px; display: inline;" value="검색하기" />
+					<input type="button" class="btn btn-secondary" onclick="reset();" id="stadium_reset" style="width: 100px; display: inline;" value="필터리셋" />					
+				</div>
 				<form action="./../match/stadiumNormalApply.do" method="get">
-					<table border="1" style="text-align: center;">
+					<table border="1" style="text-align: center; margin-left: 5px;" id="stadium_list">
 						<tr>
-							<th colspan="6"><input type="date" class="form-control"
-								style="width: 100%; height: 100%;" /></th>
-						</tr>
-						<tr>
+							<th>날 짜</th>
 							<th>시 간</th>
-							<th>구장 이름</th>
 							<th>현 황</th>
+							<th>예약 클럽명</th>
 							<th>신 청</th>
 						</tr>
-						<tr>
-							<td>12:00</td>
-							<td>가산 풋살장</td>
-							<td>1팀 남음</td>
-							<td>
-								<button type="button" class="btn"
-									data-toggle="modal" data-target="#myModal"
-									style="width: 100%; height: 100%;">신청</button>
-							</td>
-						</tr>
-						<tr>
-							<td>20:00</td>
-							<td>철산 풋살장</td>
-							<td>예약 완료</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>16:00</td>
-							<td>구로 풋살장</td>
-							<td>예약 진행</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>10:00</td>
-							<td>영등포 풋살장</td>
-							<td>예약 진행</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>08:00</td>
-							<td>덕덕 풋살장</td>
-							<td>1팀 남음</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>12:00</td>
-							<td>가산 풋살장</td>
-							<td>1팀 남음</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>20:00</td>
-							<td>철산 풋살장</td>
-							<td>예약 완료</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>16:00</td>
-							<td>구로 풋살장</td>
-							<td>예약 진행</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>10:00</td>
-							<td>영등포 풋살장</td>
-							<td>예약 진행</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
-						<tr>
-							<td>22:00</td>
-							<td>금정 풋살장</td>
-							<td>예약 완료</td>
-							<td><button style="width: 100%; height: 100%;">신청</button></td>
-						</tr>
+						
+						<c:set var="now" value="<%=new java.util.Date()%>" />
+						<c:forEach var="row" items="${stadiumGameLists }">
+							<tr class="stadium_list">
+								<td>
+									<c:if test="${not empty row.g_date }">
+										${row.g_date }
+									</c:if>
+									<c:if test="${empty row.g_date }">
+										${param.date }
+									</c:if>
+									<c:if test="${empty param.date and empty row.g_date }">
+										<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
+									</c:if>
+								</td>
+								<td>${row.g_time }</td>
+								<td>
+									<c:if test="${not empty row.c_name }">
+										<span style="color: red;">1팀남음</span>
+									</c:if>
+									<c:if test="${empty row.c_name }">
+										2팀남음
+									</c:if>
+								</td>
+								<td>
+									<c:if test="${not empty row.c_name }">
+										<span style="color: blue;">${row.c_name }</span>
+									</c:if>
+									<c:if test="${empty row.c_name }">
+										없음
+									</c:if>
+								</td>
+								<td>
+									<button type="button" class="btn" data-toggle="modal" data-target="#myModal"
+										onclick="apply('${row.g_time}', '${row.c_name }', '${row.c_idx }', '${row.g_idx }');"
+										style="width: 100%;">신청</button>
+								</td>
+							</tr>
+						</c:forEach>
 					</table>
 				</form>
 			</div>
-
+			<input type="hidden" id="now" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" />
 			<div class="one_half" id="comments">
-				<ul>
-					<li>
-						<article>
-							<header>
-								<address>구장 특이사항</address>
-							</header>
-							<div class="comcont">
-								<pre class="txt2">■코로나로 인하여 풋살장 외 장소 이동시 마스크를 필히 착용 하셔야 
-	하며 미이행시 CCTV 확인 후 추후 이용에 불이익이 발생할 수 있습니다.
-■2.26(수)이후 기존에 진행되었던 풋살화 렌탈서비스를 당분간 중단합니다.
-■별도 안내시까지 탈의실,샤워실 이용불가.
+				<header>
+					<span style="font-size: 20px; color: black; font-weight: bold;">구장 특이사항</span><br /><br />
+				</header>
+				<div class="comcont">
+					<pre class="txt2">
+${memo }
+					</pre>
+				</div>
+				<header>
+					<span style="font-size: 20px; color: black; font-weight: bold;">구장 편의사항</span><br /><br />
+				</header>
+				<div class="comcont">
+				<input type="hidden" id="cv" value="${cv }" />
+				
+				<span>
+					<img src="./../resources/img/match/parking.png" id="parking" style="margin-right: 70px; margin-bottom: 30px; display: none;"/>
+					<img src="./../resources/img/match/shoes.png" id="shoes" style="margin-right: 70px; margin-bottom: 30px; display: none;"/>
+					<img src="./../resources/img/match/shower.png" id="shower" style="margin-right: 70px; margin-bottom: 30px; display: none;"/>
+					<img src="./../resources/img/match/suit.png" id="suit" style="margin-right: 70px; margin-bottom: 30px; display: none;"/>
+				</span>
+				
 
-[구장 특이사항]
--1~5구장 8층 / 6~7구장 10층
-*출입문 비밀번호 -&gt; 알림톡 링크에서 확인 가능
-*안내 사항 미숙지로 인한 요금 발생에 대해서는 환불이 불가능합니다
+				</div>
+			</div>
 
-&lt;주차&gt;
--해 주차장 이용 
-(*주차 신청 후 출차 시 요금이 발생한 경우에는 주차비 영수증 챙기셔야 환불이 가능합니다)
-
--주차 등록은 당일 변경 및 신청 불가 
-
--22시 경기 이용시 : 경기 종료 후 무인 출차기 앞에서 호출 후 영수증 제시
--23시 경기 이후 : 영수증 할인 불가능 
-                  -&gt; 용산전자상가1 공영주차장 이용 권장 
-                  (22시-08시까지 무료 주차이며 이전 입차 하는 경우 기본 5분 250원, 
-                  추가 5분당 250원 금액 발생/주차장 번호 02-707-3105)
-
-&lt;풋살화&gt;
--풋살화 대여 시간 10:30~20:00 (주말도 동일) 
--대여시 신분증이 필요
- *매월 1일은 대여 불가
-■20.2.26(수)이후 기존에 진행되었던 풋살화 렌탈서비스를 당분간 중단합니다.
-
-
-*해당 내용은 변경 될 수 있습니다.</pre>
-							</div>
-
-							<!-- / main body -->
-							<div class="clear"></div>
+			<!-- / main body -->
+			<div class="clear"></div>
 		</main>
 	</div>
 	<!-- footer -->
@@ -232,5 +349,14 @@
 	<!-- JAVASCRIPTS -->
 	<script src="./../resources/js/jquery.min.js"></script>
 	<script src="./../resources/js/jquery.backtotop.js"></script>
+<script>
+function copyFunc() {  
+	var copyText = document.getElementById("s_addr");
+	copyText.select();
+	document.execCommand("Copy");
+	alert("경기장 주소가 복사되었습니다!");
+	copyText.setSelectionRange(0, 0); //선택영역 초기화
+}
+</script>
 </body>
 </html>

@@ -35,17 +35,70 @@
 					<if test="searchTxt!=null and !searchTxt.equals('')">
 						WHERE s_name like '%'||#{searchTxt}||'%'
 					</if>
-					ORDER BY s_gu ASC
+					ORDER BY s_gu DESC
 			) Tb
 		) 
 		WHERE rNum BETWEEN #{start} AND #{end}
 	</select>
 	
    <!-- 회원가입 --> 
-	  <insert id="stadiumInsert" parameterType="mybatis.StadiumDTO"> 
-		  insert into stadium values(stadium_seq.nextval, #{s_id}, #{s_pw}, #{s_name}, #{s_phone}, #{s_addr}, #{s_gu},
-		  	#{s_type}, #{s_pic}, #{s_size}, #{s_cv}, #{s_price}, #{s_memo}, #{s_starttime}, #{s_endtime}) 
-	  </insert>
+  <insert id="stadiumInsert" parameterType="mybatis.StadiumDTO"> 
+	  insert into stadium values(stadium_seq.nextval, #{s_id}, #{s_pw}, #{s_name}, #{s_phone}, #{s_addr}, #{s_gu},
+	  	#{s_type}, #{s_pic}, #{s_size}, #{s_cv}, #{s_price}, #{s_memo}, #{s_starttime}, #{s_endtime}) 
+  </insert>
+  
+  	<!-- 경기장 정보 -->
+  	<select id="stadiumlist" parameterType="int" resultType="mybatis.StadiumDTO">
+  		select * from stadium where s_idx = #{s_idx}
+  	</select>
+  
+	<!-- 경기장상세보기 리스트 -->
+	<select id="s_gamelist" parameterType="int" resultType="mybatis.StadiumGameDTO">
+		select s.*, g.*
+		from stadium s inner join game g
+			on s.s_idx = g.s_idx
+		where g.s_idx = #{s_idx} and
+		to_char(g.g_date, 'YY-MM-DD') <![CDATA[ = ]]> to_char(sysdate, 'YY-MM-DD')		
+		order by g.g_time
+	</select>
+  
+	<!-- 경기장상세보기 리스트 검색 -->
+	<select id="s_gamelist_search" resultType="mybatis.StadiumGameDTO">
+		select s.*, g.*
+		from stadium s inner join game g
+			on s.s_idx = g.s_idx
+		where g.s_idx = #{param1} and to_char(g_date, 'YYYY-MM-DD') = #{param2}
+		order by g.g_time
+	</select>
 	
-	  
+	<select id="c_name_get" resultType="String">
+		select c_name from club where c_idx = #{c_idx}
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

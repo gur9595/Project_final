@@ -20,7 +20,7 @@ $(document).ready( function() {
         $('#close').show();
         
     });
-    
+        
     $('#player').click(function() {
     	$("#contents").load("player.do", {"keyword" : "축구"});
         $('html, body').stop().animate({
@@ -69,29 +69,9 @@ $(document).ready( function() {
       $('#close').show();
     });
 
-    
-    
-
   });
 
-  // 배송조회
-  var company_code = "";
-  function companySelect(){
-    var company_name = document.getElementById("company");
-    var c_code = document.getElementById("c_code");
-    company_code = company_name.options[company_name.selectedIndex].value;
-  }
-  function deliverySearch() {
-    var d_num = document.getElementById("delivery_number").value;
 
-    if(company_code == "" || d_num == ""){
-      alert("택배회사와 운송장 번호를 입력하세요.");
-      return;
-    }
-    else {
-      window.open('https://tracker.delivery/#/' + company_code + '/' + d_num, 'name', 'resizable=no width=700 height=550');
-    }
-  }
 
   // 메뉴 줌 인/아웃
   function zoomIn(event) {
