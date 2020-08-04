@@ -178,7 +178,9 @@ public class ClubController {
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		int clubMemberCount = sqlSession.getMapper(ClubDAOImpl.class).clubMemberCount(c_idx);
+		ArrayList<MemberDTO> grade = sqlSession.getMapper(ClubDAOImpl.class).clubViewGrade(c_idx);
 		
+		model.addAttribute("grade", grade);
 		model.addAttribute("clubMemberCount", clubMemberCount);
 		model.addAttribute("clubDTO", clubDTO);
 

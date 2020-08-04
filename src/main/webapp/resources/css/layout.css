@@ -369,10 +369,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 .elements article:hover a i{color:#97A9BD; background-color:#FFFFFF;}/* Default */
 
 /* ###### DELETE THE FOLLOWING IF ONLY THE DEFAULT COLOUR IS REQUIRED ###### */
-#introblocks .elements li article{color:#FFFFFF; background-color:#354a6d;}/* Blue */
-#introblocks .elements li article a i{color:#354a6d; background-color:#FFFFFF;}/* Blue */
-#introblocks .elements li article:hover{color:#354a6d; background-color:#FFFFFF !important;}
-#introblocks .elements li article:hover a i{color:#FFFFFF !important; background-color:#354a6d;}
+#introblocks .elements li article{color:#FFFFFF; background-color:#758091;}/* Blue */
+#introblocks .elements li article a i{color:#758091; background-color:#FFFFFF;}/* Blue */
+#introblocks .elements li article:hover{color:#758091; background-color:#FFFFFF !important;}
+#introblocks .elements li article:hover a i{color:#FFFFFF !important; background-color:#758091;}
 /* ###### END DELETE ###### */
 
 .shout figure figcaption a{color:inherit; background-color:inherit; border-color:#D7D7D7;}

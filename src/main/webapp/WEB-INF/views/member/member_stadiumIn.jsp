@@ -12,9 +12,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
-h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen Script;
+h2 { font-size : 24px; color:#000066; line-height:30px;
 	margin:52px auto 10px 0px;
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
@@ -83,7 +82,7 @@ label {
 	<main class="hoc container clear">
 		<table border=1>
 			<div>
-				<h1 class="n-hidden">Be-Pro</h1>
+				<h1 class="n-hidden">B-PRO</h1>
 
 				<!-- Member -->
 				<div style="background: #FFFFFF;">
@@ -115,6 +114,7 @@ label {
 										placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
 
 								</div>
+								<br />
 								<div class="n-form-icon">
 									<input class="form-control" type="password" style="width: 400px;"
 										id="confirmPassword" name="confirmPassword" maxlength="20"
@@ -127,7 +127,8 @@ label {
 							
 								<h2>구장 이름</h2>
 								<input class="form-control" type="text"id="s_name"maxlength="20"
-									name="s_name" placeholder="구장이름입력" style="width: 400px;">
+									name="s_name" placeholder="구장이름입력" style="width: 400px;"
+									value ="코스모 축구장" >
 								
 								
 							</div>
@@ -138,16 +139,22 @@ label {
 								<h2>주소</h2>
 								<div>
 									<input class="form-control" type="text" id="postcode" name="zip1" placeholder="우편번호"maxlength="20"
-										style="width: 400px;" margin-top: 5px; display: inline;"
-										readonly /> <input type="button" class="btn btn-warning "
+										style="width: 200px; margin-top: 5px; display: inline;"
+										readonly /> &nbsp;&nbsp; <input type="button" class="btn btn-warning "
 										onclick="DaumPostcode()" value="우편번호 찾기"
-										style="width: 400px; height: 50px; display: inline; margin-top: 5px; color: #424242; font-weight: bold" /><br>
+										style="width: 150px; height: 35px; display: inline; margin-top: 5px; color: #424242; font-weight: bold" /><br>
+										<br />
 									<input class="form-control" type="text" id="address" name="s_addr1" placeholder="주소"
-										style="width: 400px;" maxlength="20"/> <input class="form-control"
+										style="width: 400px;" maxlength="20"/>
+									<br />	 
+									<input class="form-control"
 										type="text" id="detailAddress" name="s_addr2" placeholder="상세주소"maxlength="20"
-										style="width: 400px;" /> <input class="form-control"
+										style="width: 400px;" /> 
+									<br />	
+									<input class="form-control"
 										type="text" id="extraAddress" name="s_gu" placeholder="구"maxlength="20"
 										style="width: 400px; margin-top: 5px;" />
+									<br />
 									<p class="n-validation" id="searchValidPhone"
 										style="display: none">주소형식이 올바르지 않습니다.</p>
 								</div>
@@ -157,14 +164,14 @@ label {
 
 								<h2>휴대전화</h2> <input class="form-control"maxlength="20"
 									type="tel" id="s_phone" name="s_phone" style="width: 400px;"
-									placeholder="휴대전화 입력(-없이)" maxlength="11">
+									placeholder="휴대전화 입력(-없이)" maxlength="11" value="01074996255">
 							</div>
 
 							<div class="n-form-set" id="input-div">
 
 								<h2>구장크기</h2> <input class="form-control"maxlength="20"
 									type="tel" id="s_size" name="s_size" style="width: 400px;"
-									placeholder="00x00으로 입력" maxlength="11">
+									placeholder="00x00으로 입력" maxlength="11" value="110x70">
 							</div>
 
 							
