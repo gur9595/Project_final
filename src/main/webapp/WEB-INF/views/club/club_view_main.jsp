@@ -95,7 +95,7 @@
                                                         <table style="width: 100%;">
                                                             <tr>
                                                                 <td style="border-bottom: none; width: 50px;">·팀장</td>
-                                                                <td style="border-bottom: none">김희철</td>
+                                                                <td style="border-bottom: none";>${memberDTO.m_name}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·연령대</td>

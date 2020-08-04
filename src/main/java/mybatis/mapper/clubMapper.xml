@@ -38,6 +38,12 @@
 			where g.c_idx = #{param1} and g.g_check not like 'no'  order by g.g_date asc
 		</select>
 		
+		<!-- 클럽 상세보기 cm_grade가져오기 -->
+		<select id="getCmgrade" resultType="mybatis.ClubMemberDTO">
+			select cm_grade from clubmember where c_idx=#{param1} and m_id like #{param2}
+		</select>
+		
+		
 		<!-- 클럽 상세보기 접수현황 -->
 		<select id="clubViewAccept" resultType="mybatis.GameDTO">
 			select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
@@ -62,7 +68,10 @@
 			where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
 		</select>
 		
-
+		<!-- 클럽 상세보기 팀장 이름 갖고오기 -->
+		<select id="clubHeadName" resultType="mybatis.MemberDTO">
+			select m.m_name from clubmember cm inner join member m on cm.m_id = m.m_id where cm.c_idx = #{c_idx} and cm.cm_grade = 'head'
+		</select>
 		
 		<!-- 클럽 상세보기 권한관리 -->
 		<select id="clubViewGrade" resultType="mybatis.MemberDTO">
@@ -75,9 +84,6 @@
 			update clubmember set cm_grade = #{param2} where c_idx = #{param1} and m_id like #{param3}
 		</update>
 		
-		<update id="paymentUpdate">
-			update 
-		</update>
 		
 	  <select id="getTotalCount" resultType="int" >
 		select count(*) from club 

@@ -55,4 +55,8 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewGrade(int c_idx);
 	
 	public int clubViewUpdate(int c_idx, String cm_grade, String m_id);
+	
+	public MemberDTO clubHeadName(int c_idx);
+	
+	public ClubMemberDTO getCmgrade(int c_idx, String m_id);
 }

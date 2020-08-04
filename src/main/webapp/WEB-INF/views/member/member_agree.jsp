@@ -29,8 +29,8 @@ label {
     cursor: pointer; font-size : 18px;
 }
 
-.txtBox30, .txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
-.txtBox30 { border-color: LightGray; } .txtBox31 { border-color: DodgerBlue; width: 300px; }
+.txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
+.txtBox31 { border-color: DodgerBlue; width: 300px; }
 
 
 
