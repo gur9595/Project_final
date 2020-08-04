@@ -30,7 +30,11 @@
 		$(selector).chosen(config[selector]);
 	}
 </script>
-
+<style>
+.dropped_name {
+color: #fff;
+}
+</style>
 
 	<div id="field" class="two_third first">
 		<table
@@ -574,6 +578,7 @@
 		<br class="clear" />
 
 		<div class="">
+		<h2>포메이션 4-2-3-1 </h2>
 			<h3>
 				벤치 멤버
 			</h3>

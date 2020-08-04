@@ -15,6 +15,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script type="text/javascript" src="./../resources/js/kakao.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -84,18 +85,20 @@
                      <div class="clear"></div>
                   </div>
                   </form:form>
-                  </c:otherwise>
-               </c:choose>
                <br /><br />
                <div class="login100-api">
+               <h5 style="font-style:bold; padding-left:130px; ">소셜 로그인</h5>
 <!--                <img src="./../resources/img/naver.png" alt="naverAPI" /><br><img src="./../resources/img/kakao.png" alt="kakaoAPI" width="320px" /> -->
-               <a href="${url }">
-               <img src="./../resources/img/naver.png" alt="naverAPI" />
-               </a>
+				<br />
+              <div id="naver_id_login"><a href="${url }">
+				<img src="./../resources/img//naver.png"/></a></div>
                 
-               <a href="https://kauth.kakao.com/oauth/authorize?client_id=5218cc19e9315bbdcf407a1a0b47ca0c&redirect_uri=http://localhost:8282/auth/kakao/callback&response_type=code">    
+               <a href="https://kauth.kakao.com/oauth/authorize?client_id=9c8f598ffd995a555f5185fea47f693d&redirect_uri=http://localhost:8282/project_final/member/kakaocallback.do&response_type=code">    
                <img src="./../resources/img/kakao.png" alt="kakaoAPI"/></a>
+               <a id="kakao-login-btn"></a>
                </div>
+                  </c:otherwise>
+               </c:choose>
                <div class="text-center p-t-55">
                   <!-- <span class="txt1">
                      Don’t have an account?

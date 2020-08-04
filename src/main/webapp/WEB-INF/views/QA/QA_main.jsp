@@ -232,7 +232,7 @@
 													<ul class="a02-article-list__list">
 
 														<li class="a02-article-list__list-item tags"><a
-															href="../customer/qnaList.do"
+															href="../customer/qnaView.do"
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">캐시 충전이
 																	안돼요</div>

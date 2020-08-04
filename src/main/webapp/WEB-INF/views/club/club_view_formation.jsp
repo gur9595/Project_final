@@ -174,12 +174,12 @@
 	function openFormMake(g_idx){
 		
 		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank',
-				"width=700,height=650, toolbar=no, menubar=no, resizable=no");
+				"width=900,height=650, toolbar=no, menubar=no, resizable=no");
 	}
 	function openFormCheck(g_idx){
 		
 		window.open("../club/clubCheckFormation.do?g_idx="+g_idx, '_blank',
-				"width=700,height=650, toolbar=no, menubar=no, resizable=no");
+				"width=900,height=650, toolbar=no, menubar=no, resizable=no");
 	}
 </script>
 </html>

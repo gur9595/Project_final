@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -68,12 +69,13 @@ public class MemberController {
       return "member/article";   
    }
 
+  
 
-   @RequestMapping("/member/login.do")
+   /*@RequestMapping("/member/login.do")
    public String login() {
 
       return "member/login";
-   }
+   }*/
 
 
    @RequestMapping("/member/managerJoin.do")
@@ -85,7 +87,7 @@ public class MemberController {
    @RequestMapping("/member/id_pw.do")
    public String id_pw() {
 
-      return "/member/id_pw";
+      return "member/id_pw";
    }
 
 // id찾기 메일전송

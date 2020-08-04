@@ -49,9 +49,7 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
 	
-
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
-	
 
 	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
 	
