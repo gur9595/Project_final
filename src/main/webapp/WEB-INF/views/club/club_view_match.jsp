@@ -78,9 +78,9 @@
                                                 <h4 class="card-title" style="text-align: center; font-size: 30px;">클럽 경기</h4>
                                             </div>
                                             <div>
-                                                <h4 style="margin-left: 80px;">모든 경기 리스트</h4>
+                                                <h4 style="margin-left: 80px;">경기 일정</h4>
                                             </div>
-                                            <div class="comment-widgets scrollable">
+                                            <div class="comment-widgets scrollable" style=" min-height: 200px; max-height: 400px; ">
                                                 <table style="width:800px;">
                                                         <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
                                                         <th style="width:120px;">날짜</th>
@@ -125,13 +125,13 @@
 	                                                        			<input type="button" id="cancel" class="btn btn-outline-secondary" style="width:50px; height:30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="취소">
 	                                                        		</c:otherwise>
 	                                                        	</c:choose>
-	                                                        </th>
-	                                                        
+	                                                        </th>          
 														</tr>
 													</c:forEach>
                                                 </table>
                                             </div>
                                             <br /><br />
+
                                             <c:choose>
                                             	<c:when test="${getCmgrade.cm_grade == 'player' }">
                                             		
@@ -163,6 +163,53 @@
 		                                            </div>
 	                                            </c:otherwise>
 	                                        </c:choose>
+                                            <div>
+                                                <h4 style="margin-left: 80px;">상대 신청 현황</h4>
+                                            </div>
+                                            <div class="comment-widgets scrollable" style=" min-height: 200px; max-height: 400px; ">
+                                                <table style="width:800px;">
+                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
+                                                        <th style="width:180px;">날짜</th>
+                                                        <th style="width:100px;">시간</th>
+                                                        <th style="width:200px;">구장 이름</th>
+                                                        <th style="width:200px;">상대팀</th>
+                                                        <th colspan="2" style="width:120px;">수락/거절</th>
+                                                    </tr>
+                                                    <c:forEach items="${lists2 }" var="row" varStatus="status"> 
+														<tr>
+															<th>${row.g_date }</th>
+															<th>${row.g_time }</th>
+															<th>${row.g_sname }</th>
+															<th><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></th>
+															<th><input type="button" class="btn btn-outline-success" style="width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="수락" onclick="javascript:ClubMatchApply(${param.c_idx},${row.g_idx}, ${row.g_num });"></th>
+                                                        	<th><input type="button" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" onclick="javascript:ClubMatchReject(${param.c_idx},${row.g_idx});"></th>
+														</tr>
+													</c:forEach>
+                                                </table>
+                                            </div>
+                                            <div>
+                                                <h4 style="margin-left: 80px;">우리 신청 현황</h4>
+                                            </div>
+                                            <div class="comment-widgets scrollable" style=" min-height: 200px; max-height: 400px; ">
+                                                <table style="width:800px;">
+                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
+                                                        <th style="width:180px;">날짜</th>
+                                                        <th style="width:100px;">시간</th>
+                                                        <th style="width:200px;">구장 이름</th>
+                                                        <th style="width:200px;">상대팀</th>
+                                                        <th colspan="2" style="width:120px;">신청 취소</th>
+                                                    </tr>
+                                                    <c:forEach items="${lists3 }" var="row" varStatus="status"> 
+														<tr>
+															<th>${row.g_date }</th>
+															<th>${row.g_time }</th>
+															<th>${row.g_sname }</th>
+															<th><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></th>	
+                                                        	<th><input type="button" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" onclick="javascript:ClubMatchReject(${param.c_idx},${row.g_idx});"></th>
+														</tr>
+													</c:forEach>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -247,9 +294,18 @@
     </div>
 </body>
 <script>
+
 	function openClubView(c_idx){
 		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
 				"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+	}
+	function ClubMatchApply(c_idx,g_idx,g_num){
+		alert("수락 완료!");
+		location.href="../club/ClubMatchApply.do?c_idx="+c_idx+"&g_idx="+ g_idx + "&g_num=" + g_num;
+	}
+	function ClubMatchReject(c_idx,g_idx){
+		alert("거절 완료!");
+		location.href="../club/ClubMatchReject.do?c_idx="+c_idx+"&g_idx="+ g_idx;
 	}
 	
 	function GameMemberApply(c_idx,g_idx,m_id) {

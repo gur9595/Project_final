@@ -14,9 +14,14 @@
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
+<<<<<<< HEAD
 
 h2 { font-size : 24px; color:#000066; line-height:30px;
 	margin:35px auto 10px 0px;
+=======
+h2 { font-size : 24px; color:#000066; line-height:30px;
+	margin:52px auto 10px 0px;
+>>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
 }
@@ -115,6 +120,8 @@ input[type=checkbox], input[type=radio]
 	<main class="hoc container clear">
 		<table border=1>
 			<div>
+				<h1 class="n-hidden">B-PRO</h1>
+
 
 				<div style="background: #FFFFFF;">
 
@@ -127,11 +134,11 @@ input[type=checkbox], input[type=radio]
 							<h2>사업자등록번호(아이디)</h2>
 								<input type="text" class="txtBox31" id="s_id" name="s_id" placeholder="사업자등록번호" maxlength="20" >
 
-
-
 							<h2>비밀번호</h2>
 								<input type="password" class="txtBox31" id="s_pw" name="s_pw" maxlength="20"
 									 placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
+
+							
 									
 							<h2>비밀번호 확인</h2>
 								<input type="password" class="txtBox31" 

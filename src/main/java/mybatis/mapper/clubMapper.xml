@@ -35,7 +35,9 @@
 			select g.* 
 			from game g inner join club c 
 				on g.c_idx = c.c_idx 
-			where g.c_idx = #{param1} and g.g_check not like 'no'  order by g.g_date asc
+			where g.c_idx = #{param1} and g.g_check not like 'no'
+			and to_char(g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')
+			order by g.g_date asc
 		</select>
 		
 		<!-- 클럽 상세보기 cm_grade가져오기 -->
@@ -47,8 +49,10 @@
 		<!-- 클럽 상세보기 접수현황 -->
 		<select id="clubViewAccept" resultType="mybatis.GameDTO">
 			select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
-			where g.g_num in ( select g_num from game where c_idx=#{c_idx} and g_check ='owner' )
-			and g.g_check = 'no' order by g.g_date 
+			where g.g_num in ( select g_num from game where c_idx=#{c_idx} )
+			and g.g_check = 'no' 
+			and to_char(g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')
+			order by g.g_date 
 		</select>
 		
 		<!-- 클럽 상세보기 전술 모든경기리스트  -->
@@ -68,9 +72,18 @@
 			where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
 		</select>
 		
+
 		<!-- 클럽 상세보기 팀장 이름 갖고오기 -->
 		<select id="clubHeadName" resultType="mybatis.MemberDTO">
 			select m.m_name from clubmember cm inner join member m on cm.m_id = m.m_id where cm.c_idx = #{c_idx} and cm.cm_grade = 'head'
+		</select>
+		
+		<select id="clubViewMyApply" resultType="mybatis.GameDTO">
+			select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
+			where g.c_idx = #{c_idx}
+			and g.g_check = 'no' 
+			and to_char(g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')
+			order by g.g_date 
 		</select>
 		
 		<!-- 클럽 상세보기 권한관리 -->
@@ -221,14 +234,26 @@
 		update clubmember set cm_check = 'yes' where cm_idx = #{param1}
 	</update>
 	
+	<update id="ClubMatchApply">
+		update game set g_check = 'yes' where g_idx = #{g_idx}
+	</update>
+	
+	<delete id="ClubMatchApplyDelete">
+		delete from game where g_check = 'no' and g_num = #{g_num}
+	</delete>
+	
+	<delete id="ClubMatchReject">
+		delete from game where g_idx = #{g_idx}
+	</delete>
+	
 	<delete id="clubMemberReject">
 		delete from clubmember where cm_idx = #{param1}
 	</delete>
 	
 	<select id="clubMakingForm" resultType="mybatis.GameMemberDTO">
-		select *
-		from gamemember
-		where g_idx like #{param1}
+		select gm.*, m.m_name
+		from gamemember gm inner join member m on gm.m_id = m.m_id
+		where gm.g_idx like #{param1}
 	</select>
 	
 	<!-- *******************안드로이드 매퍼*************************** -->
@@ -263,4 +288,4 @@
 		and g.g_check = 'no' order by g.g_date 
 	</select>
 	  
-  </mapper>
+ </mapper>

@@ -9,7 +9,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
@@ -44,6 +43,7 @@ label {
     <!--이미지 위에 글쓰는곳-->
   </div>
 </div>
+<div class="wrapper row3">
 	<main  class="hoc container clear"> 
 		<div="container>           
 		    <h1 style="font-size:40px; font-weight:bold; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h1>
@@ -89,6 +89,7 @@ label {
     	</div>  	
     <div class="clear"></div>
 	</main>
+</div>
 <!-- footer -->
 <%@ include file="./../include/footer.jsp"%>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>

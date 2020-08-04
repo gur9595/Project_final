@@ -243,13 +243,18 @@ public class ClubController {
 			}
 			
 		}
-				
 		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
 		
 		ClubMemberDTO getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+
+		ArrayList<GameDTO> lists3 = sqlSession.getMapper(ClubDAOImpl.class).clubViewMyApply(c_idx); 
 		
 		model.addAttribute("lists", lists); 
-		model.addAttribute("lists2", lists2);
+				
+		model.addAttribute("lists2", lists2); 
+		
+
+		model.addAttribute("lists3", lists3);
 		model.addAttribute("clubDTO", clubDTO);   
 		model.addAttribute("getCmgrade", getCmgrade);
 		System.out.println(getCmgrade.getCm_grade());
@@ -283,6 +288,40 @@ public class ClubController {
 		model.addAttribute("lists", lists);  
 
 		return "club/club_view_formmake";
+	}
+	
+	@RequestMapping("/club/clubCheckFormation.do")
+	public String clubCheckForm(HttpServletRequest req, Model model) {
+		
+		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		
+		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx); 
+		
+		ArrayList<String> squad = new ArrayList<String>();
+		ArrayList<String> bench = new ArrayList<String>();
+		int check = 0;
+		for(int i =0; i<26; i++) {
+			check = 0;
+			for(GameMemberDTO gameMemberDTO : lists) {
+				if (i==gameMemberDTO.getGm_form()) {
+					squad.add(i, gameMemberDTO.getM_name());
+					check++;
+				}
+			}
+			if(check==0)
+			squad.add(i, "");
+		}
+		
+		for(GameMemberDTO gameMemberDTO : lists) {
+			if (gameMemberDTO.getGm_form() == (-1)) {
+				bench.add(gameMemberDTO.getM_name());
+			}
+		}	
+		
+		model.addAttribute("squad", squad);  
+		model.addAttribute("bench", bench);  
+
+		return "club/club_view_formcheck";
 	}
 
 	@RequestMapping("/club/clubViewManage.do")
@@ -320,6 +359,42 @@ public class ClubController {
         
         model.addAttribute("clubManageEdit", clubManageEdit);
 		return "redirect:/club/clubViewManage.do?c_idx="+ c_idx;
+	}
+	
+	@RequestMapping("/club/ClubMatchApply.do")
+	public String ClubMatchApply(Principal principal, HttpServletRequest req, Model model) {
+		
+		String m_id = principal.getName();
+		
+		GameDTO gameDTO = new GameDTO();
+		
+		gameDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
+		
+		gameDTO.setG_num(Integer.parseInt(req.getParameter("g_num")));
+		
+		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApply(gameDTO);
+		
+		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApplyDelete(gameDTO);
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		
+		return "redirect:/club/clubViewMatch.do?c_idx="+ c_idx;
+	}
+	
+	@RequestMapping("/club/ClubMatchReject.do")
+	public String ClubMatchReject(Principal principal, HttpServletRequest req, Model model) {
+		
+		String m_id = principal.getName();
+		
+		GameDTO gameDTO = new GameDTO();
+		
+		gameDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
+		
+		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchReject(gameDTO);
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		
+		return "redirect:/club/clubViewMatch.do?c_idx="+ c_idx;
 	}
 	
 	@RequestMapping("/club/gameMemberApply.do")
