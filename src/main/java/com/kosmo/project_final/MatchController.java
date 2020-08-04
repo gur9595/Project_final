@@ -389,8 +389,8 @@ public class MatchController {
 	}
 	
 	//경기장 리스트 모달창에서 매치신청
-	@RequestMapping("/stadium/stadiumApply.do")
-	public String stadiumMatchApply(Model model, HttpServletRequest req, Principal principal) {
+	@RequestMapping("/match/stadiumGameApply.do")
+	public String stadiumGameApply(Model model, HttpServletRequest req, Principal principal) {
 		
 		String m_id = principal.getName();
 		
@@ -401,22 +401,24 @@ public class MatchController {
 		String req_date = req.getParameter("date");
 		Date date = Date.valueOf(req_date);
 		String[] addrs = req.getParameter("addr").split(" ");
+		int we_c_idx = Integer.parseInt(req.getParameter("we_c_idx"));
+		
 		
 		if(c_idx != 0) {
 			GameDTO gameDTO = new GameDTO();
 			gameDTO.setG_idx(g_idx);
-			gameDTO.setC_idx(c_idx);		
-			sqlSession.getMapper(MatchDAOImpl.class).stadiumApply(gameDTO);
+			gameDTO.setC_idx(we_c_idx);		
+			sqlSession.getMapper(MatchDAOImpl.class).stadiumGameApply_a(gameDTO);
 			sqlSession.getMapper(MatchDAOImpl.class).setCash(cash, m_id);
 		}
 		else if(c_idx == 0) {
 			
-			int we_c_idx = Integer.parseInt(req.getParameter("we_c_idx"));
 			int g_num = sqlSession.getMapper(AdminDAOImpl.class).get_Gnum();
 			g_num++;
 			
 			GameDTO gameDTO = new GameDTO();
 			gameDTO.setC_idx(we_c_idx);
+			gameDTO.setS_idx(Integer.parseInt(req.getParameter("s_idx")));
 			gameDTO.setG_sname(req.getParameter("name"));
 			gameDTO.setG_saddr(req.getParameter("addr"));
 			gameDTO.setG_type(req.getParameter("type"));
@@ -425,12 +427,12 @@ public class MatchController {
 			gameDTO.setG_gu(addrs[1]);
 			gameDTO.setG_time(req.getParameter("time"));
 			
-			sqlSession.getMapper(MatchDAOImpl.class).gameApply(gameDTO);
+			sqlSession.getMapper(MatchDAOImpl.class).stadiumGameApply_b(gameDTO);
 			sqlSession.getMapper(AdminDAOImpl.class).set_Gnum(g_num);
 			sqlSession.getMapper(MatchDAOImpl.class).setCash(cash, m_id);
 		}		
 		
-		return "redirect:stadiumMain.do";
+		return "match/match_main";
 	}
 
 	//용병페이지

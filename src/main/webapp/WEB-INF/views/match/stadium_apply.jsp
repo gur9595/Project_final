@@ -144,14 +144,18 @@ function match_insert(f){
 	
 	var c_idx = document.getElementById("c_idx");
 	var list_idx = document.getElementById("list_c_idx");
+	var cash = document.getElementById("result");
 	
 	if(c_idx.options[c_idx.selectedIndex].value==""){
 		alert("클럽을 선택해주세요.");
-		f.c_idx.focus();
 		return false;
 	}
 	if(list_idx.value==""){
 		alert("잘못된 접근입니다.");
+		return false;
+	}
+	if(cash.value < 0){
+		alert("보유금액이 부족하여 예약할 수 없습니다.");
 		return false;
 	}
 	
@@ -163,7 +167,7 @@ function match_insert(f){
 </head>
 <body id="top">
 <!-- 모달창 신청폼 -->
-	<form name="stadiumFrm" method="post" onsubmit="return stadium_apply(this);" action="<c:url value="/stadium/stadiumApply.do" />" >
+	<form name="stadiumFrm" method="post" onsubmit="return match_insert(this);" action="<c:url value="/match/stadiumGameApply.do" />" >
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" data-backdrop="static" style="color: black;">
 			<div class="modal-dialog" role="document">
@@ -187,14 +191,15 @@ function match_insert(f){
 								<option value="${club.c_idx }">${club.c_name }</option>
 							</c:forEach>
 						</select><br />
-						<input type="hid den" id="list_c_idx" name="c_idx" />
-						<input type="hid den" id="list_g_idx" name="g_idx" />
-						<input type="hid den" id="result" name="result_ball" /> 
-						<input type="hid den" id="match_name" name="name" />
-						<input type="hid den" id="match_date" name="date" /> 
-						<input type="hid den" id="match_time" name="time" /> 
-						<input type="hidd en" id="match_addr" name="addr" /> 
-						<input type="hid den" id="match_type" name="type" /> 
+						<input type="hidden" id="list_c_idx" name="c_idx" />
+						<input type="hidden" name="s_idx" value="${param.s_idx }" />
+						<input type="hidden" id="list_g_idx" name="g_idx" />
+						<input type="hidden" id="result" name="result_ball" /> 
+						<input type="hidden" id="match_name" name="name" />
+						<input type="hidden" id="match_date" name="date" /> 
+						<input type="hidden" id="match_time" name="time" /> 
+						<input type="hidden" id="match_addr" name="addr" /> 
+						<input type="hidden" id="match_type" name="type" /> 
 						상대 클럽 : <span id="list_c_name" style="line-height: 30px;"></span><br />
 						경기 날짜 : <span id="list_date" style="line-height: 30px;"></span><br />
 						경기 시간 : <span id="list_time" style="line-height: 30px;"></span><br />
@@ -222,12 +227,12 @@ function match_insert(f){
 	<div class="wrapper row4" style="background-color: #fff">
 		<!-- main body -->
 		<br />
-		<input type="hid den" id="s_name" value="${name }" />
-		<input type="hidd en" id="s_addr" value="${addr }" />
-		<input type="hidd en" id="s_dong" value="${dong }" />
-		<input type="hidd en" id="price" value="${price }" />
-		<input type="hidd en" id="ball" value="${cash }" />
-		<input type="hidd en" id="type" value="${type }" />
+		<input type="hidden" id="s_name" value="${name }" />
+		<input type="hidden" id="s_addr" value="${addr }" />
+		<input type="hidden" id="s_dong" value="${dong }" />
+		<input type="hidden" id="price" value="${price }" />
+		<input type="hidden" id="ball" value="${cash }" />
+		<input type="hidden" id="type" value="${type }" />
 		<h2 style="text-align: center; font-weight: bold; font-size: 50px">${dong }&nbsp;${name }</h2>
 		
 		<div class="mr-5" style="text-align: right;">
