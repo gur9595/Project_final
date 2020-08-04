@@ -154,7 +154,7 @@ public class ClubController {
 	public String clubApplyAction(HttpServletRequest req) {
 
 		ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
-		clubMemberDTO.setC_idx(req.getParameter("c_idx"));
+		clubMemberDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));
 		clubMemberDTO.setM_id(req.getParameter("m_id"));
 		clubMemberDTO.setCm_memo(req.getParameter("memo"));
 		// Mybatis 사용
@@ -180,6 +180,45 @@ public class ClubController {
 		int clubMemberCount = sqlSession.getMapper(ClubDAOImpl.class).clubMemberCount(c_idx);
 		ArrayList<MemberDTO> grade = sqlSession.getMapper(ClubDAOImpl.class).clubViewGrade(c_idx);
 		
+		int total=0, wins=0, draws=0, loses=0, goals=0, op_goal=0; 
+		
+		ArrayList<GameDTO> games = sqlSession.getMapper(ClubDAOImpl.class).clubHistory(c_idx);
+		
+		for(GameDTO dto : games) {
+			
+			String[] score = dto.getG_score().split("-");
+			
+			goals += Integer.parseInt(score[0]);
+			op_goal += Integer.parseInt(score[1]);
+			
+			String result = dto.getG_result();
+			total++;
+			if(result.equals("W")) {
+				wins++;
+			}
+			else if(result.equals("D")) {
+				draws++;
+			}
+			else if(result.equals("L")) {
+				loses++;
+			}
+			
+		}
+		
+		if(total != 0) {
+		goals=goals/total;
+		op_goal=op_goal/total;
+		}
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		map.put("total", total);
+		map.put("wins", wins);
+		map.put("draws", draws);
+		map.put("loses", loses);
+		map.put("goals", goals);
+		map.put("op_goal", op_goal);
+		model.addAttribute("map", map);
 		model.addAttribute("grade", grade);
 		model.addAttribute("clubMemberCount", clubMemberCount);
 		model.addAttribute("clubDTO", clubDTO);

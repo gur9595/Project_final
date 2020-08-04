@@ -257,6 +257,12 @@
 			on c.c_idx = cm.c_idx
 		where cm.m_id = #{m_id} 
 	</select>
+	
+	<select id="clubHistory" resultType="mybatis.GameDTO">
+		select *
+		from game
+		where c_idx = #{param1} and g_rating is not null
+	</select>
 
 	<!-- 클럽 상세보기 회원정보 -->
 	<select id="clubViewMemberA" resultType="mybatis.MemberDTO">

@@ -157,12 +157,12 @@
                                                             </thead>
                                                             <tbody>
                                                             <tr style="font-weight: bolder;">
-                                                                <td style="vertical-align: middle;">20</td>
-                                                                <td style="vertical-align: middle;">10</td>
-                                                                <td style="vertical-align: middle;">0</td>
-                                                                <td style="vertical-align: middle;">10</td>
-                                                                <td style="vertical-align: middle;">20</td>
-                                                                <td style="vertical-align: middle;">10</td>
+                                                                <td style="vertical-align: middle;">${map.total }</td>
+                                                                <td style="vertical-align: middle;">${map.wins }</td>
+                                                                <td style="vertical-align: middle;">${map.draws }</td>
+                                                                <td style="vertical-align: middle;">${map.loses }</td>
+                                                                <td style="vertical-align: middle;">${map.goals }</td>
+                                                                <td style="vertical-align: middle;">${map.op_goal }</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
