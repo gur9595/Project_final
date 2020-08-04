@@ -158,18 +158,32 @@ select {
 																	<th>${row.m_name }</th>
 																	<th>${row.m_birth }</th>
 																	<th>${row.m_phone }</th>
-																	<th>${row.cm_grade}</th>
+																	<th>
+																		<c:choose>
+																			<c:when test="${row.cm_grade == 'head'}" >
+																				팀장
+																			</c:when>
+																			<c:when test="${row.cm_grade == 'coach'}">
+																				코치
+																			</c:when>
+																			<c:when test="${row.cm_grade == 'player'}">
+																				팀원
+																			</c:when>
+																		</c:choose>
+																	</th>
 																	<th>
 																		<button class="btn btn-outline-warning" type="button" data-toggle="modal"
 																			data-target="#authModal1" style="font-size:15px; font-weight:900"
 																			onclick="changeAuth('${row.cm_grade}', '${row.m_id }');">직책 변경
 																		</button>
 																	</th>
-																	<th><input type="button" id="memberRelease"
+																	<th>
+																		<input type="button" id="memberRelease"
 																		onclick="return memberReject(${clubDTO.c_idx },${row.cm_idx});"
 																		class="btn btn-outline-danger"
 																		style="width: 70px; height: 30px; font-size:15px; text-align: center; padding: 0; font-weight: 900;"
-																		value="방출"></th>
+																		value="방출">
+																	</th>
 																</tr>
 															</c:forEach>
 														</table>
@@ -296,15 +310,15 @@ function changeAuth(grade, m_id){
 	
 	var head = new Option();
 	head.value = "head";
-	head.text = "head";
+	head.text = "팀장";
 	
 	var coach = new Option();
 	coach.value = "coach";
-	coach.text = "coach";
+	coach.text = "코치";
 	
 	var player = new Option();
 	player.value = "player";
-	player.text = "player";
+	player.text = "팀원";
 	
 	if(grade == "player") {
 		select.options.length = 0;

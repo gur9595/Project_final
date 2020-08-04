@@ -28,7 +28,6 @@
         border-left: 10px solid #55555B;
         margin: 5px 0; letter-spacing: 1px; word-spacing: 3px;
     }
-
     table{
         margin-left: auto; margin-right: auto;
         width: 750px;
@@ -96,7 +95,7 @@
                                                         <table style="width: 100%;">
                                                             <tr>
                                                                 <td style="border-bottom: none; width: 50px;">·팀장</td>
-                                                                <td style="border-bottom: none">김희철</td>
+                                                                <td style="border-bottom: none";>${memberDTO.m_name}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="border-bottom: none">·연령대</td>
@@ -238,7 +237,6 @@ var messageWindow;
 var inputMessage;
 var chat_id;
 var webSocket;
-
 window.onload = function(){
 	
 	//대화가 디스플레이 되는 영역
@@ -309,7 +307,6 @@ function wsMessage(event) {
 		}
 	}
 }
-
 //상대방이 보낸 메세지를 출력하기 위한 부분
 function makeBalloon(id, cont){
 	var msg = '';
@@ -330,7 +327,6 @@ function wsClose(event){
 function wsError(event){
 	alert(event.data);
 }
-
 function sendMessage() {
 	
 	//웹소켓 서버로 대화내용을 전송한다.
@@ -353,7 +349,6 @@ function sendMessage() {
 	//대화영역의 스크롤바를 아래로 내려준다.
 	messsageWindow.scrollTop = messageWindow.scrollHeight;
 }
-
 function enterkey(){
 	/*
 	키보드를 눌렀다가 땠을 때 호출되며, 눌려진 키보드의 키코드가
