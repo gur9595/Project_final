@@ -29,7 +29,6 @@ public class MemberDTO {
 	//join용 변수
 	private String cm_grade;
 	
-	
 	public String getCm_grade() {
 		return cm_grade;
 	}

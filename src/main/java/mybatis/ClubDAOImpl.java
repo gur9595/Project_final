@@ -2,6 +2,7 @@ package mybatis;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,10 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
 	
+
+	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
+	
+
 	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
 	
 	public int clubMatchOpponentCount(int g_num, int c_idx);

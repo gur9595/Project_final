@@ -181,6 +181,13 @@
 			on c.c_idx = cm.c_idx
 		where cm.m_id like #{param1} 
 	</select>
+
+	<select id="myClubListA" resultType="mybatis.ClubDTO">
+		select * 
+		from club c inner join clubmember cm
+			on c.c_idx = cm.c_idx
+		where cm.m_id = #{m_id} 
+	</select>
 	
 	<select id="myClubListCount" resultType="int">
 		select count(*) 

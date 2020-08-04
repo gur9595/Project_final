@@ -46,16 +46,10 @@
     <div class="limiter">
       <div class="container-login100">
          <div class="wrap-login100">
-               <!-- <span class="login100-form-title p-b-26">
-                  로그인
-               </span> -->
-               <div class="icon">
-               <img src="./../resources/img/icon.png" style="width:160px; height:150px" alt="" />
-               </div>
-               <br />
-               <!-- <span class="login100-form-title p-b-48">
-                  <i class="zmdi zmdi-font"></i>
-               </span> -->
+               <div style="margin-left:185px;" >
+               <img src="./../resources/img/bprologo2.png" style="height:300px; width:300px;" alt=""/>
+               </div> 
+               <br /> 
             <c:choose>
                <c:when test="${not empty m_id }">
                   ${m_id }님 하잉
@@ -84,7 +78,9 @@
                   <div class="container-login100-form-btn">
                   <div class="wrap-login100-form-btn">
                      <div class="login100-form-bgbtn"></div>
-                     <button class="login100-form-btn">로그인</button>
+                     <button class="login100-form-btn">
+                        당연히 로그인이겠지?
+                     </button>
                   </div>
                      <div class="clear"></div>
                   </div>
@@ -136,23 +132,6 @@
 <%@ include file="./../include/footer.jsp"%>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
 <!-- 로그인 script -->
- <script type='text/javascript'>
-    //<![CDATA[
-   // 사용할 앱의 JavaScript 키를 설정해 주세요.
-   Kakao.init('YOUR APP KEY');
-   
-   // 카카오 로그인 버튼을 생성합니다.
-   Kakao.Auth.createLoginButton({
-     container: '#kakao-login-btn',
-     success: function(authObj) {
-    alert(JSON.stringify(authObj));
-     },
-     fail: function(err) {
-     alert(JSON.stringify(err));
-     }
-   });
-    //
-  </script>
 <script src="js/main.js"></script>
 <!-- JAVASCRIPTS -->
 <script src="./../resources/js/jquery.min.js"></script>

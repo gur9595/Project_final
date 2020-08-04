@@ -98,6 +98,10 @@
 		       	result = rsp.name;
 		       	spanResult.innerHTML = rsp.name;		     
 		       	
+		       /* 	console.log(rsp.name);		       	
+		       	console.log(result);	      */  	
+		       	
+		   		location.href="?cs_charge="+rsp.paid_amount;
 		        console.log(rsp.name);		       	
 		       	console.log(result);
 		       	
@@ -108,8 +112,12 @@
 		        var msg = '====== 결제에 실패하였습니다. ======';
 		    	msg += '\n에러내용 : ' + rsp.error_msg;		    	
 		    }
+		    
+		   	alert(msg);	
 		    	alert(msg);	 
+
 		});
+
 	}  
 	
 	
