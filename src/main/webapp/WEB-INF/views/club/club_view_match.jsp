@@ -75,11 +75,12 @@
                                                         <th colspan="2" style="width:100px;">참가여부</th>
                                                         <c:choose>
                                                        		<c:when test="${getCmgrade.cm_grade == 'player'}">
+                                			                             			                                                        			
                                                        		</c:when>
                                                         	<c:otherwise>
-                                                        		<th colspan="2" style="width:120px;">용병고용/경기취소</th>
+																<th colspan="2" style="width:120px;">용병고용/경기취소</th>         
                                                         	</c:otherwise>
-                                                        </c:choose>         
+                                                        </c:choose>
                                                     </tr>
 
                                                     <c:forEach items="${lists }" var="row" varStatus="status"> 
@@ -95,32 +96,30 @@
 																	<c:otherwise><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></c:otherwise>
 																</c:choose>
 															</th>
-															<th><input type="button" onclick="javascript:GameMemberApply(${row.c_idx},${row.g_idx},${m_id })" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
+															<th><input type="button" onclick="javascript:GameMemberApply(${param.c_idx},${row.g_idx},${m_id })" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
 	                                                        <th><input type="button" class="btn btn-outline-danger" style=" width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="불참" ></th>
-	                                                        
-                                                        	<c:choose>
-                                                        		<c:when test="${getCmgrade.cm_grade == 'player'}">
-                                                        			                             			                                                        			
-                                                        		</c:when>
-	                                                        	<c:otherwise>
-	                                                        		<th>
-	                                                        			<input type="button" class="btn btn-outline-primary" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:16px;" value="용병고용">
-	                                                        		</th>
-	                                                        	</c:otherwise>
-	                                                        </c:choose>
-	                                                        
-	                                                        
-                                                        	<c:choose>
-                                                        		<c:when test="${getCmgrade.cm_grade == 'player' }">
-                                                        			
-                                                        		</c:when>
-                                                        		<c:otherwise>
-                                                        			<th>
-                                                        				<input type="button" id="cancel" class="btn btn-outline-secondary" style="width:50px; height:30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="취소">
-                                                        			</th>
-                                                        		</c:otherwise>
-                                                        	</c:choose>
-	                                                                  
+
+	                                                        	<c:choose>
+	                                                        		<c:when test="${getCmgrade.cm_grade == 'player'}">
+	                                                        			                             			                                                        			
+	                                                        		</c:when>
+		                                                        	<c:otherwise>
+				                                                        <th>
+		                                                        			<input type="button" class="btn btn-outline-primary" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:16px;" value="용병고용">
+	                                                        			</th>
+		                                                        	</c:otherwise>
+		                                                        </c:choose>
+	                                                        	<c:choose>
+	                                                        		<c:when test="${getCmgrade.cm_grade == 'player' }">
+	                                                        			
+	                                                        		</c:when>
+	                                                        		<c:otherwise>
+				                                                        <th>
+	        	                                                			<input type="button" id="cancel" class="btn btn-outline-secondary" style="width:50px; height:30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="취소">
+				                                                        </th>          
+	                                                        		</c:otherwise>
+	                                                        	</c:choose>
+
 														</tr>
 													</c:forEach>
                                                 </table>
@@ -150,61 +149,45 @@
 																	<th>${row.g_time }</th>
 																	<th>${row.g_sname }</th>
 																	<th><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></th>
-																	<th><input type="button" class="btn btn-outline-success" style="width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="수락" ></th>
-		                                                        	<th><input type="button" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" ></th>
+																	<th><input type="button" onclick=":javascript:ClubMatchApply(${param.c_idx},${row.g_idx},${row.g_num})" class="btn btn-outline-success" style="width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="수락" ></th>
+		                                                        	<th><input type="button" onclick=":javascript:ClubMatchReject(${param.c_idx},${row.g_idx},${row.g_num})" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" ></th>
 																</tr>
 															</c:forEach>
 		                                                </table>
 		                                            </div>
 	                                            </c:otherwise>
 	                                        </c:choose>
-                                            <div>
-                                                <h4 style="margin-left: 80px;">상대 신청 현황</h4>
-                                            </div>
-                                            <div class="comment-widgets scrollable" style=" min-height: 200px; max-height: 400px; ">
-                                                <table style="width:800px;">
-                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
-                                                        <th style="width:180px;">날짜</th>
-                                                        <th style="width:100px;">시간</th>
-                                                        <th style="width:200px;">구장 이름</th>
-                                                        <th style="width:200px;">상대팀</th>
-                                                        <th colspan="2" style="width:120px;">수락/거절</th>
-                                                    </tr>
-                                                    <c:forEach items="${lists2 }" var="row" varStatus="status"> 
-														<tr>
-															<th>${row.g_date }</th>
-															<th>${row.g_time }</th>
-															<th>${row.g_sname }</th>
-															<th><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></th>
-															<th><input type="button" class="btn btn-outline-success" style="width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="수락" onclick="javascript:ClubMatchApply(${param.c_idx},${row.g_idx}, ${row.g_num });"></th>
-                                                        	<th><input type="button" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" onclick="javascript:ClubMatchReject(${param.c_idx},${row.g_idx});"></th>
-														</tr>
-													</c:forEach>
-                                                </table>
-                                            </div>
-                                            <div>
-                                                <h4 style="margin-left: 80px;">우리 신청 현황</h4>
-                                            </div>
-                                            <div class="comment-widgets scrollable" style=" min-height: 200px; max-height: 400px; ">
-                                                <table style="width:800px;">
-                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
-                                                        <th style="width:180px;">날짜</th>
-                                                        <th style="width:100px;">시간</th>
-                                                        <th style="width:200px;">구장 이름</th>
-                                                        <th style="width:200px;">상대팀</th>
-                                                        <th colspan="2" style="width:120px;">신청 취소</th>
-                                                    </tr>
-                                                    <c:forEach items="${lists3 }" var="row" varStatus="status"> 
-														<tr>
-															<th>${row.g_date }</th>
-															<th>${row.g_time }</th>
-															<th>${row.g_sname }</th>
-															<th><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></th>	
-                                                        	<th><input type="button" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" onclick="javascript:ClubMatchReject(${param.c_idx},${row.g_idx});"></th>
-														</tr>
-													</c:forEach>
-                                                </table>
-                                            </div>
+	                                        <c:choose>
+                                            	<c:when test="${getCmgrade.cm_grade == 'player' }">
+                                            		
+                                            	</c:when>
+                                           	<c:otherwise>
+	                                            <div>
+	                                                <h4 style="margin-left: 80px;">우리 신청 현황</h4>
+	                                            </div>
+	                                            <div class="comment-widgets scrollable" style=" min-height: 200px; max-height: 400px; ">
+	                                                <table style="width:800px;">
+	                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
+	                                                        <th style="width:180px;">날짜</th>
+	                                                        <th style="width:100px;">시간</th>
+	                                                        <th style="width:200px;">구장 이름</th>
+	                                                        <th style="width:200px;">상대팀</th>
+	                                                        <th style="width:120px;">신청 취소</th>
+	                                                    </tr>
+	                                                    <c:forEach items="${lists3 }" var="row" varStatus="status"> 
+															<tr>
+																<th>${row.g_date }</th>
+																<th>${row.g_time }</th>
+																<th>${row.g_sname }</th>
+																<th><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></th>	
+	                                                        	<th><input type="button" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" onclick="javascript:ClubMatchReject(${param.c_idx},${row.g_idx});"></th>
+															</tr>
+														</c:forEach>
+	                                                </table>
+	                                            </div>
+                                            
+	                                            </c:otherwise>
+	                                        </c:choose>
                                         </div>
                                     </div>
                                 </div>
