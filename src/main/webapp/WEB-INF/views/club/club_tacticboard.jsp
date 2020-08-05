@@ -588,7 +588,8 @@ color: #fff;
 					<tbody>
 						<c:forEach items="${bench }" var="row" varStatus="status" >
 							<tr>
-								<td height="22" align="left" class="player_header"><strong>${row }</strong>
+								<td height="22" align="left" class="player_header">
+									<div class = "player ui-draggable" value="${row }">${row }</div>
 								</td>
 							</tr>
 						</c:forEach>
