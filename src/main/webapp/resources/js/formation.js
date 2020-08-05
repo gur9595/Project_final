@@ -61,7 +61,7 @@ $(function () {
                  }); 
                  player.draggable({ revert: "invalid" }); 
                  player.css("position", "absolute"); 
-                 player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name">' + ui.draggable.text() + "</div>"); 
+                 player.prepend('<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" />').append('<div class="dropped_name">' + ui.draggable.text() + "</div>"); 
                  $("#field").append(player); 
                  setTimeout(function () { 
                      ui.draggable.parents("tr").remove() 
