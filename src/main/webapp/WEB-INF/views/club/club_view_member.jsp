@@ -67,25 +67,30 @@
                                             <div class="comment-widgets scrollable">
                                                 <table>
                                                     <tr style="border-bottom: 3px solid #036">
+                                                    	<th>사진</th>
                                                         <th>이름</th>
                                                         <th>생년월일</th>
                                                         <th style="width:100px;">전화번호</th>
-                                                        <th>성별</th>
                                                         <th>주 포지션</th>
-                                                        <th>주로 쓰는 발</th>
-                                                        <th>득점</th>
+                                                        <th>직책</th>
+                                                        <th>클럽 가입일</th>
                                                     </tr>
 													<c:forEach items="${lists }" var="row" varStatus="status"> 
-														<tr>
+														<tr height="70px">
+															<th><img src="./../resources/uploadsFile/${row.m_pic }" alt="" style="height:70px; width:auto; max-width:100px;" /></th>
 															<th>${row.m_name }</th>
 															<th>${row.m_birth }</th>
 															<th>${row.m_phone }</th>
-															<th>${row.m_sex }</th>
 															<th>${row.m_position }</th>
-															<th>${row.m_foot }</th>
-															<th>5골</th>
+															<th>${row.cm_grade }</th>
+															<th>${row.m_date }</th>
 														</tr>
 													</c:forEach>
+													<tr>
+														<td colspan='7' style="text-align: center; font-size: 25px;">
+															${paging }
+														</td>
+													</tr>
                                                 </table>
                                             </div>
                                         </div>
