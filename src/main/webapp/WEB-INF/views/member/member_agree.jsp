@@ -9,7 +9,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
@@ -25,16 +24,28 @@ input[type=checkbox], input[type=radio]
 {
 	width : 20px; height : 20px; cursor: pointer;
 }
+input[type=text]{
+	font-size:25px;
+}
+input[type=password] {
+		font-size:25px;
+        font-family: "nanum";
+        
+        &::placeholder {
+        	font-family: "NanumSquare";
+        }
+    }
+input[type=email]{
+	font-size:25px;
+}
 label {
     cursor: pointer; font-size : 18px;
 }
 
-.txtBox30, .txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
-.txtBox30 { border-color: LightGray; } .txtBox31 { border-color: DodgerBlue; width: 300px; }
+.txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
+.txtBox31 { border-color: DodgerBlue; width: 350px; }
 
-
-
-
+.container{max-width:1100px;}
 </style>
 </head>
 <body id="top">
@@ -46,8 +57,9 @@ label {
     <!--이미지 위에 글쓰는곳-->
   </div>
 </div>
-	<main  class="hoc container clear"> 
-		<div="container>           
+<div class="wrapper row3">
+	<main  class="hoc clear"> 
+		<div class="container">           
 		    <h1 style="font-size:40px; font-weight:bold; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h1>
 			<form class="formBox" name="joinForm" id="joinForm" action="<c:url value="/member/memberJoin1.do" />" method="post">
 		  	
@@ -64,7 +76,7 @@ label {
 					<input type="password" class="txtBox31" id="m_pw" name="m_pw" placeholder="비밀번호를 입력하세요">
 					
 				<h2>비밀번호 확인</h2>
-					<input type="password" class="txtBox31" id="confirmPw" name="confirmPw" autocomplete="new-password" placeholder="비밀번호 재입력">
+					<input type="password" class="txtBox31" id="m_pw2" name="m_pw2" autocomplete="new-password" placeholder="비밀번호 재입력">
 				
 				<h2>이름</h2>
 					<input type="text" class="txtBox31" id="m_name" name="m_name" placeholder="이름입력">
@@ -73,8 +85,10 @@ label {
 					<input type="text" class="txtBox31" id="m_birth" name="m_birth" placeholder="예)19970121" minlength="7" maxlength="8" >
 				
 			    <h2>휴대전화</h2>
-	                <input type="tel" class="txtBox31" id="m_phone" name="m_phone" placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="12">
-		        
+		        	<input type="text" id="m_phone" name="m_phone1" maxlength="4" class="txtBox31" style="width: 100px; display:inline;" />&nbsp;-&nbsp;
+					<input type="text" id="m_phone2" name="m_phone2"  maxlength="4" class="txtBox31" style="width: 100px; display:inline;" />&nbsp;-&nbsp;
+					<input type="text" id="m_phone3" name="m_phone3"  maxlength="4" class="txtBox31" style="width: 100px; display:inline;"/>
+					
 		        <h2>이메일</h2>
 		         <div class="n-form-layer" id = "emailFromLayer">
 					<input type="email" class="txtBox31" id="m_email" name="m_email" maxlength="50" placeholder="이메일을 입력하세요"  style="width:350px; height:45px;">
@@ -82,13 +96,14 @@ label {
             	<br/><br/><br/><br/>   
 			        
                 <div style="text-align:center">
-					<button type="button" class="btn btn-outline-info"  style="font-size:20px;" onclick="javascript:goBack();">이전 페이지</button>
+					<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="javascript:goBack();">이전페이지</button>&nbsp;&nbsp;
                     <input type="submit" class="btn btn-outline-success" style="font-size:20px;" onsubmit="" value="다음"/>
                 </div>
 	        </form>
     	</div>  	
     <div class="clear"></div>
 	</main>
+</div>
 <!-- footer -->
 <%@ include file="./../include/footer.jsp"%>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
@@ -408,3 +423,4 @@ function goBack() {
 
     </script>
 </html>
+

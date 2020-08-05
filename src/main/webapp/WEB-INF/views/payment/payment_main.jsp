@@ -58,7 +58,7 @@
 		    name : charge + "	Ball", // 입금될 마일리지
 		    amount : cash, // 결제 금액
 		    /* buyer_email : 'iamport@siot.do' */
-		    buyer_email : ' - Option -		  Press your e_mail '
+		    buyer_email : ' - Option -		  Press your e_mail '  
 		}, 
 		
 		function(rsp) { // callback : 고객이 결제를 완료한 후 실행되는 함수
@@ -73,6 +73,7 @@
 		       	var result = document.getElementById("ballResult").value;
 		       	result = rsp.name;
 		       	
+		   		location.href="?cs_charge="+rsp.paid_amount;
 		        console.log(rsp.name);		       	
 		       	console.log(result);
 		       	
@@ -81,11 +82,11 @@
 		    else { // 결제 실패시 로직
 		        var msg = '====== 결제에 실패하였습니다. ======';
 		    	msg += '\n에러내용 : ' + rsp.error_msg;		    	
-		    }
-		    	
+		    }		    	
 			alert(msg);	 
 		});      
 	} 
+
 </script>  
 <!-- end of 결제 api ------------------------------------------------------------------------------------------->
 

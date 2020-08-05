@@ -65,7 +65,7 @@ body{font-family :'Raleway', 'NanumSquare';}
 .elements{}
 .elements-three li, .elements-four li{margin-bottom:50px;}
 .elements-three li:nth-last-child(-n+3), .elements-four li:nth-last-child(-n+4){margin-bottom:0;}/* Removes bottom margin from the last line of items - margin is restored in the media queries when items stack */
-.elements-three li:nth-child(3n+1), .elements-four li:nth-child(4n+1){margin-left:0; clear:left;}/* Removes the need to add class="first" */
+.elements-three li:nth-child(3n+1), .elements-four li:nth-child(4n+1){margin-left:0;}/* Removes the need to add class="first" */
 .elements article{display:block; padding:30px 15px; border-radius:50px 0; text-align:center;}
 .elements article *{margin:0 0 15px 0; padding:0; line-height:1;}
 .elements article i{width:60px; height:60px; line-height:60px; margin-bottom:30px; font-size:1.6rem; text-align:center; border-radius:50%;}
@@ -369,10 +369,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 .elements article:hover a i{color:#97A9BD; background-color:#FFFFFF;}/* Default */
 
 /* ###### DELETE THE FOLLOWING IF ONLY THE DEFAULT COLOUR IS REQUIRED ###### */
-#introblocks .elements li article{color:#FFFFFF; background-color:#354a6d;}/* Blue */
-#introblocks .elements li article a i{color:#354a6d; background-color:#FFFFFF;}/* Blue */
-#introblocks .elements li article:hover{color:#354a6d; background-color:#FFFFFF !important;}
-#introblocks .elements li article:hover a i{color:#FFFFFF !important; background-color:#354a6d;}
+#introblocks .elements li article{color:#FFFFFF; background-color:#758091;}/* Blue */
+#introblocks .elements li article a i{color:#758091; background-color:#FFFFFF;}/* Blue */
+#introblocks .elements li article:hover{color:#758091; background-color:#FFFFFF !important;}
+#introblocks .elements li article:hover a i{color:#FFFFFF !important; background-color:#758091;}
 /* ###### END DELETE ###### */
 
 .shout figure figcaption a{color:inherit; background-color:inherit; border-color:#D7D7D7;}
@@ -461,7 +461,7 @@ table a, #comments a{background-color:inherit;}
 }
 
 @media screen and (min-width:978px) and (max-width:1140px){
-	.hoc{max-width:95%;}
+	.hoc{max-width:95%; background-color:white;}
 }
 
 

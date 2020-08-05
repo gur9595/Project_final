@@ -42,6 +42,7 @@
         height:40px; text-align: center;
         border-bottom: 1px solid #444444;
     }
+
 }
 </style>
 <body>
@@ -68,74 +69,69 @@
                                             <div class="comment-widgets scrollable">                           
                                                 <div class="container-fluid" id="mainHolder" style="padding-top: 0">
                                                     <div class="row teamheader">
-                                                      <div class="col-xs-12" style="background-color:#333333; height:350px; width:100%;">
-                                                  <div class="col-xs-4" style=" position:relative; height:100%;margin:0; padding:0; display:table;">
-                                                     <div class="row" style="height:80%;margin:0; padding:0; vertical-align:middle; margin-top:20px; display:table-cell;">
-                                                       <div style="border:12px solid white;border-radius:50%; background-color:white; height:250px; width:250px; display:block;margin:0 auto;">
- 							 								<div style="height:100%; width:100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb });background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
-														</div>
-                                                    </div>
-                                                  	   
-                                                  </div>
-                                                  <div class="col-xs-8" style="color:white; height:100%; padding-left: 0px;">
-                                                    <div class="row" style="margin:0; padding:0; margin-top:20px;">
-                                                      <div class="col-xs-12" style="margin:0; padding:0;">
-                                                        <h1 style="margin:0; font-size:26px; font-weight:600">${clubDTO.c_name }</h1>
-                                                      </div>
-                                                      <div class="col-xs-4">
-                                                      </div>
-                                                    </div>
-                                                    <div class="row" style="margin:0; padding:0;">
-                                                      <div>
-                                                        <h6 style="margin:0;font-size:18px; font-weight:600; color:#7F7F7F; margin-top:4px;">팀 등록일 : ${clubDTO.c_date }</h6>
-                                                      </div>
-                                                    </div>
-                                                    <div class="container-fluid" style="margin-top:20px;">
-                                                      <div class="col-xs-6" style="padding-right: 50px; padding-left: 0px;" >
-                                                        <table style="width: 100%;">
-                                                            <tr>
-                                                                <td style="border-bottom: none; width: 50px;">·팀장</td>
-                                                                <td style="border-bottom: none">김희철</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·연령대</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_age }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·성별</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_gender }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·회원수</td>
-                                                                <td style="border-bottom: none">${clubMemberCount}명</td>
-                                                            </tr>  
-                                                            <tr>
-                                                                <td style="border-bottom: none">·실력</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_ability }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·유형</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_type }</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="border-bottom: none">·활동지역</td>
-                                                                <td style="border-bottom: none">${clubDTO.c_area }</td>
-                                                            </tr>
-                                                        </table>
-                                                      </div>
-                                                      <div class="col-xs-6">
-                                                        <div class="row" style="margin:0; padding:0; margin-bottom:15px;">
-                                                          <h6 style="margin:0; padding:0; color:#BFBFBF; font-size:20px; font-weight:600; margin-bottom:15px;">팀 소개</h6>
-                                                          <div class="col-xs-12" style="margin:0; padding:0; background-color:#ADADAD;height:165px; border-radius:15px;padding:10px;">
-                                                            ${clubDTO.c_memo }
-                                                            <div style="overflow-y:hidden;height:100%;width:100%;">
-                                                              <h6 style="margin:0; padding:0; color:black;white-space:pre-line"></h6>
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
+                                                    	<div class="col-xs-12" style="background-color:#333333; height:350px; width:100%;">
+                                                  		<div class="col-xs-4" style=" position:relative; height:100%;margin:0; padding:0; display:table;">
+                                                     		<div class="row" style="height:80%;margin:0; padding:0; vertical-align:middle; margin-top:20px; display:table-cell;">
+                                                       			<div style="border:12px solid white;border-radius:50%; background-color:white; height:250px; width:250px; display:block;margin:0 auto;">
+ 							 									<div style="height:100%; width:100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb });background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
+																</div>
+                                                    		</div>
+ 														</div>
+                                                  		<div class="col-xs-8" style="color:white; height:100%; padding-left: 0px;">
+                                                   	 		<div class="row" style="margin:0; padding:0; margin-top:20px;">
+                                                   			<div class="col-xs-12" style="margin:0; padding:0;">
+                                                     			<h1 style="margin:0; font-size:26px; font-weight:600">${clubDTO.c_name }</h1>
+                                                   			</div>
+                                                      	<div class="col-xs-4"></div>
+                                                   	 		</div>
+                                                    		<div class="row" style="margin:0; padding:0;">
+                                                      		<div>
+                                                        		<h6 style="margin:0;font-size:18px; font-weight:600; color:#7F7F7F; margin-top:4px;">팀 등록일 : ${clubDTO.c_date }</h6>
+                                                      		</div>
+                                                    	</div>
+                                                   		<div class="container-fluid" style="margin-top:20px;">
+                                                      		<div class="col-xs-5" style=" padding-left: 0px;" >
+	                                                        <table style="width: 100%;">
+	                                                            <tr>
+	                                                                <td style="border-bottom: none; width: 50px;">·팀장</td>
+	                                                                <td style="border-bottom: none";>${memberDTO.m_name}</td>
+	                                                            </tr>
+	                                                            <tr>
+	                                                                <td style="border-bottom: none">·연령대</td>
+	                                                                <td style="border-bottom: none">${clubDTO.c_age }</td>
+	                                                            </tr>
+	                                                            <tr>
+	                                                                <td style="border-bottom: none">·성별</td>
+	                                                                <td style="border-bottom: none">${clubDTO.c_gender }</td>
+	                                                            </tr>
+	                                                            <tr>
+	                                                                <td style="border-bottom: none">·회원수</td>
+	                                                                <td style="border-bottom: none">${clubMemberCount}명</td>
+	                                                            </tr>  
+	                                                            <tr>
+	                                                                <td style="border-bottom: none">·실력</td>
+	                                                                <td style="border-bottom: none">${clubDTO.c_ability }</td>
+	                                                            </tr>
+	                                                            <tr>
+	                                                                <td style="border-bottom: none">·유형</td>
+	                                                                <td style="border-bottom: none">${clubDTO.c_type }</td>
+	                                                            </tr>
+	                                                            <tr>
+	                                                                <td style="border-bottom: none">·활동지역</td>
+	                                                                <td style="border-bottom: none">${clubDTO.c_area }</td>
+	                                                            </tr>
+	                                                        </table>
+                                                      		</div>
+                                                      		<div class="col-xs-7">
+                                                          		<div class="row" style="margin:0; padding:0; margin-bottom:15px;">
+                                                              		<h6 style="margin:0; padding:0; color:#BFBFBF; font-size:20px; font-weight:600; margin-bottom:15px;">팀 소개</h6>
+                                                          	  		<div style="margin:0; padding:0; background-color:#ADADAD;height:165px; width:300px; border-radius:15px;padding:10px; overflow-x:hidden;">
+																		${clubDTO.c_memo }
+                                                              		</div>
+                                                          		</div>
+                                                      		</div>
+                                                    	</div>
+                                                  	</div>
                                                 </div>
                                                     </div>
                                                     <div class="row status" style="height:250px;">
@@ -157,12 +153,12 @@
                                                             </thead>
                                                             <tbody>
                                                             <tr style="font-weight: bolder;">
-                                                                <td style="vertical-align: middle;">20</td>
-                                                                <td style="vertical-align: middle;">10</td>
-                                                                <td style="vertical-align: middle;">0</td>
-                                                                <td style="vertical-align: middle;">10</td>
-                                                                <td style="vertical-align: middle;">20</td>
-                                                                <td style="vertical-align: middle;">10</td>
+                                                                <td style="vertical-align: middle;">${map.total }</td>
+                                                                <td style="vertical-align: middle;">${map.wins }</td>
+                                                                <td style="vertical-align: middle;">${map.draws }</td>
+                                                                <td style="vertical-align: middle;">${map.loses }</td>
+                                                                <td style="vertical-align: middle;">${map.goals }</td>
+                                                                <td style="vertical-align: middle;">${map.op_goal }</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -324,9 +320,7 @@ function makeBalloon(id, cont){
 function wsClose(event){
 	messageWindow.value += "연결끊기성공\n";
 }
-function wsError(event){
-	alert(event.data);
-}
+
 function sendMessage() {
 	
 	//웹소켓 서버로 대화내용을 전송한다.

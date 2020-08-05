@@ -5,8 +5,22 @@ public class GameMemberDTO {
 	private int gm_idx;
 	private int g_idx;
 	private String m_id;
-	private int form;
+	private String m_name;
+	private int gm_form;
 	
+	public GameMemberDTO() {
+		super();
+	}
+	
+	public GameMemberDTO(int gm_idx, int g_idx, String m_id, String m_name, int gm_form) {
+		super();
+		this.gm_idx = gm_idx;
+		this.g_idx = g_idx;
+		this.m_id = m_id;
+		this.m_name = m_name;
+		this.gm_form = gm_form;
+	}
+
 	public int getGm_idx() {
 		return gm_idx;
 	}
@@ -25,11 +39,17 @@ public class GameMemberDTO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
-	public int getForm() {
-		return form;
+	public int getGm_form() {
+		return gm_form;
 	}
-	public void setForm(int form) {
-		this.form = form;
+	public void setGm_form(int gm_form) {
+		this.gm_form = gm_form;
+	}
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 	
 	

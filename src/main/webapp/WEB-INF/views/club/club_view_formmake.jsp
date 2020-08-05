@@ -19,7 +19,11 @@
 <script type="text/javascript"
 	src="http://static.footballuser.com/javascripts/chosen.jquery.min.js"></script>
 <body>
-
+	<style>
+	.dropped_name {
+		color: #fff;
+	}
+	</style>
 	<script type="text/javascript">
 				var config = {
 					'.edit_field' : {}
@@ -29,7 +33,7 @@
 				}
 			</script>
 
-	<div id="field" class="one_half first">
+	<div id="field" class="two_third first">
 		<table
 			style="height: 613px; width: 416px; background: url(http://static.footballuser.com/images/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
 			<tr>
@@ -104,72 +108,41 @@
 		<!-- <img id="field_image" height="613" width="416" src="http://static.footballuser.com/images/field.jpg" alt="" /> -->
 	</div>
 
-	<div class="one_half" style="display: inline;">
+	<div class="one_third style="display: inline;">
 		<div class="">
-			<div id="shirts" class=""
-				style="height: 220px; width: 316px; overflow: auto">
-
-				<img id="_1.png" class="active_shirt shirt"
-					src="http://static.footballuser.com/images/shirts/_1.png" alt="" />
-				<img id="_2.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_2.png" alt="" />
-				<img id="_3.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_3.png" alt="" />
-				<img id="_4.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_4.png" alt="" />
-				<img id="_5.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_5.png" alt="" />
-				<img id="_6.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_6.png" alt="" />                                                                                                                                                                                                                                                                                                                                                                                              c 
-				<img id="_7.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_7.png" alt="" />
-				<img id="_8.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_8.png" alt="" />
-				<img id="_9.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_9.png" alt="" />
-				<img id="_10.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_10.png" alt="" />
-				<img id="_11.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_11.png" alt="" />
-				<img id="_12.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_12.png" alt="" />
-				<img id="_13.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_13.png" alt="" />
-				<img id="_14.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_14.png" alt="" />
-				<img id="_15.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_15.png" alt="" />
-				<img id="_16.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_16.png" alt="" />
-				<img id="_17.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_17.png" alt="" />
-				<img id="_18.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_18.png" alt="" />
-				<img id="_19.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_19.png" alt="" />
-				<img id="_20.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_20.png" alt="" />
-				<img id="_21.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_21.png" alt="" />
-				<img id="_22.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_22.png" alt="" />
-				<img id="_23.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_23.png" alt="" />
-				<img id="_24.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_24.png" alt="" />
-				<img id="_25.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_25.png" alt="" />
-				<img id="_26.png" class="shirt"
-					src="http://static.footballuser.com/images/shirts/_26.png" alt="" />
-			</div>
-		</div>
-		<br class="clear" />
-
-		<div class="">
-			<h3>
-				...but first add your players to the list: <em class="grey small">(press
-					enter)</em>
-			</h3>
+			<br class="clear" />
+	
+			<div class="">
+			<div id="shirts" class="left_padded more_topspaced" style="height:220px;width:316px; overflow:auto">
+	        
+	        <img id="_1.png" class="active_shirt shirt" src="http://static.footballuser.com/images/shirts/_1.png" alt="" />
+	        
+	        <img id="_2.png" class="shirt" src="http://static.footballuser.com/images/shirts/_2.png" alt="" />
+	        <img id="_3.png" class="shirt" src="http://static.footballuser.com/images/shirts/_3.png" alt="" />
+	        <img id="_4.png" class="shirt" src="http://static.footballuser.com/images/shirts/_4.png" alt="" />
+	        <img id="_5.png" class="shirt" src="http://static.footballuser.com/images/shirts/_5.png" alt="" />
+	        <img id="_6.png" class="shirt" src="http://static.footballuser.com/images/shirts/_6.png" alt="" />
+	        <img id="_7.png" class="shirt" src="http://static.footballuser.com/images/shirts/_7.png" alt="" />
+	        <img id="_8.png" class="shirt" src="http://static.footballuser.com/images/shirts/_8.png" alt="" />
+	        <img id="_9.png" class="shirt" src="http://static.footballuser.com/images/shirts/_9.png" alt="" />
+	        <img id="_10.png" class="shirt" src="http://static.footballuser.com/images/shirts/_10.png" alt="" />
+	        <img id="_11.png" class="shirt" src="http://static.footballuser.com/images/shirts/_11.png" alt="" />
+	        <img id="_12.png" class="shirt" src="http://static.footballuser.com/images/shirts/_12.png" alt="" />
+	        <img id="_13.png" class="shirt" src="http://static.footballuser.com/images/shirts/_13.png" alt="" />
+	        <img id="_14.png" class="shirt" src="http://static.footballuser.com/images/shirts/_14.png" alt="" />
+	        <img id="_15.png" class="shirt" src="http://static.footballuser.com/images/shirts/_15.png" alt="" />
+	        <img id="_16.png" class="shirt" src="http://static.footballuser.com/images/shirts/_16.png" alt="" />
+	        <img id="_17.png" class="shirt" src="http://static.footballuser.com/images/shirts/_17.png" alt="" />
+	        <img id="_18.png" class="shirt" src="http://static.footballuser.com/images/shirts/_18.png" alt="" />
+	        <img id="_19.png" class="shirt" src="http://static.footballuser.com/images/shirts/_19.png" alt="" />
+	        <img id="_20.png" class="shirt" src="http://static.footballuser.com/images/shirts/_20.png" alt="" />
+	        <img id="_21.png" class="shirt" src="http://static.footballuser.com/images/shirts/_21.png" alt="" />
+	        <img id="_22.png" class="shirt" src="http://static.footballuser.com/images/shirts/_22.png" alt="" />
+	        <img id="_23.png" class="shirt" src="http://static.footballuser.com/images/shirts/_23.png" alt="" />
+	        <img id="_24.png" class="shirt" src="http://static.footballuser.com/images/shirts/_24.png" alt="" />
+	        <img id="_25.png" class="shirt" src="http://static.footballuser.com/images/shirts/_25.png" alt="" />
+	        <img id="_26.png" class="shirt" src="http://static.footballuser.com/images/shirts/_26.png" alt="" />
+	    </div>
 			<div class="">
 				<input id="playername" type="text" value="" size="30"
 					name="playername" /> <input id="playerid" type="text" value=""

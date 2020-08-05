@@ -6,13 +6,10 @@
 <head>
 <title>B-PRO</title>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -55,7 +52,7 @@
     }
 </script>
 <style>
-h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen Script;
+h2 { font-size : 24px; color:#000066; line-height:30px;
 	margin:52px auto 10px 0px;
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
@@ -108,19 +105,6 @@ label {
 #file { display:none; } 
 
 
-a {
-	-webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	display: block;
-	margin: 20px auto;
-	max-width: 180px;
-	text-decoration: none;
-	border-radius: 4px;
-	padding: 20px 30px;
-}
 
 .button {
 	color: rgba(30, 22, 54, 0.6);
@@ -145,7 +129,14 @@ a {
 	color: rgba(255, 255, 255, 0.85);
 	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
 }
-
+.row{
+	margin-right: auto;
+	margin-left: auto;
+}
+td{
+	border:none;
+}
+.container{max-width:1100px;}
 </style>
 
 <script>
@@ -159,8 +150,6 @@ a {
 		};
 		reader.readAsDataURL(event.target.files[0]);
 	}
-	
-
 </script>
 
 
@@ -174,18 +163,19 @@ a {
 	  <!-- 이미지 위에 글쓰는곳 -->
 	</div>
 </div>
-	<main class="hoc container clear">
-	    <div class="container">
+<div class="wrapper row3" >
+	<main class="hoc clear">
+	    <div class="container" style="margin-left:auto; margin-right:auto;">
 	    <h1 style="font-size:40px; font-weight:bold; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h1>
 	    <form action="../member/memberJoin2.do" enctype="multipart/form-data" method="post"id="myForm" name="form"  >
 			<!-- Header -->
 			
-			<input type="hid den" name="m_id" value="<%=request.getAttribute("m_id") %>"/>
-			<input type="hid den" name="m_pw" value="<%=request.getAttribute("m_pw") %>"/>
-			<input type="hid den" name="m_name" value="<%=request.getAttribute("m_name") %>"/>
-			<input type="hid den" name="m_birth" value="<%=request.getAttribute("m_birth") %>"/>
-			<input type="hid den" name="m_phone" value="<%=request.getAttribute("m_phone") %>"/>
-			<input type="hid den" name="m_email" value="<%=request.getAttribute("m_email") %>"/>
+			<input type="hidden" name="m_id" value="<%=request.getAttribute("m_id") %>"/>
+			<input type="hidden" name="m_pw" value="<%=request.getAttribute("m_pw") %>"/>
+			<input type="hidden" name="m_name" value="<%=request.getAttribute("m_name") %>"/>
+			<input type="hidden" name="m_birth" value="<%=request.getAttribute("m_birth") %>"/>
+			<input type="hidden" name="m_phone" value="<%=request.getAttribute("m_phone") %>"/>
+			<input type="hidden" name="m_email" value="<%=request.getAttribute("m_email") %>"/>
 			
 			<header class="member-header">
 			    <div class="logo">
@@ -197,7 +187,7 @@ a {
 	        
 			<h2>주 포지션 체크</h2>
 			<table class="table table-borderless">
-				<tr>
+				<tr style="border:0px;">
 		          	<td width="20px;"><input type="checkbox" name="m_position" id="LW" value="LW"/></td>
 		          	<td><label for="LW">LW</label></td>
 		            <td width="20px;"><input type="checkbox" name="m_position" id="ST" value="ST"/></td>
@@ -266,7 +256,7 @@ a {
 	        <h2>주로쓰는 발</h2>
 	        <table class="table table-borderless">
 	        	<tr>
-	        		<td width="20px;"><input type="radio" name="m_foot" id="LF" value="왼박"></td>
+	        		<td width="20px;"><input type="radio" name="m_foot" id="LF" value="왼발"></td>
 	        		<td><label for="LF">왼발</label></td>
 	        		<td width="20px;"><input type="radio" name="m_foot" id="RF" value="오른발"></td>
 	        		<td><label for="RF">오른발</label></td>
@@ -286,13 +276,14 @@ a {
             </div>
             
 	        <h2>프로필 등록하기</h2>
-			<table>
+			<table style="text-align: center; vertical-align: middle;">
 				<tr>
-					<td>
-						<div id="image_container" style="width: 300px; height: 180px"></div>
-					</td>
-					<td>
-						<input type="file" name="file"  accept="image/*" onchange="setPic(event)"/>
+					<th colspan="2">프로필을 등록할 파일</th>
+				</tr>
+				<tr>
+					<td width="30%" style="border:1px solid black"><input type="file" name="file" accept="image/*" onchange="setPic(event)" style="margin-left: 10%;" /></td>
+					<td width="35%">
+						<div id="image_container" style="width: 250px; height: 300px;" align="center"></div>
 					</td>
 				</tr>
 			</table>
@@ -314,7 +305,7 @@ a {
 					<button type="button"  onclick="serviceAgreementPopBtnClickHandler()" style="display:inline;" class="button">약관보기</button>
 				</div>
 			</div>
-
+			<br/><br/>
 	        <div style="text-align:center">
 	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="javascript:goBack();">이전페이지</button>  
 		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">가입완료!!</button>
@@ -323,6 +314,7 @@ a {
 		</div>
 		<div class="clear"></div>
 	</main>
+</div>
 	<!-- footer -->
 	
 <%@ include file="./../include/footer.jsp"%>
@@ -355,24 +347,30 @@ $( document ).ready(function() {
     $( '.check-all' ).click( function() {
       $( '.ab' ).prop( 'checked', this.checked );
     } );
-  } );
+});
   
+  
+function setPic(event) {
+	var reader = new FileReader();
+	
+	reader.onload = function(event) {
+		if(document.getElementById('newImg')){
+			var el = document.getElementById('newImg');
+			el.remove();
+		}
+		
+		var img = document.createElement("img");
+		img.style.align = "center";
+		img.setAttribute("width", 250);
+		img.setAttribute("height", 250);
+		img.setAttribute("id", "newImg");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("#image_container").appendChild(img);
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
 </script>
 
 </body>  
 </html> 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   

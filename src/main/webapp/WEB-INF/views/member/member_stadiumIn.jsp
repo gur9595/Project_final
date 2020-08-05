@@ -12,12 +12,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
-h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen Script;
+
+h2 { font-size : 24px; color:#000066; line-height:30px;
 	margin:52px auto 10px 0px;
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
+}
+
+label {
+    cursor: pointer; font-size : 18px;
+}
+.hoc{max-width:1100px;}
+
+.txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
+.txtBox31 { border-color: DodgerBlue; width: 350px; }
+
+input[type=text]{
+	font-size:25px;
+}
+
+td{
+	border:none;
 }
 
 .box select {
@@ -32,7 +48,6 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
   appearance: button;
   outline: none;
 }
-
 .box::before {
   content: "\f13a";
   font-family: FontAwesome;
@@ -61,11 +76,44 @@ input[type=checkbox], input[type=radio]
 {
 	width : 20px; height : 20px; cursor: pointer;
 }
-label {
-    cursor: pointer; font-size : 18px;
-}
+
 #file { display:none; } 
 
+.button {
+	color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+	height:30px;
+	background-color: white;
+}
+
+.button:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+
+.button2 {
+	color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+	height:30px;
+	background-color: white;
+}
+
+.button2:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
+}
+#mainav{
+	margin-right:0px; max-width:100%;
+}
+input[type=password] {
+	font-size:15px;
+	font-family: "nanum";
+	
+	&::placeholder {
+		font-family: "NanumSquare";
+		 
+	}
+}
 </style>
 
 
@@ -80,205 +128,138 @@ label {
 	  <!-- 이미지 위에 글쓰는곳 -->
 	</div>
 </div>
+<div class="wrapper row3">
 	<main class="hoc container clear">
-		<table border=1>
-			<div>
-				<h1 class="n-hidden">Be-Pro</h1>
+		<div class="container">
+		<h1 style="font-size: 40px; text-align: center;">구장 등록</h1>
+			<form action="<c:url value="/member/member_stadiumInsert.do" />" method="post">
+					
+			<header class="member-header">
+			    <div class="logo">
+			
+			    </div>
+			</header>
 
-				<!-- Member -->
-				<div style="background: #FFFFFF;">
+			<h2>사업자등록번호(아이디)</h2>
+				<input type="text" class="txtBox31" id="s_id" name="s_id" placeholder="사업자등록번호" maxlength="20" >
 
-					<form
-						action="<c:url value="/member/member_stadiumInsert.do" />" method="post">
-						<!-- Header -->
-						<header>
-							<div class="logo"></div>
-							<h2 style="font-size: 40px; text-align: center;">구장 등록</h2>
-						</header>
+			<h2>비밀번호</h2>
+				<input type="password" class="txtBox31" id="s_pw" name="s_pw" maxlength="20"
+					 placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)" style="width:350px;">
 
-						<div class="join-form">
+			
+					
+			<h2>비밀번호 확인</h2>
+				<input type="password" class="txtBox31" 
+					id="confirmPassword" name="confirmPassword" maxlength="20" placeholder="비밀번호 확인">
 
-							<div class="n-form-set">
+			<h2>구장 이름</h2>
+				<input type="text" class="txtBox31" id="s_name" maxlength="20" name="s_name" placeholder="구장이름입력">
 
-								<h2>사업자등록번호(아이디)</h2>
-								 <input class="form-control" type="text"
-									id="s_id" name="s_id"
-									placeholder="사업자등록번호" maxlength="20"
-									style="width: 400px;">
-							</div>
+			
+			<h2>주소</h2>
+				<input class="form-control" type="text" id="postcode" name="zip1" placeholder="우편번호"maxlength="20"
+					style="width: 200px; height: 50px; margin-top: 5px; display:inline;" readonly />
+				<input type="button" class="btn btn-warning " onclick="DaumPostcode()" value="우편번호 찾기"
+					style="width: 200px; height: 50px; display: inline; margin-top: 5px; color: #424242; font-weight: bold"  /><br>
+				<input class="form-control" type="text" id="address" name="s_addr1" placeholder="주소" 
+					style="width: 400px; height:50px; margin-top:10px;" maxlength="20" readonly/>
+				<input class="form-control"
+					type="text" id="detailAddress" name="s_addr2" placeholder="상세주소"maxlength="20"
+					style="width: 400px; height:50px; margin-top: 10px;"" />
+				<input class="form-control"
+					type="hidden" id="extraAddress" name="s_gu" placeholder="구"maxlength="20"
+					style="width: 400px; margin-top: 5px;" />
 
-							<div class="n-form-set">
-								<h2>비밀번호</h2>
-								<div class="n-form-icon">
-									<input class="form-control" type="password"id="s_pw"maxlength="20"
-										name="s_pw" autocomplete="new-password" style="width: 400px;"
-										placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
 
-								</div>
-								<div class="n-form-icon">
-									<input class="form-control" type="password" style="width: 400px;"
-										id="confirmPassword" name="confirmPassword" maxlength="20"
-										autocomplete="new-password" placeholder="비밀번호 확인">
+			<h2>휴대전화</h2> <input class="txtBox31"maxlength="20"
+				type="tel" id="s_phone" name="s_phone" style="width: 350px;"
+				placeholder="휴대전화 입력(-없이)" maxlength="11">
 
-								</div>
-							</div>
+			<h2>구장크기</h2> <input class="txtBox31"maxlength="20"
+				type="tel" id="s_size" name="s_size" style="width: 350px;"
+				placeholder="00x00으로 입력" maxlength="11">
 
-							<div class="n-form-set">
-							
-								<h2>구장 이름</h2>
-								<input class="form-control" type="text"id="s_name"maxlength="20"
-									name="s_name" placeholder="구장이름입력" style="width: 400px;">
-								
-								
-							</div>
+			<h2>구장 대표 사진</h2> 
+				<input type="file" class="txtBox31" id="s_pic" name="s_pic">
 
-							
-
-							<div class="n-form-set" id="input-div">
-								<h2>주소</h2>
-								<div>
-									<input class="form-control" type="text" id="postcode" name="zip1" placeholder="우편번호"maxlength="20"
-										style="width: 400px;" margin-top: 5px; display: inline;"
-										readonly /> <input type="button" class="btn btn-warning "
-										onclick="DaumPostcode()" value="우편번호 찾기"
-										style="width: 400px; height: 50px; display: inline; margin-top: 5px; color: #424242; font-weight: bold" /><br>
-									<input class="form-control" type="text" id="address" name="s_addr1" placeholder="주소"
-										style="width: 400px;" maxlength="20"/> <input class="form-control"
-										type="text" id="detailAddress" name="s_addr2" placeholder="상세주소"maxlength="20"
-										style="width: 400px;" /> <input class="form-control"
-										type="text" id="extraAddress" name="s_gu" placeholder="구"maxlength="20"
-										style="width: 400px; margin-top: 5px;" />
-									<p class="n-validation" id="searchValidPhone"
-										style="display: none">주소형식이 올바르지 않습니다.</p>
-								</div>
-							</div>
-
-							<div class="n-form-set" id="input-div">
-
-								<h2>휴대전화</h2> <input class="form-control"maxlength="20"
-									type="tel" id="s_phone" name="s_phone" style="width: 400px;"
-									placeholder="휴대전화 입력(-없이)" maxlength="11">
-							</div>
-
-							<div class="n-form-set" id="input-div">
-
-								<h2>구장크기</h2> <input class="form-control"maxlength="20"
-									type="tel" id="s_size" name="s_size" style="width: 400px;"
-									placeholder="00x00으로 입력" maxlength="11">
-							</div>
-
-							
-							
-							<div class="n-form-set" id="input-div">
-
-								<h2>구장 대표 사진</h2> 
-								<input type="file" class="form-control" id="s_pic" name="s_pic">
-							</div>
-
-							
-							
-							<div class="n-form-set" id="input-div">
-
-								<h2>오픈시간</h2> <input
-									type="tel" class="form-control"id="s_starttime" name="s_starttime"style="width: 400px;"
-									placeholder="00:00" maxlength="11">
-									
-								<h2>마감시간</h2> <input
-									type="tel" class="form-control" id="s_endtime" name="s_endtime"style="width: 400px;"
-									placeholder="00:00" maxlength="11">
-								
-							</div>
-							
-							
+			<h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="width: 350px;"
+				placeholder="00:00" maxlength="11">
 				
-							<div class="n-form-set">
-							<h2>구장 종류</h2>
-								<table class="table table-borderless">
-									<tr>
-										<td width="20px;"><input type="radio" name="s_type"
-											id="sc" value="축구"></td>
-										<td><label for="sc">축구장</label></td>
-										<td width="20px;"><input type="radio" name="s_type"
-											id="ft" value="풋살"></td>
-										<td><label for="ft">풋살장</label></td>
-									</tr>
-								</table>
-							</div>
-							
-							<div class="n-form-set" id="input-div">
-								<h2>편의 시설</h2>
-								<table class="table table-borderless">
-									<tr>
-										<td width="20px;"><input type="checkbox"
-											name="s_cv" id="shower " value="샤워장" /></td>
-										<td><label for="shower">샤워장</label></td>
-										
-										<td width="20px;"><input type="checkbox"
-											name="s_cv" id="parking" value="주차장" /></td>
-										<td><label for="parking">주차장</label></td>
-										
-										<td width="20px;"><input type="checkbox"
-											name="s_cv" id="shose" value="신발대여" /></td>
-										<td><label for="shose">신발대여</label></td>
-										
-										<td width="20px;"><input type="checkbox"
-											name="s_cv" id="sportswear" value="운동복대여" /></td>
-										<td><label for="sportswear">운동복대여</label></td>
-									</tr>
-								</table>
-							</div>
-							
-							<div class="n-form-set" id="input-div">
+			<h2>마감시간</h2> <input type="tel" class="txtBox31" id="s_endtime" name="s_endtime"style="width: 350px;"
+				placeholder="00:00" maxlength="11">
 
-								<h2>상세 내용</h2> 
-								<textarea style=" width: 100%; height: 400px;" name="s_memo"></textarea>
+			<h2>구장 종류</h2>
+				<table class="table table-borderless">
+					<tr>
+						<td width="20px;"><input type="radio" name="s_type"
+							id="sc" value="축구"></td>
+						<td><label for="sc">축구장</label></td>
+						<td width="20px;"><input type="radio" name="s_type"
+							id="ft" value="풋살"></td>
+						<td><label for="ft">풋살장</label></td>
+					</tr>
+				</table>
+			
+			<h2>편의 시설</h2>
+			<table class="table table-borderless">
+				<tr>
+					<td width="20px;"><input type="checkbox"
+						name="s_cv" id="shower" value="샤워장" /></td>
+					<td><label for="shower">샤워장</label></td>
+					
+					<td width="20px;"><input type="checkbox"
+						name="s_cv" id="parking" value="주차장" /></td>
+					<td><label for="parking">주차장</label></td>
+					
+					<td width="20px;"><input type="checkbox"
+						name="s_cv" id="shose" value="신발대여" /></td>
+					<td><label for="shose">신발대여</label></td>
+					
+					<td width="20px;"><input type="checkbox"
+						name="s_cv" id="sportswear" value="운동복대여" /></td>
+					<td><label for="sportswear">운동복대여</label></td>
+				</tr>
+			</table>
 
-							</div>
-							
-							<div class="n-form-set" id="input-div">
+			<h2>상세 내용</h2> 
+			<textarea style=" width: 100%; height: 400px;" name="s_memo"></textarea>
 
-								<h2>가격</h2> <input
-									type="tel" class="form-control" id="s_price" name="s_price" style="width: 400px;"
-									placeholder=",없이 숫자만 입력" maxlength="11">
-							</div>
 
-							<div id="agreementDivArea" class="agreement">
-							<h2>이용 약관</h2>
-								<div>
-								<table>
-									<tr>
-										<td><input type="checkbox" class="n-check" id="checkAll"/></td>
-										<td><label for="checkAll">약관 전체동의</label></td>
-									
-										<td><input type="checkbox" class="n-check" id="agreeCheckbox" name="agreeCheckbox"/></td>
-										<td><label for="agreeCheckbox">개인정보 수집 이용동의(필수)</label>
-											<button type="button" class="link" onclick="privacyAgreeUsagePopBtnClickHandler()">약관보기</button>
-										</td>
-									
-										<td><input type="checkbox" class="n-check agree-item required-agree-item" id="useTermsCheckbox" name="useTermsCheckbox"/></td>
-										<td><label for="useTermsCheckbox">축구장 이용약관(필수)</label>
-											<button type="button" class="link" onclick="serviceAgreementPopBtnClickHandler()">약관보기</button>
-										</td>
-									</tr>
-								
-								</table>
+			<h2>가격</h2> <input
+				type="tel" class="txtBox31" id="s_price" name="s_price" 
+				placeholder=",없이 숫자만 입력" maxlength="11" style="width:350px;">
+			
+			<br/> <br/>
 
-								</div>
-							</div>
-						</div>
-
-						<div id="joinBtnDiv" class="member-btn">
-							<input type="submit" class="n-btn btn-primary" onsubmit=""
-								value="등록" />
-						</div>
-					</form>
-
+			<div id="agreementDivArea" class="agreement">
+				<div>
+                   <input type="checkbox" id="all" name="all" class="check-all" style="display:inline;">
+                   <label for="all" style="display:inline;">약관 전체동의</label>
+               	</div>
+               	<br />
+               	<div>
+                   <input type="checkbox"  id="checkbox1" name="agreeCheckbox" class="ab" style="display:inline;">
+                   <label for="checkbox1" style="display:inline;">개인정보 수집 이용동의(필수)</label>
+                   <button type="button"  onclick="privacyAgreeUsagePopBtnClickHandler()" style="display:inline;" class="button2">약관보기</button>
+               	</div>
+				<br />
+				<div>
+				    <input type="checkbox" id="useTermsCheckbox" name="useTermsCheckbox" class="ab"  style="display:inline;">
+					<label for="useTermsCheckbox" style="display:inline;" >축구장 이용약관(필수)</label>
+					<button type="button"  onclick="serviceAgreementPopBtnClickHandler()" style="display:inline;" class="button">약관보기</button>
 				</div>
 			</div>
-		</table>
-		<!-- / main body -->
+			<br />
+			<div id="joinBtnDiv" class="member-btn" style="text-align:center">
+				<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="javascript:goBack();">이전페이지</button> 
+				<button type="submit" class="btn btn-outline-success" style="font-size:20px;">가입완료!!</button>
+			</div>
+			</form>
+			</div>
 		<div class="clear"></div>
 	</main>
+</div>
 	<!-- footer -->
 	
 <%@ include file="./../include/footer.jsp"%>
@@ -336,7 +317,32 @@ label {
             }
         }).open();
     }
+	
+    function goBack() {
+    	history.go(-1);
+    }
+    function privacyAgreeUsagePopBtnClickHandler() {
+    	var popSizeOnMobile = '';
+    	    if(false) {
+    	        popSizeOnMobile = 'width=100%,height=100%,';
+    	    }
+    	    window.open('./../member/article.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+    	}
 
+    	function serviceAgreementPopBtnClickHandler() {
+    	    var popSizeOnMobile = '';
+    	    if(false) {
+    	        popSizeOnMobile = 'width=100%,height=100%,';
+    	    }
+    	    window.open('./../member/article.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+    	}
+
+    	$( document ).ready(function() {
+    	    $( '.check-all' ).click( function() {
+    	      $( '.ab' ).prop( 'checked', this.checked );
+    	    } );
+    	  } );
+    	
     </script>  
 </html> 
   
