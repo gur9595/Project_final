@@ -3,9 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<title>포메이션 작성</title>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 전술판 전용 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript"
@@ -34,11 +34,38 @@
 .dropped_name {
 color: #fff;
 }
-</style>
-
-	<div id="field" class="two_third first">
-		<table
-			style="height: 613px; width: 416px; background: url(http://static.footballuser.com/images/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+</style>  
+	<div>
+		<button id="button" class="btn btn-light" style="position:absolute; left: 10px ; top: 10px ;">Bench</button>
+		<div class="toggler"  align="center"
+		style="width:80px; position:absolute; left: 10px ; top: 60px ; background-color: #ffffff;
+        opacity: 0.5;">
+		  <div id="effect" class="ui-widget-content ui-corner-all">  
+		    <h3 class="ui-widget-header ui-corner-all">Bench</h3>
+			    <div id="player_list" class="player_list" >
+						<table id="player_table" cellspacing="0" cellpadding="0" border="0"> 
+							<tbody>
+								<c:forEach items="${bench }" var="row" varStatus="status" >
+									<tr>
+										<td height="22" align="left" class="player_header">
+											<div class = "player ui-draggable" value="${row }">${row }</div>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div> 
+		  	</div>
+		</div>
+	<div id="field" style="width:100%; height:100%"> 
+		
+		<table   
+			style="width:100%; height:100%;background: url(./../resources/img/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+			<tr style="height:4.25%;">
+				<td colspan=5>
+					
+				</td>
+			</tr>
 			<c:forEach items="${squad }" var="row" varStatus="status">
 				<c:choose>
 					<c:when test="${status.count==1 }">
@@ -569,39 +596,17 @@ color: #fff;
 				<td></td>
 				<td></td>
 			</tr> -->
+			<tr colspan=5 style="height:4.25%;"></tr>
+			
 		</table>
 		<!-- <img id="field_image" height="613" width="416" src="http://static.footballuser.com/images/field.jpg" alt="" /> -->
 	</div>
-
-	<div class="one_third" style="display: inline;">
-		<div class="">
-		<br class="clear" />
-
-		<div class="">
-		<h2>포메이션 4-2-3-1 </h2>
-			<h3>
-				벤치 멤버
-			</h3>
-			<div id="player_list" class="player_list" >
-				<table id="player_table" cellspacing="0" cellpadding="0" border="0"
-					width="200px">
-					<tbody>
-						<c:forEach items="${bench }" var="row" varStatus="status" >
-							<tr>
-								<td height="22" align="left" class="player_header">
-									<div class = "player ui-draggable" value="${row }">${row }</div>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-
-		</div>
+	
+	<div id="ball" style="left:50%; top:50%; position:absolute;">
+		<img style="width:60px; height:60px;" src="./../resources/img/ball3.png" alt="" />
+	</div> 
 
 	</div>
-
-
 	<br class="clear" />
 
 
@@ -629,5 +634,29 @@ color: #fff;
 	for ( var selector in config) {
 		$(selector).chosen(config[selector]);
 	}
+	$( function() {
+	    // run the currently selected effect
+	    function runEffect() {
+	      // get effect type from
+	      var selectedEffect = $( "#effectTypes" ).val();
+	 
+	      // Most effect types need no options passed by default
+	      var options = {};
+	      // some effects have required parameters
+	      if ( selectedEffect === "scale" ) {
+	        options = { percent: 50 };
+	      } else if ( selectedEffect === "size" ) {
+	        options = { to: { width: 200, height: 60 } };
+	      }
+	 
+	      // Run the effect
+	      $( "#effect" ).toggle("slide", options, 500 );
+	    };
+	 
+	    // Set effect from select menu value
+	    $( "#button" ).on( "click", function() {
+	      runEffect();
+	    });
+	  } );
 </script>
 </html>
