@@ -1,59 +1,51 @@
 package com.kosmo.project_final;
-
-
-import java.io.IOException;
+ 
+ 
+import java.io.IOException; 
 import java.security.Principal;
-
+ 
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+ 
+import org.apache.ibatis.session.SqlSession; 
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Controller; 
+import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import mybatis.CashDAOImpl;
+ 
+import mybatis.CashDAOImpl; 
 import mybatis.CashDTO;
-
-@Controller
+import mybatis.ClubDAOImpl;
+ 
+@Controller 
 public class PaymentController {
-	
-	@Autowired
+ 
+	// Mybatis를 사용하기 위해 빈 자동주입
+	@Autowired 
 	private SqlSession sqlSession;
-	
-	@RequestMapping("/payment/paymentMain.do")
+	 
+	// 마일리지 충전의 틀이 되는 페이지
+	@RequestMapping("/payment/paymentMain.do") 
 	public String paymentMain() {
-		return "payment/payment_main";
+	
+		return "payment/payment_main";  
 	}
 	
-    // 결제로직 중 성공 시 서버에 파일업로드 후 DB저장
-    @RequestMapping("/payment/paymentDeposit.do")
-    public String paymentDeposit(Principal principal ,HttpServletRequest req, CashDTO cashDTO, Model model) {
+	@RequestMapping("/payment/paymentDeposit.do") 
+	public String paymentDeposit(HttpServletRequest req, CashDTO cashDTO, Principal principal) {
+		int cs_charge = Integer.parseInt(req.getParameter("cs_charge"));
 		String m_id = principal.getName();
-    	try {
-    		int cs_charge=0;
-			if(req.getParameter("cs_charge")!=null)
-				cs_charge= Integer.parseInt(req.getParameter("cs_charge"));
-    		System.out.println("cs_charge : "+cs_charge);
-    		
-    		cashDTO.setM_id(m_id);    		
-    		cashDTO.setCs_current(cashDTO.getCs_current()+cs_charge); 
-    		
-    		
-    		
-    		sqlSession.getMapper(CashDAOImpl.class).ballResult(cashDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	
-    
-    	
-	    return "payment/payment_main";
-	    
-    }
-
-      
-      
-	 
-	
+		
+		System.out.println("cs_charge : "+cs_charge);
+		System.out.println("m_id : "+m_id);
+		
+		cashDTO.setM_id(m_id);
+		cashDTO.setCs_charge(cs_charge);
+		
+		sqlSession.getMapper(CashDAOImpl.class).ballResult(cashDTO);
+		sqlSession.getMapper(CashDAOImpl.class).ballUpdate(cs_charge, m_id);
+		
+		return "payment/payment_main";  
+	}
+		 
 }
+ 

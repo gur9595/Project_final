@@ -235,62 +235,6 @@ input[type=password] {
 				
 				<br/> <br/>
 
-				<h2>구장크기</h2> <input class="txtBox31"maxlength="20"
-					type="tel" id="s_size" name="s_size" style="width: 400px;"
-					placeholder="00x00으로 입력" maxlength="11">
-
-				<h2>구장 대표 사진</h2> 
-					<input type="file" class="txtBox31" id="s_pic" name="s_pic">
-
-				<h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="width: 400px;"
-					placeholder="00:00" maxlength="11">
-					
-				<h2>마감시간</h2> <input type="tel" class="txtBox31" id="s_endtime" name="s_endtime"style="width: 400px;"
-					placeholder="00:00" maxlength="11">
-
-				<h2>구장 종류</h2>
-				<table class="table table-borderless">
-					<tr>
-						<td width="20px;"><input type="radio" name="s_type"
-							id="sc" value="축구"></td>
-						<td><label for="sc">축구장</label></td>
-						<td width="20px;"><input type="radio" name="s_type"
-							id="ft" value="풋살"></td>
-						<td><label for="ft">풋살장</label></td>
-					</tr>
-				</table>
-					
-				<h2>편의 시설</h2>
-				<table class="table table-borderless">
-					<tr>
-						<td width="20px;"><input type="checkbox"
-							name="s_cv" id="shower" value="샤워장" /></td>
-						<td><label for="shower">샤워장</label></td>
-						
-						<td width="20px;"><input type="checkbox"
-							name="s_cv" id="parking" value="주차장" /></td>
-						<td><label for="parking">주차장</label></td>
-						
-						<td width="20px;"><input type="checkbox"
-							name="s_cv" id="shose" value="신발대여" /></td>
-						<td><label for="shose">신발대여</label></td>
-						
-						<td width="20px;"><input type="checkbox"
-							name="s_cv" id="sportswear" value="운동복대여" /></td>
-						<td><label for="sportswear">운동복대여</label></td>
-					</tr>
-				</table>
-
-				<h2>상세 내용</h2> 
-				<textarea style=" width: 100%; height: 400px;" name="s_memo"></textarea>
-
-
-				<h2>가격</h2> <input
-					type="tel" class="txtBox31" id="s_price" name="s_price" "
-					placeholder=",없이 숫자만 입력" maxlength="11">
-				
-				<br/> <br/>
-
 				<div id="agreementDivArea" class="agreement">
 					<div>
 	                   <input type="checkbox" id="all" name="all" class="check-all" style="display:inline;">
@@ -317,7 +261,7 @@ input[type=password] {
 					<button type="button" onclick="getCoords();" class="btn btn-outline-success" style="font-size:20px;">가입완료!!</button>
 				</div>
 			</form>
-			</div>
+			</div> 
 		<div class="clear"></div>
 	</main>
 </div>
