@@ -39,6 +39,8 @@ public class PaymentController {
     		cashDTO.setM_id(m_id);    		
     		cashDTO.setCs_current(cashDTO.getCs_current()+cs_charge); 
     		
+    		
+    		
     		sqlSession.getMapper(CashDAOImpl.class).ballResult(cashDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,6 +51,7 @@ public class PaymentController {
 	    return "payment/payment_main";
 	    
     }
+
       
       
 	 

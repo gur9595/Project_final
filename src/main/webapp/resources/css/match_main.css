@@ -219,14 +219,9 @@ a:hover.tip span {
     display: block;
 }
 
-tr:hover.game_list, tr:hover.extra_list {
-	background-color: #EAEAEA;
+tr:hover.game_list, tr:hover.extra_list, tr:hover.stadium_list {
+	background-color: #e9e9e9;
 }
-
-
-
-
-
 
 
 

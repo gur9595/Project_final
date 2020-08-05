@@ -126,7 +126,7 @@ function displayPlaces(locPosition) {
     var locations = [
     	<c:forEach items="${stadiumList}" var="row">
     		['${row.s_name}', '${row.s_lat}', '${row.s_lng}', 
-    		 '${row.s_addr}', '${row.s_phone}'],
+    		 '${row.s_addr}', '${row.s_phone}', '${row.s_idx}'],
     	</c:forEach>
     ];
     
@@ -161,7 +161,7 @@ function displayPlaces(locPosition) {
 	    kakao.maps.event.addListener(marker, 'click', makeClickListener(marker));
 		
 		// 검색 결과 항목 Element를 생성합니다
-		var itemEl = getListItem(i, locations[i][0], locations[i][3], locations[i][4]);
+		var itemEl = getListItem(i, locations[i][0], locations[i][3], locations[i][4], locations[i][5]);
 		
 		// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
@@ -220,13 +220,19 @@ function displayPlaces(locPosition) {
 }
 
 //검색결과 항목을 Element로 반환하는 함수입니다
-function getListItem(index, s_name, s_locations, s_phone) {
+function getListItem(index, s_name, s_locations, s_phone, s_idx) {
 
+	var addrs = s_locations.split(" ");
+	var dong = addrs[2];	
+	
     var el = document.createElement('li'),
     itemStr =  '<div class="mapList">';
    	itemStr += '	<span class="markerbg marker_' + (index+1) + '"></span>' +
                '	<div class="info">' +
-	           '		<span class="booking" onclick="booking('+ s_name +');">' + s_name + '</span>';
+	           '		<span class="booking" onclick="booking('+ s_name +');">' + 
+   							'<a href="../match/stadiumApply.do?s_idx=' + s_idx + '&dong=' + dong + 
+   									'&s_name=' + s_name + '&s_addr=' + s_locations + '" style="color:blue; font-size:16px;">' 
+   										+ s_name + '</a></span>';
 
 	itemStr += '		<span>' + s_locations + '</span>';
                  

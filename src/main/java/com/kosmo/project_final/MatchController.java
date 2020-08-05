@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import mybatis.StadiumDAOImpl;
 import mybatis.StadiumDTO;
+import mybatis.StadiumGameDTO;
 import utils.StadiumPaging;
 import mybatis.AdminDAOImpl;
 import mybatis.ClubDTO;
@@ -89,16 +90,348 @@ public class MatchController {
 		return "match/stadium_main";
 	}
 	
-	//경기장 예약
-	@RequestMapping("/match/stadiumNormalApply.do")
-	public String stadiumApply(Model model, HttpServletRequest req) {
+	//경기장 상세보기 페이지 리스트
+	@RequestMapping("/match/stadiumApply.do")
+	public String stadiumApply(Model model, HttpServletRequest req, Principal principal) {
+
+		String m_id = (String) (principal.getName());
+		int s_idx = Integer.parseInt(req.getParameter("s_idx"));
+				
+		ArrayList<StadiumGameDTO> stadiumGameLists = sqlSession.getMapper(StadiumDAOImpl.class).s_gamelist(s_idx);
+		ArrayList<StadiumGameDTO> lists = new ArrayList<StadiumGameDTO>();
 		
-		//파라미터 저장을 위한 DTO객체 생성
-		StadiumDTO stadiumDTO = new StadiumDTO();
-		stadiumDTO.setS_name("s_name");
+		String cv = "", memo = "", addr = "", dong = "", name = "", type = ""; int price = 0, c_idx = 0, g_idx = 0;
+		ArrayList<StadiumDTO> stadiumLists = new ArrayList<StadiumDTO>();
 		
+		int oper_time = 0, no_time = 0, yes_time = 0;
+		
+		if(!stadiumGameLists.isEmpty()) {
+			for(StadiumGameDTO dto : stadiumGameLists) {
+			
+				c_idx = dto.getC_idx();
+				g_idx = dto.getG_idx();
+				String c_name = sqlSession.getMapper(StadiumDAOImpl.class).c_name_get(c_idx);
+				dto.setC_name(c_name);
+				
+				String[] s_time = dto.getS_starttime().split(":");
+				String[] e_time = dto.getS_endtime().split(":");
+				oper_time = ((Integer.parseInt(e_time[0]) - Integer.parseInt(s_time[0])) / 2);
+				yes_time = Integer.parseInt(dto.getG_time().split(":")[0]);
+				
+				for(int i = 0 ; i <= oper_time ; i++) {
+					if(no_time < Integer.parseInt(e_time[0])) {
+						
+						String g_time = String.valueOf(no_time);
+						String ten = String.valueOf(no_time + 2);
+						String g_endtime = null;
+						if(g_time.length() == 1) {
+							if(!ten.equals("10")) {
+								g_endtime = "0" + String.valueOf(no_time + 2);
+							}
+							else if(ten.equals("10")) {
+								g_endtime = String.valueOf(no_time + 2);
+							}
+							g_time = "0" + g_time + ":00 ~ " + g_endtime + ":00";
+							StadiumGameDTO stadiumGameDTO = new StadiumGameDTO();
+							stadiumGameDTO.setG_time(g_time);
+							lists.add(stadiumGameDTO);
+						}
+						else {
+							g_time = g_time + ":00 ~ " + String.valueOf(no_time + 2) + ":00";
+							StadiumGameDTO stadiumGameDTO = new StadiumGameDTO();
+							stadiumGameDTO.setG_time(g_time);
+							lists.add(stadiumGameDTO);
+						}
+					}
+					no_time += 2;
+				}
+			}
+			
+			for(StadiumGameDTO DTO : stadiumGameLists) {
+				for(StadiumGameDTO dto : lists) {
+					
+					System.out.println("DTO.getC_name() : " + DTO.getC_name() + " / dto.getC_name() : " + dto.getC_name());
+					System.out.println("DTO.getG_time() : " + DTO.getG_time() + " / dto.getG_time() : " + dto.getG_time());
+					if(dto.getG_time().equals(DTO.getG_time())) {
+						
+						dto.setC_name(DTO.getC_name());
+						dto.setG_time(DTO.getG_time());
+						dto.setG_date(DTO.getG_date());
+						dto.setC_idx(DTO.getC_idx());
+						dto.setG_idx(DTO.getG_idx());
+					}
+				}
+			}
+			
+			stadiumLists = sqlSession.getMapper(StadiumDAOImpl.class).stadiumlist(s_idx);
+			for(StadiumDTO dto : stadiumLists) {
+				cv = dto.getS_cv();
+				type = dto.getS_type();
+				memo = dto.getS_memo();
+				addr = dto.getS_addr();
+				name = dto.getS_name();
+				price = dto.getS_price();
+				dong = dto.getS_addr().split(" ")[2];
+			}
+		}
+		else if(stadiumGameLists.isEmpty()) {
+			
+			stadiumLists = sqlSession.getMapper(StadiumDAOImpl.class).stadiumlist(s_idx);
+			
+			for(StadiumDTO dto : stadiumLists) {
+				cv = dto.getS_cv();
+				type = dto.getS_type();
+				memo = dto.getS_memo();
+				addr = dto.getS_addr();
+				name = dto.getS_name();
+				price = dto.getS_price();
+				dong = dto.getS_addr().split(" ")[2];
+				
+				String[] s_time = dto.getS_starttime().split(":");
+				String[] e_time = dto.getS_endtime().split(":");
+				oper_time = ((Integer.parseInt(e_time[0]) - Integer.parseInt(s_time[0])) / 2);
+				
+				for(int i = 0 ; i <= oper_time ; i++) {
+					if(no_time < Integer.parseInt(e_time[0])) {
+						
+						String g_time = String.valueOf(no_time);
+						String ten = String.valueOf(no_time + 2);
+						String g_endtime = null;
+						if(g_time.length() == 1) {
+							if(!ten.equals("10")) {
+								g_endtime = "0" + String.valueOf(no_time + 2);
+							}
+							else if(ten.equals("10")) {
+								g_endtime = String.valueOf(no_time + 2);
+							}
+							g_time = "0" + g_time + ":00 ~ " + g_endtime + ":00";
+							StadiumGameDTO stadiumGameDTO = new StadiumGameDTO();
+							stadiumGameDTO.setG_time(g_time);
+							lists.add(stadiumGameDTO);
+						}
+						else {
+							g_time = g_time + ":00 ~ " + String.valueOf(no_time + 2) + ":00";
+							StadiumGameDTO stadiumGameDTO = new StadiumGameDTO();
+							stadiumGameDTO.setG_time(g_time);
+							lists.add(stadiumGameDTO);
+						}
+					}
+					no_time += 2;
+				}
+			}
+		}
+		
+		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
+		model.addAttribute("c_list", c_list);
+		
+		int cash = sqlSession.getMapper(MatchDAOImpl.class).getCash(m_id);
+		
+		model.addAttribute("stadiumGameLists", lists);		
+		model.addAttribute("s_idx", s_idx);
+		model.addAttribute("cv", cv);
+		model.addAttribute("type", type);
+		model.addAttribute("memo", memo);
+		model.addAttribute("addr", addr);
+		model.addAttribute("dong", dong);
+		model.addAttribute("name", name);
+		model.addAttribute("price", price);
+		model.addAttribute("cash", cash);
 		
 		return "match/stadium_apply";
+	}
+	
+	//경기장 상세보기 페이지 리스트 검색
+	@RequestMapping("/match/stadiumApplySearch.do")
+	public String stadiumApplySearch(Model model, HttpServletRequest req, Principal principal) {
+		
+		String m_id = (String) (principal.getName());
+		int s_idx = Integer.parseInt(req.getParameter("s_idx"));
+		String date = req.getParameter("date");
+		Date g_date = Date.valueOf(date);
+		
+		ArrayList<StadiumGameDTO> stadiumGameLists = sqlSession.getMapper(StadiumDAOImpl.class).s_gamelist_search(s_idx, g_date);
+		ArrayList<StadiumGameDTO> lists = new ArrayList<StadiumGameDTO>();
+		
+		String cv = "", memo = "", addr = "", dong = "", name = "", type = ""; int price = 0, c_idx = 0, g_idx = 0;
+		ArrayList<StadiumDTO> stadiumLists = new ArrayList<StadiumDTO>();
+		
+		int oper_time = 0, no_time = 0, yes_time = 0;
+		if(!stadiumGameLists.isEmpty()) {
+			for(StadiumGameDTO dto : stadiumGameLists) {
+				
+				c_idx = dto.getC_idx();
+				g_idx = dto.getG_idx();
+				String c_name = sqlSession.getMapper(StadiumDAOImpl.class).c_name_get(c_idx);
+				dto.setC_name(c_name);
+				
+				String[] s_time = dto.getS_starttime().split(":");
+				String[] e_time = dto.getS_endtime().split(":");
+				oper_time = ((Integer.parseInt(e_time[0]) - Integer.parseInt(s_time[0])) / 2);
+				yes_time = Integer.parseInt(dto.getG_time().split(":")[0]);
+				
+				for(int i = 0 ; i <= oper_time ; i++) {
+					if(no_time < Integer.parseInt(e_time[0])) {
+						
+						String g_time = String.valueOf(no_time);
+						String ten = String.valueOf(no_time + 2);
+						String g_endtime = null;
+						if(g_time.length() == 1) {
+							if(!ten.equals("10")) {
+								g_endtime = "0" + String.valueOf(no_time + 2);
+							}
+							else if(ten.equals("10")) {
+								g_endtime = String.valueOf(no_time + 2);
+							}
+							g_time = "0" + g_time + ":00 ~ " + g_endtime + ":00";
+							StadiumGameDTO stadiumGameDTO = new StadiumGameDTO();
+							stadiumGameDTO.setG_time(g_time);
+							lists.add(stadiumGameDTO);
+						}
+						else {
+							g_time = g_time + ":00 ~ " + String.valueOf(no_time + 2) + ":00";
+							StadiumGameDTO stadiumGameDTO = new StadiumGameDTO();
+							stadiumGameDTO.setG_time(g_time);
+							lists.add(stadiumGameDTO);
+						}
+					}
+					no_time += 2;
+				}
+			}
+			
+			for(StadiumGameDTO DTO : stadiumGameLists) {
+				for(StadiumGameDTO dto : lists) {
+					
+					System.out.println("DTO.getC_name() : " + DTO.getC_name() + " / dto.getC_name() : " + dto.getC_name());
+					System.out.println("DTO.getG_time() : " + DTO.getG_time() + " / dto.getG_time() : " + dto.getG_time());
+					if(dto.getG_time().equals(DTO.getG_time())) {
+						
+						dto.setC_name(DTO.getC_name());
+						dto.setG_time(DTO.getG_time());
+						dto.setG_date(DTO.getG_date());
+						dto.setC_idx(DTO.getC_idx());
+						dto.setG_idx(DTO.getG_idx());
+					}
+				}
+			}
+			stadiumLists = sqlSession.getMapper(StadiumDAOImpl.class).stadiumlist(s_idx);
+			for(StadiumDTO dto : stadiumLists) {
+				cv = dto.getS_cv();
+				type = dto.getS_type();
+				memo = dto.getS_memo();
+				addr = dto.getS_addr();
+				name = dto.getS_name();
+				price = dto.getS_price();
+				dong = dto.getS_addr().split(" ")[2];
+			}
+		}
+		else if(stadiumGameLists.isEmpty()) {
+			
+			stadiumLists = sqlSession.getMapper(StadiumDAOImpl.class).stadiumlist(s_idx);
+			
+			for(StadiumDTO dto : stadiumLists) {
+				cv = dto.getS_cv();
+				type = dto.getS_type();
+				memo = dto.getS_memo();
+				addr = dto.getS_addr();
+				name = dto.getS_name();
+				price = dto.getS_price();
+				dong = dto.getS_addr().split(" ")[2];
+				
+				String[] s_time = dto.getS_starttime().split(":");
+				String[] e_time = dto.getS_endtime().split(":");
+				oper_time = ((Integer.parseInt(e_time[0]) - Integer.parseInt(s_time[0])) / 2);
+				
+				for(int i = 0 ; i <= oper_time ; i++) {
+					if(no_time < Integer.parseInt(e_time[0])) {
+						
+						String g_time = String.valueOf(no_time);
+						String ten = String.valueOf(no_time + 2);
+						String g_endtime = null;
+						if(g_time.length() == 1) {
+							if(!ten.equals("10")) {
+								g_endtime = "0" + String.valueOf(no_time + 2);
+							}
+							else if(ten.equals("10")) {
+								g_endtime = String.valueOf(no_time + 2);
+							}
+							g_time = "0" + g_time + ":00 ~ " + g_endtime + ":00";
+							StadiumGameDTO stadiumGameDTO = new StadiumGameDTO();
+							stadiumGameDTO.setG_time(g_time);
+							lists.add(stadiumGameDTO);
+						}
+						else {
+							g_time = g_time + ":00 ~ " + String.valueOf(no_time + 2) + ":00";
+							StadiumGameDTO stadiumGameDTO = new StadiumGameDTO();
+							stadiumGameDTO.setG_time(g_time);
+							lists.add(stadiumGameDTO);
+						}
+					}
+					no_time += 2;
+				}
+			}
+		}
+		
+		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
+		model.addAttribute("c_list", c_list);
+		
+		model.addAttribute("stadiumGameLists", lists);
+		model.addAttribute("s_idx", s_idx);
+		model.addAttribute("cv", cv);
+		model.addAttribute("type", type);
+		model.addAttribute("memo", memo);
+		model.addAttribute("addr", addr);
+		model.addAttribute("dong", dong);
+		model.addAttribute("name", name);
+		model.addAttribute("price", price);
+		
+		return "/match/stadium_apply";
+	}
+	
+	//경기장 리스트 모달창에서 매치신청
+	@RequestMapping("/match/stadiumGameApply.do")
+	public String stadiumGameApply(Model model, HttpServletRequest req, Principal principal) {
+		
+		String m_id = principal.getName();
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int cash = Integer.parseInt(req.getParameter("result_ball"));
+		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		
+		String req_date = req.getParameter("date");
+		Date date = Date.valueOf(req_date);
+		String[] addrs = req.getParameter("addr").split(" ");
+		int we_c_idx = Integer.parseInt(req.getParameter("we_c_idx"));
+		
+		
+		if(c_idx != 0) {
+			GameDTO gameDTO = new GameDTO();
+			gameDTO.setG_idx(g_idx);
+			gameDTO.setC_idx(we_c_idx);		
+			sqlSession.getMapper(MatchDAOImpl.class).stadiumGameApply_a(gameDTO);
+			sqlSession.getMapper(MatchDAOImpl.class).setCash(cash, m_id);
+		}
+		else if(c_idx == 0) {
+			
+			int g_num = sqlSession.getMapper(AdminDAOImpl.class).get_Gnum();
+			g_num++;
+			
+			GameDTO gameDTO = new GameDTO();
+			gameDTO.setC_idx(we_c_idx);
+			gameDTO.setS_idx(Integer.parseInt(req.getParameter("s_idx")));
+			gameDTO.setG_sname(req.getParameter("name"));
+			gameDTO.setG_saddr(req.getParameter("addr"));
+			gameDTO.setG_type(req.getParameter("type"));
+			gameDTO.setG_date(date);
+			gameDTO.setG_num(g_num);
+			gameDTO.setG_gu(addrs[1]);
+			gameDTO.setG_time(req.getParameter("time"));
+			
+			sqlSession.getMapper(MatchDAOImpl.class).stadiumGameApply_b(gameDTO);
+			sqlSession.getMapper(AdminDAOImpl.class).set_Gnum(g_num);
+			sqlSession.getMapper(MatchDAOImpl.class).setCash(cash, m_id);
+		}		
+		
+		return "match/match_main";
 	}
 
 	//용병페이지
@@ -109,7 +442,7 @@ public class MatchController {
 		
 		for(GameDTO dto : lists) {
 			//시작시간 쪼개기
-			String[] g_time = dto.getG_time().split("~");
+			String[] g_time = dto.getG_time().split(":");
 			dto.setG_time(g_time[0]);
 		}
 		
@@ -137,10 +470,10 @@ public class MatchController {
 	
 	//용병리스트 모달창에서 용병신청
 	@RequestMapping("/match/extraApply.do")
-	public String extraApply(Model model, HttpServletRequest req, HttpSession session) {
+	public String extraApply(Model model, HttpServletRequest req, Principal principal) {
 				
 		
-		String m_id = (String) (session.getAttribute("m_id"));		
+		String m_id = (String) (principal.getName());
 		int g_idx = (Integer.parseInt(req.getParameter("list_idx")));
 		
 		sqlSession.getMapper(MatchDAOImpl.class).extraApply(m_id, g_idx);		
@@ -166,7 +499,7 @@ public class MatchController {
 			String temp = dto.getG_memo().replace("\r\n", "<br>");
 			dto.setG_memo(temp);
 			//시작시간 쪼개기
-			String[] g_time = dto.getG_time().split("~");
+			String[] g_time = dto.getG_time().split(":");
 			dto.setG_time(g_time[0]);
 		}
 		
@@ -202,7 +535,7 @@ public class MatchController {
 	@RequestMapping("/match/gameInsert.do")
 	public String gameInsert(Model model, HttpServletRequest req, Principal principal) {
 		
-		String m_id = principal.getName();
+		String m_id = (String)principal.getName();
 		
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
 		
@@ -239,7 +572,7 @@ public class MatchController {
 		if(e_time.length() == 0) {
 			e_time = "00";
 		}
-		String time = s_time + "~" + e_time;
+		String time = s_time + ":00 ~ " + e_time + ":00";
 		
 		int g_num = sqlSession.getMapper(AdminDAOImpl.class).get_Gnum();
 		g_num++;
@@ -254,6 +587,14 @@ public class MatchController {
 		gameDTO.setG_num(g_num);
 		gameDTO.setG_gu(addr[1]);
 		gameDTO.setG_time(time);
+		gameDTO.setG_lat(req.getParameter("latitude"));
+		gameDTO.setG_lng(req.getParameter("longitude"));
+		
+		
+		System.out.println("c_idx="+Integer.parseInt(req.getParameter("c_idx")));
+		System.out.println("g_sname="+req.getParameter("g_sname"));
+		System.out.println("latitude="+req.getParameter("latitude"));
+		System.out.println("longitude="+req.getParameter("longitude"));
 		
 		
 		sqlSession.getMapper(MatchDAOImpl.class).gameApply(gameDTO);
@@ -264,7 +605,7 @@ public class MatchController {
 			
 	//게임리스트 모달창에서 매치신청
 	@RequestMapping("/match/matchApply.do")
-	public String matchApply(Model model, HttpServletRequest req, HttpSession session) {
+	public String matchApply(Model model, HttpServletRequest req) {
 				
 		GameDTO gameDTO = new GameDTO();
 		gameDTO.setG_idx(Integer.parseInt(req.getParameter("list_idx")));
