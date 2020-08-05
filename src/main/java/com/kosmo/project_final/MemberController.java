@@ -183,9 +183,13 @@ public class MemberController {
       String m_name = req.getParameter("m_name");
       String m_birth = req.getParameter("m_birth");
       String m_sex = req.getParameter("m_sex");
-      String m_phone = req.getParameter("m_phone");
       String m_email = req.getParameter("m_email");
-
+      String m_phone1 = req.getParameter("m_phone1");
+      String m_phone2 = req.getParameter("m_phone2");
+      String m_phone3 = req.getParameter("m_phone3");
+      
+      String m_phone = m_phone1 + m_phone2 + m_phone3;
+      
       model.addAttribute("m_id",m_id);
       model.addAttribute("m_pw",m_pw);
       model.addAttribute("m_name",m_name);

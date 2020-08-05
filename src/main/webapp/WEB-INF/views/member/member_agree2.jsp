@@ -145,7 +145,10 @@ a {
 	color: rgba(255, 255, 255, 0.85);
 	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
 }
-
+.row{
+	margin-right: auto;
+	margin-left: auto;
+}
 </style>
 
 <script>
@@ -174,18 +177,19 @@ a {
 	  <!-- 이미지 위에 글쓰는곳 -->
 	</div>
 </div>
+<div class="wrapper row3">
 	<main class="hoc container clear">
 	    <div class="container">
 	    <h1 style="font-size:40px; font-weight:bold; text-align:center;">회&nbsp;원&nbsp;가&nbsp;입</h1>
 	    <form action="../member/memberJoin2.do" enctype="multipart/form-data" method="post"id="myForm" name="form"  >
 			<!-- Header -->
 			
-			<input type="hid den" name="m_id" value="<%=request.getAttribute("m_id") %>"/>
-			<input type="hid den" name="m_pw" value="<%=request.getAttribute("m_pw") %>"/>
-			<input type="hid den" name="m_name" value="<%=request.getAttribute("m_name") %>"/>
-			<input type="hid den" name="m_birth" value="<%=request.getAttribute("m_birth") %>"/>
-			<input type="hid den" name="m_phone" value="<%=request.getAttribute("m_phone") %>"/>
-			<input type="hid den" name="m_email" value="<%=request.getAttribute("m_email") %>"/>
+			<input type="hidden" name="m_id" value="<%=request.getAttribute("m_id") %>"/>
+			<input type="hidden" name="m_pw" value="<%=request.getAttribute("m_pw") %>"/>
+			<input type="hidden" name="m_name" value="<%=request.getAttribute("m_name") %>"/>
+			<input type="hidden" name="m_birth" value="<%=request.getAttribute("m_birth") %>"/>
+			<input type="hidden" name="m_phone" value="<%=request.getAttribute("m_phone") %>"/>
+			<input type="hidden" name="m_email" value="<%=request.getAttribute("m_email") %>"/>
 			
 			<header class="member-header">
 			    <div class="logo">
@@ -323,6 +327,7 @@ a {
 		</div>
 		<div class="clear"></div>
 	</main>
+</div>
 	<!-- footer -->
 	
 <%@ include file="./../include/footer.jsp"%>
