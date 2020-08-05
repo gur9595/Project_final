@@ -256,5 +256,22 @@
 		where g.g_num in ( select g_num from game where c_idx=#{c_idx} and g_check ='owner' )
 		and g.g_check = 'no' order by g.g_date 
 	</select>
+	
+	<!-- 클럽 상세보기 전술 모든경기리스트  -->
+	<select id="clubMatchOpponentA" resultType="mybatis.MatchDTO">
+		select *
+		from club
+		where c_idx in (select c_idx
+		from game
+		where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
+	</select>
+		
+	<select id="clubMatchOpponentCountA" resultType="int">
+		select count(*) 
+		from club
+		where c_idx in (select c_idx
+		from game
+		where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
+	</select>
 	  
   </mapper>

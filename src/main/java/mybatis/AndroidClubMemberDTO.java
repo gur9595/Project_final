@@ -2,22 +2,22 @@ package mybatis;
 
 import java.util.Date;
 
-public class ClubMemberDTO {
+public class AndroidClubMemberDTO {
 
 	private int cm_idx;
-	private int c_idx;
+	private String c_idx;
 	private String m_id;
 	private String cm_check;
 	private Date cm_date;
 	private String cm_memo;
 	
-	public ClubMemberDTO() {
+	public AndroidClubMemberDTO() {
 		super();
 	}
 
 	
 
-	public ClubMemberDTO(int cm_idx, int c_idx, String m_id, String cm_check, Date cm_date, String cm_memo) {
+	public AndroidClubMemberDTO(int cm_idx, String c_idx, String m_id, String cm_check, Date cm_date, String cm_memo) {
 		super();
 		this.cm_idx = cm_idx;
 		this.c_idx = c_idx;
@@ -41,13 +41,13 @@ public class ClubMemberDTO {
 
 
 
-	public int getC_idx() {
+	public String getC_idx() {
 		return c_idx;
 	}
 
 
 
-	public void setC_idx(int c_idx) {
+	public void setC_idx(String c_idx) {
 		this.c_idx = c_idx;
 	}
 

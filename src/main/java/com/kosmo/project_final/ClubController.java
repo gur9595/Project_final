@@ -154,7 +154,7 @@ public class ClubController {
 	public String clubApplyAction(HttpServletRequest req) {
 
 		ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
-		clubMemberDTO.setC_idx(req.getParameter("c_idx"));
+		clubMemberDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));
 		clubMemberDTO.setM_id(req.getParameter("m_id"));
 		clubMemberDTO.setCm_memo(req.getParameter("memo"));
 		// Mybatis 사용
