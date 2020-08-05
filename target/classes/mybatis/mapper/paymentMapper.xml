@@ -5,10 +5,17 @@
   
 <mapper namespace="mybatis.CashDAOImpl">
 
-	<!-- 볼 충전 -->
-	<insert id="ballResult">
-		insert into cash (cs_idx, m_id, cs_current, cs_charge, cs_date)  
-			 values(cash_seq.nextval, #{m_id}, #{cs_current}, #{cs_charge}, sysdate)
+	<!-- Ball 충전 내역 -->
+	<insert id="ballResult" parameterType="mybatis.CashDTO">
+		insert into cash (cs_idx, m_id, cs_charge, cs_date)  
+			 values(cash_seq.nextval, #{m_id}, #{cs_charge}, to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'))
 	</insert>
-	
+	    
+	<!-- Ball 업데이트(누적) -->
+	<update id="ballUpdate">
+		update member 
+		set cash = cash + #{param1} 
+		where m_id = #{param2}
+	</update>
+			
 </mapper>  
