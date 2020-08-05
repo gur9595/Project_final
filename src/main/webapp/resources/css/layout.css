@@ -67,9 +67,9 @@ body{font-family :'Raleway', 'NanumSquare';}
 .elements-three li:nth-last-child(-n+3), .elements-four li:nth-last-child(-n+4){margin-bottom:0;}/* Removes bottom margin from the last line of items - margin is restored in the media queries when items stack */
 .elements-three li:nth-child(3n+1), .elements-four li:nth-child(4n+1){margin-left:0; clear:left;}/* Removes the need to add class="first" */
 .elements article{display:block; padding:30px 15px; border-radius:50px 0; text-align:center;}
-.elements article *{margin:0 0 15px 0; padding:0; line-height:1;}
-.elements article i{width:60px; height:60px; line-height:60px; margin-bottom:30px; font-size:1.6rem; text-align:center; border-radius:50%;}
-.elements article .heading{font-size:1.2rem; font-weight:700;}
+.elements article *{margin:0; padding:0; line-height:1;}
+.elements article i{width:60px; height:60px; line-height:60px; margin-bottom:10px; font-size:1.6rem; text-align:center; border-radius:50%;}
+.elements article .heading{font-size:1.5rem; font-weight:700;}
 .elements article p{margin:0; line-height:normal;}
 
 /* Introblocks */
@@ -302,7 +302,7 @@ td{border-width:0 1px;}
 .faico li:last-child{margin-right:0;}
 .faico a{display:inline-block; width:36px; height:36px; line-height:36px; font-size:18px; text-align:center;}
 
-.faico a{color:inherit; background-color:#282E39;}
+.faico a{color:inherit; background-color:#151326;}
 .faico a:hover{color:#FFFFFF;}
 
 .faicon-dribble:hover{background-color:#EA4C89;}
@@ -317,7 +317,7 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#A5A6AA; background-color:#282E39;}
+body{color:#A5A6AA; background-color:#151326;}
 a{color:#97A9BD;}
 a:active, a:focus{background:transparent !important;}
 hr, .borderedbox{border-color:#D7D7D7;}
@@ -325,7 +325,7 @@ label span{color:#FF0000; background-color:inherit;}
 input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 
 .overlay{color:#FFFFFF; background-color:inherit;}
-.overlay::after{color:inherit; background-color:rgba(40,46,57,.7);/* #282E39 */}
+.overlay::after{color:inherit; background-color:rgba(40,46,57,.7);/* #151326 */}
 .overlay.light::after{background-color:rgba(151,169,189,.7);/* #97A9BD */}
 
 .gradient{color:#474747; background:linear-gradient(to bottom, #F4F4F4 55%, #FFFFFF 50%, #FFFFFF 100%);}/* Overlap dark to make a hard transition */
@@ -350,7 +350,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 .row2{color:#474747; background-color:#F4F4F4;}
 .row3{color:#474747; background-color:#FFFFFF;}
 .row4{color:#A5A6AA; background-color:#000000;}
-.row5, .row5 a{color:#A5A6AA; background-color:#282E39;}
+.row5, .row5 a{color:#A5A6AA; background-color:#151326;}
 .coloured{color:#FFFFFF; background-color:#97A9BD;}
 
 
@@ -368,11 +368,21 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 .elements article a i{color:#FFFFFF; background-color:#97A9BD;}/* Default */
 .elements article:hover a i{color:#97A9BD; background-color:#FFFFFF;}/* Default */
 
+
+/* 박예진 */
 /* ###### DELETE THE FOLLOWING IF ONLY THE DEFAULT COLOUR IS REQUIRED ###### */
-#introblocks .elements li article{color:#FFFFFF; background-color:#354a6d;}/* Blue */
-#introblocks .elements li article a i{color:#354a6d; background-color:#FFFFFF;}/* Blue */
-#introblocks .elements li article:hover{color:#354a6d; background-color:#FFFFFF !important;}
-#introblocks .elements li article:hover a i{color:#FFFFFF !important; background-color:#354a6d;}
+#introblocks .elements li article{
+	color:#FFFFFF; background: linear-gradient(to bottom, #576787, #151326 90%);
+}/* Blue */
+#introblocks .elements li article a{color:#FFFFFF; font-size: 1.5em; position: absolute; left:0; top: 0; width: 100%; height: 100%;}
+#introblocks .elements li article i{color:#151326; background-color:#FFFFFF; width: 100px; height: 100px; font-size: 50px; line-height: 100px;}
+#introblocks .elements li article .article-a-inner{position: absolute; top: 50%; width: 100%; transform: translateY(-50%);}
+#introblocks .elements li article .article-hover{position: relative; opacity: 100%;}
+#introblocks .elements li article .article-before{opacity: 100%;}
+#introblocks .elements li article .article-after{position: absolute; top: 0; width: 100%; opacity: 0;}
+
+#introblocks .elements li article:hover .article-before{opacity: 0;}
+#introblocks .elements li article:hover .article-after{opacity: 100%;}
 /* ###### END DELETE ###### */
 
 .shout figure figcaption a{color:inherit; background-color:inherit; border-color:#D7D7D7;}
@@ -385,7 +395,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 #testimonials article blockquote::before{color:rgba(0,0,0,.05);}
 #testimonials article blockquote::after{border-top-color:#FFFFFF;}
 
-#latest article .meta, #latest article .meta *{color:#FFFFFF; background-color:#282E39;}
+#latest article .meta, #latest article .meta *{color:#FFFFFF; background-color:#151326;}
 #latest article .excerpt{border-color:#D7D7D7;}
 
 

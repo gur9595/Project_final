@@ -492,7 +492,7 @@ function removeAllChildNods(el) {
 								height: 100%; border: 0px solid black; margin-left: 0;">
 								<!-- 필터링 결과 출력  -->						
 								<ul id="placesList"></ul>
-								<ul class="justify-content-center">
+								<ul class="justify-content-center" style="text-align: center;">
 									${pagingImg}
 								</ul>
 							</div>
