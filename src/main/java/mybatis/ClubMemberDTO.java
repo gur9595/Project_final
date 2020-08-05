@@ -11,6 +11,10 @@ public class ClubMemberDTO {
 	private Date cm_date;
 	private String cm_memo;
 	
+	
+	private String cm_grade;
+	
+	
 	public ClubMemberDTO() {
 		super();
 	}
@@ -23,6 +27,16 @@ public class ClubMemberDTO {
 		this.cm_check = cm_check;
 		this.cm_date = cm_date;
 		this.cm_memo = cm_memo;
+		this.cm_grade = cm_grade;
+	}
+
+	
+	public String getCm_grade() {
+		return cm_grade;
+	}
+
+	public void setCm_grade(String cm_grade) {
+		this.cm_grade = cm_grade;
 	}
 
 	public int getCm_idx() {

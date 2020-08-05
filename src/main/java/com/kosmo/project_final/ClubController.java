@@ -179,8 +179,10 @@ public class ClubController {
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		int clubMemberCount = sqlSession.getMapper(ClubDAOImpl.class).clubMemberCount(c_idx);
 		ArrayList<MemberDTO> grade = sqlSession.getMapper(ClubDAOImpl.class).clubViewGrade(c_idx);
+		MemberDTO memberDTO = sqlSession.getMapper(ClubDAOImpl.class).clubHeadName(c_idx);
 		
-		int total=0, wins=0, draws=0, loses=0, goals=0, op_goal=0; 
+		int total=0, wins=0, draws=0, loses=0;
+		double goals=0, op_goal=0, rating=0; 
 		
 		ArrayList<GameDTO> games = sqlSession.getMapper(ClubDAOImpl.class).clubHistory(c_idx);
 		
@@ -203,14 +205,18 @@ public class ClubController {
 				loses++;
 			}
 			
+			rating += dto.getG_rating();
+			
+			
 		}
 		
 		if(total != 0) {
 		goals=goals/total;
 		op_goal=op_goal/total;
+		rating = rating/total;
 		}
 		
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("total", total);
 		map.put("wins", wins);
@@ -218,10 +224,13 @@ public class ClubController {
 		map.put("loses", loses);
 		map.put("goals", goals);
 		map.put("op_goal", op_goal);
+		map.put("rating", rating);
 		model.addAttribute("map", map);
+
 		model.addAttribute("grade", grade);
 		model.addAttribute("clubMemberCount", clubMemberCount);
 		model.addAttribute("clubDTO", clubDTO);
+		model.addAttribute("memberDTO", memberDTO);
 
 		return "club/club_view_main";
 	}
@@ -254,21 +263,22 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubViewMatch.do")
-	public String clubViewMatch(HttpServletRequest req, Model model) {
+	public String clubViewMatch(Principal principal, HttpServletRequest req, Model model, MemberDTO memberDTO) {
 		
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		String m_id = principal.getName();
 		System.out.println("c_idx:"+ c_idx);
+		System.out.println("m_id:"+ m_id);
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(c_idx);
 		
 		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
- 
+		
 		for(MatchDTO matchDTO : lists) {
 			
 			int g_num = matchDTO.getG_num();
 			
 			MatchDTO matchDTO2 = sqlSession.getMapper(ClubDAOImpl.class).clubMatchOpponent(g_num, c_idx);
-			
 			
 			if(sqlSession.getMapper(ClubDAOImpl.class).clubMatchOpponentCount(g_num, c_idx)>0) {
 				matchDTO.setC_idx(matchDTO2.getC_idx());
@@ -279,20 +289,21 @@ public class ClubController {
 			}
 			
 		}
-				
 		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx); 
 		
+		ClubMemberDTO getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+
 		ArrayList<GameDTO> lists3 = sqlSession.getMapper(ClubDAOImpl.class).clubViewMyApply(c_idx); 
 		
 		model.addAttribute("lists", lists); 
 				
 		model.addAttribute("lists2", lists2); 
 		
-		model.addAttribute("lists3", lists3);
-		
-		model.addAttribute("clubDTO", clubDTO);   
-		    
 
+		model.addAttribute("lists3", lists3);
+		model.addAttribute("clubDTO", clubDTO);   
+		model.addAttribute("getCmgrade", getCmgrade);
+		System.out.println(getCmgrade.getCm_grade());
 		return "club/club_view_match";
 	}
 	
@@ -385,6 +396,7 @@ public class ClubController {
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		String cm_grade = req.getParameter("cm_grade");
 		String m_id = req.getParameter("m_id");
+		System.out.println("m_id :" +m_id);
 		
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));

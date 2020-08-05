@@ -69,6 +69,9 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<GameDTO> clubHistory(int c_idx);
 	
+	public MemberDTO clubHeadName(int c_idx);
+	
+	public ClubMemberDTO getCmgrade(int c_idx, String m_id);
 //	안드로이드********************************************************
 	public ArrayList<MemberDTO> clubViewMemberA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
