@@ -60,33 +60,12 @@ th {
 	border-bottom: 1px solid #444444;
 }
 
-select {
-	width: 200px; /* 원하는 너비설정 */
-	padding: .5em .5em; /* 여백으로 높이 설정 */
-	font-family: inherit; /* 폰트 상속 */
-	background:
-		url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
-		no-repeat 95% 50%; /* 네이티브 화살표 대체 */
-	border: 1px solid #999;
-	border-radius: 0px; /* iOS 둥근모서리 제거 */
-	-webkit-appearance: none; /* 네이티브 외형 감추기 */
-	-moz-appearance: none;
-	appearance: none;
-}
 </style>
 <body>
 	<div id="main-wrapper">
 		<%@ include file="./club_view_header.jsp"%>
 		<%@ include file="./club_view_sidebar.jsp"%>
 		<div class="page-wrapper">
-			<div class="page-breadcrumb">
-				<div class="row">
-					<div class="col-12 d-flex no-block align-items-center">
-						<h2 class="page-title" style="font-size: 40px;">&nbsp;조인</h2>
-						<div class="ml-auto text-right"></div>
-					</div>
-				</div>
-			</div>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-9">
@@ -98,6 +77,7 @@ select {
 									<div class="p-20">
 										<div class="card">
 											<div class="card-body">
+                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">조인</h4>
 												<div>
 													<h4 style="margin-left: 80px;">신청 접수 현황</h4>
 												</div>

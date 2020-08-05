@@ -321,7 +321,6 @@ textarea.n-input { height: 144px; padding: 13px 9px; resize: none; }
 
 .guide-box { padding: 15px; }
 .guide-box > h1 { font-family: 'Musinsa',sans-serif; font-weight: normal; font-size: 20px; margin-bottom: 10px; }
-.guide-box > h2 { font-family: 'Musinsa',sans-serif; font-weight: normal; font-size: 18px; padding: 10px; margin: 40px 0 20px 0; background-color: #dadada; }
 .guide-box > h2:first-child { margin-top: 0; }
 .guide-box > h3 { font-family: 'Musinsa',sans-serif; font-weight: normal; font-size: 16px; padding-bottom: 5px; border-bottom: 1px solid #d0d0d0; margin: 30px 0 15px 0; }
 .guide-box > h2 + h3 { margin-top: 0; }

@@ -174,6 +174,7 @@ public class ClubController {
 	@RequestMapping("/club/clubView.do")
 	public String clubView(HttpServletRequest req, Model model) {
 		
+		
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));

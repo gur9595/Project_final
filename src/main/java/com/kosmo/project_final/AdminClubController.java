@@ -24,7 +24,7 @@ public class AdminClubController {
 		ArrayList<ClubDTO> lists = sqlSession.getMapper(AdminDAOImpl.class).adminClub(clubDTO);
 		model.addAttribute("lists", lists);
 		
-		return "admin/adminClub";
+		return "admin/adminClub"; 
 	}
 	
 	

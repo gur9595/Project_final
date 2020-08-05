@@ -51,27 +51,71 @@ Licence URI: https://www.os-templates.com/template-terms
     <section id="introblocks">
       <ul class="nospace group btmspace-80 elements elements-four">
         <li class="one_quarter">
-          <article><a href="./club/clubMain.do"><i class="fas fa-trophy"></i></a>
-            <h6 class="heading">Club</h6> 
-            <p>클럽에 가입하여 함께 즐겨봐요!!</p>
+          <article>
+          	<div class="article-hover" style="height: 132px;">
+          		<div class="article-before">
+	          		<i class="fas fa-trophy"></i>
+		            <h6 class="heading">Club</h6>
+          		</div>
+	          	<div class="article-after" style="height: 132px;">
+		          	<a href="./club/clubMain.do">
+	          			<div class="article-a-inner">
+		          			클럽에 가입하여<br />함께 즐겨봐요!
+		          		</div>
+		          	</a>
+	          	</div>
+          	</div>
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="./match/matchMain.do"><i class="fas fa-chess-queen"></i></a>
-            <h6 class="heading">Matching</h6>
-            <p>경기장을 예약하여 보다 편하게!!</p>
+          <article>
+            <div class="article-hover" style="height: 132px;">
+            	<div class="article-before">
+	          		<i class="fas fa-chess-queen"></i>
+		            <h6 class="heading">Matching</h6>
+            	</div>
+	          	<div class="article-after" style="height: 132px;">
+		          	<a href="./match/matchMain.do">
+	          			<div class="article-a-inner">
+		          			경기장을 예약하여<br />보다 편하게!
+		          		</div>
+		          	</a>
+	          	</div>
+          	</div>
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="./game/gameMain.do"><i class="fas fa-futbol"></i></a>
-            <h6 class="heading">Game</h6>
-            <p>회원님의 경기를 확인할 수 있어요!!</p>
+          <article>
+            <div class="article-hover" style="height: 132px;">
+            	<div class="article-before">
+	          		<i class="fas fa-futbol"></i>
+		            <h6 class="heading">Game</h6> 
+            	</div>
+	          	<div class="article-after" style="height: 132px;">
+		          	<a href="./game/gameMain.do">
+		          		<div class="article-a-inner">
+		          			회원님의 경기를<br />확인할 수 있어요!
+		          		</div>
+		          	</a>
+	          	</div>
+          	</div>
           </article>
         </li>
         <li class="one_quarter">
-          <article><a href="./market/marketMain.do"><i class="fas fa-shopping-cart"></i></a>
-            <h6 class="heading">Market</h6>
-            <p>장비가 없어요? 여기에요 여기!!</p>
+          <article>
+            <div class="article-hover" style="height: 132px;">
+            	<div class="article-before">
+	          		<i class="fas fa-shopping-cart"></i>
+		            <h6 class="heading">Game</h6> 
+            	</div>
+	          	<div class="article-after" style="height: 132px;">
+		          	<a href="./market/marketMain.do">
+		          		<div class="article-a-inner">
+	          				장비가 없으신가요?<br />이 곳에서 구매하세요!
+	          			</div>
+		          	</a>
+	          	</div>
+          	</div>
           </article>
         </li>
       </ul>
