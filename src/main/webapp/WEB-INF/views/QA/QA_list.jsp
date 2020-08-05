@@ -185,20 +185,30 @@ function enter() {
 					<th>작성일</th>
 				</tr>
 			</thead>
-			<tbody>			
-		<c:forEach items="${lists }" var="row">
+			<tbody>	
+			<c:choose>	
+			<c:when test="${empty listRows }">
+				<tr>
+					<td colspan="4" class="text-center">
+						등록된 게시물이 없습니다.
+					</td>
+				</tr>
+			</c:when>	
+			<c:otherwise>
+		<c:forEach items="${listRows }" var="row" varStatus="loop">
 			<tr>
-				<input type="hid den" value="${row.b_idx }" />
-				<td class="text-center">${b_idx }</td>
+				<td class="text-center">${row.virtualNum }</td>
 				<td class="text-left">
-					<a href="./../customer/qnaView.do">
-					${b_title }
+					<a href="./../customer/qnaView.do?b_idx=${row.b_idx }&nowPage=${nowPage}">
+					${row.b_title }
 					</a>
 				</td>
-				<td class="text-center">${b_id }</td>
-				<td class="text-center">${b_postdate }</td>
+				<td class="text-center">${row.m_id}</td>
+				<td class="text-center">${row.b_postdate }</td>
 			</tr>
-			
+		</c:forEach>
+		</c:otherwise>
+</c:choose>			
 			</tbody>
 		</table>
 	</div>
@@ -215,7 +225,6 @@ function enter() {
 			<button type="submit" class="btn btn-danger">전송하기</button> -->
 		</div>
 	</div>
-		</c:forEach>
 	<div class="row mt-3">
 		<div class="col">
 			<!-- 페이지번호 부분 -->

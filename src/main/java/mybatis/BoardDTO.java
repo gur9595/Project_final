@@ -7,9 +7,16 @@ public class BoardDTO {
 	private int b_idx;
 	private String b_title;
 	private String b_content;
-	private String b_id;
+	private String m_id;
 	private Date b_postdate;
+	private int virtualNum;
 	
+	public int getVirtualNum() {
+		return virtualNum;
+	}
+	public void setVirtualNum(int virtualNum) {
+		this.virtualNum = virtualNum;
+	}
 	public Date getB_postdate() {
 		return b_postdate;
 	}
@@ -30,12 +37,6 @@ public class BoardDTO {
 	public void setB_title(String b_title) {
 		this.b_title = b_title;
 	}
-	public String getB_id() {
-		return b_id;
-	}
-	public void setB_id(String b_id) {
-		this.b_id = b_id;
-	}
 	public String getB_bname() {
 		return b_bname;
 	}
@@ -48,7 +49,13 @@ public class BoardDTO {
 	public void setB_content(String b_content) {
 		this.b_content = b_content;
 	}
-
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+	
 	
 	
 }

@@ -9,20 +9,19 @@ public interface BoardDAOImpl {
 	
 	public int boardRequest(BoardDTO boardDTO);
 	
-	public BoardDTO view(ParameterDTO parameterDTO);
+	public BoardDTO qnaView(int b_idx);	
 	
 	public ArrayList<MemberDTO>boardinpdate(MemberDTO memberDTO);
 	
-	public ArrayList<BoardDTO> listPage(ParameterDTO parameterDTO);
+	public ArrayList<BoardDTO> qnaList(ParameterDTO parameterDTO);
 	
 	public int listPageCount(ParameterDTO parameterDTO);
 	
-	public int boardUpdate(String m_id);
+	public int qnaWriteAction(BoardDTO boardDTO);
 	
-	public int delete(String m_idx,String m_id);
+	public BoardDTO qnaEdit(ParameterDTO parameterDTO);
 	
-	public int write(String m_id);
-	
-	public int boardEdit(String m_id);
+	public int qnaEditAction(BoardDTO boardDTO);
 
+	public int qnaDelete(BoardDTO boardDTO);
 }

@@ -152,25 +152,29 @@
 					}
 				</script>
 				<div class="row mt-3 mr-1">
-					<form name="writeFrm" method="get"
-						action="../customer/qnaWriteAction.do"
-						onsubmit="return checkValidate(this);">
+					<form name="writeFrm" method="post"
+						onsubmit="return checkValidate(this);"
+						action="<c:url value="/customer/qnaEditAction.do"/>" >
+						
+						<input type="hidden" name="b_idx" id="b_idx" value="${viewRow.b_idx }" />								
+						<input type="hidden" name="m_id" id="m_id" value="${m_id }" />
+								
 						<table class="table table-bordered table-striped">
 							<colgroup>
 								<col width="20%" />
 								<col width="*" />
 							</colgroup>
 							<tbody>
-								<input type="hidden" name="b_bname" value="freeboard" />
 								<tr>
 									<th class="text-center" style="vertical-align: middle;">제목</th>
-									<td><input type="text" class="form-control" name="b_title" />
+									<td>
+									<input type="text" class="form-control" name="b_title" value="${viewRow.b_title}"/>
 									</td>
 								</tr>
 								<tr>
 									<th class="text-center" style="vertical-align: middle;">내용</th>
 									<td><textarea rows="10" class="form-control"
-											name="b_content"></textarea></td>
+											name="b_content">${viewRow.b_content }</textarea></td>
 								</tr>
 
 							</tbody>

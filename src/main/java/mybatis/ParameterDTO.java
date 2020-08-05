@@ -3,6 +3,7 @@ package mybatis;
 public class ParameterDTO {
 	
 	private String c_idx;
+	private String m_id;
 	private String b_idx;//게시판 일련번호
 	private String searchField;//검색 할 필드명
 	private String searchTxt; //검색어
@@ -13,6 +14,12 @@ public class ParameterDTO {
 	
 	public String getB_idx() {
 		return b_idx;
+	}
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 	public void setB_idx(String board_idx) {
 		this.b_idx = board_idx;
