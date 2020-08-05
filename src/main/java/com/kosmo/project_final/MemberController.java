@@ -190,6 +190,7 @@ public class MemberController {
       
       String m_phone = m_phone1 + m_phone2 + m_phone3;
       
+      
       model.addAttribute("m_id",m_id);
       model.addAttribute("m_pw",m_pw);
       model.addAttribute("m_name",m_name);
@@ -386,9 +387,18 @@ public class MemberController {
       String s_addr2 = req.getParameter("s_addr2");
       String s_addr = s_addr1+" "+s_addr2;
       
+      //좌표값 받기
+      String latitude = req.getParameter("latitude"); //위도
+      String longitude = req.getParameter("longitude"); //경도
+      
       dto.setS_addr(s_addr);
+      dto.setS_lat(latitude);
+      dto.setS_lng(longitude);
       
       System.out.println("s_memo : "+dto.getS_memo());
+      System.out.println("s_lat : " + dto.getS_lat());
+      System.out.println("s_lng : " + dto.getS_lng());
+      
       sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
       
       return"member/member_select";
@@ -413,16 +423,19 @@ public class MemberController {
       dto.setM_id(m_id);
 
       dto = sqlSession.getMapper(MemberDAOImpl.class).memberInfo(dto);
-
+      
+      String phone = dto.getM_phone();
       String addr = dto.getM_addr();
 
       System.out.println(addr);
-
+      System.out.println(phone);
       String[] addrArr = addr.split(",");
 
+      
       req.setAttribute("addr1", addrArr[0]);
       req.setAttribute("addr2", addrArr[1]);
-
+      req.setAttribute("phone", phone);
+      
       model.addAttribute("dto",dto);
       
       return"member/memberEdit";
@@ -447,6 +460,7 @@ public class MemberController {
       String m_addr2 = req.getParameter("m_addr2");
 
       String m_addr = m_addr1+","+m_addr2;
+      
       
       dto.setM_id(req.getParameter("m_id"));
       dto.setM_pw(req.getParameter("m_pw"));

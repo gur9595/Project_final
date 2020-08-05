@@ -48,8 +48,6 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewMember(int c_idx, int start, int end);
 	
 	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
-	
-	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
 
 	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
 	
@@ -81,6 +79,12 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<MemberDTO> clubAppearanceRank(int c_idx);
 //	안드로이드********************************************************
+	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
+	public ArrayList<MemberDTO> clubViewMemberA(AndroidClubMemberDTO androidClubMemberDTO);
+	public ArrayList<MatchDTO>clubViewMatchA(AndroidClubDTO androidClubDTO);
+	public ArrayList<GameDTO>clubViewAcceptA(AndroidClubDTO androidClubDTO);
+	public MatchDTO clubMatchOpponentA(int g_num, String c_idx);
+	public int clubMatchOpponentCountA(int g_num, String c_idx);
 	public ArrayList<MemberDTO> clubViewMemberA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
 	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);

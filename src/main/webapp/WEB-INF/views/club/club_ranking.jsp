@@ -9,6 +9,7 @@ request.setCharacterEncoding("UTF-8");
 <link href="./../resources/css/rank.css" rel="stylesheet" type="text/css" media="all">
 
 <body>
+<div class="hoc container clear" style="max-width:1300px;">
 	<div class="sub--tabs--wrapper">
         <div class="sub--tabs--container">
             <div class="card--category">
@@ -29,8 +30,7 @@ request.setCharacterEncoding("UTF-8");
     </div>
     
     <div class="card-wrapper">
-        <div class="card--container">
-            <div class="card--body">
+        <div class="card--container" style="max-width:1300px;">
                 <div class="card--content" v-if="loaded">
                     <div class="list--top-team-rank">
                         <ul>
@@ -276,9 +276,7 @@ request.setCharacterEncoding("UTF-8");
                             
                         </ul>
                     </div>
-                    
                 </div>
-            </div>
         </div>
     </div>
 </div>

@@ -587,6 +587,14 @@ public class MatchController {
 		gameDTO.setG_num(g_num);
 		gameDTO.setG_gu(addr[1]);
 		gameDTO.setG_time(time);
+		gameDTO.setG_lat(req.getParameter("latitude"));
+		gameDTO.setG_lng(req.getParameter("longitude"));
+		
+		
+		System.out.println("c_idx="+Integer.parseInt(req.getParameter("c_idx")));
+		System.out.println("g_sname="+req.getParameter("g_sname"));
+		System.out.println("latitude="+req.getParameter("latitude"));
+		System.out.println("longitude="+req.getParameter("longitude"));
 		
 		
 		sqlSession.getMapper(MatchDAOImpl.class).gameApply(gameDTO);

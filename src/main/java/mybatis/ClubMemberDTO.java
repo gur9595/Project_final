@@ -10,8 +10,6 @@ public class ClubMemberDTO {
 	private String cm_check;
 	private Date cm_date;
 	private String cm_memo;
-	
-	
 	private String cm_grade;
 	
 	
@@ -19,7 +17,10 @@ public class ClubMemberDTO {
 		super();
 	}
 
-	public ClubMemberDTO(int cm_idx, int c_idx, String m_id, String cm_check, Date cm_date, String cm_memo) {
+	
+
+	public ClubMemberDTO(int cm_idx, int c_idx, String m_id, String cm_check, Date cm_date, String cm_memo,
+			String cm_grade) {
 		super();
 		this.cm_idx = cm_idx;
 		this.c_idx = c_idx;
@@ -30,7 +31,8 @@ public class ClubMemberDTO {
 		this.cm_grade = cm_grade;
 	}
 
-	
+
+
 	public String getCm_grade() {
 		return cm_grade;
 	}
@@ -54,6 +56,7 @@ public class ClubMemberDTO {
 	public void setC_idx(int c_idx) {
 		this.c_idx = c_idx;
 	}
+
 
 	public String getM_id() {
 		return m_id;

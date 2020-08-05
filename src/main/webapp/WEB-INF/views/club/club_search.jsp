@@ -24,6 +24,9 @@ function pagingFilter(pNum){
 
 }
 </script>
+<style>
+
+</style>
 <%
 request.setCharacterEncoding("UTF-8");
 %>

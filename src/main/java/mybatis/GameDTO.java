@@ -21,6 +21,8 @@ public class GameDTO {
 	private String g_gu;
 	private String g_check;
 	private int g_extra;
+	private String g_lat;
+	private String g_lng;
 	
 	//Join용 변수
 	
@@ -38,7 +40,8 @@ public class GameDTO {
 	//인자생성자
 	public GameDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
 			String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu,
-			String g_check, int g_extra, String search_date, String c_name, String c_ability, String c_gender, ClubDTO clubDTO) {
+			String g_check, int g_extra, String search_date, String c_name, String c_ability, String c_gender, ClubDTO clubDTO,
+			String g_lat, String g_lng) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -61,6 +64,8 @@ public class GameDTO {
 		this.c_ability = c_ability;
 		this.c_gender = c_gender;
 		this.clubDTO = clubDTO;
+		this.g_lat = g_lat;
+		this.g_lng = g_lng;
 	}
 
 	// getter / setter
@@ -233,8 +238,25 @@ public class GameDTO {
 	public void setClubDTO(ClubDTO clubDTO) {
 		this.clubDTO = clubDTO;
 	}
-	
-	
-	
 
+
+	public String getG_lat() {
+		return g_lat;
+	}
+
+
+	public void setG_lat(String g_lat) {
+		this.g_lat = g_lat;
+	}
+
+
+	public String getG_lng() {
+		return g_lng;
+	}
+
+
+	public void setG_lng(String g_lng) {
+		this.g_lng = g_lng;
+	}
+	
 }

@@ -32,7 +32,15 @@ public class MemberDTO {
 	private int assist;
 	private int point;
 	private int appearance;
+	private int cash;
 	
+	
+	public int getCash() {
+		return cash;
+	}
+	public void setCash(int cash) {
+		this.cash = cash;
+	}
 	public String getCm_grade() {
 		return cm_grade;
 	}
