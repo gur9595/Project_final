@@ -203,7 +203,7 @@ table, th, td{
 						<th>구장 주소</th>
 						<td>
 							<input type="text" class="form-control" placeholder="예약된 구장의 이름을 자세히 입력해주세요." 
-								style="width: 70%; display: inline;" id="g_sname" name="g_sname">
+								style="width: 70%; display: inline;" id="g_sname" name="g_sname"> 
 							<input type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소 검색" 
 								style="width: 28%; display: inline;"><br>
 							<input type="text" class="form-control" placeholder="예약된 구장의 주소를 자세히 입력해주세요." 
