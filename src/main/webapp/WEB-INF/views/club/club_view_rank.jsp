@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
-                    <div class="col-lg-9">
+                    <div class="col-lg-9"  style="font-size: 20px;">
                         <!-- Tabs -->
                         <div class="card">
                             <!-- Tab panes -->
@@ -76,87 +77,47 @@
                                             <div class="card-body">
                                                 <h4 class="card-title" style="text-align: center; font-size: 30px;">클럽 내 랭킹</h4>
                                             </div>
-                                            <h5 style="margin-left: 140px; font-weight: 700;">득점순위</h5>
+                                            <h5 style="margin-left: 140px; font-weight: 700;">득점 순위</h5>
                                             <div class="comment-widgets scrollable">
                                                 <table style="width: 550px;">
-                                                    <tr style="border-bottom: 3px solid #036">
-                                                        <th>순위</th>
-                                                        <th>선수명</th>
-                                                        <th>경기</th>
-                                                        <th>득점</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>
-                                                        <th>10</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>
-                                                        <th>10</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>
-                                                        <th>10</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>4</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>
-                                                        <th>10</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>5</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>
-                                                        <th>10</th>
-                                                    </tr>
+                                                		<tr style="border-bottom: 3px solid #036">
+	                                                        <th>순위</th>
+	                                                        <th></th>
+	                                                        <th>선수명</th>
+	                                                        <th>경기 수</th>
+	                                                        <th>득점</th>
+	                                                    </tr>
+                                                	<c:forEach items="${goalRank }" var="row" varStatus="status" begin="0" end="4">
+	                                                    <tr style="height:70px;">
+	                                                        <th>${status.count }</th>
+	                                                        <th><img src="./../resources/uploadsFile/${row.m_pic}" alt="" style="height:70px; width:auto; max-width:100px;" /></th>
+	                                                        <th>${row.m_name}</th>
+	                                                        <th>${row.appearance }</th>
+	                                                        <th>${row.goal }</th>
+	                                                    </tr>
+                                                    </c:forEach>
                                                 </table>
                                             </div>
                                             <br /><br />
-                                            <h5 style="margin-left: 140px; font-weight: 700;">어시스트순위</h5>
+                                            <h5 style="margin-left: 140px; font-weight: 700;">어시스트 순위</h5>
                                             <div class="comment-widgets scrollable">
                                                 <table style="width: 550px;">
                                                     <tr style="border-bottom: 3px solid #036">
                                                         <th>순위</th>
+                                                        <th></th>
                                                         <th>선수명</th>
-                                                        <th>경기</th>
-                                                        <th>도움</th>                                                  
+                                                        <th>경기 수</th>
+                                                        <th>어시스트</th>                                                  
                                                     </tr>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <th>김희철</th>
-                                                        <th>10</th>
-                                                        <th>30</th>                                                     
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <th>김희철</th>
-                                                        <th>10</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <th>김희철</th>
-                                                        <th>10</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
-                                                    <tr>
-                                                        <th>4</th>
-                                                        <th>김희철</th>
-                                                        <th>10</th>
-                                                        <th>30</th>                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <th>5</th>
-                                                        <th>김희철</th>
-                                                        <th>10</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
+                                                    <c:forEach items="${assistRank }" var="row" varStatus="status" begin="0" end="4">
+	                                                    <tr style="height:70px;">
+	                                                        <th>${status.count }</th>
+	                                                        <th><img src="./../resources/uploadsFile/${row.m_pic}" alt="" style="height:70px; width:auto; max-width:100px;" /></th>
+	                                                        <th>${row.m_name}</th>
+	                                                        <th>${row.appearance }</th>
+	                                                        <th>${row.assist }</th>
+	                                                    </tr>
+                                                    </c:forEach>
                                                 </table>
                                             </div>
                                             <br /><br />
@@ -165,70 +126,40 @@
                                                 <table style="width: 550px;">
                                                     <tr style="border-bottom: 3px solid #036">
                                                         <th>순위</th>
+                                                        <th></th>
                                                         <th>선수명</th>
-                                                        <th>득점+도움</th>                                                  
+                                                        <th>경기 수</th>
+                                                        <th>공격 포인트</th>                                                  
                                                     </tr>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                     
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
-                                                    <tr>
-                                                        <th>4</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <th>5</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
+                                                    <c:forEach items="${pointRank }" var="row" varStatus="status" begin="0" end="4">
+	                                                    <tr style="height:70px;">
+	                                                        <th>${status.count }</th>
+	                                                        <th><img src="./../resources/uploadsFile/${row.m_pic}" alt="" style="height:70px; width:auto; max-width:100px;" /></th>
+	                                                        <th>${row.m_name}</th>
+	                                                        <th>${row.appearance }</th>
+	                                                        <th>${row.point }</th>
+	                                                    </tr>
+                                                    </c:forEach>
                                                 </table>
                                             </div>
                                             <br /><br />  
-                                            <h5 style="margin-left: 140px; font-weight: 700;">최다출전순위</h5>
+                                            <h5 style="margin-left: 140px; font-weight: 700;">최다 출전</h5>
                                             <div class="comment-widgets scrollable">
                                                 <table style="width: 550px;">
                                                     <tr style="border-bottom: 3px solid #036">
                                                         <th>순위</th>
+                                                        <th></th>
                                                         <th>선수명</th>
-                                                        <th>경기</th>                                                  
+                                                        <th>경기 수</th>                                                  
                                                     </tr>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                     
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
-                                                    <tr>
-                                                        <th>3</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
-                                                    <tr>
-                                                        <th>4</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <th>5</th>
-                                                        <th>김희철</th>
-                                                        <th>30</th>                                                      
-                                                    </tr>
+                                                   	<c:forEach items="${appearanceRank }" var="row" varStatus="status" begin="0" end="4">
+	                                                    <tr style="height:70px;">
+	                                                        <th>${status.count }</th>
+	                                                        <th><img src="./../resources/uploadsFile/${row.m_pic}" alt="" style="height:70px; width:auto; max-width:100px;" /></th>
+	                                                        <th>${row.m_name}</th>
+	                                                        <th>${row.appearance }</th>
+	                                                    </tr>
+                                                    </c:forEach>
                                                 </table>
                                             </div>  
                                         </div>

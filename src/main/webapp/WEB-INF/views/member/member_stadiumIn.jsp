@@ -14,14 +14,8 @@
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
-<<<<<<< HEAD
-
-h2 { font-size : 24px; color:#000066; line-height:30px;
-	margin:35px auto 10px 0px;
-=======
 h2 { font-size : 24px; color:#000066; line-height:30px;
 	margin:52px auto 10px 0px;
->>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
 }
