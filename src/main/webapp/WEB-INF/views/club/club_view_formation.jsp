@@ -48,8 +48,7 @@
     	<%@ include file="./club_view_header.jsp" %>
     	<%@ include file="./club_view_sidebar.jsp" %>
         
-<div class="page-wrapper">
-             
+		<div class="page-wrapper">     
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->

@@ -49,21 +49,6 @@
     	<%@ include file="./club_view_header.jsp" %>
         <%@ include file="./club_view_sidebar.jsp" %>
         <div class="page-wrapper">
-             <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h2 class="page-title" style="font-size: 40px;">&nbsp;클럽 경기</h2>
-                        <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
@@ -88,7 +73,13 @@
                                                         <th style="width:200px;">구장 이름</th>
                                                         <th style="width:100px;">상대팀</th>
                                                         <th colspan="2" style="width:100px;">참가여부</th>
-                                                        <th colspan="2" style="width:120px;">용병고용/경기취소</th>         
+                                                        <c:choose>
+                                                       		<c:when test="${getCmgrade.cm_grade == 'player'}">
+                                                       		</c:when>
+                                                        	<c:otherwise>
+                                                        		<th colspan="2" style="width:120px;">용병고용/경기취소</th>
+                                                        	</c:otherwise>
+                                                        </c:choose>         
                                                     </tr>
 
                                                     <c:forEach items="${lists }" var="row" varStatus="status"> 
@@ -106,26 +97,30 @@
 															</th>
 															<th><input type="button" onclick="javascript:GameMemberApply(${row.c_idx},${row.g_idx},${m_id })" class="btn btn-outline-success" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="참가" ></th>
 	                                                        <th><input type="button" class="btn btn-outline-danger" style=" width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="불참" ></th>
-	                                                        <th>
-	                                                        	<c:choose>
-	                                                        		<c:when test="${getCmgrade.cm_grade == 'player'}">
-	                                                        			                             			                                                        			
-	                                                        		</c:when>
-		                                                        	<c:otherwise>
-		                                                        		<input type="button" class="btn btn-outline-primary" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:16px;" value="용병고용">
-		                                                        	</c:otherwise>
-		                                                        </c:choose>
-	                                                        </th>
-	                                                        <th>
-	                                                        	<c:choose>
-	                                                        		<c:when test="${getCmgrade.cm_grade == 'player' }">
-	                                                        			
-	                                                        		</c:when>
-	                                                        		<c:otherwise>
-	                                                        			<input type="button" id="cancel" class="btn btn-outline-secondary" style="width:50px; height:30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="취소">
-	                                                        		</c:otherwise>
-	                                                        	</c:choose>
-	                                                        </th>          
+	                                                        
+                                                        	<c:choose>
+                                                        		<c:when test="${getCmgrade.cm_grade == 'player'}">
+                                                        			                             			                                                        			
+                                                        		</c:when>
+	                                                        	<c:otherwise>
+	                                                        		<th>
+	                                                        			<input type="button" class="btn btn-outline-primary" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:16px;" value="용병고용">
+	                                                        		</th>
+	                                                        	</c:otherwise>
+	                                                        </c:choose>
+	                                                        
+	                                                        
+                                                        	<c:choose>
+                                                        		<c:when test="${getCmgrade.cm_grade == 'player' }">
+                                                        			
+                                                        		</c:when>
+                                                        		<c:otherwise>
+                                                        			<th>
+                                                        				<input type="button" id="cancel" class="btn btn-outline-secondary" style="width:50px; height:30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="취소">
+                                                        			</th>
+                                                        		</c:otherwise>
+                                                        	</c:choose>
+	                                                                  
 														</tr>
 													</c:forEach>
                                                 </table>
