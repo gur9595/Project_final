@@ -208,7 +208,7 @@
 					<div class="col-md-4">
 						<div class="single-pricing-table text-center clearfix">
 							<!-- Price -->
-							<div class="price">
+							<div class="price">  
 								<span>100,000&#8361;</span>
 							</div>
 							<!-- Heading -->
