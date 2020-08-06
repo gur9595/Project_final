@@ -1,6 +1,8 @@
 package com.kosmo.project_final;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,7 +10,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -122,16 +123,19 @@ public class AndroidClubController {
 	
 	@RequestMapping("/android/gameMemberApply.do")
 	@ResponseBody
-	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO) {
-		
+	public Map<String, Object> gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO) {
+
 		System.out.println("getG_idx : "+androidGameMemberDTO.getG_idx());
 		System.out.println("getM_id : "+androidGameMemberDTO.getM_id());
-		
-		int result = sqlSession.getMapper(ClubDAOImpl.class).gameMemberApplyA(androidGameMemberDTO);
-		
-		
-		
-		return result;
+
+		Map<String,Object> applyInfo = new HashMap<String, Object>();
+		AndroidGameMemberDTO gameMember = sqlSession.getMapper(ClubDAOImpl.class).gameMemberApplyA(androidGameMemberDTO);
+		if(gameMember==null) {
+			applyInfo.put("isApply", 0);
+		}else {
+			applyInfo.put("isLogin", 1);
+		}
+		return applyInfo;
 	}
 	
 	
