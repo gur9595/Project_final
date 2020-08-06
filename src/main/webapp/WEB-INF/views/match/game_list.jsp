@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
 <main class=" ho c container clear" id="main">
 	<!-- 모달창 신청폼 -->
@@ -90,9 +91,9 @@
 	<table id="game_table" style="text-align: center;" border="1">
 		<colgroup>
 			<col width="10%">
-			<col width="6%">
-			<col width="*">
-			<col width="25%">
+			<col width="10%">
+			<col width="10%">
+			<col width="20%">
 			<col width="25%">
 			<col width="15%">
 			<col width="10%">
@@ -121,9 +122,10 @@
 						${row.g_sname } <span style="width: 200px;">${row.g_sname } <br />위치보기</span>
 					</a>
 				</td>
-				<td>${row.g_saddr }</td>
+				<td>${row.g_saddr }</td> 
 				<td>
-					<a href="../club/clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip">
+					<a href="../club/clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip" onclick=
+						"window.open('../club/clubView.do?c_idx='+c_idx, '_blank','width=1500,height=800, toolbar=no, menubar=no, resizable=no'); return false;">
 						${row.c_name } <span style="width: 200px;">${row.c_name }<br />클럽 페이지 이동</span>
 					</a>
 				</td>

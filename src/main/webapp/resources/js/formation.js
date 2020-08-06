@@ -28,6 +28,8 @@ $(function () {
              return $('<span class="dragged_name" value="' + $(this).attr("value") + '"><input type="hidden" name="" value="">' + $(this).text() + "</span>") 
         } 
     });
+    
+    $("#ball").draggable();
 
     //.player를 플레이어 리스트에 놓았을 때
     $("#player_list").droppable({
@@ -55,7 +57,11 @@ $(function () {
      $("#field").droppable({ 
          tolerance: "fit", 
          drop: function (ev, ui) { 
-             if (!ui.draggable.find("div").length) { 
+        	 if(ui.draggable.attr('id') == 'ball'){
+        		 
+        	 }
+        	 
+        	 else if (!ui.draggable.find("div").length) { 
                  var player = $(document.createElement("div")).addClass("dropped_player").css({ 
                      left: ui.position.left, top: ui.position.top 
                  }); 
