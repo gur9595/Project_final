@@ -1,6 +1,8 @@
 package com.kosmo.project_final;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,13 +85,17 @@ public class AndroidClubController {
 	
 	@RequestMapping("/android/gameMemberApply.do")
 	@ResponseBody
-	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO) {
+	public Map<String, Object> gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO) {
 		
-		int result = sqlSession.getMapper(ClubDAOImpl.class).gameMemberApplyA(androidGameMemberDTO);
-		
-		
-		
-		return result;
+		Map<String,Object> applyInfo = new HashMap<String, Object>();
+		AndroidGameMemberDTO gameMember = sqlSession.getMapper(ClubDAOImpl.class).gameMemberApplyA(androidGameMemberDTO);
+		if(gameMember==null) {
+			applyInfo.put("isApply", 0);
+		}else {
+			applyInfo.put("isLogin", 1);
+			
+		}
+		return applyInfo;
 	}
 	
 	
