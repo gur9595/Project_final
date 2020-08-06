@@ -11,11 +11,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mybatis.AndroidClubDTO;
 import mybatis.AndroidClubMemberDTO;
+import mybatis.AndroidGameMemberDTO;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.ClubMemberDTO;
@@ -85,6 +87,16 @@ public class AndroidClubController {
 		
 	}
 	
+	@RequestMapping("/android/gameMemberApply.do")
+	@ResponseBody
+	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO) {
+		
+		int result = sqlSession.getMapper(ClubDAOImpl.class).gameMemberApplyA(androidGameMemberDTO);
+		
+		
+		
+		return result;
+	}
 	
 	
 
