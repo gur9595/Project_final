@@ -37,21 +37,27 @@ public interface ClubDAOImpl {
 	
 	public int gameMemberApply(GameMemberDTO gameMemberDTO);
 	
+	public int ClubMatchApply(GameDTO gameDTO);
+	
+	public int ClubMatchApplyDelete(GameDTO gameDTO);
+	
+	public int ClubMatchReject(GameDTO gameDTO);
+	
 	public int clubMemberReject(int cm_idx);
 	
 	public ArrayList<MemberDTO> clubViewMember(int c_idx);
 	
 	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
 	
-
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
-	
 
 	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
 	
 	public int clubMatchOpponentCount(int g_num, int c_idx);
 	
 	public ArrayList<GameDTO> clubViewAccept(int c_idx);
+	
+	public ArrayList<GameDTO> clubViewMyApply(int c_idx);
 	
 	public ArrayList<GameMemberDTO> clubMakingForm(int g_idx);
 	
@@ -60,4 +66,15 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewGrade(int c_idx);
 	
 	public int clubViewUpdate(int c_idx, String cm_grade, String m_id);
+	
+	public ArrayList<GameDTO> clubHistory(int c_idx);
+	
+	public MemberDTO clubHeadName(int c_idx);
+	
+	public ClubMemberDTO getCmgrade(int c_idx, String m_id);
+//	안드로이드********************************************************
+	public ArrayList<MemberDTO> clubViewMemberA(ClubMemberDTO clubMemberDTO);
+	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
+	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);
+	
 }

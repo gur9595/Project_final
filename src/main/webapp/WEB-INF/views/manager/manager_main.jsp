@@ -92,6 +92,7 @@
             
 <button style="width: 100%;height: 100px;" onclick="location.href= 'managerJoin.do'">매니저 지원</button> 
     </div>
+    </div>
     <!-- / main body -->
     <div class="clear"></div>
   </main>

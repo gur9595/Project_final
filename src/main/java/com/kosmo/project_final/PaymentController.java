@@ -25,6 +25,10 @@ public class PaymentController {
 	public String paymentMain() {
 		return "payment/payment_main";
 	}
+	@RequestMapping("/payment/paymentMain2.do")
+	public String paymentMain2() {
+		return "payment/payment_main2";
+	}
 	
     // 결제로직 중 성공 시 서버에 파일업로드 후 DB저장
     @RequestMapping("/payment/paymentDeposit.do")

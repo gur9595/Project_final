@@ -47,7 +47,7 @@
       <div class="container-login100">
          <div class="wrap-login100">
                <div style="margin-left:185px;" >
-               <img src="./../resources/img/bprologo2.png" style="height:300px; width:300px;" alt=""/>
+					<img src="./../resources/img/bprologo2.png" style="height:300px; width:300px;" alt=""/>
                </div> 
                <br /> 
             <c:choose>

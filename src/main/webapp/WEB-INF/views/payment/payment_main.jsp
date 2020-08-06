@@ -44,8 +44,8 @@
 	        deposit : function(balls){ // 입금된 마일리지
 	            this.balance += balls;
 	        },
-    }; -->
-</script>
+    }; 
+</script>-->
 <!-- end of 마일리지 적립창 -------------------------------------------------------------------------------------------->
 
 <!-- 결제 api ---------------------------------------------------------------------------------------------->
@@ -154,7 +154,7 @@
 				<!-- Small Pricing Table -->
 	<section class="section-padding small-table-area">
 		         
-			<div class="row">
+			<!-- <div class="row"> -->
 				<!-- Heading -->
 				<div class="col-md-12 text-center">
 					<h1 class="section-title aqua-heading">P A Y M E N T</h1>
@@ -284,7 +284,7 @@
 					</div>
 					
 				</div>
-			</div>
+			<!-- </div> -->
 	</section>
 	
 			<!-- / main body -->
