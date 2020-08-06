@@ -21,16 +21,16 @@
        
       <!-- 게임신청(경기장 리스트에서 게임 대결신청) --> 
       <insert id="stadiumGameApply_a" parameterType="mybatis.GameDTO"> 
-         insert into game (g_idx, c_idx, s_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, g_check)
-            select game_seq.nextval, #{c_idx}, s_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, 'no'
+         insert into game (g_idx, c_idx, s_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, g_check, g_lat, g_lng)
+            select game_seq.nextval, #{c_idx}, s_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, 'no', g_lat, g_lng
             from game
             where g_idx = #{g_idx} 
       </insert> 
       
       <!-- 대결신청(게임 리스트에서 신청) --> 
       <insert id="matchApply" parameterType="mybatis.GameDTO"> 
-         insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, g_check)
-            select game_seq.nextval, #{c_idx}, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, 'no'
+         insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, g_check, g_lat, g_lng)
+            select game_seq.nextval, #{c_idx}, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, 'no', g_lat, g_lng
             from game
             where g_idx = #{g_idx}
       </insert> 
@@ -39,11 +39,11 @@
       <select id="gameList" resultType="mybatis.GameDTO">
          select *
          from game g inner join club c
-            on g.c_idx = c.c_idx 
+            on g.c_idx = c.c_idx
          where 
             to_char(g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')
             and g.g_check like 'owner' 
-         order by g_date
+         order by g_date 
       </select>
       
       <!-- 용병리스트 -->
@@ -68,7 +68,7 @@
          select c.c_name, c.c_idx
          from club c inner join clubmember cm
              on c.c_idx = cm.c_idx
-         where cm.m_id like #{m_id}
+         where cm.m_id like #{m_id} and cm_grade != 'player'
       </select>
       
       <!-- 개인 캐쉬내역 조회 -->

@@ -8,11 +8,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mybatis.AndroidClubDTO;
 import mybatis.AndroidClubMemberDTO;
+import mybatis.AndroidGameMemberDTO;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.ClubMemberDTO;
@@ -41,7 +43,7 @@ public class AndroidClubController {
 	@RequestMapping("/android/clubMember.do")
 	@ResponseBody
 	public ArrayList<MemberDTO> clubMember(AndroidClubMemberDTO androidClubMemberDTO){
-		
+		System.out.println("getC_idx : "+androidClubMemberDTO.getC_idx());
 		ArrayList<MemberDTO> clubMemberList = sqlSession.getMapper(ClubDAOImpl.class).clubViewMemberA(androidClubMemberDTO);
 		
 		return clubMemberList;
@@ -116,6 +118,20 @@ public class AndroidClubController {
 		model.addAttribute("bench", bench);  
 
 		return squad;
+	}
+	
+	@RequestMapping("/android/gameMemberApply.do")
+	@ResponseBody
+	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO) {
+		
+		System.out.println("getG_idx : "+androidGameMemberDTO.getG_idx());
+		System.out.println("getM_id : "+androidGameMemberDTO.getM_id());
+		
+		int result = sqlSession.getMapper(ClubDAOImpl.class).gameMemberApplyA(androidGameMemberDTO);
+		
+		
+		
+		return result;
 	}
 	
 	
