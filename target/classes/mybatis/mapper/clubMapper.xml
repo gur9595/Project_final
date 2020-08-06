@@ -215,7 +215,7 @@
 	</select>
 	
 	<select id="myClubList" resultType="mybatis.ClubDTO">
-		select * 
+		select *  
 		from club c inner join clubmember cm
 			on c.c_idx = cm.c_idx
 		where cm.m_id like #{param1} 
