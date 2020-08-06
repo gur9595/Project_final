@@ -46,9 +46,9 @@ public class MatchDTO {
 
 		public MatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
 				String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu,
-				String g_check, int g_extra, String c_name, String c_cash, String c_emb, String c_area, String c_type,
-				Date c_date, String c_memo, String c_color, String c_ability, String c_gender, int c_memlimit,
-				String c_age, int start, int end) {
+				String g_check, int g_extra, String g_lat, String g_lng, String c_name, String c_cash, String c_emb,
+				String c_area, String c_type, Date c_date, String c_memo, String c_color, String c_ability,
+				String c_gender, int c_memlimit, String c_age, int start, int end) {
 			super();
 			this.g_idx = g_idx;
 			this.s_idx = s_idx;
@@ -66,6 +66,8 @@ public class MatchDTO {
 			this.g_gu = g_gu;
 			this.g_check = g_check;
 			this.g_extra = g_extra;
+			this.g_lat = g_lat;
+			this.g_lng = g_lng;
 			this.c_name = c_name;
 			this.c_cash = c_cash;
 			this.c_emb = c_emb;
@@ -228,6 +230,22 @@ public class MatchDTO {
 			this.g_extra = g_extra;
 		}
 
+		public String getG_lat() {
+			return g_lat;
+		}
+
+		public void setG_lat(String g_lat) {
+			this.g_lat = g_lat;
+		}
+
+		public String getG_lng() {
+			return g_lng;
+		}
+
+		public void setG_lng(String g_lng) {
+			this.g_lng = g_lng;
+		}
+
 		public String getC_name() {
 			return c_name;
 		}
@@ -339,7 +357,7 @@ public class MatchDTO {
 		public void setEnd(int end) {
 			this.end = end;
 		}
-		
+
 		
 	
 }
