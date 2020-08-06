@@ -22,7 +22,7 @@ input[type=text]{
 	font-size:25px;
 }
 input[type=password] {
-		font-size:25px;
+		font-size:15px;
         font-family: "nanum";
         
         &::placeholder {

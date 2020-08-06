@@ -125,7 +125,7 @@
 				<td>${row.g_saddr }</td> 
 				<td>
 					<a href="../club/clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip" onclick=
-						"window.open('../club/clubView.do?c_idx='+c_idx, '_blank','width=1500,height=800, toolbar=no, menubar=no, resizable=no'); return false;">
+						"window.open(this.href, '_blank', 'width=1500,height=800, toolbar=no, menubar=no, resizable=no'); return false;">
 						${row.c_name } <span style="width: 200px;">${row.c_name }<br />클럽 페이지 이동</span>
 					</a>
 				</td>
