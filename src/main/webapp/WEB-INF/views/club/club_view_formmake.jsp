@@ -20,6 +20,12 @@
 	src="http://static.footballuser.com/javascripts/jquery.ui.touch-punch-1.7.2.js"></script>
 <script type="text/javascript"
 	src="http://static.footballuser.com/javascripts/chosen.jquery.min.js"></script>
+	
+<!-- 이미지 저장용 -->
+
+<script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
 <body>
 	<style>
 .dropped_name {
@@ -32,15 +38,48 @@
 	border:0;
 }
 </style>
-	<script type="text/javascript">
-		var config = {
-			'.edit_field' : {}
-		}
-		for ( var selector in config) {
-			$(selector).chosen(config[selector]);
-		}
-	</script> 
+<script type="text/javascript">
+	var config = {
+		'.edit_field' : {}
+	}
+	for ( var selector in config) {
+		$(selector).chosen(config[selector]);
+	}
+	
+function capture() {
+       html2canvas($("#field"), {
+             onrendered: function(canvas) {
+               //document.body.appendChild(canvas);
+               //alert(canvas.toDataURL("image/png"));
+               $("#imgSrc").val(canvas.toDataURL("image/png"));
+               $.ajax({
+                   type: "post",
+                   data : $("form").serialize(),
+                   url:"../club/imageCreate.do",
+                   error:function(request,status,error){ 
+                	   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
+                	},
+                   success: function (data) {
+                       try{
+                           
+                       }catch(e){                
+                           alert('server Error!!');
+                       }
+                   }
+               });
+             }
+       
+       
+       });
+
+   }     
+
+</script> 
   	<div class="two_third first">
+  	<form>
+  	<input type="hidden" name="imgSrc" id="imgSrc" />
+  	<input type="hidden" name="g_idx" id="g_idx" value="${g_idx }" />
+  	</form>
 		<div id="field" style="height: 613px; width: 416px;"> 
 			<table class="ground"
 				style="height: 613px; width: 416px; background: url(./../resources/img/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
@@ -609,6 +648,7 @@
 			<p>
 				<input class="btn btn-success" type="submit" value="스쿼드 저장" id="submit"
 					name="submit" />
+				<button class="btn btn-warning" id="save" onclick="javascript:capture()">이미지</button>
 			</p>
 		</div>
 
