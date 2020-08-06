@@ -36,6 +36,7 @@
     td{
         border-bottom: 1px solid #444444;
         width: 70px; height: 30px;
+        text-align:right;
     }
     th{
         height:40px; text-align: center;
@@ -64,37 +65,70 @@
                                             </div>
                                             <h5 style="margin-left: 140px; font-weight: 700;"></h5>
                                             <div class="comment-widgets scrollable">
-                                                <table style="width: 550px;">
+                                                <table style="width: 750px;">
                                                     <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
                                                         <th width="200px;">날짜</th>
-                                                        <th>스코어</th>
+                                                        <th colspan="3">스코어</th>
                                                     </tr>
                                                     <tr>
                                                         <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
+                                                        <td style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp;</td>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
                                                     </tr>
                                                     <tr>
                                                         <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
+                                                        <td style="font-weight:bolder ">FC우리팀 &nbsp; 2 &nbsp;</th>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
                                                     </tr>
                                                     <tr>
                                                         <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
+                                                        <td style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp;</th>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
                                                     </tr>
                                                     <tr>
                                                         <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
+                                                        <td style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp;</th>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
                                                     </tr>
                                                     <tr>
                                                         <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
+                                                        <td style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp;</th>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
                                                     </tr>
                                                 </table>
                                             </div>
+                                            <br /><br/>
+                                            <h4 style="margin-left: 80px; color:black; font-weight: 700;">최근 10경기 전적</h4>
+                                            <div class="comment-widgets scrollable">
+                                                <table style="width: 750px;">
+                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
+                                                        <th>승</th>
+                                                        <th>무</th>
+                                                        <th>패</th>
+                                                        <th>승률</th>
+                                                        <th>득점</th>
+                                                        <th>실점</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>5승</th>
+                                                        <th>0무</th>                                         
+                                                        <th>5패</th>                                         
+                                                        <th>50%</th>
+                                                        <th>2.6</th>
+                                                        <th>0.3</th>                                         
+                                                    </tr>
+                                                   
+                                                </table>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>

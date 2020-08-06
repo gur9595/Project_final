@@ -111,7 +111,7 @@ request.setCharacterEncoding("UTF-8");
 		                <div class="input-select">
 		                  <select data-trigger="" class="form-control" id="age" name="age">
 		                    <option placeholder="" value="">---나이대---</option>
-		                    <option value="장년부">장년부</option>
+		                    <option value="중년부">중년부</option>
 		                    <option value="청년부">청년부</option>
 		                    <option value="청소년부">청소년부</option>
 		                    <option value="유소년부">유소년부</option>

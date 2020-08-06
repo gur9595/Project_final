@@ -557,8 +557,10 @@ public class ClubController {
 		GameMemberDTO gameMemberDTO = new GameMemberDTO();
 		gameMemberDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
 		gameMemberDTO.setM_id(m_id);
-		
-		sqlSession.getMapper(ClubDAOImpl.class).gameMemberApply(gameMemberDTO);
+		int check = sqlSession.getMapper(ClubDAOImpl.class).gameMemberCount(gameMemberDTO);
+		if(check==0) {
+			sqlSession.getMapper(ClubDAOImpl.class).gameMemberApply(gameMemberDTO);
+		}
 		
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		

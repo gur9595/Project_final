@@ -18,7 +18,7 @@
 	                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewManage.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-account-plus"></i><span class="hide-menu">JOIN</span></a>                             
 	            </ul>
 	        </nav>
-	    </div>
+	    </div> 
 	</aside> 
 </body>
 </html>

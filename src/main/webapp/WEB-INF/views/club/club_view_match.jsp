@@ -290,5 +290,6 @@
 		alert("신청 완료!");
 		location.href="../club/gameMemberApply.do?c_idx="+c_idx+"&g_idx="+ g_idx +"&m_id="+m_id;
 	}
+	
 </script>
 </html>
