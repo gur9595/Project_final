@@ -103,6 +103,12 @@
 			update clubmember set cm_grade = #{param2} where c_idx = #{param1} and m_id like #{param3}
 		</update>
 		
+		<!-- 히스토리 내클럽 이름 갖고오기 -->
+<!-- 		<select id="myClubname" resultType="mybatis.ClubDTO">
+			select c_name from club where c_idx=#{c_idx}
+		</select> -->
+		
+		
 		
 	  <select id="getTotalCount" resultType="int" >
 		select count(*) from club 
@@ -316,6 +322,10 @@
 		from game
 		where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
 	</select>
+	
+	<insert id="gameMemberApplyA" parameterType="mybatis.AndroidGameMemberDTO">
+		insert into gamemember values(gamemember_seq.nextval, #{g_idx}, #{m_id}, default)
+	</insert>
 	  
 	  <select id="clubMemberRank" resultType="mybatis.GoalHistoryDTO">
 	  	select gh.* from goalhistory gh inner join game g on gh.g_idx = g.g_idx where g.c_idx = #{c_idx}  and g.g_rating is not null

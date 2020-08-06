@@ -43,6 +43,7 @@ public class ClubController {
 	public String clubMain() {
 		return "club/club_main";
 	}
+	
 
 	@RequestMapping("/club/clubMyList.do")
 	public String clubMyList(Principal principal, Model model, HttpServletRequest req) {
@@ -500,6 +501,19 @@ public class ClubController {
 		return "redirect:/club/clubViewManage.do?c_idx="+ c_idx;
 	}
 	
+	@RequestMapping("/club/clubViewHistory.do")
+	public String clubHistory(HttpServletRequest req, Model model) {
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		System.out.println("c_idx : "+c_idx);
+		ClubDTO clubDTO = new ClubDTO();
+		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+
+		model.addAttribute("clubDTO", clubDTO);
+		
+		return "club/club_view_history";
+	}
+	
 	@RequestMapping("/club/ClubMatchApply.do")
 	public String ClubMatchApply(Principal principal, HttpServletRequest req, Model model) {
 		
@@ -691,4 +705,5 @@ public class ClubController {
 		return "club/club_main";
 	}
 
+	
 }

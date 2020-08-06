@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-	
+	<i class="fab fa-adobe"></i>
 	<aside class="left-sidebar" data-sidebarbg="skin5">
 	    <div class="scroll-sidebar">
 	        <nav class="sidebar-nav">
@@ -14,7 +14,7 @@
 	                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewRank.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-poll"></i><span class="hide-menu">RANKING</span></a></li>
 	                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewMatch.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-soccer"></i><span class="hide-menu">MATCH</span></a></li>
 	                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewFormation.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-clipboard-outline"></i><span class="hide-menu">TACTIC</span></a>    
-	                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewFormation.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-clipboard-outline"></i><span class="hide-menu">TACTIC</span></a>    
+	                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewHistory.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-account-plus"></i><span class="hide-menu">HISTORY</span></a>                             
 	                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewManage.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-account-plus"></i><span class="hide-menu">JOIN</span></a>                             
 	            </ul>
 	        </nav>
