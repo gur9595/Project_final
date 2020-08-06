@@ -25,6 +25,8 @@ public interface ClubDAOImpl {
 	
 	public ClubDTO clubView(int c_idx);
 	
+	public ArrayList<GameDTO> clubView10History(int c_idx);
+	
 	public int clubIdx(ClubDTO clubDTO);
 
 	public int clubCreateMember(String m_id, int idx);
@@ -34,6 +36,8 @@ public interface ClubDAOImpl {
 	public int clubMemberApply(int cm_idx);
 	
 	public int gameMemberApply(GameMemberDTO gameMemberDTO);
+	
+	public int gameMemberDrop(GameMemberDTO gameMemberDTO);
 	
 	public int gameMemberCount(GameMemberDTO gameMemberDTO);
 	
@@ -78,6 +82,8 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubPointRank(int c_idx);
 	
 	public ArrayList<MemberDTO> clubAppearanceRank(int c_idx);
+	
+	public int gameFormPng(int g_idx, String fileName);
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MemberDTO> clubViewMemberA(AndroidClubMemberDTO androidClubMemberDTO);
