@@ -259,7 +259,7 @@
 	<select id="clubMakingForm" resultType="mybatis.GameMemberDTO">
 		select gm.*, m.m_name
 		from gamemember gm inner join member m on gm.m_id = m.m_id
-		where gm.g_idx like #{param1}
+		where gm.g_idx = #{param1}
 	</select>
 	
 	<!-- *******************안드로이드 매퍼*************************** -->

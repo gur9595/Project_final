@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <title>포메이션 작성</title>
 
-<!-- 전술판 전용 -->
+<!-- 전술판 전용 -->  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript"
@@ -20,161 +22,596 @@
 	src="http://static.footballuser.com/javascripts/chosen.jquery.min.js"></script>
 <body>
 	<style>
-	.dropped_name {
-		color: #fff;
-	}
-	</style>
+.dropped_name {
+	color: #fff;
+}
+.ground td {
+	border:0.5px solid black; 
+} 
+.ground .no{
+	border:0;
+}
+</style>
 	<script type="text/javascript">
-				var config = {
-					'.edit_field' : {}
-				}
-				for ( var selector in config) {
-					$(selector).chosen(config[selector]);
-				}
-			</script>
-
-	<div id="field" class="two_third first">
-		<table
-			style="height: 613px; width: 416px; background: url(http://static.footballuser.com/images/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
-			<tr>
-				<td class="pos" id="pos0"><input type="hidden" id="pos0"
-					value=""></td>
-				<td class="pos" id="pos1"><input type="hidden" id="pos1"
-					value=""></td>
-				<td class="pos" id="pos2"><input type="hidden" id="pos2"
-					value=""></td>
-				<td class="pos" id="pos3"><input type="hidden" id="pos3"
-					value=""></td>
-				<td class="pos" id="pos4"><input type="hidden" id="pos4"
-					value=""></td>
-			</tr>
-			<tr>
-				<td class="pos" id="pos5"><input type="hidden" id="pos5"
-					value=""></td>
-				<td class="pos" id="pos6"><input type="hidden" id="pos6"
-					value=""></td>
-				<td class="pos" id="pos7"><input type="hidden" id="pos7"
-					value=""></td>
-				<td class="pos" id="pos8"><input type="hidden" id="pos8"
-					value=""></td>
-				<td class="pos" id="pos9"><input type="hidden" id="pos9"
-					value=""></td>
-			</tr>
-			<tr>
-				<td class="pos" id="pos10"><input type="hidden" id="pos10"
-					value=""></td>
-				<td class="pos" id="pos11"><input type="hidden" id="pos11"
-					value=""></td>
-				<td class="pos" id="pos12"><input type="hidden" id="pos12"
-					value=""></td>
-				<td class="pos" id="pos13"><input type="hidden" id="pos13"
-					value=""></td>
-				<td class="pos" id="pos14"><input type="hidden" id="pos14"
-					value=""></td>
-			</tr>
-			<tr>
-				<td class="pos" id="pos15"><input type="hidden" id="pos15"
-					value=""></td>
-				<td class="pos" id="pos16"><input type="hidden" id="pos16"
-					value=""></td>
-				<td class="pos" id="pos17"><input type="hidden" id="pos17"
-					value=""></td>
-				<td class="pos" id="pos18"><input type="hidden" id="pos18"
-					value=""></td>
-				<td class="pos" id="pos19"><input type="hidden" id="pos19"
-					value=""></td>
-			</tr>
-			<tr>
-				<td class="pos" id="pos20"><input type="hidden" id="pos20"
-					value=""></td>
-				<td class="pos" id="pos21"><input type="hidden" id="pos21"
-					value=""></td>
-				<td class="pos" id="pos22"><input type="hidden" id="pos22"
-					value=""></td>
-				<td class="pos" id="pos23"><input type="hidden" id="pos23"
-					value=""></td>
-				<td class="pos" id="pos24"><input type="hidden" id="pos24"
-					value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="pos" id="pos25"><input type="hidden" id="pos25"
-					value=""></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-		<!-- <img id="field_image" height="613" width="416" src="http://static.footballuser.com/images/field.jpg" alt="" /> -->
+		var config = {
+			'.edit_field' : {}
+		}
+		for ( var selector in config) {
+			$(selector).chosen(config[selector]);
+		}
+	</script> 
+  	<div class="two_third first">
+		<div id="field" style="height: 613px; width: 416px;"> 
+			<table class="ground"
+				style="height: 613px; width: 416px; background: url(./../resources/img/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+				<c:forEach items="${squad }" var="row" varStatus="status">
+					<c:choose>
+						<c:when test="${status.count==1 }">
+							<tr style="height: 102px">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos0" style="width:20%"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos0" style="width:20%">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==2 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos1" style="width:20%"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos1" style="width:20%">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==3 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos2" style="width:20%"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos2" style="width:20%">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==4 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos3" style="width:20%"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos3" style="width:20%">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==5 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos4" style="width:20%"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos4" style="width:20%">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+							</tr>
+						</c:when>
+						<c:when test="${status.count==6 }">
+							<tr style="height: 102px">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos5"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos5">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==7 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos6"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos6">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==8 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos7"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos7">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==9 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos8"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos8">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==10 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos9"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos9">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+							</tr>
+						</c:when>
+						<c:when test="${status.count==11 }">
+							<tr style="height: 102px">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos10"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos10">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==12 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos11"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos11">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==13 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos12"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos12">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==14 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos13"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos13">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==15 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos14"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos14">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+							</tr>
+						</c:when>
+						<c:when test="${status.count==16 }">
+							<tr style="height: 102px">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos15"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos15">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==17 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos16"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos16">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==18 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos17"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos17">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==19 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos18"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos18">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==20 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos19"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos19">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+							</tr>
+						</c:when>
+						<c:when test="${status.count==21 }">
+							<tr style="height: 102px">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos20"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos20">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==22 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos21"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos21">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==23 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos22"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos22">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==24 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos23"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos23">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:when test="${status.count==25 }">
+							<c:choose>
+								<c:when test="${row.m_name ==null }">
+									<td class="pos" id="pos24"></td>
+								</c:when>
+								<c:otherwise>
+									<td class="pos" id="pos24">
+										<div class="dropped_player">
+											<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+										</div>
+										<div class="dropped_name">
+											${row.m_name}
+										</div>
+									</td>
+								</c:otherwise>
+							</c:choose>
+							</tr>
+						</c:when>
+						<c:when test="${status.count== 26 }">
+							<tr style="height: 102px">
+								<td class="no"></td>
+								<td class="no"></td>
+									<c:choose>
+										<c:when test="${row.m_name ==null }">
+											<td class="pos" id="pos25"></td>
+										</c:when>
+										<c:otherwise>
+											<td class="pos" id="pos25">
+												<div class="dropped_player">
+													<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+												</div>
+												<div class="dropped_name">
+													${row.m_name}
+												</div>
+											</td>
+										</c:otherwise>
+									</c:choose>
+								<td class="no"></td>
+								<td class="no"></td>
+							</tr>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+			</table>
+			<!-- <img id="field_image" height="613" width="416" src="http://static.footballuser.com/images/field.jpg" alt="" /> -->
+		</div>
 	</div>
 
-	<div class="one_third style="display: inline;">
+	<div class="one_third ">
 		<div class="">
 			<br class="clear" />
-	
+
 			<div class="">
-			<div id="shirts" class="left_padded more_topspaced" style="height:220px;width:316px; overflow:auto">
-	        
-	        <img id="_1.png" class="active_shirt shirt" src="http://static.footballuser.com/images/shirts/_1.png" alt="" />
-	        
-	        <img id="_2.png" class="shirt" src="http://static.footballuser.com/images/shirts/_2.png" alt="" />
-	        <img id="_3.png" class="shirt" src="http://static.footballuser.com/images/shirts/_3.png" alt="" />
-	        <img id="_4.png" class="shirt" src="http://static.footballuser.com/images/shirts/_4.png" alt="" />
-	        <img id="_5.png" class="shirt" src="http://static.footballuser.com/images/shirts/_5.png" alt="" />
-	        <img id="_6.png" class="shirt" src="http://static.footballuser.com/images/shirts/_6.png" alt="" />
-	        <img id="_7.png" class="shirt" src="http://static.footballuser.com/images/shirts/_7.png" alt="" />
-	        <img id="_8.png" class="shirt" src="http://static.footballuser.com/images/shirts/_8.png" alt="" />
-	        <img id="_9.png" class="shirt" src="http://static.footballuser.com/images/shirts/_9.png" alt="" />
-	        <img id="_10.png" class="shirt" src="http://static.footballuser.com/images/shirts/_10.png" alt="" />
-	        <img id="_11.png" class="shirt" src="http://static.footballuser.com/images/shirts/_11.png" alt="" />
-	        <img id="_12.png" class="shirt" src="http://static.footballuser.com/images/shirts/_12.png" alt="" />
-	        <img id="_13.png" class="shirt" src="http://static.footballuser.com/images/shirts/_13.png" alt="" />
-	        <img id="_14.png" class="shirt" src="http://static.footballuser.com/images/shirts/_14.png" alt="" />
-	        <img id="_15.png" class="shirt" src="http://static.footballuser.com/images/shirts/_15.png" alt="" />
-	        <img id="_16.png" class="shirt" src="http://static.footballuser.com/images/shirts/_16.png" alt="" />
-	        <img id="_17.png" class="shirt" src="http://static.footballuser.com/images/shirts/_17.png" alt="" />
-	        <img id="_18.png" class="shirt" src="http://static.footballuser.com/images/shirts/_18.png" alt="" />
-	        <img id="_19.png" class="shirt" src="http://static.footballuser.com/images/shirts/_19.png" alt="" />
-	        <img id="_20.png" class="shirt" src="http://static.footballuser.com/images/shirts/_20.png" alt="" />
-	        <img id="_21.png" class="shirt" src="http://static.footballuser.com/images/shirts/_21.png" alt="" />
-	        <img id="_22.png" class="shirt" src="http://static.footballuser.com/images/shirts/_22.png" alt="" />
-	        <img id="_23.png" class="shirt" src="http://static.footballuser.com/images/shirts/_23.png" alt="" />
-	        <img id="_24.png" class="shirt" src="http://static.footballuser.com/images/shirts/_24.png" alt="" />
-	        <img id="_25.png" class="shirt" src="http://static.footballuser.com/images/shirts/_25.png" alt="" />
-	        <img id="_26.png" class="shirt" src="http://static.footballuser.com/images/shirts/_26.png" alt="" />
-	    </div>
-			<div class="">
+				<div id="shirts" class="left_padded more_topspaced"
+					style="height: 220px; width: 316px; overflow: auto; display: none;">
+
+					<img id="_1.png" class="active_shirt shirt"
+						src="http://static.footballuser.com/images/shirts/_1.png" alt="" />
+
+					<img id="_2.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_2.png" alt="" />
+					<img id="_3.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_3.png" alt="" />
+					<img id="_4.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_4.png" alt="" />
+					<img id="_5.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_5.png" alt="" />
+					<img id="_6.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_6.png" alt="" />
+					<img id="_7.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_7.png" alt="" />
+					<img id="_8.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_8.png" alt="" />
+					<img id="_9.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_9.png" alt="" />
+					<img id="_10.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_10.png" alt="" />
+					<img id="_11.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_11.png" alt="" />
+					<img id="_12.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_12.png" alt="" />
+					<img id="_13.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_13.png" alt="" />
+					<img id="_14.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_14.png" alt="" />
+					<img id="_15.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_15.png" alt="" />
+					<img id="_16.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_16.png" alt="" />
+					<img id="_17.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_17.png" alt="" />
+					<img id="_18.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_18.png" alt="" />
+					<img id="_19.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_19.png" alt="" />
+					<img id="_20.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_20.png" alt="" />
+					<img id="_21.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_21.png" alt="" />
+					<img id="_22.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_22.png" alt="" />
+					<img id="_23.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_23.png" alt="" />
+					<img id="_24.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_24.png" alt="" />
+					<img id="_25.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_25.png" alt="" />
+					<img id="_26.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_26.png" alt="" />
+				</div>
+				<!-- <div class="" >
 				<input id="playername" type="text" value="" size="30"
 					name="playername" /> <input id="playerid" type="text" value=""
 					size="30" name="playerid" /> <input
 					style="margin-left: 20px; height: 33px" class="button" value="add"
 					type="submit" id="addplayer" />
-			</div>
-			<div id="player_list" class="player_list">
-				<table id="player_table" cellspacing="0" cellpadding="0" border="0"
-					width="378">
-					<tbody>
-						<tr>
-							<td height="22" align="left" class="player_header"><strong>Name</strong>
-							</td>
-							<td height="22" align="right" class="player_header"><a
-								href="#" class="delete_players no_underline"><strong>
-										« Remove all</strong></a></td>
-						</tr>
-					</tbody>
-				</table>
+			</div> -->
+				<div style="font-size:35px;">
+					<p>
+						벤치 멤버
+					</p>
+				</div>
+				<div id="player_list" class="player_list" style="width:200px; height:500px; margin-left: -100px; overflow-x:hidden;"> 
+					<table id="player_table"  
+					style="overflow:hidden; height:auto;  cellspacing:0; cellpadding:0; border:0">
+						<tbody>
+							<c:forEach items="${bench }" var="row" varStatus="status">
+								<tr>
+									<td align="left" class="player_header"  style="height:40px;">
+										<div class="player ui-draggable" style="font-size: 20px;"
+											value="${row.m_name }">${row.m_name }</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+
 			</div>
 
-			<div class="">
-				<p>
-					<input class="button" type="submit" value="save" id="submit"
-						name="submit" />
-				</p>
-			</div>
 		</div>
 
 	</div>
-
+	<div class="">
+		<p>
+			<input class="btn btn-success" type="submit" value="스쿼드 저장" id="submit"
+				name="submit" />
+		</p>
+	</div>
 
 	<br class="clear" />
 

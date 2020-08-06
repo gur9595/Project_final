@@ -365,7 +365,32 @@ public class ClubController {
 		
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx); 
 		
-		model.addAttribute("lists", lists);  
+		GameMemberDTO Nulldto = new GameMemberDTO();
+		ArrayList<GameMemberDTO> squad = new ArrayList<GameMemberDTO>();
+		ArrayList<GameMemberDTO> bench = new ArrayList<GameMemberDTO>();
+		int check = 0;
+		for(int i =0; i<26; i++) {
+			check = 0;
+			for(GameMemberDTO gameMemberDTO : lists) {
+				if (i==gameMemberDTO.getGm_form()) {
+					System.out.println("in");
+					squad.add(i, gameMemberDTO);
+					check++;
+				}
+			}
+			if(check==0)
+			System.out.println("not");
+			squad.add(i, Nulldto);
+		}
+		
+		for(GameMemberDTO gameMemberDTO : lists) {
+			if (gameMemberDTO.getGm_form() == (-1)) {
+				bench.add(gameMemberDTO);
+			}
+		}	
+		
+		model.addAttribute("squad", squad);  
+		model.addAttribute("bench", bench); 
 
 		return "club/club_view_formmake";
 	}
@@ -505,6 +530,7 @@ public class ClubController {
 		gameDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
 		
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchReject(gameDTO);
+		
 		
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		
