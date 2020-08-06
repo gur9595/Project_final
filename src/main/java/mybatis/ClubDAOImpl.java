@@ -88,5 +88,6 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewMemberA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
 	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);
+	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO);
 	
 }
