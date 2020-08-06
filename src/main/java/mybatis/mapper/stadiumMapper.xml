@@ -41,10 +41,10 @@
       WHERE rNum BETWEEN #{start} AND #{end}
    </select>
    
-   <!-- 회원가입 --> 
+  <!-- 회원가입 --> 
   <insert id="stadiumInsert" parameterType="mybatis.StadiumDTO"> 
      insert into stadium values(stadium_seq.nextval, #{s_id}, #{s_pw}, #{s_name}, #{s_phone}, #{s_addr}, #{s_gu},
-        #{s_type}, #{s_pic}, #{s_size}, #{s_cv}, #{s_price}, #{s_memo}, #{s_starttime}, #{s_endtime}) 
+        #{s_type}, #{s_pic}, #{s_size}, #{s_cv}, #{s_price}, #{s_memo}, #{s_starttime}, #{s_endtime}, #{s_lat}, #{s_lng}) 
   </insert>
   
      <!-- 경기장 정보 -->

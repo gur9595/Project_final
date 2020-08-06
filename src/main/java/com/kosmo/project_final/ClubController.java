@@ -28,6 +28,7 @@ import mybatis.ClubDTO;
 import mybatis.ClubMemberDTO;
 import mybatis.GameDTO;
 import mybatis.GameMemberDTO;
+import mybatis.GoalHistoryDTO;
 import mybatis.MatchDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
@@ -175,6 +176,7 @@ public class ClubController {
 	@RequestMapping("/club/clubView.do")
 	public String clubView(HttpServletRequest req, Model model) {
 		
+		
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
@@ -242,12 +244,35 @@ public class ClubController {
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
-		ArrayList<MemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMember(c_idx);
 		
+		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).clubMemberCount(c_idx);
+
+		int pageSize = 10;
+		int blockPage = 5;
+
+		int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
+
+		int nowPage = req.getParameter("nowPage") == null ? 1 : Integer.parseInt(req.getParameter("nowPage"));
+
+		int start = (nowPage - 1) * pageSize + 1;
+		int end = nowPage * pageSize;
+
+		ArrayList<MemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMember(c_idx,start, end);
+
+		String paging = PagingUtil.paging(totalRecordCount, pageSize,
+		blockPage, nowPage, req.getContextPath() + "/club/clubViewMember.do?c_idx="+c_idx+"&");
+
+		model.addAttribute("paging", paging);
+		
+
+		System.out.println(totalRecordCount);
+
 		model.addAttribute("lists", lists);
-		model.addAttribute("clubDTO", clubDTO);
+		model.addAttribute("clubDTO", clubDTO); 
 		
 		return "club/club_view_member";
+		
+
 	}
 	
 	@RequestMapping("/club/clubViewRank.do")
@@ -257,7 +282,16 @@ public class ClubController {
 
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
-
+		
+		ArrayList<MemberDTO> goalRank = sqlSession.getMapper(ClubDAOImpl.class).clubGoalRank(c_idx);
+		ArrayList<MemberDTO> assistRank = sqlSession.getMapper(ClubDAOImpl.class).clubAssistRank(c_idx);
+		ArrayList<MemberDTO> pointRank = sqlSession.getMapper(ClubDAOImpl.class).clubPointRank(c_idx);
+		ArrayList<MemberDTO> appearanceRank = sqlSession.getMapper(ClubDAOImpl.class).clubAppearanceRank(c_idx);
+		
+		model.addAttribute("goalRank",goalRank);
+		model.addAttribute("assistRank",assistRank);
+		model.addAttribute("pointRank",pointRank);
+		model.addAttribute("appearanceRank",appearanceRank);
 		model.addAttribute("clubDTO", clubDTO);
 
 		return "club/club_view_rank";
@@ -369,6 +403,40 @@ public class ClubController {
 		model.addAttribute("bench", bench);  
 
 		return "club/club_view_formcheck";
+	}
+	
+	@RequestMapping("/club/clubTacticBoard.do")
+	public String clubTacticBoard(HttpServletRequest req, Model model) {
+		
+		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		
+		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx); 
+		
+		ArrayList<String> squad = new ArrayList<String>();
+		ArrayList<String> bench = new ArrayList<String>();
+		int check = 0;
+		for(int i =0; i<26; i++) {
+			check = 0;
+			for(GameMemberDTO gameMemberDTO : lists) {
+				if (i==gameMemberDTO.getGm_form()) {
+					squad.add(i, gameMemberDTO.getM_name());
+					check++;
+				}
+			}
+			if(check==0)
+			squad.add(i, "");
+		}
+		
+		for(GameMemberDTO gameMemberDTO : lists) {
+			if (gameMemberDTO.getGm_form() == (-1)) {
+				bench.add(gameMemberDTO.getM_name());
+			}
+		}	
+		
+		model.addAttribute("squad", squad);  
+		model.addAttribute("bench", bench);  
+
+		return "club/club_tacticboard";
 	}
 
 	@RequestMapping("/club/clubViewManage.do")

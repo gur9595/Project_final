@@ -387,9 +387,18 @@ public class MemberController {
       String s_addr2 = req.getParameter("s_addr2");
       String s_addr = s_addr1+" "+s_addr2;
       
+      //좌표값 받기
+      String latitude = req.getParameter("latitude"); //위도
+      String longitude = req.getParameter("longitude"); //경도
+      
       dto.setS_addr(s_addr);
+      dto.setS_lat(latitude);
+      dto.setS_lng(longitude);
       
       System.out.println("s_memo : "+dto.getS_memo());
+      System.out.println("s_lat : " + dto.getS_lat());
+      System.out.println("s_lng : " + dto.getS_lng());
+      
       sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
       
       return"member/member_select";

@@ -47,6 +47,8 @@
 	<select id="pw_mailSending" parameterType="mybatis.MemberDTO" resultType="String">
 		select m_pw from member where m_id like #{m_id} and m_email like #{m_email}
 	</select>
+	
+
 	 
   </mapper>
 

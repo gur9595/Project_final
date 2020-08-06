@@ -8,25 +8,30 @@ public class CashDTO {
 	private int cs_idx;
 	private int c_idx;
 	private String m_id;
-	private int cs_current;
 	private int cs_charge;
 	private int cs_spend;
 	private java.sql.Date cs_date;
+		// 추가
+	private int cash;
 	
+
 	// 기본생성자
 	public CashDTO() {}
 	
 	// 인자생성자
-	public CashDTO(int cs_idx, int c_idx, String m_id, int cs_current, int cs_charge, int cs_spend,
-			Date cs_date) {
+	public CashDTO(int cs_idx, int c_idx, String m_id, int cs_charge, int cs_spend,
+			Date cs_date, int cash) {
 		super();
 		this.cs_idx = cs_idx;
 		this.c_idx = c_idx;
-		this.m_id = m_id;
-		this.cs_current = cs_current;
+		this.m_id = m_id;	
 		this.cs_charge = cs_charge;
 		this.cs_spend = cs_spend;
 		this.cs_date = cs_date;
+		
+			// 추가
+		this.cash = cash;
+		
 	}
 
 	// getter / setter
@@ -52,15 +57,7 @@ public class CashDTO {
 
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
-	}
-
-	public int getCs_current() {
-		return cs_current;
-	}
-
-	public void setCs_current(int cs_current) {
-		this.cs_current = cs_current;
-	}
+	}	
 
 	public int getCs_charge() {
 		return cs_charge;
@@ -86,8 +83,13 @@ public class CashDTO {
 		this.cs_date = cs_date;
 	}
 	
-	
-	
-	
+		// 추가
+	public int getCash() {
+		return cash;
+	}
+
+	public void setCash(int cash) {
+		this.cash = cash;
+	}
 
 }
