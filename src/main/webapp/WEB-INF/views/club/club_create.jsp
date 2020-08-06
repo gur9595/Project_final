@@ -90,11 +90,18 @@ String keyword = request.getParameter("keyword");
 			<input type="text" class="team" placeholder="팀명을 입력해주세요" id="c_name" name="c_name" style="width:400px; height:40px;">
 		</div>
 		
-		<h2>엠블럼 넣기</h2>
-		<div class="selector">
-			<input type="file" id="c_emb" name="file" accept="image/*" onchange="setEmblem(event)"/>
-			<div id="image_container"></div>
-		</div>
+        <h2>엠블럼 등록하기</h2>
+		<table style="text-align: center; vertical-align: middle;">
+			<tr>
+				<th colspan="2">엠블럼을 등록할 파일</th>
+			</tr>
+			<tr>
+				<td width="30%" style="border:1px solid black"><input type="file" name="file" accept="image/*" onchange="setPic(event)" style="margin-left: 10%;" /></td>
+				<td width="35%">
+					<div id="image_container" style="width: 250px; height: 300px;" align="center"></div>
+				</td>
+			</tr>
+		</table>
 		
 		<h2>주 활동지역</h2>
 		<div class="box">
@@ -251,6 +258,26 @@ function isValidate (creFrm){
 		creFrm.c_memo.focus();
 		return false;
 	}
+}
+
+function setPic(event) {
+	var reader = new FileReader();
+	
+	reader.onload = function(event) {
+		if(document.getElementById('newImg')){
+			var el = document.getElementById('newImg');
+			el.remove();
+		}
+		
+		var img = document.createElement("img");
+		img.style.align = "center";
+		img.setAttribute("width", 250);
+		img.setAttribute("height", 250);
+		img.setAttribute("id", "newImg");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("#image_container").appendChild(img);
+	};
+	reader.readAsDataURL(event.target.files[0]);
 }
 </script>
 </html>
