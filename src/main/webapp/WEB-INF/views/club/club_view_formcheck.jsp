@@ -588,7 +588,7 @@ color: #fff;
 					<tbody>
 						<c:forEach items="${bench }" var="row" varStatus="status" >
 							<tr>
-								<td height="22" align="left" class="player_header"><strong>${row }</strong>
+								<td height="22" align="left" class="player_header" style="font-size: 20px;"><strong>${row }</strong>
 								</td>
 							</tr>
 						</c:forEach>

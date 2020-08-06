@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0">
 <!-- 전술판 전용 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script type="text/javascript"
@@ -48,7 +48,7 @@ color: #fff;
 								<c:forEach items="${bench }" var="row" varStatus="status" >
 									<tr>
 										<td height="22" align="left" class="player_header">
-											<div class = "player ui-draggable" value="${row }">${row }</div>
+											<div class = "player ui-draggable" style="20px" value="${row }">${row }</div>
 										</td>
 									</tr>
 								</c:forEach>

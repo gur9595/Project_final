@@ -374,13 +374,11 @@ public class ClubController {
 			check = 0;
 			for(GameMemberDTO gameMemberDTO : lists) {
 				if (i==gameMemberDTO.getGm_form()) {
-					System.out.println("in");
 					squad.add(i, gameMemberDTO);
 					check++;
 				}
 			}
 			if(check==0)
-			System.out.println("not");
 			squad.add(i, Nulldto);
 		}
 		

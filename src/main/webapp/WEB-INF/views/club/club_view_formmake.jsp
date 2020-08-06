@@ -511,7 +511,7 @@
 		</div>
 	</div>
 
-	<div class="one_third ">
+	<div class="one_third " >
 		<div class="">
 			<br class="clear" />
 
@@ -580,12 +580,13 @@
 					style="margin-left: 20px; height: 33px" class="button" value="add"
 					type="submit" id="addplayer" />
 			</div> -->
+			
 				<div style="font-size:35px;">
 					<p>
 						벤치 멤버
 					</p>
 				</div>
-				<div id="player_list" class="player_list" style="width:200px; height:500px; margin-left: -100px; overflow-x:hidden;"> 
+				<div id="player_list" class="player_list" style="width:200px; height:500px; overflow-x:hidden;"> 
 					<table id="player_table"  
 					style="overflow:hidden; height:auto;  cellspacing:0; cellpadding:0; border:0">
 						<tbody>
@@ -604,14 +605,15 @@
 			</div>
 
 		</div>
+		<div class="">
+			<p>
+				<input class="btn btn-success" type="submit" value="스쿼드 저장" id="submit"
+					name="submit" />
+			</p>
+		</div>
 
 	</div>
-	<div class="">
-		<p>
-			<input class="btn btn-success" type="submit" value="스쿼드 저장" id="submit"
-				name="submit" />
-		</p>
-	</div>
+	
 
 	<br class="clear" />
 

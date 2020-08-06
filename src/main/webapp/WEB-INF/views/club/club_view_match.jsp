@@ -149,8 +149,8 @@
 																	<th>${row.g_time }</th>
 																	<th>${row.g_sname }</th>
 																	<th><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></th>
-																	<th><input type="button" onclick=":javascript:ClubMatchApply(${param.c_idx},${row.g_idx},${row.g_num})" class="btn btn-outline-success" style="width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="수락" ></th>
-		                                                        	<th><input type="button" onclick=":javascript:ClubMatchReject(${param.c_idx},${row.g_idx},${row.g_num})" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" ></th>
+																	<th><input type="button" onclick="javascript:ClubMatchApply(${param.c_idx},${row.g_idx},${row.g_num})" class="btn btn-outline-success" style="width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="수락" ></th>
+		                                                        	<th><input type="button" onclick="javascript:ClubMatchReject(${param.c_idx},${row.g_idx},${row.g_num})" class="btn btn-outline-danger" style=" width:55px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="거절" ></th>
 																</tr>
 															</c:forEach>
 		                                                </table>

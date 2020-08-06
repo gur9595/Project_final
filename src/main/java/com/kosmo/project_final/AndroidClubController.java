@@ -80,18 +80,6 @@ public class AndroidClubController {
 		return clubViewAccept;
 		
 	}
-	
-	@RequestMapping("/android/gameMemberApply.do")
-	@ResponseBody
-	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO) {
-		
-		int result = sqlSession.getMapper(ClubDAOImpl.class).gameMemberApplyA(androidGameMemberDTO);
-		
-		
-		
-		return result;
-	}
-	
-	
+	 
 
 }
