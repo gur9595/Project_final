@@ -35,6 +35,7 @@ function show_contents(id) {
     var doing = document.getElementById("event_doing");
     var end = document.getElementById("event_end");
     
+    //탭 선택에 따라 컨텐츠를 다르게 보여준다.
     if(id=="tab1"){
         //alert("tabl1체크됨");
         doing.style.display = "block";
@@ -46,17 +47,6 @@ function show_contents(id) {
         end.style.display = "block";
     }
 
-}
-
-function validate(frm){
-	if(frm.title.value==""){
-		alert("제목을 입력해주세요.");
-		return false;
-	}
-	if(frm.editordata.value==""){
-		alert("내용을 입력해주세요.");
-		return false;
-	}
 }
 
 $(function(){
@@ -71,14 +61,25 @@ $(function(){
 		location.href = "eventUpload.do";
 	});
 });
+ 
+//포스트 업로드
+function eventUploading(frm){
+	//폼값검증
+	if(frm.title.value==""){
+		alert("제목을 입력해주세요.");
+		return false;
+	}
+	if(frm.editordata.value==""){
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+	frm.submit();
+}
 </script>
 <style>
 .table-style{
 	overflow: hidden;
 	font-size: 1.2em;
-}
-.table-style td{
-	width: 50%;
 }
 .input-type input{
 	display: inline-block;
@@ -127,18 +128,18 @@ $(function(){
   <main class="hoc container clear"> 
     <!-- main body -->
 	    <div class="container">
-		    <form name="writeFrm" method="post" onsubmit="return validate(this);">
+		    <form name="uploadFrm" method="post">
 		    	<div style="float: left; border: 0px solid black; width: 49.99%; height: 50px; position: relative; margin-bottom: 10px;">
 		    		<div style="font-size: 25px; color: black; position: absolute; bottom: 25%;">이벤트 등록</div>
 		    	</div>
 				<!-- 버튼 -->
 				<div class="upload-btn-wrap">
-					<button type="submit" class="upload-btn">등록</button>
+					<button type="button" class="upload-btn" onclick="eventUploading(this.form);">등록</button>
 				</div>
 				<table class="table table-bordered table-style" style="color: black;">
 					<!-- 분류선택 -->
 					<tr>
-						<td>
+						<td width="50%;" height="100%;">
 							분류
 						</td>
 						<td>
@@ -165,7 +166,7 @@ $(function(){
 					
 					<!-- 제목 -->
 					<tr>
-						<td colspan="2" class="input-type" style="padding-top: 40px;">
+						<td colspan="2" class="input-type">
 							<input type="text" style="width: 100%; height: 35px; padding-left: 10px;
 								border: 1px solid #BDBDBD; border-radius: 5px;
 								"placeholder="제목을 입력해주세요." name="title"  />
@@ -181,8 +182,10 @@ $(function(){
 					
 					<!-- 파일첨부 -->
 					<tr>
-						<td></td>
-						<td></td>
+						<td colspan="2">
+							태그를 입력해 주세요, 태그 입력 가능하게, 마우스 클릭시#박스 생성, 스페이스바 혹은 엔터 입력시
+							다음 #박스 생기게
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -202,7 +205,7 @@ $('#summernote').summernote({
 	focus : true,
 	minHeight : 600,
 	maxHeight : null,
-	placeholder : '내용을 입력하세요.',
+	placeholder : '내용을 입력해주세요.',
 	lang : "ko-KR",
 	toolbar: [
 		['fontname', ['fontname']],
