@@ -23,7 +23,6 @@ h2 { font-size : 24px; color:#000066; line-height:30px;
 label {
     cursor: pointer; font-size : 18px;
 }
-.hoc{max-width:1100px;}
 
 .txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
 .txtBox31 { border-color: DodgerBlue; width: 350px; }
@@ -114,6 +113,8 @@ input[type=password] {
 		 
 	}
 }
+
+.container{max-width:1100px;}
 </style>
 
 
@@ -129,8 +130,8 @@ input[type=password] {
 	</div>
 </div>
 <div class="wrapper row3">
-	<main class="hoc container clear">
-		<div class="container">
+	<main class="hoc clear">
+		<div class="container" style="margin-left:auto; margin-right:auto;">
 		<h1 style="font-size: 40px; text-align: center;">구장 등록</h1>
 			<form action="<c:url value="/member/member_stadiumInsert.do" />" method="post">
 					
@@ -173,20 +174,20 @@ input[type=password] {
 
 
 			<h2>휴대전화</h2> <input class="txtBox31"maxlength="20"
-				type="tel" id="s_phone" name="s_phone" style="width: 350px;"
+				type="tel" id="s_phone" name="s_phone" style="width: 350px; font-size:25px;"
 				placeholder="휴대전화 입력(-없이)" maxlength="11">
 
 			<h2>구장크기</h2> <input class="txtBox31"maxlength="20"
-				type="tel" id="s_size" name="s_size" style="width: 350px;"
+				type="tel" id="s_size" name="s_size" style="width: 350px; font-size:25px;"
 				placeholder="00x00으로 입력" maxlength="11">
 
 			<h2>구장 대표 사진</h2> 
 				<input type="file" class="txtBox31" id="s_pic" name="s_pic">
 
-			<h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="width: 350px;"
+			<h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="width: 350px; font-size:25px;"
 				placeholder="00:00" maxlength="11">
 				
-			<h2>마감시간</h2> <input type="tel" class="txtBox31" id="s_endtime" name="s_endtime"style="width: 350px;"
+			<h2>마감시간</h2> <input type="tel" class="txtBox31" id="s_endtime" name="s_endtime"style="width: 350px; font-size:25px;"
 				placeholder="00:00" maxlength="11">
 
 			<h2>구장 종류</h2>
@@ -228,7 +229,7 @@ input[type=password] {
 
 			<h2>가격</h2> <input
 				type="tel" class="txtBox31" id="s_price" name="s_price" 
-				placeholder=",없이 숫자만 입력" maxlength="11" style="width:350px;">
+				placeholder=",없이 숫자만 입력" maxlength="11" style="width:350px; font-size:25px;">
 			
 			<br/> <br/>
 
