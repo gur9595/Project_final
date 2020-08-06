@@ -567,6 +567,22 @@ public class ClubController {
 		return "redirect:/club/clubViewMatch.do?c_idx="+ c_idx;
 	}
 	
+	@RequestMapping("/club/gameMemberDrop.do")
+	public String gameMemberDrop(Principal principal, HttpServletRequest req, Model model) {
+		
+		String m_id = principal.getName();
+		
+		GameMemberDTO gameMemberDTO = new GameMemberDTO();
+		gameMemberDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
+		gameMemberDTO.setM_id(m_id);
+		
+		sqlSession.getMapper(ClubDAOImpl.class).gameMemberDrop(gameMemberDTO);
+		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		
+		return "redirect:/club/clubViewMatch.do?c_idx="+ c_idx;
+	}
+	
 	@RequestMapping("/club/clubMemberApply.do")
 	public String clubMemberApply(HttpServletRequest req, Model model) {
 

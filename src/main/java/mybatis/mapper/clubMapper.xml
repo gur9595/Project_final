@@ -206,6 +206,10 @@
 		insert into gamemember values(gamemember_seq.nextval, #{g_idx}, #{m_id}, default)
 	</insert>
 	
+	<delete id="gameMemberDrop" parameterType="mybatis.GameMemberDTO">
+		delete from gamemember where g_idx = #{g_idx} and m_id like #{m_id}
+	</delete>
+	
 	<select id="gameMemberCount" resultType="int" parameterType="mybatis.GameMemberDTO">
 		select count(*) from gamemember where g_idx = #{g_idx} and m_id like #{m_id}
 	</select>
