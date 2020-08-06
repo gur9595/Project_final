@@ -53,7 +53,7 @@ public interface ClubDAOImpl {
 	
 	public int clubMatchOpponentCount(int g_num, int c_idx);
 	
-	public ArrayList<GameDTO> clubViewAccept(int c_idx);
+	public ArrayList<GameDTO> clubViewAccept(int c_idx); 
 	
 	public ArrayList<GameDTO> clubViewMyApply(int c_idx);
 	
