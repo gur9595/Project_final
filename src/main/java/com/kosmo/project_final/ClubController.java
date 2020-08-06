@@ -781,7 +781,7 @@ public class ClubController {
 			System.out.println(fileName);
 		} catch (Exception e) {
 			System.out.println("파일이 정상적으로 넘어오지 않았습니다");
-			mav.addObject("msg", "no");
+			mav.addObject("msg", "no"); 
 			return mav;
 		} finally {
 			stream.close();
