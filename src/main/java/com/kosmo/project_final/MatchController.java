@@ -501,6 +501,8 @@ public class MatchController {
 			//시작시간 쪼개기
 			String[] g_time = dto.getG_time().split(":");
 			dto.setG_time(g_time[0]);
+			
+			
 		}
 		
 		Collections.sort(lists, new Comparator<GameDTO>() {

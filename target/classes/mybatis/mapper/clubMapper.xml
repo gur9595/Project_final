@@ -328,7 +328,7 @@
 	</select>
 	
 	<insert id="gameMemberApplyA" parameterType="mybatis.AndroidGameMemberDTO">
-		insert into gamemember values(gamemember_seq.nextval, #{g_idx}, #{m_id}, default)
+		insert into gamemember (gm_idx, g_idx, m_id) values(gamemember_seq.nextval, #{g_idx}, #{m_id})
 	</insert>
 	  
 	  <select id="clubMemberRank" resultType="mybatis.GoalHistoryDTO">
