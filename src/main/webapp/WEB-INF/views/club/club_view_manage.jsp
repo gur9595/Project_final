@@ -181,7 +181,7 @@ th {
 							<div class="card-body">
 								<h4 class="card-title">채팅</h4>
 								<div>
-									<input type="hid-den" id="chat_id" value="${param.chat_id }"
+									<input type="hidden" id="chat_id" value="${param.chat_id }"
 										style="border: 1px dotted red;" />
 									<div id="chat-container" style="height: 500px; overflow: auto;">
 									</div>
@@ -222,11 +222,11 @@ th {
 	       <h2 class="modal-title"
 				style="font-size: 20px; text-align: center;" id="myModalLabel">직책변경</h2>
 	      </div>
-	      <div class="modal-body">
-	      	<input type="hid den" name="c_idx" value="${clubDTO.c_idx }" />
-			<input type="hi dden" id="grade" name="grade">
-			<input type="hi dden" id="m_id" name="m_id">
-	      	<select id="cm_grade" name="cm_grade" style="width: 100px;"></select>
+	      <div class="modal-body" style="text-align:center;">
+	      	<input type="hidden" name="c_idx" value="${clubDTO.c_idx }" />
+			<input type="hidden" id="grade" name="grade">
+			<input type="hidden" id="m_id" name="m_id">
+	      	<select id="cm_grade" name="cm_grade" style="width: 150px; height:30px;"></select>
 	      </div>
 	      
 	      <!-- Modal footer -->
