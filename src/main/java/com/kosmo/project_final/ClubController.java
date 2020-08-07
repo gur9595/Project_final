@@ -37,6 +37,7 @@ import mybatis.GoalHistoryDTO;
 import mybatis.MatchDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
+import mybatis.RankingDTO;
 import utils.PagingUtil;
 
 @Controller
@@ -68,7 +69,30 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubRanking.do")
-	public String clubRanking() {
+	public String clubRanking(Model model) {
+		
+		ArrayList<RankingDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubTotalRanking();
+		
+		
+		
+		for(RankingDTO dto : lists) {
+
+			int wins = dto.getWins();
+			int matches = dto.getMatches();
+			double winRate = 0;
+			
+			if(matches==0) {
+				dto.setWinRate(0);
+			}else {
+				winRate = (double) wins / matches * 100;
+				winRate = Math.round(winRate * 100) / 100;
+				dto.setWinRate((int)winRate);
+			}
+			
+		}
+		
+		model.addAttribute("lists",lists);
+		
 		return "club/club_ranking";
 	}
 
@@ -449,16 +473,6 @@ public class ClubController {
 	@RequestMapping("/club/clubMakeFormation.do")
 	public String clubMakeForm(Principal principal, HttpServletRequest req, Model model) {
 		
-		String m_id = principal.getName();
-		ClubMemberDTO getCmgrade = new ClubMemberDTO();
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
-		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
-			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
-		model.addAttribute("getCmgrade", getCmgrade);
-		model.addAttribute("checkMember", checkMember);
-
 		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
 		
 		GameDTO gameDTO = sqlSession.getMapper(ClubDAOImpl.class).gameInfo(g_idx);
@@ -498,16 +512,7 @@ public class ClubController {
 	@RequestMapping("/club/clubCheckFormation.do")
 	public String clubCheckForm(Principal principal, HttpServletRequest req, Model model) {
 		
-		String m_id = principal.getName();
-		ClubMemberDTO getCmgrade = new ClubMemberDTO();
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
-		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
-			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
-		model.addAttribute("getCmgrade", getCmgrade);
-		model.addAttribute("checkMember", checkMember);
-
+		
 		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
 
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx);
@@ -639,7 +644,7 @@ public class ClubController {
 		 
 		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCountHistory(c_idx);
 
-		int pageSize = 10;
+		int pageSize = 5;
 		int blockPage = 5;
 
 		int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
@@ -690,6 +695,18 @@ public class ClubController {
 		return "club/club_view_history";
 	}
 
+	/*
+	 * @RequestMapping("/club/clubMatchDetail.do") public String
+	 * clubMatchDetail(HttpServletRequest req, Model model) {
+	 * 
+	 * int g_num = Integer.parseInt(req.getParameter("g_num"));
+	 * 
+	 * ArrayList<GoalHistoryDTO> lists =
+	 * sqlSession.getMapper(ClubDAOImpl.class).GoalList(g_num);
+	 * 
+	 * return "club/club_view_matchDetail"; }
+	 */
+	
 	@RequestMapping("/club/ClubMatchApply.do")
 	public String ClubMatchApply(Principal principal, HttpServletRequest req, Model model) {
 		

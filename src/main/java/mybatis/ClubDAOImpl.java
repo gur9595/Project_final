@@ -93,7 +93,10 @@ public interface ClubDAOImpl {
 	public GameDTO gameInfo(int g_idx);
 	
 	public int getTotalCountHistory(int c_idx);
+	
 	public ArrayList<MatchDTO> clubMatchHistory(int c_idx, int start, int end);
+	
+	public ArrayList<RankingDTO> clubTotalRanking();
 	
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);

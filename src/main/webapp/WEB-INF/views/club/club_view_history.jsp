@@ -7,13 +7,17 @@
 <meta charset="UTF-8">
 <title>타이틀</title>
 
-	<link href="./../resources/css/club_view2.css" rel="stylesheet">
-    <link href="./../resources/css/club_view_page.css" rel="stylesheet">
-    <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
-    <script src="/resources/js/view_custommin.js"></script>
-    <script src="/resources/js/club_view.js"></script>
-    <script src="/resources/js/club_sidebarmenu.js"></script>
-
+<link href="./../resources/css/club_view2.css" rel="stylesheet">
+<link href="./../resources/css/club_view_page.css" rel="stylesheet">
+<link href="./../resources/admin_css/style.min.css" rel="stylesheet">
+<script src="/resources/js/view_custommin.js"></script>
+<script src="/resources/js/club_view.js"></script>
+<script src="/resources/js/club_sidebarmenu.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
 </head>
 <style>
 	body{
@@ -104,35 +108,41 @@
                                             </div>
                                             <h5 style="margin-left: 140px; font-weight: 700;"></h5>
                                             <div class="comment-widgets scrollable">
-                                                <table style="width: 750px; text-align: center;">
+                                                <table style="width: 750px; text-align: center; ">
                                                     <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
-                                                    	<th width="30px;"></th>
-                                                        <th width="180px;">날짜</th>
+                                                        <th width="180px;"></th>
                                                         <th></th>
                                                         <th width="30px;"></th>
                                                         <th width="30px;"></th>
                                                         <th width="30px;"></th>
                                                         <th></th>
-                                                        <th width="40px;">결과</th>
+                                                        <th width="40px;"></th>
                                                     </tr>
                                                     <c:forEach items="${lists }" var="row" varStatus="status">
 	                                                    <tr>
-	                                                    	<th>${status.count}</th>
 	                                                        <th>${row.g_date }</th>
 	                                                        <c:choose>
 	                                                        	<c:when test="${row.g_check== 'owner' }">
 			                                                        <td>${row.home }</td>      
+	                                                        	</c:when>
+	                                                        	<c:when test="${row.home==null }">
+			                                                        <td style="color: red;">삭제된 팀</td>      
 	                                                        	</c:when>
 	                                                        	<c:otherwise>
 	                                                        		<td><a href="javascript:openClubView(${row.home_idx})">${row.home }</a></td> 
 	                                                        	</c:otherwise>
 	                                                        </c:choose>
 	                                                        	<td>${row.home_score }</td>
-	                                                        <th><button type="button" value="">VS</button></th>
+	                                                        	<th>
+	                                                        	<button type="button"  onclick="javascript:openMatchDetail">VS</button>
+	                                                        	</th>
 	                                                        	<td>${row.away_score }</td>
 	                                                        <c:choose>
 	                                                        	<c:when test="${row.g_check== 'yes' }">
 	                                                        		<td>${row.away }</td> 
+	                                                        	</c:when>
+	                                                        	<c:when test="${row.away==null }">
+			                                                        <td style="color: red;">삭제된 팀</td>      
 	                                                        	</c:when>
 	                                                        	<c:otherwise>
 	    		                                                    <td><a href="javascript:openClubView(${row.away_idx})">${row.away }</a></td>                                    
@@ -153,33 +163,12 @@
 	                                                    	</th>
 	                                                    </tr>
                                                     </c:forEach>
+		                                            <tr>
+		                                            	<td style="border-bottom: 0"colspan="7">${paging }</td>
+		                                            </tr> 
                                                 </table>
-                                                ${paging } 
                                             </div>
                                             <br /><br/>
-                                            <h4 style="margin-left: 80px; color:black; font-weight: 700;">최근 10경기 전적</h4>
-                                            <div class="comment-widgets scrollable">
-                                                <table style="width: 750px;">
-                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
-                                                        <th>승</th>
-                                                        <th>무</th>
-                                                        <th>패</th>
-                                                        <th>승률</th>
-                                                        <th>득점</th>
-                                                        <th>실점</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>5승</th>
-                                                        <th>0무</th>                                         
-                                                        <th>5패</th>                                         
-                                                        <th>50%</th>
-                                                        <th>2.6</th>
-                                                        <th>0.3</th>                                         
-                                                    </tr>
-                                                   
-                                                </table>
-                                            </div>
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -261,6 +250,10 @@
 function openClubView(c_idx){
 	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
 			"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+}
+function openMatchDetail(g_num){
+	window.open("../club/clubMatchDetail.do?g_num="+g_num, '_blank',
+			"width=1000,height=800, toolbar=no, menubar=no, resizable=no");
 }
 </script>
 </html>
