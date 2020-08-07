@@ -2,7 +2,7 @@ package mybatis;
 
 import java.sql.Date;
 
-public class MatchDTO {
+public class AndroidMatchDTO {
 
 	//멤버변수
 	private int g_idx;
@@ -23,6 +23,8 @@ public class MatchDTO {
 	private int g_extra;
 	private String g_lat;
 	private String g_lng;
+	private String g_formation;
+	
 	
 	//Join용 변수
 	private String c_name;
@@ -39,26 +41,23 @@ public class MatchDTO {
 	private String c_age;
 	private int start;
 	private int end;
-	private String home;
-	private int home_idx;
-	private int home_score;
-	private String away;
-	private int away_idx;
-	private int away_score;
-	private int opc_idx;
-	private String opc_name;
 	
+	private String m_id;
 	
-	public MatchDTO() {
+	// 안드로이드용 변수
+	private String gm_check;
+	
+	public AndroidMatchDTO() {
 		super();
 	}
+	
 
-	public MatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
-			String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu,
-			String g_check, int g_extra, String g_lat, String g_lng, String c_name, String c_cash, String c_emb,
-			String c_area, String c_type, Date c_date, String c_memo, String c_color, String c_ability,
-			String c_gender, int c_memlimit, String c_age, int start, int end, String home, int home_idx, String away, int away_idx,
-			int opc_idx, String opc_name,int home_score, int away_score) {
+	public AndroidMatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type,
+			String g_score, String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time,
+			String g_gu, String g_check, int g_extra, String g_lat, String g_lng, String g_formation, String c_name,
+			String c_cash, String c_emb, String c_area, String c_type, Date c_date, String c_memo, String c_color,
+			String c_ability, String c_gender, int c_memlimit, String c_age, int start, int end, String m_id,
+			String gm_check) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -78,6 +77,7 @@ public class MatchDTO {
 		this.g_extra = g_extra;
 		this.g_lat = g_lat;
 		this.g_lng = g_lng;
+		this.g_formation = g_formation;
 		this.c_name = c_name;
 		this.c_cash = c_cash;
 		this.c_emb = c_emb;
@@ -92,16 +92,29 @@ public class MatchDTO {
 		this.c_age = c_age;
 		this.start = start;
 		this.end = end;
-		this.away = away;
-		this.away_idx = away_idx;
-		this.home = home;
-		this.home_idx = home_idx;
-		this.opc_idx = opc_idx;
-		this.opc_name = opc_name;
-		this.home_score = home_score;
-		this.away_score = away_score;
+		this.m_id = m_id;
+		this.gm_check = gm_check;
 	}
-	
+
+
+
+
+	public String getG_formation() {
+		return g_formation;
+	}
+
+	public void setG_formation(String g_formation) {
+		this.g_formation = g_formation;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
 	public int getG_idx() {
 		return g_idx;
 	}
@@ -345,6 +358,14 @@ public class MatchDTO {
 	public int getStart() {
 		return start;
 	}
+	
+	public String getGm_check() {
+		return gm_check;
+	}
+
+	public void setGm_check(String gm_check) {
+		this.gm_check = gm_check;
+	}
 
 	public void setStart(int start) {
 		this.start = start;
@@ -357,69 +378,7 @@ public class MatchDTO {
 	public void setEnd(int end) {
 		this.end = end;
 	}
-
-	public String getHome() {
-		return home;
-	}
-
-	public void setHome(String home) {
-		this.home = home;
-	}
-
-	public int getHome_idx() {
-		return home_idx;
-	}
-
-	public void setHome_idx(int home_idx) {
-		this.home_idx = home_idx;
-	}
-
-	public String getAway() {
-		return away;
-	}
-
-	public void setAway(String away) {
-		this.away = away;
-	}
-
-	public int getAway_idx() {
-		return away_idx;
-	}
-
-	public void setAway_idx(int away_idx) {
-		this.away_idx = away_idx;
-	}
-
-	public int getOpc_idx() {
-		return opc_idx;
-	}
-
-	public void setOpc_idx(int opc_idx) {
-		this.opc_idx = opc_idx;
-	}
-
-	public String getOpc_name() {
-		return opc_name;
-	}
-
-	public void setOpc_name(String opc_name) {
-		this.opc_name = opc_name;
-	}
-
-	public int getHome_score() {
-		return home_score;
-	}
-
-	public void setHome_score(int home_score) {
-		this.home_score = home_score;
-	}
-
-	public int getAway_score() {
-		return away_score;
-	}
-
-	public void setAway_score(int away_score) {
-		this.away_score = away_score;
-	}
+	
+	
 	
 }
