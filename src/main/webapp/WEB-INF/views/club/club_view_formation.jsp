@@ -72,7 +72,9 @@
                                                         <th style="width:200px;">구장 이름</th>
                                                         <th style="width:100px;">상대팀</th>
                                                         <th style="width:100px;">포메이션 확인</th>
-                                                        <th style="width:120px;">포메이션 작성</th>         
+                                                        <c:if test="${getCmgrade.cm_grade!='player'}">
+                                                        	<th style="width:120px;">포메이션 작성</th>         
+                                                        </c:if>
                                                     </tr>
 
                                                     <c:forEach items="${lists }" var="row" varStatus="status"> 
@@ -80,9 +82,16 @@
 															<th>${row.g_date }</th>
 															<th>${row.g_time }</th>
 															<th>${row.g_sname }</th>
-															<th>${row.c_name }</th>
+															<th>
+																<c:choose>
+																	<c:when test="${row.c_name == null }">없음</c:when>
+																	<c:otherwise><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></c:otherwise>
+																</c:choose>
+															</th>
 															<th><input type="button" class="btn btn-outline-success" onclick="javascript:openFormCheck(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="확인" ></th>
-	                                                        <th><input type="button" class="btn btn-outline-primary" onclick="javascript:openFormMake(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="작성"></th>
+	                                                        <c:if test="${getCmgrade.cm_grade!='player'}">
+	                                                        	<th><input type="button" class="btn btn-outline-primary" onclick="javascript:openFormMake(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="작성"></th>
+	                                                        </c:if>
 														</tr>
 													</c:forEach>
                                                 </table> 
@@ -170,6 +179,10 @@
     </div>
 </body>
 <script>
+	function openClubView(c_idx){
+		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
+				"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+	}
 	function openFormMake(g_idx){
 		
 		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank', 

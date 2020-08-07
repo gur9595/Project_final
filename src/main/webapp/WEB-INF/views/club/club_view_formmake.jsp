@@ -31,12 +31,12 @@
 .dropped_name {
 	color: #fff;
 }
-.ground td {
+/* .ground td {
 	border:0.5px solid black; 
 } 
 .ground .no{
 	border:0;
-}
+} */
 </style>
 <script type="text/javascript">
 	var config = {
@@ -61,7 +61,7 @@ function capture() {
                 	},
                    success: function (data) {
                        try{
-                           
+                    	   alert("이미지 저장 완료! 팀원들에게 공유됩니다.");
                        }catch(e){                
                            alert('server Error!!');
                        }
@@ -80,9 +80,25 @@ function capture() {
   	<input type="hidden" name="imgSrc" id="imgSrc" />
   	<input type="hidden" name="g_idx" id="g_idx" value="${g_idx }" />
   	</form>
-		<div id="field" style="height: 613px; width: 416px;"> 
-			<table class="ground"
-				style="height: 613px; width: 416px; background: url(./../resources/img/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+			<c:choose>
+  			<c:when test="${gameDTO.g_type=='축구' }">
+  				<div id="field" style="height: 613px; width: 416px;">
+				<table class="football" 
+					style=" background: url(./../resources/img/field.jpg); 
+						height: 613px;
+						 width: 416px;
+						background-size: 100% 100%;
+						 background-repeat: no-repeat;">
+			</c:when>
+  			<c:otherwise>
+  				<div id="field" style="height: 613px; width: 446px;">
+  				<table class="futsal" 
+	  					style="height: 613px;
+						 width: 446px;
+						background-size: 100% 100%;
+						 background-repeat: no-repeat; background: url(./../resources/img/futsalfield.jpg); ">
+  			</c:otherwise>
+  		</c:choose>
 				<c:forEach items="${squad }" var="row" varStatus="status">
 					<c:choose>
 						<c:when test="${status.count==1 }">
