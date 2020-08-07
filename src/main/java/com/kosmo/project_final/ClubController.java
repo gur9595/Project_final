@@ -465,7 +465,17 @@ public class ClubController {
 	@RequestMapping("/club/clubTacticBoard.do")
 	public String clubTacticBoard(HttpServletRequest req, Model model) {
 
-		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		int g_idx = 0;
+		String reqG_idx = req.getParameter("g_idx");
+		System.out.println("reqG_idx : " + reqG_idx);
+		if(reqG_idx.contains(".")) {
+			System.out.println("g_idx1 : " + g_idx);
+			g_idx = Integer.parseInt(reqG_idx.split("\\.")[0]);
+			System.out.println("g_idx2 : " + g_idx);
+		}
+		else {
+			g_idx = Integer.parseInt(reqG_idx);
+		}
 
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx);
 
