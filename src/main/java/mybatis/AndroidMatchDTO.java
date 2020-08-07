@@ -23,6 +23,8 @@ public class AndroidMatchDTO {
 	private int g_extra;
 	private String g_lat;
 	private String g_lng;
+	private String g_formation;
+	
 	
 	//Join용 변수
 	private String c_name;
@@ -48,12 +50,14 @@ public class AndroidMatchDTO {
 	public AndroidMatchDTO() {
 		super();
 	}
+	
 
-	public AndroidMatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
-			String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu,
-			String g_check, int g_extra, String g_lat, String g_lng, String c_name, String c_cash, String c_emb,
-			String c_area, String c_type, Date c_date, String c_memo, String c_color, String c_ability,
-			String c_gender, int c_memlimit, String c_age, int start, int end, String gm_check, String m_id) {
+	public AndroidMatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type,
+			String g_score, String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time,
+			String g_gu, String g_check, int g_extra, String g_lat, String g_lng, String g_formation, String c_name,
+			String c_cash, String c_emb, String c_area, String c_type, Date c_date, String c_memo, String c_color,
+			String c_ability, String c_gender, int c_memlimit, String c_age, int start, int end, String m_id,
+			String gm_check) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -73,6 +77,7 @@ public class AndroidMatchDTO {
 		this.g_extra = g_extra;
 		this.g_lat = g_lat;
 		this.g_lng = g_lng;
+		this.g_formation = g_formation;
 		this.c_name = c_name;
 		this.c_cash = c_cash;
 		this.c_emb = c_emb;
@@ -87,8 +92,19 @@ public class AndroidMatchDTO {
 		this.c_age = c_age;
 		this.start = start;
 		this.end = end;
-		this.gm_check = gm_check;
 		this.m_id = m_id;
+		this.gm_check = gm_check;
+	}
+
+
+
+
+	public String getG_formation() {
+		return g_formation;
+	}
+
+	public void setG_formation(String g_formation) {
+		this.g_formation = g_formation;
 	}
 
 	public String getM_id() {

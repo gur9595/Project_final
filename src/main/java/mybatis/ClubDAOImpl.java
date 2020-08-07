@@ -92,6 +92,9 @@ public interface ClubDAOImpl {
 	
 	public GameDTO gameInfo(int g_idx);
 	
+	public int getTotalCountHistory(int c_idx);
+	public ArrayList<MatchDTO> clubMatchHistory(int c_idx, int start, int end);
+	
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MemberDTO> clubViewMemberA(AndroidClubMemberDTO androidClubMemberDTO);
@@ -107,5 +110,6 @@ public interface ClubDAOImpl {
 	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO);
 	public int gameMemberRejectA(AndroidGameMemberDTO androidGameMemberDTO);
 	public int gameMemberCheck(int g_idx, String m_id);
+	public ArrayList<AndroidMemberDTO> clubGoalRankA(AndroidMemberDTO androidMemberDTO);
 	
 }

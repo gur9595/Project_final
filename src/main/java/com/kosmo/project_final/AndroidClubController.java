@@ -17,6 +17,7 @@ import mybatis.AndroidClubDTO;
 import mybatis.AndroidClubMemberDTO;
 import mybatis.AndroidGameMemberDTO;
 import mybatis.AndroidMatchDTO;
+import mybatis.AndroidMemberDTO;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.ClubMemberDTO;
@@ -186,6 +187,16 @@ public class AndroidClubController {
 		return rejectInfo;
 	}
 	
+	@RequestMapping("/android/clubMemberGoal.do")
+	@ResponseBody
+	public ArrayList<AndroidMemberDTO> clubMemberGoal(AndroidMemberDTO androidMemberDTO){
+		
+		System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
+		
+		ArrayList<AndroidMemberDTO> goalRank = sqlSession.getMapper(ClubDAOImpl.class).clubGoalRankA(androidMemberDTO);
+		
+		return goalRank;
+	}
 	
 
 }

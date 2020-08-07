@@ -154,6 +154,7 @@ public class ClubController {
 		System.out.println(totalRecordCount);
 
 		model.addAttribute("lists", lists);
+		
 		return "club/club_search";
 	}
 
@@ -273,8 +274,8 @@ public class ClubController {
 		map.put("tenWin", tenWin);
 		map.put("tenLose", tenLose);
 		map.put("tenDraw", tenDraw);
-		map.put("checkMember", checkMember);
 		model.addAttribute("map", map);
+		model.addAttribute("checkMember", checkMember);
 		model.addAttribute("tenHistory", tenHistory);
 		model.addAttribute("grade", grade);
 		model.addAttribute("clubMemberCount", clubMemberCount);
@@ -629,19 +630,62 @@ public class ClubController {
 		
 		String m_id = principal.getName();
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		ClubDTO clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
 		if(checkMember==1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
 		};
+		 
+		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCountHistory(c_idx);
+
+		int pageSize = 10;
+		int blockPage = 5;
+
+		int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
+
+		int nowPage = req.getParameter("nowPage") == null ? 1 : Integer.parseInt(req.getParameter("nowPage"));
+
+		int start = (nowPage - 1) * pageSize + 1;
+		int end = nowPage * pageSize;
+		
+		String paging = PagingUtil.paging(totalRecordCount, pageSize, blockPage, nowPage,
+				req.getContextPath() + "/club/clubViewHistory.do?c_idx+"+c_idx+"&");
+
+		model.addAttribute("paging", paging);
+		
+		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMatchHistory(c_idx, start, end);
+		
+		for(MatchDTO dto : lists) {
+			
+			String check = dto.getG_check();
+			String[] score = dto.getG_score().split("-");
+			
+			if(check.equals("owner")) {
+				
+				dto.setHome(clubDTO.getC_name());
+				dto.setHome_idx(dto.getC_idx());
+				dto.setHome_score(Integer.parseInt(score[0]));
+				
+				dto.setAway(dto.getOpc_name());
+				dto.setAway_idx(dto.getOpc_idx());
+				dto.setAway_score(Integer.parseInt(score[1]));
+			}
+			else {
+				dto.setAway(clubDTO.getC_name());
+				dto.setAway_idx(dto.getC_idx());
+				dto.setAway_score(Integer.parseInt(score[0]));
+				
+				dto.setHome(dto.getOpc_name());
+				dto.setHome_idx(dto.getOpc_idx());
+				dto.setHome_score(Integer.parseInt(score[1]));
+			}
+		}
+		
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
-
-		System.out.println("c_idx : " + c_idx);
-		ClubDTO clubDTO = new ClubDTO();
-		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
-
 		model.addAttribute("clubDTO", clubDTO);
+		model.addAttribute("lists", lists);
 
 		return "club/club_view_history";
 	}
