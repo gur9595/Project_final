@@ -81,13 +81,13 @@
 															<th>${row.g_time }</th>
 															<th>${row.g_sname }</th>
 															<th>${row.c_name }</th>
-															<th><input type="button" class="btn btn-outline-success" onclick="javascript:openFormCheck(${row.g_idx})" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="확인" ></th>
+															<th><input type="button" class="btn btn-outline-success" onclick="javascript:openFormCheck(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="확인" ></th>
 	                                                        <th><input type="button" class="btn btn-outline-primary" onclick="javascript:openFormMake(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="작성"></th>
 														</tr>
 													</c:forEach>
-                                                </table>
+                                                </table> 
                                             </div>
-                                        </div>    
+                                        </div>      
                                     </div>
                                 </div>
                             </div>
@@ -172,13 +172,13 @@
 <script>
 	function openFormMake(g_idx){
 		
-		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank',
-				"width=900,height=650, toolbar=no, menubar=no, resizable=no");
+		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank', 
+				"width=800,height=650, toolbar=no, menubar=no, resizable=no");
 	}
 	function openFormCheck(g_idx){
 		
 		window.open("../club/clubCheckFormation.do?g_idx="+g_idx, '_blank',
-				"width=900,height=650, toolbar=no, menubar=no, resizable=no");
+				"width=800,height=650, toolbar=no, menubar=no, resizable=no");
 	}
 </script>
 </html>

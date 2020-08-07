@@ -74,7 +74,7 @@
                                                   		<div class="col-xs-4" style=" position:relative; height:100%;margin:0; padding:0; display:table;">
                                                      		<div class="row" style="height:80%;margin:0; padding:0; vertical-align:middle; margin-top:20px; display:table-cell;">
                                                        			<div style="border:12px solid white;border-radius:50%; background-color:white; height:250px; width:250px; display:block;margin:0 auto;">
- 							 									<div style="height:100%; width:100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb });background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
+ 							 									<div style="height:100%; width:100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb }); background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
 																</div>
                                                     		</div>
  														</div>

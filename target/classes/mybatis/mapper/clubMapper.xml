@@ -206,8 +206,16 @@
 		insert into gamemember values(gamemember_seq.nextval, #{g_idx}, #{m_id}, default)
 	</insert>
 	
+	<delete id="gameMemberDrop" parameterType="mybatis.GameMemberDTO">
+		delete from gamemember where g_idx = #{g_idx} and m_id like #{m_id}
+	</delete>
+	
+	<select id="gameMemberCount" resultType="int" parameterType="mybatis.GameMemberDTO">
+		select count(*) from gamemember where g_idx = #{g_idx} and m_id like #{m_id}
+	</select>
+	
 	<select id="myClubList" resultType="mybatis.ClubDTO">
-		select * 
+		select *  
 		from club c inner join clubmember cm
 			on c.c_idx = cm.c_idx
 		where cm.m_id like #{param1} 
@@ -265,7 +273,7 @@
 	<select id="clubMakingForm" resultType="mybatis.GameMemberDTO">
 		select gm.*, m.m_name
 		from gamemember gm inner join member m on gm.m_id = m.m_id
-		where gm.g_idx like #{param1}
+		where gm.g_idx = #{param1}
 	</select>
 	
 	<select id="clubHistory" resultType="mybatis.GameDTO">

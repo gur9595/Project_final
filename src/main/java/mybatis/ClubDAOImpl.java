@@ -34,6 +34,10 @@ public interface ClubDAOImpl {
 	
 	public int gameMemberApply(GameMemberDTO gameMemberDTO);
 	
+	public int gameMemberDrop(GameMemberDTO gameMemberDTO);
+	
+	public int gameMemberCount(GameMemberDTO gameMemberDTO);
+	
 	public int ClubMatchApply(GameDTO gameDTO);
 	
 	public int ClubMatchApplyDelete(GameDTO gameDTO);

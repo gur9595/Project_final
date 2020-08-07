@@ -10,7 +10,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -135,10 +134,7 @@ public class AndroidClubController {
 			applyInfo.put("isApply", 0);
 		}else {
 			applyInfo.put("isLogin", 1);
-			
 		}
-		
-		
 		return applyInfo;
 	}
 	

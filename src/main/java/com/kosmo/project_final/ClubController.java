@@ -366,7 +366,30 @@ public class ClubController {
 		
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx); 
 		
-		model.addAttribute("lists", lists);  
+		GameMemberDTO Nulldto = new GameMemberDTO();
+		ArrayList<GameMemberDTO> squad = new ArrayList<GameMemberDTO>();
+		ArrayList<GameMemberDTO> bench = new ArrayList<GameMemberDTO>();
+		int check = 0;
+		for(int i =0; i<26; i++) {
+			check = 0;
+			for(GameMemberDTO gameMemberDTO : lists) {
+				if (i==gameMemberDTO.getGm_form()) {
+					squad.add(i, gameMemberDTO);
+					check++;
+				}
+			}
+			if(check==0)
+			squad.add(i, Nulldto);
+		}
+		
+		for(GameMemberDTO gameMemberDTO : lists) {
+			if (gameMemberDTO.getGm_form() == (-1)) {
+				bench.add(gameMemberDTO);
+			}
+		}	
+		
+		model.addAttribute("squad", squad);  
+		model.addAttribute("bench", bench); 
 
 		return "club/club_view_formmake";
 	}
@@ -520,6 +543,7 @@ public class ClubController {
 		
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchReject(gameDTO);
 		
+		
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		
 		return "redirect:/club/clubViewMatch.do?c_idx="+ c_idx;
@@ -533,8 +557,26 @@ public class ClubController {
 		GameMemberDTO gameMemberDTO = new GameMemberDTO();
 		gameMemberDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
 		gameMemberDTO.setM_id(m_id);
+		int check = sqlSession.getMapper(ClubDAOImpl.class).gameMemberCount(gameMemberDTO);
+		if(check==0) {
+			sqlSession.getMapper(ClubDAOImpl.class).gameMemberApply(gameMemberDTO);
+		}
 		
-		sqlSession.getMapper(ClubDAOImpl.class).gameMemberApply(gameMemberDTO);
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		
+		return "redirect:/club/clubViewMatch.do?c_idx="+ c_idx;
+	}
+	
+	@RequestMapping("/club/gameMemberDrop.do")
+	public String gameMemberDrop(Principal principal, HttpServletRequest req, Model model) {
+		
+		String m_id = principal.getName();
+		
+		GameMemberDTO gameMemberDTO = new GameMemberDTO();
+		gameMemberDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
+		gameMemberDTO.setM_id(m_id);
+		
+		sqlSession.getMapper(ClubDAOImpl.class).gameMemberDrop(gameMemberDTO);
 		
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		

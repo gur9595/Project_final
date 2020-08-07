@@ -3,7 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+	<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0">
+=======
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+>>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 <!-- 전술판 전용 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -37,6 +41,28 @@
 }
 </style>
 	<div>
+<<<<<<< HEAD
+		<button id="button" class="btn btn-light" style="position:absolute; left: 10px ; top: 10px ;">Bench</button>
+		<div class="toggler"  align="center"
+		style="width:80px; position:absolute; left: 10px ; top: 60px ; background-color: #ffffff;
+        opacity: 0.5;">
+		  <div id="effect" class="ui-widget-content ui-corner-all">  
+		    <h3 class="ui-widget-header ui-corner-all">Bench</h3>
+			    <div id="player_list" class="player_list" >
+						<table id="player_table" cellspacing="0" cellpadding="0" border="0"> 
+							<tbody>
+								<c:forEach items="${bench }" var="row" varStatus="status" >
+									<tr>
+										<td height="22" align="left" class="player_header">
+											<div class = "player ui-draggable" style="20px" value="${row }">${row }</div>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div> 
+		  	</div>
+=======
 		<button id="button" class="btn btn-light"
 			style="position: absolute; left: 10px; top: 10px;">Bench</button>
 		<div class="toggler" align="center"
@@ -57,6 +83,7 @@
 					</table>
 				</div>
 			</div>
+>>>>>>> branch 'master' of https://github.com/gur9595/Project_final.git
 		</div>
 		<div id="field" style="width: 100%; height: 100%">
 
