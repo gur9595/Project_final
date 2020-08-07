@@ -410,7 +410,6 @@
       where cm.m_id = #{m_id} 
    </select>
    
-
    <!-- 클럽 상세보기 회원정보 -->
    <select id="clubViewMemberA" resultType="mybatis.MemberDTO">
         select m.*, cm.cm_idx, cm.cm_date , cm.cm_grade 
