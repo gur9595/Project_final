@@ -77,6 +77,8 @@ public interface ClubDAOImpl {
 	public MemberDTO clubHeadName(int c_idx);
 	
 	public ClubMemberDTO getCmgrade(int c_idx, String m_id);
+	
+	public int checkCmgrade(int c_idx, String m_id);
 
 	public ArrayList<MemberDTO> clubGoalRank(int c_idx);
 	
@@ -89,6 +91,9 @@ public interface ClubDAOImpl {
 	public int gameFormPng(int g_idx, String fileName);
 	
 	public GameDTO gameInfo(int g_idx);
+	
+	public int getTotalCountHistory(int c_idx);
+	public ArrayList<MatchDTO> clubMatchHistory(int c_idx, int start, int end);
 	
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);

@@ -379,6 +379,25 @@
      <update id="gameFormPng">
         update game set g_formation = #{param2} where g_idx = #{param1}
      </update>
+     
+     <select id="getTotalCountHistory" resultType="int">
+     select count(*) from
+		(select g2.g_idx, g2.g_score, g2.g_result, g2.g_check, g2.g_date, g2.g_num,
+		    (select g1.c_idx from game g1 where g1.g_num = g2.g_num and g1.c_idx != #{param1}) as opc_idx,
+		    (select c.c_name from club c inner join game g1 on g1.c_idx = c.c_idx where g1.g_num = g2.g_num and g1.c_idx !=#{param1}) as opc_name
+		from game g2 where c_idx=#{param1} and g_rating is not null order by g2.g_date desc)
+		
+     </select>
+     
+     <select id="clubMatchHistory" resultType="mybatis.MatchDTO">
+     	select * from ( 
+			select tb.*, rownum rnum from(
+			select g2.g_idx, g2.g_score, g2.g_result, g2.g_check, g2.g_date, g2.g_num,
+			    (select g1.c_idx from game g1 where g1.g_num = g2.g_num and g1.c_idx != #{param1}) as opc_idx,
+			    (select c.c_name from club c inner join game g1 on g1.c_idx = c.c_idx where g1.g_num = g2.g_num and g1.c_idx !=#{param1}) as opc_name
+			from game g2 where c_idx=#{param1} and g_rating is not null order by g2.g_date desc) tb
+		) where rnum between #{param2} and #{param3}
+     </select>
    
    <!-- *******************안드로이드 매퍼*************************** -->
    

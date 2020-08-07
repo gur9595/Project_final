@@ -40,7 +40,7 @@
       <div class="toggler"  align="center"
       style="width:80px; position:absolute; left: 10px ; top: 60px ; background-color: #ffffff;
         opacity: 0.5;">
-        <div id="effect" class="ui-widget-content ui-corner-all">  
+        <div id="effect" class="ui-widget-content ui-corner-all" style="display:none">  
           <h3 class="ui-widget-header ui-corner-all">Bench</h3>
              <div id="player_list" class="player_list" >
                   <table id="player_table" cellspacing="0" cellpadding="0" border="0"> 
@@ -74,7 +74,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos0" style="width:20%">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:6%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:5%;top:6%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -91,7 +91,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos1" style="width:20%">
-                           <div class="dropped_player" style="position:absolute;left:25%;top:6%;">
+                           <div class="on_player dropped_player" style="position:absolute;left:25%;top:6%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -108,7 +108,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos2" style="width:20%">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:45%;top:6%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:45%;top:6%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -125,7 +125,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos3" style="width:20%">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:6%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:65%;top:6%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -142,7 +142,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos4" style="width:20%">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:6%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:85%;top:6%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -161,7 +161,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos5">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:23%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:5%;top:23%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -178,7 +178,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos6">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:25%;top:23%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:25%;top:23%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -195,7 +195,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos7">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:45%;top:23%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:45%;top:23%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -212,7 +212,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos8">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:23%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:65%;top:23%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -229,7 +229,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos9">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:23%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:85%;top:23%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -248,7 +248,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos10">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:39%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:5%;top:39%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -265,7 +265,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos11">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:25%;top:39%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:25%;top:39%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -282,7 +282,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos12">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:45%;top:39%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:45%;top:39%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -299,7 +299,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos13">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:39%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:65%;top:39%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -316,7 +316,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos14">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:39%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:85%;top:39%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -335,7 +335,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos15">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:55%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:5%;top:55%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -352,7 +352,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos16">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:25%;top:55%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:25%;top:55%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -369,7 +369,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos17">
-                           <div id="on_player" class="dropped_player"  style="position:absolute;left:45%;top:55%;">
+                           <div id="on_player" class="on_player dropped_player"  style="position:absolute;left:45%;top:55%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -386,7 +386,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos18">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:55%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:65%;top:55%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -403,7 +403,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos19">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:55%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:85%;top:55%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -422,7 +422,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos20">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:71%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:5%;top:71%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -439,7 +439,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos21">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:25%;top:71%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:25%;top:71%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -456,7 +456,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos22">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:45%;top:71%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:45%;top:71%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -473,7 +473,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos23">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:71%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:65%;top:71%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -490,7 +490,7 @@
                      </c:when>
                      <c:otherwise>
                         <td class="pos" id="pos24">
-                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:71%;">
+                           <div id="on_player" class="on_player dropped_player" style="position:absolute;left:85%;top:71%;">
                               <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                               <div class="dropped_name">
                                  ${row}
@@ -511,7 +511,7 @@
                            </c:when>
                            <c:otherwise>
                               <td class="pos" id="pos25">
-                                 <div id="on_player" class="dropped_player"  style="position:absolute;left:45%;top:90%;">
+                                 <div id="on_player" class="on_player dropped_player"  style="position:absolute;left:45%;top:90%;">
                                     <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
                                     <div class="dropped_name">
                                        ${row}
