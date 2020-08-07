@@ -56,6 +56,20 @@
 			order by g.g_date asc
 		</select>
 		
+		<select id="clubViewMatchOpponent" resultType="mybatis.ClubDTO">
+			select c.*
+			from club c inner join game g
+				on c.c_idx = g.c_idx
+			where g.g_num = #{param1} and g.g_check like 'yes'
+		</select>
+		
+		<select id="isClubViewMatchOpponent" resultType="int">
+			select count(*)
+			from club c inner join game g
+				on c.c_idx = g.c_idx
+			where g.g_num = #{param1} and g.g_check like 'yes'
+		</select>
+		
 		<!-- 클럽 상세보기 cm_grade가져오기 -->
 		<select id="getCmgrade" resultType="mybatis.ClubMemberDTO">
 			select cm_grade from clubmember where c_idx=#{param1} and m_id like #{param2}
@@ -286,7 +300,9 @@
 		where gm.g_idx = #{param1}
 	</select>
 	
-	
+	<select id="gameInfo" resultType="mybatis.GameDTO">
+		select * from game where g_idx = #{param1}
+	</select>
 	
 	  <select id="clubMemberRank" resultType="mybatis.GoalHistoryDTO">
 	  	select gh.* from goalhistory gh inner join game g on gh.g_idx = g.g_idx where g.c_idx = #{c_idx}  and g.g_rating is not null

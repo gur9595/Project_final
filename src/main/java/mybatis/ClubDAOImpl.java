@@ -54,6 +54,9 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewMember(int c_idx, int start, int end);
 	
 	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
+	
+	public ClubDTO clubViewMatchOpponent(int g_num);
+	public int isClubViewMatchOpponent(int g_num);
 
 	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
 	
@@ -86,6 +89,9 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubAppearanceRank(int c_idx);
 	
 	public int gameFormPng(int g_idx, String fileName);
+	
+	public GameDTO gameInfo(int g_idx);
+	
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MemberDTO> clubViewMemberA(AndroidClubMemberDTO androidClubMemberDTO);
