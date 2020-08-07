@@ -518,7 +518,7 @@ public class ClubController {
       model.addAttribute("bench", bench);
 
       return "club/club_view_formcheck";
-   }
+   } 
 
    @RequestMapping("/club/clubTacticBoard.do")
    public String clubTacticBoard(HttpServletRequest req, Model model) {
