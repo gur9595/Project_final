@@ -30,11 +30,11 @@ request.setCharacterEncoding("UTF-8");
 					</tr>
 					<tr>
 						<td>
-							<img class="myClubEmb" src="./../resources/img/empty.png" alt="" />
+							<img class="myClubEmb" src="./../resources/img/bprologo2.png" style="width: 200px;height: auto; filter: opacity(.3) drop-shadow(0 0 0 white); alt="" />
 						</td>
 					</tr>
 					<tr>
-						<td  class="clubName">
+						<td  class="clubName" style="filter: opacity(.3) drop-shadow(0 0 0 white);">
 							EMPTY
 						</td>
 					</tr>

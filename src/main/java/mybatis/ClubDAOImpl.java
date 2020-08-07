@@ -77,6 +77,8 @@ public interface ClubDAOImpl {
 	public MemberDTO clubHeadName(int c_idx);
 	
 	public ClubMemberDTO getCmgrade(int c_idx, String m_id);
+	
+	public int checkCmgrade(int c_idx, String m_id);
 
 	public ArrayList<MemberDTO> clubGoalRank(int c_idx);
 	

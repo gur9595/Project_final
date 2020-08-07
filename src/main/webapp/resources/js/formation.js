@@ -67,7 +67,7 @@ $(function () {
     
     $("#ball").draggable();
     
-    $("#on_player").draggable();
+    $(".on_player").draggable();
     
     $("#button2").click(function(){
     	
