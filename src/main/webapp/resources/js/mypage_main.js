@@ -75,7 +75,7 @@ $(document).ready( function() {
 	var abils = $("input:radio[name=m_abil]");
 	for(i = 0; i < abils.length; i++) {
 		if($("#abil").val() == abils[i].value){
-			$("input:radio[id=" + $("#abil").val() + "]").prop("checked", true);
+			$("input:radio[value=" + $("#abil").val() + "]").prop("checked", true);
 		}
 	}
 	
@@ -83,7 +83,7 @@ $(document).ready( function() {
 	var foots = $("input:radio[name=m_foot]");
 	for(i = 0; i < foots.length; i++) {
 		if($("#foot").val() == foots[i].value){
-			$("input:radio[id=" + $("#foot").val() + "]").prop("checked", true);
+			$("input:radio[value=" + $("#foot").val() + "]").prop("checked", true);
 		}
 	}
     

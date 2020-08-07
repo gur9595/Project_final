@@ -105,5 +105,6 @@ public interface ClubDAOImpl {
 	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO);
 	public int gameMemberRejectA(AndroidGameMemberDTO androidGameMemberDTO);
 	public int gameMemberCheck(int g_idx, String m_id);
+	public ArrayList<AndroidMemberDTO> clubGoalRankA(AndroidMemberDTO androidMemberDTO);
 	
 }

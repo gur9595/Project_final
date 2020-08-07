@@ -4,100 +4,96 @@ import java.sql.Date;
 
 public class AndroidMatchDTO {
 
-   //멤버변수
-   private int g_idx;
-   private int s_idx;
-   private int c_idx;
-   private String g_sname;
-   private String g_saddr;
-   private String g_type;
-   private String g_score;
-   private String g_result;
-   private java.sql.Date g_date;
-   private int g_num;
-   private int g_rating;
-   private String g_memo;
-   private String g_time;
-   private String g_gu;
-   private String g_check;
-   private int g_extra;
-   private String g_lat;
-   private String g_lng;
-   private String g_formation;
-   
-   
-   //Join용 변수
-   private String c_name;
-   private String c_cash;
-   private String c_emb;
-   private String c_area;
-   private String c_type;
-   private Date c_date;
-   private String c_memo;
-   private String c_color;
-   private String c_ability;
-   private String c_gender;
-   private int c_memlimit;
-   private String c_age;
-   private int start;
-   private int end;
-   
-   private String m_id;
-   
-   // 안드로이드용 변수
-   private String gm_check;
-   
-   public AndroidMatchDTO() {
-      super();
-   }
-   
-
-   public AndroidMatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type,
-         String g_score, String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time,
-         String g_gu, String g_check, int g_extra, String g_lat, String g_lng, String g_formation, String c_name,
-         String c_cash, String c_emb, String c_area, String c_type, Date c_date, String c_memo, String c_color,
-         String c_ability, String c_gender, int c_memlimit, String c_age, int start, int end, String m_id,
-         String gm_check) {
-      super();
-      this.g_idx = g_idx;
-      this.s_idx = s_idx;
-      this.c_idx = c_idx;
-      this.g_sname = g_sname;
-      this.g_saddr = g_saddr;
-      this.g_type = g_type;
-      this.g_score = g_score;
-      this.g_result = g_result;
-      this.g_date = g_date;
-      this.g_num = g_num;
-      this.g_rating = g_rating;
-      this.g_memo = g_memo;
-      this.g_time = g_time;
-      this.g_gu = g_gu;
-      this.g_check = g_check;
-      this.g_extra = g_extra;
-      this.g_lat = g_lat;
-      this.g_lng = g_lng;
-      this.g_formation = g_formation;
-      this.c_name = c_name;
-      this.c_cash = c_cash;
-      this.c_emb = c_emb;
-      this.c_area = c_area;
-      this.c_type = c_type;
-      this.c_date = c_date;
-      this.c_memo = c_memo;
-      this.c_color = c_color;
-      this.c_ability = c_ability;
-      this.c_gender = c_gender;
-      this.c_memlimit = c_memlimit;
-      this.c_age = c_age;
-      this.start = start;
-      this.end = end;
-      this.m_id = m_id;
-      this.gm_check = gm_check;
-   }
-
-
-
+	//멤버변수
+	private int g_idx;
+	private int s_idx;
+	private int c_idx;
+	private String g_sname;
+	private String g_saddr;
+	private String g_type;
+	private String g_score;
+	private String g_result;
+	private java.sql.Date g_date;
+	private int g_num;
+	private int g_rating;
+	private String g_memo;
+	private String g_time;
+	private String g_gu;
+	private String g_check;
+	private int g_extra;
+	private String g_lat;
+	private String g_lng;
+	private String g_formation;
+	
+	
+	//Join용 변수
+	private String c_name;
+	private String c_cash;
+	private String c_emb;
+	private String c_area;
+	private String c_type;
+	private Date c_date;
+	private String c_memo;
+	private String c_color;
+	private String c_ability;
+	private String c_gender;
+	private int c_memlimit;
+	private String c_age;
+	private int start;
+	private int end;
+	
+	private String m_id;
+	
+	// 안드로이드용 변수
+	private String gm_check;
+	
+	public AndroidMatchDTO() {
+		super();
+	}
+	
+	public AndroidMatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type,
+			String g_score, String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time,
+			String g_gu, String g_check, int g_extra, String g_lat, String g_lng, String g_formation, String c_name,
+			String c_cash, String c_emb, String c_area, String c_type, Date c_date, String c_memo, String c_color,
+			String c_ability, String c_gender, int c_memlimit, String c_age, int start, int end, String m_id,
+			String gm_check) {
+		super();
+		this.g_idx = g_idx;
+		this.s_idx = s_idx;
+		this.c_idx = c_idx;
+		this.g_sname = g_sname;
+		this.g_saddr = g_saddr;
+		this.g_type = g_type;
+		this.g_score = g_score;
+		this.g_result = g_result;
+		this.g_date = g_date;
+		this.g_num = g_num;
+		this.g_rating = g_rating;
+		this.g_memo = g_memo;
+		this.g_time = g_time;
+		this.g_gu = g_gu;
+		this.g_check = g_check;
+		this.g_extra = g_extra;
+		this.g_lat = g_lat;
+		this.g_lng = g_lng;
+		this.g_formation = g_formation;
+		this.c_name = c_name;
+		this.c_cash = c_cash;
+		this.c_emb = c_emb;
+		this.c_area = c_area;
+		this.c_type = c_type;
+		this.c_date = c_date;
+		this.c_memo = c_memo;
+		this.c_color = c_color;
+		this.c_ability = c_ability;
+		this.c_gender = c_gender;
+		this.c_memlimit = c_memlimit;
+		this.c_age = c_age;
+		this.start = start;
+		this.end = end;
+		this.m_id = m_id;
+		this.gm_check = gm_check;
+	}
 
    public String getG_formation() {
       return g_formation;

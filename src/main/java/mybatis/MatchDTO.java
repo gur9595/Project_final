@@ -83,7 +83,7 @@ public class MatchDTO {
 		this.start = start;
 		this.end = end;
 	}
-
+	
 	public int getG_idx() {
 		return g_idx;
 	}
