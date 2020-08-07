@@ -1,13 +1,29 @@
-$(document).ready( function() {
+$(document).ready(function() {
 	
     $('#profile').click(function() {
-    	$("#contents").load("memberEdit.do");
+    	var m_id = $("#m_id").val();
+    	var m_pw = $("#m_pw").val();
+    	var m_pw2 = $("#m_pw2").val();
+    	var m_name = $("#m_name").val();
+    	var m_birth = $("#m_birth").val();
+    	var m_phone = $("#m_phone").val();
+    	var m_email = $("#m_email").val();
+    	var m_addr1 = $("#m_addr1").val();
+    	var m_addr2 = $("#m_addr2").val();
+    	var m_sex = $("#sex").val();
+    	var m_position = $("#position").val();
+    	var m_foot = $("#foot").val();
+    	var m_pic = $("#pic").val();   
+
+    	$("#contents").load("memberEdit.do", "m_id=" + m_id + "&m_pw="+ m_pw + "&m_name="+ m_name +
+    	"&m_birth="+ m_birth + "&m_phone="+ m_phone + "&m_email="+ m_email + "&m_addr1="+ m_addr1 + "&m_addr2=" + m_addr2 +
+    	"&m_sex=" + m_sex + "&m_position=" + m_position + "&m_foot=" + m_foot + "&m_pic="+ m_pic +" #main");
         $('html, body').stop().animate({
           scrollTop : $('#contents').offset().top
         });
         
         $('#close').show();
-        
+         
     });
     
     $('#backpage').click(function() {
@@ -17,10 +33,9 @@ $(document).ready( function() {
         });
         
         $('#close').show();
-        
     });
     
-    $('#nextpage').click(function() {
+    $('#correct').click(function() {
     	
     	var m_id = $("#m_id").val();
     	var m_pw = $("#m_pw").val();
@@ -31,6 +46,10 @@ $(document).ready( function() {
     	var m_email = $("#m_email").val();
     	var m_addr1 = $("#m_addr1").val();
     	var m_addr2 = $("#m_addr2").val();
+    	var m_sex = $("#sex").val();
+    	var m_position = $("#position").val();
+    	var m_foot = $("#foot").val();
+    	var m_pic = $("#pic").val();    	
     	
     	if(m_pw == ""){
     		alert("비밀번호 입력 칸을 입력해주세요.");
@@ -44,50 +63,52 @@ $(document).ready( function() {
     		alert("두 칸의 비밀번호가 다릅니다. 다시 입력하세요.");
     		return false;
     	}
+    	else{
+    		alert("수정이 완료되었습니다...!!!")
+    	}
+    		
     	
-    	$("#contents").load("/project_final/member/memberEdit2.do", "m_id=" + m_id + "&m_pw="+ m_pw + "&m_name="+ m_name + "&m_birth="+ m_birth + "&m_phone="+ m_phone + "&m_email="+ m_email + "&m_addr1="+ m_addr1 + "&m_addr2=" + m_addr2 + " #main");
-        $('html, body').stop().animate({
-            scrollTop : $('#contents').offset().top
-        });
         
     });
     
+   
     //성별 체크
-	if($("#sex").val() == "남자"){
-		$("input:radio[id='man']").prop("checked", true);
-	}
-	else if($("#sex").val() == "여자"){
-		$("input:radio[id='woman']").prop("checked", true);
-	}
+   if($("#sex").val() == "남자"){
+      $("input:radio[id='man']").prop("checked", true);
+   }
+   else if($("#sex").val() == "여자"){
+      $("input:radio[id='woman']").prop("checked", true);
+   }
+   
+   //포지션 체크
+   var positions = $("#position").val().split(",");
+   var posCheck = $("input:checkbox[name=m_position]");
+   for(j = 0; j < posCheck.length; j++) {
+      for(i = 0; i < positions.length; i++) {
+         if(positions[i] == posCheck[j].value){
+            $("input:checkbox[id=" + positions[i] + "]").prop("checked", true);
+         }
+      }
+   }
+   
+   //실력 체크
+   var abils = $("input:radio[name=m_abil]");
+   for(i = 0; i < abils.length; i++) {
+      if($("#abil").val() == abils[i].value){
+         $("input:radio[value=" + $("#abil").val() + "]").prop("checked", true);
+      }
+   }
+   
+   //주발 체크
+   var foots = $("input:radio[name=m_foot]");
+   for(i = 0; i < foots.length; i++) {
+      if($("#foot").val() == foots[i].value){
+         $("input:radio[value=" + $("#foot").val() + "]").prop("checked", true);
+      }
+   }
 	
-	//포지션 체크
-	var positions = $("#position").val().split(",");
-	var posCheck = $("input:checkbox[name=m_position]");
-	for(j = 0; j < posCheck.length; j++) {
-		for(i = 0; i < positions.length; i++) {
-			if(positions[i] == posCheck[j].value){
-				$("input:checkbox[id=" + positions[i] + "]").prop("checked", true);
-			}
-		}
-	}
 	
-	//실력 체크
-	var abils = $("input:radio[name=m_abil]");
-	for(i = 0; i < abils.length; i++) {
-		if($("#abil").val() == abils[i].value){
-			$("input:radio[id=" + $("#abil").val() + "]").prop("checked", true);
-		}
-	}
 	
-	//주발 체크
-	var foots = $("input:radio[name=m_foot]");
-	for(i = 0; i < foots.length; i++) {
-		if($("#foot").val() == foots[i].value){
-			$("input:radio[id=" + $("#foot").val() + "]").prop("checked", true);
-		}
-	}
-    
-
 });
 
 function setPic(event) {

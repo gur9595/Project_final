@@ -230,22 +230,6 @@ public class MatchDTO {
 			this.g_extra = g_extra;
 		}
 
-		public String getG_lat() {
-			return g_lat;
-		}
-
-		public void setG_lat(String g_lat) {
-			this.g_lat = g_lat;
-		}
-
-		public String getG_lng() {
-			return g_lng;
-		}
-
-		public void setG_lng(String g_lng) {
-			this.g_lng = g_lng;
-		}
-
 		public String getC_name() {
 			return c_name;
 		}

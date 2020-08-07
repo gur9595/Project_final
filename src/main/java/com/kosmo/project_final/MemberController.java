@@ -410,7 +410,7 @@ public class MemberController {
       return "/member/error";
    }
    
-   //회원정보를 가지고 회원수정 페이지 이동
+ //회원정보를 가지고 회원수정 페이지 이동
    @RequestMapping("/member/memberEdit.do")
    public String memberEdit(Model model , HttpServletRequest req, Principal principal) {
       String m_id = principal.getName();
@@ -421,6 +421,7 @@ public class MemberController {
 
       MemberDTO dto = new MemberDTO();
       dto.setM_id(m_id);
+      System.out.println(m_id);
 
       dto = sqlSession.getMapper(MemberDAOImpl.class).memberInfo(dto);
       
@@ -431,7 +432,7 @@ public class MemberController {
       System.out.println(phone);
       String[] addrArr = addr.split(",");
 
-      
+     
       req.setAttribute("addr1", addrArr[0]);
       req.setAttribute("addr2", addrArr[1]);
       req.setAttribute("phone", phone);
@@ -440,42 +441,48 @@ public class MemberController {
       
       return"member/memberEdit";
    }
+
+   
+	/*
+	 * //회원정보를 가지고 회원수정 페이지 이동
+	 * 
+	 * @RequestMapping("/member/memberEdit.do") public String
+	 * memberEdit(HttpServletRequest req, Model model, Principal principal) {
+	 * 
+	 * String m_id = principal.getName();
+	 * 
+	 * if(m_id =="") { return "redirect:login.do"; }
+	 * 
+	 * MemberDTO dto = new MemberDTO(); dto.setM_id(m_id);
+	 * 
+	 * dto = sqlSession.getMapper(MemberDAOImpl.class).memberInfo(dto);
+	 * 
+	 * String m_addr1 = req.getParameter("m_addr1"); String m_addr2 =
+	 * req.getParameter("m_addr2");
+	 * 
+	 * String m_addr = m_addr1+","+m_addr2;
+	 * 
+	 * 
+	 * dto.setM_id(req.getParameter("m_id")); dto.setM_pw(req.getParameter("m_pw"));
+	 * dto.setM_name(req.getParameter("m_name"));
+	 * dto.setM_birth(req.getParameter("m_birth"));
+	 * dto.setM_phone(req.getParameter("m_phone"));
+	 * dto.setM_email(req.getParameter("m_email")); dto.setM_addr(m_addr);
+	 * dto.setM_sex(req.getParameter("m_sex"));
+	 * dto.setM_position(req.getParameter("m_position"));
+	 * dto.setM_abil(req.getParameter("m_abil"));
+	 * dto.setM_foot(req.getParameter("m_foot"));
+	 * dto.setM_pic(req.getParameter("m_pic"));
+	 * 
+	 * 
+	 * model.addAttribute("dto", dto);
+	 * 
+	 * principal.getName();
+	 * 
+	 * return "member/memberEdit"; }
+	 */
    
 
-   @RequestMapping("/member/memberEdit2.do")
-   public String memberEdit2(HttpServletRequest req, Model model, Principal principal) {
-
-	   String m_id = principal.getName();
-
-      if(m_id =="") {
-         return "redirect:login.do";
-      }
-
-      MemberDTO dto = new MemberDTO();
-      dto.setM_id(m_id);
-      
-      dto = sqlSession.getMapper(MemberDAOImpl.class).memberInfo(dto);
-	  
-      String m_addr1 = req.getParameter("m_addr1");
-      String m_addr2 = req.getParameter("m_addr2");
-
-      String m_addr = m_addr1+","+m_addr2;
-      
-      
-      dto.setM_id(req.getParameter("m_id"));
-      dto.setM_pw(req.getParameter("m_pw"));
-      dto.setM_name(req.getParameter("m_name"));
-      dto.setM_birth(req.getParameter("m_birth"));
-      dto.setM_phone(req.getParameter("m_phone"));
-      dto.setM_email(req.getParameter("m_email"));
-      dto.setM_addr(m_addr);
-      
-      model.addAttribute("dto", dto);
-
-      principal.getName();
-
-      return "member/memberEdit2";
-   }
 
    @RequestMapping("/member/mypageMain.do")
    public String mypageMain() {
