@@ -377,15 +377,29 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubViewFormation.do")
-	public String clubViewForm(HttpServletRequest req, Model model) {
-
+	public String clubViewForm(Principal principal, HttpServletRequest req, Model model) {
+		String m_id = principal.getName();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		
+		ClubMemberDTO getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+
 		System.out.println("c_idx:" + c_idx);
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 
 		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
+		
+		for(MatchDTO dto : lists) {
+			
+			ClubDTO opponents = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatchOpponent(dto.getG_num());
+			
+			if(sqlSession.getMapper(ClubDAOImpl.class).isClubViewMatchOpponent(dto.getG_num())==1) {
+				dto.setC_idx(opponents.getC_idx());
+				dto.setC_name(opponents.getC_name());
+			}
+		}
 
+		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("lists", lists);
 		model.addAttribute("clubDTO", clubDTO);
 
@@ -396,6 +410,8 @@ public class ClubController {
 	public String clubMakeForm(HttpServletRequest req, Model model) {
 
 		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		
+		GameDTO gameDTO = sqlSession.getMapper(ClubDAOImpl.class).gameInfo(g_idx);
 
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx);
 
@@ -424,6 +440,7 @@ public class ClubController {
 		model.addAttribute("squad", squad);
 		model.addAttribute("bench", bench);
 		model.addAttribute("g_idx", g_idx);
+		model.addAttribute("gameDTO", gameDTO);
 
 		return "club/club_view_formmake";
 	}
@@ -767,6 +784,8 @@ public class ClubController {
 	public ModelAndView createImage(HttpServletRequest request) throws Exception {
 		String binaryData = request.getParameter("imgSrc");
 		int g_idx = Integer.parseInt(request.getParameter("g_idx"));
+		
+		
 		
 		FileOutputStream stream = null;
 		ModelAndView mav = new ModelAndView();

@@ -32,12 +32,11 @@
    }
 </script>
    <style>
-.dropped_name {
+.dropped_name { 
    color: #fff;
 }
-</style>
+</style> 
    <div>
-      <button id="button" class="btn btn-light" style="position:absolute; left: 10px ; top: 10px ;">Bench</button>
       <div class="toggler"  align="center"
       style="width:80px; position:absolute; left: 10px ; top: 60px ; background-color: #ffffff;
         opacity: 0.5;">
@@ -61,446 +60,472 @@
       <div id="field" style="width: 100%; height: 100%">
 
          <table
-            style="width: 100%; height: 100%; background: url(./../resources/img/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+            style="width: 100%; height: 100%; background:url(./../resources/img/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
             <tr style="height: 4.25%;">
                <td colspan=5></td>
             </tr>
             <c:forEach items="${squad }" var="row" varStatus="status">
-               <c:choose>
-                  <c:when test="${status.count==1 }">
-                     <tr style="height: 102px">
-                        <c:choose>
-                           <c:when test="${row == '' }">
-                              <td class="pos" id="pos0" style="width: 20%"></td>
-                           </c:when>
-                           <c:otherwise>
-                              <td class="pos" id="pos0" style="width: 20%">
-                                 <div class="dropped_player">
-                                    <img class="dropped_shirt"
-                                       src="./../resources/img/shirts/shirt_white.png" alt="" />
-                                 </div>
-                                 <div class="dropped_name">${row}</div>
-                              </td>
-                           </c:otherwise>
-                        </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==2 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos1" style="width: 20%"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos1" style="width: 20%">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+            <c:choose>
+               <c:when test="${status.count==1 }">
+                  <tr style="height: 102px">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos0" style="width:20%"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos0" style="width:20%">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:6%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==3 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos2" style="width: 20%"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos2" style="width: 20%">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==2 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos1" style="width:20%"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos1" style="width:20%">
+                           <div class="dropped_player" style="position:absolute;left:25%;top:6%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==4 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos3" style="width: 20%"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos3" style="width: 20%">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==3 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos2" style="width:20%"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos2" style="width:20%">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:45%;top:6%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==5 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos4" style="width: 20%"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos4" style="width: 20%">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==4 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos3" style="width:20%"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos3" style="width:20%">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:6%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                     </tr>
-                  </c:when>
-                  <c:when test="${status.count==6 }">
-                     <tr style="height: 102px">
-                        <c:choose>
-                           <c:when test="${row == '' }">
-                              <td class="pos" id="pos5"></td>
-                           </c:when>
-                           <c:otherwise>
-                              <td class="pos" id="pos5">
-                                 <div class="dropped_player">
-                                    <img class="dropped_shirt"
-                                       src="./../resources/img/shirts/shirt_white.png" alt="" />
-                                 </div>
-                                 <div class="dropped_name">${row}</div>
-                              </td>
-                           </c:otherwise>
-                        </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==7 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos6"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos6">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==5 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos4" style="width:20%"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos4" style="width:20%">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:6%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==8 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos7"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos7">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+                  </tr>
+               </c:when>
+               <c:when test="${status.count==6 }">
+                  <tr style="height: 102px">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos5"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos5">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:23%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==9 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos8"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos8">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==7 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos6"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos6">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:25%;top:23%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==10 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos9"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos9">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==8 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos7"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos7">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:45%;top:23%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                     </tr>
-                  </c:when>
-                  <c:when test="${status.count==11 }">
-                     <tr style="height: 102px">
-                        <c:choose>
-                           <c:when test="${row == '' }">
-                              <td class="pos" id="pos10"></td>
-                           </c:when>
-                           <c:otherwise>
-                              <td class="pos" id="pos10">
-                                 <div class="dropped_player">
-                                    <img class="dropped_shirt"
-                                       src="./../resources/img/shirts/shirt_white.png" alt="" />
-                                 </div>
-                                 <div class="dropped_name">${row}</div>
-                              </td>
-                           </c:otherwise>
-                        </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==12 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos11"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos11">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==9 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos8"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos8">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:23%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==13 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos12"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos12">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==10 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos9"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos9">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:23%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==14 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos13"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos13">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+                  </tr>
+               </c:when>
+               <c:when test="${status.count==11 }">
+                  <tr style="height: 102px">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos10"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos10">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:39%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==15 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos14"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos14">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==12 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos11"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos11">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:25%;top:39%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                     </tr>
-                  </c:when>
-                  <c:when test="${status.count==16 }">
-                     <tr style="height: 102px">
-                        <c:choose>
-                           <c:when test="${row == '' }">
-                              <td class="pos" id="pos15"></td>
-                           </c:when>
-                           <c:otherwise>
-                              <td class="pos" id="pos15">
-                                 <div class="dropped_player">
-                                    <img class="dropped_shirt"
-                                       src="./../resources/img/shirts/shirt_white.png" alt="" />
-                                 </div>
-                                 <div class="dropped_name">${row}</div>
-                              </td>
-                           </c:otherwise>
-                        </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==17 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos16"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos16">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==13 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos12"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos12">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:45%;top:39%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==18 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos17"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos17">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==14 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos13"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos13">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:39%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==19 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos18"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos18">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==15 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos14"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos14">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:39%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==20 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos19"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos19">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+                  </tr>
+               </c:when>
+               <c:when test="${status.count==16 }">
+                  <tr style="height: 102px">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos15"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos15">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:55%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                     </tr>
-                  </c:when>
-                  <c:when test="${status.count==21 }">
-                     <tr style="height: 102px">
-                        <c:choose>
-                           <c:when test="${row == '' }">
-                              <td class="pos" id="pos20"></td>
-                           </c:when>
-                           <c:otherwise>
-                              <td class="pos" id="pos20">
-                                 <div class="dropped_player">
-                                    <img class="dropped_shirt"
-                                       src="./../resources/img/shirts/shirt_white.png" alt="" />
-                                 </div>
-                                 <div class="dropped_name">${row}</div>
-                              </td>
-                           </c:otherwise>
-                        </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==22 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos21"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos21">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==17 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos16"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos16">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:25%;top:55%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==23 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos22"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos22">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==18 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos17"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos17">
+                           <div id="on_player" class="dropped_player"  style="position:absolute;left:45%;top:55%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==24 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos23"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos23">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==19 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos18"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos18">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:55%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                  </c:when>
-                  <c:when test="${status.count==25 }">
-                     <c:choose>
-                        <c:when test="${row == '' }">
-                           <td class="pos" id="pos24"></td>
-                        </c:when>
-                        <c:otherwise>
-                           <td class="pos" id="pos24">
-                              <div class="dropped_player">
-                                 <img class="dropped_shirt"
-                                    src="./../resources/img/shirts/shirt_white.png" alt="" />
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==20 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos19"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos19">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:55%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
                               </div>
-                              <div class="dropped_name">${row}</div>
-                           </td>
-                        </c:otherwise>
-                     </c:choose>
-                     </tr>
-                  </c:when>
-                  <c:when test="${status.count== 26 }">
-                     <tr style="height: 102px">
-                        <td></td>
-                        <td></td>
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+                  </tr>
+               </c:when>
+               <c:when test="${status.count==21 }">
+                  <tr style="height: 102px">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos20"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos20">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:5%;top:71%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
+                              </div>
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==22 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos21"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos21">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:25%;top:71%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
+                              </div>
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==23 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos22"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos22">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:45%;top:71%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
+                              </div>
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==24 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos23"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos23">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:65%;top:71%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
+                              </div>
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+               </c:when>
+               <c:when test="${status.count==25 }">
+                  <c:choose>
+                     <c:when test="${row == '' }">
+                        <td class="pos" id="pos24"></td>
+                     </c:when>
+                     <c:otherwise>
+                        <td class="pos" id="pos24">
+                           <div id="on_player" class="dropped_player" style="position:absolute;left:85%;top:71%;">
+                              <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                              <div class="dropped_name">
+                                 ${row}
+                              </div>
+                           </div>
+                        </td>
+                     </c:otherwise>
+                  </c:choose>
+                  </tr>
+               </c:when>
+               <c:when test="${status.count== 26 }">
+                  <tr style="height: 102px">
+                     <td></td>
+                     <td></td>
                         <c:choose>
                            <c:when test="${row == '' }">
                               <td class="pos" id="pos25"></td>
                            </c:when>
                            <c:otherwise>
                               <td class="pos" id="pos25">
-                                 <div class="dropped_player">
-                                    <img class="dropped_shirt"
-                                       src="./../resources/img/shirts/shirt_white.png" alt="" />
+                                 <div id="on_player" class="dropped_player"  style="position:absolute;left:45%;top:90%;">
+                                    <img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" alt="" />
+                                    <div class="dropped_name">
+                                       ${row}
+                                    </div>
                                  </div>
-                                 <div class="dropped_name">${row}</div>
                               </td>
                            </c:otherwise>
                         </c:choose>
-                        <td></td>
-                        <td></td>
-                     </tr>
-                  </c:when>
-               </c:choose>
-            </c:forEach>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </c:when>
+            </c:choose>
+         </c:forEach>
             <!-- <tr>
             <td class="pos" id="pos0"><input type="hidden" id="pos0"
                value=""></td>
@@ -581,6 +606,8 @@
       </div>
 
    </div>
+<button id="button2" class="btn btn-light" style="left:70% ;">Opponent</button>
+<button id="button" class="btn btn-light" style="left:10px ;">Bench</button>
    <br class="clear" />
 
 
