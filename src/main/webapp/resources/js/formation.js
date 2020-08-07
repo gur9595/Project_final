@@ -28,6 +28,8 @@ $(function () {
              return $('<span class="dragged_name" value="' + $(this).attr("value") + '"><input type="hidden" name="" value="">' + $(this).text() + "</span>") 
         } 
     });
+    
+    $("#ball").draggable();
 
     //.player를 플레이어 리스트에 놓았을 때
     $("#player_list").droppable({
@@ -52,23 +54,27 @@ $(function () {
         }
     });
 
-    // $("#field").droppable({ 
-    //     tolerance: "fit", 
-    //     drop: function (ev, ui) { 
-    //         if (!ui.draggable.find("div").length) { 
-    //             var player = $(document.createElement("div")).addClass("dropped_player").css({ 
-    //                 left: ui.position.left, top: ui.position.top 
-    //             }); 
-    //             player.draggable({ revert: "invalid" }); 
-    //             player.css("position", "absolute"); 
-    //             player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name">' + ui.draggable.text() + "</div>"); 
-    //             $("#field").append(player); 
-    //             setTimeout(function () { 
-    //                 ui.draggable.parents("tr").remove() 
-    //             }, 1) 
-    //         } 
-    //     } 
-    // });
+     $("#field").droppable({ 
+         tolerance: "fit", 
+         drop: function (ev, ui) { 
+        	 if(ui.draggable.attr('id') == 'ball'){
+        		 
+        	 }
+        	 
+        	 else if (!ui.draggable.find("div").length) { 
+                 var player = $(document.createElement("div")).addClass("dropped_player").css({ 
+                     left: ui.position.left, top: ui.position.top 
+                 }); 
+                 player.draggable({ revert: "invalid" }); 
+                 player.css("position", "absolute"); 
+                 player.prepend('<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" />').append('<div class="dropped_name">' + ui.draggable.text() + "</div>"); 
+                 $("#field").append(player); 
+                 setTimeout(function () { 
+                     ui.draggable.parents("tr").remove() 
+                 }, 1) 
+             } 
+         } 
+     });
 
     // $(".pos").droppable({ 
     //     tolerance: "intersect", 
@@ -102,185 +108,185 @@ $(function () {
     // });
 
     //포지션별 드롭
-    $("#pos0").droppable({ 
-        tolerance: "intersect", 
-        drop: function (ev, ui) { 
-            if ($(this).find("input").text()!==""){
-                 return null;
-            }
-            else if(!ui.draggable.find("div").length){ 
-                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
-                    left: ui.position.left, top: ui.position.top 
-                }); 
-                player.draggable({ revert: "invalid" }); 
-                player.css("position", "absolute");
-                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'"><input type="hidden" name="" value="'+ $(this).attr("id") +'">' + ui.draggable.text() + "</div>"); 
-                $("#field").append(player);
-                setTimeout(function () {
-                    ui.draggable.parents("tr").remove()
-                }, 1)
-                
-                var value= ui.draggable.attr("value");
-                $(this).find("input").text(value);
-
-                var draggablevalue = ui.draggable.attr("value");
-                var droppableId = $(this).attr("id");
-
-                console.log(draggablevalue);
-                console.log(droppableId);
-                console.log($(this).find("input").text());
-                console.log(ui.draggable.find("div"));
-
-                form[0]=draggablevalue;
-                for(var i = 0; i < form.length; i++){
-                console.log(form[i]);
-                }
-            }
-            else if(ui.draggable.find("div").length){
-                
-                console.log(draggablevalue);
-                console.log(droppableId);
-                console.log($(this).find("input").text());
-                console.log(ui.draggable.find("div"));
-                
-                form[0]=draggablevalue;
-                for(var i = 0; i < form.length; i++){
-                console.log(form[i]);
-                }
-            }
-        },
-        out : function(ev, ui){
-            $(this).find("input").text("");
-        } 
-    });
-
-    $("#pos1").droppable({ 
-        tolerance: "intersect", 
-        drop: function (ev, ui) { 
-            if ($(this).find("input").text()!==""){
-                 return null;
-            }
-            else if(!ui.draggable.find("div").length){ 
-                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
-                    left: ui.position.left, top: ui.position.top 
-                }); 
-                player.draggable({ revert: "invalid" }); 
-                player.css("position", "absolute");
-                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'"><input type="hidden" name="" value="'+ $(this).attr("id") +'">' + ui.draggable.text() + "</div>"); 
-                $("#field").append(player);
-                setTimeout(function () {
-                    ui.draggable.parents("tr").remove()
-                }, 1)
-                
-                var value= ui.draggable.attr("value");
-                $(this).find("input").text(value);
-
-                var draggablevalue = ui.draggable.attr("value");
-                var droppableId = $(this).attr("id");
-
-                console.log(draggablevalue);
-                console.log(droppableId);
-                console.log($(this).find("input").text());++
-                console.log(ui.draggable.find("div"));
-
-                form[1]=draggablevalue;
-                for(var i = 0; i < form.length; i++){
-                console.log(form[i]);
-                }
-            }
-        },
-        out : function(ev, ui){
-            $(this).find("input").text("");
-        } 
-    });
-
-    $("#pos2").droppable({ 
-        tolerance: "intersect", 
-        drop: function (ev, ui) { 
-            if (!ui.draggable.find("div").length) { 
-                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
-                    left: ui.position.left, top: ui.position.top 
-                }); 
-                player.draggable({ revert: "invalid" }); 
-                player.css("position", "absolute"); 
-                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'">' + ui.draggable.text() + "</div>"); 
-                $("#field").append(player); 
-                setTimeout(function () { 
-                    ui.draggable.parents("tr").remove() 
-                }, 1) 
-                
-                var draggablevalue = ui.draggable.attr("value");
-                var droppableId = $(this).attr("id");
-
-                console.log(draggablevalue);
-                console.log(droppableId);
-
-                form[2]=draggablevalue;
-                for(var i = 0; i < form.length; i++){
-                console.log(form[i]);
-                }
-            } 
-        } 
-    });
-
-    $("#pos3").droppable({ 
-        tolerance: "intersect", 
-        drop: function (ev, ui) { 
-            if (!ui.draggable.find("div").length) { 
-                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
-                    left: ui.position.left, top: ui.position.top 
-                }); 
-                player.draggable({ revert: "invalid" }); 
-                player.css("position", "absolute"); 
-                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'">' + ui.draggable.text() + "</div>"); 
-                $("#field").append(player); 
-                setTimeout(function () { 
-                    ui.draggable.parents("tr").remove() 
-                }, 1) 
-                
-                var draggablevalue = ui.draggable.attr("value");
-                var droppableId = $(this).attr("id");
-
-                console.log(draggablevalue);
-                console.log(droppableId);
-
-                form[3]=draggablevalue;
-                for(var i = 0; i < form.length; i++){
-                console.log(form[i]);
-                }
-            } 
-        } 
-    });
-
-    $("#pos4").droppable({ 
-        tolerance: "intersect", 
-        drop: function (ev, ui) { 
-            if (!ui.draggable.find("div").length) { 
-                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
-                    left: ui.position.left, top: ui.position.top 
-                }); 
-                player.draggable({ revert: "invalid" }); 
-                player.css("position", "absolute"); 
-                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'">' + ui.draggable.text() + "</div>"); 
-                $("#field").append(player); 
-                setTimeout(function () { 
-                    ui.draggable.parents("tr").remove() 
-                }, 1) 
-                
-                var draggablevalue = ui.draggable.attr("value");
-                var droppableId = $(this).attr("id");
-
-                console.log(draggablevalue);
-                console.log(droppableId);
-
-                form[4]=draggablevalue;
-                
-                for(var i = 0; i < form.length; i++){
-                    console.log(form[i]);
-                }
-            } 
-        } 
-    });
+//    $("#pos0").droppable({ 
+//        tolerance: "intersect", 
+//        drop: function (ev, ui) { 
+//            if ($(this).find("input").text()!==""){
+//                 return null;
+//            }
+//            else if(!ui.draggable.find("div").length){ 
+//                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
+//                    left: ui.position.left, top: ui.position.top 
+//                }); 
+//                player.draggable({ revert: "invalid" }); 
+//                player.css("position", "absolute");
+//                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'"><input type="hidden" name="" value="'+ $(this).attr("id") +'">' + ui.draggable.text() + "</div>"); 
+//                $("#field").append(player);
+//                setTimeout(function () {
+//                    ui.draggable.parents("tr").remove()
+//                }, 1)
+//                
+//                var value= ui.draggable.attr("value");
+//                $(this).find("input").text(value);
+//
+//                var draggablevalue = ui.draggable.attr("value");
+//                var droppableId = $(this).attr("id");
+//
+//                console.log(draggablevalue);
+//                console.log(droppableId);
+//                console.log($(this).find("input").text());
+//                console.log(ui.draggable.find("div"));
+//
+//                form[0]=draggablevalue;
+//                for(var i = 0; i < form.length; i++){
+//                console.log(form[i]);
+//                }
+//            }
+//            else if(ui.draggable.find("div").length){
+//                
+//                console.log(draggablevalue);
+//                console.log(droppableId);
+//                console.log($(this).find("input").text());
+//                console.log(ui.draggable.find("div"));
+//                
+//                form[0]=draggablevalue;
+//                for(var i = 0; i < form.length; i++){
+//                console.log(form[i]);
+//                }
+//            }
+//        },
+//        out : function(ev, ui){
+//            $(this).find("input").text("");
+//        } 
+//    });
+//
+//    $("#pos1").droppable({ 
+//        tolerance: "intersect", 
+//        drop: function (ev, ui) { 
+//            if ($(this).find("input").text()!==""){
+//                 return null;
+//            }
+//            else if(!ui.draggable.find("div").length){ 
+//                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
+//                    left: ui.position.left, top: ui.position.top 
+//                }); 
+//                player.draggable({ revert: "invalid" }); 
+//                player.css("position", "absolute");
+//                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'"><input type="hidden" name="" value="'+ $(this).attr("id") +'">' + ui.draggable.text() + "</div>"); 
+//                $("#field").append(player);
+//                setTimeout(function () {
+//                    ui.draggable.parents("tr").remove()
+//                }, 1)
+//                
+//                var value= ui.draggable.attr("value");
+//                $(this).find("input").text(value);
+//
+//                var draggablevalue = ui.draggable.attr("value");
+//                var droppableId = $(this).attr("id");
+//
+//                console.log(draggablevalue);
+//                console.log(droppableId);
+//                console.log($(this).find("input").text());++
+//                console.log(ui.draggable.find("div"));
+//
+//                form[1]=draggablevalue;
+//                for(var i = 0; i < form.length; i++){
+//                console.log(form[i]);
+//                }
+//            }
+//        },
+//        out : function(ev, ui){
+//            $(this).find("input").text("");
+//        } 
+//    });
+//
+//    $("#pos2").droppable({ 
+//        tolerance: "intersect", 
+//        drop: function (ev, ui) { 
+//            if (!ui.draggable.find("div").length) { 
+//                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
+//                    left: ui.position.left, top: ui.position.top 
+//                }); 
+//                player.draggable({ revert: "invalid" }); 
+//                player.css("position", "absolute"); 
+//                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'">' + ui.draggable.text() + "</div>"); 
+//                $("#field").append(player); 
+//                setTimeout(function () { 
+//                    ui.draggable.parents("tr").remove() 
+//                }, 1) 
+//                
+//                var draggablevalue = ui.draggable.attr("value");
+//                var droppableId = $(this).attr("id");
+//
+//                console.log(draggablevalue);
+//                console.log(droppableId);
+//
+//                form[2]=draggablevalue;
+//                for(var i = 0; i < form.length; i++){
+//                console.log(form[i]);
+//                }
+//            } 
+//        } 
+//    });
+//
+//    $("#pos3").droppable({ 
+//        tolerance: "intersect", 
+//        drop: function (ev, ui) { 
+//            if (!ui.draggable.find("div").length) { 
+//                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
+//                    left: ui.position.left, top: ui.position.top 
+//                }); 
+//                player.draggable({ revert: "invalid" }); 
+//                player.css("position", "absolute"); 
+//                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'">' + ui.draggable.text() + "</div>"); 
+//                $("#field").append(player); 
+//                setTimeout(function () { 
+//                    ui.draggable.parents("tr").remove() 
+//                }, 1) 
+//                
+//                var draggablevalue = ui.draggable.attr("value");
+//                var droppableId = $(this).attr("id");
+//
+//                console.log(draggablevalue);
+//                console.log(droppableId);
+//
+//                form[3]=draggablevalue;
+//                for(var i = 0; i < form.length; i++){
+//                console.log(form[i]);
+//                }
+//            } 
+//        } 
+//    });
+//
+//    $("#pos4").droppable({ 
+//        tolerance: "intersect", 
+//        drop: function (ev, ui) { 
+//            if (!ui.draggable.find("div").length) { 
+//                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
+//                    left: ui.position.left, top: ui.position.top 
+//                }); 
+//                player.draggable({ revert: "invalid" }); 
+//                player.css("position", "absolute"); 
+//                player.prepend('<img class="dropped_shirt" src="http://www.footballuser.com/assets/images/shirts/' + shirtId + '" />').append('<div class="dropped_name" value="'+ ui.draggable.attr("value") +'">' + ui.draggable.text() + "</div>"); 
+//                $("#field").append(player); 
+//                setTimeout(function () { 
+//                    ui.draggable.parents("tr").remove() 
+//                }, 1) 
+//                
+//                var draggablevalue = ui.draggable.attr("value");
+//                var droppableId = $(this).attr("id");
+//
+//                console.log(draggablevalue);
+//                console.log(droppableId);
+//
+//                form[4]=draggablevalue;
+//                
+//                for(var i = 0; i < form.length; i++){
+//                    console.log(form[i]);
+//                }
+//            } 
+//        } 
+//    });
 
     //submit 시
     $("#submit").click(function () { 

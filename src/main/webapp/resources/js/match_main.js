@@ -175,9 +175,9 @@ function insertValidate(f){
   		f.name.focus();
   		return false;
   	}
-  	if(f.addr.value==""){
+  	if(f.g_saddr.value==""){
   		alert("경기장 주소를 입력하세요.");
-  		f.addr.focus();
+  		f.g_saddr.focus();
   		return false;
   	}
   	if(f.memo.value==""){

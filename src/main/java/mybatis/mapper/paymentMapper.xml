@@ -17,5 +17,12 @@
 		set cash = cash + #{param1} 
 		where m_id = #{param2}
 	</update>
+	
+	<!-- Ball 보유현황 가져오기 -->
+	<select id="ballCurrent" resultType="int">
+		select cash 
+		from member 
+		where m_id = #{param1}
+	</select>
 			
 </mapper>  
