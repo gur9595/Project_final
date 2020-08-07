@@ -424,7 +424,6 @@
       where cm.m_id = #{m_id} 
    </select>
    
-
    <!-- 클럽 상세보기 회원정보 -->
    <select id="clubViewMemberA" resultType="mybatis.MemberDTO">
         select m.*, cm.cm_idx, cm.cm_date , cm.cm_grade 
@@ -476,25 +475,13 @@
    </insert>
     
     <select id="clubGoalRankA" resultType="mybatis.AndroidMemberDTO">
-	select distinct m.m_name,
-	m.m_pic,
-	(select count(*) from gamemember gm inner join game g on
-	gm.g_idx=g.g_idx
-	where m.m_id like gm.m_id and g.g_rating is not null
-	and g.c_idx =
-	#{c_idx}) as appearance ,
-	(select count(*) from
-	goalhistory gh inner
-	join game g on gh.g_idx=g.g_idx where gh_goal like
-	gm.m_id and
-	g.g_rating is not null and g.c_idx = #{c_idx}) as goal
-	from
-	member m
-	inner join gamemember gm on m.m_id = gm.m_id
-	inner join game g
-	on g.g_idx = gm.g_idx
-	where g.c_idx = #{c_idx} and g.g_rating is not
-	null
+	select distinct m.m_name,m.m_pic,
+	(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as appearance ,
+	(select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as goal 
+	from member m 
+		inner join gamemember gm on m.m_id = gm.m_id 
+		inner join game g on g.g_idx = gm.g_idx
+	where g.c_idx = #{c_idx} and g.g_rating is not null
 	order by goal desc
 	</select>
      
