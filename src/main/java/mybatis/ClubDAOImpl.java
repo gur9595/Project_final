@@ -2,6 +2,7 @@ package mybatis;
 
 
 import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +24,8 @@ public interface ClubDAOImpl {
 	public int myClubListCount(String id);
 	
 	public ClubDTO clubView(int c_idx);
+	
+	public ArrayList<GameDTO> clubView10History(int c_idx);
 	
 	public int clubIdx(ClubDTO clubDTO);
 
@@ -79,16 +82,23 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubPointRank(int c_idx);
 	
 	public ArrayList<MemberDTO> clubAppearanceRank(int c_idx);
+	
+	public int gameFormPng(int g_idx, String fileName);
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MemberDTO> clubViewMemberA(AndroidClubMemberDTO androidClubMemberDTO);
-	public ArrayList<MatchDTO>clubViewMatchA(AndroidClubDTO androidClubDTO);
+	public ArrayList<MemberDTO> gameMemberList(AndroidGameMemberDTO androidGameMemberDTO);
+	public ArrayList<AndroidMatchDTO>clubViewMatchA(AndroidClubDTO androidClubDTO);
+	public ArrayList<MatchDTO>gm_checkList(AndroidClubDTO androidClubDTO);
 	public ArrayList<GameDTO>clubViewAcceptA(AndroidClubDTO androidClubDTO);
 	public MatchDTO clubMatchOpponentA(int g_num, String c_idx);
 	public int clubMatchOpponentCountA(int g_num, String c_idx);
 	public ArrayList<MemberDTO> clubViewMemberA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
 	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);
-	public AndroidGameMemberDTO gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO);
+	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO);
+	public int gameMemberRejectA(AndroidGameMemberDTO androidGameMemberDTO);
+	public int gameMemberCheck(int g_idx, String m_id);
+	public ArrayList<AndroidMemberDTO> clubGoalRankA(AndroidMemberDTO androidMemberDTO);
 	
 }
