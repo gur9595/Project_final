@@ -33,9 +33,16 @@ public class AndroidMemberDTO {
 	private String point;
 	private String appearance;
 	private String c_idx;
+	private String rnum;
 	private int cash;
 	
 	
+	public String getRnum() {
+		return rnum;
+	}
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
+	}
 	public String getC_idx() {
 		return c_idx;
 	}
