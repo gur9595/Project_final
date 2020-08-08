@@ -24,7 +24,7 @@
 <style>
     table{
         margin-left: auto; margin-right: auto;
-        width: 1100px;
+        width: 1200px;
         table-layout: fixed;
         border-collapse: collapse;
     }
@@ -66,10 +66,12 @@
                                                         <th>이름</th>
                                                         <th>ID</th>   
                                                         <th>생년월일</th>
-                                                        <th style="width:150px;">E-mail</th>
-                                                        <th>전화번호</th>
-                                                        <th style="width:350px;">주소</th>
+                                                        <th width="150px;">E-mail</th>
+                                                        <th width="120px;">전화번호</th>
+                                                        <th width="350px;">주소</th>
                                                         <th>가입날짜</th>
+                                                        <th colspan="2" width="150px;">수정/삭제</th>
+                                                        
                                                     </tr>
 													<c:forEach items="${lists }" var="row" varStatus="status"> 
 														<tr>
@@ -81,6 +83,11 @@
 															<th>${row.m_phone }</th>
 															<th>${row.m_addr }</th>
 															<th>${row.m_date }</th>
+															<th colspan="2">
+																<input type="button" class="btn btn-success" value="수정">
+																<input type="button" class="btn btn-danger" value="삭제">
+															</th>
+															
 														</tr>
 													</c:forEach>
                                                 </table>

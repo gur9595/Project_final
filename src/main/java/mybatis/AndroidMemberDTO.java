@@ -75,6 +75,7 @@ public class AndroidMemberDTO {
 		this.rnum = rnum;
 		this.cash = cash;
 	}
+
 	public String getRnum() {
 		return rnum;
 	}
