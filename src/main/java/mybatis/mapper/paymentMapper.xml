@@ -7,8 +7,8 @@
 
 	<!-- Ball 충전 내역 -->
 	<insert id="ballResult" parameterType="mybatis.CashDTO">
-		insert into cash (cs_idx, m_id, cs_charge, cs_date)  
-			 values(cash_seq.nextval, #{m_id}, #{cs_charge}, to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'))
+		insert into cash (cs_idx, m_id, cs_money,cs_type, cs_date)  
+			 values(cash_seq.nextval, #{m_id}, #{cs_money}, 'charge' , to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'))
 	</insert>
 	    
 	<!-- Ball 업데이트(누적) -->
@@ -24,5 +24,11 @@
 		from member 
 		where m_id = #{param1}
 	</select>
-			
+	
+	
+	
+	
+	
+	
+		
 </mapper>  

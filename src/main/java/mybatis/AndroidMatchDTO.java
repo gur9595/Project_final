@@ -2,7 +2,7 @@ package mybatis;
 
 import java.sql.Date;
 
-public class MatchDTO {
+public class AndroidMatchDTO {
 
 	//멤버변수
 	private int g_idx;
@@ -40,15 +40,20 @@ public class MatchDTO {
 	private int start;
 	private int end;
 	
-	public MatchDTO() {
+	private String m_id;
+	
+	// 안드로이드용 변수
+	private String gm_check;
+	
+	public AndroidMatchDTO() {
 		super();
 	}
 
-	public MatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
+	public AndroidMatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
 			String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu,
 			String g_check, int g_extra, String g_lat, String g_lng, String c_name, String c_cash, String c_emb,
 			String c_area, String c_type, Date c_date, String c_memo, String c_color, String c_ability,
-			String c_gender, int c_memlimit, String c_age, int start, int end) {
+			String c_gender, int c_memlimit, String c_age, int start, int end, String gm_check, String m_id) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -82,6 +87,16 @@ public class MatchDTO {
 		this.c_age = c_age;
 		this.start = start;
 		this.end = end;
+		this.gm_check = gm_check;
+		this.m_id = m_id;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
 	public int getG_idx() {
@@ -326,6 +341,14 @@ public class MatchDTO {
 
 	public int getStart() {
 		return start;
+	}
+	
+	public String getGm_check() {
+		return gm_check;
+	}
+
+	public void setGm_check(String gm_check) {
+		this.gm_check = gm_check;
 	}
 
 	public void setStart(int start) {

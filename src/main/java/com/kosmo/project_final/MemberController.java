@@ -3,6 +3,7 @@ package com.kosmo.project_final;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Member;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.jws.WebParam.Mode;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,6 +36,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import mybatis.CashDAOImpl;
+import mybatis.CashDTO;
 import mybatis.ClubDAOImpl;
 
 import mybatis.MemberDAOImpl;
@@ -476,6 +480,34 @@ public class MemberController {
 
       return "member/memberEdit2";
    }
+   
+ 
+   @RequestMapping("/member/ballHistory.do")
+	public String ballHistory(Principal principal, HttpServletRequest req, MemberDTO memberDTO, CashDTO cashDTO, Model model ) {
+		
+		String m_id = principal.getName();
+		System.out.println("m_name :"+m_id);
+		
+		int money = sqlSession.getMapper(MemberDAOImpl.class).ballHistory(m_id);
+		System.out.println(money);
+		
+		ArrayList<MemberDTO> lists = sqlSession.getMapper(MemberDAOImpl.class).ballList(m_id);
+
+		// 회원 아이디
+		model.addAttribute("m_id", m_id);
+		
+		// 현재 보유 Ball
+		model.addAttribute("cash", money);
+		
+		// Ball 거래 내역
+		model.addAttribute("lists", lists);
+		
+		return "member/ball_history";
+   
+   }
+   
+   
+
 
    @RequestMapping("/member/mypageMain.do")
    public String mypageMain() {

@@ -1,5 +1,7 @@
 package mybatis;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +22,13 @@ public interface MemberDAOImpl {
 	
 	public MemberDTO memberLogin(MemberDTO memberDTO);
 	
+	
+	
+	public int ballHistory(String m_id);
+	
+	public ArrayList<MemberDTO> ballList(String m_id);
+	
+
 	
 
 	

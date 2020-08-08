@@ -111,7 +111,7 @@ $(document).ready( function() {
             
             $('#close').show();            
         });
-
+       
       });
 
       // 배송조회

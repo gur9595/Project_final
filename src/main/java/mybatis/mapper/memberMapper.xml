@@ -48,6 +48,19 @@
 		select m_pw from member where m_id like #{m_id} and m_email like #{m_email}
 	</select>
 	
+	<!-- 마이페이지 - Ball -->
+	<select id="ballHistory" resultType="int">
+		select cash 
+		from member 
+		where m_id = #{param1}
+	</select>
+	
+	<select id="ballList" resultType="mybatis.MemberDTO">
+		select *
+		from cash
+		where m_id = #{param1} order by cs_date desc
+	</select>
+	
 
 	 
   </mapper>

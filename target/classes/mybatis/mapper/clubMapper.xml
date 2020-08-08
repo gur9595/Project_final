@@ -19,9 +19,19 @@
 			where c_idx = #{param1} 
 		</select>
 		
+		<select id="clubView10History" resultType="mybatis.GameDTO">
+			select * from (
+			    select tb.*, rownum rNum from(
+			        select g_result 
+			        from game 
+			        where g_result is not null and c_idx = #{param1} order by g_date desc
+			    ) tb
+			) where rNum between 1 and 10
+		</select>
+		
 		<!-- 클럽회원 수 체크 -->
 		<select id="clubMemberCount" resultType="int">
-			select count(*) from clubmember where c_idx=#{c_idx}
+			select count(*) from clubmember where c_idx=#{c_idx} and cm_check not like 'no'
 		</select>
 		
 		<!-- 클럽 상세보기 회원정보 -->
@@ -31,7 +41,7 @@
 		     		select m.*, cm.cm_idx, cm.cm_grade
 		   			 from member m inner join clubmember cm 
 		   			 on m.m_id = cm.m_id 
-		   			 where cm.c_idx = #{param1} order by length(cm_grade) asc
+		   			 where cm.c_idx = #{param1} and cm.cm_check not like 'no' order by length(cm_grade) asc
 	     	 	) tb
 		     ) where rNum between #{param2} and #{param3}	
 		</select>	
@@ -95,13 +105,19 @@
 		<!-- 클럽 상세보기 권한관리 -->
 		<select id="clubViewGrade" resultType="mybatis.MemberDTO">
 			select m.m_id, m.m_name, m.m_birth, m.m_phone, m.m_sex, m.m_addr, cm.cm_grade
-			from member m inner join clubmember cm on m.m_id = cm.m_id where cm.c_idx = #{c_idx} 
+			from member m inner join clubmember cm on m.m_id = cm.m_id where cm.c_idx = #{c_idx} order by length(cm_grade) asc
 		</select>
 		
 		<!-- 권한관리 수정 -->
 		<update id="clubViewUpdate" parameterType="mybatis.MemberDTO">
 			update clubmember set cm_grade = #{param2} where c_idx = #{param1} and m_id like #{param3}
 		</update>
+		
+		<!-- 히스토리 내클럽 이름 갖고오기 -->
+<!-- 		<select id="myClubname" resultType="mybatis.ClubDTO">
+			select c_name from club where c_idx=#{c_idx}
+		</select> -->
+		
 		
 		
 	  <select id="getTotalCount" resultType="int" >
@@ -200,8 +216,16 @@
 		insert into gamemember values(gamemember_seq.nextval, #{g_idx}, #{m_id}, default)
 	</insert>
 	
+	<delete id="gameMemberDrop" parameterType="mybatis.GameMemberDTO">
+		delete from gamemember where g_idx = #{g_idx} and m_id like #{m_id}
+	</delete>
+	
+	<select id="gameMemberCount" resultType="int" parameterType="mybatis.GameMemberDTO">
+		select count(*) from gamemember where g_idx = #{g_idx} and m_id like #{m_id}
+	</select>
+	
 	<select id="myClubList" resultType="mybatis.ClubDTO">
-		select * 
+		select *  
 		from club c inner join clubmember cm
 			on c.c_idx = cm.c_idx
 		where cm.m_id like #{param1} 
@@ -259,8 +283,57 @@
 	<select id="clubMakingForm" resultType="mybatis.GameMemberDTO">
 		select gm.*, m.m_name
 		from gamemember gm inner join member m on gm.m_id = m.m_id
-		where gm.g_idx like #{param1}
+		where gm.g_idx = #{param1}
 	</select>
+	
+	
+	
+	  <select id="clubMemberRank" resultType="mybatis.GoalHistoryDTO">
+	  	select gh.* from goalhistory gh inner join game g on gh.g_idx = g.g_idx where g.c_idx = #{c_idx}  and g.g_rating is not null
+	  </select> 
+	  
+	  <select id="clubGoalRank" resultType="mybatis.MemberDTO">
+	  	select distinct m.m_name, m.m_pic, 
+		(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{param1}) as appearance ,
+		(select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null and g.c_idx = #{param1}) as goal
+		from member m 
+		    inner join gamemember gm on m.m_id = gm.m_id
+		    inner join game g on g.g_idx = gm.g_idx    
+		where g.c_idx = #{param1} and g.g_rating is not null
+		order by goal desc
+	  </select>
+	  
+	  <select id="clubAssistRank" resultType="mybatis.MemberDTO">
+	  	select distinct m.m_name, m.m_pic, 
+		(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{param1}) as appearance ,
+		(select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_assist like gm.m_id and g.g_rating is not null and g.c_idx = #{param1}) as assist
+		from member m 
+		    inner join gamemember gm on m.m_id = gm.m_id
+		    inner join game g on g.g_idx = gm.g_idx    
+		where g.c_idx = #{param1} and g.g_rating is not null
+		order by assist desc
+	  </select>
+	  
+	  <select id="clubPointRank" resultType="mybatis.MemberDTO">
+	  	select distinct m.m_name, m.m_pic, 
+		(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{param1}) as appearance ,
+		(select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null and g.c_idx = #{param1}) + (select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_assist like gm.m_id and g.g_rating is not null and g.c_idx = #{param1}) as point
+		from member m 
+		    inner join gamemember gm on m.m_id = gm.m_id
+		    inner join game g on g.g_idx = gm.g_idx    
+		where g.c_idx = #{param1} and g.g_rating is not null
+		order by point desc
+	  </select>
+	  
+	  <select id="clubAppearanceRank" resultType="mybatis.MemberDTO">
+		select distinct m.m_name, m.m_pic, 
+		(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{param1}) as appearance 
+		from member m 
+		    inner join gamemember gm on m.m_id = gm.m_id
+		    inner join game g on g.g_idx = gm.g_idx    
+		where g.c_idx = #{param1} and g.g_rating is not null
+		order by appearance desc 
+	  </select>
 	
 	<!-- *******************안드로이드 매퍼*************************** -->
 	
@@ -285,12 +358,29 @@
 	     from member m inner join clubmember cm on m.m_id = cm.m_id where cm.c_idx = #{c_idx} order by cm_grade asc
 	</select>
 	
+	<!-- 클럽 게임 멤버 보기 회원정보 -->
+	<select id="gameMemberList" resultType="mybatis.MemberDTO">
+	     select m.m_name, m.m_birth, m.m_sex, m.m_position, m.m_foot, m.m_pic, m.m_phone 
+	     from member m inner join gamemember gm 
+	     	on m.m_id = gm.m_id 
+     	where gm.g_idx = #{g_idx}
+	</select>
+	
 	<!-- 클럽 상세보기 모든경기정보 -->
-	<select id="clubViewMatchA" resultType="mybatis.MatchDTO">
+	<select id="clubViewMatchA" resultType="mybatis.AndroidMatchDTO">
 		select g.* 
 		from game g inner join club c 
 			on g.c_idx = c.c_idx 
-		where g.c_idx = #{c_idx} and g.g_check not like 'no'  order by g.g_date asc
+		where g.c_idx = #{c_idx} and g.g_check not like 'no' and
+		to_char(g.g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')  
+		order by g.g_date asc
+	</select>
+	
+	<!-- 게임 참가여부 확인 -->
+	<select id="gameMemberCheck" resultType="int">
+		select count(*)
+		from gamemember
+		where g_idx = #{param1} and m_id like #{param2}
 	</select>
 	
 	<!-- 클럽 상세보기 접수현황 -->
@@ -306,7 +396,7 @@
 		from club
 		where c_idx in (select c_idx
 		from game
-		where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
+		where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2} )
 	</select>
 		
 	<select id="clubMatchOpponentCountA" resultType="int">
@@ -316,51 +406,17 @@
 		from game
 		where g_num = #{param1} and g_check not like 'no' and c_idx != #{param2})
 	</select>
+	
+	<insert id="gameMemberApplyA" parameterType="mybatis.AndroidGameMemberDTO">
+		insert into gamemember (gm_idx, g_idx, m_id) values(gamemember_seq.nextval, #{g_idx}, #{m_id})
+	</insert>
+	
+	<insert id="gameMemberRejectA" parameterType="mybatis.AndroidGameMemberDTO">
+		delete from gamemember where g_idx = #{g_idx} and m_id like #{m_id}
+	</insert>
 	  
-	  <select id="clubMemberRank" resultType="mybatis.GoalHistoryDTO">
-	  	select gh.* from goalhistory gh inner join game g on gh.g_idx = g.g_idx where g.c_idx = #{c_idx}  and g.g_rating is not null
-	  </select> 
-	  
-	  <select id="clubGoalRank" resultType="mybatis.MemberDTO">
-	  	select distinct m.m_name, m.m_pic, 
-		(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null) as appearance ,
-		(select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null) as goal
-		from member m 
-		    inner join gamemember gm on m.m_id = gm.m_id
-		    inner join game g on g.g_idx = gm.g_idx    
-		where g.c_idx = #{param1} and g.g_rating is not null
-		order by goal desc
-	  </select>
-	  <select id="clubAssistRank" resultType="mybatis.MemberDTO">
-	  	select distinct m.m_name, m.m_pic, 
-		(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null) as appearance ,
-		(select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null) as assist
-		from member m 
-		    inner join gamemember gm on m.m_id = gm.m_id
-		    inner join game g on g.g_idx = gm.g_idx    
-		where g.c_idx = #{param1} and g.g_rating is not null
-		order by assist desc
-	  </select>
-	  
-	  <select id="clubPointRank" resultType="mybatis.MemberDTO">
-	  	select distinct m.m_name, m.m_pic, 
-		(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null) as appearance ,
-		(select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null) + (select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null) as point
-		from member m 
-		    inner join gamemember gm on m.m_id = gm.m_id
-		    inner join game g on g.g_idx = gm.g_idx    
-		where g.c_idx = #{param1} and g.g_rating is not null
-		order by point desc
-	  </select>
-	  
-	  <select id="clubAppearanceRank" resultType="mybatis.MemberDTO">
-		select distinct m.m_name, m.m_pic, 
-		(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null) as appearance 
-		from member m 
-		    inner join gamemember gm on m.m_id = gm.m_id
-		    inner join game g on g.g_idx = gm.g_idx    
-		where g.c_idx = #{param1} and g.g_rating is not null
-		order by appearance desc 
-	  </select>
+	  <update id="gameFormPng">
+	  	update game set g_formation = #{param2} where g_idx = #{param1}
+	  </update>
 	  
  </mapper>

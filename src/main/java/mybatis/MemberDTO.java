@@ -35,6 +35,51 @@ public class MemberDTO {
 	private int cash;
 	
 	
+	
+	private int cs_idx;
+	private int cs_money;
+	private String cs_type;
+	private String cs_date;
+	
+	public int getCs_idx() {
+		return cs_idx;
+	}
+	public void setCs_idx(int cs_idx) {
+		this.cs_idx = cs_idx;
+	}
+	public int getCs_money() {
+		return cs_money;
+	}
+	public void setCs_money(int cs_money) {
+		this.cs_money = cs_money;
+	}
+	public String getCs_date() {
+		return cs_date;
+	}
+	public void setCs_date(String cs_date) {
+		this.cs_date = cs_date;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getCs_type() {
+		return cs_type;
+	}
+	public void setCs_type(String cs_type) {
+		this.cs_type = cs_type;
+	}
 	public int getCash() {
 		return cash;
 	}

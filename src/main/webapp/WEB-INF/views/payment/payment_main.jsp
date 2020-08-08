@@ -29,8 +29,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="./../resources/css/payment_css.css">
-<link rel="stylesheet" href="./../resources/css/payment_css2.css">
 <link rel="stylesheet" href="./../resources/css/payment.css">
 
 <!-- 결제 api ---------------------------------------------------------------------------------------------->
@@ -121,9 +119,9 @@
           			<span class="cardLabel" style="margin-left: 270px; font-size: 15px;"><b>나의 Ball 보유량</b></span>
           				<%-- <p class="cardValue">${cash } Ball</p> --%>
           				<%-- <span class="cardLabel1212" id="cash" name="cash" value="${cash }" /> --%>
-          			<input type="text" readonly="readonly" style="width:150px; margin-left: 250px; text-align: center;"  value="${cash}" />
+          			<input type="text" readonly="readonly" style="width:150px; margin-left: 250px; margin-bottom:10px; text-align: center;"  value="${cash}" />
         		</div> 		
-		        <!-- <a href="./../member/mypageMain.do" class="btn olBtn">충전 내역 보기</a> -->
+		        <a href="./../member/mypageMain.do" class="btn olBtn">충전 내역 보러 가기</a>
       		</div>
 		</div>
       	
@@ -138,11 +136,11 @@
       		</div>
       
       		<div class="cashSelect">
-        		<label>입금자명</label>
+        		<label>닉네임 또는 입금자명</label>
         		<!-- <input id="depositor" type="text" name="name" placeholder="입금자 이름" value=""> -->
         		
         		<input type="text" id="depositor" name="name" value="${m_id }" />
-        		<p><strong>위에 입력한 입금자명으로 정확한 금액을 입금해주세요</strong><br>B-Pro Ball 충전</p>
+        		<p><strong>위에 입력한 명의로 정확한 금액을 입금해주세요</strong><br>B-Pro Ball 충전</p>
       		</div>
       
 			<!-- 충전 절차 1 -->

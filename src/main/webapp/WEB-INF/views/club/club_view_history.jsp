@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +28,7 @@
     }
 
     table{
-        margin-left: auto; margin-right: auto;
+        margin-left: auto; margin-right: auto; font-size : 130%; color:black;
         width: 750px;
         table-layout: fixed;
         border-collapse: collapse;
@@ -37,72 +36,110 @@
     td{
         border-bottom: 1px solid #444444;
         width: 70px; height: 30px;
+        text-align:right;
     }
     th{
         height:40px; text-align: center;
         border-bottom: 1px solid #444444;
     }
 </style>
+
 <body>
-    <div id="main-wrapper">
+	<div id="main-wrapper">
     	<%@ include file="./club_view_header.jsp" %>
-    	<%@ include file="./club_view_sidebar.jsp" %>
-        
-		<div class="page-wrapper">     
+        <%@ include file="./club_view_sidebar.jsp" %>
+        <div class="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
                     <div class="col-lg-9">
                         <!-- Tabs -->
                         <div class="card">
-                            <div class="tab-content tabcontent-border">
+                            <!-- Tab panes -->
+                            <div class="tab-content tabcontent-border"> 
                                 <div>
                                     <div class="p-20">
-                                        <div class="card">
+                                        <div class="card" >
                                             <div class="card-body">
-                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">전술</h4>
-                                            </div><div>
-                                                <h4 style="margin-left: 80px;">경기 리스트</h4>
+                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">경기 결과</h4>
                                             </div>
+                                            <h5 style="margin-left: 140px; font-weight: 700;"></h5>
                                             <div class="comment-widgets scrollable">
-                                                <table style="width:800px;">
+                                                <table style="width: 750px;">
                                                     <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
-                                                        <th style="width:120px;">날짜</th>
-                                                        <th style="width:50px;">시간</th>
-                                                        <th style="width:200px;">구장 이름</th>
-                                                        <th style="width:100px;">상대팀</th>
-                                                        <th style="width:100px;">포메이션 확인</th>
-                                                        <th style="width:120px;">포메이션 작성</th>         
+                                                        <th width="200px;">날짜</th>
+                                                        <th colspan="3">스코어</th>
                                                     </tr>
-
-                                                    <c:forEach items="${lists }" var="row" varStatus="status"> 
-														<tr>
-															<th>${row.g_date }</th>
-															<th>${row.g_time }</th>
-															<th>${row.g_sname }</th>
-															<th>${row.c_name }</th>
-															<th><input type="button" class="btn btn-outline-success" onclick="javascript:openFormCheck(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="확인" ></th>
-	                                                        <th><input type="button" class="btn btn-outline-primary" onclick="javascript:openFormMake(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="작성"></th>
-														</tr>
-													</c:forEach>
-                                                </table> 
+                                                    <tr>
+                                                        <th>2020-08-06</th>
+                                                        <td style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp;</td>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <th>2020-08-06</th>
+                                                        <td style="font-weight:bolder ">FC우리팀 &nbsp; 2 &nbsp;</th>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <th>2020-08-06</th>
+                                                        <td style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp;</th>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <th>2020-08-06</th>
+                                                        <td style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp;</th>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <th>2020-08-06</th>
+                                                        <td style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp;</th>       
+                                                        <th><input type="button" value="상세보기"></th>
+                                                        <th style="font-weight:border; text-align:left;">&nbsp; 1 &nbsp; FC바르셀로나</th>                                    
+                                                    </tr>
+                                                </table>
                                             </div>
-                                        </div>      
+                                            <br /><br/>
+                                            <h4 style="margin-left: 80px; color:black; font-weight: 700;">최근 10경기 전적</h4>
+                                            <div class="comment-widgets scrollable">
+                                                <table style="width: 750px;">
+                                                    <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
+                                                        <th>승</th>
+                                                        <th>무</th>
+                                                        <th>패</th>
+                                                        <th>승률</th>
+                                                        <th>득점</th>
+                                                        <th>실점</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>5승</th>
+                                                        <th>0무</th>                                         
+                                                        <th>5패</th>                                         
+                                                        <th>50%</th>
+                                                        <th>2.6</th>
+                                                        <th>0.3</th>                                         
+                                                    </tr>
+                                                   
+                                                </table>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- column -->
+
                     <div class="col-lg-3">
-                        <!-- Card -->
+
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Chat Option</h4>
                                 <div class="chat-box scrollable" style="height:475px;">
-                                    <!--chat Row -->
                                     <ul class="chat-list">
-                                        <!--chat Row -->
                                         <li class="chat-item">
                                             <div class="chat-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>
                                             <div class="chat-content">
@@ -111,7 +148,6 @@
                                             </div>
                                             <div class="chat-time">10:56 am</div>
                                         </li>
-                                        <!--chat Row -->
                                         <li class="chat-item">
                                             <div class="chat-img"><img src="../../assets/images/users/2.jpg" alt="user"></div>
                                             <div class="chat-content">
@@ -120,14 +156,12 @@
                                             </div>
                                             <div class="chat-time">10:57 am</div>
                                         </li>
-                                        <!--chat Row -->
                                         <li class="odd chat-item">
                                             <div class="chat-content">
                                                 <div class="box bg-light-inverse">I would love to join the team.</div>
                                                 <br>
                                             </div>
                                         </li>
-                                        <!--chat Row -->
                                         <li class="odd chat-item">
                                             <div class="chat-content">
                                                 <div class="box bg-light-inverse">Whats budget of the new project.</div>
@@ -135,7 +169,6 @@
                                             </div>
                                             <div class="chat-time">10:59 am</div>
                                         </li>
-                                        <!--chat Row -->
                                         <li class="chat-item">
                                             <div class="chat-img"><img src="../../assets/images/users/3.jpg" alt="user"></div>
                                             <div class="chat-content">
@@ -144,7 +177,7 @@
                                             </div>
                                             <div class="chat-time">11:00 am</div>
                                         </li>
-                                        <!--chat Row -->
+
                                     </ul>
                                 </div>
                             </div>
@@ -165,20 +198,12 @@
                 </div>
             </div>
             <footer class="footer text-center">
+                Copyright © 2020 - All Rights Reserved <a href="${pageContext.request.contextPath }">Be-Pro</a>.
             </footer>
         </div>
-    </div>
+    </div>  
 </body>
 <script>
-	function openFormMake(g_idx){
-		
-		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank', 
-				"width=800,height=650, toolbar=no, menubar=no, resizable=no");
-	}
-	function openFormCheck(g_idx){
-		
-		window.open("../club/clubCheckFormation.do?g_idx="+g_idx, '_blank',
-				"width=800,height=650, toolbar=no, menubar=no, resizable=no");
-	}
+
 </script>
 </html>

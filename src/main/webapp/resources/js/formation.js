@@ -25,7 +25,43 @@ $(function () {
          cursor: "move", 
          // helper: drag할때 객체를 가지고 갈지 clone을 만들 지... 해당 함수의 return 값이 드래그되어 움직임.
          helper: function (event) { 
-             return $('<span class="dragged_name" value="' + $(this).attr("value") + '"><input type="hidden" name="" value="">' + $(this).text() + "</span>") 
+             return $('<span class="dragged_name" value="' + $(this).attr("value") +
+            		 '"><input type="hidden" name="" value="">' + $(this).text() + "</span>") 
+        } 
+    });
+    
+    $(".player").draggable({
+        // revert: droppable 함수가 아닌 곳에 위치하면 처음으로 돌아가게 할지
+         revert: "invalid", 
+         // cursor: 움직이는 동안 포인터
+         cursor: "move", 
+         // helper: drag할때 객체를 가지고 갈지 clone을 만들 지... 해당 함수의 return 값이 드래그되어 움직임.
+         helper: function (event) { 
+             return $('<span class="dragged_name" value="' + $(this).attr("value") +
+            		 '"><input type="hidden" name="" value="">' + $(this).text() + "</span>") 
+        } 
+    });
+    
+    $("#field").droppable({ 
+        tolerance: "fit", 
+        drop: function (ev, ui) { 
+       	 if(ui.draggable.attr('id') == 'ball'){
+       		 
+       	 }
+       	 
+       	 else if (!ui.draggable.find("div").length) { 
+                var player = $(document.createElement("div")).addClass("dropped_player").css({ 
+                    left: ui.position.left, top: ui.position.top 
+                }); 
+                player.draggable({ revert: "invalid" }); 
+                player.css("position", "absolute"); 
+                player.prepend('<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" />').
+                append('<div class="dropped_name" style="font-size : 20px;">' + ui.draggable.text() + "</div>"); 
+                $("#field").append(player); 
+                setTimeout(function () { 
+                    ui.draggable.parents("tr").remove() 
+                }, 1) 
+            } 
         } 
     });
     
@@ -54,27 +90,7 @@ $(function () {
         }
     });
 
-     $("#field").droppable({ 
-         tolerance: "fit", 
-         drop: function (ev, ui) { 
-        	 if(ui.draggable.attr('id') == 'ball'){
-        		 
-        	 }
-        	 
-        	 else if (!ui.draggable.find("div").length) { 
-                 var player = $(document.createElement("div")).addClass("dropped_player").css({ 
-                     left: ui.position.left, top: ui.position.top 
-                 }); 
-                 player.draggable({ revert: "invalid" }); 
-                 player.css("position", "absolute"); 
-                 player.prepend('<img class="dropped_shirt" src="./../resources/img/shirts/shirt_white.png" />').append('<div class="dropped_name">' + ui.draggable.text() + "</div>"); 
-                 $("#field").append(player); 
-                 setTimeout(function () { 
-                     ui.draggable.parents("tr").remove() 
-                 }, 1) 
-             } 
-         } 
-     });
+    
 
     // $(".pos").droppable({ 
     //     tolerance: "intersect", 
