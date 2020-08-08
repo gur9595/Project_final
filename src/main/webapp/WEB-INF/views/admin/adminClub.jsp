@@ -73,6 +73,7 @@
                                                         <th>성별</th>
                                                         <th>인원수제한</th>
                                                         <th>연령대</th>
+                                                        <th colspan="2" width="150px;">수정/삭제</th>
                                                     </tr>
 													<c:forEach items="${lists }" var="row" varStatus="status"> 
 														<tr>
@@ -86,6 +87,10 @@
 															<th>${row.c_gender }</th>
 															<th>${row.c_memlimit }</th>															
 															<th>${row.c_age }</th>
+															<th colspan="2">
+																<input type="button" class="btn btn-success" value="수정">
+																<input type="button" class="btn btn-danger" value="삭제">
+															</th>
 														</tr>
 													</c:forEach>
                                                 </table>
@@ -98,10 +103,6 @@
                     </div>
                 </div>
             </div>
-            
-
-            
-        <!-- 페이지 내용 끝 -->
             <footer class="footer text-center">
                 All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
             </footer>

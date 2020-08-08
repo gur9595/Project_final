@@ -37,6 +37,7 @@ import mybatis.GoalHistoryDTO;
 import mybatis.MatchDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
+import mybatis.RankingDTO;
 import utils.PagingUtil;
 
 @Controller
@@ -68,7 +69,30 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubRanking.do")
-	public String clubRanking() {
+	public String clubRanking(Model model) {
+
+		ArrayList<RankingDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubTotalRanking();
+
+
+
+		for(RankingDTO dto : lists) {
+
+			int wins = dto.getWins();
+			int matches = dto.getMatches();
+			double winRate = 0;
+
+			if(matches==0) {
+				dto.setWinRate(0);
+			}else {
+				winRate = (double) wins / matches * 100;
+				winRate = Math.round(winRate * 100) / 100;
+				dto.setWinRate((int)winRate);
+			}
+
+		}
+
+		model.addAttribute("lists",lists);
+
 		return "club/club_ranking";
 	}
 
@@ -154,6 +178,7 @@ public class ClubController {
 		System.out.println(totalRecordCount);
 
 		model.addAttribute("lists", lists);
+
 		return "club/club_search";
 	}
 
@@ -179,9 +204,16 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubView.do")
-	public String clubView(HttpServletRequest req, Model model) {
+	public String clubView(Principal principal, HttpServletRequest req, Model model) {
 
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		int clubMemberCount = sqlSession.getMapper(ClubDAOImpl.class).clubMemberCount(c_idx);
@@ -267,19 +299,28 @@ public class ClubController {
 		map.put("tenLose", tenLose);
 		map.put("tenDraw", tenDraw);
 		model.addAttribute("map", map);
+		model.addAttribute("checkMember", checkMember);
 		model.addAttribute("tenHistory", tenHistory);
 		model.addAttribute("grade", grade);
 		model.addAttribute("clubMemberCount", clubMemberCount);
 		model.addAttribute("clubDTO", clubDTO);
 		model.addAttribute("memberDTO", memberDTO);
+		model.addAttribute("getCmgrade", getCmgrade);
 
 		return "club/club_view_main";
 	}
 
 	@RequestMapping("/club/clubViewMember.do")
-	public String clubViewMember(HttpServletRequest req, Model model) {
+	public String clubViewMember(Principal principal, HttpServletRequest req, Model model) {
 
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 
@@ -306,15 +347,27 @@ public class ClubController {
 
 		model.addAttribute("lists", lists);
 		model.addAttribute("clubDTO", clubDTO);
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		return "club/club_view_member";
 
 	}
 
-	@RequestMapping("/club/clubViewRank.do")
-	public String clubViewRank(HttpServletRequest req, Model model) {
 
+
+	@RequestMapping("/club/clubViewRank.do")
+	public String clubViewRank(Principal principal, HttpServletRequest req, Model model) {
+
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
@@ -336,8 +389,16 @@ public class ClubController {
 	@RequestMapping("/club/clubViewMatch.do")
 	public String clubViewMatch(Principal principal, HttpServletRequest req, Model model, MemberDTO memberDTO) {
 
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
+
 		System.out.println("c_idx:" + c_idx);
 		System.out.println("m_id:" + m_id);
 		ClubDTO clubDTO = new ClubDTO();
@@ -361,8 +422,6 @@ public class ClubController {
 		}
 		ArrayList<GameDTO> lists2 = sqlSession.getMapper(ClubDAOImpl.class).clubViewAccept(c_idx);
 
-		ClubMemberDTO getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-
 		ArrayList<GameDTO> lists3 = sqlSession.getMapper(ClubDAOImpl.class).clubViewMyApply(c_idx);
 
 		model.addAttribute("lists", lists);
@@ -379,20 +438,25 @@ public class ClubController {
 	@RequestMapping("/club/clubViewFormation.do")
 	public String clubViewForm(Principal principal, HttpServletRequest req, Model model) {
 		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
-		
-		ClubMemberDTO getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		System.out.println("c_idx:" + c_idx);
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 
 		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
-		
+
 		for(MatchDTO dto : lists) {
-			
+
 			ClubDTO opponents = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatchOpponent(dto.getG_num());
-			
+
 			if(sqlSession.getMapper(ClubDAOImpl.class).isClubViewMatchOpponent(dto.getG_num())==1) {
 				dto.setC_idx(opponents.getC_idx());
 				dto.setC_name(opponents.getC_name());
@@ -407,10 +471,10 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubMakeFormation.do")
-	public String clubMakeForm(HttpServletRequest req, Model model) {
+	public String clubMakeForm(Principal principal, HttpServletRequest req, Model model) {
 
 		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
-		
+
 		GameDTO gameDTO = sqlSession.getMapper(ClubDAOImpl.class).gameInfo(g_idx);
 
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx);
@@ -446,7 +510,8 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubCheckFormation.do")
-	public String clubCheckForm(HttpServletRequest req, Model model) {
+	public String clubCheckForm(Principal principal, HttpServletRequest req, Model model) {
+
 
 		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
 
@@ -477,12 +542,22 @@ public class ClubController {
 		model.addAttribute("bench", bench);
 
 		return "club/club_view_formcheck";
-	}
+	} 
 
 	@RequestMapping("/club/clubTacticBoard.do")
 	public String clubTacticBoard(HttpServletRequest req, Model model) {
 
-		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		int g_idx = 0;
+		String reqG_idx = req.getParameter("g_idx");
+		System.out.println("reqG_idx : " + reqG_idx);
+		if(reqG_idx.contains(".")) {
+			System.out.println("g_idx1 : " + g_idx);
+			g_idx = Integer.parseInt(reqG_idx.split("\\.")[0]);
+			System.out.println("g_idx2 : " + g_idx);
+		}
+		else {
+			g_idx = Integer.parseInt(reqG_idx);
+		}
 
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx);
 
@@ -514,9 +589,18 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubViewManage.do")
-	public String clubViewManage(HttpServletRequest req, Model model) {
+	public String clubViewManage(Principal principal, HttpServletRequest req, Model model) {
 
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
+
 		System.out.println("c_idx : " + c_idx);
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
@@ -532,39 +616,119 @@ public class ClubController {
 	}
 
 	@RequestMapping(value = "/club/clubManageEdit.do", method = RequestMethod.POST)
-	public String clubManageEdit(HttpServletRequest req, Model model) {
+	public String clubManageEdit(Principal principal, HttpServletRequest req, Model model) {
 
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
+
 		String cm_grade = req.getParameter("cm_grade");
-		String m_id = req.getParameter("m_id");
-		System.out.println("m_id :" + m_id);
+		String cm_id = req.getParameter("m_id");
 
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 
-		int clubManageEdit = sqlSession.getMapper(ClubDAOImpl.class).clubViewUpdate(c_idx, cm_grade, m_id);
+		int clubManageEdit = sqlSession.getMapper(ClubDAOImpl.class).clubViewUpdate(c_idx, cm_grade, cm_id);
 
 		model.addAttribute("clubManageEdit", clubManageEdit);
 		return "redirect:/club/clubViewManage.do?c_idx=" + c_idx;
 	}
 
 	@RequestMapping("/club/clubViewHistory.do")
-	public String clubHistory(HttpServletRequest req, Model model) {
+	public String clubHistory(Principal principal, HttpServletRequest req, Model model) {
 
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		ClubDTO clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
-		System.out.println("c_idx : " + c_idx);
-		ClubDTO clubDTO = new ClubDTO();
-		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
 
+		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCountHistory(c_idx);
+		int pageSize = 10;
+		int blockPage = 5;
+
+		int totalPage = (int) Math.ceil((double) totalRecordCount / pageSize);
+
+		int nowPage = req.getParameter("nowPage") == null ? 1 : Integer.parseInt(req.getParameter("nowPage"));
+
+		int start = (nowPage - 1) * pageSize + 1;
+		int end = nowPage * pageSize;
+
+		String paging = PagingUtil.paging(totalRecordCount, pageSize, blockPage, nowPage,
+				req.getContextPath() + "/club/clubViewHistory.do?c_idx+"+c_idx+"&");
+
+		model.addAttribute("paging", paging);
+
+		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMatchHistory(c_idx, start, end);
+
+		for(MatchDTO dto : lists) {
+
+			String check = dto.getG_check();
+			String[] score = dto.getG_score().split("-");
+
+			if(check.equals("owner")) {
+
+				dto.setHome(clubDTO.getC_name());
+				dto.setHome_idx(dto.getC_idx());
+				dto.setHome_score(Integer.parseInt(score[0]));
+
+				dto.setAway(dto.getOpc_name());
+				dto.setAway_idx(dto.getOpc_idx());
+				dto.setAway_score(Integer.parseInt(score[1]));
+			}
+			else {
+				dto.setAway(clubDTO.getC_name());
+				dto.setAway_idx(dto.getC_idx());
+				dto.setAway_score(Integer.parseInt(score[0]));
+
+				dto.setHome(dto.getOpc_name());
+				dto.setHome_idx(dto.getOpc_idx());
+				dto.setHome_score(Integer.parseInt(score[1]));
+			}
+		}
+
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 		model.addAttribute("clubDTO", clubDTO);
+		model.addAttribute("lists", lists);
 
 		return "club/club_view_history";
 	}
+
+	/*
+	 * @RequestMapping("/club/clubMatchDetail.do") public String
+	 * clubMatchDetail(HttpServletRequest req, Model model) {
+	 * 
+	 * int g_num = Integer.parseInt(req.getParameter("g_num"));
+	 * 
+	 * ArrayList<GoalHistoryDTO> lists =
+	 * sqlSession.getMapper(ClubDAOImpl.class).GoalList(g_num);
+	 * 
+	 * return "club/club_view_matchDetail"; }
+	 */
+
 
 	@RequestMapping("/club/ClubMatchApply.do")
 	public String ClubMatchApply(Principal principal, HttpServletRequest req, Model model) {
 
 		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		GameDTO gameDTO = new GameDTO();
 
@@ -576,8 +740,6 @@ public class ClubController {
 
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApplyDelete(gameDTO);
 
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
-
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
 	}
 
@@ -585,14 +747,20 @@ public class ClubController {
 	public String ClubMatchReject(Principal principal, HttpServletRequest req, Model model) {
 
 		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		GameDTO gameDTO = new GameDTO();
 
 		gameDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
 
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchReject(gameDTO);
-
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
 	}
@@ -601,6 +769,14 @@ public class ClubController {
 	public String gameMemberApply(Principal principal, HttpServletRequest req, Model model) {
 
 		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		GameMemberDTO gameMemberDTO = new GameMemberDTO();
 		gameMemberDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
@@ -610,8 +786,6 @@ public class ClubController {
 			sqlSession.getMapper(ClubDAOImpl.class).gameMemberApply(gameMemberDTO);
 		}
 
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
-
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
 	}
 
@@ -619,6 +793,14 @@ public class ClubController {
 	public String gameMemberDrop(Principal principal, HttpServletRequest req, Model model) {
 
 		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		GameMemberDTO gameMemberDTO = new GameMemberDTO();
 		gameMemberDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
@@ -626,18 +808,24 @@ public class ClubController {
 
 		sqlSession.getMapper(ClubDAOImpl.class).gameMemberDrop(gameMemberDTO);
 
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
-
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
 	}
 
 	@RequestMapping("/club/clubMemberApply.do")
-	public String clubMemberApply(HttpServletRequest req, Model model) {
+	public String clubMemberApply(Principal principal, HttpServletRequest req, Model model) {
+
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
-
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 
 		sqlSession.getMapper(ClubDAOImpl.class).clubMemberApply(Integer.parseInt(req.getParameter("cm_idx")));
 
@@ -647,14 +835,22 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubMemberReject.do")
-	public String clubMemberReject(HttpServletRequest req, Model model) {
+	public String clubMemberReject(Principal principal, HttpServletRequest req, Model model) {
+
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 
 		sqlSession.getMapper(ClubDAOImpl.class).clubMemberReject(Integer.parseInt(req.getParameter("cm_idx")));
-
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 
 		model.addAttribute("clubDTO", clubDTO);
 
@@ -662,14 +858,22 @@ public class ClubController {
 	}
 
 	@RequestMapping("/club/clubMemberRelease.do")
-	public String clubMemberRelease(HttpServletRequest req, Model model) {
+	public String clubMemberRelease(Principal principal, HttpServletRequest req, Model model) {
+
+		String m_id = principal.getName();
+		ClubMemberDTO getCmgrade = new ClubMemberDTO();
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
+		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
+		if(checkMember==1) {
+			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
+		};
+		model.addAttribute("getCmgrade", getCmgrade);
+		model.addAttribute("checkMember", checkMember);
 
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 
 		sqlSession.getMapper(ClubDAOImpl.class).clubMemberReject(Integer.parseInt(req.getParameter("cm_idx")));
-
-		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 
 		model.addAttribute("clubDTO", clubDTO);
 
@@ -768,15 +972,13 @@ public class ClubController {
 		return "club/club_main";
 	}
 
-	
+
 	@RequestMapping(value = "/club/imageCreate.do")
 	@ResponseBody
 	public ModelAndView createImage(HttpServletRequest request) throws Exception {
 		String binaryData = request.getParameter("imgSrc");
 		int g_idx = Integer.parseInt(request.getParameter("g_idx"));
-		
-		
-		
+
 		FileOutputStream stream = null;
 		ModelAndView mav = new ModelAndView();
 		String path = request.getSession().getServletContext().getRealPath("/resources/uploadsFile");
