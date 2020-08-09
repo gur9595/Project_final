@@ -9,7 +9,7 @@ public class AdminBoardController {
 	@RequestMapping("/admin/adminBoard.do")
 	public String adminBoard() {
 		
-		return "admin/adminBoard";
+		return "admin/adminBoard"; 
 	}
 	
 }
