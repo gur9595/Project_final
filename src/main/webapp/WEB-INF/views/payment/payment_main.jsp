@@ -68,11 +68,11 @@
 		        var result = document.getElementById("selected_item_id").value;
 		       	result = rsp.name;
 		       	
-		   		location.href="?cs_charge="+rsp.paid_amount;
+		   		location.href="?cs_money="+rsp.paid_amount;
 		        console.log(rsp.name);		       	
 		       	console.log(result);
 		       	
-		       	location.href="./paymentDeposit.do?cs_charge=" + charge;
+		       	location.href="./paymentDeposit.do?cs_money=" + charge;
 		    } 
 		    else { // 결제 실패시 로직
 		        var msg = '====== 결제에 실패하였습니다. ======';
@@ -89,7 +89,11 @@
 <!-- / 결제 api --------------------------------------------------------------------------------------------------------->
 
 </head>
-
+<style>
+.cashItem:hover {
+	background: #E0FF8B;
+}
+</style>
 <body id="top">
 	<!--top-->
 	<%@ include file="./../include/top.jsp"%>
@@ -110,21 +114,29 @@
 		
 		<!-- 메인박스 윗 부분 -->
 		<div class="hmWrap charge">
-   			<div class="headMessage">
-   				<h2>미리 충전하고<br>더욱 편리하게!</h2>
-   			</div>
-      
-			<div class="myCash">
-        		<div class="cvWrap">
-          			<span class="cardLabel" style="margin-left: 270px; font-size: 15px;"><b>나의 Ball 보유량</b></span>
-          				<%-- <p class="cardValue">${cash } Ball</p> --%>
-          				<%-- <span class="cardLabel1212" id="cash" name="cash" value="${cash }" /> --%>
-          			<input type="text" readonly="readonly" style="width:150px; margin-left: 250px; margin-bottom:10px; text-align: center;"  value="${cash}" />
-        		</div> 		
-		        <a href="./../member/mypageMain.do" class="btn olBtn">충전 내역 보러 가기</a>
-      		</div>
+			<table>
+				<tr>
+					<td width="75%">
+		   				<div class="headMessage">
+		   					<h2>미리 충전하고 <br /> 더욱 편리하게!</h2>
+		   				</div>
+					</td>
+					
+					<td width="40%" >
+						<div class="myCash">
+							<div class="cvWrap" style="margin-top: 10px; text-align: center;">
+		          				<span class="" style="font-size:15px; font-weight: 400;">나의 Ball 보유량</span><br />
+		          				<input type="text" readonly="readonly" style="width:180px;  float:right; margin-bottom:10px; text-align: center; font-size: 30px; color: yellow; background-color:#3640A5;" value="${cash}" />
+		        			</div> 		
+						</div>
+					</td>
+				</tr>
+			</table>
+			<br /><br />
+	        <a href="./../member/mypageMain.do" class="btn olBtn" style="background-color: #FAF4C0";>충전 내역 보러 가기</a>
+			<br />
 		</div>
-      	
+      
       	<!-- 메인박스 -->
 		<div class="chargeSelectWrap">
       		<div class="cashSelect">
@@ -137,15 +149,13 @@
       
       		<div class="cashSelect">
         		<label>닉네임 또는 입금자명</label>
-        		<!-- <input id="depositor" type="text" name="name" placeholder="입금자 이름" value=""> -->
-        		
         		<input type="text" id="depositor" name="name" value="${m_id }" />
-        		<p><strong>위에 입력한 명의로 정확한 금액을 입금해주세요</strong><br>B-Pro Ball 충전</p>
+        		<p><strong>위에 입력한 명의로 정확한 금액을 선택해주세요</strong><br>축구&풋살 클럽의 No1. B-Pro!!!</p>
       		</div>
       
 			<!-- 충전 절차 1 -->
      		<div class="btnWrap" onclick="pressedSubmit()" style="cursor:pointer">
-        		<div class="btn halfSubmit">BP_Ball 충전 신청</div>
+        		<div class="btn halfSubmit">BP_Ball 충전하기</div>
       		</div>
     	<!-- / 메인박스 -->
     	</div>

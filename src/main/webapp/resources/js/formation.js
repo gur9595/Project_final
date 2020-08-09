@@ -45,7 +45,7 @@ $(function () {
     $("#field").droppable({ 
         tolerance: "fit", 
         drop: function (ev, ui) { 
-       	 if(ui.draggable.attr('id') == 'ball'){
+       	 if(ui.draggable.attr('id') == 'ball' || ui.draggable.attr('id') == 'on_player' ){
        		 
        	 }
        	 
@@ -66,6 +66,28 @@ $(function () {
     });
     
     $("#ball").draggable();
+    
+    $(".on_player").draggable();
+    
+    $("#button2").click(function(){
+    	
+        $(".oppo").remove();
+    	
+    	$("body").append("<div id='on_player' class='on_player oppo' style='position:absolute;left:45%;top:5%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:15%;top:15%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:35%;top:15%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:55%;top:15%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:75%;top:15%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:15%;top:35%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:35%;top:35%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:55%;top:35%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:75%;top:35%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:35%;top:65%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					+"<div id='on_player' class='on_player oppo' style='position:absolute;left:55%;top:65%;'><img class='dropped_shirt' src='./../resources/img/shirts/shirt_black.png' /></div>"
+    					);
+
+        $(".on_player").draggable();
+    });
 
     //.player를 플레이어 리스트에 놓았을 때
     $("#player_list").droppable({

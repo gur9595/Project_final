@@ -34,17 +34,17 @@ public class PaymentController {
 	
 	@RequestMapping("/payment/paymentDeposit.do") 
 	public String paymentDeposit(HttpServletRequest req, CashDTO cashDTO, Principal principal) {
-		int cs_charge = Integer.parseInt(req.getParameter("cs_charge"));
+		int cs_money = Integer.parseInt(req.getParameter("cs_money"));
 		String m_id = principal.getName();
 		
-		System.out.println("cs_charge : "+cs_charge);
+		System.out.println("cs_money : "+cs_money);
 		System.out.println("m_id : "+m_id);
 		
 		cashDTO.setM_id(m_id);
-		cashDTO.setCs_money(cs_charge);
+		cashDTO.setCs_money(cs_money);
 		
 		sqlSession.getMapper(CashDAOImpl.class).ballResult(cashDTO);
-		sqlSession.getMapper(CashDAOImpl.class).ballUpdate(cs_charge, m_id);
+		sqlSession.getMapper(CashDAOImpl.class).ballUpdate(cs_money, m_id);
 		
 		return "payment/payment_main";  
 	}

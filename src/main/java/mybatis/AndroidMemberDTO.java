@@ -2,7 +2,7 @@ package mybatis;
 
 import java.sql.Date;
 
-public class MemberDTO {
+public class AndroidMemberDTO {
 	
 	private int m_idx;
 	private String m_id;
@@ -28,47 +28,66 @@ public class MemberDTO {
 	
 	//join용 변수
 	private String cm_grade;
-	private int goal;
-	private int assist;
-	private int point;
-	private int appearance;
+	private String goal;
+	private String assist;
+	private String point;
+	private String appearance;
+	private String c_idx;
+	private String rnum;
 	private int cash;
 	
-	
-	// CashDTO 변수 추가 ////////////////////////
-	private int cs_idx;
-	private int cs_money;
-	private String cs_type;
-	private String cs_date;
-	
-	public int getCs_idx() {
-		return cs_idx;
+	public AndroidMemberDTO() {
+		super();
 	}
-	public void setCs_idx(int cs_idx) {
-		this.cs_idx = cs_idx;
+	public AndroidMemberDTO(int m_idx, String m_id, String m_pw, String m_name, String m_birth, String m_email,
+			String m_phone, String m_addr, Date m_date, String m_position, String m_sex, String m_abil, String m_foot,
+			String m_pic, String m_rfa, String m_work, String m_career, String m_area, String m_duration,
+			String cm_memo, String cm_idx, String cm_grade, String goal, String assist, String point, String appearance,
+			String c_idx, String rnum, int cash) {
+		super();
+		this.m_idx = m_idx;
+		this.m_id = m_id;
+		this.m_pw = m_pw;
+		this.m_name = m_name;
+		this.m_birth = m_birth;
+		this.m_email = m_email;
+		this.m_phone = m_phone;
+		this.m_addr = m_addr;
+		this.m_date = m_date;
+		this.m_position = m_position;
+		this.m_sex = m_sex;
+		this.m_abil = m_abil;
+		this.m_foot = m_foot;
+		this.m_pic = m_pic;
+		this.m_rfa = m_rfa;
+		this.m_work = m_work;
+		this.m_career = m_career;
+		this.m_area = m_area;
+		this.m_duration = m_duration;
+		this.cm_memo = cm_memo;
+		this.cm_idx = cm_idx;
+		this.cm_grade = cm_grade;
+		this.goal = goal;
+		this.assist = assist;
+		this.point = point;
+		this.appearance = appearance;
+		this.c_idx = c_idx;
+		this.rnum = rnum;
+		this.cash = cash;
 	}
-	public int getCs_money() {
-		return cs_money;
+
+	public String getRnum() {
+		return rnum;
 	}
-	public void setCs_money(int cs_money) {
-		this.cs_money = cs_money;
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
 	}
-	public String getCs_date() {
-		return cs_date;
+	public String getC_idx() {
+		return c_idx;
 	}
-	public void setCs_date(String cs_date) {
-		this.cs_date = cs_date;
+	public void setC_idx(String c_idx) {
+		this.c_idx = c_idx;
 	}
-	
-	public String getCs_type() {
-		return cs_type;
-	}
-	public void setCs_type(String cs_type) {
-		this.cs_type = cs_type;
-	}
-	//////////////////////////////////////////////
-	
-	
 	public int getCash() {
 		return cash;
 	}
@@ -207,28 +226,28 @@ public class MemberDTO {
 	public void setCm_idx(String cm_idx) {
 		this.cm_idx = cm_idx;
 	}
-	public int getGoal() {
+	public String getGoal() {
 		return goal;
 	}
-	public void setGoal(int goal) {
+	public void setGoal(String goal) {
 		this.goal = goal;
 	}
-	public int getAssist() {
+	public String getAssist() {
 		return assist;
 	}
-	public void setAssist(int assist) {
+	public void setAssist(String assist) {
 		this.assist = assist;
 	}
-	public int getPoint() {
+	public String getPoint() {
 		return point;
 	}
-	public void setPoint(int point) {
+	public void setPoint(String point) {
 		this.point = point;
 	}
-	public int getAppearance() {
+	public String getAppearance() {
 		return appearance;
 	}
-	public void setAppearance(int appearance) {
+	public void setAppearance(String appearance) {
 		this.appearance = appearance;
 	}
 	

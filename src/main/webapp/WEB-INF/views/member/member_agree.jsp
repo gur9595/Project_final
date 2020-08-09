@@ -9,44 +9,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="./../resources/css/join1.css" rel="stylesheet" type="text/css" media="all">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-
-<style>
-h2 { font-size : 24px; color:#000066; line-height:30px;
-	margin:35px auto 10px 0px;
-	padding : 2px 10px 2px 0px;
-	border-bottom : 3px solid #000066;
-}
-
-input[type=checkbox], input[type=radio]
-{
-	width : 20px; height : 20px; cursor: pointer;
-}
-input[type=text]{
-	font-size:25px;
-}
-input[type=password] {
-		font-size:25px;
-        font-family: "nanum";
-        
-        &::placeholder {
-        	font-family: "NanumSquare";
-        }
-    }
-input[type=email]{
-	font-size:25px;
-}
-label {
-    cursor: pointer; font-size : 18px;
-}
-
-.txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
-.txtBox31 { border-color: DodgerBlue; width: 350px; }
-
-.container{max-width:1100px;}
-</style>
 </head>
 <body id="top">
 <!--top-->
@@ -70,10 +36,11 @@ label {
 			</header>
 			
 				<h2>아이디</h2>
-					<input type="text" class="txtBox31" id="m_id" name="m_id" placeholder="아이디를 입력하세요">
+					<input type="text" class="txtBox31" id="m_id" name="m_id" placeholder="아이디를 입력하세요" style="display:inline; width:350px;">
+					<button type="button" style="display:inline;  height:40px; padding:10px;">아이디 중복체크</button>
 					 
 				<h2>비밀번호</h2>
-					<input type="password" class="txtBox31" id="m_pw" name="m_pw" placeholder="비밀번호를 입력하세요">
+					<input type="password" class="txtBox31" id="m_pw" name="m_pw" placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)" >
 					
 				<h2>비밀번호 확인</h2>
 					<input type="password" class="txtBox31" id="m_pw2" name="m_pw2" autocomplete="new-password" placeholder="비밀번호 재입력">
@@ -85,19 +52,19 @@ label {
 					<input type="text" class="txtBox31" id="m_birth" name="m_birth" placeholder="예)19970121" minlength="7" maxlength="8" >
 				
 			    <h2>휴대전화</h2>
-		        	<input type="text" id="m_phone" name="m_phone1" maxlength="4" class="txtBox31" style="width: 100px; display:inline;" />&nbsp;-&nbsp;
-					<input type="text" id="m_phone2" name="m_phone2"  maxlength="4" class="txtBox31" style="width: 100px; display:inline;" />&nbsp;-&nbsp;
-					<input type="text" id="m_phone3" name="m_phone3"  maxlength="4" class="txtBox31" style="width: 100px; display:inline;"/>
+		        	<input type="text" id="m_phone" name="m_phone1" maxlength="4" class="txtBox31" style="width: 150px; display:inline;" />&nbsp;-&nbsp;
+					<input type="text" id="m_phone2" name="m_phone2"  maxlength="4" class="txtBox31" style="width: 150px; display:inline;" />&nbsp;-&nbsp;
+					<input type="text" id="m_phone3" name="m_phone3"  maxlength="4" class="txtBox31" style="width: 150px; display:inline;"/>
 					
 		        <h2>이메일</h2>
 		         <div class="n-form-layer" id = "emailFromLayer">
-					<input type="email" class="txtBox31" id="m_email" name="m_email" maxlength="50" placeholder="이메일을 입력하세요"  style="width:350px; height:45px;">
+					<input type="email" class="txtBox31" id="m_email" name="m_email" maxlength="50" placeholder="이메일을 입력하세요"  style="width:500px;">
 				</div> 
             	<br/><br/><br/><br/>   
 			        
                 <div style="text-align:center">
-					<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="javascript:goBack();">이전페이지</button>&nbsp;&nbsp;
-                    <input type="submit" class="btn btn-outline-success" style="font-size:20px;" onsubmit="" value="다음"/>
+					<button type="button" style="font-size:20px; display:inline;" onclick="javascript:goBack();">이전페이지</button>&ensp;&ensp;
+                    <button type="submit" style="font-size:20px; display:inline;" onsubmit="">다음</button>
                 </div>
 	        </form>
     	</div>  	

@@ -1375,7 +1375,7 @@ textarea {
 	padding: 0;
 }
 .contentWrapper {
-	max-width: 1024px;
+	max-width: 480px;
 	margin: 0 auto;
 	overflow: auto;
 }
@@ -1384,7 +1384,7 @@ textarea {
 	padding: 0;
 }
 .contentWrapper.matchDetail .matchWrap {
-	max-width: 1024px;
+	max-width: 480px;
 	margin: 0 auto;
 }
 .contentWrapper.w480 {
@@ -2562,7 +2562,7 @@ form label.checkLabel {
 	padding: 20px;
 }
 .hmWrap {
-	padding: 20px;
+	padding: 0px;
 }
 .hmWrap .myCash {
 }
@@ -2585,7 +2585,7 @@ form label.checkLabel {
 
 }
 .headMessage h2 {
-	font-weight: 300;
+	font-weight: 500;
 	font-size: 32px;
 }
 .headMessage h3 {
@@ -3659,7 +3659,7 @@ form label.checkLabel {
 	color: white;
 	padding-left: 6px;
 	display: block;
-	opacity: 0.5;
+	opacity: 1;
 	font-size: 12px;
 	margin-bottom: 6px;
 	text-align: left;

@@ -79,19 +79,19 @@
 			<h2>주관적인 실력</h2>
 			<table class="table table-borderless">
 				<tr>
-					<td width="20px;"><input type="radio" name="m_abil" id="best" value="best" ></td>
+					<td width="20px;"><input type="radio" name="m_abil" id="best" value="최상" ></td>
 					<td><label for="best">최상</label></td>
-					<td width="20px;"><input type="radio" name="m_abil" id="top" value="top"></td>
+					<td width="20px;"><input type="radio" name="m_abil" id="top" value="상"></td>
 					<td><label for="top">상</label></td>
-					<td width="20px;"><input type="radio" name="m_abil" id="mediumhigh" value="mediumhigh"></td>
+					<td width="20px;"><input type="radio" name="m_abil" id="mediumhigh" value="중상"></td>
 					<td><label for="mediumhigh">중상</label></td>
 				</tr>
 				<tr>
-					<td><input type="radio" name="m_abil" id="medium" value="medium"></td>
+					<td><input type="radio" name="m_abil" id="medium" value="중"></td>
 					<td><label for="medium">중</label></td>
-					<td><input type="radio" name="m_abil" id="mediumlow" value="mediumlow"></td>
+					<td><input type="radio" name="m_abil" id="mediumlow" value="중하"></td>
 					<td><label for="mediumlow">중하</label></td>
-					<td><input type="radio" name="m_abil" id="low" value="low"></td>
+					<td><input type="radio" name="m_abil" id="low" value="하"></td>
 					<td><label for="low">하</label></td>
 				</tr>
 			</table>
@@ -99,11 +99,11 @@
 	        <h2>주로쓰는 발</h2>
 	        <table class="table table-borderless">
 	        	<tr>
-	        		<td width="20px;"><input type="radio" name="m_foot" id="LF" value="LF"></td>
+	        		<td width="20px;"><input type="radio" name="m_foot" id="LF" value="왼발"></td>
 	        		<td><label for="LF">왼발</label></td>
-	        		<td width="20px;"><input type="radio" name="m_foot" id="RF" value="RF"></td>
+	        		<td width="20px;"><input type="radio" name="m_foot" id="RF" value="오른발"></td>
 	        		<td><label for="RF">오른발</label></td>
-					<td width="20px;"><input type="radio" name="m_foot" id="ALL" value="ALL"></td>
+					<td width="20px;"><input type="radio" name="m_foot" id="ALL" value="양발"></td>
 					<td><label for="ALL">양발</label></td>
 	        	</tr>
 			</table>

@@ -52,6 +52,9 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewMember(int c_idx, int start, int end);
 	
 	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
+	
+	public ClubDTO clubViewMatchOpponent(int g_num);
+	public int isClubViewMatchOpponent(int g_num);
 
 	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
 	
@@ -74,6 +77,8 @@ public interface ClubDAOImpl {
 	public MemberDTO clubHeadName(int c_idx);
 	
 	public ClubMemberDTO getCmgrade(int c_idx, String m_id);
+	
+	public int checkCmgrade(int c_idx, String m_id);
 
 	public ArrayList<MemberDTO> clubGoalRank(int c_idx);
 	
@@ -84,6 +89,15 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubAppearanceRank(int c_idx);
 	
 	public int gameFormPng(int g_idx, String fileName);
+	
+	public GameDTO gameInfo(int g_idx);
+	
+	public int getTotalCountHistory(int c_idx);
+	
+	public ArrayList<MatchDTO> clubMatchHistory(int c_idx, int start, int end);
+	
+	public ArrayList<RankingDTO> clubTotalRanking();
+	
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MemberDTO> clubViewMemberA(AndroidClubMemberDTO androidClubMemberDTO);
@@ -99,5 +113,9 @@ public interface ClubDAOImpl {
 	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO);
 	public int gameMemberRejectA(AndroidGameMemberDTO androidGameMemberDTO);
 	public int gameMemberCheck(int g_idx, String m_id);
+	public ArrayList<AndroidMemberDTO> clubGoalRankA(AndroidMemberDTO androidMemberDTO);
+	public ArrayList<AndroidMemberDTO> clubAssistRankA(AndroidMemberDTO androidMemberDTO);
+	public ArrayList<AndroidMemberDTO> clubPointRankA(AndroidMemberDTO androidMemberDTO);
+	public ArrayList<AndroidMemberDTO> clubAppearanceRankA(AndroidMemberDTO androidMemberDTO);
 	
 }

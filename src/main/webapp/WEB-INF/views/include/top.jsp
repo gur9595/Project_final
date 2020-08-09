@@ -16,7 +16,7 @@
 					<c:choose>
 						<c:when test="${not empty m_id }">
 							<form:form method="post" action="${pageContext.request.contextPath }/member/logout">
-								<button type="submit" style="border:0; background-color: #282e39; padding-bottom: 2px;" >LOGOUT</button>
+								<input type="submit" style="border:0; background-color: #282e39; padding-bottom: 2px;" value="LOGOUT">
 							</form:form>	 
 						</c:when>
 						<c:otherwise>

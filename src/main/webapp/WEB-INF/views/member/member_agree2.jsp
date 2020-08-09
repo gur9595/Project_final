@@ -9,7 +9,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+<link href="./../resources/css/join2.css" rel="stylesheet" type="text/css" media="all">
+
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -51,94 +52,6 @@
         }).open();
     }
 </script>
-<style>
-h2 { font-size : 24px; color:#000066; line-height:30px;
-	margin:52px auto 10px 0px;
-	padding : 2px 10px 2px 0px;
-	border-bottom : 3px solid #000066;
-}
-
-.box select {
-  background-color: #FFFFFF;
-  color: black;
-  padding: 12px;
-  width: 250px;
-  border: none;
-  font-size: 20px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-}
-
-.box::before {
-  content: "\f13a";
-  font-family: FontAwesome;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20%;
-  height: 100%;
-  text-align: center;
-  font-size: 28px;
-  line-height: 45px;
-  color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
-}
-
-.box:hover::before {
-  color: rgba(255, 255, 255, 0.6);
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.box select option {
-  padding: 30px;
-}
-input[type=checkbox], input[type=radio]
-{
-	width : 20px; height : 20px; cursor: pointer;
-}
-label {
-    cursor: pointer; font-size : 18px;
-}
-#file { display:none; } 
-
-
-
-.button {
-	color: rgba(30, 22, 54, 0.6);
-	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
-	height:30px;
-	background-color: white;
-}
-
-.button:hover {
-	color: rgba(255, 255, 255, 0.85);
-	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
-}
-
-.button2 {
-	color: rgba(30, 22, 54, 0.6);
-	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
-	height:30px;
-	background-color: white;
-}
-
-.button2:hover {
-	color: rgba(255, 255, 255, 0.85);
-	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
-}
-.row{
-	margin-right: auto;
-	margin-left: auto;
-}
-td{
-	border:none;
-}
-.container{max-width:1100px;}
-</style>
-
 <script>
 	function setPic(event) {
 		var reader = new FileReader();
@@ -186,90 +99,79 @@ td{
 
 	        
 			<h2>주 포지션 체크</h2>
-			<table class="table table-borderless">
-				<tr style="border:0px;">
-		          	<td width="20px;"><input type="checkbox" name="m_position" id="LW" value="LW"/></td>
-		          	<td><label for="LW">LW</label></td>
-		            <td width="20px;"><input type="checkbox" name="m_position" id="ST" value="ST"/></td>
-		            <td><label for="ST">ST</label></td>
-		            <td width="20px;"><input type="checkbox" name="m_position" id="RW" value="RW"/></td>
-		            <td><label for="RW">RW</label></td>
-		        </tr>
-				<tr>
-		          	<td><input type="checkbox" name="m_position" id="LM" value="LM"/></td>
-		          	<td><label for="LM">LM</label></td>
-		            <td><input type="checkbox" name="m_position" id="AM" value="AM"/></td>
-		            <td><label for="AM">AM</label></td>
-		            <td><input type="checkbox" name="m_position" id="RM" value="RM"/></td>
-		            <td><label for="RM">RM</label></td>
-		        </tr>
-				<tr>
-		          	<td><input type="checkbox" name="m_position" id="CM" value="CM"/></td>
-		          	<td><label for="CM">CM</label></td>
-		            <td><input type="checkbox" name="m_position" id="CB" value="CB"/></td>
-		            <td><label for="CB">CB</label></td>
-		            <td><input type="checkbox" name="m_position" id="DM" value="DM"/></td>
-		            <td><label for="DM">DM</label></td>
-		        </tr>
-		  		<tr>
-		          	<td ><input type="checkbox" name="m_position" id="LB" value="LB"/></td>
-		          	<td ><label for="LB">LB</label></td>
-		            <td ><input type="checkbox" name="m_position" id="GK" value="GK"/></td>
-		            <td ><label for="GK">GK</label></td>
-		            <td ><input type="checkbox" name="m_position" id="RB" value="RB"/></td>
-		            <td ><label for="RB">RB</label></td>
-		        </tr>
-	        </table>
+
+          	<input type="checkbox" name="m_position" id="LW" value="LW" style="display:inline;"/>
+          	<label for="LW" style= "padding-right:200px;">LW</label>
+            <input type="checkbox" name="m_position" id="ST" value="ST" style="display:inline;"/>
+            <label for="ST" style= "padding-right:200px;">ST</label>
+            <input type="checkbox" name="m_position" id="RW" value="RW" style="display:inline;"/>
+            <label for="RW">RW</label>
+			<br /><br />
+          	<input type="checkbox" name="m_position" id="LM" value="LM" style="display:inline;"/>
+          	<label for="LM" style="padding-right:200px;">LM</label>
+            <input type="checkbox" name="m_position" id="AM" value="AM" style="display:inline;"/>
+            <label for="AM" style=padding-right:195px;">AM</label>
+            <input type="checkbox" name="m_position" id="RM" value="RM" style="display:inline;"/>
+            <label for="RM">RM</label>
+			<br /><br />
+          	<input type="checkbox" name="m_position" id="CM" value="CM" style="display:inline;"/>
+          	<label for="CM" style="padding-right:200px;">CM</label>
+            <input type="checkbox" name="m_position" id="CB" value="CB" style="display:inline;"/>
+            <label for="CB" style="padding-right:198px;">CB</label>
+            <input type="checkbox" name="m_position" id="DM" value="DM" style="display:inline;"/>
+            <label for="DM">DM</label>
+			<br /><br />
+          	<input type="checkbox" name="m_position" id="LB" value="LB" style="display:inline;"/>
+          	<label for="LB" style="padding-right:205px;">LB</label>
+            <input type="checkbox" name="m_position" id="GK" value="GK" style="display:inline;"/>
+            <label for="GK" style="padding-right:200px;">GK</label>
+            <input type="checkbox" name="m_position" id="RB" value="RB" style="display:inline;"/>
+            <label for="RB">RB</label>
+
 	        
 			<h2>성별 체크</h2>
-			<table class="table table-borderless">
-				<tr>
-					<td width="20px;"><input type="radio" name="m_sex" id="man" value="남자" ></td>
-					<td><label for="man">남자</label></td>
-					<td width="20px;"><input type="radio" name="m_sex" id="wowan" value="여자"></td>
-					<td><label for="wowan">여자</label></td>
-				</tr>
-			</table>
-	        
-			<h2>주관적인 실력</h2>
-			<table class="table table-borderless">
-				<tr>
-					<td width="20px;"><input type="radio" name="m_abil" id="best" value="최상" ></td>
-					<td><label for="best">최상</label></td>
+			<input type="radio" name="m_sex" id="man" value="남자" style="display:inline;">
+			<label for="man" style="padding-right:220px;">남자</label>
+			<input type="radio" name="m_sex" id="wowan" value="여자" style="display:inline;">
+			<label for="wowan">여자</label>
 
-					<td width="20px;"><input type="radio" name="m_abil" id="tops" value="상" ></td>
-					<td><label for="tops">상</label></td>
-						
-					<td width="20px;"><input type="radio" name="m_abil" id="mediumhigh" value="중상"></td>
-					<td><label for="mediumhigh">중상</label></td>
-				</tr>
-				<tr>
-					<td><input type="radio" name="m_abil" id="medium" value="중"></td>
-					<td><label for="medium">중</label></td>
-					<td><input type="radio" name="m_abil" id="mediumlow" value="중하"></td>
-					<td><label for="mediumlow">중하</label></td>
-					<td><input type="radio" name="m_abil" id="low" value="하"></td>
-					<td><label for="low">하</label></td>
-				</tr>
-			</table>
+			
+			<h2>주관적인 실력</h2>
+
+			<input type="radio" name="m_abil" id="best" value="최상" style="display:inline;">
+			<label for="best" style="padding-right:200px;">최상</label>
+
+			<input type="radio" name="m_abil" id="tops" value="상" style="display:inline;">
+			<label for="tops" style="padding-right:200px;">상</label>
+				
+			<input type="radio" name="m_abil" id="mediumhigh" value="중상" style="display:inline;">
+			<label for="mediumhigh">중상</label>
+			<br /><br /> 
+			<input type="radio" name="m_abil" id="medium" value="중" style="display:inline;">
+			<label for="medium" style="padding-right:215px;">중</label>
+			
+			<input type="radio" name="m_abil" id="mediumlow" value="중하" style="display:inline;">
+			<label for="mediumlow" style="padding-right:186px;">중하</label>
+			
+			<input type="radio" name="m_abil" id="low" value="하" style="display:inline;">
+			<label for="low">하</label>
+
 	          
 	        <h2>주로쓰는 발</h2>
-	        <table class="table table-borderless">
-	        	<tr>
-	        		<td width="20px;"><input type="radio" name="m_foot" id="LF" value="왼발"></td>
-	        		<td><label for="LF">왼발</label></td>
-	        		<td width="20px;"><input type="radio" name="m_foot" id="RF" value="오른발"></td>
-	        		<td><label for="RF">오른발</label></td>
-					<td width="20px;"><input type="radio" name="m_foot" id="ALL" value="양발"></td>
-					<td><label for="ALL">양발</label></td>
-	        	</tr>
-			</table>
+
+       		<input type="radio" name="m_foot" id="LF" value="왼발" style="display:inline;">
+       		<label for="LF" style="padding-right:200px;">왼발</label>
+       		<input type="radio" name="m_foot" id="RF" value="오른발" style="display:inline;">
+       		<label for="RF" style="padding-right:170px;">오른발</label>
+			<input type="radio" name="m_foot" id="ALL" value="양발" style="display:inline;">
+			<label for="ALL">양발</label>
+
 			
 			<div class="n-form-set" id="input-div">
                 <h2>주소</h2>
                 <div>                                     
                     <input type="hidden" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:130px; height:50px; margin-top:5px; display:inline;" readonly/>
-                    <input type="button" class="btn btn-warning" onclick="DaumPostcode()" value="주소 찾기" style="width:130px; height:50px; display:inline; margin-top:5px; color: #424242; font-weight: bold" /><br>                       
+                    <button type="button" onclick="DaumPostcode()" style="height:50px; display:inline; margin-top:5px; font-weight: bold" >주소찾기</button><br>                       
                     <input type="text" id="m_addr1" name="m_addr" placeholder="주소"  class="n-input" style="margin-top: 5px; width:600px; height:50px; font-size:20px; " readonly/>
                     <input type="text" id="m_addr2" name="m_addr" placeholder="상세주소"  class="n-input" style="margin-top: 5px; width:600px; height:50px; font-size:20px;" /> 
                 </div>
@@ -290,25 +192,25 @@ td{
             <div id="agreementDivArea" class="agreement">
 				<div>
                    <input type="checkbox" id="all" name="all" class="check-all" style="display:inline;">
-                   <label for="all" style="display:inline;">약관 전체동의</label>
+                   <label for="all">약관 전체동의</label>
                	</div>
                	<br />
                	<div>
                    <input type="checkbox"  id="checkbox1" name="agreeCheckbox" class="ab" style="display:inline;">
-                   <label for="checkbox1" style="display:inline;">개인정보 수집 이용동의(필수)</label>
-                   <button type="button"  onclick="privacyAgreeUsagePopBtnClickHandler()" style="display:inline;" class="button2">약관보기</button>
+                   <label for="checkbox1">개인정보 수집 이용동의(필수)</label>
+                   <input type="button" class="button_base b01_simple_rollover" onclick="privacyAgreeUsagePopBtnClickHandler()" style="display:inline;" value="약관보기">
                	</div>
 				<br />
 				<div>
 				    <input type="checkbox" id="useTermsCheckbox" name="useTermsCheckbox" class="ab"  style="display:inline;">
-					<label for="useTermsCheckbox" style="display:inline;" >축구장 이용약관(필수)</label>
-					<button type="button"  onclick="serviceAgreementPopBtnClickHandler()" style="display:inline;" class="button">약관보기</button>
+					<label for="useTermsCheckbox">축구장 이용약관(필수)</label>
+					<input type="button" class="button_base b01_simple_rollover" onclick="serviceAgreementPopBtnClickHandler()" style="display:inline;" value="약관보기">
 				</div>
 			</div>
 			<br/><br/>
 	        <div style="text-align:center">
-	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="javascript:goBack();">이전페이지</button>  
-		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">가입완료!!</button>
+	        	<button type="button"  style="font-size:20px; display:inline;" onclick="javascript:goBack();">이전페이지</button>&ensp;&ensp;
+		        <button type="submit" style="font-size:20px; display:inline;">가입완료!!</button>
 	        </div>
 	    	</form> 
 		</div>

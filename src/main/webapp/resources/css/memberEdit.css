@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
+.txtBox31 { border-color: DodgerBlue; width: 500px; }
+
+input[type=text]{
+	font-size:25px;
+}
+input[type=password] {
+		font-size:25px;
+        font-family: "nanum";
+        &::placeholder {
+        	font-family: "NanumSquare";
+    }
+}
+
+input::-webkit-input-placeholder { 
+	font-size:22px;
+}
+
+input[type=email]{
+	font-size:25px;
+}
+
+button{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.3em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+label {
+	display: inline;
+}
