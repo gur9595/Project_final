@@ -18,47 +18,74 @@
 
 </head>
 <style>
-	body{
-		font-size: 150%;
-	}
-    h2 {  
-        font-size: 250%;
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        color: #666; border-bottom: 2px solid #ccc;
-        border-left: 10px solid #55555B;
-        margin: 5px 0; letter-spacing: 1px; word-spacing: 3px;
-    }
-    table{
-        margin-left: auto; margin-right: auto;
-        width: 750px;
-        table-layout: fixed;
-        border-collapse: collapse;
-    }
-    td{
-        border-bottom: 1px solid #444444;
-        width: 70px; height: 30px;
-    }
-    th{
-        height:40px; text-align: center;
-        border-bottom: 1px solid #444444;
-    }
-
+body{
+	font-size: 150%;
 }
+h2 {  
+    font-size: 250%;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    color: #666; border-bottom: 2px solid #ccc;
+    border-left: 10px solid #55555B;
+    margin: 5px 0; letter-spacing: 1px; word-spacing: 3px;
+}
+table{
+    margin-left: auto; margin-right: auto;
+    width: 750px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+td{
+    border-bottom: 1px solid #444444;
+    width: 70px; height: 30px;
+}
+th{
+    height:40px; text-align: center;
+    border-bottom: 1px solid #444444;
+}
+.game_list{
+	display:inline-block; 
+	vertical-align:top;
+	font-size:17px;
+	color:#fff;
+	margin:0;
+	padding:0;
+	border:0;
+}
+.game_list>div:first-child{
+	position: relative;
+}
+.game_list>div{
+	min-width: 20px;
+	height:20px;
+	line-height:19px;
+	text-align:center;
+	margin-right:1px;
+	float:left;
+	box-sizing:border-box;
+	padding:0 2px;
+	padding-top:2px; 
+}
+.win{
+	background-color: #755bff;
+	position:relative;
+}
+.lose{
+	background-color: #26dbe6;
+	position:relative;
+}
+.draw{
+	background-color: #656477;
+	position:relative;
+}
+
+    
 </style>
 <body>
     <div id="main-wrapper">
     	<%@ include file="./club_view_header.jsp" %>
-        <%@ include file="./club_view_sidebar.jsp" %>
+        <%@ include file="./club_view_sidebar.jsp" %> 
         <div class="page-wrapper">
-             <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <div class="ml-auto text-right">
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="container-fluid" >
                 <div class="row">
                     <div class="col-lg-9"> 
@@ -74,7 +101,7 @@
                                                   		<div class="col-xs-4" style=" position:relative; height:100%;margin:0; padding:0; display:table;">
                                                      		<div class="row" style="height:80%;margin:0; padding:0; vertical-align:middle; margin-top:20px; display:table-cell;">
                                                        			<div style="border:12px solid white;border-radius:50%; background-color:white; height:250px; width:250px; display:block;margin:0 auto;">
- 							 									<div style="height:100%; width:100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb });background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
+ 							 									<div style="height:100%; width:100%; object-fit: contain; background-image:url(./../resources/uploadsFile/${clubDTO.c_emb }); background-position:50% 50%; background-size:210px; background-repeat:no-repeat; border-radius:50%; height:auto;padding-top:100%"></div>
 																</div>
                                                     		</div>
  														</div>
@@ -166,26 +193,34 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-6 log-outer-holder">
+                                                    	<br />
                                                         <div class="m-t-20">
                                                             <div class="d-flex no-block align-items-center">
                                                                 <span style="font-size: 30px; color: white;">승률</span>
                                                                 <div class="ml-auto">
-                                                                    <span style="color: white;">50%</span>
+                                                                    <span style="color: white; font-size: 17px; float: right;">${map.pov}%</span>
                                                                 </div>
                                                             </div>
                                                             <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: ${map.pov}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                            <br />
+                                                            <span style="font-size: 30px; color: white;">최근 10경기</span>
+                                                            <br />
+                                                            <div class="game_list" style="width:426px;">
+                                                            	<c:forEach items="${tenHistory }" var="row" varStatus="status" >
+                                                            		${row }
+                                                            	</c:forEach>
+                                                            	&nbsp;&nbsp;${map.tenWin}승 ${map.tenDraw}무 ${map.tenLose}패
+                                                                <span style="color: white; float: right;">${map.tenPov}%</span>
                                                             </div>
                                                         </div>
-                                                        <div>
+                                                        <div style="margin-top:10px">
                                                             <div class="d-flex no-block align-items-center m-t-25">
                                                                 <span style="font-size: 30px; color: white;"></span>
-                                                                <div class="ml-auto">
-                                                                    <span style="color: white;">${clubMemberCount}%</span>
-                                                                </div>
                                                             </div>
                                                             <div class="progress">
-                                                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${clubMemberCount}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${map.tenPov}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                             </div>
                                                         </div>    
                                                     </div>
@@ -199,26 +234,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3" style="height:600px;">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">채팅</h4>
-								<div >
-									<input type="hid-den" id="chat_id" value="${param.chat_id }" style="border:1px dotted red;" />
-									<div id="chat-container" style="height:500px;overflow:auto;">		
-									</div>
-								</div>
-                            </div>
-                            <div class="card-body border-top">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <div class="input-field m-t-0 m-b-0">
-                                            <textarea id="inputMessage" placeholder="Type and enter" onkeyup="enterkey();" class="form-control border-0"></textarea>
-                                        </div>
-                                    </div>
-										<button type="button" onclick="sendMessage();">보내기</button>
-                                </div>
-                            </div>
-                        </div>
+    					<%@ include file="./club_view_chat.jsp" %>
                     </div>
                 </div>
             </div>

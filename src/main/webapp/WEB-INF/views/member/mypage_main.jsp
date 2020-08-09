@@ -12,18 +12,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="./../resources/css/join.css">
-<!-- <link rel="stylesheet" type="text/css" href="https://static.msscdn.net/ui/musinsa/resources/common/css/icon.min.css?20200701180800" />
-<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/guide.min.css?20200701180800">
-<link rel="stylesheet" href="https://static.msscdn.net/ui/musinsa/resources/mw/css/layout.min.css?20200701180800">
-<script src="https://static.msscdn.net/static/member/js/jquery-3.4.1.min.js?20200701180800" type="text/javascript"></script>
-<script src="https://static.msscdn.net/skin/m_musinsa/js/appinterface.js?20200701180800" type="text/javascript"></script>
-<script src="https://static.msscdn.net/static/member/js/appinterface-member.js?20200701180800" type="text/javascript"></script>
-<script src="https://static.msscdn.net/static/member/js/constant.js?20200701180800" type="text/javascript"></script>
-<script src="https://static.msscdn.net/static/member/js/ui/config.js?20200701180800" type="text/javascript"></script>
-<script src="https://static.msscdn.net/static/member/js/ui.js?20200701180800" type="text/javascript"></script>
-<script type="text/javascript" src="https://static.msscdn.net/static/member/js/backforward.js?20200701180800"></script>
-<script src="https://static.msscdn.net/static/member/js/ajax.js?20200701180800" type="text/javascript"></script> -->
 <link href="./../resources/css/match_main.css" rel="stylesheet" type="text/css" media="all">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
