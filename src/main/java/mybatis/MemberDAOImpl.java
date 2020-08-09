@@ -1,5 +1,7 @@
 package mybatis;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,8 +21,9 @@ public interface MemberDAOImpl {
 	public int memberUpdate(MemberDTO memberDTO);
 	
 	public MemberDTO memberLogin(MemberDTO memberDTO);
+	public void tokenUpdate(MemberDTO memberDTO);
 	
-	
+	public ArrayList<MemberDTO> getMemberTokens(int c_idx);
 
 	
 	

@@ -17,6 +17,6 @@ public interface MatchDAOImpl {
 	public int getCash(String m_id);
 	public void setCash(int cash, String m_id);
 	public ArrayList<GameDTO> playerList();
-	
+	public int getClubIdx(int g_idx);
 	
 }

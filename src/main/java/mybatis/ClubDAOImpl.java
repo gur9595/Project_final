@@ -98,6 +98,10 @@ public interface ClubDAOImpl {
 	
 	public ArrayList<RankingDTO> clubTotalRanking();
 	
+	
+	
+	//fcm 메세지 클럽명꺼내기
+	public String getClubName(int c_idx);	
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MemberDTO> clubViewMemberA(AndroidClubMemberDTO androidClubMemberDTO);

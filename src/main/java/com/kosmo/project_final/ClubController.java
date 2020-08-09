@@ -4,19 +4,28 @@ import java.security.Principal;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import firebase.AndroidPushNotificationsService;
 import mybatis.AdminDAOImpl;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
@@ -34,6 +44,7 @@ import mybatis.ClubMemberDTO;
 import mybatis.GameDTO;
 import mybatis.GameMemberDTO;
 import mybatis.GoalHistoryDTO;
+import mybatis.MatchDAOImpl;
 import mybatis.MatchDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
@@ -732,15 +743,84 @@ public class ClubController {
 
 		GameDTO gameDTO = new GameDTO();
 
-		gameDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
-
-		gameDTO.setG_num(Integer.parseInt(req.getParameter("g_num")));
+		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		int g_num = Integer.parseInt(req.getParameter("g_num"));
+		gameDTO.setG_idx(g_idx);
+		gameDTO.setG_num(g_num);
 
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApply(gameDTO);
 
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApplyDelete(gameDTO);
+		
+
+		int we_c_idx = sqlSession.getMapper(MatchDAOImpl.class).getClubIdx(g_idx);
+		String c_name = sqlSession.getMapper(ClubDAOImpl.class).getClubName(we_c_idx);
+		String other_name = sqlSession.getMapper(ClubDAOImpl.class).getClubName(c_idx);
+		send(we_c_idx, other_name + " VS " + c_name + " 경기가 매칭되었습니다!", "경기 참가 여부를 선택해주세요!");
 
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
+	}
+	
+	@RequestMapping(value = "/club/sendMessage", method = RequestMethod.POST, produces = {"application/json;"})
+	public @ResponseBody ResponseEntity<String> send(@RequestBody int c_idx, String title, String content) {
+		
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		JSONObject body = new JSONObject();
+		List<String> tokenList = new ArrayList<String>();
+		
+		ArrayList<MemberDTO> memberTokens = sqlSession.getMapper(MemberDAOImpl.class).getMemberTokens(c_idx);
+		for(MemberDTO dto : memberTokens) {
+			tokenList.add(dto.getM_token());
+		}
+		
+		JSONArray array = new JSONArray();
+		
+		for(int i = 0; i < tokenList.size(); i++) {
+			array.add(tokenList.get(i));
+		}
+		
+		body.put("registration_ids", array);
+		
+		JSONObject notification = new JSONObject();
+		
+		String ms_title = "", ms_content = "";
+		
+		try {
+			ms_title = URLEncoder.encode(title, "UTF-8");
+			ms_content = URLEncoder.encode(content, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		
+		notification.put("title", ms_title);
+		notification.put("body", ms_content);
+		body.put("notification", notification);
+		
+		System.out.println("body.toString() : " + body.toString());
+		
+		HttpEntity<String> request = new HttpEntity<String>(body.toString());
+		
+		CompletableFuture<String> pushNotification = AndroidPushNotificationsService.send(request);
+		CompletableFuture.allOf(pushNotification).join();
+		
+		try {
+			String firebaseResponse = pushNotification.get();
+			
+			return new ResponseEntity<>(firebaseResponse, HttpStatus.OK);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<String>("Push Notification ERROR!", HttpStatus.BAD_REQUEST);
+		
 	}
 
 	@RequestMapping("/club/ClubMatchReject.do")

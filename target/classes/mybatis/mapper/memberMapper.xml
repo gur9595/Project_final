@@ -36,6 +36,18 @@
 		where m_id = #{m_id} and m_pw=#{m_pw}
 	  </select>
 	  
+	  <!-- 안드로이드 토큰 업데이트 -->
+	  <update id="tokenUpdate" parameterType="mybatis.MemberDTO">
+		update member set m_token = #{m_token} where m_id = #{m_id} and m_pw=#{m_pw}
+	  </update>
+	  
+	  <!-- 안드로이드 토큰 가져오기 -->
+	  <select id="getMemberTokens" resultType="mybatis.MemberDTO">
+	  	select m.m_token
+	  	from member m inner join clubmember cm
+	  		on m.m_id = cm.m_id
+	  	where c_idx = #{c_idx}
+	  </select>
 	  
 	
 	<!-- id찾기 -->
