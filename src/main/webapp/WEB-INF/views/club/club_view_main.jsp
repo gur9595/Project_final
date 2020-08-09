@@ -96,6 +96,31 @@ th {
 	background-color: #656477;
 	position: relative;
 }
+/* Tooltip text */
+.tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -100px;
+}
+.win:hover .tooltiptext {
+  visibility: visible;
+}
+.lose:hover .tooltiptext {
+  visibility: visible;
+}
+.draw:hover .tooltiptext {
+  visibility: visible;
+}
 </style>
 <!-- <script type="text/javascript">
 

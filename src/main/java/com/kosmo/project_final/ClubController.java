@@ -271,15 +271,16 @@ public class ClubController {
 		for (GameDTO dto : tenGames) {
 			tenTotal++;
 			if (dto.getG_result().equals("W")) {
-				tenHistory.add("<div class='win'>승</div>");
+				tenHistory.add("<div class='win'>승<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
 				tenWin++;
 			} else if (dto.getG_result().equals("L")) {
-				tenHistory.add("<div class='lose'>패</div>");
+				tenHistory.add("<div class='lose'>패<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
 				tenLose++;
 			} else {
-				tenHistory.add("<div class='draw'>무</div>");
+				tenHistory.add("<div class='draw'>무<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
 				tenDraw++;
 			}
+			
 
 		}
 		if (tenTotal != 0) {

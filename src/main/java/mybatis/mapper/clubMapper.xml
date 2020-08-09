@@ -22,7 +22,7 @@
       <select id="clubView10History" resultType="mybatis.GameDTO">
          select * from (
              select tb.*, rownum rNum from(
-                 select g_result 
+                 select g_result, g_ratingmemo 
                  from game 
                  where g_result is not null and c_idx = #{param1} order by g_date desc
              ) tb
