@@ -123,30 +123,12 @@ label {
 
 
 </style>
-<script>
-	function setEmblem(event) {
-		var reader = new FileReader();
-		
-		reader.onload = function(event) {
-			var img = document.createElement("img");
-			img.setAttribute("src", event.target.result);
-			document.querySelector("div#image_container").appendChild(img);
-		};
-		reader.readAsDataURL(event.target.files[0]);
-	}
-	
-	$(".hover").mouseleave(
-	  	function() {
-	    	$(this).removeClass("hover");
-		}
-	);
-</script> 
 <%
 request.setCharacterEncoding("UTF-8");
 String keyword = request.getParameter("keyword");
 %>
 <body>
-<div class="hoc container clear">
+<div class="hoc container clear" style="max-width:1200px;">
 	<div class="co">
 	<center class="center">클럽 생성</center>
 	<br /><br />

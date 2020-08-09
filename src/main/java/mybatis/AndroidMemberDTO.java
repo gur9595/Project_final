@@ -36,7 +36,9 @@ public class AndroidMemberDTO {
 	private String rnum;
 	private int cash;
 	
-	
+	public AndroidMemberDTO() {
+		super();
+	}
 	public AndroidMemberDTO(int m_idx, String m_id, String m_pw, String m_name, String m_birth, String m_email,
 			String m_phone, String m_addr, Date m_date, String m_position, String m_sex, String m_abil, String m_foot,
 			String m_pic, String m_rfa, String m_work, String m_career, String m_area, String m_duration,
@@ -73,8 +75,7 @@ public class AndroidMemberDTO {
 		this.rnum = rnum;
 		this.cash = cash;
 	}
-	
-	
+
 	public String getRnum() {
 		return rnum;
 	}

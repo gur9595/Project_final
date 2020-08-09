@@ -18,10 +18,12 @@
 label {
 	display: inline;
 }
+
 </style>
 	<form action="../member/memberEditAction.do"
 		enctype="multipart/form-data" method="post" id="myForm" name="form">
-	<main class="hoc container clear" id="main">
+	<main class="hoc clear" id="main">
+	<div class="container">
 	
 		<div style="background: #FFFFFF; margin-left: auto; margin-right: auto;">
 			<header class="member-header">
@@ -43,7 +45,7 @@ label {
          <input type="hidden" id="abil" value="${dto.m_abil }"/>
          <input type="hidden" id="pic" value="${dto.m_pic }"/>
          
-			<div class="first one_half">
+			<div class="first one_half" style="max-width: 500px;">
 				<h2>아이디</h2>
 				<input type="text" class="txtBox31" id="m_id" name="m_id"
 					value="${dto.m_id }" readonly> <br />
@@ -97,36 +99,36 @@ label {
 				<h2>성별 체크</h2>
 				<input type="radio" name="m_sex" id="man" value="남자"
 					style="display: inline;"> <label for="man"
-					style="padding-right: 320px;">남자</label> <input type="radio"
+					style="padding-right: 300px;">남자</label> <input type="radio"
 					name="m_sex" id="wowan" value="여자" style="display: inline;">
 				<label for="wowan">여자</label> <br />
 				<br />
 				<h2>주 포지션 체크</h2>
 				<input type="checkbox" name="m_position" id="LW" value="LW" style="display: inline;" />
-				<label for="LW" style="padding-right: 230px;">LW</label>
+				<label for="LW" style="padding-right: 210px;">LW</label>
 				<input type="checkbox" name="m_position" id="ST" value="ST" style="display: inline;" />
-				<label for="ST" style="padding-right: 230px;">ST</label> 
+				<label for="ST" style="padding-right: 198px;">ST</label> 
 				<input type="checkbox" name="m_position" id="RW" value="RW" style="display: inline;" />
 				<label for="RW">RW</label>
 				<br /><br />
 				<input type="checkbox" name="m_position" id="LM" value="LM"style="display: inline;" /> 
-				<label for="LM" style="padding-right: 230px;">LM</label> 
+				<label for="LM" style="padding-right: 213px;">LM</label> 
 				<input type="checkbox" name="m_position" id="AM" value="AM" style="display: inline;" />
-				<label for="AM" style="padding-right: 230px;"">AM</label> 
+				<label for="AM" style="padding-right: 191px;"">AM</label> 
 				<input type="checkbox" name="m_position" id="RM" value="RM" style="display: inline;" />
 				<label for="RM">RM</label>
 				<br /><br /> 
 				<input type="checkbox" name="m_position" id="CM" value="CM" style="display: inline;" />
-				<label for="CM" style="padding-right: 230px;">CM</label> 
+				<label for="CM" style="padding-right: 211px;">CM</label> 
 				<input type="checkbox" name="m_position" id="CB" value="CB" style="display: inline;" />
-				<label for="CB" style="padding-right: 230px;">CB</label> 
+				<label for="CB" style="padding-right: 195px;">CB</label> 
 				<input type="checkbox" name="m_position" id="DM" value="DM" style="display: inline;" />
 				<label for="DM">DM</label>
 				<br /><br /> 
 				<input type="checkbox" name="m_position" id="LB" value="LB" style="display: inline;" />
-				<label for="LB" style="padding-right: 230px;">LB</label> 
+				<label for="LB" style="padding-right: 217px;">LB</label> 
 				<input type="checkbox" name="m_position" id="GK" value="GK" style="display: inline;" />
-				<label for="GK" style="padding-right: 230px;">GK</label> 
+				<label for="GK" style="padding-right: 195px;">GK</label> 
 				<input type="checkbox" name="m_position" id="RB" value="RB" style="display: inline;" /> 
 				<label for="RB">RB</label>
 				<br /><br />
@@ -135,26 +137,26 @@ label {
 				<h2>주관적인 실력</h2>
 				<input type="radio" name="m_abil" id="best" value="최상"
 					style="display: inline;"> <label for="best"
-					style="padding-right: 230px;">최상</label> <input type="radio"
+					style="padding-right: 205px;">최상</label> <input type="radio"
 					name="m_abil" id="tops" value="상" style="display: inline;">
-				<label for="tops" style="padding-right: 230px;">상</label> <input
+				<label for="tops" style="padding-right: 205px;">상</label> <input
 					type="radio" name="m_abil" id="mediumhigh" value="중상"
 					style="display: inline;"> <label for="mediumhigh">중상</label>
 				<br />
 				<br /> <input type="radio" name="m_abil" id="medium" value="중"
 					style="display: inline;"> <label for="medium"
-					style="padding-right: 230px;">중</label> <input type="radio"
+					style="padding-right: 223px;">중</label> <input type="radio"
 					name="m_abil" id="mediumlow" value="중하" style="display: inline;">
-				<label for="mediumlow" style="padding-right: 230px;">중하</label> <input
+				<label for="mediumlow" style="padding-right: 188px;">중하</label> <input
 					type="radio" name="m_abil" id="low" value="하"
 					style="display: inline;"> <label for="low">하</label> <br />
 				<br />
 				<h2>주로쓰는 발</h2>
 				<input type="radio" name="m_foot" id="LF" value="왼발"
 					style="display: inline;"> <label for="LF"
-					style="padding-right: 230px;">왼발</label> <input type="radio"
+					style="padding-right: 205px;">왼발</label> <input type="radio"
 					name="m_foot" id="RF" value="오른발" style="display: inline;">
-				<label for="RF" style="padding-right: 220px;">오른발</label> <input
+				<label for="RF" style="padding-right: 175px;">오른발</label> <input
 					type="radio" name="m_foot" id="ALL" value="양발"
 					style="display: inline;"> <label for="ALL">양발</label> <br />
 				<br />
@@ -181,10 +183,11 @@ label {
 			</div>
 		</div>
 		<br /><br />
+	</div>
 	</main>
 	<div style="display:table; margin-left:auto; margin-right:auto;">
 		<div style="text-align: center; display:table-cell;">
-			<button type="submit" id="correct" style="color:yellow; font-size: 30px; display:inline-block;">수정하기</button>
+			<button type="submit" id="correct" style="color:black; font-weight: 900; font-size: 30px; display:inline-block;">수정하기</button>
 		</div>
 	</div>
 	</form>

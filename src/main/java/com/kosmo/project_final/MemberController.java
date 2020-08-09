@@ -3,6 +3,7 @@ package com.kosmo.project_final;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Member;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.jws.WebParam.Mode;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,6 +36,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import mybatis.CashDAOImpl;
+import mybatis.CashDTO;
 import mybatis.ClubDAOImpl;
 
 import mybatis.MemberDAOImpl;
@@ -431,7 +435,6 @@ public class MemberController {
       System.out.println(addr);
       System.out.println(phone);
       String[] addrArr = addr.split(",");
-
      
       req.setAttribute("addr1", addrArr[0]);
       req.setAttribute("addr2", addrArr[1]);
@@ -481,8 +484,70 @@ public class MemberController {
 	 * 
 	 * return "member/memberEdit"; }
 	 */
-   
 
+   @RequestMapping("/member/memberEdit2.do")
+   public String memberEdit2(HttpServletRequest req, Model model, Principal principal) {
+
+	   String m_id = principal.getName();
+
+      if(m_id =="") {
+         return "redirect:login.do";
+      }
+
+      MemberDTO dto = new MemberDTO();
+      dto.setM_id(m_id);
+      
+      dto = sqlSession.getMapper(MemberDAOImpl.class).memberInfo(dto);
+	  
+      String m_addr1 = req.getParameter("m_addr1");
+      String m_addr2 = req.getParameter("m_addr2");
+
+      String m_addr = m_addr1+","+m_addr2;
+      
+      
+      dto.setM_id(req.getParameter("m_id"));
+      dto.setM_pw(req.getParameter("m_pw"));
+      dto.setM_name(req.getParameter("m_name"));
+      dto.setM_birth(req.getParameter("m_birth"));
+      dto.setM_phone(req.getParameter("m_phone"));
+      dto.setM_email(req.getParameter("m_email"));
+      dto.setM_addr(m_addr);
+      
+      model.addAttribute("dto", dto);
+
+      principal.getName();
+
+      return "member/memberEdit2";
+   }
+   
+   // 마이페이지 Ball 부분 추가
+   @RequestMapping("/member/ballHistory.do")
+	public String ballHistory(Principal principal, HttpServletRequest req, MemberDTO memberDTO, CashDTO cashDTO, Model model ) {
+		
+	    // 회원 아이디 부분
+		String m_id = principal.getName();
+		System.out.println("m_id :"+m_id);
+		
+		// 현재 보유 Ball 부분
+		int money = sqlSession.getMapper(MemberDAOImpl.class).ballHistory(m_id);
+		System.out.println(money);
+		
+		// Ball 거래내역 부분
+		ArrayList<MemberDTO> lists = sqlSession.getMapper(MemberDAOImpl.class).ballList(m_id);
+
+		
+		// 회원 아이디
+		model.addAttribute("m_id", m_id);
+		
+		// 현재 보유 Ball
+		model.addAttribute("cash", money);
+		
+		// Ball 거래 내역
+		model.addAttribute("lists", lists);
+		
+		return "member/ball_history";
+   
+   }
 
    @RequestMapping("/member/mypageMain.do")
    public String mypageMain() {

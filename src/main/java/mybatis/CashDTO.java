@@ -8,8 +8,8 @@ public class CashDTO {
 	private int cs_idx;
 	private int c_idx;
 	private String m_id;
-	private int cs_charge;
-	private int cs_spend;
+	private int cs_money;
+	private String cs_type;
 	private java.sql.Date cs_date;
 		// 추가
 	private int cash;
@@ -19,24 +19,22 @@ public class CashDTO {
 	public CashDTO() {}
 	
 	// 인자생성자
-	public CashDTO(int cs_idx, int c_idx, String m_id, int cs_charge, int cs_spend,
-			Date cs_date, int cash) {
-		super();
-		this.cs_idx = cs_idx;
-		this.c_idx = c_idx;
-		this.m_id = m_id;	
-		this.cs_charge = cs_charge;
-		this.cs_spend = cs_spend;
-		this.cs_date = cs_date;
-		
-			// 추가
-		this.cash = cash;
-		
-	}
+	
 
 	// getter / setter
 	public int getCs_idx() {
 		return cs_idx;
+	}
+
+	public CashDTO(int cs_idx, int c_idx, String m_id, int cs_money, String cs_type, Date cs_date, int cash) {
+		super();
+		this.cs_idx = cs_idx;
+		this.c_idx = c_idx;
+		this.m_id = m_id;
+		this.cs_money = cs_money;
+		this.cs_type = cs_type;
+		this.cs_date = cs_date;
+		this.cash = cash;
 	}
 
 	public void setCs_idx(int cs_idx) {
@@ -58,21 +56,22 @@ public class CashDTO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}	
+	
 
-	public int getCs_charge() {
-		return cs_charge;
+	public int getCs_money() {
+		return cs_money;
 	}
 
-	public void setCs_charge(int cs_charge) {
-		this.cs_charge = cs_charge;
+	public void setCs_money(int cs_money) {
+		this.cs_money = cs_money;
 	}
 
-	public int getCs_spend() {
-		return cs_spend;
+	public String getCs_type() {
+		return cs_type;
 	}
 
-	public void setCs_spend(int cs_spend) {
-		this.cs_spend = cs_spend;
+	public void setCs_type(String cs_type) {
+		this.cs_type = cs_type;
 	}
 
 	public java.sql.Date getCs_date() {
@@ -91,5 +90,4 @@ public class CashDTO {
 	public void setCash(int cash) {
 		this.cash = cash;
 	}
-
 }

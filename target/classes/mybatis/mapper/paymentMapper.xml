@@ -5,10 +5,13 @@
   
 <mapper namespace="mybatis.CashDAOImpl">
 
-	<!-- Ball 충전 내역 -->
+	<!-- 
+		Ball 충전 insert문 
+		- 충전하면 insert되기 때문에 cs_type은 'charge'로 고정시킴.
+	-->
 	<insert id="ballResult" parameterType="mybatis.CashDTO">
-		insert into cash (cs_idx, m_id, cs_charge, cs_date)  
-			 values(cash_seq.nextval, #{m_id}, #{cs_charge}, to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'))
+		insert into cash (cs_idx, m_id, cs_money, cs_type, cs_date)  
+			 values(cash_seq.nextval, #{m_id}, #{cs_money}, 'charge' , to_char(sysdate, 'yyyy/mm/dd (hh24"시" mi"분" ss"초")'))
 	</insert>
 	    
 	<!-- Ball 업데이트(누적) -->
@@ -17,5 +20,11 @@
 		set cash = cash + #{param1} 
 		where m_id = #{param2}
 	</update>
-			
+	
+	<!-- Ball 보유현황 가져오기 -->
+	<select id="ballCurrent" resultType="int">
+		select cash 
+		from member 
+		where m_id = #{param1}
+	</select>
 </mapper>  

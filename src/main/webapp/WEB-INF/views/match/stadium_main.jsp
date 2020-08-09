@@ -532,14 +532,9 @@ function removeAllChildNods(el) {
 		}
 		$('#contents').load("stadiumMain.do?searchTxt=" + $('#searchTxt').val());
 	});
-	
+	 
 	function paging(pNum){
 		$('#contents').load("stadiumMain.do?nowPage=" + pNum);
-	}
-	
-	function booking(s_name){
-		//하는중
-		location.href = "stadiumNormalApply.do?s_name=" + s_name;
 	}
 </script>
 </html>

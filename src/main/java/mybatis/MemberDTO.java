@@ -8,6 +8,7 @@ public class MemberDTO {
 	private String m_id;
 	private String m_pw;
 	private String m_name;
+	private String m_token;
 	private String m_birth;
 	private String m_email;
 	private String m_phone;
@@ -35,6 +36,40 @@ public class MemberDTO {
 	private int cash;
 	
 	
+	// CashDTO 변수 추가 ////////////////////////
+	private int cs_idx;
+	private int cs_money;
+	private String cs_type;
+	private String cs_date;
+	
+	public int getCs_idx() {
+		return cs_idx;
+	}
+	public void setCs_idx(int cs_idx) {
+		this.cs_idx = cs_idx;
+	}
+	public int getCs_money() {
+		return cs_money;
+	}
+	public void setCs_money(int cs_money) {
+		this.cs_money = cs_money;
+	}
+	public String getCs_date() {
+		return cs_date;
+	}
+	public void setCs_date(String cs_date) {
+		this.cs_date = cs_date;
+	}
+	
+	public String getCs_type() {
+		return cs_type;
+	}
+	public void setCs_type(String cs_type) {
+		this.cs_type = cs_type;
+	}
+	//////////////////////////////////////////////
+	
+	
 	public int getCash() {
 		return cash;
 	}
@@ -46,6 +81,12 @@ public class MemberDTO {
 	}
 	public void setCm_grade(String cm_grade) {
 		this.cm_grade = cm_grade;
+	}
+	public String getM_token() {
+		return m_token;
+	}
+	public void setM_token(String m_token) {
+		this.m_token = m_token;
 	}
 	public int getM_idx() {
 		return m_idx;
