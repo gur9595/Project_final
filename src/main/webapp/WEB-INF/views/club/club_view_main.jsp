@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+ 
 <title>타이틀</title>
 
 	<link href="./../resources/css/club_view2.css" rel="stylesheet">

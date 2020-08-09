@@ -1,25 +1,25 @@
 package com.kosmo.project_final;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mybatis.AndroidClubDTO;
 import mybatis.AndroidClubMemberDTO;
+import mybatis.AndroidGameMemberDTO;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.ClubMemberDTO;
 import mybatis.GameDTO;
+import mybatis.GameMemberDTO;
 import mybatis.MatchDTO;
 import mybatis.MemberDTO;
 
@@ -43,7 +43,7 @@ public class AndroidClubController {
 	@RequestMapping("/android/clubMember.do")
 	@ResponseBody
 	public ArrayList<MemberDTO> clubMember(AndroidClubMemberDTO androidClubMemberDTO){
-		
+		System.out.println("getC_idx : "+androidClubMemberDTO.getC_idx());
 		ArrayList<MemberDTO> clubMemberList = sqlSession.getMapper(ClubDAOImpl.class).clubViewMemberA(androidClubMemberDTO);
 		
 		return clubMemberList;
@@ -85,6 +85,54 @@ public class AndroidClubController {
 		
 	}
 	
+	@RequestMapping("/android/clubTacticBoard.do")
+	@ResponseBody
+	public ArrayList<String> clubTacticBoard(HttpServletRequest req, Model model) {
+		
+		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		
+		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx); 
+		
+		ArrayList<String> squad = new ArrayList<String>();
+		ArrayList<String> bench = new ArrayList<String>();
+		int check = 0;
+		for(int i =0; i<26; i++) {
+			check = 0;
+			for(GameMemberDTO gameMemberDTO : lists) {
+				if (i==gameMemberDTO.getGm_form()) {
+					squad.add(i, gameMemberDTO.getM_name());
+					check++;
+				}
+			}
+			if(check==0)
+			squad.add(i, "");
+		}
+		
+		for(GameMemberDTO gameMemberDTO : lists) {
+			if (gameMemberDTO.getGm_form() == (-1)) {
+				bench.add(gameMemberDTO.getM_name());
+			}
+		}	
+		
+		model.addAttribute("squad", squad);  
+		model.addAttribute("bench", bench);  
+
+		return squad;
+	}
+	
+	@RequestMapping("/android/gameMemberApply.do")
+	@ResponseBody
+	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO) {
+		
+		System.out.println("getG_idx : "+androidGameMemberDTO.getG_idx());
+		System.out.println("getM_id : "+androidGameMemberDTO.getM_id());
+		
+		int result = sqlSession.getMapper(ClubDAOImpl.class).gameMemberApplyA(androidGameMemberDTO);
+		
+		
+		
+		return result;
+	}
 	
 	
 

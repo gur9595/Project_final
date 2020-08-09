@@ -28,6 +28,10 @@ public class MemberDTO {
 	
 	//join용 변수
 	private String cm_grade;
+	private int goal;
+	private int assist;
+	private int point;
+	private int appearance;
 	private int cash;
 	
 	
@@ -169,5 +173,31 @@ public class MemberDTO {
 	public void setCm_idx(String cm_idx) {
 		this.cm_idx = cm_idx;
 	}
+	public int getGoal() {
+		return goal;
+	}
+	public void setGoal(int goal) {
+		this.goal = goal;
+	}
+	public int getAssist() {
+		return assist;
+	}
+	public void setAssist(int assist) {
+		this.assist = assist;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public int getAppearance() {
+		return appearance;
+	}
+	public void setAppearance(int appearance) {
+		this.appearance = appearance;
+	}
+	
+	
 	
 }
