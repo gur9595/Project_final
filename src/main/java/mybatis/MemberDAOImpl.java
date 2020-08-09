@@ -26,5 +26,8 @@ public interface MemberDAOImpl {
 	public ArrayList<MemberDTO> getMemberTokens(int c_idx);
 
 	
+	// Ball 거래내역용 추가 메소드
+	public int ballHistory(String m_id);
 	
+	public ArrayList<MemberDTO> ballList(String m_id);
 }

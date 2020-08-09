@@ -11,7 +11,7 @@ import org.springframework.http.client.support.HttpRequestWrapper;
 /*
 네트워크 전송 헤더 생성 클래스
 */
-public class HeaderRequestInterceptor implements ClientHttpRequestInterceptor {
+public class HeaderRequestInterceptor implements ClientHttpRequestInterceptor{
 	
 	private final String headerName;
 	private final String headerValue;
