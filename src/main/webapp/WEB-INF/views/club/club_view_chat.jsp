@@ -5,6 +5,8 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 <link rel="stylesheet" href="css/custom.css">
+<script>
+</script>
 <body>
 	<div class="card">
 		<div class="card-body">
@@ -30,12 +32,27 @@
 	</div>
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/7.17.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-analytics.js"></script>
 
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCjGbcNvs8-vw5p4Kw5viYu4sSDQI2bX6s",
+    authDomain: "b-pro-e77db.firebaseapp.com",
+    databaseURL: "https://b-pro-e77db.firebaseio.com",
+    projectId: "b-pro-e77db",
+    storageBucket: "b-pro-e77db.appspot.com",
+    messagingSenderId: "843310314615",
+    appId: "1:843310314615:web:8a2b8df3e2f52adc588272",
+    measurementId: "G-TTNC0WF4FJ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+</script>
 </html>

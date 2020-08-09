@@ -39,6 +39,12 @@
                     </ul>
                     <ul class="navbar-nav float-right">
                         <li class="nav-item dropdown">
+                           <a  class="nav-link dropdown-toggle waves-effect waves-dark" id="kakao-link-btn" 
+								href="javascript:send(${clubDTO.c_idx })"> <img style="width:30px;height:30px;"
+								src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
+							</a>
+                        </li>
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
                             </a>
                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -107,4 +113,23 @@
             </nav>
         </header>
 </body>
+
+<script type="text/javascript">
+	function send(c_idx) {
+		//<![CDATA[
+		// // 사용할 앱의 JavaScript 키를 설정해 주세요.
+		Kakao.init('c7748327b5a31c74b003d0b290d08cca');
+		// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+		Kakao.Link.createCustomButton({
+			container : '#kakao-link-btn',
+			templateId : 34022,
+			templateArgs : {
+				'title' : '제목 영역입니다.',
+				'description' : '설명 영역입니다.',
+				'c_idx' : c_idx
+			}
+		});
+		//]]>
+	}
+</script>
 </html>

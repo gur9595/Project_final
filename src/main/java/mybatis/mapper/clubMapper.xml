@@ -193,7 +193,7 @@
             <if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
                where
                <if test="c_name!=''">
-                      c_name like #{c_name}
+                      c_name like '%${c_name}%'
                </if>
                <if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
                     and  

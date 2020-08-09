@@ -148,6 +148,7 @@ request.setCharacterEncoding("UTF-8");
 					<input type="hidden" value="${row.c_idx }" />
 					<td class="tcol">${status.count }</td>
 					<td class="tname">
+
 						<a href='javascript:openClubView(${row.c_idx });'>
 							<img src="./../resources/uploadsFile/${row.c_emb }" alt="" />
 							${row.c_name }
@@ -186,7 +187,7 @@ request.setCharacterEncoding("UTF-8");
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form name="writeFrm" method="post" action="<c:url value="/club/clubApplyAction.do" />" >
+				<form name="writeFrm" method="post" action="<c:url value="/member/clubApplyAction.do" />" >
 				<div class="modal-body">
 				
 					클럽명 : <span id="list_name"></span><br />
@@ -228,7 +229,7 @@ function modal(idx, name, ability, age, gender, area) {
 
 function openClubView(c_idx){
 	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
-			"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+			"width=1200,height=800, toolbar=no, menubar=no, resizable=no");
 }
 
 $('#writeFrm').submit(function(){
@@ -238,5 +239,4 @@ $('#writeFrm').submit(function(){
 </script>
 
 
-<script src="./../resources/js/choices.js"/>
 </html>

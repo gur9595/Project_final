@@ -15,6 +15,7 @@
 	<!--Spring Framework  에서 이미지나 ,jsm css파일등의 리소스를 사용하시 위해 생성된 폴더   -->	
 	<resources mapping="/resources/**" location="/resources/" />
 	
+	<resources location="/Project_final/src/main/webapp/resources/js/firebase-messaging-sw.js" mapping="firebase-messaging-sw"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

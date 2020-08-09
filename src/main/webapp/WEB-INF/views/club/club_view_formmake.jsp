@@ -38,43 +38,7 @@
 	border:0;
 } */
 </style>
-<script type="text/javascript">
-	var config = {
-		'.edit_field' : {}
-	}
-	for ( var selector in config) {
-		$(selector).chosen(config[selector]);
-	}
-	
-function capture() {
-       html2canvas($("#field"), {
-             onrendered: function(canvas) {
-               //document.body.appendChild(canvas);
-               //alert(canvas.toDataURL("image/png"));
-               $("#imgSrc").val(canvas.toDataURL("image/png"));
-               $.ajax({
-                   type: "post",
-                   data : $("form").serialize(),
-                   url:"../club/imageCreate.do",
-                   error:function(request,status,error){ 
-                	   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
-                	},
-                   success: function (data) {
-                       try{
-                    	   alert("이미지 저장 완료! 팀원들에게 공유됩니다.");
-                       }catch(e){                
-                           alert('server Error!!');
-                       }
-                   }
-               });
-             }
-       
-       
-       });
 
-   }     
-
-</script> 
   	<div class="two_third first">
   	<form>
   	<input type="hidden" name="imgSrc" id="imgSrc" />
@@ -699,4 +663,51 @@ function capture() {
 		$(selector).chosen(config[selector]);
 	}
 </script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-messaging.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-analytics.js"></script>
+
+<script type="text/javascript">
+
+	var config = {
+		'.edit_field' : {}
+	}
+	for ( var selector in config) {
+		$(selector).chosen(config[selector]);
+	}
+	
+function capture() {
+       html2canvas($("#field"), {
+             onrendered: function(canvas) {
+               //document.body.appendChild(canvas);
+               //alert(canvas.toDataURL("image/png"));
+               $("#imgSrc").val(canvas.toDataURL("image/png"));
+               $.ajax({
+                   type: "post",
+                   data : $("form").serialize(),
+                   url:"../club/imageCreate.do",
+                   error:function(request,status,error){ 
+                	   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
+                	},
+                   success: function (data) {
+                       try{
+                    	   alert("이미지 저장 완료! 팀원들에게 공유됩니다.");
+                       }catch(e){                
+                           alert('server Error!!');
+                       }
+                   }
+               });
+             }
+       
+       
+       });
+
+   }     
+
+</script> 
 </html>
