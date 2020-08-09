@@ -98,13 +98,14 @@ body{
 	border: 0px solid black;
 }
 .contents-box-left{
-	position: absolute;
+	position: absolute; 
 	display: inline-block;
 	width: 95%;
 	height: 100%;
 	top: 0;
 	left: 0;
 }
+
 .contents-box-middle{
 	position: absolute;
 	display: inline-block;
@@ -145,6 +146,31 @@ body{
 .content-date{
 	font-size: 1.2em;
 }
+.contents-ul{
+	border: 0px solid orange;
+	width: 100%;
+	height: 100%;  
+	overflow: hidden; 
+	list-style: none;
+	padding: 0; margin: 0;
+}
+.contents-box-lineFirst{
+	width: 32%;
+	height: 100%; 
+	float: left;
+	margin-bottom: 70px;
+} 
+.contents-box{
+	width: 32%;
+	height: 100%; 
+	float: left;
+	margin-left: 2%;
+	margin-bottom: 70px;
+}
+.contents-ul img{
+	width: 100%;
+	height: 620px;
+}
 </style>
 <script>
 function show_contents(id) {
@@ -174,7 +200,7 @@ $(function(){
 	});
 	$('#uploadBtn').click(function(){
 		//alert("버튼눌림");
-		location.href = "eventUpload.do";
+		location.href = "eventWrite.do";
 	});
 });
 
@@ -215,62 +241,61 @@ $(function(){
 	        </div>
 	        <div class="tab-underLine" id="tab-underLine"></div>
 	
+	
+	
 	        <!-- 탭 컨텐츠 영역 -->
 	        <div class="tab-box-container">
-	        
 	        	<!-- 진행중인 이벤트 -->
 	            <div class="tab-contents" id="event_doing">
-	                <table class="tab-table">
-	                	<tr>
-	                		<td>
-	                			<div class="contents-box-left">
-	                				<a href="javascript:void(0);">
-		                				<img src="../resources/img/event/event1.jpg"  />
-	                				</a>
-	                				<a href="javascript:void(0);">
-		                				<div class="content-text">
-		                					<div class="content-type">[대회]</div>
-		                					<div class="content-title">여자 풋살 대회 개최</div>
-		                					<div class="content-date">2020.08.04 ~ 2020.08.14</div>
-		                				</div>
-	                				</a>
-	                			</div>
-	                		</td>
-	                		<td>
-	                			<div class="contents-box-middle">
-	                				<a href="javascript:void(0);">
-		                				<img src="../resources/img/event/event2.jpg"  />
-	                				</a>
-	                				<a href="javascript:void(0);">
-		                				<div class="content-text">
-		                					<div class="content-type">[대회]</div>
-		                					<div class="content-title">만세보령머드배 축구대회</div>
-		                					<div class="content-date">2020.06.20 ~ 2020.09.01</div>
-		                				</div>
-	                				</a>
-	                			</div>
-	                		</td>
-	                		<td>
-	                			<div class="contents-box-right">
-	                				<a href="javascript:void(0);">
-		                				<img src="../resources/img/event/event3.jpg"  />
-	                				</a>
-	                				<a href="javascript:void(0);">
-		                				<div class="content-text">
-		                					<div class="content-type">[협찬]</div>
-		                					<div class="content-title">아디다스 협찬 이벤트</div>
-		                					<div class="content-date">2020.08.04 ~ 2020.08.21</div>
-		                				</div>
-	                				</a>
-	                			</div>
-	                		</td>
-	                	</tr>
-	                </table>
-	                
-		            <!-- 글쓰기 버튼 -->
-		            <input type="button" id="uploadBtn" value="글쓰기" style="float: right; width: 120px; height: 40px; background-color: white; border: 1px solid black;" />
+	            	<!-- 반복부분 -->
+					<ul class="contents-ul">
+						<c:forEach items="${e_list }" var="row" varStatus="loop">
+							<c:choose>
+								<c:when test="${(loop.index+1) % 3 == 1 }">
+									<li>
+									<div class="contents-box-lineFirst">
+		                				<a href="./eventView.do?e_idx=${row.e_idx }">
+			                				<img src="../resources/img/event/event7.jpg"  />
+		                				</a>
+		                				<a href="javascript:void(0);"> 
+			                				<div class="content-text">
+			                					<div class="content-type">[${row.e_type }]</div>
+			                					<div class="content-title">${row.e_title }</div>
+			                					<div class="content-date">${row.e_start } ~ ${row.e_end }</div>
+			                				</div>
+		                				</a>
+	                				</div>
+	                				</li>
+								</c:when>
+								<c:when test="${(loop.index+1) % 3 != 1 }"> 
+									<li>
+									<div class="contents-box">
+		                				<a href="./eventView.do?e_idx=${row.e_idx }">
+			                				<img src="../resources/img/event/event5.jpg"  />
+		                				</a>
+		                				<a href="javascript:void(0);">
+			                				<div class="content-text">
+			                					<div class="content-type">[${row.e_type }]</div>
+			                					<div class="content-title">${row.e_title }</div>
+			                					<div class="content-date">${row.e_start } ~ ${row.e_end }</div>
+			                				</div>
+		                				</a>
+	                				</div>
+	                				</li>
+								</c:when>
+								<c:when test="${loop.count%3==0 }">
+									</ul><ul>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+					</ul>
+		                
+		            <!-- 글쓰기 버튼 / 페이징 -->
+		            <div style="border: 1px solid black; width: 100%; overflow: hidden; position: relative;">
+		            	<div style="display: inline-block; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%)">${pagingImg }</div>
+			            <input type="button" id="uploadBtn" value="글쓰기" style="float: right; width: 120px; height: 40px; background-color: white; border: 1px solid black;" />
+		            </div>
 	            </div>
-	            
 	            
 	            
 	            
@@ -357,8 +382,13 @@ $(function(){
 <!-- footer -->
 <%@ include file="./../include/footer.jsp"%>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+</body>
 <!-- JAVASCRIPTS -->
+<script>
+	function paging(pNum){
+		$('#event_doing').load("eventMain.do?nowPage=" + pNum);
+	}
+</script>
 <script src="./../resources/js/jquery.min.js"></script>
 <script src="./../resources/js/jquery.backtotop.js"></script>
-</body>
 </html>
