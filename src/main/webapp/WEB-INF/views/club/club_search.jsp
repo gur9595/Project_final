@@ -25,7 +25,13 @@ function pagingFilter(pNum){
 }
 </script>
 <style>
-
+	.col-1{
+		flex:none;
+		max-width:none;
+	}
+	.col{
+		margin-top:auto;margin-bottom:auto;
+	}
 </style>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -34,7 +40,7 @@ request.setCharacterEncoding("UTF-8");
 	<div class="hoc container clear">
 	<center class="center">클럽 검색</center>
 		<br /><br />
-		<div class="one_half first">
+		<div class="one_third first">
 			<div class="s007">
 			  <form method="post" id="searchForm">
 		        <div class="inner-form">
@@ -119,10 +125,8 @@ request.setCharacterEncoding("UTF-8");
 		                </div>
 		              </div>
 		            </div>
-		            <div class="row third">
-		              <div class="input-field">
-		                <input type="button" id="clubSearchSubmit" class="btn-search" value="검색"></input>
-		              </div>
+		            <div style="text-align:center;">
+		                <button type="button" id="clubSearchSubmit" class="snip1536" style="width:200px;">검색</button>
 		            </div>
 		          </div>
 		        </div>
@@ -130,46 +134,43 @@ request.setCharacterEncoding("UTF-8");
 			</div>
 		</div>
 	</div>
-	<div class="one_half">
-		<table class="club_list">
-			<tr>
-				<td class="t1"></td>
-				<td>팀명</td>
-				<td class="t2">실력</td>
-				<td class="t4">나이대</td>
-				<td class="t2">성별</td>
-				<td class="t4">활동지역</td>
-				<td>입단</td>
-			</tr>
-			
-			<!-- 이거 반복 (글씨 색)  -->
+	<div class="two_third">
+		<ul class="responsive-table" style="padding:none;">
+			<li class="table-header">
+			 	<div class="col col-1" style="max-width:none;"></div>
+			 	<div class="col col-2" style="max-width:none;">팀명</div>
+			 	<div class="col col-3">실력</div>
+			 	<div class="col col-4">나이대</div>
+			 	<div class="col col-5">성별</div>
+			 	<div class="col col-6">활동지역</div>
+			 	<div class="col col-7">입단</div>
+			 </li>
+ 
 			<c:forEach items="${lists }" var="row" varStatus="status"> 
-				<tr>
+				<li class="table-row">
 					<input type="hidden" value="${row.c_idx }" />
-					<td class="tcol">${status.count }</td>
-					<td class="tname">
-
+					<div class="col col-1" style=" width:100px; height:100px; "><img src="./../resources/uploadsFile/${row.c_emb }" alt=""  style="max-width:none;max-height: 90px;"/></div>
+					<div class="col col-2" data-label="팀명" style="margin-left:10px;max-width:none; display:inline">
 						<a href='javascript:openClubView(${row.c_idx });'>
-							<img src="./../resources/uploadsFile/${row.c_emb }" alt="" />
 							${row.c_name }
 						</a>
-					</td>
-					<td class="tcol">${row.c_ability }</td>
-					<td class="tcol">${row.c_age }</td>
-					<td class="tcol">${row.c_gender }</td>
-					<td class="tcol">${row.c_area }</td>
-					<td><button type="button" class="btn" data-toggle="modal"
+					</div>
+					<div class="col col-3" data-label="실력">${row.c_ability }</div>
+					<div class="col col-4" data-label="나이대">${row.c_age }</div>
+					<div class="col col-5" data-label="성별">${row.c_gender }</div>
+					<div class="col col-6" data-label="활동지역">${row.c_area }</div>
+					<div class="col col-7" data-label="입단">
+						<button type="button" class="snip1535" data-toggle="modal"
 							onclick="modal('${row.c_idx}', '${row.c_name}', '${row.c_ability}', '${row.c_age}', '${row.c_gender}', '${row.c_area}');"
-							data-target="#myModal" style="width: 100%; height: 100%;"> 입단 </button>
-					</td>
-				</tr>
+							data-target="#myModal" style="width:80px; height:40px;"> 입단
+						</button>
+					</div>
+				</li>
 			</c:forEach>
-			<tr>
-				<td colspan='7' style="text-align: center; font-size: 25px;">
+				<div style="text-align: center; font-size: 25px;">
 					${pagingImg }
-				</td>
-			</tr>
-		</table>
+				</div>
+		</ul>
 	</div>
 	<!-- 모달창 신청폼 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"

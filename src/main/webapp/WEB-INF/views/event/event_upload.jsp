@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="">
 <head>
 
 <title>B-PRO</title>
-
+<% String placeholder="#태그를 입력해주세요."; %>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script
@@ -29,56 +29,29 @@
 <script src="./../resources/summernote/summernote-lite.js"></script>
 <script src="./../resources/summernote/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="./../resources/summernote/summernote-lite.css" />
-<script>
-function show_contents(id) {
-    
-    var doing = document.getElementById("event_doing");
-    var end = document.getElementById("event_end");
-    
-    if(id=="tab1"){
-        //alert("tabl1체크됨");
-        doing.style.display = "block";
-        end.style.display = "none";
-    }
-    else if(id=="tab2"){
-        //alert("tab2체크됨");
-        doing.style.display = "none";
-        end.style.display = "block";
-    }
-
-}
-
-function validate(frm){
-	if(frm.title.value==""){
+<script> 
+//포스트 업로드
+function eventUploading(frm){
+	/* //폼값검증
+	if(frm.e_title.value==""){
 		alert("제목을 입력해주세요.");
 		return false;
 	}
 	if(frm.editordata.value==""){
 		alert("내용을 입력해주세요.");
 		return false;
-	}
+	} */
+	frm.submit();
 }
 
+//해시태그(보류)
 $(function(){
-	$('#label1').click(function(){
-		$('#tab-underLine').css('transform', 'translateX(0)');
-	});
-	$('#label2').click(function(){
-		$('#tab-underLine').css('transform', 'translateX(100%)');
-	});
-	$('#uploadBtn').click(function(){
-		//alert("버튼눌림");
-		location.href = "eventUpload.do";
-	});
+	
 });
 </script>
 <style>
 .table-style{
-	overflow: hidden;
 	font-size: 1.2em;
-}
-.table-style td{
-	width: 50%;
 }
 .input-type input{
 	display: inline-block;
@@ -112,6 +85,29 @@ $(function(){
 	width: 100px;
 	font-size: 1.1em;
 }
+.hashTag-box{
+	width: 100%;
+	height: 30px;
+}
+.hashTag-style{
+	width: auto;
+	overflow: hidden;
+	display: inline-block;
+	height: 100%;
+	border-radius: 3px;
+	background-color: #eff0f2;
+}
+.tag-place{
+	background-color: transparent;
+	border: none;
+}
+.date-style{
+	width: 46.7%;
+	height: 40px;
+	display: inline-block;
+	border: 1px solid #BDBDBD;
+	border-radius: 5px;
+}
 </style>
 </head>
 <body id="top">
@@ -127,18 +123,18 @@ $(function(){
   <main class="hoc container clear"> 
     <!-- main body -->
 	    <div class="container">
-		    <form name="writeFrm" method="post" onsubmit="return validate(this);">
+		    <form name="uploadFrm" method="post" action="" enctype="multipart/form-data">
 		    	<div style="float: left; border: 0px solid black; width: 49.99%; height: 50px; position: relative; margin-bottom: 10px;">
-		    		<div style="font-size: 25px; color: black; position: absolute; bottom: 25%;">이벤트 등록</div>
+		    		<div style="font-size: 25px; color: black; position: absolute; top: 25%;">이벤트 등록</div>
 		    	</div>
 				<!-- 버튼 -->
 				<div class="upload-btn-wrap">
-					<button type="submit" class="upload-btn">등록</button>
+					<button type="button" class="upload-btn" onfocus="eventUploading(this.form);">등록</button>
 				</div>
 				<table class="table table-bordered table-style" style="color: black;">
 					<!-- 분류선택 -->
 					<tr>
-						<td>
+						<td width="50%;" height="100%;">
 							분류
 						</td>
 						<td>
@@ -147,28 +143,32 @@ $(function(){
 					</tr>
 					<tr>
 						<td class="input-type">
+							<!-- 분류 -->
 							<div class="color-box">
-								<input type="radio" name="eventType" value="대회" />
+								<input type="radio" name="e_type" value="대회" />
 									<span class="input-text">대회</span>
-								<input type="radio" name="eventType" value="대회" />
+								<input type="radio" name="e_type" value="협찬" />
 									<span class="input-text">협찬</span>
-								<input type="radio" name="eventType" value="대회" />
+								<input type="radio" name="e_type" value="추첨" />
 									<span class="input-text">추첨</span>
-								<input type="radio" name="eventType" value="대회" />
+								<input type="radio" name="e_type" value="할인" />
 									<span class="input-text">할인</span>
 							</div>
 						</td>
 						<td>
-							달력삽입예정
+							<!-- 이벤트 기간 -->
+							<input class="date-style" type="date" name="e_start" id="e_start" placeholder="시작 날짜를 선택해주세요." />
+							&nbsp;&nbsp;~&nbsp;&nbsp;
+							<input class="date-style" type="date" name="e_end" id="e_end" />
 						</td>
 					</tr>
 					
 					<!-- 제목 -->
 					<tr>
-						<td colspan="2" class="input-type" style="padding-top: 40px;">
+						<td colspan="2" class="input-type">
 							<input type="text" style="width: 100%; height: 35px; padding-left: 10px;
 								border: 1px solid #BDBDBD; border-radius: 5px;
-								"placeholder="제목을 입력해주세요." name="title"  />
+								"placeholder="제목을 입력해주세요." name="e_title" id="e_title"  />
 						</td>
 					</tr>
 					
@@ -181,8 +181,17 @@ $(function(){
 					
 					<!-- 파일첨부 -->
 					<tr>
-						<td></td>
-						<td></td>
+						<td colspan="2">
+							썸네일 등록
+							<input type="file" name="file" accept="image/*" />
+						</td>
+					</tr>
+					
+					<!-- 파일첨부 -->
+					<tr>
+						<td colspan="2">
+							<input class="tag-place" id="tagPlace" type="text" value="#태그를 입력해주세요.(최대10개)" readonly="readonly" size="25" />
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -202,7 +211,7 @@ $('#summernote').summernote({
 	focus : true,
 	minHeight : 600,
 	maxHeight : null,
-	placeholder : '내용을 입력하세요.',
+	placeholder : '내용을 입력해주세요.',
 	lang : "ko-KR",
 	toolbar: [
 		['fontname', ['fontname']],
@@ -217,7 +226,38 @@ $('#summernote').summernote({
 	],
 	fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
 	fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+	callbacks: { //이미지 첨부하는 부분
+		onImageUpload: function(files) {
+			sendFile(files[0], this);
+		}
+	}
 });
+
+//summernote 이미지 업로드
+function sendFile(file, editor){
+	//파일 전송을 위한 폼 생성
+	data = new FormData();
+	data.append('file', file);
+	$.ajax({ //ajax를 통해 파일 업로드 처리
+		data : data,
+		type : "POST",
+		url : "../event/eventUpload.do",
+		contentType : false,
+		processData : false,
+		success : function(data) {
+			//항상 업로드된 파일의 url이 있어야 한다.
+			$(editor).summernote('insertImage', data.url);
+		}
+	});
+}
+
+$("div.note-editable").on('drop',function(e){
+    for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+    	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
+    }
+   e.preventDefault();
+});
+
 </script>
 
 <script src="./../resources/js/jquery.min.js"></script>

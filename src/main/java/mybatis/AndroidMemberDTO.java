@@ -33,9 +33,55 @@ public class AndroidMemberDTO {
 	private String point;
 	private String appearance;
 	private String c_idx;
+	private String rnum;
 	private int cash;
 	
-	
+	public AndroidMemberDTO() {
+		super();
+	}
+	public AndroidMemberDTO(int m_idx, String m_id, String m_pw, String m_name, String m_birth, String m_email,
+			String m_phone, String m_addr, Date m_date, String m_position, String m_sex, String m_abil, String m_foot,
+			String m_pic, String m_rfa, String m_work, String m_career, String m_area, String m_duration,
+			String cm_memo, String cm_idx, String cm_grade, String goal, String assist, String point, String appearance,
+			String c_idx, String rnum, int cash) {
+		super();
+		this.m_idx = m_idx;
+		this.m_id = m_id;
+		this.m_pw = m_pw;
+		this.m_name = m_name;
+		this.m_birth = m_birth;
+		this.m_email = m_email;
+		this.m_phone = m_phone;
+		this.m_addr = m_addr;
+		this.m_date = m_date;
+		this.m_position = m_position;
+		this.m_sex = m_sex;
+		this.m_abil = m_abil;
+		this.m_foot = m_foot;
+		this.m_pic = m_pic;
+		this.m_rfa = m_rfa;
+		this.m_work = m_work;
+		this.m_career = m_career;
+		this.m_area = m_area;
+		this.m_duration = m_duration;
+		this.cm_memo = cm_memo;
+		this.cm_idx = cm_idx;
+		this.cm_grade = cm_grade;
+		this.goal = goal;
+		this.assist = assist;
+		this.point = point;
+		this.appearance = appearance;
+		this.c_idx = c_idx;
+		this.rnum = rnum;
+		this.cash = cash;
+	}
+
+	public String getRnum() {
+		return rnum;
+	}
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
+	}
 	public String getC_idx() {
 		return c_idx;
 	}

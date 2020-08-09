@@ -61,6 +61,6 @@ button:hover:before,button:hover:after{
   transition:800ms ease all;
 }
 
-label {
-	display: inline;
+.container{
+	max-width : 1250px;
 }
