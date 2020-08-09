@@ -70,7 +70,7 @@
     <!-- 메뉴클릭 시 화면이동할 부분 -->
     <div id="contents_target" style="height: 50px;"></div> 
     <!-- 메뉴클릭 시 내용 출력 부분 -->
-    <div class="mt-0" id="contents"></div>    	   	   	
+    <div class="mt-0" id="contents" style="margin-right:auto; margin-left:auto;"></div>    	   	   	
     </div>
     <!-- / main body -->
     <div class="clear"></div>

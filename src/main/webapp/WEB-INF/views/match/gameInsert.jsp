@@ -15,7 +15,8 @@
 
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36334fae12132b7c9a4b0c870101ef91&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 mapOption = {
@@ -65,6 +66,32 @@ new daum.Postcode({
 }).open();
 }
 
+//----------------카카오맵API를 이용한 주소-좌표변환 START-----------------------
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	var frm = document.gameFrm;
+	
+	function gameJoin(){
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch($('#g_saddr').val(), function(result, status) { 
+			// 정상적으로 검색이 완료됐으면 
+	     	if (status === kakao.maps.services.Status.OK) {
+	        	$('#latitude').val(result[0].y);
+	        	$('#longitude').val(result[0].x);
+	        	console.log($('#g_sname').val());
+			}
+	     	else if(status === kakao.maps.services.Status.ERROR){
+	     		alert("좌표변환 실패");
+	     		return false;
+	     	}
+	     	gameFrm.submit();
+		});
+	}
+	
+	
+//----------------카카오API END--------------------------------------------------
+
 </script>
 
 <style>
@@ -79,7 +106,7 @@ table, th, td{
 	<main class=" ho c container clear">
 	
 		<div class="one_half first">
-			<form name="gameFrm" method="post" onsubmit="return insertValidate(this);" action="<c:url value="/match/gameApply.do" />" >
+			<form name="gameFrm" method="post" action="<c:url value="/match/gameApply.do" />" >
 				<table style="width: 100%;">
 					<tr>
 						<th>클럽명</th>
@@ -176,11 +203,15 @@ table, th, td{
 						<th>구장 주소</th>
 						<td>
 							<input type="text" class="form-control" placeholder="예약된 구장의 이름을 자세히 입력해주세요." 
-								style="width: 70%; display: inline;" id="g_sname" name="g_sname">
+								style="width: 70%; display: inline;" id="g_sname" name="g_sname"> 
 							<input type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소 검색" 
 								style="width: 28%; display: inline;"><br>
 							<input type="text" class="form-control" placeholder="예약된 구장의 주소를 자세히 입력해주세요." 
 								style="width: 100%; display: inline;" id="g_saddr" name="g_saddr">
+							
+							<!-- 좌표 값을 받는 hidden폼 -->
+							<input type="hidden" value="" id="latitude" name="latitude" />
+							<input type="hidden" value="" id="longitude" name="longitude" />
 						</td>		
 					</tr>
 					<tr>
@@ -193,7 +224,7 @@ table, th, td{
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" class="btn btn-secondary" value="매칭신청" style="width: 100%; height: 100%;"/></td>
+						<td colspan="2"><input type="button" class="btn btn-secondary" value="매칭신청" style="width: 100%; height: 100%;" onclick="gameJoin();"/></td>
 					</tr>
 				</table>
 			</form>

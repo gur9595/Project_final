@@ -7,7 +7,8 @@
     <sec:authentication property="principal.username" var="m_id" />
 </sec:authorize>
 
-<div class="row hoc" style="background-color: #282e39">
+<!-- 네비바 -->
+<div class="row hoc" style="background-color: #151326">
 	<div class="col-md-12 right" >
 		<nav id="mainav" class="right text-right" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px;">
 			<ul class="cl ear ml-auto mb-0" style="font-size: 15px; color: #fff;">
@@ -19,7 +20,8 @@
 							</form:form>	 
 						</c:when>
 						<c:otherwise>
-							<a class="" href="${pageContext.request.contextPath }/member/login.do">Login</a>
+							<li><a class="" href="${pageContext.request.contextPath }/member/login.do">Login</a></li>
+							<li><a class="" href="${pageContext.request.contextPath }/stadium/stlogin.do">Stadium</a></li>
 						</c:otherwise>
 					</c:choose>
 				</li>

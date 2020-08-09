@@ -5,6 +5,11 @@
 
 <mapper namespace="mybatis.StadiumDAOImpl">
    
+   <!-- 경기장로그인 -->
+   <select id="login" resultType="mybatis.StadiumDTO">
+   		SELECT * FROM stadium WHERE s_id=#{0} and s_pw=#{1}
+   </select>
+   
    <!-- 전체 경기장 갯수 -->
    <select id="getTotalCount" resultType="int" parameterType="mybatis.StadiumDTO">
       SELECT COUNT(*) FROM stadium
@@ -41,16 +46,17 @@
       WHERE rNum BETWEEN #{start} AND #{end}
    </select>
    
-   <!-- 회원가입 --> 
+  <!-- 회원가입 --> 
   <insert id="stadiumInsert" parameterType="mybatis.StadiumDTO"> 
      insert into stadium values(stadium_seq.nextval, #{s_id}, #{s_pw}, #{s_name}, #{s_phone}, #{s_addr}, #{s_gu},
-        #{s_type}, #{s_pic}, #{s_size}, #{s_cv}, #{s_price}, #{s_memo}, #{s_starttime}, #{s_endtime}) 
+        #{s_type}, #{s_pic}, #{s_size}, #{s_cv}, #{s_price}, #{s_memo}, #{s_starttime}, #{s_endtime}, #{s_lat}, #{s_lng}) 
   </insert>
   
      <!-- 경기장 정보 -->
      <select id="stadiumlist" parameterType="int" resultType="mybatis.StadiumDTO">
         select * from stadium where s_idx = #{s_idx}
      </select>
+     
   
    <!-- 경기장상세보기 리스트 -->
    <select id="s_gamelist" parameterType="int" resultType="mybatis.StadiumGameDTO">
@@ -75,6 +81,19 @@
       select c_name from club where c_idx = #{c_idx}
    </select>
    
+   <!-- 경기장 정보 수정 -->
+   <select id="stEdit" resultType="mybatis.StadiumDTO">
+   		select * from stadium where s_idx=#{s_idx}
+   </select>
+   
+   <update id="stEditAction" parameterType="mybatis.StadiumDTO">
+   		update stadium set s_pw=#{s_pw}, s_name=#{s_name}, s_phone=#{s_phone}, s_type=#{s_type}, s_size=#{s_size}, s_cv=#{s_cv}, s_price=#{s_price}, s_memo=#{s_memo}, s_starttime=#{s_starttime}, s_endtime=#{s_endtime}
+   			where s_id=#{s_id}
+   </update>
+   <!-- 예약자 불러오기 -->
+   <!-- <select id="reservation_get" resultType="">
+   		select c_name from club where c_idx = #{c_idx}
+   </select> -->
 </mapper>
 
 

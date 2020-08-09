@@ -7,9 +7,9 @@
   
       <!-- 게임신청(리스트등록) --> 
       <insert id="gameApply" parameterType="mybatis.GameDTO"> 
-         insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, g_check)
+         insert into game (g_idx, c_idx, g_sname, g_saddr, g_type, g_date, g_memo, g_num, g_time, g_gu, g_check, g_lat, g_lng)
             values( 
-                 game_seq.nextval, #{c_idx}, #{g_sname}, #{g_saddr}, #{g_type}, #{g_date}, #{g_memo}, #{g_num}, #{g_time}, #{g_gu}, 'owner') 
+                 game_seq.nextval, #{c_idx}, #{g_sname}, #{g_saddr}, #{g_type}, #{g_date}, #{g_memo}, #{g_num}, #{g_time}, #{g_gu}, 'owner', #{g_lat}, #{g_lng}) 
       </insert> 
   
       <!-- 게임신청(경기장 리스트에서 게임 리스트등록) --> 

@@ -178,6 +178,6 @@ public class QAController {
 		BoardDTO.setB_idx(b_idx);
 		sqlSession.getMapper(BoardDAOImpl.class).qnaDelete(BoardDTO);
 		
-		return "QA/QA_list";
+		return "redirect:qnaList.do";
 	}
 }

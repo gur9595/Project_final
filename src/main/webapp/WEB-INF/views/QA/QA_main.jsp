@@ -25,13 +25,13 @@
 <link rel="stylesheet" href="./../resources/css/Q&A.css" />
 <!-- dropbox css end -->
 </head>
-<script>
+<!-- <script>
 	function enter() {
 		if (event.keyCode == 13) {
-			location.href = "http://instagram.com";
+			$("#loginFrm").submit();
 		}
 	}
-</script>
+</script> -->
 <body id="top">
 	<!--top-->
 	<%@ include file="./../include/top.jsp"%>
@@ -53,16 +53,16 @@
 					<div class="h03-v2-hero-plank">
 						<div class=" h03-v2-hero-plank__wrapper plank--fused "
 							style="background-image: url(/cms/content/dam/dropbox/www/en-us/help/optimized-hc/unified_home_hero_mobile.png);">
-
+							<img src="https://aem.dropbox.com/cms/content/dam/dropbox/www/en-us/help/optimized-hc/unified_home_hero_desktop.png" class="h03-v2-hero-plank__wrapper--bgImg" alt=""/>
 							<div class="h03-v2-hero-plank__container  hide-header-search">
 								<!-- <h1 class="h03-v2-hero-plank__headline">아 하기 싫다</h1> -->
 								<h2 class="h03-v2-hero-plank__headline">B-PRO 도움말 센터</h2>
 								<div class="h03-v2-hero-plank__search-bar standalone-searchbox">
 									<!-- <div class="CoveoSearchbox search-input" data-enable-omnibox="true" data-enable-query-suggest-addon="true" data-placeholder='도움말 검색'></div> -->
 									<div class="CoveoStyleReplacer">
-										<input type="text"
+							<!-- 			<input type="text" id=-"
 											style="text-align: center; width: 100%; height: 78px; color: #000000;"
-											placeholder="그냥 찾지마세요" onKeypress="enter();" />
+											placeholder="그냥 찾지마세요" onKeypress="enter();" /> -->
 									</div>
 								</div>
 							</div>
@@ -71,11 +71,6 @@
 
 						<!-- 존나 내용물 -->
 						<!-- <div class="h09-v2-support-tools-plank"> -->
-
-
-
-
-
 
 						<div class="h09-v2-support-tools-plank">
 
@@ -110,7 +105,7 @@
 													</div>
 
 													<div class="a04-support-tools__description">
-														서비스 종료 합니다. <i aria-hidden="true"
+														공지사항 페이지로 넘어갑니다. <i aria-hidden="true"
 															class="a04-support-tools__arrow"></i>
 													</div>
 
@@ -125,12 +120,6 @@
 
 
 									<div class="a04-support-tools">
-
-
-
-
-
-
 
 										<div class="a04-support-tools__wrapper">
 
@@ -157,7 +146,7 @@
 													</div>
 
 													<div class="a04-support-tools__description">
-														찢어진 양말을 드립니다! <i aria-hidden="true"
+														 경기장관련 페이지로 넘어갑니다.  <i aria-hidden="true"
 															class="a04-support-tools__arrow"></i>
 													</div>
 
@@ -173,13 +162,7 @@
 
 									<div class="a04-support-tools">
 
-
-
-
-
-
-
-										<div class="a04-support-tools__wrapper">
+								<div class="a04-support-tools__wrapper">
 
 											<a href="../customer/qnaList.do"></a>
 
@@ -195,7 +178,7 @@
 
 													<div class="a04-support-tools__info">
 
-														<div class="a04-support-tools__info--title">매칭취소</div>
+														<div class="a04-support-tools__info--title">Q & A</div>
 
 														<div class="a04-support-tools__info--subtitle">지원 도구
 														</div>
@@ -203,7 +186,7 @@
 													</div>
 
 													<div class="a04-support-tools__description">
-														제발 취소하지마요 <i aria-hidden="true"
+														질문게시판으로 넘어갑니다. <i aria-hidden="true"
 															class="a04-support-tools__arrow"></i>
 													</div>
 
@@ -236,7 +219,7 @@
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">캐시 충전이
 																	안돼요</div>
-																<div class="a02-article-list__articleTag">하지마세요</div> <i
+																<div class="a02-article-list__articleTag">Q & A</div> <i
 																aria-hidden="true" class="a02-article-list__arrow"></i>
 														</a></li>
 
@@ -247,8 +230,7 @@
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">매치 신청하는
 																	법이 궁금해요</div>
-																<div class="a02-article-list__articleTag">니 실력에 무슨
-																	축구에요</div> <i aria-hidden="true"
+																<div class="a02-article-list__articleTag">Q & A</div> <i aria-hidden="true"
 																class="a02-article-list__arrow"></i>
 														</a></li>
 
@@ -259,8 +241,7 @@
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">신청한 경기를
 																	취소 하고 싶어요</div>
-																<div class="a02-article-list__articleTag">고객님 생각을
-																	한번 더 해보시는게</div> <i aria-hidden="true"
+																<div class="a02-article-list__articleTag">Q & A</div> <i aria-hidden="true"
 																class="a02-article-list__arrow"></i>
 														</a></li>
 
@@ -271,7 +252,7 @@
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">우천시 경기가
 																	진행되나요?</div>
-																<div class="a02-article-list__articleTag">되겠어요?</div> <i
+																<div class="a02-article-list__articleTag">Q & A</div> <i
 																aria-hidden="true" class="a02-article-list__arrow"></i>
 														</a></li>
 
@@ -282,8 +263,7 @@
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">​​페어플레이
 																	제도 안내</div>
-																<div class="a02-article-list__articleTag">남자는 그런거
-																	안합니다</div> <i aria-hidden="true"
+																<div class="a02-article-list__articleTag">공지사항</div> <i aria-hidden="true"
 																class="a02-article-list__arrow"></i>
 														</a></li>
 													</ul>

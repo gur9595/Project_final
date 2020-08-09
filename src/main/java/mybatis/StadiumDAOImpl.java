@@ -21,4 +21,10 @@ public interface StadiumDAOImpl {
 	
 	public String c_name_get(int c_idx);
 	
+	public StadiumDTO login(String id, String pass);
+	
+	public StadiumDTO stEdit(ParameterDTO parameterDTO);
+	
+	public int stEditAction(StadiumDTO stadiumDTO);
+	
 }

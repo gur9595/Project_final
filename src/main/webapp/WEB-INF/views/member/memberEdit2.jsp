@@ -6,7 +6,7 @@
 <main class="hoc container clear" id="main">
 <script src="./../resources/js/mypage_main.js"></script>
     <div class="container">
-    	<h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">정&nbsp;보&nbsp;수&nbsp;정</h1>
+    	<h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center;">정&nbsp;보&nbsp;수&nbsp;정</h1>
     	<form action="../member/memberEditAction.do" enctype="multipart/form-data" method="post"id="myForm" name="form"  >
 		
 			<input type="hidden" name="m_id" value="${dto.m_id }"/>
@@ -115,36 +115,18 @@
 					<th colspan="2">변경할 파일</th>
 				</tr>
 				<tr>
-					<td width="40%"><img src="./../resources/uploadsFile/${dto.m_pic }" alt="" style="width: 150px; height: 200px;"/></td>
-					<td width="20%"><input type="file" name="file" accept="image/*" onchange="setPic(event)" style="margin-left: 30%;" /></td>
-					<td width="40%">
-						<div id="image_container" style="width: 150px; height: 220px;" align="center"></div>
+					<td width="35%"><img src="./../resources/uploadsFile/${dto.m_pic }" alt="" style="width: 150px; height: 200px;"/></td>
+					<td width="30%"><input type="file" name="file" accept="image/*" onchange="setPic(event)" style="margin-left: 10%;" /></td>
+					<td width="35%">
+						<div id="image_container" style="width: 200px; height: 250px;" align="center"></div>
 					</td>
 				</tr>
 			</table>
 
 	        <div style="text-align:center">
-
-	        	<button type="button" class="btn btn-outline-info" style="font-size:20px;" onclick="location.href= 'memberEdit.do'">이전페이지</button>  
-		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">가입완료!!</button>
-
+		        <button class="btn btn-outline-success" type="submit" style="font-size:20px;">수정하기</button>
 	        </div>
     	</form>
 	</div>
 </main>
 </html> 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

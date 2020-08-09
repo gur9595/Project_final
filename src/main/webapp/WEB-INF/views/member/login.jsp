@@ -79,7 +79,7 @@
                   <div class="wrap-login100-form-btn">
                      <div class="login100-form-bgbtn"></div>
                      <button class="login100-form-btn">
-                        L O G I N
+                        로그인
                      </button>
                   </div>
                      <div class="clear"></div>

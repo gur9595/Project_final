@@ -4,138 +4,97 @@
 <!DOCTYPE html>
 <html lang="">
 <main class="hoc container clear" id="main" >
-<link rel="stylesheet" type="text/css" href="./../resources/member_join1.css" />
 <link rel="stylesheet" href="./../resources/css/member_join2.css">
-<link rel="stylesheet" href="./../resources/css/member_join3.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+
+
 <script src="./../resources/js/mypage_main.js"></script>
+<style>
 
+.txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
+.txtBox31 { border-color: DodgerBlue; width: 350px; }
+.hoc{max-width:1100px;}
+
+input[type=text]{
+	font-size:25px;
+}
+input[type=password] {
+		font-size:15px;
+        font-family: "nanum";
+        
+        &::placeholder {
+        	font-family: "NanumSquare";
+        }
+    }
+input[type=email]{
+	font-size:25px;
+}
+</style>
 	<table border=1>
-		<div class="musinsa-wrapper wrapper-member">
+		<div>
 
-			<!-- Member -->
-			<div class="n-member-area form-area" style="background: #FFFFFF;">
+			<div style="background: #FFFFFF;">
 
 				<!-- Header -->
 				<header class="member-header">
 					<div class="logo"></div>
-					<h2 style="font-size: 40px; text-align: center;">회원정보 수정</h2>
+					<h1 style="font-size: 40px; text-align: center; font-weight:bold;">회원정보 수정</h1>
 				</header>
 					<br /><br />
-					<div class="n-form-set">
-						<label for="m_id" class="n-form-label">아이디<span
-							class="essential">필수 입력</span></label><br /> <input type="text"
-							class="n-input" id="m_id" name="m_id" value="${dto.m_id }" readonly
-							style="width: 400px;">
+					<h2>아이디</h2>
+					<input type="text" class="txtBox31" id="m_id" name="m_id" value="${dto.m_id }" readonly>
 
-						<p class="n-validation" id="hLayerid"></p>
-					</div>
+					<br/>
+					
+					<h2>비밀번호</h2>
+					<input type="password" class="txtBox31" id="m_pw" name="m_pw" minlength="8" placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
+		
+					<h2>비밀번호 확인</h2>
+					<input type="password" class="txtBox31" id="m_pw2" name="m_pw2" autocomplete="new-password" placeholder="비밀번호 재입력">
+
 					<br>
-					<div class="n-form-set">
-						<label for="password">비밀번호 <span class="essential"></span></label>
-						<div class="n-form-icon">
-							<input type="password" class="n-input input" id="m_pw1"
-								name="m_pw" minlength="8" autocomplete="new-password"
-								placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
-							<p class="n-validation" id="passwordValidMessage"></p>
+					<h2>이름</h2>
+					<input type="text" class="txtBox31" id="m_name" name="m_name" placeholder="이름입력" minlength="2" maxlength="8" value="${dto.m_name }">
 
-						</div>
-						<br>
-						<div class="n-form-icon">
-							<input type="password" class="n-input input" id="m_pw2"
-								id="confirmPassword" name="confirmPassword"
-								autocomplete="new-password" placeholder="비밀번호 확인">
-							<p class="n-validation" id="passwordConfirmValidMessage"></p>
-
-						</div>
-					</div>
 					<br>
-					<div class="n-form-set">
 
-						<label for="name">이름 <span class="essential"></span></label> <input
-							type="text" class="n-input input" id="m_name" name="m_name"
-							placeholder="이름입력" minlength="2" maxlength="8"
-							value="${dto.m_name }">
-						<p class="n-validation" id="hLayername"></p>
-					</div>
-					<br>
-					<div class="n-form-set">
+					<h2>생년월일</h2>
+					<input type="text" class="txtBox31" id="m_birth" name="m_birth" maxlength="8" placeholder="예)19970121" value="${dto.m_birth }">
 
-						<label for="birth">생년월일 <span class="essential"></span></label>
-						<input type="text" class="n-input input" id="m_birth"
-							name="m_birth" maxlength="8" placeholder="예)19970121"
-							value="${dto.m_birth }">
-						<p class="n-validation" id="hLayerjumin"></p>
-					</div>
-					<br>
-					<div class="n-form-set" id="input-div">
 
-						<label for="tel">휴대전화 <span class="essential"></span></label> <input
-							type="tel" class="n-input" id="m_phone" name="m_phone"
-							placeholder="휴대전화 입력(-없이)" minlength="10" maxlength="11"
-							value="${dto.m_phone }">
-						<p class="n-validation" id="searchValidPhone"
-							style="display: none">번호 형식이 올바르지 않습니다</p>
-					</div>
 					<br>
-					<div class="n-form-set">
-						<label for="email">이메일 <span class="essential"></span></label>
-						<div class="n-form-layer" id="emailFromLayer">
-							<input type="email" class="n-input" id="m_email" name="m_email"
-								maxlength="50" placeholder="이메일" value="${dto.m_email }">
-							<p class="n-validation" id="hLayeremail"></p>
-							<ul id="emailDomainList" class="layer">
-								<li><button type="button">
-										<span></span><em>naver.com</em>
-									</button></li>
-								<li><button type="button">
-										<span></span><em>gmail.com</em>
-									</button></li>
-								<li><button type="button">
-										<span></span><em>hanmail.net</em>
-									</button></li>
-								<li><button type="button">
-										<span></span><em>nate.com</em>
-									</button></li>
-								<li><button type="button">
-										<span></span><em>daum.net</em>
-									</button></li>
-							</ul>
-						</div>
-					</div>
+					<h2>휴대전화</h2>
+					<input type="text" class="txtBox31" id="m_phone" name="m_phone" minlength="4" maxlength="4"
+						value="<%=request.getAttribute("phone") %>"" />
+					
 					<br>
-					<div class="n-form-set" id="input-div">
-						<label for="address">주소<span class="essential"></span></label>
-						<div>
-						
-							<input type="button" class="n-btn btn-secondary"
-								onclick="DaumPostcode()" value="주소 찾기"
-								style="width: 130px; height: 50px; display: inline; margin-top: 5px; font-weight: bold" /><br>
-                            <input type="hidden" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
-							<input type="text" id="m_addr1" name="m_addr1" placeholder="주소"
-								class="n-input" style="margin-top: 5px;" 
-									value="<%=request.getAttribute("addr1") %>" /> <input type="text" id="m_addr2"
-								name="m_addr2" placeholder="상세주소" class="n-input" style="margin-top: 5px;" 
-									value="<%=request.getAttribute("addr2") %>"/>
-							<p class="n-validation" id="searchValidPhone"
-								style="display: none">주소형식이 올바르지 않습니다.</p>
+					<h2>이메일</h2>
+					<input type="email" class="txtBox31" id="m_email" name="m_email" maxlength="50" placeholder="이메일" value="${dto.m_email }">
+					<br>
+					
 
-						</div>
+					<h2>주소</h2>
+					<div>
+						<input type="button" class="btn btn-warning"
+							onclick="DaumPostcode()" value="주소 찾기"
+							style="width: 130px; height: 50px; display: inline; margin-top: 5px; font-weight: bold" /><br>
+                        <input type="hidden" id="postcode" name="zip1" placeholder="우편번호" class="n-input" style="width:100px; margin-top:5px; display:inline;" readonly/>
+						<input type="text" id="m_addr1" name="m_addr1" placeholder="주소" class="n-input" style="margin-top: 5px;" readonly
+								value="<%=request.getAttribute("addr1") %>" />
+						<input type="text" id="m_addr2" name="m_addr2" placeholder="상세주소" class="n-input" style="margin-top: 5px;" 
+								value="<%=request.getAttribute("addr2") %>"/>
 					</div>
+
 					<br><br>
-						<input type="button" class="n-btn btn-secondary" value="다음 페이지" id="nextpage"  />
+					
+					<div style="margin: auto; width: 20%;">
+						<button type="button" class="n-btn btn-secondary" value="다음 페이지" id="nextpage"  style="width:200px;">다음페이지</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</table>
-	
-
-<script>
-
-
-
-</script>
 </main> 

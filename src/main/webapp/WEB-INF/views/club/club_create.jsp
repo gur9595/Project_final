@@ -5,7 +5,6 @@
 
 <html>
 <link href="./../resources/css/create.css" rel="stylesheet"	type="text/css" media="all">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -82,6 +81,7 @@ request.setCharacterEncoding("UTF-8");
 String keyword = request.getParameter("keyword");
 %>
 <body>
+<div class="hoc container clear" style="max-width:1100px;">
 	<center class="center">클럽 생성</center>
 	<br /><br />
 	<form name="creFrm" id="creFrm" enctype="multipart/form-data" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
@@ -194,6 +194,7 @@ String keyword = request.getParameter("keyword");
 			<input type="submit" id="joinBtn" class="btn btn-outline-success" value="클럽생성">
 		</div>
 	</form>
+</div>
 </body>
 <script>
 function isValidate (creFrm){
