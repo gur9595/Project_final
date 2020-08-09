@@ -20,6 +20,11 @@
 <script src="./../resources/js/mypage_main.js"></script>
 <link rel="stylesheet" href="./../resources/css/mypage_main.css">
 </head>
+<style>
+.container{
+	max-width : 900px;
+}
+</style>
 <body id="top">
 
 <!--top-->

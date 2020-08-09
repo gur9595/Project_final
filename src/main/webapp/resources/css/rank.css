@@ -3,9 +3,7 @@
 /* CSS Document */
 body, html {
 	margin: 0;
-	font-family:'Apple SD Gothic Neo','Noto Sans CJK KR', 'Malgun Gothic', 'dotum', 'gulim',sans-serif;
 	color: #333;
-	background-color: white;
 	width:100%;
 	height: 100%;
 	transition: 0.25s;
@@ -88,7 +86,6 @@ input[type=text]:focus,input[type=password]:focus, textarea:focus, select:focus{
 	border: 1px solid #3540A5 !important;
 }
 input {
-	padding: 15px 10px;
 	border-radius: 6px;
 	border: 1px solid #ddd;
 	box-shadow: none;
@@ -97,7 +94,7 @@ input {
 	-webkit-appearance: none;
     appearance: none;
 	font-size: 16px;
-	color: #333333;
+	font-weight:600;
 }
 select {
     background: url('./../img/ic_arrow.png') no-repeat 95% 50%;
