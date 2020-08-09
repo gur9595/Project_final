@@ -33,7 +33,8 @@
 	        	
 	        	<li><a class="" href="${pageContext.request.contextPath }/manager/managerMain.do">Manager</a></li>
 	        	
-	        	<li><a class="" href="${pageContext.request.contextPath }/payment/paymentMain.do">Charge</a></li>
+	        	<li><a class="" href="${pageContext.request.contextPath }/payment/ballCurrent.do">Charge</a></li>
+	        	
 			</ul>
 	    </nav>
     </div>

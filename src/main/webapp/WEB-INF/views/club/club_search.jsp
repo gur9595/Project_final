@@ -145,7 +145,7 @@ request.setCharacterEncoding("UTF-8");
 			 	<div class="col col-6">활동지역</div>
 			 	<div class="col col-7">입단</div>
 			 </li>
-
+ 
 			<c:forEach items="${lists }" var="row" varStatus="status"> 
 			<li class="table-row">
 				<input type="hidden" value="${row.c_idx }" />

@@ -413,6 +413,7 @@
 			order by points desc) tb
 			) where rnum between 1 and 10
    </select>
+   
    <!-- *******************안드로이드 매퍼*************************** -->
    
    
@@ -473,16 +474,78 @@
    <insert id="gameMemberRejectA" parameterType="mybatis.AndroidGameMemberDTO">
       delete from gamemember where g_idx = #{g_idx} and m_id like #{m_id}
    </insert>
-    
+   
+    <!-- 팀원 골 랭킹  -->
     <select id="clubGoalRankA" resultType="mybatis.AndroidMemberDTO">
-	select distinct m.m_name,m.m_pic,
-	(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as appearance ,
+	select * from(
+	select rownum rnum, tb.* from
+	(select distinct m.m_name, m.m_pic,
+	(select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as appearance , 
 	(select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as goal 
-	from member m 
-		inner join gamemember gm on m.m_id = gm.m_id 
+	from member m
+		inner join gamemember gm on m.m_id = gm.m_id
 		inner join game g on g.g_idx = gm.g_idx
 	where g.c_idx = #{c_idx} and g.g_rating is not null
-	order by goal desc
+	order by goal desc)tb)
+
 	</select>
+	
+     <!-- 팀원 어시 랭킹 -->
+    <select id="clubAssistRankA" resultType="mybatis.AndroidMemberDTO">
+      select * from(
+	  select rownum rnum, tb.* from
+      (select distinct m.m_name, m.m_pic, 
+      (select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as appearance ,
+      (select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_assist like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as assist
+      from member m 
+          inner join gamemember gm on m.m_id = gm.m_id
+          inner join game g on g.g_idx = gm.g_idx    
+      where g.c_idx = #{c_idx} and g.g_rating is not null
+      order by assist desc)tb)
+     </select>
+     
+     <!-- 팀원 공포 랭킹 -->
+     <select id="clubPointRankA" resultType="mybatis.AndroidMemberDTO">
+      select * from(
+	  select rownum rnum, tb.* from
+      (select distinct m.m_name, m.m_pic, 
+      (select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as appearance ,
+      (select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) + (select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_assist like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as point
+      from member m 
+          inner join gamemember gm on m.m_id = gm.m_id
+          inner join game g on g.g_idx = gm.g_idx    
+      where g.c_idx = #{c_idx} and g.g_rating is not null
+      order by point desc)tb)
+     </select>
+     
+     <!-- 팀원 경기 랭킹 -->
+     <select id="clubAppearanceRankA" resultType="mybatis.AndroidMemberDTO">
+      select * from(
+	  select rownum rnum, tb.* from
+      (select distinct m.m_name, m.m_pic, 
+      (select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as appearance 
+      from member m 
+          inner join gamemember gm on m.m_id = gm.m_id
+          inner join game g on g.g_idx = gm.g_idx    
+      where g.c_idx = #{c_idx} and g.g_rating is not null
+      order by appearance desc )tb)
+     </select>
+     
+     <!-- 팀 랭킹 --> 
+     <select id="clubTotalRankingA" resultType="mybatis.RankingDTO">
+   		select * from(
+			select rownum rnum,tb.* from
+			(select c1.c_idx, c1.c_name, c1.c_emb, 
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null) as matches,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W') as wins,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D') as draws,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null)*2 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W')*3 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D')*1 as points
+			from club c1
+			order by points desc) tb
+			) where rnum between 1 and 10
+   </select>
+     
      
  </mapper>
