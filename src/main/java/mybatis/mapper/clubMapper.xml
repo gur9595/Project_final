@@ -147,7 +147,7 @@
          <if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
          where
          <if test="c_name!=''">
-                c_name like #{c_name}
+                c_name like '%${c_name}%'
          </if>
          <if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
               and  
@@ -479,11 +479,80 @@
 	select * from(
         select rownum rnum, tb.* from
         (select distinct m.m_name, m.m_pic,
-            (select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx  where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = 45) as appearance ,
-            (select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null and g.c_idx = 45) as goal
+            (select count(*) from gamemember gm inner join game g on gm.g_idx=g.g_idx  where m.m_id like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as appearance ,
+            (select count(*) from goalhistory gh inner join game g on gh.g_idx=g.g_idx where gh_goal like gm.m_id and g.g_rating is not null and g.c_idx = #{c_idx}) as goal
         from member m inner join gamemember gm on m.m_id = gm.m_id
                             inner join game g on g.g_idx = gm.g_idx
         where g.c_idx = #{c_idx} and g.g_rating is not null order by goal desc) tb) ;
 	</select>
+     
+     <select id="clubSearchFilterA" resultType="mybatis.AndroidClubDTO" parameterType="mybatis.AndroidClubDTO">
+       select * from ( 
+          select tb.*, rownum rNum from( 
+             select * from club 
+            <if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
+               where
+               <if test="c_name!=''">
+                      c_name like '%${c_name}%'
+               </if>
+               <if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
+                    and  
+               </if>
+               <if test="c_area!=''">
+                      c_area like #{c_area}
+               </if>
+               <if test="c_area!='' and ( c_ability!='' or c_gender!='' or c_age!='' )">
+                    and  
+               </if>
+               <if test="c_ability!=''">
+                      c_ability like #{c_ability}
+               </if>
+               <if test="c_ability!='' and (c_gender!='' or c_age!='' )">
+                    and  
+               </if>
+               <if test="c_gender!=''">
+                      c_gender like #{c_gender}
+               </if>
+               <if test="c_gender!='' and c_age!=''">
+                    and  
+               </if>
+               <if test="c_age!=''">
+                      c_age like #{c_age}
+               </if>
+            </if>
+                order by c_idx desc       
+             ) tb 
+          )
+     </select>
+     
+     <select id="clubTotalRankingA" resultType="mybatis.AndroidRankingDTO">
+   		select * from(
+			select rownum rnum,tb.* from
+			(select c1.c_idx, c1.c_name, c1.c_emb, c1.c_area, 
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null) as matches,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W') as wins,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D') as draws,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null)*2 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W')*3 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D')*1 as points
+			from club c1
+			order by points desc) tb
+			)
+   </select>
+   
+   <select id="clubAreaRankingA" resultType="mybatis.AndroidRankingDTO">
+   		select * from(
+			select rownum rnum,tb.* from
+			(select c1.c_idx, c1.c_name, c1.c_emb, c1.c_area, 
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null) as matches,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W') as wins,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D') as draws,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null)*2 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W')*3 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D')*1 as points
+			from club c1 where c_area = #{c_area}
+			order by points desc) tb
+			)
+   </select>
      
  </mapper>

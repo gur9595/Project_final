@@ -19,9 +19,44 @@ public class AndroidClubDTO {
 	private String c_age;
 	private int start;
 	private int end;
-	
+	private String rnum;
 	private String m_id;
 	
+	public AndroidClubDTO() {
+		super();
+	}
+	
+	public AndroidClubDTO(String c_idx, String c_name, String c_cash, String c_emb, String c_area, String c_type,
+			Date c_date, String c_memo, String c_color, String c_ability, String c_gender, int c_memlimit, String c_age,
+			int start, int end, String rnum, String m_id) {
+		super();
+		this.c_idx = c_idx;
+		this.c_name = c_name;
+		this.c_cash = c_cash;
+		this.c_emb = c_emb;
+		this.c_area = c_area;
+		this.c_type = c_type;
+		this.c_date = c_date;
+		this.c_memo = c_memo;
+		this.c_color = c_color;
+		this.c_ability = c_ability;
+		this.c_gender = c_gender;
+		this.c_memlimit = c_memlimit;
+		this.c_age = c_age;
+		this.start = start;
+		this.end = end;
+		this.rnum = rnum;
+		this.m_id = m_id;
+	}
+	
+	public String getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
+	}
+
 	public String getM_id() {
 		return m_id;
 	}
