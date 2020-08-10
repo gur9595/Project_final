@@ -28,7 +28,7 @@
 	<main class="hoc clear">
 		<div class="container" style="margin-left:auto; margin-right:auto;">
 		<h1 style="font-size: 40px; text-align: center;">구장 등록</h1>
-			<form name="stadiumInFrm" action="<c:url value="/member/member_stadiumInsert.do" />" method="post">
+			<form name="stadiumInFrm" action="<c:url value="/member/member_stadiumInsert.do" />" method="post" enctype="multipart/form-data">
 	            <header class="member-header">
 	                <div class="logo">
 	            
@@ -63,22 +63,26 @@
 	                  
 	               <input class="form-control"
 	                  type="text" id="detailAddress" name="s_addr2" placeholder="상세주소"maxlength="20"
-	                  style="width: 500px; height:50px; margin-top: 10px;"" />
-	               <input class="form-control"
-	                  type="hidden" id="extraAddress" name="s_gu" placeholder="구"maxlength="20"
+	                  style="width: 500px; height:50px; margin-top: 10px;" />
+	               <input class="form-control" type="hidden" id="extraAddress" name="s_gu" placeholder="구" maxlength="20"
 	                  style="width: 400px; margin-top: 5px;" />
 	   
 	   
-	            <h2>휴대전화</h2> <input class="txtBox31"maxlength="20"
-	               type="tel" id="s_phone" value="01048939337" name="s_phone" style="font-size:25px;"
-	               placeholder="휴대전화 입력(-없이)" maxlength="11">
+	            <h2>휴대전화</h2> <input class="txtBox31"maxlength="3"
+	               type="tel" id="s_phone1" value="010" name="s_phone1" style="font-size:25px;" maxlength="3"/>
+	   
+	            <input class="txtBox31"maxlength="4"
+	               type="tel" id="s_phone2" value="2526" name="s_phone2" style="font-size:25px;" maxlength="4"/>
+	   
+	            <input class="txtBox31"maxlength="4"
+	               type="tel" id="s_phone3" value="5289" name="s_phone3" style="font-size:25px;" maxlength="4"/>
 	   
 	            <h2>구장크기</h2> <input class="txtBox31"maxlength="20"
 	               type="tel" id="s_size" value="104x68" name="s_size" style="font-size:25px;"
-	               placeholder="00x00으로 입력" maxlength="11">
+	               placeholder="00x00으로 입력" maxlength="11"/>
 	   
 	            <h2>구장 대표 사진</h2> 
-	               <input type="file" class="txtBox31" id="s_pic" name="s_pic" font-size:25px;>
+	               <input type="file" class="txtBox31" id="s_pic" name="file" multiple="multiple"/>
 	   
 	            <h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="font-size:25px;"
 	               placeholder="00:00" value="07:00" maxlength="11">
