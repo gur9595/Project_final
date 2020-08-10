@@ -1,6 +1,7 @@
 var isDirty = false, isPosting = false, shirtId;
     var form = new Array(26);
 $(function () { 
+	
     shirtId = $(".active_shirt").attr("id"); 
     // disableSelection : 아이템 내부 글자 드래그 불가
     $(".player").disableSelection(); 
@@ -475,3 +476,4 @@ $(function () {
         }) 
     }) 
 })
+

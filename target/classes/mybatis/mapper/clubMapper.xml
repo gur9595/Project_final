@@ -27,7 +27,7 @@
       <select id="clubView10History" resultType="mybatis.GameDTO">
          select * from (
              select tb.*, rownum rNum from(
-                 select g_result 
+                 select g_result, g_ratingmemo 
                  from game 
                  where g_result is not null and c_idx = #{param1} order by g_date desc
              ) tb
@@ -198,7 +198,7 @@
             <if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
                where
                <if test="c_name!=''">
-                      c_name like #{c_name}
+                      c_name like '%${c_name}%'
                </if>
                <if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
                     and  
@@ -605,5 +605,23 @@
 			order by points desc) tb
 			)
    </select>
+   
+   <update id="qrCheck" parameterType="mybatis.GameDTO">
+      	update game set g_qrcheck = #{g_qrcheck} where g_idx = #{g_idx} and g_check like 'owner'
+   </update>
+   
+   <select id="select_qrcheckA" resultType="mybatis.AndroidMatchDTO">
+   		select g_qrcheck from game where g_idx=#{g_idx}
+   </select>   
      
  </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
