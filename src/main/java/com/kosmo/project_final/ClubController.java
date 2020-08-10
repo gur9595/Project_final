@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +25,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -206,11 +208,18 @@ public class ClubController {
 
 		return "club/club_mylist";
 	}
-
+	
+	//클럽생성 웹
 	@RequestMapping("/club/clubCreate.do")
 	public String clubCreate() {
 
 		return "club/club_create";
+	}
+	//클럽생성 앱
+	@RequestMapping("/android/clubCreate.do")
+	public String androidClubCreate() {
+		
+		return "club/android_club_create";
 	}
 	
 	@RequestMapping("/club/clubKaKaoView.do")
@@ -985,7 +994,7 @@ public class ClubController {
 		return uuid;
 	}
 
-	// 클럽 생성
+	// 클럽 생성 웹
 	@RequestMapping(value = "/club/clubCreate.do", method = RequestMethod.POST)
 	public String clubCreatePro(Principal principal, HttpSession session, ClubDTO clubdto, Model model,
 			MultipartHttpServletRequest req) {
@@ -993,7 +1002,7 @@ public class ClubController {
 		String m_id = principal.getName();
 		// 서버의 물리적경로 가져오기
 		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
-
+		
 		// 폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
 		Map returnObj = new HashMap();
 		try {
@@ -1065,8 +1074,123 @@ public class ClubController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return "club/club_main";
+	}
+	
+	// 클럽 생성 앱
+	@RequestMapping(value = "/android/clubCreate.do", method = RequestMethod.POST)
+	public String androidClubCreatePro(HttpSession session, ClubDTO clubdto, Model model, MultipartHttpServletRequest req) {
+		
+		String m_id = req.getParameter("m_id");
+		
+		// 서버의 물리적경로 가져오기
+		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
+		
+		int idx = 0;
+		
+		// 폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
+		Map returnObj = new HashMap();
+		try {
+			// 업로드폼의 file속성의 필드를 가져온다. (여기서는 2개임)
+			Iterator itr = req.getFileNames();
+			
+			MultipartFile mfile = null;
+			String fileName = "";
+			List resultList = new ArrayList();
+			
+			// 파일외의 폼값 받음(여기서는 제목만 있음)
+			String title = req.getParameter("title");
+			System.out.println("title=" + title);
+			
+			/*
+			 * 물리적 경로를 기반으로 File 객체를 생성한후 디렉토리가 존재하는지 확인함 만약 없다면 생성함
+			 */
+			File directory = new File(path);
+			if (!directory.isDirectory()) {
+				directory.mkdirs();
+			}
+			// 업로드폼의 file속성의 필드갯수만큼 반복
+			while (itr.hasNext()) {
+				
+				// 전송된 파일의 이름을 읽어옴
+				fileName = (String) itr.next();
+				mfile = req.getFile(fileName);
+				System.out.println("mfile= " + mfile);
+				
+				// 한글꺠짐방지 처리후 전송된파일명을 가져옴
+				String originalName = new String(mfile.getOriginalFilename().getBytes(), "UTF-8");
+				
+				// 서버로 전송된 파일이 없다면 while문의 처음으로 돌아간다
+				if ("".equals(originalName)) {
+					continue;
+				}
+				
+				// 파일명에서 확장자 부분을 가져옴
+				String ext = originalName.substring(originalName.lastIndexOf('.'));
+				
+				// UUID를 통해 생성된 문자열과 확장자를 합침
+				String saveFileName = getUuid() + ext;
+				
+				// 물리적경로에 새롭게 생성된 파일명으로 파일저장
+				File serverFullName = new File(path + File.separator + saveFileName);
+				mfile.transferTo(serverFullName);
+				
+				// 서버에 파일업로드 완료후...
+				Map file = new HashMap();
+				file.put("originalName", originalName); // 원본파일명
+				file.put("saveFileName", saveFileName); // 저장된파일명
+				file.put("serverFullName", serverFullName);// 서버의 전체 경로
+				file.put("title", title); // 제목
+				// 위4가지 정보를 저장한 Map을 ArrayList에 저장한다.
+				resultList.add(file);
+				
+				clubdto.setC_emb(saveFileName);
+				
+				System.out.println("clubdto.getC_name() : " + clubdto.getC_name());
+				System.out.println("clubdto.getC_emb() : " + clubdto.getC_emb());
+				System.out.println("clubdto.getC_area() : " + clubdto.getC_area());
+				System.out.println("clubdto.getC_gender() : " + clubdto.getC_gender());
+				System.out.println("clubdto.getC_type() : " + clubdto.getC_type());
+				System.out.println("clubdto.getC_ability() : " + clubdto.getC_ability());
+				System.out.println("clubdto.getC_memlimit() : " + clubdto.getC_memlimit());
+				System.out.println("clubdto.getC_memo() : " + clubdto.getC_memo());
+				System.out.println("clubdto.getC_age() : " + clubdto.getC_age());
+				
+				sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
+				
+				idx = sqlSession.getMapper(ClubDAOImpl.class).clubIdx(clubdto);
+				
+				System.out.println("m_id : " + m_id);
+				System.out.println("idx : " + idx);
+				sqlSession.getMapper(ClubDAOImpl.class).clubCreateMember(m_id, idx);
+				
+			}
+			returnObj.put("files", resultList);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+
+		String result = "";
+		if(idx == 0) {
+			result = "fail";
+		}
+		else if(idx != 0) {
+			result = "success";
+		}
+
+		model.addAttribute("result", result);	
+		return "club/android_club_create_success";
+	}
+	
+	//클럽생성 성공 앱
+	@RequestMapping("/android/club_create_success.do")
+	public String androidClubCreateSuccess() {
+				
+		return "club/android_club_create_success";
 	}
 
 
