@@ -4,19 +4,28 @@ import java.security.Principal;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import firebase.AndroidPushNotificationsService;
 import mybatis.AdminDAOImpl;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
@@ -34,6 +44,7 @@ import mybatis.ClubMemberDTO;
 import mybatis.GameDTO;
 import mybatis.GameMemberDTO;
 import mybatis.GoalHistoryDTO;
+import mybatis.MatchDAOImpl;
 import mybatis.MatchDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
@@ -99,8 +110,6 @@ public class ClubController {
 	@RequestMapping("/club/clubSearch.do")
 	public String clubSearch(Principal principal, Model model, HttpSession session, HttpServletRequest req) {
 
-		String m_id = principal.getName();
-
 		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCount();
 
 		int pageSize = 10;
@@ -120,10 +129,9 @@ public class ClubController {
 
 		String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/club/clubMain.do?");
+		
 
 		model.addAttribute("pagingImg", pagingImg);
-
-		model.addAttribute("m_id", m_id);
 
 		System.out.println(totalRecordCount);
 
@@ -152,6 +160,7 @@ public class ClubController {
 
 		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCountFilter(clubDTO);
 
+		System.out.println(totalRecordCount);
 		// 페이지 처리를 위한 설정값.
 
 		int pageSize = 10;
@@ -183,24 +192,31 @@ public class ClubController {
 	}
 
 	@RequestMapping(value = "/club/clubApplyAction.do", method = RequestMethod.POST)
-	public String clubApplyAction(HttpServletRequest req) {
+	public String clubApplyAction(Principal principal, HttpServletRequest req) {
+		String m_id = principal.getName();
 
 		ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
 		clubMemberDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));
-		clubMemberDTO.setM_id(req.getParameter("m_id"));
+		clubMemberDTO.setM_id(m_id);
 		clubMemberDTO.setCm_memo(req.getParameter("memo"));
 		// Mybatis 사용
 		int suc = sqlSession.getMapper(ClubDAOImpl.class).clubApply(clubMemberDTO);
 
 		System.out.println(suc);
 
-		return "club/club_main";
+		return "club/club_mylist";
 	}
 
 	@RequestMapping("/club/clubCreate.do")
 	public String clubCreate() {
 
 		return "club/club_create";
+	}
+	
+	@RequestMapping("/club/clubKaKaoView.do")
+	public String clubKaKaoView() {
+		
+		return "club/club_kakao_view";
 	}
 
 	@RequestMapping("/club/clubView.do")
@@ -266,15 +282,16 @@ public class ClubController {
 		for (GameDTO dto : tenGames) {
 			tenTotal++;
 			if (dto.getG_result().equals("W")) {
-				tenHistory.add("<div class='win'>승</div>");
+				tenHistory.add("<div class='win'>승<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
 				tenWin++;
 			} else if (dto.getG_result().equals("L")) {
-				tenHistory.add("<div class='lose'>패</div>");
+				tenHistory.add("<div class='lose'>패<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
 				tenLose++;
 			} else {
-				tenHistory.add("<div class='draw'>무</div>");
+				tenHistory.add("<div class='draw'>무<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
 				tenDraw++;
 			}
+			
 
 		}
 		if (tenTotal != 0) {
@@ -538,6 +555,10 @@ public class ClubController {
 			}
 		}
 
+		ClubDTO clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		model.addAttribute("clubDTO", clubDTO);
+		
+		model.addAttribute("lists", lists);
 		model.addAttribute("squad", squad);
 		model.addAttribute("bench", bench);
 
@@ -558,30 +579,34 @@ public class ClubController {
 		else {
 			g_idx = Integer.parseInt(reqG_idx);
 		}
-
+		
+		System.out.println(g_idx);
+		GameMemberDTO nullDTO = new GameMemberDTO();
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx);
 
-		ArrayList<String> squad = new ArrayList<String>();
-		ArrayList<String> bench = new ArrayList<String>();
+		ArrayList<GameMemberDTO> squad = new ArrayList<GameMemberDTO>();
+		ArrayList<GameMemberDTO> bench = new ArrayList<GameMemberDTO>();
 		int check = 0;
 		for (int i = 0; i < 26; i++) {
 			check = 0;
 			for (GameMemberDTO gameMemberDTO : lists) {
 				if (i == gameMemberDTO.getGm_form()) {
-					squad.add(i, gameMemberDTO.getM_name());
+					squad.add(i, gameMemberDTO);
+
 					check++;
 				}
 			}
 			if (check == 0)
-				squad.add(i, "");
+				squad.add(i, nullDTO);
 		}
 
 		for (GameMemberDTO gameMemberDTO : lists) {
 			if (gameMemberDTO.getGm_form() == (-1)) {
-				bench.add(gameMemberDTO.getM_name());
+				bench.add(gameMemberDTO);
 			}
 		}
 
+		model.addAttribute("lists", lists);
 		model.addAttribute("squad", squad);
 		model.addAttribute("bench", bench);
 
@@ -636,6 +661,7 @@ public class ClubController {
 
 		int clubManageEdit = sqlSession.getMapper(ClubDAOImpl.class).clubViewUpdate(c_idx, cm_grade, cm_id);
 
+		model.addAttribute("clubDTO", clubDTO);
 		model.addAttribute("clubManageEdit", clubManageEdit);
 		return "redirect:/club/clubViewManage.do?c_idx=" + c_idx;
 	}
@@ -732,15 +758,84 @@ public class ClubController {
 
 		GameDTO gameDTO = new GameDTO();
 
-		gameDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
-
-		gameDTO.setG_num(Integer.parseInt(req.getParameter("g_num")));
+		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+		int g_num = Integer.parseInt(req.getParameter("g_num"));
+		gameDTO.setG_idx(g_idx);
+		gameDTO.setG_num(g_num);
 
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApply(gameDTO);
 
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApplyDelete(gameDTO);
+		
+
+		int we_c_idx = sqlSession.getMapper(MatchDAOImpl.class).getClubIdx(g_idx);
+		String c_name = sqlSession.getMapper(ClubDAOImpl.class).getClubName(we_c_idx);
+		String other_name = sqlSession.getMapper(ClubDAOImpl.class).getClubName(c_idx);
+		send(we_c_idx, other_name + " VS " + c_name + " 경기가 매칭되었습니다!", "경기 참가 여부를 선택해주세요!");
 
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
+	}
+	
+	@RequestMapping(value = "/club/sendMessage", method = RequestMethod.POST, produces = {"application/json;"})
+	public @ResponseBody ResponseEntity<String> send(@RequestBody int c_idx, String title, String content) {
+		
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		JSONObject body = new JSONObject();
+		List<String> tokenList = new ArrayList<String>();
+		
+		ArrayList<MemberDTO> memberTokens = sqlSession.getMapper(MemberDAOImpl.class).getMemberTokens(c_idx);
+		for(MemberDTO dto : memberTokens) {
+			tokenList.add(dto.getM_token());
+		}
+		
+		JSONArray array = new JSONArray();
+		
+		for(int i = 0; i < tokenList.size(); i++) {
+			array.add(tokenList.get(i));
+		}
+		
+		body.put("registration_ids", array);
+		
+		JSONObject notification = new JSONObject();
+		
+		String ms_title = "", ms_content = "";
+		
+		try {
+			ms_title = URLEncoder.encode(title, "UTF-8");
+			ms_content = URLEncoder.encode(content, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		
+		notification.put("title", ms_title);
+		notification.put("body", ms_content);
+		body.put("notification", notification);
+		
+		System.out.println("body.toString() : " + body.toString());
+		
+		HttpEntity<String> request = new HttpEntity<String>(body.toString());
+		
+		CompletableFuture<String> pushNotification = AndroidPushNotificationsService.send(request);
+		CompletableFuture.allOf(pushNotification).join();
+		
+		try {
+			String firebaseResponse = pushNotification.get();
+			
+			return new ResponseEntity<>(firebaseResponse, HttpStatus.OK);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<String>("Push Notification ERROR!", HttpStatus.BAD_REQUEST);
+		
 	}
 
 	@RequestMapping("/club/ClubMatchReject.do")
@@ -806,6 +901,9 @@ public class ClubController {
 		gameMemberDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
 		gameMemberDTO.setM_id(m_id);
 
+		ClubDTO clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		model.addAttribute("clubDTO", clubDTO);
+		
 		sqlSession.getMapper(ClubDAOImpl.class).gameMemberDrop(gameMemberDTO);
 
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
@@ -824,12 +922,11 @@ public class ClubController {
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
-		ClubDTO clubDTO = new ClubDTO();
-		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		ClubDTO clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
+		model.addAttribute("clubDTO", clubDTO);
 
 		sqlSession.getMapper(ClubDAOImpl.class).clubMemberApply(Integer.parseInt(req.getParameter("cm_idx")));
 
-		model.addAttribute("clubDTO", clubDTO);
 
 		return "redirect:/club/clubViewManage.do?c_idx=" + c_idx;
 	}

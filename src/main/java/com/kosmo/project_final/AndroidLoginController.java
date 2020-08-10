@@ -21,9 +21,13 @@ public class AndroidLoginController {
 	@RequestMapping("/android/memberLogin.do")
 	@ResponseBody
 	public Map<String , Object> memberLogin(MemberDTO memberDTO){
+		System.out.println("memberDTO.getM_token() : " + memberDTO.getM_token());
+		
+		sqlSession.getMapper(MemberDAOImpl.class).tokenUpdate(memberDTO);
 		
 		Map<String , Object> loginInfo = new HashMap<String, Object>();
 		MemberDTO memberInfo = sqlSession.getMapper(MemberDAOImpl.class).memberLogin(memberDTO);
+		
 		if(memberInfo==null) {
 			loginInfo.put("isLogin", 0);
 		}else {

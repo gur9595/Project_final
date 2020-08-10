@@ -208,7 +208,7 @@ function match_insert(f){
 						사용 금액 : <span id="list_price" style="line-height: 30px;"></span><br /><br />
 						<div align="center">보유중인 ball : <span id="list_ball"></span><br /></div>
 					</div>
-						<input type="submit" class="btn btn-danger" value="예약하기">
+						<button type="submit" class="addr" >예약하기</button>
 				</div>
 			</div>
 		</div>
@@ -263,11 +263,11 @@ function match_insert(f){
 				</div>
 				<div class="ml-auto mb-3" align="right">
 					<input type="date" id="s_date" name="s_date" class="form-control ml-auto" style="width: 230px; display: inline;" value="${param.date }" />
-					<input type="button" class="btn btn-secondary" onclick="search();" id="stadium_search" style="width: 100px; display: inline;" value="검색하기" />
-					<input type="button" class="btn btn-secondary" onclick="reset();" id="stadium_reset" style="width: 100px; display: inline;" value="필터리셋" />					
+					<button type="button" class="snip" onclick="search();" id="stadium_search" style="width: 100px; display: inline;">검색하기</button>&nbsp;&nbsp;&nbsp;
+					<button type="button" class="snip" onclick="reset();" id="stadium_reset" style="width: 100px; display: inline;" >필터리셋</button>					
 				</div>
 				<form action="./../match/stadiumNormalApply.do" method="get">
-					<table border="1" style="text-align: center; margin-left: 5px;" id="stadium_list">
+					<table border="1" style="text-align: center; margin-left: 5px; padding:0px 10px;" id="stadium_list">
 						<tr>
 							<th>날 짜</th>
 							<th>시 간</th>
@@ -308,7 +308,7 @@ function match_insert(f){
 									</c:if>
 								</td>
 								<td>
-									<button type="button" class="btn" data-toggle="modal" data-target="#myModal"
+									<button type="button" class="snip1535" data-toggle="modal" data-target="#myModal"
 										onclick="apply('${row.g_time}', '${row.c_name }', '${row.c_idx }', '${row.g_idx }');"
 										style="width: 100%;">신청</button>
 								</td>
@@ -324,7 +324,7 @@ function match_insert(f){
 				</header>
 				<div class="comcont">
 					<pre class="txt2">
-${memo }
+						${memo }
 					</pre>
 				</div>
 				<header>

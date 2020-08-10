@@ -8,6 +8,7 @@ public class MemberDTO {
 	private String m_id;
 	private String m_pw;
 	private String m_name;
+	private String m_token;
 	private String m_birth;
 	private String m_email;
 	private String m_phone;
@@ -80,6 +81,12 @@ public class MemberDTO {
 	}
 	public void setCm_grade(String cm_grade) {
 		this.cm_grade = cm_grade;
+	}
+	public String getM_token() {
+		return m_token;
+	}
+	public void setM_token(String m_token) {
+		this.m_token = m_token;
 	}
 	public int getM_idx() {
 		return m_idx;

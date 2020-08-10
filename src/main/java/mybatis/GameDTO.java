@@ -23,6 +23,7 @@ public class GameDTO {
 	private int g_extra;
 	private String g_lat;
 	private String g_lng;
+	private String g_ratingmemo;
 	
 	//Join용 변수
 	
@@ -258,5 +259,17 @@ public class GameDTO {
 	public void setG_lng(String g_lng) {
 		this.g_lng = g_lng;
 	}
+
+
+	public String getG_ratingmemo() {
+		return g_ratingmemo;
+	}
+
+
+	public void setG_ratingmemo(String g_ratingmemo) {
+		this.g_ratingmemo = g_ratingmemo;
+	}
+	
+	
 	
 }

@@ -6,10 +6,11 @@
 <html>
 <body>
 	<i class="fab fa-adobe"></i>
-	<aside class="left-sidebar" data-sidebarbg="skin5">
+	<aside class="left-sidebar" data-sidebarbg="skin5" style="width:200px;">
 	    <div class="scroll-sidebar">
 	        <nav class="sidebar-nav">
 	            <ul id="sidebarnav" class="p-t-30">
+	            
 	                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubView.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">HOME</span></a></li>
 	                <c:if test="${checkMember == 1 }">
 		                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="clubViewMember.do?c_idx=${clubDTO.c_idx }" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">MEMBER</span></a></li>

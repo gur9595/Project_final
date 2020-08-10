@@ -1,29 +1,50 @@
 package com.kosmo.project_final;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import firebase.AndroidPushNotificationsService;
+import mybatis.AdminDAOImpl;
+import mybatis.ClubDAOImpl;
+import mybatis.ClubDTO;
+import mybatis.GameDTO;
+import mybatis.MatchDAOImpl;
+import mybatis.MatchDTO;
+import mybatis.MemberDAOImpl;
+import mybatis.MemberDTO;
 import mybatis.StadiumDAOImpl;
 import mybatis.StadiumDTO;
 import mybatis.StadiumGameDTO;
 import utils.StadiumPaging;
-import mybatis.AdminDAOImpl;
-import mybatis.ClubDTO;
-import mybatis.GameDTO;
-import mybatis.MatchDAOImpl;
 
 @Controller
 public class MatchController {
@@ -45,6 +66,7 @@ public class MatchController {
 	
 	@RequestMapping("/match/stadiumMain.do")
 	public String stadiumMain(Model model, HttpServletRequest req) {
+
 		
 		//파라미터 저장을 위한 DTO객체 생성
 		StadiumDTO stadiumDTO = new StadiumDTO();
@@ -374,6 +396,8 @@ public class MatchController {
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
 		model.addAttribute("c_list", c_list);
 		
+		int cash = sqlSession.getMapper(MatchDAOImpl.class).getCash(m_id);
+		
 		model.addAttribute("stadiumGameLists", lists);
 		model.addAttribute("s_idx", s_idx);
 		model.addAttribute("cv", cv);
@@ -383,6 +407,7 @@ public class MatchController {
 		model.addAttribute("dong", dong);
 		model.addAttribute("name", name);
 		model.addAttribute("price", price);
+		model.addAttribute("cash", cash);
 		
 		return "/match/stadium_apply";
 	}
@@ -409,6 +434,7 @@ public class MatchController {
 			gameDTO.setC_idx(we_c_idx);		
 			sqlSession.getMapper(MatchDAOImpl.class).stadiumGameApply_a(gameDTO);
 			sqlSession.getMapper(MatchDAOImpl.class).setCash(cash, m_id);
+			
 		}
 		else if(c_idx == 0) {
 			
@@ -429,9 +455,75 @@ public class MatchController {
 			sqlSession.getMapper(MatchDAOImpl.class).stadiumGameApply_b(gameDTO);
 			sqlSession.getMapper(AdminDAOImpl.class).set_Gnum(g_num);
 			sqlSession.getMapper(MatchDAOImpl.class).setCash(cash, m_id);
-		}		
+			
+			String c_name = sqlSession.getMapper(ClubDAOImpl.class).getClubName(we_c_idx);
+			send(we_c_idx, c_name + " 팀 경기가 잡혔습니다.", "경기 참가 여부를 선택해주세요!");
+		}
+		
 		
 		return "match/match_main";
+	}
+	
+	@RequestMapping(value = "/match/sendMessage", method = RequestMethod.POST, produces = {"application/json;"})
+	public @ResponseBody ResponseEntity<String> send(@RequestBody int c_idx, String title, String content) {
+		
+		Map<String, Object> retVal = new HashMap<String, Object>();
+		
+		JSONObject body = new JSONObject();
+		List<String> tokenList = new ArrayList<String>();
+		
+		ArrayList<MemberDTO> memberTokens = sqlSession.getMapper(MemberDAOImpl.class).getMemberTokens(c_idx);
+		for(MemberDTO dto : memberTokens) {
+			tokenList.add(dto.getM_token());
+		}
+		
+		JSONArray array = new JSONArray();
+		
+		for(int i = 0; i < tokenList.size(); i++) {
+			array.add(tokenList.get(i));
+		}
+		
+		body.put("registration_ids", array);
+		
+		JSONObject notification = new JSONObject();
+		
+		String ms_title = "", ms_content = "";
+		
+		try {
+			ms_title = URLEncoder.encode(title, "UTF-8");
+			ms_content = URLEncoder.encode(content, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		
+		notification.put("title", ms_title);
+		notification.put("body", ms_content);
+		body.put("notification", notification);
+		
+		System.out.println("body.toString() : " + body.toString());
+		
+		HttpEntity<String> request = new HttpEntity<String>(body.toString());
+		
+		CompletableFuture<String> pushNotification = AndroidPushNotificationsService.send(request);
+		CompletableFuture.allOf(pushNotification).join();
+		
+		try {
+			String firebaseResponse = pushNotification.get();
+			
+			return new ResponseEntity<>(firebaseResponse, HttpStatus.OK);
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<String>("Push Notification ERROR!", HttpStatus.BAD_REQUEST);
+		
 	}
 
 	//용병페이지
@@ -491,7 +583,8 @@ public class MatchController {
 	//게임 리스트 출력
 	@RequestMapping("/match/game_list.do")
 	public String game_list(Model model, HttpServletRequest req, Principal principal) {
-        
+		
+		
         ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
 		
 		for(GameDTO dto : lists) {
@@ -552,12 +645,6 @@ public class MatchController {
 	@RequestMapping("/match/gameApply.do")
 	public String gameApply(Model model, HttpServletRequest req, HttpSession session) {
 		
-//		//세션영역에 사용자정보가 이쓴ㄴ지 확인
-//		if(session.getAttribute("siteUserInfo") == null) {
-//			//로그인이 해제된 상태라면 로그인 페이지로 이동한다.
-//			return "redirect:login.do";
-//		}
-				
 		String req_date = req.getParameter("g_date");
 		Date date = Date.valueOf(req_date);
 		String[] addr = req.getParameter("g_saddr").split(" ");
@@ -581,8 +668,9 @@ public class MatchController {
 		int g_num = sqlSession.getMapper(AdminDAOImpl.class).get_Gnum();
 		g_num++;
 		
+		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		GameDTO gameDTO = new GameDTO();
-		gameDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));
+		gameDTO.setC_idx(c_idx);
 		gameDTO.setG_sname(req.getParameter("g_sname"));
 		gameDTO.setG_saddr(req.getParameter("g_saddr"));
 		gameDTO.setG_type(req.getParameter("g_type"));
@@ -604,6 +692,7 @@ public class MatchController {
 		sqlSession.getMapper(MatchDAOImpl.class).gameApply(gameDTO);
 		sqlSession.getMapper(AdminDAOImpl.class).set_Gnum(g_num);
 		
+				
 		return "redirect:matchMain.do";
 	}
 			
@@ -612,11 +701,11 @@ public class MatchController {
 	public String matchApply(Model model, HttpServletRequest req) {
 				
 		GameDTO gameDTO = new GameDTO();
-		gameDTO.setG_idx(Integer.parseInt(req.getParameter("list_idx")));
+		gameDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
 		gameDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));		
 		
-		sqlSession.getMapper(MatchDAOImpl.class).matchApply(gameDTO);		
-		
+		sqlSession.getMapper(MatchDAOImpl.class).matchApply(gameDTO);
+				
 		return "redirect:matchMain.do";
 	}
 	

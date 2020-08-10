@@ -147,25 +147,25 @@ request.setCharacterEncoding("UTF-8");
 			 </li>
  
 			<c:forEach items="${lists }" var="row" varStatus="status"> 
-			<li class="table-row">
-				<input type="hidden" value="${row.c_idx }" />
-				<div class="col col-1" style=" width:100px; height:100px; "><img src="./../resources/uploadsFile/${row.c_emb }" alt=""  style="max-width:none;max-height: 90px;"/></div>
-				<div class="col col-2" data-label="팀명" style="margin-left:10px;max-width:none; display:inline">
-					<a href='javascript:openClubView(${row.c_idx });'>
-						${row.c_name }
-					</a>
-				</div>
-				<div class="col col-3" data-label="실력">${row.c_ability }</div>
-				<div class="col col-4" data-label="나이대">${row.c_age }</div>
-				<div class="col col-5" data-label="성별">${row.c_gender }</div>
-				<div class="col col-6" data-label="활동지역">${row.c_area }</div>
-				<div class="col col-7" data-label="입단">
-					<button type="button" class="snip1535" data-toggle="modal"
-						onclick="modal('${row.c_idx}', '${row.c_name}', '${row.c_ability}', '${row.c_age}', '${row.c_gender}', '${row.c_area}');"
-						data-target="#myModal" style="width:80px; height:40px;"> 입단
-					</button>
-				</div>
-			</li>
+				<li class="table-row">
+					<input type="hidden" value="${row.c_idx }" />
+					<div class="col col-1" style=" width:100px; height:100px; "><img src="./../resources/uploadsFile/${row.c_emb }" alt=""  style="max-width:none;max-height: 90px;"/></div>
+					<div class="col col-2" data-label="팀명" style="margin-left:10px;max-width:none; display:inline">
+						<a href='javascript:openClubView(${row.c_idx });'>
+							${row.c_name }
+						</a>
+					</div>
+					<div class="col col-3" data-label="실력">${row.c_ability }</div>
+					<div class="col col-4" data-label="나이대">${row.c_age }</div>
+					<div class="col col-5" data-label="성별">${row.c_gender }</div>
+					<div class="col col-6" data-label="활동지역">${row.c_area }</div>
+					<div class="col col-7" data-label="입단">
+						<button type="button" class="snip1535" data-toggle="modal"
+							onclick="modal('${row.c_idx}', '${row.c_name}', '${row.c_ability}', '${row.c_age}', '${row.c_gender}', '${row.c_area}');"
+							data-target="#myModal" style="width:80px; height:40px;"> 입단
+						</button>
+					</div>
+				</li>
 			</c:forEach>
 				<div style="text-align: center; font-size: 25px;">
 					${pagingImg }
@@ -188,7 +188,7 @@ request.setCharacterEncoding("UTF-8");
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form name="writeFrm" method="post" action="<c:url value="/club/clubApplyAction.do" />" >
+				<form name="writeFrm" method="post" action="<c:url value="/member/clubApplyAction.do" />" >
 				<div class="modal-body">
 				
 					클럽명 : <span id="list_name"></span><br />
@@ -230,7 +230,7 @@ function modal(idx, name, ability, age, gender, area) {
 
 function openClubView(c_idx){
 	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
-			"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+			"width=1200,height=800, toolbar=no, menubar=no, resizable=no");
 }
 
 $('#writeFrm').submit(function(){
@@ -240,5 +240,4 @@ $('#writeFrm').submit(function(){
 </script>
 
 
-<script src="./../resources/js/choices.js"/>
 </html>

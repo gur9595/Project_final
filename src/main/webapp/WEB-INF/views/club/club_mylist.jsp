@@ -74,6 +74,7 @@ request.setCharacterEncoding("UTF-8");
 	function openClubView(c_idx){
 		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
 				"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+		
 	}
 </script>
 </html>
