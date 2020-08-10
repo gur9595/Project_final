@@ -26,21 +26,21 @@
 					<div class="modal-body">
 					
 						<input type="hidden" id="list_idx" name="list_idx" />
-						<span>우리 클럽 : </span>
-						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline;">
+						<span style="line-height: 30px;">우리 클럽 : </span>
+						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline; line-height: 30px;">
 							<option value="" selected="selected">클럽을 선택하세요.</option>
 							<c:forEach var="club" items="${c_list }">
 								<option value="${club.c_idx }">${club.c_name }</option>
 							</c:forEach>
 						</select><br />
-						상대 클럽 : <span id="list_c_name"></span><br />
-						경기 날짜 : <span id="list_date"></span><br />
-						경기 시간 : <span id="list_time"></span>:00<br />
-						구장 이름 : <span id="list_name"></span><br />
-						구장 주소 : <span id="list_addr"></span><br />
+						상대 클럽 : <span id="list_c_name" style="line-height: 30px;"></span><br />
+						경기 날짜 : <span id="list_date" style="line-height: 30px;"></span><br />
+						경기 시간 : <span id="list_time" style="line-height: 30px;"></span>:00<br />
+						구장 이름 : <span id="list_name" style="line-height: 30px;"></span><br />
+						구장 주소 : <span id="list_addr" style="line-height: 30px;"></span><br />
 						참고 사항 : <br />
 						<textarea class="form-control" id="list_memo"
-							style="width: 100%; height: 100px; background: #ffffff;"
+							style="width: 100%; height: 100px; background: #ffffff; line-height: 30px;"
 							readonly="readonly">
 						</textarea>	
 					</div>
