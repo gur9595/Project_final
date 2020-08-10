@@ -11,8 +11,12 @@
 
 <script src="./../resources/js/mypage_main.js"></script>
 <style>
-.hoc{max-width:1100px;}
-
+h2 { 
+	font-size : 30px; color:#000066; line-height:30px;
+	margin:35px auto 10px 0px;
+	padding : 2px 10px 2px 0px;
+	border-bottom : 3px solid #000066;
+}
 input[type=text]{
 	font-size:25px;
 }
@@ -25,13 +29,13 @@ input[type=text]{
 .tr-hover:hover {
 	background: #EAEAEA;
 }
-.con{
+.con {
 	max-width:600px;
 	margin-left:auto; margin-right:auto;
 }
 </style>
 
-<main class="hoc container clear" id="main" >
+<main class="hoc container clear" style="max-width:1200px;">
 	<div class="con">
 		<table style="border: 0;">
 			<div style="background: #FFFFFF;">
@@ -42,12 +46,11 @@ input[type=text]{
 			</header>
 				<br />
 				<h2>회원 아이디</h2>
-				<input type="text" style="width: 500px; border: 0; margin-left: 18px;" class="ballHistory" id="m_id" name="m_id" value="접속중인 아이디 :  ${m_id }" readonly>
+				<input type="text" style="width: 500px; border: 0; margin-left: 18px;" class="ballHistory" id="m_id" name="m_id" value="ID :  ${m_id }" readonly>
 				
 				<h2>현재 보유 Ball</h2>
-				<input type="text" style="width: 500px; border: 0; margin-left: 18px;" id="cash" name="cash" value="회원님의 현재 보유량은  ${cash }Ball 입니다." readonly>
+				<input type="text" style="width: 550px; border: 0; margin-left: 18px;" id="cash" name="cash" value="회원님의 현재 보유량은  ${cash }Ball 입니다." readonly>
 				<br />
-				<a id="movingcharge" href="./../payment/ballCurrent.do" style="float: right; font-size: 15px; color: green;">충전페이지로 이동하기</a>
 				<br />	
 				<h2>Ball 거래 내역</h2>
 				<table style="text-align: center; font-size: 20px; border: none;" >

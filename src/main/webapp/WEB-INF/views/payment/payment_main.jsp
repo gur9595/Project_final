@@ -30,7 +30,11 @@
 
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="./../resources/css/payment.css">
-
+<style>
+button{
+	font-weight:800;
+}
+</style>
 <!-- 결제 api ---------------------------------------------------------------------------------------------->
 <script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -49,7 +53,7 @@
 
         IMP.request_pay({ // param : 결제요청에 필요한 정보를 담는다.
 		    pg : 'inicis', // version 1.1.0부터 지원.
-		    pay_method :'phone', // 발표시 'card'로 교체
+		    pay_method : '' // 발표시 'card'로 교체
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : charge + "	Ball", // 입금될 마일리지
 		    amount : cash, // 결제 금액
@@ -133,7 +137,7 @@
 				</tr>
 			</table>
 			<br /><br />
-	        <a href="./../member/mypageMain.do" class="btn olBtn" style="background-color: #FAF4C0";>충전 내역 보러 가기</a>
+	        <input type="button" class="btn olBtn" style="background-color: #FAF4C0"; value="충전내역 확인" onclick="myCharge()">
 			<br />
 		</div>
       
@@ -254,6 +258,11 @@
       	}
     }    
     
+    
+    function myCharge(){
+    	
+    	window.open('./../member/ballHistory.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
+    }
 </script>
 
 		<!-- / main body -->

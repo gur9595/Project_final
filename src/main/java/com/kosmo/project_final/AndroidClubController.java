@@ -212,90 +212,91 @@ public class AndroidClubController {
 	}
 	
 	@RequestMapping("/android/clubTotalRanking.do")
-	@ResponseBody
-	public ArrayList<AndroidRankingDTO> clubTotalRanking(){
-		
-		ArrayList<AndroidRankingDTO> clubTotalRanking = sqlSession.getMapper(ClubDAOImpl.class).clubTotalRankingA();
-		
-		for(AndroidRankingDTO dto : clubTotalRanking) {
+	   @ResponseBody
+	   public ArrayList<AndroidRankingDTO> clubTotalRanking(){
+	      
+	      ArrayList<AndroidRankingDTO> clubTotalRanking = sqlSession.getMapper(ClubDAOImpl.class).clubTotalRankingA();
+	      
+	      for(AndroidRankingDTO dto : clubTotalRanking) {
 
-			int wins = dto.getWins();
-			int matches = dto.getMatches();
-			double winRate = 0;
+	         int wins = dto.getWins();
+	         int matches = dto.getMatches();
+	         double winRate = 0;
 
-			if(matches==0) {
-				dto.setWinRate(0);
-			}else {
-				winRate = (double) wins / matches * 100;
-				winRate = Math.round(winRate * 100) / 100;
-				dto.setWinRate((int)winRate);
-			}
+	         if(matches==0) {
+	            dto.setWinRate(0);
+	         }else {
+	            winRate = (double) wins / matches * 100;
+	            winRate = Math.round(winRate * 100) / 100;
+	            dto.setWinRate((int)winRate);
+	         }
 
-		}
-		
-		return clubTotalRanking;
-	}
-	
-	@RequestMapping("/android/clubAreaRanking.do")
-	@ResponseBody
-	public ArrayList<AndroidRankingDTO> clubAreaRanking(AndroidRankingDTO androidRankingDTO){
-		
-		ArrayList<AndroidRankingDTO> clubAreaRanking = sqlSession.getMapper(ClubDAOImpl.class).clubAreaRankingA(androidRankingDTO);
-		for(AndroidRankingDTO dto : clubAreaRanking) {
+	      }
+	      
+	      return clubTotalRanking;
+	   }
+	   
+	   @RequestMapping("/android/clubAreaRanking.do")
+	   @ResponseBody
+	   public ArrayList<AndroidRankingDTO> clubAreaRanking(AndroidRankingDTO androidRankingDTO){
+	      
+	      ArrayList<AndroidRankingDTO> clubAreaRanking = sqlSession.getMapper(ClubDAOImpl.class).clubAreaRankingA(androidRankingDTO);
+	      for(AndroidRankingDTO dto : clubAreaRanking) {
 
-			int wins = dto.getWins();
-			int matches = dto.getMatches();
-			double winRate = 0;
+	         int wins = dto.getWins();
+	         int matches = dto.getMatches();
+	         double winRate = 0;
 
-			if(matches==0) {
-				dto.setWinRate(0);
-			}else {
-				winRate = (double) wins / matches * 100;
-				winRate = Math.round(winRate * 100) / 100;
-				dto.setWinRate((int)winRate);
-			}
+	         if(matches==0) {
+	            dto.setWinRate(0);
+	         }else {
+	            winRate = (double) wins / matches * 100;
+	            winRate = Math.round(winRate * 100) / 100;
+	            dto.setWinRate((int)winRate);
+	         }
 
-		}
-		
-		return clubAreaRanking;
-	}
-	
-	
-	//팀원 어시랭킹
-	@RequestMapping("/android/clubMemberAssist.do")
-	@ResponseBody
-	public ArrayList<AndroidMemberDTO> clubMemberAssist(AndroidMemberDTO androidMemberDTO){
-		
-		System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
-		
-		ArrayList<AndroidMemberDTO> assistRank = sqlSession.getMapper(ClubDAOImpl.class).clubAssistRankA(androidMemberDTO);
-		
-		return assistRank;
-	}
-	
-	//팀원 공포랭킹
-	@RequestMapping("/android/clubMemberPoint.do")
-	@ResponseBody
-	public ArrayList<AndroidMemberDTO> clubMemberPoint(AndroidMemberDTO androidMemberDTO){
-		
-		System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
-		
-		ArrayList<AndroidMemberDTO> pointRank = sqlSession.getMapper(ClubDAOImpl.class).clubPointRankA(androidMemberDTO);
-		
-		return pointRank;
-	}
-	
-	//팀원 경기랭킹
-	@RequestMapping("/android/clubMemberAppearance.do")
-	@ResponseBody
-	public ArrayList<AndroidMemberDTO> clubMemberAppearance(AndroidMemberDTO androidMemberDTO){
-		
-		System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
-		
-		ArrayList<AndroidMemberDTO> appearanceRank = sqlSession.getMapper(ClubDAOImpl.class).clubAppearanceRankA(androidMemberDTO);
-		
-		return appearanceRank;
-	}
+	      }
+	      
+	      return clubAreaRanking;
+	   }
+	   
+	   
+	   //팀원 어시랭킹
+	   @RequestMapping("/android/clubMemberAssist.do")
+	   @ResponseBody
+	   public ArrayList<AndroidMemberDTO> clubMemberAssist(AndroidMemberDTO androidMemberDTO){
+	      
+	      System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
+	      
+	      ArrayList<AndroidMemberDTO> assistRank = sqlSession.getMapper(ClubDAOImpl.class).clubAssistRankA(androidMemberDTO);
+	      
+	      return assistRank;
+	   }
+	    
+	   //팀원 공포랭킹
+	   @RequestMapping("/android/clubMemberPoint.do")
+	   @ResponseBody
+	   public ArrayList<AndroidMemberDTO> clubMemberPoint(AndroidMemberDTO androidMemberDTO){
+	      
+	      System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
+	      
+	      ArrayList<AndroidMemberDTO> pointRank = sqlSession.getMapper(ClubDAOImpl.class).clubPointRankA(androidMemberDTO);
+	      
+	      return pointRank;
+	   }
+	   
+	   //팀원 경기랭킹
+	   @RequestMapping("/android/clubMemberAppearance.do")
+	   @ResponseBody
+	   public ArrayList<AndroidMemberDTO> clubMemberAppearance(AndroidMemberDTO androidMemberDTO){
+	      
+	      System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
+	      
+	      ArrayList<AndroidMemberDTO> appearanceRank = sqlSession.getMapper(ClubDAOImpl.class).clubAppearanceRankA(androidMemberDTO);
+	      
+	      return appearanceRank;
+	   }
+	   
 	
 	//g_check 값 안드로이드에 보내주기
 	@RequestMapping("/android/select_qrcheck.do")

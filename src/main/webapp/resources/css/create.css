@@ -17,12 +17,12 @@
 }
 
 .image-con{
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 300px;
-            height: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
 }
 h2 { 
 	font-size : 30px; color:#000066; line-height:30px;
@@ -84,7 +84,7 @@ label {
 
 @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
 .snip1535 {
-  background-color: #c47135;
+  background-color: #2E64FE;
   border: none;
   color: #ffffff;
   cursor: pointer;
@@ -113,7 +113,7 @@ label {
   width: 24px;
 }
 .snip1535:before {
-  border-color: #c47135;
+  border-color: #2E64FE;
   border-right-width: 2px;
   border-top-width: 2px;
   right: -5px;
@@ -121,13 +121,13 @@ label {
 }
 .snip1535:after {
   border-bottom-width: 2px;
-  border-color: #c47135;
+  border-color: #2E64FE;
   border-left-width: 2px;
   bottom: -5px;
   left: -5px;
 }
 .snip1535:hover {
-  background-color: #c47135;
+  background-color: #2E64FE;
 }
 .snip1535:hover:before,
 .snip1535:hover:after {

@@ -126,5 +126,4 @@ public interface ClubDAOImpl {
 	public ArrayList<AndroidMemberDTO> clubAppearanceRankA(AndroidMemberDTO androidMemberDTO);
 	public int qrCheck(GameDTO gameDTO);
 	public ArrayList<AndroidMatchDTO> select_qrcheckA(AndroidMatchDTO androidMatchDTO);
-	
 }
