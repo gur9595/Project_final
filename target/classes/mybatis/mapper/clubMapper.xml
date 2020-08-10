@@ -501,7 +501,7 @@
           inner join game g on g.g_idx = gm.g_idx    
       where g.c_idx = #{c_idx} and g.g_rating is not null
       order by assist desc)tb)
-     </select>
+     </select> 
      
      <!-- 팀원 공포 랭킹 -->
      <select id="clubPointRankA" resultType="mybatis.AndroidMemberDTO">
@@ -529,9 +529,6 @@
       where g.c_idx = #{c_idx} and g.g_rating is not null
       order by appearance desc )tb)
      </select>
-     
-      <!-- 팀 랭킹 --> 
-
      
      
      <select id="clubSearchFilterA" resultType="mybatis.AndroidClubDTO" parameterType="mybatis.AndroidClubDTO">
@@ -602,4 +599,15 @@
 			order by points desc) tb
 			)
    </select>
- </mapper>
+   
+   <update id="qrCheck" parameterType="mybatis.GameDTO">
+      	update game set g_qrcheck = #{g_qrcheck} where g_idx = #{g_idx} and g_check like 'owner'
+   </update>
+   
+   <select id="select_qrcheckA" resultType="mybatis.AndroidMatchDTO">
+   		select g_qrcheck from game where g_idx=#{g_idx}
+   </select>   
+     
+</mapper>
+ 
+

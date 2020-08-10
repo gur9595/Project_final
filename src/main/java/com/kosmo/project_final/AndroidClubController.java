@@ -298,5 +298,34 @@ public class AndroidClubController {
 	   }
 	   
 	
+	//QR코드 스캔 하고 넘어가는 페이지
+	@RequestMapping("/android/qr_Check.do")
+	public String QR_Check(HttpServletRequest req, GameDTO gameDTO, ClubDTO clubDTO) {
+		
+		String g_idx1 = req.getParameter("g_idx");
+		int g_idx = Integer.parseInt(g_idx1);
+		
+		System.out.println("g_idx : "+g_idx);
+		
+		gameDTO.setG_qrcheck("yes");
+		gameDTO.setG_idx(g_idx);
+		
+		//check바꾸기
+		sqlSession.getMapper(ClubDAOImpl.class).qrCheck(gameDTO);
+
+		
+		return "match/QR_Check";
+	}
+	
+	@RequestMapping("/android/select_qrcheck.do")
+	@ResponseBody
+	public ArrayList<AndroidMatchDTO> select_qrcheck(AndroidMatchDTO androidMatchDTO){
+		
+		System.out.println("getC_idx() : "+androidMatchDTO.getG_idx());
+		
+		ArrayList<AndroidMatchDTO> appearanceRank = sqlSession.getMapper(ClubDAOImpl.class).select_qrcheckA(androidMatchDTO);
+		
+		return appearanceRank;
+	}
 
 }

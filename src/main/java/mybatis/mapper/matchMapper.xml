@@ -92,6 +92,8 @@
       <select id="getClubIdx" resultType="int">
       	select c_idx from game where g_idx = #{g_idx}
       </select>
+      
+      
              
    </mapper>
    
