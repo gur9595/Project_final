@@ -15,7 +15,6 @@
 <script src="/resources/js/view_custommin.js"></script>
 <script src="/resources/js/club_view.js"></script>
 <script src="/resources/js/club_sidebarmenu.js"></script>
-<script src="./../resources/js/kakao.js"></script>
 
 </head>
 <style>
@@ -180,7 +179,7 @@ function send(){
 	<div id="main-wrapper">
 		<%@ include file="./club_view_header.jsp"%> 
 		<%@ include file="./club_view_sidebar.jsp"%>
-		<div class="page-wrapper" style="margin-top:-20px;">
+		<div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">

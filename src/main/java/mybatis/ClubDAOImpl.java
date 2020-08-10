@@ -119,6 +119,13 @@ public interface ClubDAOImpl {
 	public int gameMemberCheck(String g_idx, String m_id);
 	public ArrayList<AndroidMemberDTO> clubGoalRankA(AndroidMemberDTO androidMemberDTO);
 	public ArrayList<AndroidClubDTO> clubSearchFilterA(AndroidClubDTO androidClubDTO);
+//	
+//	public ArrayList<AndroidRankingDTO> clubTotalRankingA();
+//	public ArrayList<AndroidRankingDTO> clubAreaRankingA(AndroidRankingDTO androidRankingDTO);
+//	public ArrayList<AndroidMemberDTO> clubAssistRankA(AndroidMemberDTO androidMemberDTO);
+//	public ArrayList<AndroidMemberDTO> clubPointRankA(AndroidMemberDTO androidMemberDTO);
+//	public ArrayList<AndroidMemberDTO> clubAppearanceRankA(AndroidMemberDTO androidMemberDTO);
+//	
 	public ArrayList<AndroidRankingDTO> clubTotalRankingA();
 	public ArrayList<AndroidRankingDTO> clubAreaRankingA(AndroidRankingDTO androidRankingDTO);
 	public ArrayList<AndroidMemberDTO> clubAssistRankA(AndroidMemberDTO androidMemberDTO);

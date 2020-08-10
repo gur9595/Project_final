@@ -73,6 +73,6 @@
 		from cash
 		where m_id = #{param1} order by cs_date desc
 	</select>
-	 
+      
   </mapper>
 

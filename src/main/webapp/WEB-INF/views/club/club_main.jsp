@@ -23,7 +23,7 @@
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+<div class="bgded" style="background-image:url('./../resources/img/stadiumpic.jpg');">
   <div id="breadcrumb" class="hoc clear"></div>
 </div>
 <div class="wrapper row3">

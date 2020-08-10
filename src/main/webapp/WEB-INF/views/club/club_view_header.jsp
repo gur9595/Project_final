@@ -3,6 +3,7 @@
 <sec:authorize access="isAuthenticated()">
     <sec:authentication property="principal.username" var="m_id" />
 </sec:authorize>
+<script src="./../resources/js/kakao.js"></script>
 <!DOCTYPE html>
 <html>
 <body>
@@ -10,7 +11,8 @@
 <body>
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin5" style="width:200px;">
+                <div class="navbar-header" style="width:200px;" data-logobg="skin5">
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                     <a class="navbar-brand" href="clubView.do?c_idx=${clubDTO.c_idx }">
                         <b class="logo-icon p-l-10">
                             <img src="./../resources/img/bprologo.png" height="30px" alt="마크" style="padding-left: 10px; color: #fff; -webkit-filter : opacity(.5) drop-shadow(0 0 0 white); filter :opacity(.5) drop-shadow(0 0 0 white);" />

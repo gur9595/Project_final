@@ -245,7 +245,7 @@
       select *  
       from club c inner join clubmember cm
          on c.c_idx = cm.c_idx
-      where cm.m_id like #{param1} 
+      where cm.m_id like #{param1} and cm.cm_check not like 'no'
    </select>
 
    
@@ -253,7 +253,7 @@
       select count(*) 
       from club c inner join clubmember cm
          on c.c_idx = cm.c_idx
-      where cm.m_id like #{param1} 
+      where cm.m_id like #{param1} and cm.cm_check not like 'no'
    </select>
    
 
@@ -529,8 +529,22 @@
       where g.c_idx = #{c_idx} and g.g_rating is not null
       order by appearance desc )tb)
      </select>
-     
-     
+<!--      
+     팀 랭킹 
+     <select id="clubTotalRankingA" resultType="mybatis.RankingDTO">
+   		select * from(
+			select rownum rnum,tb.* from
+			(select c1.c_idx, c1.c_name, c1.c_emb, 
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null) as matches,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W') as wins,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D') as draws,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null)*2 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W')*3 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D')*1 as points
+			from club c1
+			order by points desc) tb
+			) where rnum between 1 and 10
+   </select>
      <select id="clubSearchFilterA" resultType="mybatis.AndroidClubDTO" parameterType="mybatis.AndroidClubDTO">
        select * from ( 
           select tb.*, rownum rNum from( 
@@ -599,6 +613,7 @@
 			order by points desc) tb
 			)
    </select>
+  -->       
    
    <update id="qrCheck" parameterType="mybatis.GameDTO">
       	update game set g_qrcheck = #{g_qrcheck} where g_idx = #{g_idx} and g_check like 'owner'
@@ -607,7 +622,7 @@
    <select id="select_qrcheckA" resultType="mybatis.AndroidMatchDTO">
    		select g_qrcheck, g_num from game where g_idx=#{g_idx}
    </select>   
-     
+  
 </mapper>
  
 

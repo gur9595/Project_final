@@ -395,6 +395,22 @@ public class MemberController {
       String latitude = req.getParameter("latitude"); //위도
       String longitude = req.getParameter("longitude"); //경도
       
+      String[] s_cvs = req.getParameterValues("s_cv");
+      String s_cv = "";
+      if(s_cvs.length == 1) {
+    	  for(int i = 0; i < s_cvs.length; i++) {
+	    	  s_cv += s_cvs[i];
+	      }
+    	  dto.setS_cv(s_cv);      
+      }
+      else if(s_cvs.length != 1) {
+	      for(int i = 0; i < s_cvs.length; i++) {
+	    	  s_cv += s_cvs[i];
+	      }
+	      System.out.println("s_cv : " + s_cv);
+	      dto.setS_cv(s_cv);
+      }
+      
       dto.setS_addr(s_addr);
       dto.setS_lat(latitude);
       dto.setS_lng(longitude);
@@ -547,6 +563,13 @@ public class MemberController {
 		
 		return "member/ball_history";
    
+   }
+   
+   // 마이페이지 경기기록 부분 추가
+   @RequestMapping("/member/playHistory.do")
+   public String playHistory() {
+	   
+	   return "member/play_history";
    }
 
    @RequestMapping("/member/mypageMain.do")
