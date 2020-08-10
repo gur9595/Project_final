@@ -6,8 +6,11 @@
 <script src="./../resources/js/kakao.js"></script>
 <!DOCTYPE html>
 <html>
-<body>
-
+<style>
+html{
+background-color: #eeeeee;
+}
+</style>
 <body>
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">

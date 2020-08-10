@@ -95,13 +95,13 @@
 
 	         
 	            <h2>편의 시설</h2>
-	                  <input type="checkbox" name="s_cv" id="shower" value="샤워장" style="display:inline;" />
+	                  <input type="checkbox" name="s_cv" id="shower" value="샤워장||" style="display:inline;" />
 	                  <label for="shower" style="padding-right: 35px;">샤워장</label>
 	                  
-	                  <input type="checkbox" name="s_cv" id="parking" value="주차장" style="display:inline;" />
+	                  <input type="checkbox" name="s_cv" id="parking" value="주차장||" style="display:inline;" />
 	                  <label for="parking" style="padding-right: 35px;">주차장</label>
 	                  
-	                  <input type="checkbox" name="s_cv" id="shose" value="신발대여" style="display:inline;"/>
+	                  <input type="checkbox" name="s_cv" id="shose" value="신발대여||" style="display:inline;"/>
 	                  <label for="shose" style="padding-right: 35px;">신발대여</label>
 	                  
 	                  <input type="checkbox" name="s_cv" id="sportswear" value="운동복대여" style="display:inline;"/>
