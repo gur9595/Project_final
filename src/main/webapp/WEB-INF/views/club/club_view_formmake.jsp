@@ -59,7 +59,7 @@
   				<table class="futsal" 
 	  					style="height: 613px;
 						 width: 446px;
-						background-size: 100% 100%;
+						background-size: 100% 100%; 
 						 background-repeat: no-repeat; background: url(./../resources/img/futsalfield.jpg); ">
   			</c:otherwise>
   		</c:choose>
