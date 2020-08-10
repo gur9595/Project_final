@@ -57,7 +57,7 @@ button{
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : charge + "	Ball", // 입금될 마일리지
 		    amount : cash, // 결제 금액
-	    	buyer_email :  ' --- Option ---  			Press your email'
+	    	buyer_email :  ' --- Option ---  			Press your email'      
 		
 		    // m_redirect_url : 'www.naver.com'
 		}, 
