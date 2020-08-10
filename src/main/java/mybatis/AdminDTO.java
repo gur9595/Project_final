@@ -2,7 +2,7 @@ package mybatis;
 
 public class AdminDTO {
 	
-	//멤버변수
+	//멤버변수  
 	private int a_idx;
 	private String a_id;
 	private String a_pw;

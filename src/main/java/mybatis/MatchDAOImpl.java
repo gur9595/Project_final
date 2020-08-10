@@ -18,5 +18,7 @@ public interface MatchDAOImpl {
 	public void setCash(int cash, String m_id);
 	public ArrayList<GameDTO> playerList();
 	public int getClubIdx(int g_idx);
+	public int my_ratingmemo(AndroidMatchDTO androidMatchDTO);
+	public int your_ratingmemo(AndroidMatchDTO androidMatchDTO);
 	
 }
