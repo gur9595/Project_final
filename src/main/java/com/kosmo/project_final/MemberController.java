@@ -385,7 +385,7 @@ public class MemberController {
    
    //경기장 등록
    @RequestMapping("/member/member_stadiumInsert.do")
-   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req) {
+   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req, Model model) {
       
       String s_addr1 = req.getParameter("s_addr1");
       String s_addr2 = req.getParameter("s_addr2");
@@ -411,9 +411,23 @@ public class MemberController {
       System.out.println("s_lat : " + dto.getS_lat());
       System.out.println("s_lng : " + dto.getS_lng());
       
-      sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
-      
-      return"member/member_select";
+      int insert_ok = sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
+      String result = "";
+      if(insert_ok == 0) {
+    	  result = "fail";
+      }
+      else if(insert_ok == 1) {
+    	  result = "success";
+      }
+      model.addAttribute("result", result);
+      return"member/stadium_create_check";
+   }
+   
+   //경기장 등록체크페이지
+   @RequestMapping("/member/stadium_create_check.do")
+   public String stadium_create_check() {
+	   
+	   return"member/stadium_create_check";
    }
    
    //접근 에러
