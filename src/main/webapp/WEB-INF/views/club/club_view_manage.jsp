@@ -61,14 +61,14 @@ th {
 }
 
 </style>
-<body>
+<body onresize="parent.resizeTo(1280,720)" onload="parent.resizeTo(1280,720)" >
 	<div id="main-wrapper">
 		<%@ include file="./club_view_header.jsp"%>
 		<%@ include file="./club_view_sidebar.jsp"%>
-		<div class="page-wrapper">
+		<div class="page-wrapper" style="margin-top:-20px;">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-9">
+					<div class="col-lg-12"> 
 						<div class="card">
 							<!-- Nav tabs -->
 							<!-- Tab panes -->
@@ -176,36 +176,8 @@ th {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3" style="height: 600px;">
-						<div class="card">
-							<div class="card-body">
-								<h4 class="card-title">채팅</h4>
-								<div>
-									<input type="hidden" id="chat_id" value="${param.chat_id }"
-										style="border: 1px dotted red;" />
-									<div id="chat-container" style="height: 500px; overflow: auto;">
-									</div>
-								</div>
-							</div>
-							<div class="card-body border-top">
-								<div class="row">
-									<div class="col-9">
-										<div class="input-field m-t-0 m-b-0">
-											<textarea id="inputMessage" placeholder="Type and enter"
-												onkeyup="enterkey();" class="form-control border-0"></textarea>
-										</div>
-									</div>
-									<button type="button" onclick="sendMessage();">보내기</button>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
-			<footer class="footer text-center">
-				Copyright © 2020 - All Rights Reserved <a href="#"
-					onclick="window.open('${pageContext.request.contextPath }', '_blank','width=#, height=#'); return false">Be-Pro</a>.
-			</footer>
 		</div>
 	</div>
 	
@@ -258,9 +230,6 @@ function authModal(cm_grade, cm_idx) {
 function memberApply(c_idx, cm_idx){
 	
 	location.href="../club/clubMemberApply.do?c_idx="+ c_idx +"&cm_idx="+cm_idx;
-}
-function memberReject(c_idx, cm_idx){
-	location.href="../club/clubMemberReject.do?c_idx="+ c_idx +"&cm_idx="+cm_idx;
 }
 function memberReject(c_idx, cm_idx){
 	if(confirm("정말 방출하시겠습니까?")) {

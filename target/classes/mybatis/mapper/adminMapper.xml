@@ -22,7 +22,11 @@
 	
 	<!-- 클럽 리스트 -->
 	<select id="adminClub" resultType="mybatis.ClubDTO">
-		select * from club order by c_date asc
+		select c.*, m.* 
+		from club c inner join clubmember cm on c.c_idx = cm.c_idx
+					inner join member m on cm.m_id = m.m_id
+		where cm.cm_grade like 'head'
+		order by c_date asc
 	</select>
 
 	<!-- 메니저 리스트 -->
@@ -36,6 +40,10 @@
 	
 	<delete id="managerDelete">
 		delete from managerRequest where m_id = #{m_id}
+	</delete>
+	
+	<delete id="MemberDelete">
+		delete from member where m_id = #{m_id}
 	</delete>
 
 </mapper>

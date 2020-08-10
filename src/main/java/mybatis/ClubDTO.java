@@ -20,6 +20,15 @@ public class ClubDTO {
 	private int start;
 	private int end;
 	
+	// head 정보 저장용
+	private String m_id;
+	private String m_name;
+	private String m_email;
+	private String m_phone;
+	private String m_addr;
+	private String m_date;
+	private String m_sex;
+	
 	public String getC_age() {
 		return c_age;
 	}
@@ -109,6 +118,48 @@ public class ClubDTO {
 	}
 	public void setEnd(int end) {
 		this.end = end;
+	}
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+	public String getM_email() {
+		return m_email;
+	}
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
+	}
+	public String getM_phone() {
+		return m_phone;
+	}
+	public void setM_phone(String m_phone) {
+		this.m_phone = m_phone;
+	}
+	public String getM_addr() {
+		return m_addr;
+	}
+	public void setM_addr(String m_addr) {
+		this.m_addr = m_addr;
+	}
+	public String getM_date() {
+		return m_date;
+	}
+	public void setM_date(String m_date) {
+		this.m_date = m_date;
+	}
+	public String getM_sex() {
+		return m_sex;
+	}
+	public void setM_sex(String m_sex) {
+		this.m_sex = m_sex;
 	}
    
    

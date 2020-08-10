@@ -23,6 +23,8 @@ public class GameDTO {
 	private int g_extra;
 	private String g_lat;
 	private String g_lng;
+	private String g_ratingmemo;
+	private String g_qrcheck;
 	
 	//Join용 변수
 	
@@ -34,14 +36,13 @@ public class GameDTO {
 	private ClubDTO clubDTO;
 
 	//기본생성자
-	public GameDTO() {}
-
+	public GameDTO() {super();}
 
 	//인자생성자
 	public GameDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
 			String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu,
-			String g_check, int g_extra, String search_date, String c_name, String c_ability, String c_gender, ClubDTO clubDTO,
-			String g_lat, String g_lng) {
+			String g_check, int g_extra, String g_lat, String g_lng, String g_ratingmemo, String g_qrcheck,
+			String search_date, String c_name, String c_ability, String c_gender, ClubDTO clubDTO) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -59,20 +60,31 @@ public class GameDTO {
 		this.g_gu = g_gu;
 		this.g_check = g_check;
 		this.g_extra = g_extra;
+		this.g_lat = g_lat;
+		this.g_lng = g_lng;
+		this.g_ratingmemo = g_ratingmemo;
+		this.g_qrcheck = g_qrcheck;
 		this.search_date = search_date;
 		this.c_name = c_name;
 		this.c_ability = c_ability;
 		this.c_gender = c_gender;
 		this.clubDTO = clubDTO;
-		this.g_lat = g_lat;
-		this.g_lng = g_lng;
 	}
-
+	
 	// getter / setter
+	
+	public String getG_qrcheck() {
+		return g_qrcheck;
+	}
+	
+	public void setG_qrcheck(String g_qrcheck) {
+		this.g_qrcheck = g_qrcheck;
+	}
+	
 	public int getG_idx() {
 		return g_idx;
 	}
-	
+
 	public void setG_idx(int g_idx) {
 		this.g_idx = g_idx;
 	}
@@ -258,5 +270,17 @@ public class GameDTO {
 	public void setG_lng(String g_lng) {
 		this.g_lng = g_lng;
 	}
+
+
+	public String getG_ratingmemo() {
+		return g_ratingmemo;
+	}
+
+
+	public void setG_ratingmemo(String g_ratingmemo) {
+		this.g_ratingmemo = g_ratingmemo;
+	}
+	
+	
 	
 }

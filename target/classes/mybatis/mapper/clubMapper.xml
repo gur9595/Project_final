@@ -27,7 +27,7 @@
       <select id="clubView10History" resultType="mybatis.GameDTO">
          select * from (
              select tb.*, rownum rNum from(
-                 select g_result 
+                 select g_result, g_ratingmemo 
                  from game 
                  where g_result is not null and c_idx = #{param1} order by g_date desc
              ) tb
@@ -152,7 +152,7 @@
          <if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
          where
          <if test="c_name!=''">
-                c_name like #{c_name}
+                c_name like '%${c_name}%'
          </if>
          <if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
               and  
@@ -198,7 +198,7 @@
             <if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
                where
                <if test="c_name!=''">
-                      c_name like #{c_name}
+                      c_name like '%${c_name}%'
                </if>
                <if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
                     and  
@@ -536,11 +536,50 @@
       order by appearance desc )tb)
      </select>
      
-     <!-- 팀 랭킹 --> 
-     <select id="clubTotalRankingA" resultType="mybatis.RankingDTO">
+     
+     <select id="clubSearchFilterA" resultType="mybatis.AndroidClubDTO" parameterType="mybatis.AndroidClubDTO">
+       select * from ( 
+          select tb.*, rownum rNum from( 
+             select * from club 
+            <if test="c_name!='' or c_area!='' or c_ability!='' or c_gender!='' or c_age!=''" >
+               where
+               <if test="c_name!=''">
+                      c_name like '%${c_name}%'
+               </if>
+               <if test="c_name!='' and ( c_area!='' or c_ability!='' or c_gender!='' or c_age!='' )">
+                    and  
+               </if>
+               <if test="c_area!=''">
+                      c_area like #{c_area}
+               </if>
+               <if test="c_area!='' and ( c_ability!='' or c_gender!='' or c_age!='' )">
+                    and  
+               </if>
+               <if test="c_ability!=''">
+                      c_ability like #{c_ability}
+               </if>
+               <if test="c_ability!='' and (c_gender!='' or c_age!='' )">
+                    and  
+               </if>
+               <if test="c_gender!=''">
+                      c_gender like #{c_gender}
+               </if>
+               <if test="c_gender!='' and c_age!=''">
+                    and  
+               </if>
+               <if test="c_age!=''">
+                      c_age like #{c_age}
+               </if>
+            </if>
+                order by c_idx desc       
+             ) tb 
+          )
+     </select>
+     
+     <select id="clubTotalRankingA" resultType="mybatis.AndroidRankingDTO">
    		select * from(
 			select rownum rnum,tb.* from
-			(select c1.c_idx, c1.c_name, c1.c_emb, 
+			(select c1.c_idx, c1.c_name, c1.c_emb, c1.c_area, 
 			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null) as matches,
 			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W') as wins,
 			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D') as draws,
@@ -549,8 +588,40 @@
 			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D')*1 as points
 			from club c1
 			order by points desc) tb
-			) where rnum between 1 and 10
+			)
    </select>
-     
+   
+   <select id="clubAreaRankingA" resultType="mybatis.AndroidRankingDTO">
+   		select * from(
+			select rownum rnum,tb.* from
+			(select c1.c_idx, c1.c_name, c1.c_emb, c1.c_area, 
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null) as matches,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W') as wins,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D') as draws,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null)*2 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W')*3 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D')*1 as points
+			from club c1 where c_area = #{c_area}
+			order by points desc) tb
+			)
+   </select>
+   
+   <update id="qrCheck" parameterType="mybatis.GameDTO">
+      	update game set g_qrcheck = #{g_qrcheck} where g_idx = #{g_idx} and g_check like 'owner'
+   </update>
+   
+   <select id="select_qrcheckA" resultType="mybatis.AndroidMatchDTO">
+   		select g_qrcheck from game where g_idx=#{g_idx}
+   </select>   
      
  </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

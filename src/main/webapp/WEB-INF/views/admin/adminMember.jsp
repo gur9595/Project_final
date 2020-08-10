@@ -63,29 +63,32 @@
                                                 <table>
                                                     <tr style="border-bottom: 3px solid #036">
                                                     	<th>No</th>
-                                                        <th>이름</th>
                                                         <th>ID</th>   
+                                                        <th>이름</th>
                                                         <th>생년월일</th>
                                                         <th width="150px;">E-mail</th>
                                                         <th width="120px;">전화번호</th>
-                                                        <th width="350px;">주소</th>
+                                                        <th width="400px;">주소</th>
                                                         <th>가입날짜</th>
-                                                        <th colspan="2" width="150px;">수정/삭제</th>
+                                                        <th width="100px;">삭제</th>
                                                         
                                                     </tr>
 													<c:forEach items="${lists }" var="row" varStatus="status"> 
 														<tr>
 															<th>${status.count }</th>
-															<th>${row.m_name }</th>
 															<th>${row.m_id }</th>
+															<th>${row.m_name }</th>
 															<th>${row.m_birth }</th>
 															<th>${row.m_email }</th>
 															<th>${row.m_phone }</th>
 															<th>${row.m_addr }</th>
 															<th>${row.m_date }</th>
-															<th colspan="2">
-																<input type="button" class="btn btn-success" value="수정">
-																<input type="button" class="btn btn-danger" value="삭제">
+															<th>
+																<input type="button" id="memberRelease"
+																		onclick="return memberReject('${row.m_id }');"
+																		class="btn btn-outline-danger"
+																		style="width: 70px; height: 30px; font-size:15px; text-align: center; padding: 0; font-weight: 900;"
+																		value="삭제">
 															</th>
 															
 														</tr>
@@ -132,5 +135,13 @@
 </script>
 
 </body>
+<script>
 
+function memberReject(m_id){
+	if(confirm("정말 삭제하시겠습니까?")) {
+		location.href="../admin/MemberDelete.do?m_id="+ m_id;
+	}
+	
+}
+</script>
 </html>
