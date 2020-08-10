@@ -132,11 +132,13 @@
 	                                                        		<td><a href="javascript:openClubView(${row.home_idx})">${row.home }</a></td> 
 	                                                        	</c:otherwise>
 	                                                        </c:choose>
+	                                                        
 	                                                        	<td>${row.home_score }</td>
 	                                                        	<th>
 	                                                        	<button type="button"  onclick="javascript:openMatchDetail">VS</button>
 	                                                        	</th>
 	                                                        	<td>${row.away_score }</td>
+	                                                        	
 	                                                        <c:choose>
 	                                                        	<c:when test="${row.g_check== 'yes' }">
 	                                                        		<td>${row.away }</td> 
@@ -148,6 +150,7 @@
 	    		                                                    <td><a href="javascript:openClubView(${row.away_idx})">${row.away }</a></td>                                    
 	                                                        	</c:otherwise>
 	                                                        </c:choose>
+	                                                        
 	                                                        <th>
 	                                                    		<c:choose>
 	                                                    			<c:when test="${row.g_result=='W' }">

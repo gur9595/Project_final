@@ -38,12 +38,12 @@
 
 <script>
 
-	function payment(price_cash, price_charge) {
+	function payment(price_charge, price_cash) {
         var IMP = window.IMP;
         var code = "imp44765322";  // FIXME: 가맹점 식별코드
         
-        var cash = price_cash; // 구매가격
         var charge = price_charge; // 상품명(입금될 마일리지)
+        var cash = price_cash; // 구매가격
       
         IMP.init(code);
 
@@ -53,7 +53,8 @@
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : charge + "	Ball", // 입금될 마일리지
 		    amount : cash, // 결제 금액
-		    buyer_email : ' - Option -		  Press your e_mail '
+		    buyer_email :  '${m_name}'
+		
 		    // m_redirect_url : 'www.naver.com'
 		}, 
 		function(rsp) { // callback : 고객이 결제를 완료한 후 실행되는 함수
@@ -133,24 +134,25 @@
 				</tr>
 			</table>
 			<br /><br />
-	        <a href="./../member/mypageMain.do" class="btn olBtn" style="background-color: #FAF4C0";>충전 내역 보러 가기</a>
+	        <a href="./../member/mypageMain.do" class="btn olBtn" style="background-color: #FAF4C0">충전 내역 보러 가기</a>
 			<br />
 		</div>
       
       	<!-- 메인박스 -->
 		<div class="chargeSelectWrap">
       		<div class="cashSelect">
-        		<label>충전할 금액을 선택하세요</label>
+        		<label>충전할 Ball 갯수를 선택하세요</label>
         		<div class="chargeBtn wback" id="chargeSelect" style="cursor:pointer" >
-          			<input id="selected_item_id" type="hidden" value=0>
-          			<span id="selected_item_price">0원</span>
+          			<input id="selected_item_price" type="hidden" value=0>
+          			<span id="selected_item_id" style="font-size: 25px;" >0</span>
+          			
         		</div>
       		</div>
       
       		<div class="cashSelect">
         		<label>닉네임 또는 입금자명</label>
-        		<input type="text" id="depositor" name="name" value="${m_id }" />
-        		<p><strong>위에 입력한 명의로 정확한 금액을 선택해주세요</strong><br>축구&풋살 클럽의 No1. B-Pro!!!</p>
+        		<input type="text" id="depositor" name="name" style="text-align: center; font-weight: bold" value="${m_id }" />
+        		<p><strong>위에 입력한 명의로 정확한 Ball 갯수를 선택해주세요</strong><br>축구&풋살 클럽의 No1. B-Pro!!!</p>
       		</div>
       
 			<!-- 충전 절차 1 -->
@@ -167,17 +169,17 @@
     		<div class="modalContent modalCharge">
       			<div class="modalContentInner">
         			<ul class="chargeList">
-          				<span>충전할 금액을 선택하세요</span>
+          				<span>충전할 Ball을 선택하세요</span>
 						<!-- (hidden, 충전금액=현금) UI현금 = > (?, ?) -->
-			            <li class=" cashItem" onclick="pressedCashItem(10, 1000)">1,000원 <br /> (1,000 Ball)</li>
-			            <li class=" cashItem" onclick="pressedCashItem(50, 5000)">5,000원 <br /> (5,000 Ball)</li>
-			            <li class=" cashItem" onclick="pressedCashItem(100, 10000)">10,000원 <br /> (10,000 Ball)</li>
-			            <li class=" cashItem" onclick="pressedCashItem(300, 30300)">30,000원 <br /> (30,300 Ball / + 1%)</li>
-			            <li class=" cashItem" onclick="pressedCashItem(500, 51000)">50,000원 <br /> (51,000 Ball / + 2%)</li>
-			            <li class=" cashItem" onclick="pressedCashItem(700, 72100)">70,000원 <br /> (72,100 Ball / + 3%)</li>
-			            <li class=" cashItem" onclick="pressedCashItem(1000, 104000)">100,000원 <br /> (104,000 Ball / + 4%)</li>
-			            <li class=" cashItem" onclick="pressedCashItem(2000, 210000)">200,000원 <br /> (210,000 Ball / + 5%)</li>
-			            <li class=" cashItem" onclick="pressedCashItem(3000, 318000)">300,000원 <br /> (318,000 Ball / + 6%)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(1000, 10)">1,000원 <br /> (1,000 Ball)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(5000, 50)">5,000원 <br /> (5,000 Ball)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(10000, 100)">10,000원 <br /> (10,000 Ball)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(30300, 300)">30,000원 <br /> (30,300 Ball / + 1%)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(51000, 500)">50,000원 <br /> (51,000 Ball / + 2%)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(72100, 700)">70,000원 <br /> (72,100 Ball / + 3%)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(104000, 1000)">100,000원 <br /> (104,000 Ball / + 4%)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(210000, 2000)">200,000원 <br /> (210,000 Ball / + 5%)</li>
+			            <li class=" cashItem" onclick="pressedCashItem(318000, 3000)">300,000원 <br /> (318,000 Ball / + 6%)</li>
         			</ul>
       			</div>
     		</div>
@@ -227,17 +229,17 @@
     }
 
     /* 메인박스에서 충전금액 select시 호출되는 함수 */
-    function pressedCashItem(item_price, item_id) {
-      	$("#selected_item_price").text(item_price)
-      	$("#selected_item_id").val(item_id)
+    function pressedCashItem(item_id, item_price) {
+      	$("#selected_item_id").text(item_id)
+      	$("#selected_item_price").val(item_price)
     	closeModal()
     }
 
     /* 충전 절차 2 (alert창 띄우고 결제api 호출(= payment()) 한다.) */
     function pressedSubmit() { // 충전 신청 눌렀을때 호출되는 함수
 		var depositor = $("#depositor").val() // depositor = 입금자명
-      	var currentCashItemPrice = document.getElementById('selected_item_price').innerHTML
-		var cash_item_id = $("#selected_item_id").val()
+		var cash_item_id = document.getElementById('selected_item_id').innerHTML
+		var currentCashItemPrice = $("#selected_item_price").val()
       	console.log(currentCashItemPrice)
 
       	// 만약 입금자명이 공란이면
@@ -250,7 +252,7 @@
     	var infoConfirm = confirm('잠깐! 입금자명과 금액이 정확한가요?\n\n입금자명: '+depositor+'\n충전 Ball: '+cash_item_id+'\n결제 금액: '+currentCashItemPrice);
       	
     	if (infoConfirm == true) {
-			payment(currentCashItemPrice, cash_item_id);
+			payment(cash_item_id, currentCashItemPrice);
       	}
     }    
     

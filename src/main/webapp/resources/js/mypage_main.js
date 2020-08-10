@@ -26,8 +26,9 @@ $(document).ready(function() {
          
     });
     
+    
      /*
-	  	결제 내역
+	  	마이페이지-결제 내역
 	  	$()쪽에는 main문의 id를 load()쪽에는 해당페이지의 요청명을 기술
 	 */
 	$('#ball').click(function() {
@@ -38,18 +39,8 @@ $(document).ready(function() {
 	    
 	    $('#close').show();            
 	});
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
+	////////////////////////////////////////////////////////////////////
+	
     $('#backpage').click(function() {
     	$("#contents").load("memberEdit.do");
         $('html, body').stop().animate({

@@ -46,8 +46,7 @@ public class MatchDTO {
 	private int away_idx;
 	private int away_score;
 	private int opc_idx;
-	private String opc_name;
-	
+	private String opc_name;	
 	
 	public MatchDTO() {
 		super();
@@ -100,6 +99,7 @@ public class MatchDTO {
 		this.opc_name = opc_name;
 		this.home_score = home_score;
 		this.away_score = away_score;
+	
 	}
 	
 	public int getG_idx() {

@@ -548,6 +548,13 @@ public class MemberController {
 		return "member/ball_history";
    
    }
+   
+   // 마이페이지 경기기록 부분 추가
+   @RequestMapping("/member/playHistory.do")
+   public String playHistory() {
+	   
+	   return "member/play_history";
+   }
 
    @RequestMapping("/member/mypageMain.do")
    public String mypageMain() {

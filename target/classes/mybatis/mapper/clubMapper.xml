@@ -535,8 +535,8 @@
       where g.c_idx = #{c_idx} and g.g_rating is not null
       order by appearance desc )tb)
      </select>
-     
-     <!-- 팀 랭킹 --> 
+<!--      
+     팀 랭킹 
      <select id="clubTotalRankingA" resultType="mybatis.RankingDTO">
    		select * from(
 			select rownum rnum,tb.* from
@@ -621,5 +621,5 @@
 			order by points desc) tb
 			)
    </select>
-     
+      -->
  </mapper>
