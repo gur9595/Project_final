@@ -391,7 +391,7 @@ public class MemberController {
       String s_addr2 = req.getParameter("s_addr2");
       String s_addr = s_addr1+" "+s_addr2;
       
-      //좌표값 받기
+      //좌표값 받기 
       String latitude = req.getParameter("latitude"); //위도
       String longitude = req.getParameter("longitude"); //경도
       
