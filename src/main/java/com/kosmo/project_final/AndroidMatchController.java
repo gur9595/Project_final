@@ -62,9 +62,11 @@ public class AndroidMatchController {
 		String g_num=req.getParameter("g_num");
 		androidMatchDTO.setG_idx(g_idx);
 		androidMatchDTO.setG_num(g_num);
+		System.out.println("g_idx : "+g_idx);
+		System.out.println("g_num : "+g_num);
 		sqlSession.getMapper(MatchDAOImpl.class).my_ratingmemo(androidMatchDTO);
 		
-		return "";
+		return "match/android_QR_success";
 	}
 	
 	@RequestMapping("/match/your_ratingmemo.do")
@@ -74,9 +76,11 @@ public class AndroidMatchController {
 		String g_num=req.getParameter("g_num");
 		androidMatchDTO.setG_idx(g_idx);
 		androidMatchDTO.setG_num(g_num);
+		System.out.println("g_idx : "+g_idx);
+		System.out.println("g_num : "+g_num);
 		sqlSession.getMapper(MatchDAOImpl.class).your_ratingmemo(androidMatchDTO);
 		
-		return "";
+		return "match/android_QR_success";
 	}
 	
 	

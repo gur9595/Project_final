@@ -135,12 +135,12 @@ String keyword = request.getParameter("keyword");
 	
 		
 		<form method="get" action="<c:url value="/match/your_ratingmemo.do" />">
-			<input type="hid den" value="<%=request.getAttribute("g_idx")%>"/>
-			<input type="hid den" value="<%=request.getAttribute("g_num")%>"/>
+			<input type="hidden" name="g_idx" value="<%=request.getAttribute("g_idx")%>"/>
+			<input type="hidden" name="g_num" value="<%=request.getAttribute("g_num")%>"/>
 			<h2>평가</h2>
 			
 			<div>
-				<input type="text" class="txtBox31" placeholder="상대팀을 평가해주세요" id="c_momo" name="c_memo" >
+				<input type="text" class="txtBox31" placeholder="상대팀을 평가해주세요" id="c_momo" name="g_ratingmemo" >
 			</div>
 			<br /><br />
 			<div style="text-align:center;">
