@@ -23,6 +23,12 @@
 
 <script src="./../resources/js/match_main.js"></script>
 </head>
+<style>
+.container {
+	padding: 55px 0;
+}
+	
+</style>
 <body id="top">
 
 <!--top-->

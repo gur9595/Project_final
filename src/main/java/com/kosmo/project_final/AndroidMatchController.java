@@ -22,11 +22,13 @@ import mybatis.StadiumDTO;
 import mybatis.StadiumGameDTO;
 import utils.StadiumPaging;
 import mybatis.AdminDAOImpl;
+import mybatis.AndroidMatchDTO;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.GameDTO;
 import mybatis.GameMemberDTO;
 import mybatis.MatchDAOImpl;
+import mybatis.MatchDTO;
 
 @Controller
 public class AndroidMatchController {
@@ -101,6 +103,35 @@ public class AndroidMatchController {
 
 		return "club/club_tacticboard";
 	}
+	@RequestMapping("/match/my_ratingmemo.do")
+	public String my_ratingmemo (HttpServletRequest req,AndroidMatchDTO androidMatchDTO) {
+		
+		String g_idx=req.getParameter("g_idx");
+		String g_num=req.getParameter("g_num");
+		androidMatchDTO.setG_idx(g_idx);
+		androidMatchDTO.setG_num(g_num);
+		System.out.println("g_idx : "+g_idx);
+		System.out.println("g_num : "+g_num);
+		sqlSession.getMapper(MatchDAOImpl.class).my_ratingmemo(androidMatchDTO);
+		
+		return "match/android_QR_success";
+	}
+	
+	@RequestMapping("/match/your_ratingmemo.do")
+	public String your_ratingmemo (HttpServletRequest req,AndroidMatchDTO androidMatchDTO) {
+		
+		String g_idx=req.getParameter("g_idx");
+		String g_num=req.getParameter("g_num");
+		androidMatchDTO.setG_idx(g_idx);
+		androidMatchDTO.setG_num(g_num);
+		System.out.println("g_idx : "+g_idx);
+		System.out.println("g_num : "+g_num);
+		sqlSession.getMapper(MatchDAOImpl.class).your_ratingmemo(androidMatchDTO);
+		
+		return "match/android_QR_success";
+	}
+	
+	
 		
 }
 

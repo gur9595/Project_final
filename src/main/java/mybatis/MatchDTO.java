@@ -23,6 +23,7 @@ public class MatchDTO {
 	private int g_extra;
 	private String g_lat;
 	private String g_lng;
+	private String g_qrcheck;
 	
 	//Join용 변수
 	private String c_name;
@@ -46,19 +47,19 @@ public class MatchDTO {
 	private int away_idx;
 	private int away_score;
 	private int opc_idx;
-	private String opc_name;
-	
+	private String opc_name;	
 	
 	public MatchDTO() {
 		super();
 	}
 
+	
 	public MatchDTO(int g_idx, int s_idx, int c_idx, String g_sname, String g_saddr, String g_type, String g_score,
 			String g_result, Date g_date, int g_num, int g_rating, String g_memo, String g_time, String g_gu,
-			String g_check, int g_extra, String g_lat, String g_lng, String c_name, String c_cash, String c_emb,
-			String c_area, String c_type, Date c_date, String c_memo, String c_color, String c_ability,
-			String c_gender, int c_memlimit, String c_age, int start, int end, String home, int home_idx, String away, int away_idx,
-			int opc_idx, String opc_name,int home_score, int away_score) {
+			String g_check, int g_extra, String g_lat, String g_lng, String g_qrcheck, String c_name, String c_cash,
+			String c_emb, String c_area, String c_type, Date c_date, String c_memo, String c_color, String c_ability,
+			String c_gender, int c_memlimit, String c_age, int start, int end, String home, int home_idx,
+			int home_score, String away, int away_idx, int away_score, int opc_idx, String opc_name) {
 		super();
 		this.g_idx = g_idx;
 		this.s_idx = s_idx;
@@ -78,6 +79,7 @@ public class MatchDTO {
 		this.g_extra = g_extra;
 		this.g_lat = g_lat;
 		this.g_lng = g_lng;
+		this.g_qrcheck = g_qrcheck;
 		this.c_name = c_name;
 		this.c_cash = c_cash;
 		this.c_emb = c_emb;
@@ -92,16 +94,30 @@ public class MatchDTO {
 		this.c_age = c_age;
 		this.start = start;
 		this.end = end;
-		this.away = away;
-		this.away_idx = away_idx;
 		this.home = home;
 		this.home_idx = home_idx;
+		this.home_score = home_score;
+		this.away = away;
+		this.away_idx = away_idx;
+		this.away_score = away_score;
 		this.opc_idx = opc_idx;
 		this.opc_name = opc_name;
 		this.home_score = home_score;
 		this.away_score = away_score;
+	
 	}
 	
+
+	public String getG_qrcheck() {
+		return g_qrcheck;
+	}
+
+
+	public void setG_qrcheck(String g_qrcheck) {
+		this.g_qrcheck = g_qrcheck;
+	}
+
+
 	public int getG_idx() {
 		return g_idx;
 	}

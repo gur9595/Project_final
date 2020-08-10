@@ -230,18 +230,12 @@ function goBack() {
 }
 
 function privacyAgreeUsagePopBtnClickHandler() {
-var popSizeOnMobile = '';
-    if(false) {
-        popSizeOnMobile = 'width=100%,height=100%,';
-    }
+
     window.open('./../member/article.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
 }
 
 function serviceAgreementPopBtnClickHandler() {
-    var popSizeOnMobile = '';
-    if(false) {
-        popSizeOnMobile = 'width=100%,height=100%,';
-    }
+
     window.open('./../member/article.do', '_blank', "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=550,width=700,height=600");
 }
 

@@ -81,8 +81,8 @@
 		        <option value="중랑구">중랑구</option>
 			</select>
 			<input type="date" id="e_date" name="e_date" class="form-control ml-auto" style="width: 230px; display: inline;" />
-			<input type="button" onclick="search_extra_list();" class="btn btn-secondary" id="search" style="width: 100px; display: inline;" value="검색하기" />
-			<input type="reset" onclick="reset_extra_list();" class="btn btn-secondary" id="reset" style="width: 100px; display: inline;" value="필터리셋" />
+			<button type="button" onclick="search_extra_list();" class="snip" id="search" style="width: 100px; display: inline;">검색하기</button>&nbsp;&nbsp;&nbsp;
+			<button type="reset" onclick="reset_extra_list();" class="snip" id="reset" style="width: 100px; display: inline;">필터리셋</button>
 		</div>
 	</form>
 	<table id="extra_table" border="1" style="text-align: center;">

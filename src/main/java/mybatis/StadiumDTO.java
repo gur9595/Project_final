@@ -29,7 +29,7 @@ public class StadiumDTO {
 	private String searchTxt;
 	
 	//select구간을 위한 멤버변수
-	private int start;
+	private int start; 
 	private int end;
 	
 	//기본생성자

@@ -950,16 +950,19 @@ textarea {
 	margin: 10px 0 0 0;
 }
 .chargeBtn span:before {
-	content: "충전 금액";
-	left: 10px;
+	content: "B-Pro";
+	left: 85px;
 }
+
 .chargeBtn span:after {
-	content: "변경";
-	right: 10px;
+	content:"Ball";
+	right: 105px;
+	font-size: 50px;
 }
+
 .chargeBtn span:after, .chargeBtn span:before {
 	position: absolute;
-	font-size: 12px;
+	font-size: 20px;
 	color: #3540A5;
 	font-weight: 400;
 	top: 23px;

@@ -13,16 +13,16 @@ File: Layout CSS
 @import url("framework.css");
 
 @font-face {
-	font-family:Raleway;
-	src:url("../webfonts/Raleway-SemiBold.ttf");
-	unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
+   font-family:Raleway;
+   src:url("../webfonts/Raleway-SemiBold.ttf");
+   unicode-range:U+0041-005A, U+0061-007A, U+0030-0039;
 }
 @font-face {
-	font-family:NanumSquare;
-	src:url("../webfonts/NanumSquareR.ttf");
-	unicode-range:U+AC00-U+D7A3; 
+   font-family:NanumSquare;
+   src:url("../webfonts/NanumSquareR.ttf");
+   unicode-range:U+AC00-U+D7A3; 
 }
-	
+   
 body{font-family :'Raleway', 'NanumSquare';}
 
 /* Rows
@@ -317,7 +317,7 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#A5A6AA; background-color:#151326;}
+body{color:#A5A6AA; background-color:#000000;} /* 네비바 사이드 색상 */
 a{color:#97A9BD;}
 a:active, a:focus{background:transparent !important;}
 hr, .borderedbox{border-color:#D7D7D7;}
@@ -330,7 +330,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 
 .gradient{color:#474747; background:linear-gradient(to bottom, #F4F4F4 55%, #FFFFFF 50%, #FFFFFF 100%);}/* Overlap dark to make a hard transition */
 @media screen and (max-width:750px){/* Only the colours height has been changed */
-	.gradient{background:linear-gradient(to bottom, #F4F4F4 24%, #FFFFFF 19%, #FFFFFF 100%);}
+   .gradient{background:linear-gradient(to bottom, #F4F4F4 24%, #FFFFFF 19%, #FFFFFF 100%);}
 }
 
 .btn, .btn.inverse:hover{color:#FFFFFF; background-color:#97A9BD; border-color:#97A9BD;}
@@ -372,7 +372,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 /* 박예진 */
 /* ###### DELETE THE FOLLOWING IF ONLY THE DEFAULT COLOUR IS REQUIRED ###### */
 #introblocks .elements li article{
-	color:#FFFFFF; background: linear-gradient(to bottom, #576787, #151326 90%);
+   color:#FFFFFF; background: linear-gradient(to bottom, #576787, #151326 90%);
 }/* Blue */
 #introblocks .elements li article a{color:#FFFFFF; font-size: 1.5em; position: absolute; left:0; top: 0; width: 100%; height: 100%;}
 #introblocks .elements li article i{color:#151326; background-color:#FFFFFF; width: 100px; height: 100px; font-size: 50px; line-height: 100px;}
@@ -420,14 +420,14 @@ input:focus, textarea:focus, *:required:focus{border-color:#97A9BD !important;}
 #ctdetails button:hover{color:inherit; background-color:transparent; border-color:inherit;}
 
 
-/* Footer */
+/* Footer */ 
 #footer .heading{color:#FFFFFF;}
 #footer hr, #footer .borderedbox, #footer .linklist li{border-color:rgba(255,255,255,.1);}
 
 
 /* Navigation */
 #mainav li a{color:inherit;}
-#mainav .active a, #mainav a:hover, #mainav li:hover > a{color:#97A9BD; background-color:inherit;}
+#mainav .active a, #mainav a:hover, #mainav li:hover > a{color:#FF8000; background-color:inherit;} /* 메뉴 호버 색상 */
 #mainav li li a, #mainav .active li a{color:#FFFFFF; background-color:rgba(151,169,189,.5); border-color:rgba(151,169,189,.5);/* #97A9BD */}
 #mainav li li:hover > a, #mainav .active .active > a{color:#FFFFFF; background-color:#97A9BD;}
 #mainav form select{color:#474747; background-color:#FFFFFF;}
@@ -467,95 +467,95 @@ table a, #comments a{background-color:inherit;}
 /* Max Wrapper Width - Laptop, Desktop etc.
 --------------------------------------------------------------------------------------------------------------- */
 @media screen and (min-width:1140px){
-	.hoc{max-width:1400px;}
+   .hoc{max-width:1400px;}
 }
 
 @media screen and (min-width:978px) and (max-width:1140px){
-	.hoc{max-width:95%; background-color:white;}
+   .hoc{max-width:95%; background-color:white;}
 }
 
 
 /* Mobile Devices
 --------------------------------------------------------------------------------------------------------------- */
 @media screen and (max-width:978px){
-	.hoc{max-width:90%;}
+   .hoc{max-width:90%;}
 
-	#header{padding:30px 0;}
-	#header #logo{margin-top:0;}
+   #header{padding:30px 0;}
+   #header #logo{margin-top:0;}
 
-	#mainav{}
-	#mainav ul{display:none;}
-	#mainav form{display:block; margin-top:2px;}
+   #mainav{}
+   #mainav ul{display:none;}
+   #mainav form{display:block; margin-top:2px;}
 
-	#breadcrumb{}
+   #breadcrumb{}
 
-	.container{}
-	#comments input[type="reset"]{margin-top:10px;}
-	.pagination li{display:inline-block; margin:0 5px 5px 0;}
+   .container{}
+   #comments input[type="reset"]{margin-top:10px;}
+   .pagination li{display:inline-block; margin:0 5px 5px 0;}
 
-	#footer{}
+   #footer{}
 
-	#copyright{}
-	#copyright p:first-of-type{margin-bottom:10px;}
+   #copyright{}
+   #copyright p:first-of-type{margin-bottom:10px;}
 }
 
 @media screen and (max-width:750px){
-	.imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
-	.fl_left, .fl_right{display:block; float:none;}
-	.group .group > *:last-child, .clear .clear > *:last-child, .clear .group > *:last-child, .group .clear > *:last-child{margin-bottom:0;}/* Experimental - Needs more testing in different situations, stops double margin when stacking */
-	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0;}
+   .imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
+   .fl_left, .fl_right{display:block; float:none;}
+   .group .group > *:last-child, .clear .clear > *:last-child, .clear .group > *:last-child, .group .clear > *:last-child{margin-bottom:0;}/* Experimental - Needs more testing in different situations, stops double margin when stacking */
+   .one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0;}
 
-	#header{text-align:center;}
-	#header #logo{margin:0 0 15px 0;}
+   #header{text-align:center;}
+   #header #logo{margin:0 0 15px 0;}
 
-	#pageintro article, #pageintro article p{max-width:none;}
-	#pageintro .heading{font-size:2rem;}
+   #pageintro article, #pageintro article p{max-width:none;}
+   #pageintro .heading{font-size:2rem;}
 
-	.sectiontitle{max-width:none;}
-	.shout figure, .team li, #latest > li{margin:0 auto 50px;}
-	.team li, #latest li{max-width:348px;}/* Restrict the width to the one_third grid element */
-	.elements-three li:nth-last-child(-n+3), .elements-four li:nth-last-child(-n+4){margin-bottom:50px;}
-	.elements-three li:last-child, .elements-four li:last-child, .shout figure:last-child{margin-bottom:0;}
+   .sectiontitle{max-width:none;}
+   .shout figure, .team li, #latest > li{margin:0 auto 50px;}
+   .team li, #latest li{max-width:348px;}/* Restrict the width to the one_third grid element */
+   .elements-three li:nth-last-child(-n+3), .elements-four li:nth-last-child(-n+4){margin-bottom:50px;}
+   .elements-three li:last-child, .elements-four li:last-child, .shout figure:last-child{margin-bottom:0;}
 
-	#ctdetails figure{margin-bottom:80px;}/* Gives good separation between the two elements */
+   #ctdetails figure{margin-bottom:80px;}/* Gives good separation between the two elements */
 
-	#footer{padding-bottom:50px;}/* Not needed - just looks better */
-	#footer .latestimg > li, #footer .latestimg > li:nth-last-child(-n+3){display:inline-block; float:none; width:auto; margin:0 5% 5% 0;}
-	#footer .latestimg > li:last-child{margin-bottom:0;}
-	#footer .latestimg > li img{width:auto;}
+   #footer{padding-bottom:50px;}/* Not needed - just looks better */
+   #footer .latestimg > li, #footer .latestimg > li:nth-last-child(-n+3){display:inline-block; float:none; width:auto; margin:0 5% 5% 0;}
+   #footer .latestimg > li:last-child{margin-bottom:0;}
+   #footer .latestimg > li img{width:auto;}
 }
 
 @media screen and (min-width:451px) and (max-width:900px){
-	.pr-charts .pr-chart-ctrl{width:50%; margin-bottom:50px;}
-	.pr-charts .pr-chart-ctrl:nth-child(n+3){margin-bottom:0;}
+   .pr-charts .pr-chart-ctrl{width:50%; margin-bottom:50px;}
+   .pr-charts .pr-chart-ctrl:nth-child(n+3){margin-bottom:0;}
 }
 
 @media screen and (max-width:450px){
-	.pr-charts .pr-chart-ctrl{width:100%; margin-bottom:50px;}
-	.pr-charts .pr-chart-ctrl:last-child{margin-bottom:0;}
+   .pr-charts .pr-chart-ctrl{width:100%; margin-bottom:50px;}
+   .pr-charts .pr-chart-ctrl:last-child{margin-bottom:0;}
 
-	#testimonials article figure img{float:none; margin:0 0 20px 0;}
-	#testimonials article figure figcaption{float:none; margin:0; text-align:center;}
+   #testimonials article figure img{float:none; margin:0 0 20px 0;}
+   #testimonials article figure figcaption{float:none; margin:0; text-align:center;}
 }
 
 
 /* Other
 --------------------------------------------------------------------------------------------------------------- */
 @media screen and (max-width:650px){
-	.scrollable{display:block; width:100%; margin:0 0 30px 0; padding:0 0 15px 0; overflow:auto; overflow-x:scroll;}
-	.scrollable table{margin:0; padding:0; white-space:nowrap;}
+   .scrollable{display:block; width:100%; margin:0 0 30px 0; padding:0 0 15px 0; overflow:auto; overflow-x:scroll;}
+   .scrollable table{margin:0; padding:0; white-space:nowrap;}
 
-	.inline li{display:block; margin-bottom:10px;}
-	.pushright li{margin-right:0;}
+   .inline li{display:block; margin-bottom:10px;}
+   .pushright li{margin-right:0;}
 
-	.font-x2{font-size:1.6rem;}
-	.font-x3{font-size:1.8rem;}
+   .font-x2{font-size:1.6rem;}
+   .font-x3{font-size:1.8rem;}
 }
 
 /* .wrapper{
-	background-color: #E9EDF0;
+   background-color: #E9EDF0;
 }
 
 .content{
-	background-color: #ffffff;
+   background-color: #ffffff;
 } */

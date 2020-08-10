@@ -136,12 +136,6 @@
          update clubmember set cm_grade = #{param2} where c_idx = #{param1} and m_id like #{param3}
       </update>
       
-      <!-- 히스토리 내클럽 이름 갖고오기 -->
-<!--       <select id="myClubname" resultType="mybatis.ClubDTO">
-         select c_name from club where c_idx=#{c_idx}
-      </select> -->
-      
-      
       
      <select id="getTotalCount" resultType="int" >
       select count(*) from club 
@@ -507,7 +501,7 @@
           inner join game g on g.g_idx = gm.g_idx    
       where g.c_idx = #{c_idx} and g.g_rating is not null
       order by assist desc)tb)
-     </select>
+     </select> 
      
      <!-- 팀원 공포 랭킹 -->
      <select id="clubPointRankA" resultType="mybatis.AndroidMemberDTO">
@@ -535,7 +529,22 @@
       where g.c_idx = #{c_idx} and g.g_rating is not null
       order by appearance desc )tb)
      </select>
-     
+<!--      
+     팀 랭킹 
+     <select id="clubTotalRankingA" resultType="mybatis.RankingDTO">
+   		select * from(
+			select rownum rnum,tb.* from
+			(select c1.c_idx, c1.c_name, c1.c_emb, 
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null) as matches,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W') as wins,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D') as draws,
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null)*2 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W')*3 +
+			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D')*1 as points
+			from club c1
+			order by points desc) tb
+			) where rnum between 1 and 10
+   </select>
      <select id="clubSearchFilterA" resultType="mybatis.AndroidClubDTO" parameterType="mybatis.AndroidClubDTO">
        select * from ( 
           select tb.*, rownum rNum from( 
@@ -588,7 +597,7 @@
 			from club c1
 			order by points desc) tb
 			)
-   </select>
+   </select> 
    
    <select id="clubAreaRankingA" resultType="mybatis.AndroidRankingDTO">
    		select * from(
@@ -604,5 +613,16 @@
 			order by points desc) tb
 			)
    </select>
-     
- </mapper>
+  -->       
+   
+   <update id="qrCheck" parameterType="mybatis.GameDTO">
+      	update game set g_qrcheck = #{g_qrcheck} where g_idx = #{g_idx} and g_check like 'owner'
+   </update>
+   
+   <select id="select_qrcheckA" resultType="mybatis.AndroidMatchDTO">
+   		select g_qrcheck, g_num from game where g_idx=#{g_idx}
+   </select>   
+  
+</mapper>
+ 
+

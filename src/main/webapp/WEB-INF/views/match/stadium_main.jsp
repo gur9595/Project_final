@@ -290,128 +290,173 @@ function removeAllChildNods(el) {
 
 <!-- 스타일태그 -->
 <style>
-	.infoContent{
-		position: relative;
-		width: 50px;
-		height: 50px;
-		overflow : hidden;
-		background:url('./../resources/img/match/customInfo.png') no-repeat;
-		background-size : 100%;
-		padding:15px 10px;
-	}
-	.main{
-		padding: 10px;
-		overflow: hidden;
-		width: 100%;
-		height: 100%;
-	}
-	.search-wrap{
-		text-align: center;
-	}
-	.map{
-		border : 0px solid black;
-		height: 100%; position: relative; overflow: hidden;
-	}
-	.title{
-		font-weight : bold;
-		display : bloack;
-		text-align: center;
-	}
-	.mapTopMenu{
-		position:absolute; top:0px;
-		z-index: 1;
-		width: 100%;
-		height: 40px;
-	}
-	.hAddr{
-		background-color: black; color: white; z-index:1;
-		opacity: 60%; height: 100%; width: 49.99%;
-		line-height: 40px;
-		text-align: center;
-		float: left;
-	}
-	.seeAllBtn{
-		border: none;
-		width: 49.99%;
-		height: 100%;
-		color: white;
-		float: left;
-		background-color: #6799FF;
-	}
-	.stadium-option{
-		height : 40px;
-		width: 49%;
-		float: left;
-		font-size: 1.2em;
-		border-color: black;
-	}
-	.tbl{
-		text-align: left;
-		width: 100%;
-	}
-	.tbl tr td{
-		border : 0px solid black;
-		padding : 0;
-		height: 50px;
-		font-weight : bold;
-		color: black;
+.infoContent{
+	position: relative;
+	width: 50px;
+	height: 50px;
+	overflow : hidden;
+	background:url('./../resources/img/match/customInfo.png') no-repeat;
+	background-size : 100%;
+	padding:15px 10px;
+}
+.main{
+	padding: 10px;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+.search-wrap{
+	text-align: center;
+}
+.map{
+	border : 0px solid black;
+	height: 100%; position: relative; overflow: hidden;
+}
+.title{
+	font-weight : bold;
+	display : bloack;
+	text-align: center;
+}
+.mapTopMenu{
+	position:absolute; top:0px;
+	z-index: 1;
+	width: 100%;
+	height: 40px;
+}
+.hAddr{
+	background-color: black; color: white; z-index:1;
+	opacity: 60%; height: 100%; width: 49.99%;
+	line-height: 40px;
+	text-align: center;
+	float: left;
+}
+.seeAllBtn{
+	border: none;
+	width: 49.99%;
+	height: 100%;
+	color: white;
+	float: left;
+	background-color: #6799FF;
+}
+.stadium-option{
+	height : 40px;
+	width: 49%;
+	float: left;
+	font-size: 1.2em;
+	border-color: black;
+}
+.tbl{
+	text-align: left;
+	width: 100%;
+	border-collapse: separate; border-spacing: 0 10px;
+}
+.tbl tr td{
+	border : 0px solid black;
+	padding : 0;
+	height: 50px;
+	font-weight : bold;
+	color: black;
 		
-	}
-	.search-button{
-		border: none;
-		background-color: #2c3e50;
-		width: 100%;
-		height: 80%;
-		color: white;
-	}
-	.search-text{
-		border: 1px solid black;
-		padding-left : 10px;
-		width: 99.4%;
-		height: 80%;
-		font-size: 1.2em;
-	}
-	.search-text::placeholder{
-		color: #BDBDBD;
-	}
-	table{border: none;}
+}
+.search-text{
+	border: 1px solid black;
+	padding-left : 10px;
+	width: 99.4%;
+	height: 80%;
+	font-size: 1.2em;
+}
+.search-text::placeholder{
+	color: #BDBDBD;
+}
+
+table{border: none;}
 	
-	/* 커스텀 인포의 위치를
-		마커에 맞추기 위해 css이용 */
-	.customInfo-wrap{
-		position: absolute;
-		bottom: 20px;
-		margin-bottom: 0px;
-		
-		/* 아래 두가지 요소로 컨텐츠의 길이에 상관없이 가운데 정렬을 유지한다 */
-		left: 50%;
-		transform: translate(-50%, -50%);
-		
-		text-align: center;
-		font-size: 1.0em;
-	}
-	.customInfo{
+/* 커스텀 인포의 위치를
+	마커에 맞추기 위해 css이용 */
+.customInfo-wrap{
+	position: absolute;
+	bottom: 20px;
+	margin-bottom: 0px;
+	
+	/* 아래 두가지 요소로 컨텐츠의 길이에 상관없이 가운데 정렬을 유지한다 */
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+	text-align: center;
+	font-size: 1.0em;
+}
+.customInfo{
 		position: relative;
 		width: 100%;
-		height: 30px;
-		border: 1px solid #6799FF;
-		border-radius: 6px;
-		background-color: white;
-		padding: 5px;
-		color: black;
-	}
-	.mapList{
-		cursor: default;
-	}
-	.mapList:hover {
-		background-color: #FFF2F2;
-	}
-	.booking{
-		font-size: 1.3em; color: blue; cursor: pointer;
-	}
-	.booking:hover {
-		text-decoration: underline;
-	}
+	height: 30px;
+	border: 1px solid #6799FF;
+	border-radius: 6px;
+	background-color: white;
+	padding: 5px;
+	color: black;
+}
+.mapList{
+	cursor: default;
+}
+.mapList:hover {
+	background-color: #FFF2F2;
+}
+.booking{
+	font-size: 1.3em; color: blue; cursor: pointer;
+}
+.booking:hover {
+	text-decoration: underline;
+}
+.snip1536 {
+  background-color: #FF8000;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'BenchNine', Arial, sans-serif;
+  font-size: 1em;
+  font-size: 22px;
+  line-height: 1em;
+  outline: none;
+  padding: 12px 20px 10px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.snip1536:before,
+.snip1536:after {
+  border-color: transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.snip1536:before {
+  border-color: #FF8000;
+  border-right-width: 2px;
+  border-top-width: 2px;
+  right: -5px;
+  top: -5px;
+}
+.snip1536:after {
+  border-bottom-width: 2px;
+  border-color: #FF8000;
+  border-left-width: 2px;
+  bottom: -5px;
+  left: -5px;
+}
+.snip1536:hover {
+  background-color: #FF8000;
+}
+.snip1536:hover:before,
+.snip1536:hover:after {
+  height: 100%;
+  width: 100%;
+}
 </style>
 
 <body id="top">
@@ -461,15 +506,15 @@ function removeAllChildNods(el) {
 		                  	</select>
 						</td>
 						<td style="width: 100px;">
-							<button class="search-button" type="button" id="btn1">검색</button>
+							<button class="snip1536" type="button" id="btn1">검색</button>
 						</td>
 					</tr>
-					<tr>
+					<tr >
 						<td>
 							<input class="search-text" type="text" value="" id="searchTxt" name="searchTxt" placeholder="경기장 이름으로 찾기" />
 						</td>
 						<td>
-							<button class="search-button" type="button" id="btn2">검색</button>
+							<button class="snip1536" type="button" id="btn2">검색</button>
 						</td>
 					</tr>
 				</table>

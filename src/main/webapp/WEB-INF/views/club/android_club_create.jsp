@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 
 <html>
+	<meta name="viewport" content="width=device-width, initial-scale=0.85">
 <link href="./../resources/css/create.css" rel="stylesheet"	type="text/css" media="all">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -67,6 +68,60 @@ label {
 	margin-left:auto; margin-right:auto;
 }
 
+@import url(https://fonts.googleapis.com/css?family=BenchNine:700);
+.snip1535 {
+  background-color: #c47135;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'BenchNine', Arial, sans-serif;
+  font-size: 1em;
+  font-size: 22px;
+  line-height: 1em;
+  margin: 15px 40px;
+  outline: none;
+  padding: 12px 40px 10px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.snip1535:before,
+.snip1535:after {
+  border-color: transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.snip1535:before {
+  border-color: #c47135;
+  border-right-width: 2px;
+  border-top-width: 2px;
+  right: -5px;
+  top: -5px;
+}
+.snip1535:after {
+  border-bottom-width: 2px;
+  border-color: #c47135;
+  border-left-width: 2px;
+  bottom: -5px;
+  left: -5px;
+}
+.snip1535:hover {
+  background-color: #c47135;
+}
+.snip1535:hover:before,
+.snip1535:hover:after {
+  height: 100%;
+  width: 100%;
+}
+
+
 
 </style>
 <%
@@ -74,11 +129,12 @@ request.setCharacterEncoding("UTF-8");
 String keyword = request.getParameter("keyword");
 %>
 <body>
-<div class="hoc container clear" style="max-width:1200px;">
+<div class="hoc container clear">
 	<div class="co">
-	<center class="center">클럽 생성</center>
-	<br /><br />
-	<form name="creFrm" id="creFrm" enctype="multipart/form-data" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
+	<div style="font-weight: bold;"><center class="center">클럽 생성</center></div>
+	<br /> 
+	<form name="creFrm" id="creFrm" enctype="multipart/form-data" action="<c:url value="/android/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
+		<input type="hidden" name="m_id" value="${param.m_id }" />
 		<h2>팀명</h2>
 		<div>
 			<input type="text" class="txtBox31" placeholder="팀명을 입력해주세요" id="c_name" name="c_name">
@@ -130,13 +186,13 @@ String keyword = request.getParameter("keyword");
 		</div>
 
 		
-		<h2>성별 체크</h2>
-		<input type="radio" name="c_gender" id="man" value="남자" style="display:inline;">
-		<label for="man" style="padding-right:200px;">남자</label>
-		<input type="radio" name="c_gender" id="wowan" value="여자" style="display:inline;">
-		<label for="wowan" style="padding-right:200px;">여자</label>
-		<input type="radio" name="c_gender" id="c_mixed" value="혼성" style="display:inline;">
-		<label for="c_mixed">혼성</label>
+		<h2>성별 체크</h2> 
+		<input type="radio" name="c_gender" id="man" value="남자" style="display:inline; width: 30px; height: 30px;">
+		<label for="man" style="padding-right:160px; font-size: 25px;">남자</label>
+		<input type="radio" name="c_gender" id="wowan" value="여자" style="display:inline; width: 30px; height: 30px;">
+		<label for="wowan" style="padding-right:160px; font-size: 25px;">여자</label>
+		<input type="radio" name="c_gender" id="c_mixed" value="혼성" style="display:inline; width: 30px; height: 30px;">
+		<label for="c_mixed" style="font-size: 25px;">혼성</label>
 		
 		<h2>인원수 제한</h2>
 		<div class="box">
@@ -174,12 +230,12 @@ String keyword = request.getParameter("keyword");
 		
 		<h2>선호 종목</h2>
 
-			<input type="radio" name="c_type" id="c_soccer" value="축구" style="display:inline;">
-			<label for="c_soccer" style="padding-right:200px;">축구</label>
-			<input type="radio" name="c_type" id="c_footsal" value="풋살" style="display:inline;">
-			<label for="c_footsal" style="padding-right:200px;">풋살</label>
-			<input type="radio" name="c_type" id="c_both" value="혼합" style="display:inline;">
-			<label for="c_both">혼합</label>
+			<input type="radio" name="c_type" id="c_soccer" value="축구" style="display:inline; width: 30px; height: 30px;">
+			<label for="c_soccer" style="padding-right:160px; font-size: 25px;">축구</label>
+			<input type="radio" name="c_type" id="c_footsal" value="풋살" style="display:inline; width: 30px; height: 30px;">
+			<label for="c_footsal" style="padding-right:160px; font-size: 25px;">풋살</label>
+			<input type="radio" name="c_type" id="c_both" value="혼합" style="display:inline; width: 30px; height: 30px;">
+			<label for="c_both" style="font-size: 25px;">혼합</label>
 
 		
 		<h2>클럽 소개글</h2>

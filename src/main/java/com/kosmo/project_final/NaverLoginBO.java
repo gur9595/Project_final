@@ -21,7 +21,7 @@ public class NaverLoginBO {
 	private final static String REDIRECT_URI = "http://localhost:8282/project_final/member/callback.do";
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL */
-	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
+	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";  
 	/* 네이버 아이디로 인증 URL 생성 Method */
 	public String getAuthorizationUrl(HttpSession session) {
 		System.out.println("token test1");

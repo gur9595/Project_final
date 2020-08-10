@@ -55,7 +55,7 @@ public class PaymentController {
 		String m_id = principal.getName();
 		// id는 무조건 principal
 		
-		System.out.println("m_name : "+m_id);
+		System.out.println("m_id : "+m_id);
 			
 		// 2. ballCurrent의 쿼리상 반환값은 int이므로 getMapper 결과로 나올 int형을 담을 변수를 생성한다.
 		int money = sqlSession.getMapper(CashDAOImpl.class).ballCurrent(m_id);
