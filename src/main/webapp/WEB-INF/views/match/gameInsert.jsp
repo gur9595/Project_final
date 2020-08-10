@@ -204,8 +204,8 @@ table, th, td{
 						<td>
 							<input type="text" class="form-control" placeholder="예약된 구장의 이름을 자세히 입력해주세요." 
 								style="width: 70%; display: inline;" id="g_sname" name="g_sname"> 
-							<input type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소 검색" 
-								style="width: 28%; display: inline;"><br>
+							<button type="button" class="addr" onclick="sample5_execDaumPostcode()"  
+								style="width: 28%; height:40px; display: inline;">주소검색</button><br>
 							<input type="text" class="form-control" placeholder="예약된 구장의 주소를 자세히 입력해주세요." 
 								style="width: 100%; display: inline;" id="g_saddr" name="g_saddr">
 							
@@ -224,7 +224,7 @@ table, th, td{
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="button" class="btn btn-secondary" value="매칭신청" style="width: 100%; height: 100%;" onclick="gameJoin();"/></td>
+						<td colspan="2"><button type="button" class="addr" style="width: 100%; height: 35px; color:black;" onclick="gameJoin();">매칭신청</button></td>
 					</tr>
 				</table>
 			</form>

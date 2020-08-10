@@ -11,7 +11,6 @@
 <%-- <%@ include file="../js/kakao.js" %> --%>
 <link href="./../resources/css/club_view2.css" rel="stylesheet">
 <link href="./../resources/css/club_view_page.css" rel="stylesheet">
-<link href="./../resources/css/chat.css" rel="stylesheet">
 <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
 <script src="/resources/js/view_custommin.js"></script>
 <script src="/resources/js/club_view.js"></script>
@@ -264,8 +263,7 @@ function send(){
 																		<div class="row"
 																			style="margin: 0; padding: 0; margin-bottom: 15px;">
 																			<h6
-																				style="margin: 0; padding: 0; color: #BFBFBF; font-size: 20px; font-weight: 600; margin-bottom: 15px;">팀
-																				소개</h6>
+																				style="margin: 0; padding: 0; color: #BFBFBF; font-size: 20px; font-weight: 600; margin-bottom: 15px;">팀소개</h6>
 																			<div
 																				style="margin: 0; padding: 0; background-color: #ADADAD; height: 165px; width: 300px; border-radius: 15px; padding: 10px; overflow-x: hidden;">
 																				${clubDTO.c_memo }</div>
@@ -323,7 +321,7 @@ function send(){
 																</div>
 																<br /> <span style="font-size: 30px; color: white;">최근
 																	10경기</span> <br />
-																<div class="game_list" style="width: 426px;">
+																<div class="game_list" style="width: 460px;">
 																	<c:forEach items="${tenHistory }" var="row"
 																		varStatus="status">
                                                             		${row }
@@ -340,7 +338,7 @@ function send(){
 																<div class="progress">
 																	<div
 																		class="progress-bar progress-bar-striped bg-success"
-																		role="progressbar" style="width: ${map.tenPov}%"
+																		role="progressbar" style=" width: ${map.tenPov}%"  
 																		aria-valuenow="25" aria-valuemin="0"
 																		aria-valuemax="100"></div>
 																</div>
@@ -360,128 +358,5 @@ function send(){
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-	var messageWindow;
-	var inputMessage;
-	var chat_id;
-	var webSocket;
-	window.onload = function() {
 
-		//대화가 디스플레이 되는 영역
-		messageWindow = document.getElementById("chat-container");
-
-		//대화영역의 스크롤바를 항상 아래로 내려준다.
-		messageWindow.scrollTop = messageWindow.scrollHeight;
-
-		inputMessage = document.getElementById('inputMessage');
-
-		chat_id = document.getElementById('chat_id').value;
-
-		webSocket = new WebSocket(
-				'ws://localhost:8282/K07JSPServlet/ChatServer02');
-		webSocket.onopen = function(event) {
-			wsOpen(event);
-		};
-		//연결되었을 때
-		webSocket.onopen = function(event) {
-			wsOpen(event);
-		};
-		//메세지가 전송될 때
-		webSocket.onmessage = function(event) {
-			wsMessage(event);
-		};
-		//웹소켓이 닫혔을 때
-		webSocket.onclose = function(event) {
-			wsClose(event);
-		};
-		//에러가 발생했을 때
-		webSocket.onerror = function(event) {
-			wsError(event);
-		};
-	}
-	function wsOpen(event) {
-		messageWindow.value += "연결성공\n";
-	}
-
-	function wsMessage(event) {
-
-		var message = event.data.split("|");
-		var sender = message[0];
-		var content = message[1];
-		var msg;
-
-		if (content == "") {
-			//전송한 메세지가 없다면 아무일도 하지 않는다.
-		} else {
-			//보낸 메세지에...
-			if (content.match("/")) {
-				//슬러쉬가 포함되어있다면 명령어로 인식...
-				if (content.match(("/" + chat_id))) {
-					//귓속말 명령어를 한글로 대체한 후
-					var temp = content.replace(("/" + chat_id), "[귓속말]:");
-					msg = makeBalloon(sender, temp);
-					messageWindow.innerHTML += msg;
-					//스크롤바 처리
-					messageWindow.scrollTop = messageWindow.scrollHeight;
-				}
-			} else {
-				//귓속말이 아니면 모두에게 디스플레이 한다.
-				msg = makeBalloon(sender, content);
-				messageWindow.innerHTML += msg;
-				//스크롤바 처리 
-				messageWindow.scrollTop = messageWindow.scrollHeight;
-			}
-		}
-	}
-	//상대방이 보낸 메세지를 출력하기 위한 부분
-	function makeBalloon(id, cont) {
-		var msg = '';
-		msg += '<div class="chat chat-left">';
-		msg += '	<!-- 프로필 이미지 -->';
-		msg += '	<span class="profile profile-img-b"></span>';
-		msg += '	<div class="chat-box">';
-		msg += '		<p style="font-weight:bold; font-size:1.1em; margin-bottom:5px;">'
-				+ id + '</p>';
-		msg += '		<p class="bubble">' + cont + '</p>';
-		msg += '		<span class="bubble-tail"></span>';
-		msg += '	</div>';
-		msg += '</div>';
-		return msg;
-	}
-	function wsClose(event) {
-		messageWindow.value += "연결끊기성공\n";
-	}
-
-	function sendMessage() {
-
-		//웹소켓 서버로 대화내용을 전송한다.
-		webSocket.send(chat_id + '|' + inputMessage.value);
-
-		var msg = '';
-		msg += '<div class="chat chat-right">';
-		msg += '	<!-- 프로필 이미지 -->';
-		msg += '	<span class="profile profile-img-a"></span>';
-		msg += '	<div class="chat-box">';
-		msg += '		<p class="bubble-me">' + inputMessage.value + '</p>';
-		msg += '		<span class="bubble-tail"></span>';
-		msg += '	</div>';
-		msg += '</div>';
-
-		//내가 보낸 메세지를 대화창에 출력한다.
-		messageWindow.innerHTML += msg;
-		inputMessage.value = "";
-
-		//대화영역의 스크롤바를 아래로 내려준다.
-		messsageWindow.scrollTop = messageWindow.scrollHeight;
-	}
-	function enterkey() {
-		/*
-		키보드를 눌렀다가 땠을 때 호출되며, 눌려진 키보드의 키코드가
-		13일 때, 즉 엔터일 때 아래 함수를 호출한다.
-		 */
-		if (window.event.keyCode == 13) {
-			sendMessage();
-		}
-	}
-</script>
 </html>

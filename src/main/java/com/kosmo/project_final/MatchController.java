@@ -38,6 +38,7 @@ import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.GameDTO;
 import mybatis.MatchDAOImpl;
+import mybatis.MatchDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
 import mybatis.StadiumDAOImpl;
@@ -65,6 +66,7 @@ public class MatchController {
 	
 	@RequestMapping("/match/stadiumMain.do")
 	public String stadiumMain(Model model, HttpServletRequest req) {
+
 		
 		//파라미터 저장을 위한 DTO객체 생성
 		StadiumDTO stadiumDTO = new StadiumDTO();
@@ -581,7 +583,8 @@ public class MatchController {
 	//게임 리스트 출력
 	@RequestMapping("/match/game_list.do")
 	public String game_list(Model model, HttpServletRequest req, Principal principal) {
-        
+		
+		
         ArrayList<GameDTO> lists = sqlSession.getMapper(MatchDAOImpl.class).gameList();
 		
 		for(GameDTO dto : lists) {

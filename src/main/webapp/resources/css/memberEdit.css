@@ -22,7 +22,8 @@ input[type=email]{
 	font-size:25px;
 }
 
-button{
+.edit, .addrF{
+	border-radius: 3px;
   background:#1AAB8A;
   color:#fff;
   border:none;
@@ -33,14 +34,15 @@ button{
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
+  
 }
 
-button:hover{
+.edit:hover, .addrF:hover{
   background:#fff;
   color:#1AAB8A;
 }
 
-button:before,button:after{
+.edit:before,.edit:after, .addrF:before,.addrF:after{
   content:'';
   position:absolute;
   top:0;
@@ -50,17 +52,18 @@ button:before,button:after{
   background: #1AAB8A;
   transition:400ms ease all;
 }
-button:after{
+.edit:after,.addrF:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button:hover:before,button:hover:after{
+.edit:hover:before,.edit:hover:after, .addrF:hover:before,.addrF:hover:after{
   width:100%;
   transition:800ms ease all;
 }
 
-.container{
+.con{
 	max-width : 1250px;
+	margin-left: auto; margin-right:auto;
 }

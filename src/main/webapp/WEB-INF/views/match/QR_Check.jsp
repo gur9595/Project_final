@@ -1,29 +1,14 @@
-@charset "UTF-8";
-.tables {
-	margin-left:5%;
-	width : 90%;
-	height : 70%;
-}
-.trs{
-	height : 90px;
-}
-.ths{
-	vertical-align: middle;
-	font-size : 20px;
-}
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 
-.center{
-	font-size : 50px;
-}
-
-.image-con{
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 300px;
-    height: 300px;
-}
+<html>
+<link href="./../resources/css/create.css" rel="stylesheet"	type="text/css" media="all">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
 h2 { 
 	font-size : 30px; color:#000066; line-height:30px;
 	margin:35px auto 10px 0px;
@@ -67,7 +52,7 @@ input[type=text]{
 	font-size:25px;
 }
 input[type=checkbox], input[type=radio]
-{ 
+{
 	width : 20px; height : 20px; cursor: pointer;
 }
 label {
@@ -84,7 +69,7 @@ label {
 
 @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
 .snip1535 {
-  background-color: #2E64FE;
+  background-color: #c47135;
   border: none;
   color: #ffffff;
   cursor: pointer;
@@ -113,7 +98,7 @@ label {
   width: 24px;
 }
 .snip1535:before {
-  border-color: #2E64FE;
+  border-color: #c47135;
   border-right-width: 2px;
   border-top-width: 2px;
   right: -5px;
@@ -121,16 +106,45 @@ label {
 }
 .snip1535:after {
   border-bottom-width: 2px;
-  border-color: #2E64FE;
+  border-color: #c47135;
   border-left-width: 2px;
   bottom: -5px;
   left: -5px;
 }
 .snip1535:hover {
-  background-color: #2E64FE;
+  background-color: #c47135;
 }
 .snip1535:hover:before,
 .snip1535:hover:after {
   height: 100%;
   width: 100%;
 }
+
+
+
+</style>
+<%
+request.setCharacterEncoding("UTF-8");
+String keyword = request.getParameter("keyword");
+%>
+<body>
+<div class="hoc container clear" style="max-width:1200px;">
+	<div class="co">
+	<center class="center">경기 결과</center>
+	<br /><br />
+	<form name="creFrm" id="creFrm" enctype="multipart/form-data" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
+		
+		
+		<h2>평가</h2>
+		<div>
+			<input type="text" class="txtBox31" placeholder="클럽을 자유롭게 소개해 주세요" id="c_momo" name="c_memo" >
+		</div>
+		<br /><br />
+		<div style="text-align:center;">
+			<Button type="submit" id="joinBtn" class="snip1535" >클럽생성</Button>
+		</div>
+	</form>
+	</div>
+</div>
+</body>
+</html>

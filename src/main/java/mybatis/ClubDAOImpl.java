@@ -126,4 +126,11 @@ public interface ClubDAOImpl {
 //	public ArrayList<AndroidMemberDTO> clubPointRankA(AndroidMemberDTO androidMemberDTO);
 //	public ArrayList<AndroidMemberDTO> clubAppearanceRankA(AndroidMemberDTO androidMemberDTO);
 //	
+	public ArrayList<AndroidRankingDTO> clubTotalRankingA();
+	public ArrayList<AndroidRankingDTO> clubAreaRankingA(AndroidRankingDTO androidRankingDTO);
+	public ArrayList<AndroidMemberDTO> clubAssistRankA(AndroidMemberDTO androidMemberDTO);
+	public ArrayList<AndroidMemberDTO> clubPointRankA(AndroidMemberDTO androidMemberDTO);
+	public ArrayList<AndroidMemberDTO> clubAppearanceRankA(AndroidMemberDTO androidMemberDTO);
+	public int qrCheck(GameDTO gameDTO);
+	public ArrayList<AndroidMatchDTO> select_qrcheckA(AndroidMatchDTO androidMatchDTO);
 }

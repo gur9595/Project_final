@@ -50,6 +50,54 @@ th {
 	text-align: center;
 	border-bottom: 1px solid #444444;
 }
+.tb_wrap {
+  position:relative;
+  padding-top: 50px;
+}
+.tb_box {
+  max-height:300px;
+  overflow-x:hidden;
+  border-bottom:1px solid #dedede;
+}
+.tb {
+  border-collapse:collapse;
+  border-spacing:0;
+  width:100%;
+}
+
+.fixed_top {
+  display:inline-table;
+  position:absolute;
+  top:0;
+  width:calc(90% - 50px);
+  background:#eef7ff;
+}
+.fixed_top th {
+  border-top:1px solid #dedede;
+  border-bottom:1px solid #dedede;
+}
+
+.cell1 {
+  width:90px;
+}
+.cell2 {
+  width:90px;
+}
+.cell3 {
+  width:90px;
+}
+.cell4 {
+  width:80px;
+}
+.cell5 {
+  width:100px;
+}
+.cell6 {
+  width:90px;
+}
+.cell7 {
+  width:100px;
+}
 </style>
 
 <body  onresize="parent.resizeTo(1280,720)" onload="parent.resizeTo(1280,720)">
@@ -74,62 +122,63 @@ th {
 											<div>
 												<h4 style="margin-left: 80px;">경기 일정</h4>
 											</div>
-											<div class="comment-widgets scrollable"
-												style="min-height: 200px; max-height: 400px;">
-												<table style="width: 800px;">
-													<tr style="border-bottom: 3px solid rgb(59, 209, 116)">
-														<th style="width: 120px;">날짜</th>
-														<th style="width: 50px;">시간</th>
-														<th style="width: 200px;">구장 이름</th>
-														<th style="width: 100px;">상대팀</th>
-														<th>공유</th>
-														<th colspan="2" style="width: 100px;">참가여부</th>
-														<c:if test="${getCmgrade.cm_grade =! 'player'}">
-															<th colspan="2" style="width: 120px;">임원전용</th>
-														</c:if>
-													</tr>
-
-													<c:forEach items="${lists }" var="row" varStatus="status">
-
-														<tr>
-															<input type="hidden" value="${row.g_num }" />
-															<th>${row.g_date }</th>
-															<th>${row.g_time }</th>
-															<th>${row.g_sname }</th>
-															<th><c:choose>
-																	<c:when test="${row.c_name == '' }">없음</c:when>
-																	<c:otherwise>
-																		<a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a>
-																	</c:otherwise>
-																</c:choose></th>
-															<th><a id="kakao-link-btn"
-																href="javascript:sendLink('${row.g_saddr }','${row.g_sname }','${row.g_date }',${param.c_idx})">
-																	<img
-																	src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" />
-															</a></th>
-															<th><input type="button"
-																onclick="javascript:gameMemberApply(${param.c_idx},${row.g_idx},${m_id })"
-																class="btn btn-outline-success"
-																style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
-																value="참가"></th>
-															<th><input type="button"
-																onclick="javascript:gameMemberDrop(${param.c_idx},${row.g_idx},${m_id })"
-																class="btn btn-outline-danger"
-																style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
-																value="불참"></th>
+											<div class="tb_wrap">
+												<div class="tb_box">
+													<table style="width: 800px;" class="tb">
+														<tr style="border-bottom: 3px solid rgb(59, 209, 116)" class="fixed_top">
+															<th class="cell1" scope="col" >날짜</th>
+															<th class="cell2" scope="col">시간</th>
+															<th class="cell3" scope="col">구장 이름</th>
+															<th class="cell4" scope="col" >상대팀</th>
+															<th class="cell5" scope="col">공유</th>
+															<th  colspan="2" class="cell6" scope="col" >참가여부</th>
 															<c:if test="${getCmgrade.cm_grade =! 'player'}">
-																<th><input type="button"
-																	class="btn btn-outline-primary"
-																	style="width: 65px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 16px;"
-																	value="용병고용"></th>
-																<th><input type="button" id="cancel"
-																	class="btn btn-outline-secondary"
-																	style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
-																	value="취소"></th>
+																<th colspan="2" class="cell7" scope="col">임원전용</th>
 															</c:if>
 														</tr>
-													</c:forEach>
-												</table>
+	
+														<c:forEach items="${lists }" var="row" varStatus="status">
+	
+															<tr>
+																<input type="hidden" value="${row.g_num }" />
+																<th class="cell1" scope="row">${row.g_date }</th>
+																<th class="cell2">${row.g_time }</th>
+																<th class="cell3">${row.g_sname }</th>
+																<th class="cell4"><c:choose>
+																		<c:when test="${row.c_name == '' }">없음</c:when>
+																		<c:otherwise>
+																			<a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a>
+																		</c:otherwise>
+																	</c:choose></th>
+																<th class="cell5"><a id="kakao-link-btn"
+																	href="javascript:sendLink('${row.g_saddr }','${row.g_sname }','${row.g_date }',${param.c_idx})">
+																		<img
+																		src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" />
+																</a></th>
+																<th class="cell6"><input type="button"
+																	onclick="javascript:gameMemberApply(${param.c_idx},${row.g_idx},${m_id })"
+																	class="btn btn-outline-success"
+																	style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
+																	value="참가"></th>
+																<th class="cell6"><input type="button"
+																	onclick="javascript:gameMemberDrop(${param.c_idx},${row.g_idx},${m_id })"
+																	class="btn btn-outline-danger"
+																	style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
+																	value="불참"></th>
+																<c:if test="${getCmgrade.cm_grade =! 'player'}">
+																	<th class="cell7"><input type="button"
+																		class="btn btn-outline-primary"
+																		style="width: 65px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 16px;"
+																		value="용병고용"></th>
+																	<th class="cell7"><input type="button" id="cancel"
+																		class="btn btn-outline-secondary"
+																		style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
+																		value="취소"></th>
+																</c:if>
+															</tr>
+														</c:forEach>
+													</table>
+												</div>
 											</div>
 											<br />
 											<br />
@@ -142,7 +191,7 @@ th {
 													<div>
 														<h4 style="margin-left: 80px;">신청 접수 현황</h4>
 													</div>
-													<div class="comment-widgets scrollable">
+													<div class="comment-widgets scrollable" style="overflow-x: hidden;">
 														<table style="width: 800px;">
 															<tr style="border-bottom: 3px solid rgb(59, 209, 116)">
 																<th style="width: 180px;">날짜</th>
@@ -184,7 +233,7 @@ th {
 														<h4 style="margin-left: 80px;">우리 신청 현황</h4>
 													</div>
 													<div class="comment-widgets scrollable"
-														style="min-height: 200px; max-height: 400px;">
+														style="min-height: 200px; max-height: 400px; overflow-x: hidden;">
 														<table style="width: 800px;">
 															<tr style="border-bottom: 3px solid rgb(59, 209, 116)">
 																<th style="width: 180px;">날짜</th>

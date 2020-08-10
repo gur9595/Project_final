@@ -22,9 +22,11 @@ import mybatis.StadiumDTO;
 import mybatis.StadiumGameDTO;
 import utils.StadiumPaging;
 import mybatis.AdminDAOImpl;
+import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.GameDTO;
 import mybatis.MatchDAOImpl;
+import mybatis.MatchDTO;
 
 @Controller
 public class AndroidMatchController {
@@ -51,6 +53,10 @@ public class AndroidMatchController {
 		
 		return "match/match_main";
 	}
+	
+	
+	
+	
 		
 }
 

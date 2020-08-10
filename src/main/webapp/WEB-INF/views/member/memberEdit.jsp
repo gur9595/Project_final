@@ -22,8 +22,8 @@ label {
 </style>
 	<form action="../member/memberEditAction.do"
 		enctype="multipart/form-data" method="post" id="myForm" name="form">
-	<main class="hoc clear" id="main">
-	<div class="container">
+	<main class="hoc container clear" id="main">
+	<div class="con">
 	
 		<div style="background: #FFFFFF; margin-left: auto; margin-right: auto;">
 			<header class="member-header">
@@ -82,8 +82,8 @@ label {
 				<div>
 					<input type="text" id="postcode" name="zip1" placeholder="우편번호"
 						style="width: 100px; margin-top: 5px; display: inline;" readonly />
-					<button type="btn btn-warning" onclick="DaumPostcode()"
-						style="color:yellow; width:110px; height:35px; display: inline; margin-top: 5px; font-weight: bold">주소찾기</button>
+					<button type="button" class="addrF" onclick="DaumPostcode()"
+						style="height:35px; display: inline; margin-top: 5px; font-weight: bold">주소찾기</button>
 					<input type="text" id="m_addr1" name="m_addr1" placeholder="주소"
 						style="margin-top: 5px; width: 500px;" readonly
 						value="<%=request.getAttribute("addr1")%>" /> <input type="text"
@@ -187,7 +187,7 @@ label {
 	</main>
 	<div style="display:table; margin-left:auto; margin-right:auto;">
 		<div style="text-align: center; display:table-cell;">
-			<button type="submit" id="correct" style="color:black; font-weight: 900; font-size: 30px; display:inline-block;">수정하기</button>
+			<button type="submit" class="edit" id="correct" style="color:black; font-weight: 900; font-size: 30px; display:inline-block;">수정하기</button>
 		</div>
 	</div>
 	</form>

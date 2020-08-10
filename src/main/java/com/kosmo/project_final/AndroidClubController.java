@@ -294,5 +294,121 @@ public class AndroidClubController {
 	 * 
 	 * return appearanceRank; }
 	 */
+	@RequestMapping("/android/clubTotalRanking.do")
+	   @ResponseBody
+	   public ArrayList<AndroidRankingDTO> clubTotalRanking(){
+	      
+	      ArrayList<AndroidRankingDTO> clubTotalRanking = sqlSession.getMapper(ClubDAOImpl.class).clubTotalRankingA();
+	      
+	      for(AndroidRankingDTO dto : clubTotalRanking) {
+
+	         int wins = dto.getWins();
+	         int matches = dto.getMatches();
+	         double winRate = 0;
+
+	         if(matches==0) {
+	            dto.setWinRate(0);
+	         }else {
+	            winRate = (double) wins / matches * 100;
+	            winRate = Math.round(winRate * 100) / 100;
+	            dto.setWinRate((int)winRate);
+	         }
+
+	      }
+	      
+	      return clubTotalRanking;
+	   }
+	   
+	   @RequestMapping("/android/clubAreaRanking.do")
+	   @ResponseBody
+	   public ArrayList<AndroidRankingDTO> clubAreaRanking(AndroidRankingDTO androidRankingDTO){
+	      
+	      ArrayList<AndroidRankingDTO> clubAreaRanking = sqlSession.getMapper(ClubDAOImpl.class).clubAreaRankingA(androidRankingDTO);
+	      for(AndroidRankingDTO dto : clubAreaRanking) {
+
+	         int wins = dto.getWins();
+	         int matches = dto.getMatches();
+	         double winRate = 0;
+
+	         if(matches==0) {
+	            dto.setWinRate(0);
+	         }else {
+	            winRate = (double) wins / matches * 100;
+	            winRate = Math.round(winRate * 100) / 100;
+	            dto.setWinRate((int)winRate);
+	         }
+
+	      }
+	      
+	      return clubAreaRanking;
+	   }
+	   
+	   
+	   //팀원 어시랭킹
+	   @RequestMapping("/android/clubMemberAssist.do")
+	   @ResponseBody
+	   public ArrayList<AndroidMemberDTO> clubMemberAssist(AndroidMemberDTO androidMemberDTO){
+	      
+	      System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
+	      
+	      ArrayList<AndroidMemberDTO> assistRank = sqlSession.getMapper(ClubDAOImpl.class).clubAssistRankA(androidMemberDTO);
+	      
+	      return assistRank;
+	   }
+	    
+	   //팀원 공포랭킹
+	   @RequestMapping("/android/clubMemberPoint.do")
+	   @ResponseBody
+	   public ArrayList<AndroidMemberDTO> clubMemberPoint(AndroidMemberDTO androidMemberDTO){
+	      
+	      System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
+	      
+	      ArrayList<AndroidMemberDTO> pointRank = sqlSession.getMapper(ClubDAOImpl.class).clubPointRankA(androidMemberDTO);
+	      
+	      return pointRank;
+	   }
+	   
+	   //팀원 경기랭킹
+	   @RequestMapping("/android/clubMemberAppearance.do")
+	   @ResponseBody
+	   public ArrayList<AndroidMemberDTO> clubMemberAppearance(AndroidMemberDTO androidMemberDTO){
+	      
+	      System.out.println("getC_idx() : "+androidMemberDTO.getC_idx());
+	      
+	      ArrayList<AndroidMemberDTO> appearanceRank = sqlSession.getMapper(ClubDAOImpl.class).clubAppearanceRankA(androidMemberDTO);
+	      
+	      return appearanceRank;
+	   }
+	   
+	
+	//QR코드 스캔 하고 넘어가는 페이지
+	@RequestMapping("/android/qr_Check.do")
+	public String QR_Check(HttpServletRequest req, GameDTO gameDTO, ClubDTO clubDTO) {
+		
+		String g_idx1 = req.getParameter("g_idx");
+		int g_idx = Integer.parseInt(g_idx1);
+		
+		System.out.println("g_idx : "+g_idx);
+		
+		gameDTO.setG_qrcheck("yes");
+		gameDTO.setG_idx(g_idx);
+		
+		//check바꾸기
+		sqlSession.getMapper(ClubDAOImpl.class).qrCheck(gameDTO);
+
+		
+		return "match/QR_Check";
+	}
+	
+	@RequestMapping("/android/select_qrcheck.do")
+	@ResponseBody
+	public ArrayList<AndroidMatchDTO> select_qrcheck(AndroidMatchDTO androidMatchDTO){
+		
+		System.out.println("getC_idx() : "+androidMatchDTO.getG_idx());
+		
+		ArrayList<AndroidMatchDTO> appearanceRank = sqlSession.getMapper(ClubDAOImpl.class).select_qrcheckA(androidMatchDTO);
+		
+		return appearanceRank;
+	}
 
 }
