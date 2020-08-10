@@ -397,19 +397,11 @@ public class MemberController {
       
       String[] s_cvs = req.getParameterValues("s_cv");
       String s_cv = "";
-      if(s_cvs.length == 1) {
-    	  for(int i = 0; i < s_cvs.length; i++) {
-	    	  s_cv += s_cvs[i];
-	      }
-    	  dto.setS_cv(s_cv);      
+      for(int i = 0; i < s_cvs.length; i++) {
+    	  s_cv += s_cvs[i];
+    	  System.out.println("s_cv : " + s_cv);
       }
-      else if(s_cvs.length != 1) {
-	      for(int i = 0; i < s_cvs.length; i++) {
-	    	  s_cv += s_cvs[i];
-	      }
-	      System.out.println("s_cv : " + s_cv);
-	      dto.setS_cv(s_cv);
-      }
+      dto.setS_cv(s_cv);
       
       dto.setS_addr(s_addr);
       dto.setS_lat(latitude);
