@@ -323,9 +323,8 @@ function match_insert(f){
 					<span style="font-size: 20px; color: black; font-weight: bold;">구장 특이사항</span><br /><br />
 				</header>
 				<div class="comcont">
-					<pre class="txt2">
-${memo }
-					</pre>
+				<textarea name="" id="" cols="20" rows="10" style="color: #000; border: 0;">${memo }</textarea>
+
 				</div>
 				<header>
 					<span style="font-size: 20px; color: black; font-weight: bold;">구장 편의사항</span><br /><br />

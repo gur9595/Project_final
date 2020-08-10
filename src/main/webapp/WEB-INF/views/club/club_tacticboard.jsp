@@ -45,7 +45,7 @@
    <div>
       <div class="toggler"  align="center"
       style="width:80px; position:absolute; left: 10px ; top: 60px ; background-color: #ffffff;
-        opacity: 0.8;">
+        	 z-index:1;">
 
         <div id="effect" class="ui-widget-content ui-corner-all" style="display:none">  
           <h3 class="ui-widget-header ui-corner-all">Bench</h3>
@@ -67,7 +67,7 @@
       
      <div class="toggler"  align="center"
       style="width:30%; position:absolute; left: 50%; top: 60px; background-color: #ffffff;
-        opacity: 0.8;">
+        opacity: 0.8; z-index:1;">
         <div id="score" class="ui-widget-content ui-corner-all" style="display:none"> 
         	<div style="font-size: 1em;padding:10px;"> 
 	        	<form action="">
@@ -636,8 +636,8 @@
       </div>
 
       <div id="ball" style="left: 50%; top: 50%; position: absolute;">
-         <img style="width: 60px; height: 60px;"
-            src="./../resources/img/ball3.png" alt="" />
+         <img style="width: 40px; height: 40px;"
+            src="./../resources/img/ball.png" alt="" /> 
       </div>
 
    </div>

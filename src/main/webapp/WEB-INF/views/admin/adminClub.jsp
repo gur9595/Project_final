@@ -196,7 +196,7 @@ function modal(m_id, m_name, m_email, m_phone, m_addr, m_date, m_sex) {
 
 function openClubView(c_idx){
 	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
-			"width=1280,height=720, toolbar=no, menubar=no, resizable=no");
+			"width=1250,height=700, toolbar=no, menubar=no, resizable=no");
 }
 
 $('#writeFrm').submit(function(){
