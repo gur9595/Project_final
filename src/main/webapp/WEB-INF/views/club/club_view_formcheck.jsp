@@ -594,7 +594,7 @@ color: #fff;
 
 
 </body>
-<script type="text/javascript">
+<script type="text/javascript"> 
 	var _gaq = _gaq || [];
 	_gaq.push([ '_setAccount', 'UA-15165482-2' ]);
 	_gaq.push([ '_trackPageview' ]);
