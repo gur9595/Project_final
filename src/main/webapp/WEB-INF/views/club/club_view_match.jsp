@@ -274,7 +274,6 @@ th {
 	</div>
 </body>
 <script>
-		Kakao.init('c7748327b5a31c74b003d0b290d08cca');
 
   function sendLink(g_saddr,g_sname,g_date,c_idx) {
 
@@ -291,7 +290,7 @@ th {
           'https://k.kakaocdn.net/14/dn/btqGqPD04PW/nB2RmOkQJODfsSrewLX9R0/o.jpg',
         link: {
           mobileWebUrl: 'http://localhost:8282/project_final/club/clubView.do?c_idx='+c_idx,
-          webUrl: 'http://localhost:8282/project_final/club/clubKaKaoView.do?c_idx='+c_idx,
+          webUrl: 'http://localhost:8282/project_final/club/clubKaKaoView.do?check=0&c_idx='+c_idx,
         }, 
       },
       buttons: [
@@ -299,7 +298,7 @@ th {
           title: '신청하러 가기',
           link: {
             mobileWebUrl: 'http://localhost:8282/project_final/club/clubView.do?c_idx='+c_idx,
-            webUrl: 'http://localhost:8282/project_final/club/clubKaKaoView.do?c_idx='+c_idx,
+            webUrl: 'http://localhost:8282/project_final/club/clubKaKaoView.do?check=0&c_idx='+c_idx,
           },
         },
       ],
@@ -309,7 +308,7 @@ th {
 
 	function openClubView(c_idx){
 		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
-				"width=1280,height=720, toolbar=no, menubar=no, resizable=no");
+				"width=1200,height=700, toolbar=no, menubar=no, resizable=no");
 	}
 	function ClubMatchApply(c_idx,g_idx,g_num){
 		alert("수락 완료!");

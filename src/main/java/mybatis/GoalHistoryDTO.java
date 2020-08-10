@@ -7,6 +7,8 @@ public class GoalHistoryDTO {
 	private String gh_goal;
 	private String gh_assist;
 	private int gh_time;
+	private int count;
+	private String name;
 	
 	public GoalHistoryDTO() {
 		super();
@@ -49,6 +51,22 @@ public class GoalHistoryDTO {
 	}
 	public void setGh_time(int gh_time) {
 		this.gh_time = gh_time;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

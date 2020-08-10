@@ -188,7 +188,7 @@ request.setCharacterEncoding("UTF-8");
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form name="writeFrm" method="post" action="<c:url value="/member/clubApplyAction.do" />" >
+				<form name="writeFrm" method="post" action="<c:url value="/club/clubApplyAction.do" />" >
 				<div class="modal-body">
 				
 					클럽명 : <span id="list_name"></span><br />

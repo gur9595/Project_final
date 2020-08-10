@@ -206,7 +206,13 @@ public class ClubController {
 
 		System.out.println(suc);
 
-		return "club/club_mylist";
+		return "club/club_main";
+	}
+	
+	@RequestMapping("/club/clubSuccess.do")
+	public String clubSuccess() {
+
+		return "club/club_success";
 	}
 	
 	//클럽생성 웹

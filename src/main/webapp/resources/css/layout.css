@@ -23,7 +23,7 @@ File: Layout CSS
    unicode-range:U+AC00-U+D7A3; 
 }
    
-body{font-family :'Raleway', 'NanumSquare';}
+body{font-family :'Raleway', 'NanumSquare'; min-width: 1200px;}
 
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
