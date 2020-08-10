@@ -93,7 +93,15 @@
       	select c_idx from game where g_idx = #{g_idx}
       </select>
       
+      <!-- 내가 상대방 평가하기 -->
+      <update id="my_ratingmemo" parameterType="mybatis.AndroidMatchDTO">
+      	update game set g_ratingmemo=#{g_ratingmemo} where g_num=#{g_num} and g_idx!=#{g_idx}
+      </update>
       
+      <!-- 상대방가 나 평가하기 -->
+      <update id="your_ratingmemo" parameterType="mybatis.AndroidMatchDTO">
+      	update game set g_ratingmemo=#{g_ratingmemo} where g_num=#{g_num} and g_idx=#{g_idx}
+      </update>
              
    </mapper>
    

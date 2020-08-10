@@ -116,7 +116,7 @@ public interface ClubDAOImpl {
 	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);
 	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO);
 	public int gameMemberRejectA(AndroidGameMemberDTO androidGameMemberDTO);
-	public int gameMemberCheck(int g_idx, String m_id);
+	public int gameMemberCheck(String g_idx, String m_id);
 	public ArrayList<AndroidMemberDTO> clubGoalRankA(AndroidMemberDTO androidMemberDTO);
 	public ArrayList<AndroidClubDTO> clubSearchFilterA(AndroidClubDTO androidClubDTO);
 //	

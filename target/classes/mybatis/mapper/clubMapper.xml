@@ -625,7 +625,7 @@
    </update>
    
    <select id="select_qrcheckA" resultType="mybatis.AndroidMatchDTO">
-   		select g_qrcheck from game where g_idx=#{g_idx}
+   		select g_qrcheck, g_num from game where g_idx=#{g_idx}
    </select>   
   
 </mapper>

@@ -72,7 +72,7 @@ public class AndroidClubController {
 	@ResponseBody
 	public ArrayList<AndroidMatchDTO> clubViewMatch(AndroidClubDTO androidClubDTO){
 		
-		int g_idx = 0; 
+		String g_idx = null; 
 		String c_idx = androidClubDTO.getC_idx();
 		String m_id = androidClubDTO.getM_id();
 		
@@ -80,7 +80,7 @@ public class AndroidClubController {
 		
 		
 		for(AndroidMatchDTO androidMatchDTO : clubViewMatch) {
-			int g_num = androidMatchDTO.getG_num();
+			int g_num = Integer.parseInt(androidMatchDTO.getG_num());
 			
 			MatchDTO matchDTO = sqlSession.getMapper(ClubDAOImpl.class).clubMatchOpponentA(g_num, c_idx);
 			
@@ -91,7 +91,7 @@ public class AndroidClubController {
 				androidMatchDTO.setC_name("상대 없음");
 			}
 			
-			g_idx = androidMatchDTO.getG_idx();
+			g_idx = String.valueOf(androidMatchDTO.getG_idx());
 			
 			int gm_check = sqlSession.getMapper(ClubDAOImpl.class).gameMemberCheck(g_idx, m_id);
 			
@@ -381,34 +381,70 @@ public class AndroidClubController {
 	   }
 	   
 	
-	//QR코드 스캔 하고 넘어가는 페이지
-	@RequestMapping("/android/qr_Check.do")
-	public String QR_Check(HttpServletRequest req, GameDTO gameDTO, ClubDTO clubDTO) {
-		
-		String g_idx1 = req.getParameter("g_idx");
-		int g_idx = Integer.parseInt(g_idx1);
-		
-		System.out.println("g_idx : "+g_idx);
-		
-		gameDTO.setG_qrcheck("yes");
-		gameDTO.setG_idx(g_idx);
-		
-		//check바꾸기
-		sqlSession.getMapper(ClubDAOImpl.class).qrCheck(gameDTO);
-
-		
-		return "match/QR_Check";
-	}
-	
+	//g_check 값 안드로이드에 보내주기
 	@RequestMapping("/android/select_qrcheck.do")
 	@ResponseBody
 	public ArrayList<AndroidMatchDTO> select_qrcheck(AndroidMatchDTO androidMatchDTO){
 		
 		System.out.println("getC_idx() : "+androidMatchDTO.getG_idx());
 		
-		ArrayList<AndroidMatchDTO> appearanceRank = sqlSession.getMapper(ClubDAOImpl.class).select_qrcheckA(androidMatchDTO);
+		ArrayList<AndroidMatchDTO> select_qrcheck = sqlSession.getMapper(ClubDAOImpl.class).select_qrcheckA(androidMatchDTO);
 		
-		return appearanceRank;
+		return select_qrcheck;
 	}
+	
+	//버튼누르고 상대 평가(나->상대)
+	@RequestMapping("/android/my_QR_Check.do")
+	public String my_QR_Check(HttpServletRequest req, GameDTO gameDTO, ClubDTO clubDTO,
+			Model model) {
+		
+		String g_idx1 = req.getParameter("g_idx");
+		int g_idx = Integer.parseInt(g_idx1);
+		
+		String g_num = req.getParameter("g_num");
+		
+		System.out.println("g_idx : "+g_idx);
+		System.out.println("g_num : "+g_num);
+		
+		gameDTO.setG_qrcheck("yes");
+		gameDTO.setG_idx(g_idx);
+		
+		//check바꾸기
+		sqlSession.getMapper(ClubDAOImpl.class).qrCheck(gameDTO);
+		
+		model.addAttribute("g_idx",g_idx);
+		model.addAttribute("g_num",g_num);
+		
+		return "match/my_QR_Check";
+	}
+	
+	//QR스캔하고 상대가 평가(상대->나)
+	@RequestMapping("/android/your_QR_Check.do")
+	public String your_QR_Check(HttpServletRequest req, GameDTO gameDTO, ClubDTO clubDTO,
+			Model model) {
+		
+		String g_idx1 = req.getParameter("g_idx");
+		int g_idx = Integer.parseInt(g_idx1);
+		
+		String g_num = req.getParameter("g_num");
+		
+		System.out.println("g_idx : "+g_idx);
+		System.out.println("g_num : "+g_num);
+		
+		gameDTO.setG_qrcheck("yes");
+		gameDTO.setG_idx(g_idx);
+		
+		
+		//check바꾸기
+		sqlSession.getMapper(ClubDAOImpl.class).qrCheck(gameDTO);
+
+		model.addAttribute("g_idx",g_idx);
+		model.addAttribute("g_num",g_num);
+		
+		return "match/your_QR_Check";
+	}
+	
+	
+	
 
 }
