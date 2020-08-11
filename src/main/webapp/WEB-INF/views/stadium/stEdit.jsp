@@ -104,7 +104,7 @@ input[type=password] {
 										<header class="member-header">
 											<div class="logo"></div>
 										</header>
-	<%-- 									<input type="hid den" name="s_idx" id="s_idx" value="${viewRow.s_idx }" /> --%>
+										<input type="hidden" id="s_check" name="s_check" value="${viewRow.s_check }" />
 										<h2>사업자등록번호(아이디)</h2>
 										<input type="text" class="txtBox31" id="s_id" name="s_id"
 											placeholder="사업자등록번호" maxlength="20" value="${viewRow.s_id }">
@@ -142,10 +142,6 @@ input[type=password] {
 										<input class="txtBox31" maxlength="20" type="tel" id="s_size"
 											name="s_size" style="width: 350px;" placeholder="00x00으로 입력"
 											maxlength="11" value="${viewRow.s_size}">
-
-<%-- 										<h2>구장 대표 사진</h2>
-										<img src="./../resources/uploadFile/${viewRow.s_pic}" style="width: 150px; height: 200px;"/>
-										<input type="file" class="txtBox31" id="s_pic" name="s_pic" accept="image/*" onchange="(event)"> --%>
 
 										<h2>오픈시간</h2>
 										<input type="tel" class="txtBox31" id="s_starttime"

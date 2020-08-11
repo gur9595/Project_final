@@ -17,7 +17,7 @@
                         <span class="logo-text">
                              <!-- dark Logo text -->
                              
-                            <a  style="color: white;" href="${pageContext.request.contextPath }/stadium/stMain.do"><h3>&nbsp;B-PRO STADIUM</h3></a>
+                            <a  style="color: white;" href="${pageContext.request.contextPath }/stadium/stMain.do?s_check=${sessionScope.siteUserInfo.s_check}"><h3>&nbsp;B-PRO STADIUM</h3></a>
                         </span>
                         <!-- Logo icon -->
                     </a>
@@ -40,7 +40,7 @@
                              <form method="post" action="${pageContext.request.contextPath }/stadium/logout.do">
                                 <a class="dropdown-item" href="javascript:void(0)"><button style="width: 100; height: 100%;" class="fa fa-power-off m-r-5 m-l-5" type="submit">Logout</button></a>
 							 </form>
-							 	<a href="../home.do"><button style="width: 100; height: 100%;" class="fa fa-power-off m-r-5 m-l-5" type="submit">아 졸라 집가고싶다</button></a>
+							 	<a href="${pageContext.request.contextPath }/"><button style="width: 100; height: 100%;" class="fa fa-power-off m-r-5 m-l-5" type="submit">B-PRO Home</button></a>
                             </div>
                         </li>
                     </ul>

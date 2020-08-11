@@ -37,6 +37,24 @@
         height:40px; text-align: center;
                 border-bottom: 1px solid #444444;
     }
+    .modal {
+        text-align: center;
+	}
+	 
+	@media screen and (min-width: 768px) { 
+	        .modal:before {
+	                display: inline-block;
+	                vertical-align: middle;
+	                content: " ";
+	                height: 100%;
+	        }
+	}
+	 
+	.modal-dialog {
+	        display: inline-block;
+	        text-align: left;
+	        vertical-align: middle;
+	}
 </style>
 <body>
     <div id="main-wrapper">
@@ -65,7 +83,7 @@
                                                     <tr style="border-bottom: 3px solid #036">
                                                     	<th>No</th>
                                                         <th>클럽명</th>
-                                                        <th>클럽캐시</th>   
+                                                        <th>클럽장</th>   
                                                         <th>활동지역</th>
                                                         <th>선호종목</th>
                                                         <th>생성날짜</th>
@@ -73,19 +91,27 @@
                                                         <th>성별</th>
                                                         <th>인원수제한</th>
                                                         <th>연령대</th>
+                                                        <th>삭제</th> 
                                                     </tr>
 													<c:forEach items="${lists }" var="row" varStatus="status"> 
 														<tr>
 															<th>${status.count }</th>
-															<th>${row.c_name }</th>
-															<th>${row.c_cash }</th>
+															<th><a href='javascript:openClubView(${row.c_idx });'>
+																	${row.c_name }
+																</a></th>
+															<th><a href="" data-toggle="modal"
+																onclick="modal('${row.m_id}', '${row.m_name}', '${row.m_email}', '${row.m_phone}', '${row.m_addr}', '${row.m_date}','${row.m_sex}');"
+																data-target="#myModal" style="width: 100%; height: 100%;">${row.m_name}</a></th>
 															<th>${row.c_area }</th>
 															<th>${row.c_type }</th>
 															<th>${row.c_date }</th>
 															<th>${row.c_ability }</th>
-															<th>${row.c_gender }</th>
+															<th>${row.c_gender }</th> 
 															<th>${row.c_memlimit }</th>															
 															<th>${row.c_age }</th>
+															<th>
+																<input type="button" class="btn btn-danger" onclick="" value="삭제">
+															</th>
 														</tr>
 													</c:forEach>
                                                 </table>
@@ -98,15 +124,39 @@
                     </div>
                 </div>
             </div>
-            
-
-            
-        <!-- 페이지 내용 끝 -->
             <footer class="footer text-center">
                 All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
             </footer>
         </div>
     </div>
+    <!-- 모달창 신청폼 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" data-backdrop="static"
+		style="color: black;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+	
+				<div class="modal-header">
+					<h2 class="modal-title"
+						style="font-size: 30px; text-align: center;" id="myModalLabel">클럽장 정보</h2>
+	
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" style="font-size: 20px;">
+					아이디 : <span id="list_id" style="font-style: italic; font-size: 15px;"></span><br /><br />
+					이름 : <span id="list_name" style="font-style: italic;font-size: 15px;"></span><br /><br />
+					이메일 : <span id="list_email" style="font-style: italic;font-size: 15px;"></span><br /><br />
+					연락처 : <span id="list_phone" style="font-style: italic;font-size: 15px;"></span><br /><br />
+					주소 : <span id="list_addr" style="font-style: italic;font-size: 15px;"></span><br /><br />
+					가입일 : <span id="list_date" style="font-style: italic;font-size: 15px;"></span><br />	<br />		
+					성별 : <span id="list_sex" style="font-style: italic;font-size: 15px;"></span><br /><br />	
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
 <script src="./../resources/admin_js/jquery.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="./../resources/admin_js/popper.min.js"></script>
@@ -130,7 +180,30 @@
      ****************************************/
     $('#zero_config').DataTable();
 </script>
+<script>
 
+function modal(m_id, m_name, m_email, m_phone, m_addr, m_date, m_sex) {
+	
+	document.getElementById("list_name").innerHTML = m_name;
+	document.getElementById("list_id").innerHTML = m_id;
+	document.getElementById("list_email").innerHTML = m_email;
+	document.getElementById("list_phone").innerHTML = m_phone;
+	document.getElementById("list_addr").innerHTML = m_addr;
+	document.getElementById("list_date").innerHTML = m_date;
+	document.getElementById("list_sex").innerHTML = m_sex;
+	
+}
+
+function openClubView(c_idx){
+	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
+			"width=1250,height=700, toolbar=no, menubar=no, resizable=no");
+}
+
+$('#writeFrm').submit(function(){
+	alert("신청 완료!");
+});
+
+</script>
 </body>
 
 </html>

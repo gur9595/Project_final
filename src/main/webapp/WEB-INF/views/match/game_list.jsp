@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
 <main class=" ho c container clear" id="main">
 	<!-- 모달창 신청폼 -->
@@ -25,21 +26,21 @@
 					<div class="modal-body">
 					
 						<input type="hidden" id="list_idx" name="list_idx" />
-						<span>우리 클럽 : </span>
-						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline;">
+						<span style="line-height: 30px;">우리 클럽 : </span>
+						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline; line-height: 30px;">
 							<option value="" selected="selected">클럽을 선택하세요.</option>
 							<c:forEach var="club" items="${c_list }">
 								<option value="${club.c_idx }">${club.c_name }</option>
 							</c:forEach>
 						</select><br />
-						상대 클럽 : <span id="list_c_name"></span><br />
-						경기 날짜 : <span id="list_date"></span><br />
-						경기 시간 : <span id="list_time"></span>:00<br />
-						구장 이름 : <span id="list_name"></span><br />
-						구장 주소 : <span id="list_addr"></span><br />
+						상대 클럽 : <span id="list_c_name" style="line-height: 30px;"></span><br />
+						경기 날짜 : <span id="list_date" style="line-height: 30px;"></span><br />
+						경기 시간 : <span id="list_time" style="line-height: 30px;"></span>:00<br />
+						구장 이름 : <span id="list_name" style="line-height: 30px;"></span><br />
+						구장 주소 : <span id="list_addr" style="line-height: 30px;"></span><br />
 						참고 사항 : <br />
 						<textarea class="form-control" id="list_memo"
-							style="width: 100%; height: 100px; background: #ffffff;"
+							style="width: 100%; height: 100px; background: #ffffff; line-height: 30px;"
 							readonly="readonly">
 						</textarea>	
 					</div>
@@ -54,7 +55,7 @@
 	<!-- ################ 모달 끝 #################-->
 	<form action="">
 		<div class="ml-auto mb-3" align="right">
-			<select class="form-control ml-auto" name="g_gu" id="g_gu" style="width: 230px; display: inline;">
+			<select class="form-control ml-auto" name="g_gu" id="g_gu" style="width: 210px; display: inline;">
 				<option value="" selected="selected">지역을 선택하세요.</option>
 		        <option value="강남구">강남구</option>
 		        <option value="강동구">강동구</option>
@@ -82,61 +83,123 @@
 		        <option value="중구">중구</option>
 		        <option value="중랑구">중랑구</option>
 			</select>
-			<input type="date" id="g_date" name="g_date" class="form-control ml-auto" style="width: 230px; display: inline;" />
-			<input type="button" onclick="search_game_list();" class="btn btn-secondary" id="search" style="width: 100px; display: inline;" value="검색하기" />
-			<input type="reset" onclick="reset_game_list();" class="btn btn-secondary" id="reset" style="width: 100px; display: inline;" value="필터리셋" />
+			<input type="date" id="g_date" name="g_date" class="form-control ml-auto" style="width: 210px; display: inline;" />&nbsp;
+			<button type="button" class="snip" onclick="search_game_list();"  id="search" style="width: 100px; display: inline;" >검색하기</button>&nbsp;&nbsp;&nbsp;
+			<button type="reset" onclick="reset_game_list();" class="snip" id="reset" style="width: 100px; display: inline;">필터리셋</button>
 		</div>
 	</form>
-	<table id="game_table" style="text-align: center;" border="1">
-		<colgroup>
-			<col width="10%">
-			<col width="6%">
-			<col width="*">
-			<col width="25%">
-			<col width="25%">
-			<col width="15%">
-			<col width="10%">
-	    </colgroup>
-		<tr>
-			<th>날짜</th>
-			<th>시간</th>
-			<th>지역</th>
-			<th>구장 이름</th>
-			<th>구장 주소</th>
-			<th>클럽명</th>
-			<th>신청</th>
-		</tr>
-		<tbody id="tbody">
-		<c:forEach items="${lists }" var="row">
-			<tr class="game_list">
-				<td>${row.g_date }</td>
-				<td>
-					<input type="hidden" value="${row.g_idx }" />
-					${row.g_time }:00
-				</td>
-				<td>${row.g_gu }</td>
-				<td>
-					<a href="map.do?g_saddr=${row.g_saddr}&g_sname=${row.g_sname}" class="tip" style="color: red;" onclick=
-						"window.open(this.href, '_blank', 'width=700px,height=700px,toolbars=no,scrollbars=no'); return false;">
-						${row.g_sname } <span style="width: 200px;">${row.g_sname } <br />위치보기</span>
-					</a>
-				</td>
-				<td>${row.g_saddr }</td>
-				<td>
-					<a href="../club/clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip">
-						${row.c_name } <span style="width: 200px;">${row.c_name }<br />클럽 페이지 이동</span>
-					</a>
-				</td>
-				<td>
-					<input type="button" class="btn btn-primary" data-toggle="modal" 
-						onclick="game_modal('${row.g_date}', '${row.g_time}', '${row.g_sname}', '${row.g_saddr}', 
-							'${row.g_memo}', '${row.g_idx}', '${row.c_name}');"
-						data-target="#myModal" style="width: 100%; height: 100%;" value="매치 신청">
-				</td>
+	<div class="tb_wrap">
+  		<div class="tb_box">
+		<table id="game_table" style="text-align: center; border: none;" class="tb">
+			<colgroup>
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="20%">
+				<col width="25%">
+				<col width="15%">
+				<col width="10%">
+		    </colgroup>
+			<tr class="fixed_top" style="margin-left:-55px;">
+				<th class="cell1" scope="col">날짜</th>
+				<th class="cell2" scope="col">시간</th>
+				<th class="cell3" scope="col">지역</th>
+				<th class="cell4" scope="col">구장 이름</th>
+				<th class="cell5" scope="col">구장 주소</th>
+				<th class="cell6" scope="col">클럽명</th>
+				<th class="cell7" scope="col">신청</th>
 			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
+			<tbody id="tbody">
+			<c:forEach items="${lists }" var="row">
+				<tr class="game_list">
+					<td class="cell1" scope="row">${row.g_date }</td>
+					<td class="cell2">
+						<input type="hidden" value="${row.g_idx }" />
+						${row.g_time }:00
+					</td>
+					<td class="cell3">${row.g_gu }</td>
+					<td class="cell4">
+						<a href="map.do?g_saddr=${row.g_saddr}&g_sname=${row.g_sname}" class="tip" style="color: red;" onclick=
+							"window.open(this.href, '_blank', 'width=700px,height=700px,toolbars=no,scrollbars=no'); return false;">
+							${row.g_sname } <span style="width: 200px;">${row.g_sname } <br />위치보기</span>
+						</a>
+					</td>
+					<td class="cell5">${row.g_saddr }</td> 
+					<td class="cell6">
+						<a href="../club/clubView.do?c_idx=${row.c_idx }" style="color: red;" class="tip" onclick=
+							"window.open(this.href, '_blank', 'width=1500,height=800, toolbar=no, menubar=no, resizable=no'); return false;">
+							${row.c_name } <span style="width: 200px;">${row.c_name }<br />클럽 페이지 이동</span>
+						</a>
+					</td>
+					<td class="cell7">
+						<button type="button" class="snip1535" data-toggle="modal" 
+							onclick="game_modal('${row.g_date}', '${row.g_time}', '${row.g_sname}', '${row.g_saddr}', 
+								'${row.g_memo}', '${row.g_idx}', '${row.c_name}');"
+							data-target="#myModal" style="width: 100%; height: 100%;">매치신청</button>
+					</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		</div>
+	</div>
+<style>
+
+tr {
+  border-bottom:1px solid #dedede;
+}
+tr:last-child {
+  border-bottom:0;
+}
+.tb_wrap {
+  position:relative;
+  padding-top:33px;
+}
+.tb_box {
+  max-height:500px;
+  overflow-x:hidden;
+  border-bottom:1px solid #dedede;
+}
+.tb {
+  border-collapse:collapse;
+  border-spacing:0;
+  width:100%;
+}
+
+.fixed_top {
+  display:inline-table;
+  position:absolute;
+  top:0;
+  width:calc(100% - 17px);
+  background:#eef7ff;
+}
+.fixed_top th {
+  border-top:1px solid #dedede;
+  border-bottom:1px solid #dedede;
+}
+
+.cell1 {
+  width:10%;
+}
+.cell2 {
+  width:10%;
+}
+.cell3 {
+  width:10%;
+}
+.cell4 {
+  width:20%;
+}
+.cell5 {
+  width:25%;
+}
+.cell6 {
+  width:15%
+}
+.cell7 {
+  width:10%;
+}
+</style>
 </main>
 </body>
 </html>

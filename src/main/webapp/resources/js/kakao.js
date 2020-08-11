@@ -1,5 +1,5 @@
 /**
- * Kakao Javascript SDK for Kakao Open Platform Service - v1.39.2
+ * Kakao Javascript SDK for Kakao Open Platform Service - v1.39.0
  *
  * Copyright 2017 Kakao Corp.
  *
@@ -390,7 +390,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         var _rpc;
 
-
         API.request = function (settings) {
           settings = _k.processRules(settings, rules.request, 'API.request');
 
@@ -546,8 +545,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var rules = {
           request: {
             required: {
-              url: function url(_url2) {
-                return _.isOneOf(_.keys(rules.api))(_url2);
+              url: function url(_url) {
+                return _.isOneOf(_.keys(rules.api))(_url);
               }
             },
             optional: {
@@ -1127,9 +1126,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 xdr.send(data);
               }, 0);
             }
-          },
-          getOrigin: function getOrigin() {
-            return location.protocol + "//" + location.hostname + (location.port ? ':' + location.port : '');
           }
         };
       }();
@@ -1265,8 +1261,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         Auth.authorize = function (settings) {
           settings = _k.processRules(settings, rules.authorize, 'Auth.authorize');
           var popup;
-          var authTranId = _auth.getTranId();
-
           if (settings.autoLogin && !/KAKAOTALK/i.test(_k.UA.ua)) {
             location.href = settings.redirectUri + "?error=auto_login&error_description=NOT_SUPPORTED_BROWSER" + (settings.state ? '&state=' + settings.state : '');
             return false;
@@ -1280,7 +1274,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }
           }
 
-          var isEasyLogin = isSupport() && settings.throughTalk && !settings.autoLogin && !settings.reauthenticate;
+          var isEasyLogin = isSupport() && settings.throughTalk && !settings.autoLogin;
+          var authTranId = _auth.getTranId();
 
           function onResponse(res) {
             if (res.status === 200 && res.response) {
@@ -1288,31 +1283,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               if (response.status == 'ok' && response.code) {
                 _poller.stop();
                 popup && popup.close && popup.close();
-                if (settings.redirectUri) {
-                  var url = settings.redirectUri + "?code=" + response.code + (response.state ? '&state=' + response.state : '');
-                  location.href = url;
-                } else {
-                  var callbackResponse = _.extend({
-                    code: response.code
-                  }, response.state && {
-                    state: response.state
-                  });
-                  runCallback(callbackResponse, settings);
-                }
+                var url = settings.redirectUri + "?code=" + response.code + (response.state ? '&state=' + response.state : '');
+                location.href = url;
               } else if (response.status == 'error' && (response.error_code == '500' || response.error_code == '600')) {
                 _poller.stop();
                 popup && popup.close && popup.close();
-                if (settings.redirectUri) {
-                  location.href = settings.redirectUri + "?error=" + response.error + "&error_description=" + response.error_description + (response.state ? '&state=' + response.state : '');
-                } else {
-                  var callbackResponse = _.extend({
-                    error: response.error,
-                    error_description: response.error_description
-                  }, response.state && {
-                    state: response.state
-                  });
-                  runCallback(callbackResponse, settings);
-                }
+                location.href = settings.redirectUri + "?error=" + response.error + "&error_description=" + response.error_description + (response.state ? '&state=' + response.state : '');
               }
               if (!isEasyLogin && popup && popup.closed) {
                 _poller.stop();
@@ -1329,7 +1305,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           });
 
           var commonAuthParams = _.extend(getCommonAuthParams(settings), getExtraParams(settings), {
-            redirect_uri: settings.redirectUri || 'JS-SDK',
+            redirect_uri: settings.redirectUri,
             response_type: 'code',
             auth_tran_id: authTranId
           });
@@ -1342,8 +1318,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           var authUrl = _k.URL.authorize + '?' + _.buildQueryString(webAuthParams);
 
           function createAndroidLoginIntent(fallbackUrl, params) {
-            var _redirectUri = settings.redirectUri || 'JS-SDK';
-            var intent = ['intent:#Intent', 'action=com.kakao.talk.intent.action.CAPRI_LOGGED_IN_ACTIVITY', 'launchFlags=0x08880000', 'S.com.kakao.sdk.talk.appKey=' + _k.RUNTIME.appKey, 'S.com.kakao.sdk.talk.redirectUri=' + _redirectUri, 'S.com.kakao.sdk.talk.kaHeader=' + _k.KAKAO_AGENT, 'S.com.kakao.sdk.talk.extraparams=' + encodeURIComponent(JSON.stringify(params))];
+            var intent = ['intent:#Intent', 'action=com.kakao.talk.intent.action.CAPRI_LOGGED_IN_ACTIVITY', 'launchFlags=0x08880000', 'S.com.kakao.sdk.talk.appKey=' + _k.RUNTIME.appKey, 'S.com.kakao.sdk.talk.redirectUri=' + settings.redirectUri, 'S.com.kakao.sdk.talk.kaHeader=' + _k.KAKAO_AGENT, 'S.com.kakao.sdk.talk.extraparams=' + encodeURIComponent(JSON.stringify(params))];
 
             if (settings.state) {
               intent.push('S.com.kakao.sdk.talk.state=' + settings.state);
@@ -1380,12 +1355,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               }
             }
           } else {
-            var _loginFormUrl = _k.URL.loginForm + "?continue=" + encodeURIComponent(authUrl) + (settings.deviceType ? '&device_type=' + settings.deviceType : '');
-            var _url = settings.reauthenticate !== true ? authUrl : _loginFormUrl;
             if (settings.isPopup) {
-              popup = _k.windowOpen(_url, LOGIN_POPUP_NAME, _getPopupFeatures());
+              popup = _k.windowOpen(authUrl, LOGIN_POPUP_NAME, _getPopupFeatures());
             } else {
-              location.href = _url;
+              location.href = authUrl;
             }
           }
           _eventObserver.dispatch('LOGIN_START');
@@ -1416,7 +1389,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               response_type: 'code',
               state: stateToken,
               ka: _k.KAKAO_AGENT,
-              origin: _auth.getOrigin(),
+              origin: window.location.origin,
               auto_login: 'true'
             }, getCommonAuthParams(settings));
 
@@ -1432,7 +1405,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               response_type: 'code',
               state: stateToken,
               ka: _k.KAKAO_AGENT,
-              origin: _auth.getOrigin()
+              origin: window.location.origin
             }, getCommonAuthParams(settings), getExtraParams(settings));
 
             return _k.URL.authorize + '?' + _.buildQueryString(params);
@@ -1467,7 +1440,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               response_type: 'code',
               state: stateToken,
               ka: _k.KAKAO_AGENT,
-              origin: _auth.getOrigin()
+              origin: window.location.origin
             }, getCommonAuthParams(settings));
 
             if (redirectUri) {
@@ -1487,7 +1460,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               if (response.status == 'error' && (response.error_code == '500' || response.error_code == '600')) {
                 _poller.stop();
                 var error = {
-                  error: response.error,
+                  error: response.error_description,
                   error_description: response.error_description,
                   error_code: response.error_code,
                   status: response.status
@@ -1569,7 +1542,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               redirect_uri: settings.redirectUri,
               response_type: 'code',
               ka: _k.KAKAO_AGENT,
-              origin: _auth.getOrigin()
+              origin: window.location.origin
             }, getCommonAuthParams(settings), getExtraParams(settings));
 
             return _k.URL.authorize + '?' + _.buildQueryString(params);
@@ -1607,7 +1580,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               state: stateToken,
               proxy: 'easyXDM_Kakao_' + _loginProxy.channel + '_provider',
               ka: _k.KAKAO_AGENT,
-              origin: _auth.getOrigin()
+              origin: window.location.origin
             }, getCommonAuthParams(settings), getExtraParams(settings));
 
             return _k.URL.authorize + '?' + _.buildQueryString(params);
@@ -1690,8 +1663,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           channelPublicId: _.isString,
           serviceTerms: _.isString,
           redirectUri: _.isString,
-          state: _.isString,
-          deviceType: _.isOneOf(['watch', 'tv'])
+          state: _.isString
         };
 
         var rules = {
@@ -1711,8 +1683,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             defaults: loginDefaultSettings
           },
           authorize: {
+            required: {
+              redirectUri: _.isString
+            },
             optional: {
-              redirectUri: _.isString,
               approvalType: _.isOneOf(['project']),
               scope: _.isString,
               throughTalk: _.isBoolean,
@@ -1721,20 +1695,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               serviceTerms: _.isString,
               isPopup: _.isBoolean,
               state: _.isString,
-              autoLogin: _.isBoolean,
-              deviceType: _.isOneOf(['watch', 'tv']),
-              reauthenticate: _.isBoolean,
-              success: _.isFunction,
-              fail: _.isFunction,
-              always: _.isFunction
+              autoLogin: _.isBoolean
             },
             defaults: {
               throughTalk: true,
-              isPopup: false,
-              reauthenticate: false,
-              success: _.emptyFunc,
-              fail: _.emptyFunc,
-              always: _.emptyFunc
+              isPopup: false
             }
           },
           autoLogin: {
@@ -1873,9 +1838,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           if (settings.autoLogin !== undefined) {
             params['auto_login'] = settings.autoLogin;
           }
-          if (settings.deviceType) {
-            params['device_type'] = settings.deviceType;
-          }
           return params;
         }
 
@@ -1898,10 +1860,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           var stateToken = _.getRandomString() + _.getRandomString();
 
           if (!settings.redirectUri) {
-            var url = _k.URL.loginForm + "?continue=" + encodeURIComponent(_loginThroughWeb(settings, stateToken)) + (settings.deviceType ? '&device_type=' + settings.deviceType : '');
+            var url = _k.URL.loginForm + '?continue=' + encodeURIComponent(_loginThroughWeb(settings, stateToken));
             _k.windowOpen(url, LOGIN_POPUP_NAME, _getPopupFeatures());
           } else {
-            var url = _k.URL.loginForm + "?continue=" + encodeURIComponent(_redirectLoginThroughWeb(settings)) + (settings.deviceType ? '&device_type=' + settings.deviceType : '');
+            var url = _k.URL.loginForm + '?continue=' + encodeURIComponent(_redirectLoginThroughWeb(settings));
             location.href = url;
           }
         };
@@ -2401,7 +2363,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         var origin = browserProxy.getOrigin();
 
-        _k.VERSION = '1.39.2';
+        _k.VERSION = '1.39.0';
 
         _k.KAKAO_AGENT = 'sdk/' + _k.VERSION + ' os/javascript' + ' lang/' + (browserProxy.getNavigator().userLanguage || browserProxy.getNavigator().language) + ' device/' + browserProxy.getNavigator().platform.replace(/ /g, '_') + ' origin/' + encodeURIComponent(origin);
 
@@ -2413,7 +2375,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           storyChannel: 'https://kauth.kakao.com' + '/story/select_channel',
           storyShare: 'https://story.kakao.com' + '/s/share',
           channelFollow: 'https://story.kakao.com' + '/s/follow',
-          storyIcon: 'https://developers.kakao.com/sdk/js/resources/story/icon_small.png',
+          storyIcon: '//dev.kakao.com/sdk/js/resources/story/icon_small.png',
           universalKakaoLink: 'https://talk-apps.kakao.com' + '/scheme/',
           talkLoginScheme: 'kakaokompassauth://authorize',
           talkLoginRedirectUri: 'https://kapi.kakao.com/cors/afterlogin.html',

@@ -9,8 +9,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
-h2 { font-size : 24px; color:#000066; line-height:30px;
-	margin:52px auto 10px 0px;
+h2 { 
+	font-size : 30px; color:#000066; line-height:30px;
+	margin:35px auto 10px 0px;
 	padding : 2px 10px 2px 0px;
 	border-bottom : 3px solid #000066;
 }
@@ -47,54 +48,54 @@ h2 { font-size : 24px; color:#000066; line-height:30px;
 .box select option {
   padding: 30px;
 }
+input[type=text]{
+	font-size:25px;
+}
 input[type=checkbox], input[type=radio]
 {
 	width : 20px; height : 20px; cursor: pointer;
 }
 label {
-    cursor: pointer; font-size : 18px;
+    cursor: pointer; font-size : 18px; display:inline;
 }
-#joinBtn{
-	background:#0c9; color:#ff0; border-radius:5px 5px 0 0;
-	font-weight:bold; font-size:20px; width:130px; height:50px; border:1px #0c9 solid;
+
+.txtBox31 { border-style: solid; border-width: 2px 2px 2px 8px; padding: 12px; word-break: break-all; }
+.txtBox31 { border-color: DodgerBlue; width: 600px; height:40px;}
+
+.co {
+	max-width:600px;
+	margin-left:auto; margin-right:auto;
 }
-input[type=text] {
-	border-style: solid; border-width: 2px 2px 2px 8px; padding12px;
-	word-break; break-all;
-	border-color : DodgerBlue;
-}
+
+
 </style>
-<script>
-	function setEmblem(event) {
-		var reader = new FileReader();
-		
-		reader.onload = function(event) {
-			var img = document.createElement("img");
-			img.setAttribute("src", event.target.result);
-			document.querySelector("div#image_container").appendChild(img);
-		};
-		reader.readAsDataURL(event.target.files[0]);
-	}
-</script>
 <%
 request.setCharacterEncoding("UTF-8");
 String keyword = request.getParameter("keyword");
 %>
 <body>
-<div class="hoc container clear" style="max-width:1100px;">
+<div class="hoc container clear" style="max-width:1200px;">
+	<div class="co">
 	<center class="center">클럽 생성</center>
 	<br /><br />
 	<form name="creFrm" id="creFrm" enctype="multipart/form-data" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
 		<h2>팀명</h2>
 		<div>
-			<input type="text" class="team" placeholder="팀명을 입력해주세요" id="c_name" name="c_name" style="width:400px; height:40px;">
+			<input type="text" class="txtBox31" placeholder="팀명을 입력해주세요" id="c_name" name="c_name">
 		</div>
 		
-		<h2>엠블럼 넣기</h2>
-		<div class="selector">
-			<input type="file" id="c_emb" name="file" accept="image/*" onchange="setEmblem(event)"/>
-			<div id="image_container"></div>
-		</div>
+        <h2>엠블럼 등록하기</h2>
+		<table style="text-align: center; vertical-align: middle;">
+			<tr>
+				<th colspan="2">엠블럼을 등록할 파일</th>
+			</tr>
+			<tr>
+				<td width="30%" style="border:1px solid black"><input type="file" name="file" accept="image/*" onchange="setPic(event)" style="margin-left: 10%;" /></td>
+				<td width="35%">
+					<div id="image_container" style="width: 250px; height: 300px;" align="center"></div>
+				</td>
+			</tr>
+		</table>
 		
 		<h2>주 활동지역</h2>
 		<div class="box">
@@ -127,17 +128,15 @@ String keyword = request.getParameter("keyword");
 		        <option value="중랑구">중랑구</option>  
 		    </select>
 		</div>
-		<h2>성별</h2>
-		<table class="table table-borderless">
-	     	<tr>
-				<td width="20px;"><input type="radio" name="c_gender" id="c_man" value="남자" ></td>
-				<td><label for="c_man">남자</label></td>
-				<td width="20px;"><input type="radio" name="c_gender" id="c_woman" value="여자"></td>
-				<td><label for="c_woman">여자</label></td>
-				<td width="20px;"><input type="radio" name="c_gender" id="c_mixed" value="혼성"></td>
-				<td><label for="c_mixed">혼성</label></td>
-			</tr>
-		</table>
+
+		
+		<h2>성별 체크</h2>
+		<input type="radio" name="c_gender" id="man" value="남자" style="display:inline;">
+		<label for="man" style="padding-right:200px;">남자</label>
+		<input type="radio" name="c_gender" id="wowan" value="여자" style="display:inline;">
+		<label for="wowan" style="padding-right:200px;">여자</label>
+		<input type="radio" name="c_gender" id="c_mixed" value="혼성" style="display:inline;">
+		<label for="c_mixed">혼성</label>
 		
 		<h2>인원수 제한</h2>
 		<div class="box">
@@ -174,26 +173,25 @@ String keyword = request.getParameter("keyword");
 		</div>
 		
 		<h2>선호 종목</h2>
-		<table class="table table-borderless">
-	     	<tr>
-				<td width="20px;"><input type="radio" name="c_type" id="c_soccer" value="축구"></td>
-				<td><label for="c_soccer">축구</label></td>
-				<td width="20px;"><input type="radio" name="c_type" id="c_footsal" value="풋살" ></td>
-				<td><label for="c_footsal">풋살</label></td>
-				<td width="20px;"><input type="radio" name="c_type" id="c_both" value="혼합" ></td>
-				<td><label for="c_both">혼합</label></td>
-			</tr>
-		</table>
+
+			<input type="radio" name="c_type" id="c_soccer" value="축구" style="display:inline;">
+			<label for="c_soccer" style="padding-right:200px;">축구</label>
+			<input type="radio" name="c_type" id="c_footsal" value="풋살" style="display:inline;">
+			<label for="c_footsal" style="padding-right:200px;">풋살</label>
+			<input type="radio" name="c_type" id="c_both" value="혼합" style="display:inline;">
+			<label for="c_both">혼합</label>
+
 		
 		<h2>클럽 소개글</h2>
 		<div>
-			<input type="text" placeholder="클럽을 자유롭게 소개해 주세요" id="c_momo" name="c_memo" style="width:500px; height:60px;">
+			<input type="text" class="txtBox31" placeholder="클럽을 자유롭게 소개해 주세요" id="c_momo" name="c_memo" >
 		</div>
 		<br /><br />
 		<div style="text-align:center;">
-			<input type="submit" id="joinBtn" class="btn btn-outline-success" value="클럽생성">
+			<Button type="submit" id="joinBtn" class="snip1535" >클럽생성</Button>
 		</div>
 	</form>
+	</div>
 </div>
 </body>
 <script>
@@ -251,6 +249,26 @@ function isValidate (creFrm){
 		creFrm.c_memo.focus();
 		return false;
 	}
+}
+
+function setPic(event) {
+	var reader = new FileReader();
+	
+	reader.onload = function(event) {
+		if(document.getElementById('newImg')){
+			var el = document.getElementById('newImg');
+			el.remove();
+		}
+		
+		var img = document.createElement("img");
+		img.style.align = "center";
+		img.setAttribute("width", 250);
+		img.setAttribute("height", 250);
+		img.setAttribute("id", "newImg");
+		img.setAttribute("src", event.target.result);
+		document.querySelector("#image_container").appendChild(img);
+	};
+	reader.readAsDataURL(event.target.files[0]);
 }
 </script>
 </html>

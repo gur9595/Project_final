@@ -36,6 +36,18 @@
 		where m_id = #{m_id} and m_pw=#{m_pw}
 	  </select>
 	  
+	  <!-- 안드로이드 토큰 업데이트 -->
+	  <update id="tokenUpdate" parameterType="mybatis.MemberDTO">
+		update member set m_token = #{m_token} where m_id = #{m_id} and m_pw=#{m_pw}
+	  </update>
+	  
+	  <!-- 안드로이드 토큰 가져오기 -->
+	  <select id="getMemberTokens" resultType="mybatis.MemberDTO">
+	  	select m.m_token
+	  	from member m inner join clubmember cm
+	  		on m.m_id = cm.m_id
+	  	where c_idx = #{c_idx}
+	  </select>
 	  
 	
 	<!-- id찾기 -->
@@ -48,7 +60,48 @@
 		select m_pw from member where m_id like #{m_id} and m_email like #{m_email}
 	</select>
 	
-
-	 
+	<!-- 마이페이지 Ball 보유량 -->
+	<select id="ballHistory" resultType="int">
+		select cash 
+		from member 
+		where m_id = #{param1}
+	</select>
+	
+	<!-- 마이페이지 Ball 거래내역 -->
+	<select id="ballList" resultType="mybatis.MemberDTO">
+		select *
+		from cash
+		where m_id = #{param1} order by cs_date desc
+	</select>
+	
+	<select id="myGoalList" resultType="int">
+		select count(*)
+		from goalhistory
+		where gh_goal = #{param1}
+	</select>
+	<select id="myGoalAssistList" resultType="mybatis.GoalHistoryDTO">
+		select (select m_name from member where m_id = gh.gh_assist) as name,gh.gh_assist,count(*) as count from goalhistory gh where gh.gh_goal = #{param1} group by gh.gh_assist order by count(*) desc
+	</select>
+	<select id="myAssistList" resultType="int">
+		select count(*)
+		from goalhistory
+		where gh_assist = #{param1}
+	</select>
+	<select id="myAssistGoalList" resultType="mybatis.GoalHistoryDTO">
+		select (select m_name from member where m_id = gh.gh_goal) as name,gh.gh_goal,count(*) as count from goalhistory gh where gh.gh_assist = #{param1} group by gh.gh_goal order by count(*) desc
+	</select>
+	
+	<select id="myTotal" resultType="int">
+		select count(*)
+		from gamemember gm inner join game g on gm.g_idx = g.g_idx
+		where gm.m_id = #{param1} and g.g_rating is not null
+	</select>
+	
+	<select id="myInfo" resultType="mybatis.MemberDTO">
+		select *
+		from member
+		where m_id like #{param1}
+	</select>
+      
   </mapper>
 

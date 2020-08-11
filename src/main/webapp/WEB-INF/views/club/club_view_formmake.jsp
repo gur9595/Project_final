@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <title>포메이션 작성</title>
 
-<!-- 전술판 전용 -->
+<!-- 전술판 전용 -->  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript"
@@ -18,163 +20,200 @@
 	src="http://static.footballuser.com/javascripts/jquery.ui.touch-punch-1.7.2.js"></script>
 <script type="text/javascript"
 	src="http://static.footballuser.com/javascripts/chosen.jquery.min.js"></script>
+	
+<!-- 이미지 저장용 -->
+
+<script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
 <body>
 	<style>
-	.dropped_name {
-		color: #fff;
-	}
-	</style>
-	<script type="text/javascript">
-				var config = {
-					'.edit_field' : {}
-				}
-				for ( var selector in config) {
-					$(selector).chosen(config[selector]);
-				}
-			</script>
+.dropped_name {
+	color: #fff;
+}
+/* .ground td {
+	border:0.5px solid black; 
+} 
+.ground .no{
+	border:0;
+} */
+</style>
 
-	<div id="field" class="two_third first">
-		<table
-			style="height: 613px; width: 416px; background: url(http://static.footballuser.com/images/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
-			<tr>
-				<td class="pos" id="pos0"><input type="hidden" id="pos0"
-					value=""></td>
-				<td class="pos" id="pos1"><input type="hidden" id="pos1"
-					value=""></td>
-				<td class="pos" id="pos2"><input type="hidden" id="pos2"
-					value=""></td>
-				<td class="pos" id="pos3"><input type="hidden" id="pos3"
-					value=""></td>
-				<td class="pos" id="pos4"><input type="hidden" id="pos4"
-					value=""></td>
-			</tr>
-			<tr>
-				<td class="pos" id="pos5"><input type="hidden" id="pos5"
-					value=""></td>
-				<td class="pos" id="pos6"><input type="hidden" id="pos6"
-					value=""></td>
-				<td class="pos" id="pos7"><input type="hidden" id="pos7"
-					value=""></td>
-				<td class="pos" id="pos8"><input type="hidden" id="pos8"
-					value=""></td>
-				<td class="pos" id="pos9"><input type="hidden" id="pos9"
-					value=""></td>
-			</tr>
-			<tr>
-				<td class="pos" id="pos10"><input type="hidden" id="pos10"
-					value=""></td>
-				<td class="pos" id="pos11"><input type="hidden" id="pos11"
-					value=""></td>
-				<td class="pos" id="pos12"><input type="hidden" id="pos12"
-					value=""></td>
-				<td class="pos" id="pos13"><input type="hidden" id="pos13"
-					value=""></td>
-				<td class="pos" id="pos14"><input type="hidden" id="pos14"
-					value=""></td>
-			</tr>
-			<tr>
-				<td class="pos" id="pos15"><input type="hidden" id="pos15"
-					value=""></td>
-				<td class="pos" id="pos16"><input type="hidden" id="pos16"
-					value=""></td>
-				<td class="pos" id="pos17"><input type="hidden" id="pos17"
-					value=""></td>
-				<td class="pos" id="pos18"><input type="hidden" id="pos18"
-					value=""></td>
-				<td class="pos" id="pos19"><input type="hidden" id="pos19"
-					value=""></td>
-			</tr>
-			<tr>
-				<td class="pos" id="pos20"><input type="hidden" id="pos20"
-					value=""></td>
-				<td class="pos" id="pos21"><input type="hidden" id="pos21"
-					value=""></td>
-				<td class="pos" id="pos22"><input type="hidden" id="pos22"
-					value=""></td>
-				<td class="pos" id="pos23"><input type="hidden" id="pos23"
-					value=""></td>
-				<td class="pos" id="pos24"><input type="hidden" id="pos24"
-					value=""></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="pos" id="pos25"><input type="hidden" id="pos25"
-					value=""></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-		<!-- <img id="field_image" height="613" width="416" src="http://static.footballuser.com/images/field.jpg" alt="" /> -->
+  	<div class="two_third first">
+  	<form>
+  	<input type="hidden" name="imgSrc" id="imgSrc" />
+  	<input type="hidden" name="g_idx" id="g_idx" value="${g_idx }" />
+  	</form>
+			<c:choose>
+  			<c:when test="${gameDTO.g_type=='축구' }">
+  				<div id="field" style="height: 613px; width: 416px;">
+				<table class="football" 
+					style=" background: url(./../resources/img/field.jpg); 
+						height: 613px;
+						 width: 416px;
+						background-size: 100% 100%;
+						 background-repeat: no-repeat;">
+			</c:when>
+  			<c:otherwise>
+  				<div id="field" style="height: 613px; width: 446px;">
+  				<table class="futsal" 
+	  					style="height: 613px;
+						 width: 446px;
+						background-size: 100% 100%; 
+						 background-repeat: no-repeat; background: url(./../resources/img/futsalfield.jpg); ">
+  			</c:otherwise>
+  		</c:choose>
+  								<tr style="height: 102px">
+									<td class="pos" id="pos0" style="width:20%"></td>
+									<td class="pos" id="pos1" style="width:20%"></td>
+									<td class="pos" id="pos2" style="width:20%"></td>
+									<td class="pos" id="pos3" style="width:20%"></td>
+									<td class="pos" id="pos4" style="width:20%"></td>
+								</tr>
+								<tr style="height: 102px">
+									<td class="pos" id="pos5"></td>
+									<td class="pos" id="pos6"></td>
+									<td class="pos" id="pos7"></td>
+									<td class="pos" id="pos8"></td>
+									<td class="pos" id="pos9"></td>
+								</tr>
+								<tr style="height: 102px">
+									<td class="pos" id="pos10"></td>
+									<td class="pos" id="pos11"></td>
+									<td class="pos" id="pos12"></td>
+									<td class="pos" id="pos13"></td>
+									<td class="pos" id="pos14"></td>
+								</tr>
+								<tr style="height: 102px">
+									<td class="pos" id="pos15"></td>
+									<td class="pos" id="pos16"></td>
+									<td class="pos" id="pos17"></td>
+									<td class="pos" id="pos18"></td>
+									<td class="pos" id="pos19"></td>
+								</tr>
+								<tr style="height: 102px">
+									<td class="pos" id="pos20"></td>
+									<td class="pos" id="pos21"></td>
+									<td class="pos" id="pos22"></td>
+									<td class="pos" id="pos23"></td>
+									<td class="pos" id="pos24"></td>
+								</tr>
+								<tr style="height: 102px">
+									<td class="no"></td>
+									<td class="no"></td>
+									<td class="pos" id="pos25"></td>
+									<td class="no"></td>
+									<td class="no"></td>
+								</tr>
+						</table>
+			<!-- <img id="field_image" height="613" width="416" src="http://static.footballuser.com/images/field.jpg" alt="" /> -->
+		</div>
 	</div>
 
-	<div class="one_third style="display: inline;">
+	<div class="one_third " >
 		<div class="">
 			<br class="clear" />
-	
+
 			<div class="">
-			<div id="shirts" class="left_padded more_topspaced" style="height:220px;width:316px; overflow:auto">
-	        
-	        <img id="_1.png" class="active_shirt shirt" src="http://static.footballuser.com/images/shirts/_1.png" alt="" />
-	        
-	        <img id="_2.png" class="shirt" src="http://static.footballuser.com/images/shirts/_2.png" alt="" />
-	        <img id="_3.png" class="shirt" src="http://static.footballuser.com/images/shirts/_3.png" alt="" />
-	        <img id="_4.png" class="shirt" src="http://static.footballuser.com/images/shirts/_4.png" alt="" />
-	        <img id="_5.png" class="shirt" src="http://static.footballuser.com/images/shirts/_5.png" alt="" />
-	        <img id="_6.png" class="shirt" src="http://static.footballuser.com/images/shirts/_6.png" alt="" />
-	        <img id="_7.png" class="shirt" src="http://static.footballuser.com/images/shirts/_7.png" alt="" />
-	        <img id="_8.png" class="shirt" src="http://static.footballuser.com/images/shirts/_8.png" alt="" />
-	        <img id="_9.png" class="shirt" src="http://static.footballuser.com/images/shirts/_9.png" alt="" />
-	        <img id="_10.png" class="shirt" src="http://static.footballuser.com/images/shirts/_10.png" alt="" />
-	        <img id="_11.png" class="shirt" src="http://static.footballuser.com/images/shirts/_11.png" alt="" />
-	        <img id="_12.png" class="shirt" src="http://static.footballuser.com/images/shirts/_12.png" alt="" />
-	        <img id="_13.png" class="shirt" src="http://static.footballuser.com/images/shirts/_13.png" alt="" />
-	        <img id="_14.png" class="shirt" src="http://static.footballuser.com/images/shirts/_14.png" alt="" />
-	        <img id="_15.png" class="shirt" src="http://static.footballuser.com/images/shirts/_15.png" alt="" />
-	        <img id="_16.png" class="shirt" src="http://static.footballuser.com/images/shirts/_16.png" alt="" />
-	        <img id="_17.png" class="shirt" src="http://static.footballuser.com/images/shirts/_17.png" alt="" />
-	        <img id="_18.png" class="shirt" src="http://static.footballuser.com/images/shirts/_18.png" alt="" />
-	        <img id="_19.png" class="shirt" src="http://static.footballuser.com/images/shirts/_19.png" alt="" />
-	        <img id="_20.png" class="shirt" src="http://static.footballuser.com/images/shirts/_20.png" alt="" />
-	        <img id="_21.png" class="shirt" src="http://static.footballuser.com/images/shirts/_21.png" alt="" />
-	        <img id="_22.png" class="shirt" src="http://static.footballuser.com/images/shirts/_22.png" alt="" />
-	        <img id="_23.png" class="shirt" src="http://static.footballuser.com/images/shirts/_23.png" alt="" />
-	        <img id="_24.png" class="shirt" src="http://static.footballuser.com/images/shirts/_24.png" alt="" />
-	        <img id="_25.png" class="shirt" src="http://static.footballuser.com/images/shirts/_25.png" alt="" />
-	        <img id="_26.png" class="shirt" src="http://static.footballuser.com/images/shirts/_26.png" alt="" />
-	    </div>
-			<div class="">
+				<div id="shirts" class="left_padded more_topspaced"
+					style="height: 220px; width: 316px; overflow: auto; display: none;">
+
+					<img id="_1.png" class="active_shirt shirt"
+						src="http://static.footballuser.com/images/shirts/_1.png" alt="" />
+
+					<img id="_2.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_2.png" alt="" />
+					<img id="_3.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_3.png" alt="" />
+					<img id="_4.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_4.png" alt="" />
+					<img id="_5.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_5.png" alt="" />
+					<img id="_6.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_6.png" alt="" />
+					<img id="_7.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_7.png" alt="" />
+					<img id="_8.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_8.png" alt="" />
+					<img id="_9.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_9.png" alt="" />
+					<img id="_10.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_10.png" alt="" />
+					<img id="_11.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_11.png" alt="" />
+					<img id="_12.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_12.png" alt="" />
+					<img id="_13.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_13.png" alt="" />
+					<img id="_14.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_14.png" alt="" />
+					<img id="_15.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_15.png" alt="" />
+					<img id="_16.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_16.png" alt="" />
+					<img id="_17.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_17.png" alt="" />
+					<img id="_18.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_18.png" alt="" />
+					<img id="_19.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_19.png" alt="" />
+					<img id="_20.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_20.png" alt="" />
+					<img id="_21.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_21.png" alt="" />
+					<img id="_22.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_22.png" alt="" />
+					<img id="_23.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_23.png" alt="" />
+					<img id="_24.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_24.png" alt="" />
+					<img id="_25.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_25.png" alt="" />
+					<img id="_26.png" class="shirt"
+						src="http://static.footballuser.com/images/shirts/_26.png" alt="" />
+				</div>
+				<!-- <div class="" >
 				<input id="playername" type="text" value="" size="30"
 					name="playername" /> <input id="playerid" type="text" value=""
 					size="30" name="playerid" /> <input
 					style="margin-left: 20px; height: 33px" class="button" value="add"
 					type="submit" id="addplayer" />
-			</div>
-			<div id="player_list" class="player_list">
-				<table id="player_table" cellspacing="0" cellpadding="0" border="0"
-					width="378">
-					<tbody>
-						<tr>
-							<td height="22" align="left" class="player_header"><strong>Name</strong>
-							</td>
-							<td height="22" align="right" class="player_header"><a
-								href="#" class="delete_players no_underline"><strong>
-										« Remove all</strong></a></td>
-						</tr>
-					</tbody>
-				</table>
+			</div> -->
+			
+				<div style="font-size:35px;">
+					<p>
+						벤치 멤버
+					</p>
+				</div>
+				<div id="player_list" class="player_list" style="width:200px; height:500px; overflow-x:hidden;"> 
+					<table id="player_table"  
+					style="overflow:hidden; height:auto;  cellspacing:0; cellpadding:0; border:0">
+						<tbody>
+							<c:forEach items="${bench }" var="row" varStatus="status">
+								<tr>
+									<td align="left" class="player_header"  style="height:40px;">
+										<div class="player ui-draggable" style="font-size: 20px;"
+											value="${row.m_name }">${row.m_name }</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+
 			</div>
 
-			<div class="">
-				<p>
-					<input class="button" type="submit" value="save" id="submit"
-						name="submit" />
-				</p>
-			</div>
+		</div>
+		<div class="">
+			<p>
+				<input class="btn btn-success" type="submit" value="스쿼드 저장" id="submit"
+					name="submit" />
+				<button class="btn btn-warning" id="save" onclick="javascript:capture()">이미지</button>
+			</p>
 		</div>
 
 	</div>
-
+	
 
 	<br class="clear" />
 
@@ -204,4 +243,51 @@
 		$(selector).chosen(config[selector]);
 	}
 </script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-messaging.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-analytics.js"></script>
+
+<script type="text/javascript">
+
+	var config = {
+		'.edit_field' : {}
+	}
+	for ( var selector in config) {
+		$(selector).chosen(config[selector]);
+	}
+	
+function capture() {
+       html2canvas($("#field"), {
+             onrendered: function(canvas) {
+               //document.body.appendChild(canvas);
+               //alert(canvas.toDataURL("image/png"));
+               $("#imgSrc").val(canvas.toDataURL("image/png"));
+               $.ajax({
+                   type: "post",
+                   data : $("form").serialize(),
+                   url:"../club/imageCreate.do",
+                   error:function(request,status,error){ 
+                	   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
+                	},
+                   success: function (data) {
+                       try{
+                    	   alert("이미지 저장 완료! 팀원들에게 공유됩니다.");
+                       }catch(e){                
+                           alert('server Error!!');
+                       }
+                   }
+               });
+             }
+       
+       
+       });
+
+   }     
+
+</script> 
 </html>

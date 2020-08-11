@@ -1,5 +1,6 @@
 package com.kosmo.project_final;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -82,9 +83,9 @@ public class StadiumController {
 		String s_check = req.getParameter("s_check");
 		System.out.println("체크값 받아와!! : "+s_check);
 		if(session.getAttribute("siteUserInfo")==null) {
-			//model.addAttribute("backUrl", "07Mybatis/modify");
 			return "redirect:stlogin.do";
 		}
+		
 		if(s_check.equals("no")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -112,26 +113,17 @@ public class StadiumController {
 
 		model.addAttribute("viewRow",stadiumDTO);
 
-		return"stadium/stEdit";
-	}
-
-	public static String getUuid() {
-		String uuid= UUID.randomUUID().toString();
-		System.out.println("생성된UUID-1: "+uuid);
-		uuid = uuid.replaceAll("-", "");
-		System.out.println("생성된UUID-2: "+uuid);
-		return uuid;
+		return "stadium/stEdit";
 	}
 
 	@RequestMapping("/stadium/stEditAction.do")
-	public String stEditAction(StadiumDTO dto, HttpServletRequest req) {
+	public String stEditAction(StadiumDTO dto, HttpServletRequest req, Model model,HttpServletResponse response) throws IOException, Exception {
 
 		
 		String s_id = req.getParameter("s_id");
 		String s_pw = req.getParameter("s_pw");
 		String s_name = req.getParameter("s_name");
 		String s_phone = req.getParameter("s_phone");
-		//String s_addr = req.getParameter("s_addr");
 		String s_type = req.getParameter("s_type");
 		String s_size = req.getParameter("s_size");
 		String s_cv = req.getParameter("s_cv");
@@ -139,20 +131,20 @@ public class StadiumController {
 		String s_memo = req.getParameter("s_memo");
 		String s_starttime = req.getParameter("s_starttime");
 		String s_endtime = req.getParameter("s_endtime");
-		//String s_lat = req.getParameter("s_lat");
-		//String s_lng = req.getParameter("s_lng");
+		String s_check = req.getParameter("s_check");
 
 		System.out.println("아이디 : "+s_id);
 		System.out.println("비번: "+s_pw);
 		System.out.println("이름 : "+s_name);
 		System.out.println("폰번호 : "+s_phone);
-		//System.out.println("주소 : "+s_addr);
-		System.out.println(s_type);
-		System.out.println(s_size);
-		System.out.println(s_cv);
-		System.out.println(s_price);
-		System.out.println(s_memo);
-		System.out.println(s_starttime +"~"+ s_endtime);
+		
+		System.out.println("경기장 타입 : "+s_type);
+		System.out.println("경기장 크기 : "+s_size);
+		System.out.println("편의시설 : "+s_cv);
+		System.out.println("경기장 가격"+s_price);
+		System.out.println("상세정보"+s_memo);
+		System.out.println("경기장 이용 시간 : "+s_starttime +"~"+ s_endtime);
+		System.out.println("체크값 : "+s_check);
 		//System.out.println(s_lat +"//"+s_lng);
 
 		dto.setS_id(s_id);
@@ -167,15 +159,11 @@ public class StadiumController {
 		dto.setS_memo(s_memo);
 		dto.setS_cv(s_cv);
 		dto.setS_price(s_price);
-		//dto.setS_lat(s_lat);
-		//dto.setS_lng(s_lng);
-
 		
 		sqlSession.getMapper(StadiumDAOImpl.class).stEditAction(dto);
 		System.out.println("처리완료");
 
-
-		return "redirect:stMain.do";
+		return "stadium/Success";
 	}
 
 	@RequestMapping("/stadium/Reservation.do")
@@ -191,15 +179,6 @@ public class StadiumController {
 		ArrayList<StadiumGameDTO> stadiumGameDTO = sqlSession.getMapper(StadiumDAOImpl.class).reservelist(parameterDTO);
 		
 		model.addAttribute("viewRow",stadiumGameDTO);
-
-
-		//ArrayList<StadiumGameDTO> stadiumGameLists = sqlSession.getMapper(StadiumDAOImpl.class).s_gamelist(s_idx);
-		//String clublists = sqlSession.getMapper(StadiumDAOImpl.class).c_name_get(c_idx);
-		//예약 신청한 클럽 리스트들 뽑아오기
-		//for(StadiumGameDTO dto : )
-
-		//if()
-		//String c_name = sqlSession.getMapper(StadiumDAOImpl.class).c_name_get(c_idx);
 
 		return"stadium/Reservation";
 	}
@@ -238,6 +217,12 @@ public class StadiumController {
 		
 		
 		return"stadium/googleCharts";
+	}
+	
+	@RequestMapping("/stadium/stEdit2.do")
+	public String stEdit2() {
+		
+		return "stadium/stEdit2";
 	}
 	
 

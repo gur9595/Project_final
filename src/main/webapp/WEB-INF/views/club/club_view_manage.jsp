@@ -61,14 +61,14 @@ th {
 }
 
 </style>
-<body>
+<body onresize="parent.resizeTo(1280,720)" onload="parent.resizeTo(1280,720)" >
 	<div id="main-wrapper">
 		<%@ include file="./club_view_header.jsp"%>
 		<%@ include file="./club_view_sidebar.jsp"%>
-		<div class="page-wrapper">
+		<div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-9">
+					<div class="col-lg-12"> 
 						<div class="card">
 							<!-- Nav tabs -->
 							<!-- Tab panes -->
@@ -77,7 +77,7 @@ th {
 									<div class="p-20">
 										<div class="card">
 											<div class="card-body">
-                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">조인</h4>
+                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">클럽 회원 관리</h4>
 												<div>
 													<h4 style="margin-left: 80px;">신청 접수 현황</h4>
 												</div>
@@ -176,36 +176,8 @@ th {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3" style="height: 600px;">
-						<div class="card">
-							<div class="card-body">
-								<h4 class="card-title">채팅</h4>
-								<div>
-									<input type="hid-den" id="chat_id" value="${param.chat_id }"
-										style="border: 1px dotted red;" />
-									<div id="chat-container" style="height: 500px; overflow: auto;">
-									</div>
-								</div>
-							</div>
-							<div class="card-body border-top">
-								<div class="row">
-									<div class="col-9">
-										<div class="input-field m-t-0 m-b-0">
-											<textarea id="inputMessage" placeholder="Type and enter"
-												onkeyup="enterkey();" class="form-control border-0"></textarea>
-										</div>
-									</div>
-									<button type="button" onclick="sendMessage();">보내기</button>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
-			<footer class="footer text-center">
-				Copyright © 2020 - All Rights Reserved <a href="#"
-					onclick="window.open('${pageContext.request.contextPath }', '_blank','width=#, height=#'); return false">Be-Pro</a>.
-			</footer>
 		</div>
 	</div>
 	
@@ -222,11 +194,11 @@ th {
 	       <h2 class="modal-title"
 				style="font-size: 20px; text-align: center;" id="myModalLabel">직책변경</h2>
 	      </div>
-	      <div class="modal-body">
-	      	<input type="hid den" name="c_idx" value="${clubDTO.c_idx }" />
-			<input type="hi dden" id="grade" name="grade">
-			<input type="hi dden" id="m_id" name="m_id">
-	      	<select id="cm_grade" name="cm_grade" style="width: 100px;"></select>
+	      <div class="modal-body" style="text-align:center;">
+	      	<input type="hidden" name="c_idx" value="${clubDTO.c_idx }" />
+			<input type="hidden" id="grade" name="grade">
+			<input type="hidden" id="m_id" name="m_id">
+	      	<select id="cm_grade" name="cm_grade" style="width: 150px; height:30px;"></select>
 	      </div>
 	      
 	      <!-- Modal footer -->
@@ -258,9 +230,6 @@ function authModal(cm_grade, cm_idx) {
 function memberApply(c_idx, cm_idx){
 	
 	location.href="../club/clubMemberApply.do?c_idx="+ c_idx +"&cm_idx="+cm_idx;
-}
-function memberReject(c_idx, cm_idx){
-	location.href="../club/clubMemberReject.do?c_idx="+ c_idx +"&cm_idx="+cm_idx;
 }
 function memberReject(c_idx, cm_idx){
 	if(confirm("정말 방출하시겠습니까?")) {

@@ -30,11 +30,11 @@ request.setCharacterEncoding("UTF-8");
 					</tr>
 					<tr>
 						<td>
-							<img class="myClubEmb" src="./../resources/img/empty.png" alt="" />
+							<img class="myClubEmb" src="./../resources/img/bprologo2.png" style="width: 200px;height: auto; filter: opacity(.3) drop-shadow(0 0 0 white); alt="" />
 						</td>
 					</tr>
 					<tr>
-						<td  class="clubName">
+						<td  class="clubName" style="filter: opacity(.3) drop-shadow(0 0 0 white);">
 							EMPTY
 						</td>
 					</tr>
@@ -74,6 +74,7 @@ request.setCharacterEncoding("UTF-8");
 	function openClubView(c_idx){
 		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
 				"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+		
 	}
 </script>
 </html>

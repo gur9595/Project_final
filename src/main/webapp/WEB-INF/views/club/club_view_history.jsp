@@ -1,18 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>타이틀</title>
 
-	<link href="./../resources/css/club_view2.css" rel="stylesheet">
-    <link href="./../resources/css/club_view_page.css" rel="stylesheet">
-    <link href="./../resources/admin_css/style.min.css" rel="stylesheet">
-    <script src="/resources/js/view_custommin.js"></script>
-    <script src="/resources/js/club_view.js"></script>
-    <script src="/resources/js/club_sidebarmenu.js"></script>
-
+<link href="./../resources/css/club_view2.css" rel="stylesheet">
+<link href="./../resources/css/club_view_page.css" rel="stylesheet">
+<link href="./../resources/admin_css/style.min.css" rel="stylesheet">
+<script src="/resources/js/view_custommin.js"></script>
+<script src="/resources/js/club_view.js"></script>
+<script src="/resources/js/club_sidebarmenu.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
 </head>
 <style>
 	body{
@@ -36,22 +41,61 @@
     td{
         border-bottom: 1px solid #444444;
         width: 70px; height: 30px;
+        text-align:center;
     }
     th{
         height:40px; text-align: center;
         border-bottom: 1px solid #444444;
     }
+    
+	button{
+	  background:#1AAB8A; 
+	  color:#fff;
+	  border:none;
+	  position:relative;
+	  height:30px;
+	  font-size:0.8em;
+	  cursor:pointer;
+	  transition:800ms ease all;
+	  outline:none;
+	}
+	
+	button:hover{
+	  background:#fff;
+	  color:#1AAB8A;
+	}
+	
+	button:before,button:after{
+	  content:'';
+	  position:absolute;
+	  top:0;
+	  right:0;
+	  height:2px;
+	  width:0;
+	  background: #1AAB8A;
+	  transition:400ms ease all;
+	}
+	button:after{
+	  right:inherit;
+	  top:inherit;
+	  left:0;
+	  bottom:0;
+	}
+	button:hover:before,button:hover:after{
+	  width:100%;
+	  transition:800ms ease all;
+	}
 </style>
 
-<body>
+<body onresize="parent.resizeTo(1280,720)" onload="parent.resizeTo(1280,720)">
 	<div id="main-wrapper">
     	<%@ include file="./club_view_header.jsp" %>
         <%@ include file="./club_view_sidebar.jsp" %>
-        <div class="page-wrapper">
+        <div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         <!-- Tabs -->
                         <div class="card">
                             <!-- Tab panes -->
@@ -64,98 +108,71 @@
                                             </div>
                                             <h5 style="margin-left: 140px; font-weight: 700;"></h5>
                                             <div class="comment-widgets scrollable">
-                                                <table style="width: 550px;">
+                                                <table style="width: 750px; text-align: center; ">
                                                     <tr style="border-bottom: 3px solid rgb(59, 209, 116)">
-                                                        <th width="200px;">날짜</th>
-                                                        <th>스코어</th>
+                                                        <th width="180px;"></th>
+                                                        <th></th>
+                                                        <th width="30px;"></th>
+                                                        <th width="30px;"></th>
+                                                        <th width="30px;"></th>
+                                                        <th></th>
+                                                        <th width="40px;"></th>
                                                     </tr>
-                                                    <tr>
-                                                        <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
-                                                    </tr>
-                                                    <tr>
-                                                        <th>2020-08-06</th>
-                                                        <th style="font-weight:bolder">FC우리팀 &nbsp; 2 &nbsp; : &nbsp; 1 &nbsp; FC바로셀로나</th>                                                  
-                                                    </tr>
+                                                    <c:forEach items="${lists }" var="row" varStatus="status">
+	                                                    <tr>
+	                                                        <th>${row.g_date }</th>
+	                                                        <c:choose>
+	                                                        	<c:when test="${row.g_check== 'owner' }">
+			                                                        <td>${row.home }</td>      
+	                                                        	</c:when>
+	                                                        	<c:when test="${row.home==null }">
+			                                                        <td style="color: red;">삭제된 팀</td>      
+	                                                        	</c:when>
+	                                                        	<c:otherwise>
+	                                                        		<td><a href="javascript:openClubView(${row.home_idx})">${row.home }</a></td> 
+	                                                        	</c:otherwise>
+	                                                        </c:choose>
+	                                                        
+	                                                        	<td>${row.home_score }</td>
+	                                                        	<th>
+	                                                        	<button type="button"  onclick="javascript:openMatchDetail">VS</button>
+	                                                        	</th>
+	                                                        	<td>${row.away_score }</td>
+	                                                        	
+	                                                        <c:choose>
+	                                                        	<c:when test="${row.g_check== 'yes' }">
+	                                                        		<td>${row.away }</td> 
+	                                                        	</c:when>
+	                                                        	<c:when test="${row.away==null }">
+			                                                        <td style="color: red;">삭제된 팀</td>      
+	                                                        	</c:when>
+	                                                        	<c:otherwise>
+	    		                                                    <td><a href="javascript:openClubView(${row.away_idx})">${row.away }</a></td>                                    
+	                                                        	</c:otherwise>
+	                                                        </c:choose>
+	                                                        
+	                                                        <th>
+	                                                    		<c:choose>
+	                                                    			<c:when test="${row.g_result=='W' }">
+	                                                    				승
+	                                                    			</c:when>
+	                                                    			<c:when test="${row.g_result=='D' }">
+	                                                    				무
+	                                                    			</c:when>
+	                                                    			<c:when test="${row.g_result=='L' }">
+	                                                    				패
+	                                                    			</c:when>
+	                                                    		</c:choose>
+	                                                    	</th>
+	                                                    </tr>
+                                                    </c:forEach>
+		                                            <tr>
+		                                            	<td style="border-bottom: 0"colspan="7">${paging }</td>
+		                                            </tr> 
                                                 </table>
                                             </div>
+                                            <br /><br/>
                                         </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3">
-
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Chat Option</h4>
-                                <div class="chat-box scrollable" style="height:475px;">
-                                    <ul class="chat-list">
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">James Anderson</h6>
-                                                <div class="box bg-light-info">Lorem Ipsum is simply dummy text of the printing &amp; type setting industry.</div>
-                                            </div>
-                                            <div class="chat-time">10:56 am</div>
-                                        </li>
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/2.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Bianca Doe</h6>
-                                                <div class="box bg-light-info">It’s Great opportunity to work.</div>
-                                            </div>
-                                            <div class="chat-time">10:57 am</div>
-                                        </li>
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">I would love to join the team.</div>
-                                                <br>
-                                            </div>
-                                        </li>
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">Whats budget of the new project.</div>
-                                                <br>
-                                            </div>
-                                            <div class="chat-time">10:59 am</div>
-                                        </li>
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/3.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Angelina Rhodes</h6>
-                                                <div class="box bg-light-info">Well we have good budget for the project</div>
-                                            </div>
-                                            <div class="chat-time">11:00 am</div>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body border-top">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <div class="input-field m-t-0 m-b-0">
-                                            <textarea id="textarea1" placeholder="Type and enter" class="form-control border-0"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <a class="btn-circle btn-lg btn-cyan float-right text-white" href="javascript:void(0)"><i class="fas fa-paper-plane"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -163,13 +180,17 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer text-center">
-                Copyright © 2020 - All Rights Reserved <a href="${pageContext.request.contextPath }">Be-Pro</a>.
-            </footer>
         </div>
     </div>  
 </body>
 <script>
-
+function openClubView(c_idx){
+	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
+			"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+}
+function openMatchDetail(g_num){
+	window.open("../club/clubMatchDetail.do?g_num="+g_num, '_blank',
+			"width=1000,height=800, toolbar=no, menubar=no, resizable=no");
+}
 </script>
 </html>

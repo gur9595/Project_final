@@ -2,9 +2,7 @@ package mybatis;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +25,8 @@ public interface ClubDAOImpl {
 	
 	public ClubDTO clubView(int c_idx);
 	
+	public ArrayList<GameDTO> clubView10History(int c_idx);
+	
 	public int clubIdx(ClubDTO clubDTO);
 
 	public int clubCreateMember(String m_id, int idx);
@@ -36,6 +36,10 @@ public interface ClubDAOImpl {
 	public int clubMemberApply(int cm_idx);
 	
 	public int gameMemberApply(GameMemberDTO gameMemberDTO);
+	
+	public int gameMemberDrop(GameMemberDTO gameMemberDTO);
+	
+	public int gameMemberCount(GameMemberDTO gameMemberDTO);
 	
 	public int ClubMatchApply(GameDTO gameDTO);
 	
@@ -48,12 +52,15 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubViewMember(int c_idx, int start, int end);
 	
 	public ArrayList<MatchDTO> clubViewMatch(int c_idx);
+	
+	public ClubDTO clubViewMatchOpponent(int g_num);
+	public int isClubViewMatchOpponent(int g_num);
 
 	public MatchDTO clubMatchOpponent(int g_num, int c_idx);
 	
 	public int clubMatchOpponentCount(int g_num, int c_idx);
 	
-	public ArrayList<GameDTO> clubViewAccept(int c_idx);
+	public ArrayList<GameDTO> clubViewAccept(int c_idx); 
 	
 	public ArrayList<GameDTO> clubViewMyApply(int c_idx);
 	
@@ -70,6 +77,8 @@ public interface ClubDAOImpl {
 	public MemberDTO clubHeadName(int c_idx);
 	
 	public ClubMemberDTO getCmgrade(int c_idx, String m_id);
+	
+	public int checkCmgrade(int c_idx, String m_id);
 
 	public ArrayList<MemberDTO> clubGoalRank(int c_idx);
 	
@@ -78,10 +87,27 @@ public interface ClubDAOImpl {
 	public ArrayList<MemberDTO> clubPointRank(int c_idx);
 	
 	public ArrayList<MemberDTO> clubAppearanceRank(int c_idx);
+	
+	public int gameFormPng(int g_idx, String fileName);
+	
+	public GameDTO gameInfo(int g_idx);
+	
+	public int getTotalCountHistory(int c_idx);
+	
+	public ArrayList<MatchDTO> clubMatchHistory(int c_idx, int start, int end);
+	
+	public ArrayList<RankingDTO> clubTotalRanking();
+	
+	public int goalInsert(String goal, String assist, int g_idx);
+	
+	//fcm 메세지 클럽명꺼내기
+	public String getClubName(int c_idx);	
 //	안드로이드********************************************************
 	public ArrayList<ClubDTO> myClubListA(ClubMemberDTO clubMemberDTO);
 	public ArrayList<MemberDTO> clubViewMemberA(AndroidClubMemberDTO androidClubMemberDTO);
-	public ArrayList<MatchDTO>clubViewMatchA(AndroidClubDTO androidClubDTO);
+	public ArrayList<MemberDTO> gameMemberList(AndroidGameMemberDTO androidGameMemberDTO);
+	public ArrayList<AndroidMatchDTO>clubViewMatchA(AndroidClubDTO androidClubDTO);
+	public ArrayList<MatchDTO>gm_checkList(AndroidClubDTO androidClubDTO);
 	public ArrayList<GameDTO>clubViewAcceptA(AndroidClubDTO androidClubDTO);
 	public MatchDTO clubMatchOpponentA(int g_num, String c_idx);
 	public int clubMatchOpponentCountA(int g_num, String c_idx);
@@ -89,5 +115,22 @@ public interface ClubDAOImpl {
 	public ArrayList<MatchDTO>clubViewMatchA(ClubDTO clubDTO);
 	public ArrayList<GameDTO>clubViewAcceptA(ClubDTO clubDTO);
 	public int gameMemberApplyA(AndroidGameMemberDTO androidGameMemberDTO);
-	
+	public int gameMemberRejectA(AndroidGameMemberDTO androidGameMemberDTO);
+	public int gameMemberCheck(String g_idx, String m_id);
+	public ArrayList<AndroidMemberDTO> clubGoalRankA(AndroidMemberDTO androidMemberDTO);
+	public ArrayList<AndroidClubDTO> clubSearchFilterA(AndroidClubDTO androidClubDTO);
+//	
+//	public ArrayList<AndroidRankingDTO> clubTotalRankingA();
+//	public ArrayList<AndroidRankingDTO> clubAreaRankingA(AndroidRankingDTO androidRankingDTO);
+//	public ArrayList<AndroidMemberDTO> clubAssistRankA(AndroidMemberDTO androidMemberDTO);
+//	public ArrayList<AndroidMemberDTO> clubPointRankA(AndroidMemberDTO androidMemberDTO);
+//	public ArrayList<AndroidMemberDTO> clubAppearanceRankA(AndroidMemberDTO androidMemberDTO);
+//	
+	public ArrayList<AndroidRankingDTO> clubTotalRankingA();
+	public ArrayList<AndroidRankingDTO> clubAreaRankingA(AndroidRankingDTO androidRankingDTO);
+	public ArrayList<AndroidMemberDTO> clubAssistRankA(AndroidMemberDTO androidMemberDTO);
+	public ArrayList<AndroidMemberDTO> clubPointRankA(AndroidMemberDTO androidMemberDTO);
+	public ArrayList<AndroidMemberDTO> clubAppearanceRankA(AndroidMemberDTO androidMemberDTO);
+	public int qrCheck(GameDTO gameDTO);
+	public ArrayList<AndroidMatchDTO> select_qrcheckA(AndroidMatchDTO androidMatchDTO);
 }

@@ -18,7 +18,7 @@
 	                	<span class="hide-menu">예약 현황</span>
 	                </a>
                 </li>
-                <li class="sidebar-item"> 
+               <%--  <li class="sidebar-item"> 
 	                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="${pageContext.request.contextPath }/stadium/Income.do?s_idx=${sessionScope.siteUserInfo.s_idx}" aria-expanded="false">
 		                <i class="mdi mdi-chart-bubble"></i>
 		                <span class="hide-menu">수입 현황</span>
@@ -29,7 +29,7 @@
 		                <i class="mdi mdi-border-inside"></i>
 		                <span class="hide-menu">구글차트 테스트</span>
 	                </a>
-                </li>
+                </li> --%>
                 <%-- <li class="sidebar-item"> 
 	                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="${pageContext.request.contextPath }/stadium/stBoard.do" aria-expanded="false">
 		                <i class="mdi mdi-blur-linear"></i>

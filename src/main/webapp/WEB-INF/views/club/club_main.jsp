@@ -13,11 +13,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
+<style>
+.container {
+	padding: 70px 0;
+}
+	
+</style>
 <body id="top"> 
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+<div class="bgded" style="background-image:url('./../resources/img/stadiumpic.jpg');">
   <div id="breadcrumb" class="hoc clear"></div>
 </div>
 <div class="wrapper row3">
@@ -34,29 +40,29 @@
         <div class="row border-responsive">        
           <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="" id="clubSearch">
             <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-              <i class='fas fa-search d-block ' style='font-size:62px;'></i>
+              <img src="./../resources/img/search.png" style="width: 50%; height: 50%;" /> <br />
               <br />
               <h3 class="text-uppercase h4 mb-3">클럽 검색</h3>
             </div>
           </div>
           <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100"  id="clubMyList">
             <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)" style="cursor: pointer;">
-              <i class='fas fa-tshirt d-block' style='font-size:62px;'></i>
+              <img src="./../resources/img/myclub.png" style="width: 50%; height: 50%;"/> <br />
               <br>              
               <h3 class="text-uppercase h4 mb-3">내 클럽</h3>
             </div>
           </div>
           <div class="col-md-4 col-lg-3 mb-4 mb-lg-4 border-right" data-aos="fade-up" data-aos-delay="100" id="clubCreate"> 
             <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)" style="cursor: pointer;">
-              <i class='fas fa-pen d-block' style='font-size:62px;'></i>
+              <img src="./../resources/img/create.png" style="width: 50%; height: 50%;"/> <br />
               <br>              
               <h3 class="text-uppercase h4 mb-3">클럽 생성</h3>
             </div>
-          </div>
+          </div> 
 
           <div class="col-md-4 col-lg-3 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200" id="clubRanking">
             <div class="text-center" onmouseenter="zoomIn(event)"onmouseleave="zoomOut(event)"style="cursor: pointer;">
-              <i class='fas fa-trophy d-block' style='font-size:62px'></i>
+              <img src="./../resources/img/rank.png" style="width: 50%; height: 50%;"/> <br />
               <br>
               <h3 class="text-uppercase h4 mb-3">클럽 랭킹</h3>
               <span style="cursor: pointer;" class="link" id="clubTotalRanking">전체 랭킹</span>/

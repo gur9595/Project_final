@@ -13,46 +13,7 @@ $(document).ready( function() {
         });
 
         
-        ////매치 부분
         
-        $('#football').click(function() {
-            $("#contents").load("stadiumMain.do", {"keyword" : "축구장"});
-            $('html, body').stop().animate({
-              scrollTop : $('#contents_target').offset().top
-            });
-            
-            $('#close').show();
-            
-        });
-        
-        $('#footsal').click(function() {
-        	$("#contents").load("stadiumMain.do", {"keyword" : "풋살장"});
-            $('html, body').stop().animate({
-              scrollTop : $('#contents_target').offset().top
-            });
-            
-            $('#close').show();
-            
-        });
-
-        $('#edit').click(function() {
-          $("#contents").load("edit.html #edit");
-          $('html, body').stop().animate({
-            scrollTop : $('#contents_target').offset().top
-          });
-
-          $('#close').show();
-        });
-        
-        $('#order_tracking').click(function() {
-          $("#contents").load("order_tracking.html #order_tracking");
-          $('html, body').stop().animate({
-            scrollTop : $('#contents_target').offset().top
-          });
-
-          $('#close').show();
-        });
-		
         //////클럽 부분
         
         //클럽 검색
@@ -111,27 +72,9 @@ $(document).ready( function() {
             
             $('#close').show();            
         });
-
+       
       });
 
-      // 배송조회
-      var company_code = "";
-      function companySelect(){
-        var company_name = document.getElementById("company");
-        var c_code = document.getElementById("c_code");
-        company_code = company_name.options[company_name.selectedIndex].value;
-      }
-      function deliverySearch() {
-        var d_num = document.getElementById("delivery_number").value;
-
-        if(company_code == "" || d_num == ""){
-          alert("택배회사와 운송장 번호를 입력하세요.");
-          return;
-        }
-        else {
-          window.open('https://tracker.delivery/#/' + company_code + '/' + d_num, 'name', 'resizable=no width=700 height=550');
-        }
-      }
 
       // 메뉴 줌 인/아웃
       function zoomIn(event) {

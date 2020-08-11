@@ -43,16 +43,16 @@
         border-bottom: 1px solid #444444;
     }
 </style>
-<body>
+<body  onresize="parent.resizeTo(1280,720)" onload="parent.resizeTo(1280,720)">
     <div id="main-wrapper">
     	<%@ include file="./club_view_header.jsp" %>
     	<%@ include file="./club_view_sidebar.jsp" %>
         
-		<div class="page-wrapper">     
+		<div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">     
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         <!-- Tabs -->
                         <div class="card">
                             <div class="tab-content tabcontent-border">
@@ -72,7 +72,9 @@
                                                         <th style="width:200px;">구장 이름</th>
                                                         <th style="width:100px;">상대팀</th>
                                                         <th style="width:100px;">포메이션 확인</th>
-                                                        <th style="width:120px;">포메이션 작성</th>         
+                                                        <c:if test="${getCmgrade.cm_grade!='player'}">
+                                                        	<th style="width:120px;">포메이션 작성</th>         
+                                                        </c:if>
                                                     </tr>
 
                                                     <c:forEach items="${lists }" var="row" varStatus="status"> 
@@ -80,83 +82,21 @@
 															<th>${row.g_date }</th>
 															<th>${row.g_time }</th>
 															<th>${row.g_sname }</th>
-															<th>${row.c_name }</th>
-															<th><input type="button" class="btn btn-outline-success" onclick="javascript:openFormCheck(${row.g_idx})" style="width:50px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="확인" ></th>
-	                                                        <th><input type="button" class="btn btn-outline-primary" onclick="javascript:openFormMake(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="작성"></th>
+															<th>
+																<c:choose>
+																	<c:when test="${row.c_name == null }">없음</c:when>
+																	<c:otherwise><a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a></c:otherwise>
+																</c:choose>
+															</th>
+															<th><input type="button" class="btn btn-outline-success" onclick="javascript:openFormCheck(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="확인" ></th>
+	                                                        <c:if test="${getCmgrade.cm_grade!='player'}">
+	                                                        	<th><input type="button" class="btn btn-outline-primary" onclick="javascript:openFormMake(${row.g_idx})" style="width:65px; height: 30px; text-align: center; padding: 0; font-weight:900; font-size:17px;" value="작성"></th>
+	                                                        </c:if>
 														</tr>
 													</c:forEach>
-                                                </table>
+                                                </table> 
                                             </div>
-                                        </div>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- column -->
-                    <div class="col-lg-3">
-                        <!-- Card -->
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Chat Option</h4>
-                                <div class="chat-box scrollable" style="height:475px;">
-                                    <!--chat Row -->
-                                    <ul class="chat-list">
-                                        <!--chat Row -->
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/1.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">James Anderson</h6>
-                                                <div class="box bg-light-info">Lorem Ipsum is simply dummy text of the printing &amp; type setting industry.</div>
-                                            </div>
-                                            <div class="chat-time">10:56 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/2.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Bianca Doe</h6>
-                                                <div class="box bg-light-info">It’s Great opportunity to work.</div>
-                                            </div>
-                                            <div class="chat-time">10:57 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">I would love to join the team.</div>
-                                                <br>
-                                            </div>
-                                        </li>
-                                        <!--chat Row -->
-                                        <li class="odd chat-item">
-                                            <div class="chat-content">
-                                                <div class="box bg-light-inverse">Whats budget of the new project.</div>
-                                                <br>
-                                            </div>
-                                            <div class="chat-time">10:59 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                        <li class="chat-item">
-                                            <div class="chat-img"><img src="../../assets/images/users/3.jpg" alt="user"></div>
-                                            <div class="chat-content">
-                                                <h6 class="font-medium">Angelina Rhodes</h6>
-                                                <div class="box bg-light-info">Well we have good budget for the project</div>
-                                            </div>
-                                            <div class="chat-time">11:00 am</div>
-                                        </li>
-                                        <!--chat Row -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body border-top">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <div class="input-field m-t-0 m-b-0">
-                                            <textarea id="textarea1" placeholder="Type and enter" class="form-control border-0"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <a class="btn-circle btn-lg btn-cyan float-right text-white" href="javascript:void(0)"><i class="fas fa-paper-plane"></i></a>
+                                        </div>      
                                     </div>
                                 </div>
                             </div>
@@ -164,21 +104,23 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer text-center">
-            </footer>
         </div>
     </div>
 </body>
 <script>
+	function openClubView(c_idx){
+		window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
+				"width=1500,height=800, toolbar=no, menubar=no, resizable=no");
+	}
 	function openFormMake(g_idx){
 		
-		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank',
-				"width=900,height=650, toolbar=no, menubar=no, resizable=no");
+		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank', 
+				"width=700,height=650, toolbar=no, menubar=no, resizable=no");
 	}
 	function openFormCheck(g_idx){
 		
 		window.open("../club/clubCheckFormation.do?g_idx="+g_idx, '_blank',
-				"width=900,height=650, toolbar=no, menubar=no, resizable=no");
+				"width=700,height=650, toolbar=no, menubar=no, resizable=no");
 	}
 </script>
 </html>

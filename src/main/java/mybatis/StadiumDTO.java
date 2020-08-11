@@ -22,42 +22,28 @@ public class StadiumDTO {
 	private String s_lat;
 	private String s_lng;
 	private String s_check;
-	
-	
-	public String getS_check() {
-		return s_check;
-	}
 
-	public void setS_check(String s_check) {
-		this.s_check = s_check;
-	}
-
-	public Date getS_date() {
-		return s_date;
-	}
-
-	public void setS_date(Date s_date) {
-		this.s_date = s_date;
-	}
-
-	private Date s_date;
+	private java.sql.Date s_date;
 	
 	//검색을 위한 변수
 	private String searchTxt;
 	
 	//select구간을 위한 멤버변수
-	private int start;
+	private int start; 
 	private int end;
 	
 	//기본생성자
 	public StadiumDTO() {}
 	
+	
 	//인자생성자
+	
 	public StadiumDTO(int s_idx, String s_id, String s_pw, String s_name, String s_phone, String s_addr, String s_gu,
 			String s_type, String s_pic, String s_size, String s_cv, int s_price, String s_memo, String s_starttime,
-			String s_endtime, String searchTxt, String s_lat, String s_lng, int start, int end) {
+			String s_endtime, String s_lat, String s_lng, String s_check, java.sql.Date s_date, String searchTxt, int start,
+			int end) {
 		super();
-		this.s_idx = s_idx;
+		this.s_idx = s_idx; 
 		this.s_id = s_id;
 		this.s_pw = s_pw;
 		this.s_name = s_name;
@@ -72,9 +58,11 @@ public class StadiumDTO {
 		this.s_memo = s_memo;
 		this.s_starttime = s_starttime;
 		this.s_endtime = s_endtime;
-		this.searchTxt = searchTxt;
 		this.s_lat = s_lat;
 		this.s_lng = s_lng;
+		this.s_check = s_check;
+		this.s_date = s_date;
+		this.searchTxt = searchTxt;
 		this.start = start;
 		this.end = end;
 	}
@@ -238,6 +226,22 @@ public class StadiumDTO {
 
 	public void setEnd(int end) {
 		this.end = end;
+	}
+
+	public String getS_check() {
+		return s_check;
+	}
+
+	public void setS_check(String s_check) {
+		this.s_check = s_check;
+	}
+
+	public java.sql.Date getS_date() {
+		return s_date;
+	}
+
+	public void setS_date(java.sql.Date s_date) {
+		this.s_date = s_date;
 	}	
 	
 	

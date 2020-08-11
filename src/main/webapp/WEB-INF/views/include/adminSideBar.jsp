@@ -7,6 +7,12 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
                 <li class="sidebar-item"> 
+	                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="${pageContext.request.contextPath }/admin/adminMain.do" aria-expanded="false">
+		                <i class="mdi mdi-blur-linear"></i>
+		                <span class="hide-menu">홈</span>
+	                </a>
+                </li>
+                <li class="sidebar-item"> 
 	                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="${pageContext.request.contextPath }/admin/adminMember.do" aria-expanded="false">
 	                	<i class="mdi mdi-view-dashboard"></i>
 	                	<span class="hide-menu">회원 관리</span>
@@ -28,12 +34,6 @@
 	                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="${pageContext.request.contextPath }/admin/adminStadium.do" aria-expanded="false">
 		                <i class="mdi mdi-border-inside"></i>
 		                <span class="hide-menu">경기장 관리</span>
-	                </a>
-                </li>
-                <li class="sidebar-item"> 
-	                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="${pageContext.request.contextPath }/admin/adminBoard.do" aria-expanded="false">
-		                <i class="mdi mdi-blur-linear"></i>
-		                <span class="hide-menu">게시판 관리</span>
 	                </a>
                 </li>
             </ul>
