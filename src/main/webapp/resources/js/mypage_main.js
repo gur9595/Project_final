@@ -31,6 +31,16 @@ $(document).ready(function() {
 	  	마이페이지-결제 내역
 	  	$()쪽에는 main문의 id를 load()쪽에는 해당페이지의 요청명을 기술
 	 */
+    $('#history').click(function() {
+    	var m_id = $("#m_id").val();
+    	$("#contents").load("memberHistory.do?m_id="+m_id);
+    	$('html, body').stop().animate({
+    		scrollTop : $('#contents').offset().top
+    	});
+    	
+    	$('#close').show();            
+    });
+    
 	$('#ball').click(function() {
 		$("#contents").load("ballHistory.do");
 	    $('html, body').stop().animate({

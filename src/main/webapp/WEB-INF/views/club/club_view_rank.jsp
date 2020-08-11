@@ -47,7 +47,7 @@
     <div id="main-wrapper">
     	<%@ include file="./club_view_header.jsp" %>
         <%@ include file="./club_view_sidebar.jsp" %>
-        <div class="page-wrapper" style="margin-top:-20px;">
+        <div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
@@ -58,6 +58,7 @@
                             <div class="tab-content tabcontent-border"> 
                                 <div>
                                     <div class="p-20">
+                                    	
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title" style="text-align: center; font-size: 30px;">클럽 내 랭킹</h4>

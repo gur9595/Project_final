@@ -39,7 +39,7 @@ import org.json.simple.parser.ParseException;
 import mybatis.CashDAOImpl;
 import mybatis.CashDTO;
 import mybatis.ClubDAOImpl;
-
+import mybatis.GoalHistoryDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
 import mybatis.StadiumDAOImpl;
@@ -384,16 +384,32 @@ public class MemberController {
    }
    
    //경기장 등록
-   @RequestMapping("/member/member_stadiumInsert.do")
-   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req) {
-      
-      String s_addr1 = req.getParameter("s_addr1");
+
+   @RequestMapping(value="/member/member_stadiumInsert.do",method=RequestMethod.POST)
+   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req,MultipartHttpServletRequest mtfRequest ,Model model) {
+	   String s_addr1 = req.getParameter("s_addr1");
       String s_addr2 = req.getParameter("s_addr2");
       String s_addr = s_addr1+" "+s_addr2;
+
+      String s_phone1 = req.getParameter("s_phone1");
+      String s_phone2 = req.getParameter("s_phone2");
+      String s_phone3 = req.getParameter("s_phone3");
       
-      //좌표값 받기
+      String s_phone = s_phone1+"-"+s_phone2+"-"+s_phone3;
+      dto.setS_phone(s_phone);
+      System.out.println("s_phone : "+ s_phone);
+      
+      //좌표값 받기 
       String latitude = req.getParameter("latitude"); //위도
       String longitude = req.getParameter("longitude"); //경도
+      
+      String[] s_cvs = req.getParameterValues("s_cv");
+      String s_cv = "";
+      for(int i = 0; i < s_cvs.length; i++) {
+    	  s_cv += s_cvs[i];
+    	  System.out.println("s_cv : " + s_cv);
+      }
+      dto.setS_cv(s_cv);
       
       dto.setS_addr(s_addr);
       dto.setS_lat(latitude);
@@ -402,10 +418,58 @@ public class MemberController {
       System.out.println("s_memo : "+dto.getS_memo());
       System.out.println("s_lat : " + dto.getS_lat());
       System.out.println("s_lng : " + dto.getS_lng());
+
+      String totalFileName = "";
       
-      sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
+      List<MultipartFile> fileList = mtfRequest.getFiles("file");
+      String src = mtfRequest.getParameter("src");
+      System.out.println("src value : " + src);
+
+      String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile/");
+
+      for (MultipartFile mf : fileList) {
+          String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+          long fileSize = mf.getSize(); // 파일 사이즈
+
+          System.out.println("originFileName : " + originFileName);
+          System.out.println("fileSize : " + fileSize);
+
+          String safeFile = path + System.currentTimeMillis() + originFileName;
+          
+          totalFileName += System.currentTimeMillis() + originFileName+",";
+          
+          try {
+              mf.transferTo(new File(safeFile));
+          } catch (IllegalStateException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+          } catch (IOException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+          }
+      }
       
-      return"member/member_select";
+      dto.setS_pic(totalFileName);
+   
+      int insert_ok = sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
+      String result = "";
+      if(insert_ok == 0) {
+    	  result = "fail";
+      }
+      else if(insert_ok == 1) {
+    	  result = "success";
+      }
+      
+      model.addAttribute("result", result);
+      
+      return"member/stadium_create_check";
+   }
+   
+   //경기장 등록체크페이지
+   @RequestMapping("/member/stadium_create_check.do")
+   public String stadium_create_check() {
+	   
+	   return"member/stadium_create_check";
    }
    
    //접근 에러
@@ -550,10 +614,32 @@ public class MemberController {
    }
    
    // 마이페이지 경기기록 부분 추가
-   @RequestMapping("/member/playHistory.do")
-   public String playHistory() {
+   @RequestMapping("/member/memberHistory.do")
+   public String playHistory(Principal principal, HttpServletRequest req, Model model) {
+
+		String m_id = principal.getName();
 	   
-	   return "member/play_history";
+
+	   MemberDTO dto = sqlSession.getMapper(MemberDAOImpl.class).myInfo(m_id);
+	   
+	   int total = sqlSession.getMapper(MemberDAOImpl.class).myTotal(m_id);
+	   int goal = sqlSession.getMapper(MemberDAOImpl.class).myGoalList(m_id);
+	   ArrayList<GoalHistoryDTO> goalAssistLists = sqlSession.getMapper(MemberDAOImpl.class).myGoalAssistList(m_id);
+	   int assist = sqlSession.getMapper(MemberDAOImpl.class).myAssistList(m_id);
+	   ArrayList<GoalHistoryDTO> assistGoalLists = sqlSession.getMapper(MemberDAOImpl.class).myAssistGoalList(m_id);
+	   
+	   System.out.println(total);
+	   System.out.println(goal);
+	   System.out.println(assist);
+	   
+	   model.addAttribute("total", total);
+	   model.addAttribute("goal", goal);
+	   model.addAttribute("goalAssistLists", goalAssistLists);
+	   model.addAttribute("assist", assist);
+	   model.addAttribute("assistGoalLists", assistGoalLists);
+	   model.addAttribute("dto", dto);
+	   
+	   return "member/memberHistory";
    }
 
    @RequestMapping("/member/mypageMain.do")

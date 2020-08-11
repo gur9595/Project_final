@@ -58,7 +58,6 @@ button{
 		    name : charge + "	Ball", // 입금될 마일리지
 		    amount : cash, // 결제 금액
 	    	buyer_email :  ' --- Option ---  			Press your email'      
-		
 		    // m_redirect_url : 'www.naver.com'
 		}, 
 		function(rsp) { // callback : 고객이 결제를 완료한 후 실행되는 함수
@@ -104,7 +103,7 @@ button{
 	<%@ include file="./../include/top.jsp"%>
 	<!--각 페이지 이미지-->
 	<div class="bgded overlay"
-		style="background-image: url('../images/demo/backgrounds/01.png');">
+		style="background-image:url('./../resources/img/charge.jpg'); background-position: 0 40%;">
 		<div id="breadcrumb" class="hoc clear">
 			<!--이미지 위에 글쓰는곳-->
 		</div>
@@ -245,6 +244,7 @@ button{
 		var depositor = $("#depositor").val() // depositor = 입금자명
 		var cash_item_id = document.getElementById('selected_item_id').innerHTML
 		var currentCashItemPrice = $("#selected_item_price").val()
+
       	console.log(currentCashItemPrice)
 
       	// 만약 입금자명이 공란이면

@@ -211,7 +211,7 @@ $(function(){
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay">
+<div class="bgded overlay" style="background-image:url('./../resources/img/event.jpg'); background-position: 0 95%;">
   <div id="breadcrumb" class="hoc clear"> 
     <!--이미지 위에 글쓰는곳-->
   </div>
@@ -291,7 +291,7 @@ $(function(){
 					</ul>
 		                
 		            <!-- 글쓰기 버튼 / 페이징 -->
-		            <div style="border: 1px solid black; width: 100%; overflow: hidden; position: relative;">
+		            <div style="border: 0px solid black; width: 100%; overflow: hidden; position: relative;">
 		            	<div style="display: inline-block; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%)">${pagingImg }</div>
 			            <input type="button" id="uploadBtn" value="글쓰기" style="float: right; width: 120px; height: 40px; background-color: white; border: 1px solid black;" />
 		            </div>
@@ -301,74 +301,7 @@ $(function(){
 	            
 	            <!-- 종료된 이벤트 -->
 	            <div class="tab-contents" id="event_end">
-	                <table class="tab-table">
-	                	<tr>
-	                		<td>
-	                			<div class="contents-box-left">
-	                				<a href="javascript:void(0);">
-		                				<img src="../resources/img/event/event4.jpg"  />
-	                				</a>
-	                				<a href="javascript:void(0);">
-		                				<div class="content-text">
-		                					<div class="content-type">[협찬]</div>
-		                					<div class="content-title">나이키 프로모션 행사</div>
-		                					<div class="content-date">2020.03.04 ~ 2020.04.14</div>
-		                				</div>
-	                				</a>
-	                			</div>
-	                		</td>
-	                		<td>
-	                			<div class="contents-box-middle">
-	                				<a href="javascript:void(0);">
-		                				<img src="../resources/img/event/event5.jpg"  />
-	                				</a>
-	                				<a href="javascript:void(0);">
-		                				<div class="content-text">
-		                					<div class="content-type">[추첨]</div>
-		                					<div class="content-title">영화 펠레 시사회 추첨</div>
-		                					<div class="content-date">2020.06.20 ~ 2020.09.01</div>
-		                				</div>
-	                				</a>
-	                			</div>
-	                		</td>
-	                		<td>
-	                			<div class="contents-box-right">
-	                				<a href="javascript:void(0);">
-		                				<img src="../resources/img/event/event6.jpg"  />
-	                				</a>
-	                				<a href="javascript:void(0);">
-		                				<div class="content-text">
-		                					<div class="content-type">[추첨]</div>
-		                					<div class="content-title">제주 유스 축구대회 티켓 추첨</div>
-		                					<div class="content-date">2020.01.04 ~ 2020.06.21</div>
-		                				</div>
-	                				</a>
-	                			</div>
-	                		</td>
-	                	</tr>
-	                	<tr>
-	                		<td>
-	                			<div class="contents-box-left">
-	                				<a href="javascript:void(0);">
-		                				<img src="../resources/img/event/event7.jpg"  />
-	                				</a>
-	                				<a href="javascript:void(0);">
-		                				<div class="content-text">
-		                					<div class="content-type">[추첨]</div>
-		                					<div class="content-title">강원FC vs 서울FC 티켓 추첨</div>
-		                					<div class="content-date">2020.05.04 ~ 2020.05.30</div>
-		                				</div>
-	                				</a>
-	                			</div>
-	                		</td>
-	                		<td>
-	                			<!-- 빈 컨텐츠 -->
-	                		</td>
-	                		<td>
-	                			<!-- 빈 컨텐츠 -->
-	                		</td>
-	                	</tr>
-	                </table>
+	                
 	            </div>
 	        </div>
 	    </div>

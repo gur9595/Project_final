@@ -15,8 +15,7 @@
 				<div class="modal-content">
 	
 					<div class="modal-header">
-						<h2 class="modal-title"
-							style="font-size: 20px; text-align: center;" id="myModalLabel">경기신청하기</h2>
+						<h2 class="modal-title" id="myModalLabel">경기신청하기</h2>
 	
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -26,27 +25,27 @@
 					<div class="modal-body">
 					
 						<input type="hidden" id="list_idx" name="list_idx" />
-						<span>우리 클럽 : </span>
-						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline;">
+						<span style="line-height: 30px;">우리 클럽 : </span>
+						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline; line-height: 30px;">
 							<option value="" selected="selected">클럽을 선택하세요.</option>
 							<c:forEach var="club" items="${c_list }">
 								<option value="${club.c_idx }">${club.c_name }</option>
 							</c:forEach>
 						</select><br />
-						상대 클럽 : <span id="list_c_name"></span><br />
-						경기 날짜 : <span id="list_date"></span><br />
-						경기 시간 : <span id="list_time"></span>:00<br />
-						구장 이름 : <span id="list_name"></span><br />
-						구장 주소 : <span id="list_addr"></span><br />
+						상대 클럽 : <span id="list_c_name" style="line-height: 30px;"></span><br />
+						경기 날짜 : <span id="list_date" style="line-height: 30px;"></span><br />
+						경기 시간 : <span id="list_time" style="line-height: 30px;"></span>:00<br />
+						구장 이름 : <span id="list_name" style="line-height: 30px;"></span><br />
+						구장 주소 : <span id="list_addr" style="line-height: 30px;"></span><br />
 						참고 사항 : <br />
 						<textarea class="form-control" id="list_memo"
-							style="width: 100%; height: 100px; background: #ffffff;"
+							style="width: 100%; height: 100px; background: #ffffff; line-height: 30px;"
 							readonly="readonly">
 						</textarea>	
 					</div>
 	
 					<div class="modal-footer">
-						<input type="submit" class="btn btn-danger" value="신청하기">
+						<button type="submit" class="req" >신청하기</button>
 					</div>
 				</div>
 			</div>
@@ -144,7 +143,6 @@
 		</div>
 	</div>
 <style>
-
 tr {
   border-bottom:1px solid #dedede;
 }
@@ -198,6 +196,51 @@ tr:last-child {
 }
 .cell7 {
   width:10%;
+}
+
+h2{
+	font-size: 22px !important; text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.2); font-weight:900;
+	padding: 3px 5px; margin: 5px 0; BACKGROUND-COLOR: #FFF;  BORDER-LEFT: #FF8000 8px solid; 
+}
+.req {
+  border-radius: 3px;
+  background:#2E64FE;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.3em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  font-weight:900
+}
+
+.req:hover{
+  background:#fff;
+  color:#2E64FE;
+}
+
+.req:before,.req:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #2E64FE;
+  transition:400ms ease all;
+}
+.req:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.req:hover:before,.req:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }
 </style>
 </main>

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
+<html lang="">
+<head>
+<title>B-PRO</title>
 <!--
 Template Name: Chillaid
 Author: <a href="https://www.os-templates.com/">OS Templates</a>
@@ -10,30 +13,28 @@ Copyright: OS-Templates.com
 Licence: Free to use under our free template licence terms
 Licence URI: https://www.os-templates.com/template-terms
 --> 
-<html lang="">
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
-<head>
-<title>B-PRO</title>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" 
+   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <!-- ############################## T O P############################################################ -->
-<%@ include file="./include/top.jsp"%>
+<%@ include file="./include/top_main.jsp"%>
 <!-- ################################################################################################ -->
 <div class="jb-box">
-
-	<video autoplay muted loop id="myVideo">
-	  <source src="./resources/videos/testmov002.mp4" type="video/mp4">
-	</video>
-	
+   <div>
+      <video autoplay muted loop id="myVideo">
+        <source src="./resources/videos/testmov002.mp4" type="video/mp4">
+      </video> 
+   </div>
+   
   <div class="jb-text"> 
     <!-- ################################################################################################ -->
     <article>
@@ -41,100 +42,11 @@ Licence URI: https://www.os-templates.com/template-terms
     </article>
     <!-- ################################################################################################ -->
   </div>
-  
 </div>
+
 <!-- ################################################################################################ -->
 <div class="wrapper row3">
-  <main class="hoc container clear"> 
-    <!-- main body -->
-    <!-- ############################### 메 뉴 아 이 콘 ######################################## -->
-    <section id="introblocks">
-      <ul class="nospace group btmspace-80 elements elements-four">
-        <li class="one_quarter">
-          <article>
-          	<div class="article-hover" style="height: 132px;">
-          		<div class="article-before">
-	          		<i class="fas fa-trophy"></i>
-		            <h6 class="heading">Club</h6>
-          		</div>
-	          	<div class="article-after" style="height: 132px;">
-		          	<a href="./club/clubMain.do">
-	          			<div class="article-a-inner">
-		          			클럽에 가입하여<br />함께 즐겨봐요!
-		          		</div>
-		          	</a>
-	          	</div>
-          	</div>
-          </article>
-        </li>
-        <li class="one_quarter">
-          <article>
-            <div class="article-hover" style="height: 132px;">
-            	<div class="article-before">
-	          		<i class="fas fa-chess-queen"></i>
-		            <h6 class="heading">Matching</h6>
-            	</div>
-	          	<div class="article-after" style="height: 132px;">
-		          	<a href="./match/matchMain.do">
-	          			<div class="article-a-inner">
-		          			경기장을 예약하여<br />보다 편하게!
-		          		</div>
-		          	</a>
-	          	</div>
-          	</div>
-          </article>
-        </li>
-        <li class="one_quarter">
-          <article>
-            <div class="article-hover" style="height: 132px;">
-            	<div class="article-before">
-	          		<i class="fas fa-futbol"></i>
-		            <h6 class="heading">Game</h6> 
-            	</div>
-	          	<div class="article-after" style="height: 132px;">
-		          	<a href="./game/gameMain.do">
-		          		<div class="article-a-inner">
-		          			회원님의 경기를<br />확인할 수 있어요!
-		          		</div>
-		          	</a>
-	          	</div>
-          	</div>
-          </article>
-        </li>
-        <li class="one_quarter">
-          <article>
-            <div class="article-hover" style="height: 132px;">
-            	<div class="article-before">
-	          		<i class="fas fa-shopping-cart"></i>
-		            <h6 class="heading">Game</h6> 
-            	</div>
-	          	<div class="article-after" style="height: 132px;">
-		          	<a href="./market/marketMain.do">
-		          		<div class="article-a-inner">
-	          				장비가 없으신가요?<br />이 곳에서 구매하세요!
-	          			</div>
-		          	</a>
-	          	</div>
-          	</div>
-          </article>
-        </li>
-      </ul>
-    </section>
-    <!-- ################################################################################################ -->
-    <section class="group shout">
-      <figure class="one_half first"><img src="images/demo/546x356.png" alt="">
-        <figcaption class="heading"><a href="#">Club Ranking</a></figcaption>
-        	
-      </figure>
-      <figure class="one_half"><img src="images/demo/546x356.png" alt="">
-        <figcaption class="heading"><a href="#">Notice</a></figcaption>
-        	
-      </figure>
-    </section>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
-    
-  </main>
+
 </div>
 <!-- ######################################## footer ########################################### -->
 <%@ include file="./include/footer.jsp"%>
@@ -148,4 +60,3 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- / Homepage specific -->
 </body>
 </html>
-

@@ -208,7 +208,7 @@ function match_insert(f){
 						사용 금액 : <span id="list_price" style="line-height: 30px;"></span><br /><br />
 						<div align="center">보유중인 ball : <span id="list_ball"></span><br /></div>
 					</div>
-						<button type="submit" class="addr" >예약하기</button>
+						<button type="submit" class="reserve" >예약하기</button>
 				</div>
 			</div>
 		</div>
@@ -233,28 +233,27 @@ function match_insert(f){
 		<input type="hidden" id="price" value="${price }" />
 		<input type="hidden" id="ball" value="${cash }" />
 		<input type="hidden" id="type" value="${type }" />
-		<h2 style="text-align: center; font-weight: bold; font-size: 50px">${dong }&nbsp;${name }</h2>
+		<h1 style="text-align: center; font-weight: bold; font-size: 50px">${dong }&nbsp;${name }</h1>
 		
-		<div class="mr-5" style="text-align: right;">
-			<a href="map.do?g_saddr=${addr}&g_sname=${name}" style="display: inline;"
-				onclick="window.open(this.href, '_blank', 'width=700px,height=700px,toolbars=no,scrollbars=no'); return false;">
-					<span style="font-size: 20px;" id="addr">
-						<input type="text" id="s_addr" style="border: 0px; cursor: pointer; width: 400px; display: inline; text-align: right;" 
-							value="${addr }" />
-					</span>&nbsp;&nbsp;
-			</a>
-			<button onclick="copyFunc();" style="border: 0px; background-color: #fff; display: inline;">
-				<i class="material-icons">content_copy</i>
-			</button>
-			
-		</div>
-		<br />
-		<div> 
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08920.jpg" class="slide" style="width:100%; height: 400px;">
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08923.jpg" class="slide" style="width:100%; height: 400px;">
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08956.jpg" class="slide" style="width:100%; height: 400px;">
-		</div>
 		<main class="hoc container clear">
+			<div class="mr-5" style="text-align: right;">
+				<a href="map.do?g_saddr=${addr}&g_sname=${name}" style="display: inline;"
+					onclick="window.open(this.href, '_blank', 'width=700px,height=700px,toolbars=no,scrollbars=no'); return false;">
+						<span style="font-size: 20px;" id="addr">
+							<input type="text" id="s_addr" style="border: 0px; cursor: pointer; width: 400px; display: inline; text-align: right;" 
+								value="${addr }" />
+						</span>&nbsp;&nbsp;
+				</a>
+				<button onclick="copyFunc();" style="border: 0px; background-color: #fff; display: inline;">
+					<i class="material-icons">content_copy</i>
+				</button>
+				
+			</div>			<br />
+			<div> 
+				<img src="./../resources/uploadsFile/${s_pic1 }" class="slide" style="width:100%; height: 400px;">
+				<img src="./../resources/uploadsFile/${s_pic2 }" class="slide" style="width:100%; height: 400px;">
+				<img src="./../resources/uploadsFile/${s_pic3 }" class="slide" style="width:100%; height: 400px;">
+			</div>
 			<br> <br> <br>
 
 			<div class="one_half first" id="stadium2" style="height: 800px;">
@@ -323,9 +322,9 @@ function match_insert(f){
 					<span style="font-size: 20px; color: black; font-weight: bold;">구장 특이사항</span><br /><br />
 				</header>
 				<div class="comcont">
-					<pre class="txt2">
-						${memo }
-					</pre>
+				
+				<textarea name="" id="" cols="20" rows="10" style="color: #000; border: 0;">${memo }</textarea>
+
 				</div>
 				<header>
 					<span style="font-size: 20px; color: black; font-weight: bold;">구장 편의사항</span><br /><br />

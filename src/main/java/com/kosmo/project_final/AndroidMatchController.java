@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mybatis.StadiumDAOImpl;
@@ -26,6 +27,8 @@ import mybatis.AndroidMatchDTO;
 import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.GameDTO;
+import mybatis.GameMemberDTO;
+import mybatis.GoalHistoryDTO;
 import mybatis.MatchDAOImpl;
 import mybatis.MatchDTO;
 
@@ -53,6 +56,76 @@ public class AndroidMatchController {
 		
 		
 		return "match/match_main";
+	}
+	
+	@RequestMapping("/android/clubTacticBoard.do")
+	public String clubTacticBoard(HttpServletRequest req, Model model) {
+
+		int g_idx = 0;
+		String reqG_idx = req.getParameter("g_idx");
+		System.out.println("reqG_idx : " + reqG_idx);
+		if(reqG_idx.contains(".")) {
+			System.out.println("g_idx1 : " + g_idx);
+			g_idx = Integer.parseInt(reqG_idx.split("\\.")[0]);
+			System.out.println("g_idx2 : " + g_idx);
+		}
+		else {
+			g_idx = Integer.parseInt(reqG_idx);
+		}
+		
+		System.out.println(g_idx);
+		GameMemberDTO nullDTO = new GameMemberDTO();
+		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx);
+
+		ArrayList<GameMemberDTO> squad = new ArrayList<GameMemberDTO>();
+		ArrayList<GameMemberDTO> bench = new ArrayList<GameMemberDTO>();
+		int check = 0;
+		for (int i = 0; i < 26; i++) {
+			check = 0;
+			for (GameMemberDTO gameMemberDTO : lists) {
+				if (i == gameMemberDTO.getGm_form()) {
+					squad.add(i, gameMemberDTO);
+
+					check++;
+				}
+			}
+			if (check == 0)
+				squad.add(i, nullDTO);
+		}
+
+		
+		ArrayList<GoalHistoryDTO> goalLists =  sqlSession.getMapper(ClubDAOImpl.class).matchGoalLists(g_idx);
+		
+		model.addAttribute("g_idx", g_idx);
+		model.addAttribute("lists", lists);
+		model.addAttribute("goalLists", goalLists);
+		model.addAttribute("squad", squad);
+		model.addAttribute("bench", bench);
+
+		return "club/club_tacticboard";
+	}
+	
+	@RequestMapping(value = "/android/goalInsert.do", method = RequestMethod.POST)
+	public String goalInsert (HttpServletRequest req, Model model) {
+		
+		int g_idx = 0;
+		String reqG_idx = req.getParameter("g_idx");
+		System.out.println("reqG_idx : " + reqG_idx);
+		if(reqG_idx.contains(".")) {
+			System.out.println("g_idx1 : " + g_idx);
+			g_idx = Integer.parseInt(reqG_idx.split("\\.")[0]);
+			System.out.println("g_idx2 : " + g_idx);
+		}
+		else { 
+			g_idx = Integer.parseInt(reqG_idx);
+		}
+		
+		String goal = req.getParameter("goal");
+		String assist = req.getParameter("assist");
+		
+		sqlSession.getMapper(ClubDAOImpl.class).goalInsert(goal,assist,g_idx);
+		
+		return "redirect:/android/clubTacticBoard.do?g_idx="+g_idx;
 	}
 	
 	@RequestMapping("/match/my_ratingmemo.do")

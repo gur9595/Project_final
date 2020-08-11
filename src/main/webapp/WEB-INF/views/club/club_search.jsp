@@ -175,7 +175,7 @@ request.setCharacterEncoding("UTF-8");
 	<!-- 모달창 신청폼 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" data-backdrop="static"
-		style="color: black;">
+		style="color: black; width: 40%; margin-left: 30%; margin-right: 30%;">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 	
@@ -188,14 +188,14 @@ request.setCharacterEncoding("UTF-8");
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form name="writeFrm" method="post" action="<c:url value="/member/clubApplyAction.do" />" >
+				<form name="writeFrm" method="post" action="<c:url value="/club/clubApplyAction.do" />" >
 				<div class="modal-body">
 				
-					클럽명 : <span id="list_name"></span><br />
-					실력 : <span id="list_ability"></span><br />
-					나이대 : <span id="list_age"></span><br />
-					성별 : <span id="list_gender"></span><br />
-					활동지역 : <span id="list_area"></span><br />				
+					클럽명 : <span id="list_name" style="line-height: 30px;"></span><br />
+					실력 : <span id="list_ability" style="line-height: 30px;"></span><br /> 
+					나이대 : <span id="list_age" style="line-height: 30px;"></span><br />
+					성별 : <span id="list_gender" style="line-height: 30px;"></span><br />
+					활동지역 : <span id="list_area" style="line-height: 40px;"></span><br />		
 					<input type="hidden" name="c_idx" id="list_idx" value=""/>
 					<input type="hidden" name="m_id" value="${m_id }" />
 					당찬 포부의 한마디 : <br />

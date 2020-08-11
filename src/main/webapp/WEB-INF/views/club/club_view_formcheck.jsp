@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html style="max-width:700px;min-width:700px;">
 <title>포메이션 작성</title>
 
 <!-- 전술판 전용 -->
@@ -35,16 +35,39 @@
 color: #fff;
 }
 </style>
-
-	<div id="field" class="two_third first">
-		<table
-			style="height: 613px; width: 416px; background: url(http://static.footballuser.com/images/field.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+<div style="height:613px; width:416px;">
+	<table style=" background: url('./../resources/uploadsFile/${gameDTO.g_formation}'); 
+					height: 613px;
+					 width: 416px;
+					background-size: 100% 100%;
+					 background-repeat: no-repeat;"></table>
+</div>
+<%-- 
+<c:choose>
+  			<c:when test="${gameDTO.g_type=='축구' }">
+  				<div id="field" class="two_third first" style="height: 613px; width: 416px;">
+  				<table class="football" 
+					style=" background: url(./../resources/img/field.jpg); 
+						height: 613px;
+						 width: 416px;
+						background-size: 100% 100%;
+						 background-repeat: no-repeat;">
+			</c:when>
+  			<c:otherwise>
+  				<div id="field" class="two_third first" style="height: 613px; width: 446px;">
+  				<table class="futsal" 
+	  					style="height: 613px;
+						 width: 446px;
+						background-size: 100% 100%;
+						 background-repeat: no-repeat; background: url(./../resources/img/futsalfield.jpg); ">
+  			</c:otherwise>
+  		</c:choose>
 			<c:forEach items="${squad }" var="row" varStatus="status">
 					<c:choose>
 						<c:when test="${status.count==1 }">
 							<tr style="height: 102px">
 								<c:choose>
-									<c:when test="${row == '' }">
+									<c:when test="${row.m_name == null }">
 										<td class="pos" id="pos0" style="width: 20%"></td>
 									</c:when>
 									<c:otherwise>
@@ -53,14 +76,14 @@ color: #fff;
 												<img class="dropped_shirt"
 													src="./../resources/img/shirts/shirt_white.png" alt="" />
 											</div>
-											<div class="dropped_name">${row}</div>
+											<div class="dropped_name">${row.m_name}</div>
 										</td>
 									</c:otherwise>
 								</c:choose>
 						</c:when>
 						<c:when test="${status.count==2 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos1" style="width: 20%"></td>
 								</c:when>
 								<c:otherwise>
@@ -69,14 +92,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==3 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos2" style="width: 20%"></td>
 								</c:when>
 								<c:otherwise>
@@ -85,14 +108,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==4 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos3" style="width: 20%"></td>
 								</c:when>
 								<c:otherwise>
@@ -101,14 +124,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==5 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos4" style="width: 20%"></td>
 								</c:when>
 								<c:otherwise>
@@ -117,7 +140,7 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
@@ -126,7 +149,7 @@ color: #fff;
 						<c:when test="${status.count==6 }">
 							<tr style="height: 102px">
 								<c:choose>
-									<c:when test="${row == '' }">
+									<c:when test="${row.m_name == null }">
 										<td class="pos" id="pos5"></td>
 									</c:when>
 									<c:otherwise>
@@ -135,14 +158,14 @@ color: #fff;
 												<img class="dropped_shirt"
 													src="./../resources/img/shirts/shirt_white.png" alt="" />
 											</div>
-											<div class="dropped_name">${row}</div>
+											<div class="dropped_name">${row.m_name}</div>
 										</td>
 									</c:otherwise>
 								</c:choose>
 						</c:when>
 						<c:when test="${status.count==7 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos6"></td>
 								</c:when>
 								<c:otherwise>
@@ -151,14 +174,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==8 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos7"></td>
 								</c:when>
 								<c:otherwise>
@@ -167,14 +190,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==9 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos8"></td>
 								</c:when>
 								<c:otherwise>
@@ -183,14 +206,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==10 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos9"></td>
 								</c:when>
 								<c:otherwise>
@@ -199,7 +222,7 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
@@ -208,7 +231,7 @@ color: #fff;
 						<c:when test="${status.count==11 }">
 							<tr style="height: 102px">
 								<c:choose>
-									<c:when test="${row == '' }">
+									<c:when test="${row.m_name == null }">
 										<td class="pos" id="pos10"></td>
 									</c:when>
 									<c:otherwise>
@@ -217,14 +240,14 @@ color: #fff;
 												<img class="dropped_shirt"
 													src="./../resources/img/shirts/shirt_white.png" alt="" />
 											</div>
-											<div class="dropped_name">${row}</div>
+											<div class="dropped_name">${row.m_name}</div>
 										</td>
 									</c:otherwise>
 								</c:choose>
 						</c:when>
 						<c:when test="${status.count==12 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos11"></td>
 								</c:when>
 								<c:otherwise>
@@ -233,14 +256,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==13 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos12"></td>
 								</c:when>
 								<c:otherwise>
@@ -249,14 +272,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==14 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos13"></td>
 								</c:when>
 								<c:otherwise>
@@ -265,14 +288,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==15 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos14"></td>
 								</c:when>
 								<c:otherwise>
@@ -281,7 +304,7 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
@@ -290,7 +313,7 @@ color: #fff;
 						<c:when test="${status.count==16 }">
 							<tr style="height: 102px">
 								<c:choose>
-									<c:when test="${row == '' }">
+									<c:when test="${row.m_name == null }">
 										<td class="pos" id="pos15"></td>
 									</c:when>
 									<c:otherwise>
@@ -299,14 +322,14 @@ color: #fff;
 												<img class="dropped_shirt"
 													src="./../resources/img/shirts/shirt_white.png" alt="" />
 											</div>
-											<div class="dropped_name">${row}</div>
+											<div class="dropped_name">${row.m_name}</div>
 										</td>
 									</c:otherwise>
 								</c:choose>
 						</c:when>
 						<c:when test="${status.count==17 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos16"></td>
 								</c:when>
 								<c:otherwise>
@@ -315,14 +338,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==18 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos17"></td>
 								</c:when>
 								<c:otherwise>
@@ -331,14 +354,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==19 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos18"></td>
 								</c:when>
 								<c:otherwise>
@@ -347,14 +370,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==20 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos19"></td>
 								</c:when>
 								<c:otherwise>
@@ -363,7 +386,7 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
@@ -372,7 +395,7 @@ color: #fff;
 						<c:when test="${status.count==21 }">
 							<tr style="height: 102px">
 								<c:choose>
-									<c:when test="${row == '' }">
+									<c:when test="${row.m_name == null }">
 										<td class="pos" id="pos20"></td>
 									</c:when>
 									<c:otherwise>
@@ -381,14 +404,14 @@ color: #fff;
 												<img class="dropped_shirt"
 													src="./../resources/img/shirts/shirt_white.png" alt="" />
 											</div>
-											<div class="dropped_name">${row}</div>
+											<div class="dropped_name">${row.m_name}</div>
 										</td>
 									</c:otherwise>
 								</c:choose>
 						</c:when>
 						<c:when test="${status.count==22 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos21"></td>
 								</c:when>
 								<c:otherwise>
@@ -397,14 +420,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==23 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos22"></td>
 								</c:when>
 								<c:otherwise>
@@ -413,14 +436,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==24 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos23"></td>
 								</c:when>
 								<c:otherwise>
@@ -429,14 +452,14 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
 						<c:when test="${status.count==25 }">
 							<c:choose>
-								<c:when test="${row == '' }">
+								<c:when test="${row.m_name == null }">
 									<td class="pos" id="pos24"></td>
 								</c:when>
 								<c:otherwise>
@@ -445,7 +468,7 @@ color: #fff;
 											<img class="dropped_shirt"
 												src="./../resources/img/shirts/shirt_white.png" alt="" />
 										</div>
-										<div class="dropped_name">${row}</div>
+										<div class="dropped_name">${row.m_name}</div>
 									</td>
 								</c:otherwise>
 							</c:choose>
@@ -456,7 +479,7 @@ color: #fff;
 								<td></td>
 								<td></td>
 								<c:choose>
-									<c:when test="${row == '' }">
+									<c:when test="${row.m_name == null }">
 										<td class="pos" id="pos25"></td>
 									</c:when>
 									<c:otherwise>
@@ -465,7 +488,7 @@ color: #fff;
 												<img class="dropped_shirt"
 													src="./../resources/img/shirts/shirt_white.png" alt="" />
 											</div>
-											<div class="dropped_name">${row}</div>
+											<div class="dropped_name">${row.m_name}</div>
 										</td>
 									</c:otherwise>
 								</c:choose>
@@ -552,7 +575,6 @@ color: #fff;
 		<br class="clear" />
 
 		<div class="">
-		<h2>포메이션 4-2-3-1 </h2>
 			<h3>
 				벤치 멤버
 			</h3>
@@ -562,7 +584,7 @@ color: #fff;
 					<tbody>
 						<c:forEach items="${bench }" var="row" varStatus="status" >
 							<tr>
-								<td height="22" align="left" class="player_header" style="font-size: 20px;"><strong>${row }</strong>
+								<td height="22" align="left" class="player_header" style="font-size: 20px;"><strong>${row.m_name }</strong>
 								</td>
 							</tr>
 						</c:forEach>
@@ -573,14 +595,14 @@ color: #fff;
 		</div>
 
 	</div>
-
+ --%>
 
 	<br class="clear" />
 
 
 
 </body>
-<script type="text/javascript">
+<script type="text/javascript"> 
 	var _gaq = _gaq || [];
 	_gaq.push([ '_setAccount', 'UA-15165482-2' ]);
 	_gaq.push([ '_trackPageview' ]);

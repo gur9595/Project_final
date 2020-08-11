@@ -65,7 +65,7 @@ th {
 	<div id="main-wrapper">
 		<%@ include file="./club_view_header.jsp"%>
 		<%@ include file="./club_view_sidebar.jsp"%>
-		<div class="page-wrapper" style="margin-top:-20px;">
+		<div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12"> 
@@ -77,7 +77,7 @@ th {
 									<div class="p-20">
 										<div class="card">
 											<div class="card-body">
-                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">조인</h4>
+                                                <h4 class="card-title" style="text-align: center; font-size: 30px;">클럽 회원 관리</h4>
 												<div>
 													<h4 style="margin-left: 80px;">신청 접수 현황</h4>
 												</div>

@@ -6,7 +6,7 @@
 <html>
 <body>
 	<i class="fab fa-adobe"></i>
-	<aside class="left-sidebar" data-sidebarbg="skin5" style="width:200px;">
+	<aside class="left-sidebar" style="width:200px" data-sidebarbg="skin5">
 	    <div class="scroll-sidebar">
 	        <nav class="sidebar-nav">
 	            <ul id="sidebarnav" class="p-t-30">
