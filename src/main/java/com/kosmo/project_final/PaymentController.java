@@ -28,25 +28,42 @@ public class PaymentController {
 	 
 	// 마일리지 충전의 틀이 되는 페이지
 	@RequestMapping("/payment/paymentMain.do") 
-	public String paymentMain() {
-	
+	public String paymentMain(Principal principal, Model model) {
+		String m_id = principal.getName();
+		// id는 무조건 principal
+		
+		System.out.println("m_id : "+m_id);
+		
+		// 2. ballCurrent의 쿼리상 반환값은 int이므로 getMapper 결과로 나올 int형을 담을 변수를 생성한다.
+		int money = sqlSession.getMapper(CashDAOImpl.class).ballCurrent(m_id);
+		System.out.println(money);
+		
+		ArrayList<MemberDTO> memberDTO = sqlSession.getMapper(CashDAOImpl.class).ballBuyer(m_id);
+		System.out.println("이름:" + memberDTO.get(0).getM_name()); 
+		model.addAttribute("memberDTO", memberDTO);	
+		model.addAttribute("cash", money);
 		return "payment/payment_main";  
 	}
 	
 	@RequestMapping("/payment/paymentDeposit.do") 
-	public String paymentDeposit(HttpServletRequest req, CashDTO cashDTO, Principal principal) {
+	public String paymentDeposit(HttpServletRequest req, CashDTO cashDTO, Principal principal,  Model model) {
 		int cs_money = Integer.parseInt(req.getParameter("cs_money"));
 		String m_id = principal.getName();
 		
-		System.out.println("cs_money : "+cs_money);
-		System.out.println("m_id : "+m_id);
+
+		// 2. ballCurrent의 쿼리상 반환값은 int이므로 getMapper 결과로 나올 int형을 담을 변수를 생성한다.
+		int money = sqlSession.getMapper(CashDAOImpl.class).ballCurrent(m_id);
 		
 		cashDTO.setM_id(m_id);
 		cashDTO.setCs_money(cs_money);
+		ArrayList<MemberDTO> memberDTO = sqlSession.getMapper(CashDAOImpl.class).ballBuyer(m_id);
+		System.out.println("이름:" + memberDTO.get(0).getM_name()); 
 		
 		sqlSession.getMapper(CashDAOImpl.class).ballResult(cashDTO);
 		sqlSession.getMapper(CashDAOImpl.class).ballUpdate(cs_money, m_id);
 		
+		model.addAttribute("memberDTO", memberDTO);	
+		model.addAttribute("cash", money);
 		return "payment/payment_main";  
 	}
 	
@@ -59,11 +76,9 @@ public class PaymentController {
 		 */
 	public String ballCurrent(Principal principal, HttpServletRequest req, Model model) {
 		String m_id = principal.getName();
-		// id는 무조건 principal
 		
 		System.out.println("m_id : "+m_id);
-			
-		// 2. ballCurrent의 쿼리상 반환값은 int이므로 getMapper 결과로 나올 int형을 담을 변수를 생성한다.
+
 		int money = sqlSession.getMapper(CashDAOImpl.class).ballCurrent(m_id);
 		System.out.println(money);
 		
