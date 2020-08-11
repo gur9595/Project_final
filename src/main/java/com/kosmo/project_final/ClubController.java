@@ -542,6 +542,7 @@ public class ClubController {
 			}
 		}
 
+		model.addAttribute("lists", lists);
 		model.addAttribute("squad", squad);
 		model.addAttribute("bench", bench);
 		model.addAttribute("g_idx", g_idx);
