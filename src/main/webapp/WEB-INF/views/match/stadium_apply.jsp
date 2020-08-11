@@ -248,8 +248,7 @@ function match_insert(f){
 					<i class="material-icons">content_copy</i>
 				</button>
 				
-			</div>
-			<br />
+			</div>			<br />
 			<div> 
 				<img src="./../resources/uploadsFile/${s_pic1 }" class="slide" style="width:100%; height: 400px;">
 				<img src="./../resources/uploadsFile/${s_pic2 }" class="slide" style="width:100%; height: 400px;">
