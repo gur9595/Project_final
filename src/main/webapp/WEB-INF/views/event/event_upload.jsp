@@ -32,7 +32,7 @@
 <script> 
 //포스트 업로드
 function eventUploading(frm){
-	/* //폼값검증
+	//폼값검증
 	if(frm.e_title.value==""){
 		alert("제목을 입력해주세요.");
 		return false;
@@ -40,7 +40,7 @@ function eventUploading(frm){
 	if(frm.editordata.value==""){
 		alert("내용을 입력해주세요.");
 		return false;
-	} */
+	}
 	frm.submit();
 }
 
@@ -114,7 +114,7 @@ $(function(){
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay">
+<div class="bgded overlay" style="background-image:url('./../resources/img/event.jpg'); background-position: 0 95%;">
   <div id="breadcrumb" class="hoc clear"> 
     <!--이미지 위에 글쓰는곳-->
   </div>
@@ -123,13 +123,13 @@ $(function(){
   <main class="hoc container clear"> 
     <!-- main body -->
 	    <div class="container">
-		    <form name="uploadFrm" method="post" action="" enctype="multipart/form-data">
+		    <form name="uploadFrm" method="post" action='<c:url value="/event/eventUpload.do" />'>
 		    	<div style="float: left; border: 0px solid black; width: 49.99%; height: 50px; position: relative; margin-bottom: 10px;">
 		    		<div style="font-size: 25px; color: black; position: absolute; top: 25%;">이벤트 등록</div>
 		    	</div>
 				<!-- 버튼 -->
 				<div class="upload-btn-wrap">
-					<button type="button" class="upload-btn" onfocus="eventUploading(this.form);">등록</button>
+					<button type="button" class="upload-btn" onclick="eventUploading(this.form);">등록</button>
 				</div>
 				<table class="table table-bordered table-style" style="color: black;">
 					<!-- 분류선택 -->
@@ -226,30 +226,8 @@ $('#summernote').summernote({
 	],
 	fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
 	fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-	callbacks: { //이미지 첨부하는 부분
-		onImageUpload: function(files) {
-			sendFile(files[0], this);
-		}
-	}
 });
 
-//summernote 이미지 업로드
-function sendFile(file, editor){
-	//파일 전송을 위한 폼 생성
-	data = new FormData();
-	data.append('file', file);
-	$.ajax({ //ajax를 통해 파일 업로드 처리
-		data : data,
-		type : "POST",
-		url : "../event/eventUpload.do",
-		contentType : false,
-		processData : false,
-		success : function(data) {
-			//항상 업로드된 파일의 url이 있어야 한다.
-			$(editor).summernote('insertImage', data.url);
-		}
-	});
-}
 
 $("div.note-editable").on('drop',function(e){
     for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
