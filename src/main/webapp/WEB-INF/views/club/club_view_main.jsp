@@ -243,7 +243,7 @@ function send(){
 																			<tr>
 																				<td style="border-bottom: none">·회원수</td>
 																				<td style="border-bottom: none">${clubMemberCount}명</td>
-																			</tr>
+													 						</tr>
 																			<tr>
 																				<td style="border-bottom: none">·실력</td>
 																				<td style="border-bottom: none">${clubDTO.c_ability }</td>
