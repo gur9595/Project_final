@@ -28,7 +28,7 @@
 	padding: 55px 0;
 }
 	
-</style>
+</style> 
 <body id="top">
 
 <!--top-->
