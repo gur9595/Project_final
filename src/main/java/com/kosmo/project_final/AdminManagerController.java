@@ -133,7 +133,7 @@ public class AdminManagerController {
 		
 		sqlSession.getMapper(AdminDAOImpl.class).adminStadiumApply(s_id);
 		
-		return "admin/adminStadium";
+		return "redirect:./adminStadium.do";
 	}
 	
 }
