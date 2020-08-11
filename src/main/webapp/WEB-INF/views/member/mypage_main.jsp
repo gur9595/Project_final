@@ -31,7 +31,7 @@
 <%@ include file="./../include/top.jsp"%>
 
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('./../resources/img/top.png');">
+<div class="bgded overlay" style="background-image:url('./../resources/img/mypage.jpg'); background-position: 0 80%;">
   <div id="breadcrumb" class="hoc clear"> 
     <!--이미지 위에 글쓰는곳-->
   </div>

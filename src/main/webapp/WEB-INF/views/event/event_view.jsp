@@ -114,9 +114,10 @@ $(function(){
 }
 .contents{
 	margin-top: 25px;
-	border: 1px solid black;
+	border: 0px solid black;
 	width: 100%;
 	margin-bottom: 40px;
+	margin-left: 20px;
 }
 </style>
 </head>
@@ -124,7 +125,7 @@ $(function(){
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay">
+<div class="bgded overlay" style="background-image:url('./../resources/img/event.jpg'); background-position: 0 95%;">
   <div id="breadcrumb" class="hoc clear"> 
     <!--이미지 위에 글쓰는곳-->
   </div>
