@@ -1,15 +1,11 @@
 package com.kosmo.project_final;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,17 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import mybatis.BoardDAOImpl;
-import mybatis.BoardDTO;
-import mybatis.ClubDAOImpl;
-import mybatis.ClubDTO;
-import mybatis.GameDTO;
-import mybatis.MemberDAOImpl;
 import mybatis.ParameterDTO;
 import mybatis.StadiumDAOImpl;
 import mybatis.StadiumDTO;
@@ -89,13 +76,25 @@ public class StadiumController {
 	}
 
 	@RequestMapping("/stadium/stMain.do")
-	public String stMain(HttpSession session, HttpServletRequest req, Model model) {
+	public String stMain(HttpSession session, HttpServletRequest req, Model model,HttpServletResponse response) throws Exception {
 
+		
+		String s_check = req.getParameter("s_check");
+		System.out.println("체크값 받아와!! : "+s_check);
 		if(session.getAttribute("siteUserInfo")==null) {
 			//model.addAttribute("backUrl", "07Mybatis/modify");
 			return "redirect:stlogin.do";
 		}
+		if(s_check.equals("no")) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('등록이 안된 계정이므로 접근 불가. 로그아웃 하겠습니다.'); location.href='logout.do';</script>");
+			out.flush();
+		}
 
+		String s_idx = req.getParameter("s_idx");
+		model.addAttribute("s_idx",s_idx);
+		
 		return"stadium/stMain";
 	}
 
@@ -107,7 +106,7 @@ public class StadiumController {
 		String s_idx = req.getParameter("s_idx");
 		System.out.println("idx받아와 ! : "+s_idx);
 		ParameterDTO parameterDTO = new ParameterDTO();
-		parameterDTO.setS_idx(req.getParameter("s_idx"));
+		parameterDTO.setS_idx(s_idx);
 
 		StadiumDTO stadiumDTO = sqlSession.getMapper(StadiumDAOImpl.class).stEdit(parameterDTO);
 
@@ -170,9 +169,7 @@ public class StadiumController {
 		dto.setS_price(s_price);
 		//dto.setS_lat(s_lat);
 		//dto.setS_lng(s_lng);
-		
-		
-		
+
 		
 		sqlSession.getMapper(StadiumDAOImpl.class).stEditAction(dto);
 		System.out.println("처리완료");
@@ -184,10 +181,16 @@ public class StadiumController {
 	@RequestMapping("/stadium/Reservation.do")
 	public String Reservation(Model model, HttpServletRequest req) {
 
+		
+		String s_idx = req.getParameter("s_idx");
+		System.out.println("idx받아와 ! : "+s_idx);
+		ParameterDTO parameterDTO = new ParameterDTO();
+		parameterDTO.setS_idx(req.getParameter("s_idx"));
 
-		GameDTO gameDTO = new GameDTO();
-		gameDTO.getS_idx();
-
+		System.out.println("아이디엑스 받아와!!! : "+s_idx);
+		ArrayList<StadiumGameDTO> stadiumGameDTO = sqlSession.getMapper(StadiumDAOImpl.class).reservelist(parameterDTO);
+		
+		model.addAttribute("viewRow",stadiumGameDTO);
 
 
 		//ArrayList<StadiumGameDTO> stadiumGameLists = sqlSession.getMapper(StadiumDAOImpl.class).s_gamelist(s_idx);
@@ -201,9 +204,41 @@ public class StadiumController {
 		return"stadium/Reservation";
 	}
 	@RequestMapping("/stadium/Income.do")
-	public String Income() {
+	public String Income(Model model, HttpServletRequest req) {
 
+		String s_idx = req.getParameter("s_idx");
+		System.out.println("idx받아와 ! : "+s_idx);
+		ParameterDTO parameterDTO = new ParameterDTO();
+		parameterDTO.setS_idx(s_idx);
+		System.out.println("아이디엑스 받아와 !! : "+s_idx);
+		StadiumGameDTO gameDate =  sqlSession.getMapper(StadiumDAOImpl.class).GoogleCharts(parameterDTO);
+		StadiumDTO stDate = sqlSession.getMapper(StadiumDAOImpl.class).StadiumInfo(parameterDTO);
+		System.out.println("찾아내따!!");
+		model.addAttribute("viewRow",gameDate);
+		model.addAttribute("stDate",stDate);
+		System.out.println("다 담겼다!");
+		
 		return"stadium/Income";
 	}
+	
+	@RequestMapping("/stadium/googleCharts.do")
+	public String GoogleChart(Model model, HttpServletRequest req) {
+		
+		String s_idx = req.getParameter("s_idx");
+		System.out.println("idx받아와 ! : "+s_idx);
+		ParameterDTO parameterDTO = new ParameterDTO();
+		parameterDTO.setS_idx(s_idx);
+		System.out.println("아이디엑스 받아와 !! : "+s_idx);
+		StadiumGameDTO gameDate =  sqlSession.getMapper(StadiumDAOImpl.class).GoogleCharts(parameterDTO);
+		StadiumDTO stDate = sqlSession.getMapper(StadiumDAOImpl.class).StadiumInfo(parameterDTO);
+		System.out.println("찾아내따!!");
+		model.addAttribute("viewRow",gameDate);
+		model.addAttribute("stDate",stDate);
+		System.out.println("다 담겼다!");
+		
+		
+		return"stadium/googleCharts";
+	}
+	
 
 }

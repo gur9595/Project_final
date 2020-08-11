@@ -17,8 +17,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <!-- Google Charts -->
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16"
 	href="../../assets/images/favicon.png">
@@ -87,41 +86,16 @@ th {
 											<div class="card-body">
 												<h2 style="text-align: center;">수입 현황</h2>
 											</div>
-											<div class="comment-widgets scrollable">
-												<%-- <table>
-													<tr  style="border-bottom: 3px solid #036;">
-														<th>No</th>
-														<th>ID</th>
-														<th style="width: 300px">신청서</th>
-														<th>수락</th>
-														<th>거절</th>
-													</tr>
-													<c:forEach items="${lists }" var="row" varStatus="status">
-														<tr>
-															
-															<td style="text-align: center;">
-																${status.count }
-																<input type="hidden" id="m_idx"/>
-															</td>
-															<td>${row.m_id }</td> 
-															<td>
-																	<button class="btn btn-warning" type="button" data-toggle="modal"
-																		onclick="modal('${row.mr_idx }','${row.m_id }','${row.mr_rfa }', '${row.mr_work }', '${row.mr_area }', '${row.mr_duration }', '${row.mr_career }');"
-																		data-target="#myModal1">
-																			신청서 보기
-																	</button>
-															</td>
-															<td style="text-align: center;"><button class="btn btn-success" onclick="location.href='managerUpdate.do?m_id=${row.m_id}';">수락</button></td>
-															<td style="text-align: center;"><button class="btn btn-danger" onclick="location.href='managerDelete.do?m_id=${row.m_id}';">거절</button></td>
-														</tr>
-													</c:forEach>
-												</table> --%>
-												<div id="Line_Controls_Chart">
-													<!-- 라인 차트 생성할 영역 -->
-													<div id="lineChartArea" style="padding: 0px 20px 0px 0px;"></div>
-													<!-- 컨트롤바를 생성할 영역 -->
-													<div id="controlsArea" style="padding: 0px 20px 0px 0px;"></div>
-												</div>
+												<div class="comment-widgets scrollable">
+													<input type="hid den" value="${viewRow.g_date }" name="g_date" id="g_date"/>
+													<input type="hid den" value="${viewRow.g_num }" name="g_num" id="g_num"/>
+													<input type="hid den" value="${stDate.s_price }" name="s_price" id="s_price"/>
+													<div id="Line_Controls_Chart">
+														<!-- 라인 차트 생성할 영역 -->
+														<div id="lineChartArea" style="padding: 0px 20px 0px 0px;"></div>
+														<!-- 컨트롤바를 생성할 영역 -->
+														<div id="controlsArea" style="padding: 0px 20px 0px 0px;"></div>
+													</div>
 <script>
 var chartDrowFun = {
 
@@ -349,51 +323,6 @@ $(document)
 					</div>
 				</div>
 			</div>
-			<!-- 모달창 신청폼 -->
-			<div class="modal" id="myModal1" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" data-backdrop="static"
-				style="color: black;">
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-
-						<div class="modal-header">
-							<h2 class="modal-title"
-								style="font-size: 20px; text-align: center;" id="myModalLabel">매니저
-								신청서</h2>
-
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-
-							아이디 : <span id="m_id"></span><br /> <br /> 활동 가능 기간 : <span
-								id="mr_duration"></span>개월<br /> <br /> 활동 할 수 있는 지역 : <span
-								id="mr_area"></span><br /> <br /> 지원 동기 <br />
-							<textarea class="form-control" name="memo" id="mr_rfa"
-								style="width: 100%; height: 100px; background: #ffffff;"
-								readonly></textarea>
-							<br /> 현재 하는 일 <br />
-							<textarea class="form-control" name="memo" id="mr_work"
-								style="width: 100%; height: 100px; background: #ffffff;"
-								readonly></textarea>
-							<br /> 주요 경력 <br />
-							<textarea class="form-control" name="memo" id="mr_career"
-								style="width: 100%; height: 100px; background: #ffffff;"
-								readonly></textarea>
-							<br />
-
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<!-- ################ 모달 끝 #################-->
 			<!-- 페이지 내용 끝 -->
 			<footer class="footer text-center">
 				All Rights Reserved by Matrix-admin. Designed and Developed by <a

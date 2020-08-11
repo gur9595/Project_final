@@ -27,4 +27,11 @@ public interface StadiumDAOImpl {
 	
 	public int stEditAction(StadiumDTO stadiumDTO);
 	
+	public ArrayList<StadiumGameDTO> reservelist(ParameterDTO parameterDTO);
+	
+	//public int gnumCount(int g_num);
+	
+	public StadiumGameDTO GoogleCharts(ParameterDTO parameterDTO);
+	
+	public StadiumDTO StadiumInfo(ParameterDTO parameterDTO);
 }

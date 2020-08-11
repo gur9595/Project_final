@@ -108,7 +108,7 @@
 													<td class="text-center"><a
 														href="./../customer/qnaView.do?b_idx=${row.b_idx }&nowPage=${nowPage}">
 															${row.b_title } </a></td>
-													<td class="text-center">${row.m_id}</td>
+													<td class="text-center">관리자</td>
 													<td class="text-center">${row.b_postdate }</td>
 												</tr>
 											</c:forEach>
@@ -121,8 +121,11 @@
 							<div class="col text-right">
 								<!-- 글쓰기  -->
 							
-								<button type="button" class="btn btn-primary"
-									onclick="location.href='qnaWrite.do';">글쓰기</button>
+								<!-- <button type="button" class="btn btn-primary">수정하기</button>
+			<button type="button" class="btn btn-success">삭제하기</button>
+			<button type="button" class="btn btn-info">답글쓰기</button>
+			<button type="button" class="btn btn-warning">리스트보기</button>
+			<button type="submit" class="btn btn-danger">전송하기</button> -->
 							
 							<div style="text-align: center; padding: 0 0 10px 0;"></div>
 								<!-- 페이지번호 부분 -->

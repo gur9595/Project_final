@@ -373,6 +373,7 @@ public class MatchController {
 		
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
 		model.addAttribute("c_list", c_list);
+		int cash = sqlSession.getMapper(MatchDAOImpl.class).getCash(m_id);
 		
 		model.addAttribute("stadiumGameLists", lists);
 		model.addAttribute("s_idx", s_idx);
@@ -383,7 +384,9 @@ public class MatchController {
 		model.addAttribute("dong", dong);
 		model.addAttribute("name", name);
 		model.addAttribute("price", price);
+		model.addAttribute("cash", cash);
 		
+			
 		return "/match/stadium_apply";
 	}
 	

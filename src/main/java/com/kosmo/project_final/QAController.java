@@ -2,6 +2,8 @@ package com.kosmo.project_final;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,6 +36,14 @@ public class QAController {
 	@RequestMapping("/customer/qnaList.do")
 	public String qnaList(Principal principal, Model model, HttpServletRequest req) {
 
+		String b_bname = req.getParameter("b_bname");
+
+		String queryStr = "";
+
+		queryStr = "b_name="+ b_bname +"&";
+		
+		System.out.println("bname받아와!! : "+b_bname);
+		
 		ParameterDTO parameterDTO = new ParameterDTO();
 		parameterDTO.setSearchField(req.getParameter("searchField"));
 		parameterDTO.setSearchTxt(req.getParameter("searchTxt"));
@@ -70,11 +80,39 @@ public class QAController {
 		}
 		//model객체에 저장
 		String pagingImg = 
-				PagingUtil.pagingImg(totalRecordCount,pageSize,blockPage,nowPage,req.getContextPath()+"/customer/qnaList.do?");
-		model.addAttribute("pagingImg",pagingImg);
+				PagingUtil.pagingBS4(totalRecordCount,pageSize,blockPage,nowPage,req.getContextPath()+"/customer/qnaList.do?"+queryStr);
+		model.addAttribute("pagingImg", pagingImg);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("listRows",listRows);
+		model.addAttribute("queryStr", queryStr);
 
 		return "QA/QA_list";
+	}
+	
+	@RequestMapping("/customer/qnaNotice.do")
+	public String qnaNotice(Principal principal, Model model, HttpServletRequest req) {
+		
+		String b_bname = req.getParameter("b_bname");
+		
+		System.out.println("bname받아와!! : "+b_bname);
+		
+		ParameterDTO parameterDTO = new ParameterDTO();
+		parameterDTO.setB_bname(b_bname);
+
+		//리스트 페이지에 출력 할 게시물 가져오기
+		ArrayList<BoardDTO> listRows = sqlSession.getMapper(BoardDAOImpl.class).noticeList(parameterDTO);
+		
+
+		for(BoardDTO dto : listRows) {
+			
+			String temp = dto.getB_title();
+			dto.setB_title(temp);
+		}
+		//model객체에 저장
+		model.addAttribute("listRows",listRows);
+		
+		return "QA/QA_notice";
 	}
 
 	@RequestMapping("/customer/qnaView.do")

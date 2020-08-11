@@ -105,7 +105,7 @@ function deleteRow(b_idx){
 					</div>
 					<div class="col-6 text-right pr-5">
 						<button type="button" class="btn btn-warning"
-							onclick="location.href='qnaList.do'">리스트보기</button>
+							onclick="history.go(-1);">리스트보기</button>
 					</div>
 					<!-- </form> -->
 				</div>

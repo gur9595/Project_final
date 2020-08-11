@@ -17,6 +17,8 @@ public interface BoardDAOImpl {
 	
 	public int listPageCount(ParameterDTO parameterDTO);
 	
+	public ArrayList<BoardDTO> noticeList(ParameterDTO parameterDTO);
+	
 	public int qnaWriteAction(BoardDTO boardDTO);
 	
 	public BoardDTO qnaEdit(ParameterDTO parameterDTO);

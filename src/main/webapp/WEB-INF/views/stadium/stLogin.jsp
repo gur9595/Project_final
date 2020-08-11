@@ -44,13 +44,14 @@
                     <!-- Choose -->
                     	<c:choose>
 							<c:when test="${not empty sessionScope.siteUserInfo }">
-								<div class="center" style="border:2px solid #cccccc;padding-left: 150px">			
-									<button class="btn btn-primary" 
-										onclick="location.href='stMain.do';">
-										Main</button>
+						 		<div class="center" style="border:2px solid #cccccc;padding-left: 150px">
+								<form action="../stadium/stMain.do" method="post" name="goMain">
+									&nbsp;&nbsp;&nbsp;<button class="btn btn-primary">Main</button>
+									<input type="hidden" name="s_check" value="${sessionScope.siteUserInfo.s_check }" />
+								</form>			
 									<button class="btn btn-success"
 										onclick="location.href='logout.do'">
-										아 졸라 집가고싶다</button>
+										로그아웃</button>
 								</div>
 							</c:when>
                     <c:otherwise>

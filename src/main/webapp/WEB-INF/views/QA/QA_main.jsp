@@ -83,7 +83,7 @@
 										<div class="a04-support-tools__wrapper">
 
 											<a class="a04-support-tools__link"
-												href="../customer/qnaList.do"></a>
+												href="../customer/qnaNotice.do?b_bname=notice"></a>
 
 											<div class="a04-support-tools__container accts ">
 
@@ -138,7 +138,7 @@
 
 													<div class="a04-support-tools__info">
 
-														<div class="a04-support-tools__info--title">구장관련</div>
+														<div class="a04-support-tools__info--title">서비스</div>
 
 														<div class="a04-support-tools__info--subtitle">지원 도구
 														</div>
@@ -146,7 +146,7 @@
 													</div>
 
 													<div class="a04-support-tools__description">
-														 경기장관련 페이지로 넘어갑니다.  <i aria-hidden="true"
+														 각종 서비스 안내 페이지로 넘어갑니다.  <i aria-hidden="true"
 															class="a04-support-tools__arrow"></i>
 													</div>
 
@@ -164,7 +164,8 @@
 
 								<div class="a04-support-tools__wrapper">
 
-											<a href="../customer/qnaList.do"></a>
+											<a class="a04-support-tools__link"
+												href="../customer/qnaList.do?b_bname=qna"></a>
 
 											<div class="a04-support-tools__container installs ">
 
@@ -215,7 +216,7 @@
 													<ul class="a02-article-list__list">
 
 														<li class="a02-article-list__list-item tags"><a
-															href="../customer/qnaView.do"
+															href="../customer/qnaView.do?b_idx=28"
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">캐시 충전이
 																	안돼요</div>
@@ -226,7 +227,7 @@
 
 
 														<li class="a02-article-list__list-item tags"><a
-															href="../customer/qnaList.do"
+															href="../customer/qnaView.do?b_idx=29"
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">매치 신청하는
 																	법이 궁금해요</div>
@@ -237,7 +238,7 @@
 
 
 														<li class="a02-article-list__list-item tags"><a
-															href="../customer/qnaList.do"
+															href="../customer/qnaView.do?b_idx=30"
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">신청한 경기를
 																	취소 하고 싶어요</div>
@@ -248,7 +249,7 @@
 
 
 														<li class="a02-article-list__list-item tags"><a
-															href="../customer/qnaList.do"
+															href="../customer/qnaView.do?b_idx=31"
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">우천시 경기가
 																	진행되나요?</div>
@@ -259,7 +260,7 @@
 
 
 														<li class="a02-article-list__list-item tags"><a
-															href="../customer/qnaList.do"
+															href="../customer/qnaView.do?b_idx=32"
 															class="a02-article-list__link">
 																<div class="a02-article-list__link--title">​​페어플레이
 																	제도 안내</div>

@@ -6,6 +6,7 @@ public class ParameterDTO {
 	private String m_id;//멤버번호
 	private String s_idx;//경기장 일련번호
 	private String b_idx;//게시판 일련번호
+	private String b_bname;
 	private String searchField;//검색 할 필드명
 	private String searchTxt; //검색어
 	private int start;
@@ -31,12 +32,6 @@ public class ParameterDTO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
-	public String getSearchField() {
-		return searchField;
-	}
-	public void setSearchField(String searchField) {
-		this.searchField = searchField;
-	}
 	public int getStart() {
 		return start;
 	}
@@ -55,12 +50,26 @@ public class ParameterDTO {
 	public void setC_idx(String c_idx) {
 		this.c_idx = c_idx;
 	}
+	public String getSearchField() {
+		return searchField;
+	}
+	public void setSearchField(String searchField) {
+		this.searchField = searchField;
+	}
 	public String getSearchTxt() {
 		return searchTxt;
 	}
 	public void setSearchTxt(String searchTxt) {
 		this.searchTxt = searchTxt;
 	}
+	public String getB_bname() {
+		return b_bname;
+	}
+	public void setB_bname(String b_bname) {
+		this.b_bname = b_bname;
+	}
+	
+	
 	
 	
 }

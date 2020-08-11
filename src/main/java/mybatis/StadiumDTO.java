@@ -1,5 +1,7 @@
 package mybatis;
 
+import java.sql.Date;
+
 public class StadiumDTO {
 	
 	private int s_idx;
@@ -19,6 +21,26 @@ public class StadiumDTO {
 	private String s_endtime;
 	private String s_lat;
 	private String s_lng;
+	private String s_check;
+	
+	
+	public String getS_check() {
+		return s_check;
+	}
+
+	public void setS_check(String s_check) {
+		this.s_check = s_check;
+	}
+
+	public Date getS_date() {
+		return s_date;
+	}
+
+	public void setS_date(Date s_date) {
+		this.s_date = s_date;
+	}
+
+	private Date s_date;
 	
 	//검색을 위한 변수
 	private String searchTxt;

@@ -70,6 +70,8 @@
                                                 <input type="hid den" name="s_lng" id="s_lng" value="${sessionScope.siteUserInfo.s_lng }" />
                                                 <input type="hid den" name="s_starttime" id="s_starttime" value="${sessionScope.siteUserInfo.s_starttime }"/>
                                                 <input type="hid den" name="s_endtime" id="s_endtime" value="${sessionScope.siteUserInfo.s_endtime }"/>
+                                                <%-- <input type="hid den" name="s_check" id="s_check" value="${sessionScope.siteUserInfo.s_check }" /> --%>
+       											<%-- <input type="hid den" name="s_date" id="s_date" value="${sessionScope.siteUserInfo.s_date }" /> --%>
                                             </div>
                                             <div class="comment-widgets scrollable">
                                                 <table>
