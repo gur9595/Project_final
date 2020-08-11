@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+<form method="post" action="../club/formPosition.do">
 <title>포메이션 작성</title>
 
 <!-- 전술판 전용 -->  
@@ -40,10 +41,10 @@
 </style>
 
   	<div class="two_third first">
-  	<form>
+  	
   	<input type="hidden" name="imgSrc" id="imgSrc" />
   	<input type="hidden" name="g_idx" id="g_idx" value="${g_idx }" />
-  	</form>
+  	
 			<c:choose>
   			<c:when test="${gameDTO.g_type=='축구' }">
   				<div id="field" style="height: 613px; width: 416px;">
@@ -290,4 +291,5 @@ function capture() {
    }     
 
 </script> 
+</form>
 </html>
