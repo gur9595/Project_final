@@ -7,6 +7,7 @@
 <title>B-PRO</title>
 
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link href="./../resources/css/join2.css" rel="stylesheet" type="text/css" media="all">
