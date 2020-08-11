@@ -122,7 +122,7 @@ public class MatchController {
 		ArrayList<StadiumGameDTO> stadiumGameLists = sqlSession.getMapper(StadiumDAOImpl.class).s_gamelist(s_idx);
 		ArrayList<StadiumGameDTO> lists = new ArrayList<StadiumGameDTO>();
 		
-		String cv = "", memo = "", addr = "", dong = "", name = "", type = ""; int price = 0, c_idx = 0, g_idx = 0;
+		String cv = "", memo = "", addr = "", dong = "", name = "", type = "", pic=""; int price = 0, c_idx = 0, g_idx = 0;
 		ArrayList<StadiumDTO> stadiumLists = new ArrayList<StadiumDTO>();
 		
 		int oper_time = 0, no_time = 0, yes_time = 0;
@@ -194,6 +194,7 @@ public class MatchController {
 				name = dto.getS_name();
 				price = dto.getS_price();
 				dong = dto.getS_addr().split(" ")[2];
+				pic = dto.getS_pic();
 			}
 		}
 		else if(stadiumGameLists.isEmpty()) {
@@ -208,6 +209,7 @@ public class MatchController {
 				name = dto.getS_name();
 				price = dto.getS_price();
 				dong = dto.getS_addr().split(" ")[2];
+				pic = dto.getS_pic();
 				
 				String[] s_time = dto.getS_starttime().split(":");
 				String[] e_time = dto.getS_endtime().split(":");
@@ -248,6 +250,12 @@ public class MatchController {
 		
 		int cash = sqlSession.getMapper(MatchDAOImpl.class).getCash(m_id);
 		
+		String[] s_pic=pic.split(",");
+		
+		System.out.println("s_pic[0] : "+s_pic[0]);
+		System.out.println("s_pic[1] : "+s_pic[1]);
+		System.out.println("s_pic[2] : "+s_pic[2]);
+		
 		model.addAttribute("stadiumGameLists", lists);		
 		model.addAttribute("s_idx", s_idx);
 		model.addAttribute("cv", cv);
@@ -258,6 +266,10 @@ public class MatchController {
 		model.addAttribute("name", name);
 		model.addAttribute("price", price);
 		model.addAttribute("cash", cash);
+		model.addAttribute("s_pic1", s_pic[0]);
+		model.addAttribute("s_pic2", s_pic[1]);
+		model.addAttribute("s_pic3", s_pic[2]);
+		
 		
 		return "match/stadium_apply";
 	}
