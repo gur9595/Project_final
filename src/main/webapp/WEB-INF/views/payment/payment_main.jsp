@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -156,7 +155,7 @@ button{
       
       		<div class="cashSelect">
         		<label>입금자명</label>
-        		<input readonly type="text" id="depositor" name="name" style="text-align: center; font-weight: bold" value="${memberDTO[0].m_name }" />
+        		<input type="text" id="depositor" name="name" style="text-align: center; font-weight: bold" value="${memberDTO[0].m_name }" />
         		<p><strong>위에 입력한 명의로 정확한 Ball 갯수를 선택해주세요</strong><br>축구&풋살 클럽의 No1. B-Pro!!!</p>
       		</div>
       

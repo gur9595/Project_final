@@ -6,6 +6,7 @@
 <head>
 <title>B-PRO</title>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -82,8 +83,8 @@
 	               type="tel" id="s_size" value="104x68" name="s_size" style="font-size:25px;"
 	               placeholder="00x00으로 입력" maxlength="11"/>
 	   
-	            <h2>구장 대표 사진</h2> 
-	               <input type="file" class="txtBox31" id="s_pic" name="file" multiple="multiple"/>
+	            <h2>구장 대표 사진</h2>  
+	               <input type="file" class="txtBox31" id="s_pic" name="file" style="padding:5px" multiple="multiple"/>
 	   
 	            <h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="font-size:25px;"
 	               placeholder="00:00" value="07:00" maxlength="11">

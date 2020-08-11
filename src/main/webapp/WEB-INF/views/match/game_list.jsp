@@ -23,8 +23,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-					
-						<input type="hidden" id="list_idx" name="list_idx" />
+						<input type="hidd en" id="list_idx" name="g_idx" />
 						<span style="line-height: 30px;">우리 클럽 : </span>
 						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline; line-height: 30px;">
 							<option value="" selected="selected">클럽을 선택하세요.</option>
@@ -42,8 +41,7 @@
 							style="width: 100%; height: 100px; background: #ffffff; line-height: 30px;"
 							readonly="readonly">
 						</textarea>	
-					</div>
-	
+					</div> 
 					<div class="modal-footer">
 						<button type="submit" class="req" >신청하기</button>
 					</div>

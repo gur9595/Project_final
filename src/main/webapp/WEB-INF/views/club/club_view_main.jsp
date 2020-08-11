@@ -308,9 +308,7 @@ function send(){
 																<div class="d-flex no-block align-items-center">
 																	<span style="font-size: 30px; color: white;">승률</span>
 																	<div class="ml-auto">
-																		<span
-																			style="color: white; font-size: 17px; float: right;">${map.pov}%</span>
-																	</div>
+																		</div>
 																</div>
 																<div class="progress">
 																	<div class="progress-bar progress-bar-striped"
@@ -318,6 +316,9 @@ function send(){
 																		aria-valuenow="10" aria-valuemin="0"
 																		aria-valuemax="100"></div>
 																</div>
+																<span
+																			style="color: white; font-size: 17px; float: right;">${map.pov}%</span>
+																	
 																<br /> <span style="font-size: 30px; color: white;">최근
 																	10경기</span> <br />
 																<div class="game_list" style="width: 480px;">
@@ -326,8 +327,7 @@ function send(){
                                                             		${row }
                                                             	</c:forEach>
 																	&nbsp;&nbsp;${map.tenWin}승 ${map.tenDraw}무
-																	${map.tenLose}패 <span
-																		style="color: white; float: right;">${map.tenPov}%</span>
+																	${map.tenLose}패 
 																</div>
 															</div>
 															<div style="margin-top: 10px">
@@ -340,8 +340,12 @@ function send(){
 																		role="progressbar" style=" width: ${map.tenPov}%"  
 																		aria-valuenow="25" aria-valuemin="0"
 																		aria-valuemax="100"></div>
+																		
 																</div>
+																
 															</div>
+															<span
+																		style="color: white; font-size: 17px; float: right;">${map.tenPov}%</span>
 														</div>
 													</div>
 												</div>
