@@ -25,6 +25,7 @@ public class GameDTO {
 	private String g_lng;
 	private String g_ratingmemo;
 	private String g_qrcheck;
+	private String g_formation;
 	
 	//Join용 변수
 	
@@ -279,6 +280,14 @@ public class GameDTO {
 
 	public void setG_ratingmemo(String g_ratingmemo) {
 		this.g_ratingmemo = g_ratingmemo;
+	}
+
+	public String getG_formation() {
+		return g_formation;
+	}
+
+	public void setG_formation(String g_formation) {
+		this.g_formation = g_formation;
 	}
 	
 	

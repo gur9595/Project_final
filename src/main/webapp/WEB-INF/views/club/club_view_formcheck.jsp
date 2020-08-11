@@ -35,6 +35,14 @@
 color: #fff;
 }
 </style>
+<div style="height:613px; width:416px;">
+	<table style=" background: url('./../resources/uploadsFile/${gameDTO.g_formation}'); 
+					height: 613px;
+					 width: 416px;
+					background-size: 100% 100%;
+					 background-repeat: no-repeat;"></table>
+</div>
+<%-- 
 <c:choose>
   			<c:when test="${gameDTO.g_type=='축구' }">
   				<div id="field" class="two_third first" style="height: 613px; width: 416px;">
@@ -587,7 +595,7 @@ color: #fff;
 		</div>
 
 	</div>
-
+ --%>
 
 	<br class="clear" />
 
