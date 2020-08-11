@@ -70,7 +70,8 @@
         opacity: 0.8; z-index:1;">
         <div id="score" class="ui-widget-content ui-corner-all" style="display:none"> 
         	<div style="font-size: 1em;padding:10px;"> 
-	        	<form action="">
+	        	<form name="goalInsert" id="goalInsert" method="post" action="../android/goalInsert.do">
+	        		<input type="hidden" name="g_idx" value="${g_idx }" />
 	                	스코어러 : 
 	        		<select name="goal" width="75%" style="display:inline">
 	        			<option value="" selected="selected">스코어러</option>
@@ -644,6 +645,7 @@
 <button id="button2" class="btn btn-light" style="left:70% ;">Opponent</button>
 <button id="button" class="btn btn-light" style="left:10px ;">Bench</button>
 <button id="button3" class="btn btn-light" style="left:10px ;">Goal</button>
+
    <br class="clear" />
 
 

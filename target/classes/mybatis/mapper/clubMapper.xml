@@ -413,6 +413,10 @@
 			) where rnum between 1 and 10
    </select>
    
+   <insert id="goalInsert">
+   	insert into goalhistory values ( goalhistory_seq.nextval,#{param3}, #{param1}, #{param2}, 0)
+   </insert>
+   
    <!-- *******************안드로이드 매퍼*************************** -->
    
    
