@@ -384,13 +384,13 @@ public class MemberController {
    }
    
    //경기장 등록
+
    @RequestMapping(value="/member/member_stadiumInsert.do",method=RequestMethod.POST)
-   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req,MultipartHttpServletRequest mtfRequest) {
-      
-      String s_addr1 = req.getParameter("s_addr1");
+   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req,MultipartHttpServletRequest mtfRequest ,Model model) {
+	   String s_addr1 = req.getParameter("s_addr1");
       String s_addr2 = req.getParameter("s_addr2");
       String s_addr = s_addr1+" "+s_addr2;
-      
+
       String s_phone1 = req.getParameter("s_phone1");
       String s_phone2 = req.getParameter("s_phone2");
       String s_phone3 = req.getParameter("s_phone3");
@@ -399,9 +399,17 @@ public class MemberController {
       dto.setS_phone(s_phone);
       System.out.println("s_phone : "+ s_phone);
       
-      //좌표값 받기
+      //좌표값 받기 
       String latitude = req.getParameter("latitude"); //위도
       String longitude = req.getParameter("longitude"); //경도
+      
+      String[] s_cvs = req.getParameterValues("s_cv");
+      String s_cv = "";
+      for(int i = 0; i < s_cvs.length; i++) {
+    	  s_cv += s_cvs[i];
+    	  System.out.println("s_cv : " + s_cv);
+      }
+      dto.setS_cv(s_cv);
       
       dto.setS_addr(s_addr);
       dto.setS_lat(latitude);
@@ -410,7 +418,7 @@ public class MemberController {
       System.out.println("s_memo : "+dto.getS_memo());
       System.out.println("s_lat : " + dto.getS_lat());
       System.out.println("s_lng : " + dto.getS_lng());
-      
+
       String totalFileName = "";
       
       List<MultipartFile> fileList = mtfRequest.getFiles("file");
@@ -428,7 +436,7 @@ public class MemberController {
 
           String safeFile = path + System.currentTimeMillis() + originFileName;
           
-          totalFileName += getUuid()+",";
+          totalFileName += System.currentTimeMillis() + originFileName+",";
           
           try {
               mf.transferTo(new File(safeFile));
@@ -442,10 +450,26 @@ public class MemberController {
       }
       
       dto.setS_pic(totalFileName);
-      sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
-
-		
-      return"member/member_select";
+   
+      int insert_ok = sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
+      String result = "";
+      if(insert_ok == 0) {
+    	  result = "fail";
+      }
+      else if(insert_ok == 1) {
+    	  result = "success";
+      }
+      
+      model.addAttribute("result", result);
+      
+      return"member/stadium_create_check";
+   }
+   
+   //경기장 등록체크페이지
+   @RequestMapping("/member/stadium_create_check.do")
+   public String stadium_create_check() {
+	   
+	   return"member/stadium_create_check";
    }
    
    //접근 에러

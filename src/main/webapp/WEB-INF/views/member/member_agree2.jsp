@@ -102,7 +102,7 @@
 
           	<input type="checkbox" name="m_position" id="LW" value="LW" style="display:inline;"/>
           	<label for="LW" style= "padding-right:200px;">LW</label>
-            <input type="checkbox" name="m_position" id="ST" value="ST" style="display:inline;"/>
+            <input type="checkbox" name="m_position" id="ST" value="ST" style="display:inline;" checked="checked"/>
             <label for="ST" style= "padding-right:200px;">ST</label>
             <input type="checkbox" name="m_position" id="RW" value="RW" style="display:inline;"/>
             <label for="RW">RW</label>
@@ -111,7 +111,7 @@
           	<label for="LM" style="padding-right:200px;">LM</label>
             <input type="checkbox" name="m_position" id="AM" value="AM" style="display:inline;"/>
             <label for="AM" style=padding-right:195px;">AM</label>
-            <input type="checkbox" name="m_position" id="RM" value="RM" style="display:inline;"/>
+            <input type="checkbox" name="m_position" id="RM" value="RM" style="display:inline;"checked="checked"/>
             <label for="RM">RM</label>
 			<br /><br />
           	<input type="checkbox" name="m_position" id="CM" value="CM" style="display:inline;"/>
@@ -121,7 +121,7 @@
             <input type="checkbox" name="m_position" id="DM" value="DM" style="display:inline;"/>
             <label for="DM">DM</label>
 			<br /><br />
-          	<input type="checkbox" name="m_position" id="LB" value="LB" style="display:inline;"/>
+          	<input type="checkbox" name="m_position" id="LB" value="LB" style="display:inline;"checked="checked"/>
           	<label for="LB" style="padding-right:205px;">LB</label>
             <input type="checkbox" name="m_position" id="GK" value="GK" style="display:inline;"/>
             <label for="GK" style="padding-right:200px;">GK</label>
@@ -130,7 +130,7 @@
 
 	        
 			<h2>성별 체크</h2>
-			<input type="radio" name="m_sex" id="man" value="남자" style="display:inline;">
+			<input type="radio" name="m_sex" id="man" value="남자" style="display:inline;"checked="checked">
 			<label for="man" style="padding-right:220px;">남자</label>
 			<input type="radio" name="m_sex" id="wowan" value="여자" style="display:inline;">
 			<label for="wowan">여자</label>
@@ -144,7 +144,7 @@
 			<input type="radio" name="m_abil" id="tops" value="상" style="display:inline;">
 			<label for="tops" style="padding-right:200px;">상</label>
 				
-			<input type="radio" name="m_abil" id="mediumhigh" value="중상" style="display:inline;">
+			<input type="radio" name="m_abil" id="mediumhigh" value="중상" style="display:inline;"checked="checked">
 			<label for="mediumhigh">중상</label>
 			<br /><br /> 
 			<input type="radio" name="m_abil" id="medium" value="중" style="display:inline;">
@@ -161,7 +161,7 @@
 
        		<input type="radio" name="m_foot" id="LF" value="왼발" style="display:inline;">
        		<label for="LF" style="padding-right:200px;">왼발</label>
-       		<input type="radio" name="m_foot" id="RF" value="오른발" style="display:inline;">
+       		<input type="radio" name="m_foot" id="RF" value="오른발" style="display:inline;"checked="checked">
        		<label for="RF" style="padding-right:170px;">오른발</label>
 			<input type="radio" name="m_foot" id="ALL" value="양발" style="display:inline;">
 			<label for="ALL">양발</label>

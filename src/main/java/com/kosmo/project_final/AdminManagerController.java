@@ -19,7 +19,7 @@ import mybatis.MemberDTO;
 import mybatis.StadiumDTO;
 
 @Controller
-public class AdminManagerController {
+public class AdminManagerController { 
 	
 	@Autowired
 	private SqlSession sqlSession;

@@ -250,9 +250,9 @@ function match_insert(f){
 		</div>
 		<br />
 		<div> 
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08920.jpg" class="slide" style="width:100%; height: 400px;">
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08923.jpg" class="slide" style="width:100%; height: 400px;">
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08956.jpg" class="slide" style="width:100%; height: 400px;">
+			<img src="./../resources/uploadsFile/${s_pic1 }" class="slide" style="width:100%; height: 400px;">
+			<img src="./../resources/uploadsFile/${s_pic2 }" class="slide" style="width:100%; height: 400px;">
+			<img src="./../resources/uploadsFile/${s_pic3 }" class="slide" style="width:100%; height: 400px;">
 		</div>
 		<main class="hoc container clear">
 			<br> <br> <br>
