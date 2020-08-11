@@ -50,43 +50,27 @@ public class EventController {
 	}
 	
 	//업로드 처리
-	@PostMapping(value = "/event/eventUpload.do", produces = "application/json")
-	@ResponseBody
-	public JsonObject eventUpload(@RequestParam("file") MultipartFile multipartFile, 
-			Model model, HttpServletRequest req) {
+	@RequestMapping(value="/event/eventUpload.do", method = RequestMethod.POST)
+	public String eventUpload(Model model, HttpServletRequest req) {
 		
-		JsonObject jsonObject = new JsonObject();
+		EventDTO eventDTO = new EventDTO();
+		eventDTO.setE_type(req.getParameter("e_type"));
+		eventDTO.setE_title(req.getParameter("e_title"));
+		eventDTO.setE_contents(req.getParameter("editordata"));
 		
-		String fileRoot = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");//저장될 외부 파일 경로
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));//파일 확장자
-				
-		String savedFileName = UUID.randomUUID() + extension;//저장될 파일 명
+		String start = req.getParameter("e_start");
+		Date e_start = Date.valueOf(start);
+		String end = req.getParameter("e_end");
+		Date e_end = Date.valueOf(end);  
 		
-		File targetFile = new File(fileRoot + savedFileName);	
+		eventDTO.setE_start(e_start);
+		eventDTO.setE_end(e_end);
 		
-		try {
-			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/summernoteImage/"+savedFileName);
-			jsonObject.addProperty("responseCode", "success");
-				
-		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
-			e.printStackTrace();
-		} 
+		sqlSession.getMapper(EventDAOImpl.class).upload(eventDTO);
 		
-		//eventDTO.setE_thumbnail(req.getParameter("e_thumbnail"));
-		//eventDTO.setE_image(req.getParameter("e_image"));
-		//eventDTO.setE_tag(req.getParameter("e_tag")); 
-		//eventDTO.setE_date(req.getParameter("e_date"));
+		System.out.println("title=" + req.getParameter("e_title"));
 		
-		
-		System.out.println("e_type=" + req.getParameter("e_type")+
-				"e_contents="+req.getParameter("editordata")); 
-		
-		return jsonObject;
+		return "redirect:eventMain.do"; 
 	}
 	
 	//게시글 리스트 출력

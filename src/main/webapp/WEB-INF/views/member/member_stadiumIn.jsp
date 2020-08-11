@@ -19,7 +19,7 @@
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay">
+<div class="bgded overlay" style="background-image:url('./../resources/img/join2.jpg'); background-position: 0 30%;">
 	<div id="breadcrumb" class="hoc clear"> 
 	  <!-- 이미지 위에 글쓰는곳 -->
 	</div>
@@ -68,14 +68,15 @@
 	                  style="width: 400px; margin-top: 5px;" />
 	   
 	   
-	            <h2>휴대전화</h2> <input class="txtBox31"maxlength="3"
-	               type="tel" id="s_phone1" value="010" name="s_phone1" style="font-size:25px;" maxlength="3"/>
+	            <h2>휴대전화</h2>
+	            <input class="txtBox31"maxlength="3"
+	               type="tel" id="s_phone1" value="010" name="s_phone1" maxlength="3"/>&nbsp;-&nbsp;
+	   
+	            <input class="txtBox31" maxlength="4"
+	               type="tel" id="s_phone2" value="2526" name="s_phone2" maxlength="4"/>&nbsp;-&nbsp;
 	   
 	            <input class="txtBox31"maxlength="4"
-	               type="tel" id="s_phone2" value="2526" name="s_phone2" style="font-size:25px;" maxlength="4"/>
-	   
-	            <input class="txtBox31"maxlength="4"
-	               type="tel" id="s_phone3" value="5289" name="s_phone3" style="font-size:25px;" maxlength="4"/>
+	               type="tel" id="s_phone3" value="5289" name="s_phone3" maxlength="4"/>
 	   
 	            <h2>구장크기</h2> <input class="txtBox31"maxlength="20"
 	               type="tel" id="s_size" value="104x68" name="s_size" style="font-size:25px;"

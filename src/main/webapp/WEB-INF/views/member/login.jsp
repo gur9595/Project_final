@@ -33,7 +33,7 @@
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('./../resources/img/축구공배너1.png');">
+<div class="bgded overlay" style="background-image:url('./../resources/img/idpw.jpg'); background-position: 0 50%;">
   <div id="breadcrumb" class="hoc clear"> 
   
     <!--이미지 위에 글쓰는곳-->

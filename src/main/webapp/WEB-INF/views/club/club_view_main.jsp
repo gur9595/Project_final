@@ -243,7 +243,7 @@ function send(){
 																			<tr>
 																				<td style="border-bottom: none">·회원수</td>
 																				<td style="border-bottom: none">${clubMemberCount}명</td>
-																			</tr>
+													 						</tr>
 																			<tr>
 																				<td style="border-bottom: none">·실력</td>
 																				<td style="border-bottom: none">${clubDTO.c_ability }</td>
@@ -320,7 +320,7 @@ function send(){
 																</div>
 																<br /> <span style="font-size: 30px; color: white;">최근
 																	10경기</span> <br />
-																<div class="game_list" style="width: 460px;">
+																<div class="game_list" style="width: 480px;">
 																	<c:forEach items="${tenHistory }" var="row"
 																		varStatus="status">
                                                             		${row }

@@ -86,25 +86,23 @@ public class ClubController {
 
 		ArrayList<RankingDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubTotalRanking();
 
-
-
-		for(RankingDTO dto : lists) {
+		for (RankingDTO dto : lists) {
 
 			int wins = dto.getWins();
 			int matches = dto.getMatches();
 			double winRate = 0;
 
-			if(matches==0) {
+			if (matches == 0) {
 				dto.setWinRate(0);
-			}else {
+			} else {
 				winRate = (double) wins / matches * 100;
 				winRate = Math.round(winRate * 100) / 100;
-				dto.setWinRate((int)winRate);
+				dto.setWinRate((int) winRate);
 			}
 
 		}
 
-		model.addAttribute("lists",lists);
+		model.addAttribute("lists", lists);
 
 		return "club/club_ranking";
 	}
@@ -131,7 +129,6 @@ public class ClubController {
 
 		String pagingImg = PagingUtil.pagingImg(totalRecordCount, pageSize, blockPage, nowPage,
 				req.getContextPath() + "/club/clubMain.do?");
-		
 
 		model.addAttribute("pagingImg", pagingImg);
 
@@ -194,7 +191,7 @@ public class ClubController {
 	}
 
 	@RequestMapping(value = "/club/clubApplyAction.do", method = RequestMethod.POST)
-	public String clubApplyAction(Principal principal, HttpServletRequest req,Model model) {
+	public String clubApplyAction(Principal principal, HttpServletRequest req, Model model) {
 		String m_id = principal.getName();
 
 		ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
@@ -203,43 +200,43 @@ public class ClubController {
 		clubMemberDTO.setCm_memo(req.getParameter("memo"));
 		// Mybatis 사용
 		int suc = sqlSession.getMapper(ClubDAOImpl.class).clubApply(clubMemberDTO);
-		
-		String result = "";
-	      if(suc == 0) {
-	    	  result = "fail";
-	      }
-	      else if(suc == 1) {
-	    	  result = "success";
-	      }
 
-      model.addAttribute("result", result);
+		String result = "";
+		if (suc == 0) {
+			result = "fail";
+		} else if (suc == 1) {
+			result = "success";
+		}
+
+		model.addAttribute("result", result);
 		System.out.println(suc);
 
 		return "club/club_success";
 	}
-	
+
 	@RequestMapping("/club/clubSuccess.do")
 	public String clubSuccess() {
 
 		return "club/club_success";
 	}
-	
-	//클럽생성 웹
+
+	// 클럽생성 웹
 	@RequestMapping("/club/clubCreate.do")
 	public String clubCreate() {
 
 		return "club/club_create";
 	}
-	//클럽생성 앱
+
+	// 클럽생성 앱
 	@RequestMapping("/android/clubCreate.do")
 	public String androidClubCreate() {
-		
+
 		return "club/android_club_create";
 	}
-	
+
 	@RequestMapping("/club/clubKaKaoView.do")
 	public String clubKaKaoView() {
-		
+
 		return "club/club_kakao_view";
 	}
 
@@ -250,9 +247,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
@@ -306,16 +304,18 @@ public class ClubController {
 		for (GameDTO dto : tenGames) {
 			tenTotal++;
 			if (dto.getG_result().equals("W")) {
-				tenHistory.add("<div class='win'>승<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
+				tenHistory.add("<div class='win'>승<span class='tooltiptext'>상대의 평가<br /><br />" + dto.getG_ratingmemo()
+						+ "</span></div>");
 				tenWin++;
 			} else if (dto.getG_result().equals("L")) {
-				tenHistory.add("<div class='lose'>패<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
+				tenHistory.add("<div class='lose'>패<span class='tooltiptext'>상대의 평가<br /><br />" + dto.getG_ratingmemo()
+						+ "</span></div>");
 				tenLose++;
 			} else {
-				tenHistory.add("<div class='draw'>무<span class='tooltiptext'>상대의 평가<br /><br />"+ dto.getG_ratingmemo() +"</span></div>");
+				tenHistory.add("<div class='draw'>무<span class='tooltiptext'>상대의 평가<br /><br />" + dto.getG_ratingmemo()
+						+ "</span></div>");
 				tenDraw++;
 			}
-			
 
 		}
 		if (tenTotal != 0) {
@@ -358,9 +358,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 
 		ClubDTO clubDTO = new ClubDTO();
 		clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
@@ -395,8 +396,6 @@ public class ClubController {
 
 	}
 
-
-
 	@RequestMapping("/club/clubViewRank.do")
 	public String clubViewRank(Principal principal, HttpServletRequest req, Model model) {
 
@@ -404,9 +403,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -434,9 +434,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -482,9 +483,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -494,11 +496,11 @@ public class ClubController {
 
 		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatch(c_idx);
 
-		for(MatchDTO dto : lists) {
+		for (MatchDTO dto : lists) {
 
 			ClubDTO opponents = sqlSession.getMapper(ClubDAOImpl.class).clubViewMatchOpponent(dto.getG_num());
 
-			if(sqlSession.getMapper(ClubDAOImpl.class).isClubViewMatchOpponent(dto.getG_num())==1) {
+			if (sqlSession.getMapper(ClubDAOImpl.class).isClubViewMatchOpponent(dto.getG_num()) == 1) {
 				dto.setC_idx(opponents.getC_idx());
 				dto.setC_name(opponents.getC_name());
 			}
@@ -542,6 +544,7 @@ public class ClubController {
 			}
 		}
 
+		model.addAttribute("lists", lists);
 		model.addAttribute("squad", squad);
 		model.addAttribute("bench", bench);
 		model.addAttribute("g_idx", g_idx);
@@ -586,9 +589,7 @@ public class ClubController {
 		model.addAttribute("gameDTO", gameDTO);
 
 		return "club/club_view_formcheck";
-	} 
-
-	
+	}
 
 	@RequestMapping("/club/clubViewManage.do")
 	public String clubViewManage(Principal principal, HttpServletRequest req, Model model) {
@@ -597,9 +598,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -624,9 +626,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -651,9 +654,10 @@ public class ClubController {
 		ClubDTO clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 
 		int totalRecordCount = sqlSession.getMapper(ClubDAOImpl.class).getTotalCountHistory(c_idx);
 		int pageSize = 10;
@@ -667,18 +671,18 @@ public class ClubController {
 		int end = nowPage * pageSize;
 
 		String paging = PagingUtil.paging(totalRecordCount, pageSize, blockPage, nowPage,
-				req.getContextPath() + "/club/clubViewHistory.do?c_idx+"+c_idx+"&");
+				req.getContextPath() + "/club/clubViewHistory.do?c_idx+" + c_idx + "&");
 
 		model.addAttribute("paging", paging);
 
 		ArrayList<MatchDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMatchHistory(c_idx, start, end);
 
-		for(MatchDTO dto : lists) {
+		for (MatchDTO dto : lists) {
 
 			String check = dto.getG_check();
 			String[] score = dto.getG_score().split("-");
 
-			if(check.equals("owner")) {
+			if (check.equals("owner")) {
 
 				dto.setHome(clubDTO.getC_name());
 				dto.setHome_idx(dto.getC_idx());
@@ -687,8 +691,7 @@ public class ClubController {
 				dto.setAway(dto.getOpc_name());
 				dto.setAway_idx(dto.getOpc_idx());
 				dto.setAway_score(Integer.parseInt(score[1]));
-			}
-			else {
+			} else {
 				dto.setAway(clubDTO.getC_name());
 				dto.setAway_idx(dto.getC_idx());
 				dto.setAway_score(Integer.parseInt(score[0]));
@@ -719,7 +722,6 @@ public class ClubController {
 	 * return "club/club_view_matchDetail"; }
 	 */
 
-
 	@RequestMapping("/club/ClubMatchApply.do")
 	public String ClubMatchApply(Principal principal, HttpServletRequest req, Model model) {
 
@@ -727,9 +729,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -743,7 +746,6 @@ public class ClubController {
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApply(gameDTO);
 
 		sqlSession.getMapper(ClubDAOImpl.class).ClubMatchApplyDelete(gameDTO);
-		
 
 		int we_c_idx = sqlSession.getMapper(MatchDAOImpl.class).getClubIdx(g_idx);
 		String c_name = sqlSession.getMapper(ClubDAOImpl.class).getClubName(we_c_idx);
@@ -752,67 +754,64 @@ public class ClubController {
 
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
 	}
-	
-	@RequestMapping(value = "/club/sendMessage", method = RequestMethod.POST, produces = {"application/json;"})
+
+	@RequestMapping(value = "/club/sendMessage", method = RequestMethod.POST, produces = { "application/json;" })
 	public @ResponseBody ResponseEntity<String> send(@RequestBody int c_idx, String title, String content) {
-		
+
 		Map<String, Object> retVal = new HashMap<String, Object>();
-		
+
 		JSONObject body = new JSONObject();
 		List<String> tokenList = new ArrayList<String>();
-		
+
 		ArrayList<MemberDTO> memberTokens = sqlSession.getMapper(MemberDAOImpl.class).getMemberTokens(c_idx);
-		for(MemberDTO dto : memberTokens) {
+		for (MemberDTO dto : memberTokens) {
 			tokenList.add(dto.getM_token());
 		}
-		
+
 		JSONArray array = new JSONArray();
-		
-		for(int i = 0; i < tokenList.size(); i++) {
+
+		for (int i = 0; i < tokenList.size(); i++) {
 			array.add(tokenList.get(i));
 		}
-		
+
 		body.put("registration_ids", array);
-		
+
 		JSONObject notification = new JSONObject();
-		
+
 		String ms_title = "", ms_content = "";
-		
+
 		try {
 			ms_title = URLEncoder.encode(title, "UTF-8");
 			ms_content = URLEncoder.encode(content, "UTF-8");
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		notification.put("title", ms_title);
 		notification.put("body", ms_content);
 		body.put("notification", notification);
-		
+
 		System.out.println("body.toString() : " + body.toString());
-		
+
 		HttpEntity<String> request = new HttpEntity<String>(body.toString());
-		
+
 		CompletableFuture<String> pushNotification = AndroidPushNotificationsService.send(request);
 		CompletableFuture.allOf(pushNotification).join();
-		
+
 		try {
 			String firebaseResponse = pushNotification.get();
-			
+
 			return new ResponseEntity<>(firebaseResponse, HttpStatus.OK);
-		} 
-		catch (InterruptedException e) {
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+
 		return new ResponseEntity<String>("Push Notification ERROR!", HttpStatus.BAD_REQUEST);
-		
+
 	}
 
 	@RequestMapping("/club/ClubMatchReject.do")
@@ -822,9 +821,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -844,9 +844,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -868,9 +869,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -880,7 +882,7 @@ public class ClubController {
 
 		ClubDTO clubDTO = sqlSession.getMapper(ClubDAOImpl.class).clubView(Integer.parseInt(req.getParameter("c_idx")));
 		model.addAttribute("clubDTO", clubDTO);
-		
+
 		sqlSession.getMapper(ClubDAOImpl.class).gameMemberDrop(gameMemberDTO);
 
 		return "redirect:/club/clubViewMatch.do?c_idx=" + c_idx;
@@ -893,9 +895,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -903,7 +906,6 @@ public class ClubController {
 		model.addAttribute("clubDTO", clubDTO);
 
 		sqlSession.getMapper(ClubDAOImpl.class).clubMemberApply(Integer.parseInt(req.getParameter("cm_idx")));
-
 
 		return "redirect:/club/clubViewManage.do?c_idx=" + c_idx;
 	}
@@ -915,9 +917,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -938,9 +941,10 @@ public class ClubController {
 		ClubMemberDTO getCmgrade = new ClubMemberDTO();
 		int c_idx = Integer.parseInt(req.getParameter("c_idx"));
 		int checkMember = sqlSession.getMapper(ClubDAOImpl.class).checkCmgrade(c_idx, m_id);
-		if(checkMember==1) {
+		if (checkMember == 1) {
 			getCmgrade = sqlSession.getMapper(ClubDAOImpl.class).getCmgrade(c_idx, m_id);
-		};
+		}
+		;
 		model.addAttribute("getCmgrade", getCmgrade);
 		model.addAttribute("checkMember", checkMember);
 
@@ -970,7 +974,7 @@ public class ClubController {
 		String m_id = principal.getName();
 		// 서버의 물리적경로 가져오기
 		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
-		
+
 		// 폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
 		Map returnObj = new HashMap();
 		try {
@@ -1036,13 +1040,12 @@ public class ClubController {
 				sqlSession.getMapper(ClubDAOImpl.class).clubCreateMember(m_id, idx);
 
 				String result = "";
-		      if(ok == 0) {
-		    	  result = "fail2";
-		      }
-		      else if(ok == 1) {
-		    	  result = "success2";
-		      }
-		      model.addAttribute("result", result);
+				if (ok == 0) {
+					result = "fail2";
+				} else if (ok == 1) {
+					result = "success2";
+				}
+				model.addAttribute("result", result);
 			}
 			returnObj.put("files", resultList);
 		} catch (IOException e) {
@@ -1050,36 +1053,35 @@ public class ClubController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "club/club_success";
 	}
-	
-	
 	// 클럽 생성 앱
 	@RequestMapping(value = "/android/clubCreate.do", method = RequestMethod.POST)
-	public String androidClubCreatePro(HttpSession session, ClubDTO clubdto, Model model, MultipartHttpServletRequest req) {
-		
+	public String androidClubCreatePro(HttpSession session, ClubDTO clubdto, Model model,
+			MultipartHttpServletRequest req) {
+
 		String m_id = req.getParameter("m_id");
-		
+
 		// 서버의 물리적경로 가져오기
 		String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile");
-		
+
 		int idx = 0;
-		
+
 		// 폼값과 파일명을 저장후 View로 전달하기 위한 맵 생성
 		Map returnObj = new HashMap();
 		try {
 			// 업로드폼의 file속성의 필드를 가져온다. (여기서는 2개임)
 			Iterator itr = req.getFileNames();
-			
+
 			MultipartFile mfile = null;
 			String fileName = "";
 			List resultList = new ArrayList();
-			
+
 			// 파일외의 폼값 받음(여기서는 제목만 있음)
 			String title = req.getParameter("title");
 			System.out.println("title=" + title);
-			
+
 			/*
 			 * 물리적 경로를 기반으로 File 객체를 생성한후 디렉토리가 존재하는지 확인함 만약 없다면 생성함
 			 */
@@ -1089,30 +1091,30 @@ public class ClubController {
 			}
 			// 업로드폼의 file속성의 필드갯수만큼 반복
 			while (itr.hasNext()) {
-				
+
 				// 전송된 파일의 이름을 읽어옴
 				fileName = (String) itr.next();
 				mfile = req.getFile(fileName);
 				System.out.println("mfile= " + mfile);
-				
+
 				// 한글꺠짐방지 처리후 전송된파일명을 가져옴
 				String originalName = new String(mfile.getOriginalFilename().getBytes(), "UTF-8");
-				
+
 				// 서버로 전송된 파일이 없다면 while문의 처음으로 돌아간다
 				if ("".equals(originalName)) {
 					continue;
 				}
-				
+
 				// 파일명에서 확장자 부분을 가져옴
 				String ext = originalName.substring(originalName.lastIndexOf('.'));
-				
+
 				// UUID를 통해 생성된 문자열과 확장자를 합침
 				String saveFileName = getUuid() + ext;
-				
+
 				// 물리적경로에 새롭게 생성된 파일명으로 파일저장
 				File serverFullName = new File(path + File.separator + saveFileName);
 				mfile.transferTo(serverFullName);
-				
+
 				// 서버에 파일업로드 완료후...
 				Map file = new HashMap();
 				file.put("originalName", originalName); // 원본파일명
@@ -1121,9 +1123,9 @@ public class ClubController {
 				file.put("title", title); // 제목
 				// 위4가지 정보를 저장한 Map을 ArrayList에 저장한다.
 				resultList.add(file);
-				
+
 				clubdto.setC_emb(saveFileName);
-				
+
 				System.out.println("clubdto.getC_name() : " + clubdto.getC_name());
 				System.out.println("clubdto.getC_emb() : " + clubdto.getC_emb());
 				System.out.println("clubdto.getC_area() : " + clubdto.getC_area());
@@ -1133,15 +1135,15 @@ public class ClubController {
 				System.out.println("clubdto.getC_memlimit() : " + clubdto.getC_memlimit());
 				System.out.println("clubdto.getC_memo() : " + clubdto.getC_memo());
 				System.out.println("clubdto.getC_age() : " + clubdto.getC_age());
-				
+
 				sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
-				
+
 				idx = sqlSession.getMapper(ClubDAOImpl.class).clubIdx(clubdto);
-				
+
 				System.out.println("m_id : " + m_id);
 				System.out.println("idx : " + idx);
 				sqlSession.getMapper(ClubDAOImpl.class).clubCreateMember(m_id, idx);
-				
+
 			}
 			returnObj.put("files", resultList);
 		} catch (IOException e) {
@@ -1149,27 +1151,24 @@ public class ClubController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 
 		String result = "";
-		if(idx == 0) {
+		if (idx == 0) {
 			result = "fail";
-		}
-		else if(idx != 0) {
+		} else if (idx != 0) {
 			result = "success";
 		}
 
-		model.addAttribute("result", result);	
-		return "club/android_club_create_success";
-	}
-	
-	//클럽생성 성공 앱
-	@RequestMapping("/android/club_create_success.do")
-	public String androidClubCreateSuccess() {
-				
+		model.addAttribute("result", result);
 		return "club/android_club_create_success";
 	}
 
+	// 클럽생성 성공 앱
+	@RequestMapping("/android/club_create_success.do")
+	public String androidClubCreateSuccess() {
+
+		return "club/android_club_create_success";
+	}
 
 	@RequestMapping(value = "/club/imageCreate.do")
 	@ResponseBody
@@ -1190,7 +1189,7 @@ public class ClubController {
 			byte[] file = Base64.decodeBase64(binaryData.getBytes());
 			System.out.println("file :::::::: " + file + " || " + file.length);
 			String fileName = UUID.randomUUID().toString();
-			stream = new FileOutputStream(path +File.separator+ fileName + ".png");
+			stream = new FileOutputStream(path + File.separator + fileName + ".png");
 			stream.write(file);
 			stream.close();
 			System.out.println("파일 작성 완료");
@@ -1200,7 +1199,7 @@ public class ClubController {
 			System.out.println(fileName);
 		} catch (Exception e) {
 			System.out.println("파일이 정상적으로 넘어오지 않았습니다");
-			mav.addObject("msg", "no"); 
+			mav.addObject("msg", "no");
 			return mav;
 		} finally {
 			stream.close();

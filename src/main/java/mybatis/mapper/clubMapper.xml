@@ -417,6 +417,12 @@
    	insert into goalhistory values ( goalhistory_seq.nextval,#{param3}, #{param1}, #{param2}, 0)
    </insert>
    
+   <select id="matchGoalLists" resultType="mybatis.GoalHistoryDTO">
+   		select gh.gh_goal, (select m.m_name from member m where m.m_id = gh.gh_goal) as goalname, gh.gh_assist, (select m.m_name from member m where m.m_id = gh.gh_assist) as assistname
+   		from goalhistory gh
+   		where gh.g_idx = #{param1}
+   </select>
+   
    <!-- *******************안드로이드 매퍼*************************** -->
    
    
@@ -533,22 +539,7 @@
       where g.c_idx = #{c_idx} and g.g_rating is not null
       order by appearance desc )tb)
      </select>
-<!--      
-     팀 랭킹 
-     <select id="clubTotalRankingA" resultType="mybatis.RankingDTO">
-   		select * from(
-			select rownum rnum,tb.* from
-			(select c1.c_idx, c1.c_name, c1.c_emb, 
-			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null) as matches,
-			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W') as wins,
-			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D') as draws,
-			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_rating is not null)*2 +
-			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='W')*3 +
-			    (select count(*) from game g where g.c_idx = c1.c_idx and g.g_result ='D')*1 as points
-			from club c1
-			order by points desc) tb
-			) where rnum between 1 and 10
-   </select>
+
      <select id="clubSearchFilterA" resultType="mybatis.AndroidClubDTO" parameterType="mybatis.AndroidClubDTO">
        select * from ( 
           select tb.*, rownum rNum from( 
@@ -617,7 +608,6 @@
 			order by points desc) tb
 			)
    </select>
-  -->       
    
    <update id="qrCheck" parameterType="mybatis.GameDTO">
       	update game set g_qrcheck = #{g_qrcheck} where g_idx = #{g_idx} and g_check like 'owner'

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -53,22 +54,20 @@ button{
 
         IMP.request_pay({ // param : 결제요청에 필요한 정보를 담는다.
 		    pg : 'inicis', // version 1.1.0부터 지원.
-		    pay_method : 'phone', // 발표시 'card'로 교체
+		    pay_method : 'card', // 발표시 'card'로 교체
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : charge + "	Ball", // 입금될 마일리지
 		    amount : cash, // 결제 금액
 	    	buyer_email :  ' --- Option ---  			Press your email'      
-		
 		    // m_redirect_url : 'www.naver.com'
 		}, 
 		function(rsp) { // callback : 고객이 결제를 완료한 후 실행되는 함수
 		    if ( rsp.success ) {
-		        var msg = '결제가 완료되었습니다. ';
-		        msg += '\n고유ID : ' + rsp.imp_uid;
-		        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-		        msg += '\n주문 상품명 : ' + charge + "	Ball";
-		        msg += '\n결제 금액 : ' + rsp.paid_amount + "	원";
-		        msg += '\n카드 승인번호 : ' + rsp.apply_num;	
+		        var msg = '결제가 완료되었습니다.\n';
+		        msg += '\n주문 상품명 : ' + charge + '	Ball';
+		        msg += '\n결제 금액 : ' + rsp.paid_amount + '	원';
+		      	msg += '\n결제 수단 : ' + rsp.pay_method;
+		      	msg += '\n결제 회사 : (주) B-Pro' ;
 		        
 		        var result = document.getElementById("selected_item_id").value;
 		       	result = rsp.name;
@@ -105,7 +104,7 @@ button{
 	<%@ include file="./../include/top.jsp"%>
 	<!--각 페이지 이미지-->
 	<div class="bgded overlay"
-		style="background-image: url('../images/demo/backgrounds/01.png');">
+		style="background-image:url('./../resources/img/charge.jpg'); background-position: 0 40%;">
 		<div id="breadcrumb" class="hoc clear">
 			<!--이미지 위에 글쓰는곳-->
 		</div>
@@ -152,12 +151,12 @@ button{
           			<input id="selected_item_price" type="hidden" value=0>
           			<span id="selected_item_id" style="font-size: 25px;" >0</span>
           			
-        		</div>
-      		</div>
+        		</div>  
+      		</div>  
       
       		<div class="cashSelect">
-        		<label>닉네임 또는 입금자명</label>
-        		<input type="text" id="depositor" name="name" style="text-align: center; font-weight: bold" value="${m_id }" />
+        		<label>입금자명</label>
+        		<input readonly type="text" id="depositor" name="name" style="text-align: center; font-weight: bold" value="${memberDTO[0].m_name }" />
         		<p><strong>위에 입력한 명의로 정확한 Ball 갯수를 선택해주세요</strong><br>축구&풋살 클럽의 No1. B-Pro!!!</p>
       		</div>
       
@@ -246,6 +245,7 @@ button{
 		var depositor = $("#depositor").val() // depositor = 입금자명
 		var cash_item_id = document.getElementById('selected_item_id').innerHTML
 		var currentCashItemPrice = $("#selected_item_price").val()
+
       	console.log(currentCashItemPrice)
 
       	// 만약 입금자명이 공란이면

@@ -37,7 +37,7 @@
 	<%@ include file="./../include/top.jsp"%>
 	<!--각 페이지 이미지-->
 	<div class="bgded overlay"
-		style="background-image: url('../images/demo/backgrounds/01.png');">
+		style="background-image:url('./../resources/img/qna.jpg'); background-position: 0 52%;">
 		<div id="breadcrumb" class="hoc clear">
 			<!--이미지 위에 글쓰는곳-->
 		</div>
@@ -262,8 +262,7 @@
 														<li class="a02-article-list__list-item tags"><a
 															href="../customer/qnaView.do?b_idx=32"
 															class="a02-article-list__link">
-																<div class="a02-article-list__link--title">​​페어플레이
-																	제도 안내</div>
+																<div class="a02-article-list__link--title">​​원데이리그 시즌 파이널</div>
 																<div class="a02-article-list__articleTag">공지사항</div> <i aria-hidden="true"
 																class="a02-article-list__arrow"></i>
 														</a></li>
