@@ -28,6 +28,7 @@ import mybatis.ClubDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.GameDTO;
 import mybatis.GameMemberDTO;
+import mybatis.GoalHistoryDTO;
 import mybatis.MatchDAOImpl;
 import mybatis.MatchDTO;
 
@@ -92,14 +93,12 @@ public class AndroidMatchController {
 				squad.add(i, nullDTO);
 		}
 
-		for (GameMemberDTO gameMemberDTO : lists) {
-			if (gameMemberDTO.getGm_form() == (-1)) {
-				bench.add(gameMemberDTO);
-			}
-		}
-
+		
+		ArrayList<GoalHistoryDTO> goalLists =  sqlSession.getMapper(ClubDAOImpl.class).matchGoalLists(g_idx);
+		
 		model.addAttribute("g_idx", g_idx);
 		model.addAttribute("lists", lists);
+		model.addAttribute("goalLists", goalLists);
 		model.addAttribute("squad", squad);
 		model.addAttribute("bench", bench);
 

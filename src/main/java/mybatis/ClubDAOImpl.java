@@ -100,6 +100,8 @@ public interface ClubDAOImpl {
 	
 	public int goalInsert(String goal, String assist, int g_idx);
 	
+	public ArrayList<GoalHistoryDTO> matchGoalLists(int g_idx);
+	
 	//fcm 메세지 클럽명꺼내기
 	public String getClubName(int c_idx);	
 //	안드로이드********************************************************
