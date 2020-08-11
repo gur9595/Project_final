@@ -9,19 +9,29 @@ public class GoalHistoryDTO {
 	private int gh_time;
 	private int count;
 	private String name;
+	private String goalname;
+	private String assistname;
 	
 	public GoalHistoryDTO() {
 		super();
 	}
 	
-	public GoalHistoryDTO(int gh_idx, int g_idx, String gh_goal, String gh_assist, int gh_time) {
+	
+	public GoalHistoryDTO(int gh_idx, int g_idx, String gh_goal, String gh_assist, int gh_time, int count, String name,
+			String goalname, String assistname) {
 		super();
 		this.gh_idx = gh_idx;
 		this.g_idx = g_idx;
 		this.gh_goal = gh_goal;
 		this.gh_assist = gh_assist;
 		this.gh_time = gh_time;
+		this.count = count;
+		this.name = name;
+		this.goalname = goalname;
+		this.assistname = assistname;
 	}
+
+
 	public int getGh_idx() {
 		return gh_idx;
 	}
@@ -67,6 +77,22 @@ public class GoalHistoryDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getGoalname() {
+		return goalname;
+	}
+
+	public void setGoalname(String goalname) {
+		this.goalname = goalname;
+	}
+
+	public String getAssistname() {
+		return assistname;
+	}
+
+	public void setAssistname(String assistname) {
+		this.assistname = assistname;
 	}
 	
 	

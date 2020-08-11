@@ -13,7 +13,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script type="text/javascript"
 	src="http://static.footballuser.com/javascripts/jquery.json-2.3.min.js"></script>
-<script type="text/javascript" src="./../resources/js/formation.js"></script>
+<script type="text/javascript" src="./../resources/js/formation2.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="./../resources/css/framework.css">
 <script type="text/javascript"
@@ -189,7 +189,7 @@
 					<table id="player_table"  
 					style="overflow:hidden; height:auto;  cellspacing:0; cellpadding:0; border:0">
 						<tbody>
-							<c:forEach items="${bench }" var="row" varStatus="status">
+							<c:forEach items="${lists }" var="row" varStatus="status">
 								<tr>
 									<td align="left" class="player_header"  style="height:40px;">
 										<div class="player ui-draggable" style="font-size: 20px;"
