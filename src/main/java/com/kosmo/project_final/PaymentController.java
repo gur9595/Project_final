@@ -44,6 +44,10 @@ public class PaymentController {
 		model.addAttribute("cash", money);
 		return "payment/payment_main";  
 	}
+	@RequestMapping("/payment/paymentMain2.do")
+	public String paymentMain2() {
+		return "payment/payment_main2";
+	}
 	
 	@RequestMapping("/payment/paymentDeposit.do") 
 	public String paymentDeposit(HttpServletRequest req, CashDTO cashDTO, Principal principal,  Model model) {

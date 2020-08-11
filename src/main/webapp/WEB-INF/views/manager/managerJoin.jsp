@@ -17,7 +17,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="./../resources/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
 <style>
 h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen Script;
 	margin:52px auto 10px 0px;
@@ -25,7 +25,7 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
 	border-bottom : 3px solid #000066;
 }
 
-.box select {
+/* .box select {
   background-color: #FFFFFF;
   color: black;
   padding: 12px;
@@ -61,7 +61,8 @@ h2 { font-size : 24px; color:#000066; line-height:30px; font-family : Nanum Pen 
 
 .box select option {
   padding: 30px;
-}
+} */
+
 input[type=checkbox], input[type=radio]
 {
 	width : 20px; height : 20px; cursor: pointer;
@@ -83,8 +84,9 @@ label {
 	  <!-- 이미지 위에 글쓰는곳 -->
 	</div>
 </div>
+<div class="wrrapper row3">
 	<main class="hoc container clear">
-	    <div class="container">
+	    <div class="content">
 	    <h1 class="title-join" style="font-size:40px; font-weight:bold; text-align:center; font-family : Musinsa">매니저 지원</h1>
 	    <form action="../manager/managerRequest.do" method="post" id="myForm">
 			<!-- Header -->
@@ -99,17 +101,17 @@ label {
 			<div class="box" style="width: 100%; height: 300px;">
 			    <textarea style="width: 100%; height: 100%;" id="mr_rfa" name="mr_rfa"></textarea>
 			</div>
-	        
+	        <br />
 			<h2>현재 하는 일</h2>
 			<div class="box" style="width: 100%; height: 300px;">
 			    <textarea style="width: 100%; height: 100%;" id="mr_work" name="mr_work"></textarea>
 			</div>
-	        
+	        <br />
 			<h2>주요 경력</h2>
 			<div class="box" style="width: 100%; height: 300px;">
 			    <textarea style="width: 100%; height: 100%;" id="mr_career" name="mr_career"></textarea>
 			</div>
-	          
+	         <br /> 
 	        <h2>활동할 수 있는 지역</h2>
 	        <table class="table table-borderless">
 				<tr>
@@ -206,7 +208,7 @@ label {
 		<div class="clear"></div>
 	</main>
 	<!-- footer -->
-	
+	</div>
 <%@ include file="./../include/footer.jsp"%>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->

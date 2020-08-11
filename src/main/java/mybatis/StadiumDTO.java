@@ -22,8 +22,8 @@ public class StadiumDTO {
 	private String s_lat;
 	private String s_lng;
 	private String s_check;
+
 	private java.sql.Date s_date;
-	
 	
 	//검색을 위한 변수
 	private String searchTxt;
