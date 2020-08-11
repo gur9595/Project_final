@@ -1056,7 +1056,6 @@ public class ClubController {
 
 		return "club/club_success";
 	}
-
 	// 클럽 생성 앱
 	@RequestMapping(value = "/android/clubCreate.do", method = RequestMethod.POST)
 	public String androidClubCreatePro(HttpSession session, ClubDTO clubdto, Model model,

@@ -208,7 +208,7 @@ function match_insert(f){
 						사용 금액 : <span id="list_price" style="line-height: 30px;"></span><br /><br />
 						<div align="center">보유중인 ball : <span id="list_ball"></span><br /></div>
 					</div>
-						<button type="submit" class="addr" >예약하기</button>
+						<button type="submit" class="reserve" >예약하기</button>
 				</div>
 			</div>
 		</div>
@@ -233,7 +233,7 @@ function match_insert(f){
 		<input type="hidden" id="price" value="${price }" />
 		<input type="hidden" id="ball" value="${cash }" />
 		<input type="hidden" id="type" value="${type }" />
-		<h2 style="text-align: center; font-weight: bold; font-size: 50px">${dong }&nbsp;${name }</h2>
+		<h1 style="text-align: center; font-weight: bold; font-size: 50px">${dong }&nbsp;${name }</h1>
 		
 		<div class="mr-5" style="text-align: right;">
 			<a href="map.do?g_saddr=${addr}&g_sname=${name}" style="display: inline;"
@@ -250,9 +250,9 @@ function match_insert(f){
 		</div>
 		<br />
 		<div> 
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08920.jpg" class="slide" style="width:100%; height: 400px;">
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08923.jpg" class="slide" style="width:100%; height: 400px;">
-			<img src="https://plab-football.s3.amazonaws.com/media/DSC08956.jpg" class="slide" style="width:100%; height: 400px;">
+			<img src="./../resources/uploadsFile/${s_pic1 }" class="slide" style="width:100%; height: 400px;">
+			<img src="./../resources/uploadsFile/${s_pic2 }" class="slide" style="width:100%; height: 400px;">
+			<img src="./../resources/uploadsFile/${s_pic3 }" class="slide" style="width:100%; height: 400px;">
 		</div>
 		<main class="hoc container clear">
 			<br> <br> <br>

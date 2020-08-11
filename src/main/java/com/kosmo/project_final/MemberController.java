@@ -384,12 +384,20 @@ public class MemberController {
    }
    
    //경기장 등록
-   @RequestMapping("/member/member_stadiumInsert.do")
-   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req, Model model) {
-      
-      String s_addr1 = req.getParameter("s_addr1");
+
+   @RequestMapping(value="/member/member_stadiumInsert.do",method=RequestMethod.POST)
+   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req,MultipartHttpServletRequest mtfRequest ,Model model) {
+	   String s_addr1 = req.getParameter("s_addr1");
       String s_addr2 = req.getParameter("s_addr2");
       String s_addr = s_addr1+" "+s_addr2;
+
+      String s_phone1 = req.getParameter("s_phone1");
+      String s_phone2 = req.getParameter("s_phone2");
+      String s_phone3 = req.getParameter("s_phone3");
+      
+      String s_phone = s_phone1+"-"+s_phone2+"-"+s_phone3;
+      dto.setS_phone(s_phone);
+      System.out.println("s_phone : "+ s_phone);
       
       //좌표값 받기 
       String latitude = req.getParameter("latitude"); //위도
@@ -410,7 +418,39 @@ public class MemberController {
       System.out.println("s_memo : "+dto.getS_memo());
       System.out.println("s_lat : " + dto.getS_lat());
       System.out.println("s_lng : " + dto.getS_lng());
+
+      String totalFileName = "";
       
+      List<MultipartFile> fileList = mtfRequest.getFiles("file");
+      String src = mtfRequest.getParameter("src");
+      System.out.println("src value : " + src);
+
+      String path = req.getSession().getServletContext().getRealPath("/resources/uploadsFile/");
+
+      for (MultipartFile mf : fileList) {
+          String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+          long fileSize = mf.getSize(); // 파일 사이즈
+
+          System.out.println("originFileName : " + originFileName);
+          System.out.println("fileSize : " + fileSize);
+
+          String safeFile = path + System.currentTimeMillis() + originFileName;
+          
+          totalFileName += System.currentTimeMillis() + originFileName+",";
+          
+          try {
+              mf.transferTo(new File(safeFile));
+          } catch (IllegalStateException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+          } catch (IOException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+          }
+      }
+      
+      dto.setS_pic(totalFileName);
+   
       int insert_ok = sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
       String result = "";
       if(insert_ok == 0) {
@@ -419,7 +459,9 @@ public class MemberController {
       else if(insert_ok == 1) {
     	  result = "success";
       }
+      
       model.addAttribute("result", result);
+      
       return"member/stadium_create_check";
    }
    

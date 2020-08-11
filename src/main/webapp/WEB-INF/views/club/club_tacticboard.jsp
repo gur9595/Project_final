@@ -70,7 +70,8 @@
         opacity: 0.8; z-index:1;">
         <div id="score" class="ui-widget-content ui-corner-all" style="display:none"> 
         	<div style="font-size: 1em;padding:10px;"> 
-	        	<form action="">
+	        	<form name="goalInsert" id="goalInsert" method="post" action="../android/goalInsert.do">
+	        		<input type="hidden" name="g_idx" value="${g_idx }" />
 	                	스코어러 : 
 	        		<select name="goal" width="75%" style="display:inline">
 	        			<option value="" selected="selected">스코어러</option>
@@ -644,6 +645,27 @@
 <button id="button2" class="btn btn-light" style="left:70% ;">Opponent</button>
 <button id="button" class="btn btn-light" style="left:10px ;">Bench</button>
 <button id="button3" class="btn btn-light" style="left:10px ;">Goal</button>
+<%-- <div style="display:inline; width:50%; float:right;">
+	<ol>
+		<c:forEach items="${goalLists }" var="row" varStatus="status" >
+				<li>골 : ${row.goalname } 어시 : ${row.assistname }</li>
+		</c:forEach>
+	</ol>
+</div> --%>
+<div style="overflow-y:scroll; width:300px; height:100px; padding:4px; border:1 solid #000000;display:inline; float:right;">
+   <table>
+   	<c:forEach items="${goalLists }" var="row" varStatus="status" >
+        <tr>
+        	<th>${status.count }.</th>
+            <th>골 :</th>
+            <th>${row.goalname }</th>
+            <th>어시 :</th>
+            <th>${row.assistname }</th>
+        </tr>
+       </c:forEach>
+    </table>
+</div>
+
    <br class="clear" />
 
 

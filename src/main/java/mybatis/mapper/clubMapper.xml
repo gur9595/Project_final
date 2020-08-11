@@ -413,6 +413,16 @@
 			) where rnum between 1 and 10
    </select>
    
+   <insert id="goalInsert">
+   	insert into goalhistory values ( goalhistory_seq.nextval,#{param3}, #{param1}, #{param2}, 0)
+   </insert>
+   
+   <select id="matchGoalLists" resultType="mybatis.GoalHistoryDTO">
+   		select gh.gh_goal, (select m.m_name from member m where m.m_id = gh.gh_goal) as goalname, gh.gh_assist, (select m.m_name from member m where m.m_id = gh.gh_assist) as assistname
+   		from goalhistory gh
+   		where gh.g_idx = #{param1}
+   </select>
+   
    <!-- *******************안드로이드 매퍼*************************** -->
    
    
