@@ -73,6 +73,35 @@
 		from cash
 		where m_id = #{param1} order by cs_date desc
 	</select>
+	
+	<select id="myGoalList" resultType="int">
+		select count(*)
+		from goalhistory
+		where gh_goal = #{param1}
+	</select>
+	<select id="myGoalAssistList" resultType="mybatis.GoalHistoryDTO">
+		select (select m_name from member where m_id = gh.gh_assist) as name,gh.gh_assist,count(*) as count from goalhistory gh where gh.gh_goal = #{param1} group by gh.gh_assist order by count(*) desc
+	</select>
+	<select id="myAssistList" resultType="int">
+		select count(*)
+		from goalhistory
+		where gh_assist = #{param1}
+	</select>
+	<select id="myAssistGoalList" resultType="mybatis.GoalHistoryDTO">
+		select (select m_name from member where m_id = gh.gh_goal) as name,gh.gh_goal,count(*) as count from goalhistory gh where gh.gh_assist = #{param1} group by gh.gh_goal order by count(*) desc
+	</select>
+	
+	<select id="myTotal" resultType="int">
+		select count(*)
+		from gamemember gm inner join game g on gm.g_idx = g.g_idx
+		where gm.m_id = #{param1} and g.g_rating is not null
+	</select>
+	
+	<select id="myInfo" resultType="mybatis.MemberDTO">
+		select *
+		from member
+		where m_id like #{param1}
+	</select>
       
   </mapper>
 

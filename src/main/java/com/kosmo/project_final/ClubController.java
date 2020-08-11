@@ -194,7 +194,7 @@ public class ClubController {
 	}
 
 	@RequestMapping(value = "/club/clubApplyAction.do", method = RequestMethod.POST)
-	public String clubApplyAction(Principal principal, HttpServletRequest req) {
+	public String clubApplyAction(Principal principal, HttpServletRequest req,Model model) {
 		String m_id = principal.getName();
 
 		ClubMemberDTO clubMemberDTO = new ClubMemberDTO();
@@ -203,10 +203,25 @@ public class ClubController {
 		clubMemberDTO.setCm_memo(req.getParameter("memo"));
 		// Mybatis 사용
 		int suc = sqlSession.getMapper(ClubDAOImpl.class).clubApply(clubMemberDTO);
+		
+		String result = "";
+	      if(suc == 0) {
+	    	  result = "fail";
+	      }
+	      else if(suc == 1) {
+	    	  result = "success";
+	      }
 
+      model.addAttribute("result", result);
 		System.out.println(suc);
 
-		return "club/club_mylist";
+		return "club/club_success";
+	}
+	
+	@RequestMapping("/club/clubSuccess.do")
+	public String clubSuccess() {
+
+		return "club/club_success";
 	}
 	
 	//클럽생성 웹
@@ -537,37 +552,38 @@ public class ClubController {
 
 	@RequestMapping("/club/clubCheckFormation.do")
 	public String clubCheckForm(Principal principal, HttpServletRequest req, Model model) {
-
-
 		int g_idx = Integer.parseInt(req.getParameter("g_idx"));
+
+		GameDTO gameDTO = sqlSession.getMapper(ClubDAOImpl.class).gameInfo(g_idx);
 
 		ArrayList<GameMemberDTO> lists = sqlSession.getMapper(ClubDAOImpl.class).clubMakingForm(g_idx);
 
-		ArrayList<String> squad = new ArrayList<String>();
-		ArrayList<String> bench = new ArrayList<String>();
+		GameMemberDTO Nulldto = new GameMemberDTO();
+		ArrayList<GameMemberDTO> squad = new ArrayList<GameMemberDTO>();
+		ArrayList<GameMemberDTO> bench = new ArrayList<GameMemberDTO>();
 		int check = 0;
 		for (int i = 0; i < 26; i++) {
 			check = 0;
 			for (GameMemberDTO gameMemberDTO : lists) {
 				if (i == gameMemberDTO.getGm_form()) {
-					squad.add(i, gameMemberDTO.getM_name());
+					squad.add(i, gameMemberDTO);
 					check++;
 				}
 			}
 			if (check == 0)
-				squad.add(i, "");
+				squad.add(i, Nulldto);
 		}
 
 		for (GameMemberDTO gameMemberDTO : lists) {
 			if (gameMemberDTO.getGm_form() == (-1)) {
-				bench.add(gameMemberDTO.getM_name());
+				bench.add(gameMemberDTO);
 			}
 		}
 
-		
-		model.addAttribute("lists", lists);
 		model.addAttribute("squad", squad);
 		model.addAttribute("bench", bench);
+		model.addAttribute("g_idx", g_idx);
+		model.addAttribute("gameDTO", gameDTO);
 
 		return "club/club_view_formcheck";
 	} 
@@ -1013,12 +1029,20 @@ public class ClubController {
 
 				clubdto.setC_emb(saveFileName);
 
-				sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
+				int ok = sqlSession.getMapper(ClubDAOImpl.class).clubCreate(clubdto);
 
 				int idx = sqlSession.getMapper(ClubDAOImpl.class).clubIdx(clubdto);
 
 				sqlSession.getMapper(ClubDAOImpl.class).clubCreateMember(m_id, idx);
 
+				String result = "";
+		      if(ok == 0) {
+		    	  result = "fail2";
+		      }
+		      else if(ok == 1) {
+		    	  result = "success2";
+		      }
+		      model.addAttribute("result", result);
 			}
 			returnObj.put("files", resultList);
 		} catch (IOException e) {
@@ -1027,7 +1051,7 @@ public class ClubController {
 			e.printStackTrace();
 		}
 		
-		return "club/club_main";
+		return "club/club_success";
 	}
 	
 	// 클럽 생성 앱

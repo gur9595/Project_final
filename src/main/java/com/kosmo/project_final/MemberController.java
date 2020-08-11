@@ -39,7 +39,7 @@ import org.json.simple.parser.ParseException;
 import mybatis.CashDAOImpl;
 import mybatis.CashDTO;
 import mybatis.ClubDAOImpl;
-
+import mybatis.GoalHistoryDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
 import mybatis.StadiumDAOImpl;
@@ -614,10 +614,32 @@ public class MemberController {
    }
    
    // 마이페이지 경기기록 부분 추가
-   @RequestMapping("/member/playHistory.do")
-   public String playHistory() {
+   @RequestMapping("/member/memberHistory.do")
+   public String playHistory(Principal principal, HttpServletRequest req, Model model) {
+
+		String m_id = principal.getName();
 	   
-	   return "member/play_history";
+
+	   MemberDTO dto = sqlSession.getMapper(MemberDAOImpl.class).myInfo(m_id);
+	   
+	   int total = sqlSession.getMapper(MemberDAOImpl.class).myTotal(m_id);
+	   int goal = sqlSession.getMapper(MemberDAOImpl.class).myGoalList(m_id);
+	   ArrayList<GoalHistoryDTO> goalAssistLists = sqlSession.getMapper(MemberDAOImpl.class).myGoalAssistList(m_id);
+	   int assist = sqlSession.getMapper(MemberDAOImpl.class).myAssistList(m_id);
+	   ArrayList<GoalHistoryDTO> assistGoalLists = sqlSession.getMapper(MemberDAOImpl.class).myAssistGoalList(m_id);
+	   
+	   System.out.println(total);
+	   System.out.println(goal);
+	   System.out.println(assist);
+	   
+	   model.addAttribute("total", total);
+	   model.addAttribute("goal", goal);
+	   model.addAttribute("goalAssistLists", goalAssistLists);
+	   model.addAttribute("assist", assist);
+	   model.addAttribute("assistGoalLists", assistGoalLists);
+	   model.addAttribute("dto", dto);
+	   
+	   return "member/memberHistory";
    }
 
    @RequestMapping("/member/mypageMain.do")
