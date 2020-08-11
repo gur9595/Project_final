@@ -41,7 +41,7 @@
 							style="width: 100%; height: 100px; background: #ffffff; line-height: 30px;"
 							readonly="readonly">
 						</textarea>	
-					</div>
+					</div> 
 					<div class="modal-footer">
 						<button type="submit" class="req" >신청하기</button>
 					</div>
