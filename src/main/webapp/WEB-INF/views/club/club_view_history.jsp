@@ -91,7 +91,7 @@
 	<div id="main-wrapper">
     	<%@ include file="./club_view_header.jsp" %>
         <%@ include file="./club_view_sidebar.jsp" %>
-        <div class="page-wrapper" style="margin-top:-20px;">
+        <div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
@@ -132,11 +132,13 @@
 	                                                        		<td><a href="javascript:openClubView(${row.home_idx})">${row.home }</a></td> 
 	                                                        	</c:otherwise>
 	                                                        </c:choose>
+	                                                        
 	                                                        	<td>${row.home_score }</td>
 	                                                        	<th>
 	                                                        	<button type="button"  onclick="javascript:openMatchDetail">VS</button>
 	                                                        	</th>
 	                                                        	<td>${row.away_score }</td>
+	                                                        	
 	                                                        <c:choose>
 	                                                        	<c:when test="${row.g_check== 'yes' }">
 	                                                        		<td>${row.away }</td> 
@@ -148,6 +150,7 @@
 	    		                                                    <td><a href="javascript:openClubView(${row.away_idx})">${row.away }</a></td>                                    
 	                                                        	</c:otherwise>
 	                                                        </c:choose>
+	                                                        
 	                                                        <th>
 	                                                    		<c:choose>
 	                                                    			<c:when test="${row.g_result=='W' }">

@@ -208,7 +208,7 @@ function match_insert(f){
 						사용 금액 : <span id="list_price" style="line-height: 30px;"></span><br /><br />
 						<div align="center">보유중인 ball : <span id="list_ball"></span><br /></div>
 					</div>
-						<button type="submit" class="addr" >예약하기</button>
+						<button type="submit" class="reserve" >예약하기</button>
 				</div>
 			</div>
 		</div>
@@ -233,7 +233,7 @@ function match_insert(f){
 		<input type="hidden" id="price" value="${price }" />
 		<input type="hidden" id="ball" value="${cash }" />
 		<input type="hidden" id="type" value="${type }" />
-		<h2 style="text-align: center; font-weight: bold; font-size: 50px">${dong }&nbsp;${name }</h2>
+		<h1 style="text-align: center; font-weight: bold; font-size: 50px">${dong }&nbsp;${name }</h1>
 		
 		<div class="mr-5" style="text-align: right;">
 			<a href="map.do?g_saddr=${addr}&g_sname=${name}" style="display: inline;"
@@ -323,9 +323,9 @@ function match_insert(f){
 					<span style="font-size: 20px; color: black; font-weight: bold;">구장 특이사항</span><br /><br />
 				</header>
 				<div class="comcont">
-					<pre class="txt2">
-						${memo }
-					</pre>
+				
+				<textarea name="" id="" cols="20" rows="10" style="color: #000; border: 0;">${memo }</textarea>
+
 				</div>
 				<header>
 					<span style="font-size: 20px; color: black; font-weight: bold;">구장 편의사항</span><br /><br />

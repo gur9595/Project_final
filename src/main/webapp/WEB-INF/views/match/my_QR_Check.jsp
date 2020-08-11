@@ -132,18 +132,24 @@ String keyword = request.getParameter("keyword");
 	<div class="co">
 	<center class="center">경기 결과</center>
 	<br /><br />
-	<form name="creFrm" id="creFrm" enctype="multipart/form-data" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
+	
 		
+		<form method="get" action="<c:url value="/match/my_ratingmemo.do" />">
+			<input type="hidden" name="g_idx" value="<%=request.getAttribute("g_idx")%>"/>
+			<input type="hidden" name="g_num" value="<%=request.getAttribute("g_num")%>"/>
+			<h2>평가</h2>
+			
+			<div>
+				<input type="text" class="txtBox31" placeholder="상대팀을 평가해주세요" id="c_momo" name="g_ratingmemo" >
+			</div>
+			<br /><br />
+			<div style="text-align:center;">
+				<Button type="submit" id="joinBtn" class="snip1535" >완료</Button>
+			</div>
+			
+		</form>
 		
-		<h2>평가</h2>
-		<div>
-			<input type="text" class="txtBox31" placeholder="클럽을 자유롭게 소개해 주세요" id="c_momo" name="c_memo" >
-		</div>
-		<br /><br />
-		<div style="text-align:center;">
-			<Button type="submit" id="joinBtn" class="snip1535" >클럽생성</Button>
-		</div>
-	</form>
+
 	</div>
 </div>
 </body>

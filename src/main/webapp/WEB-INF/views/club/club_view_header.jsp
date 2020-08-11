@@ -3,14 +3,19 @@
 <sec:authorize access="isAuthenticated()">
     <sec:authentication property="principal.username" var="m_id" />
 </sec:authorize>
+<script src="./../resources/js/kakao.js"></script>
 <!DOCTYPE html>
 <html>
-<body>
-
+<style>
+html{
+background-color: #eeeeee;
+}
+</style>
 <body>
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin5" style="width:200px;">
+                <div class="navbar-header" style="width:200px;" data-logobg="skin5">
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                     <a class="navbar-brand" href="clubView.do?c_idx=${clubDTO.c_idx }">
                         <b class="logo-icon p-l-10">
                             <img src="./../resources/img/bprologo.png" height="30px" alt="마크" style="padding-left: 10px; color: #fff; -webkit-filter : opacity(.5) drop-shadow(0 0 0 white); filter :opacity(.5) drop-shadow(0 0 0 white);" />
@@ -45,10 +50,10 @@
 </body>
 
 <script type="text/javascript">
+		Kakao.init('c7748327b5a31c74b003d0b290d08cca');
 	function send(c_idx) {
 		//<![CDATA[
 		// // 사용할 앱의 JavaScript 키를 설정해 주세요.
-		Kakao.init('c7748327b5a31c74b003d0b290d08cca');
 		// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 		Kakao.Link.createCustomButton({
 			container : '#kakao-link-btn',

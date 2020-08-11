@@ -49,7 +49,7 @@
     	<%@ include file="./club_view_header.jsp" %>
         <%@ include file="./club_view_sidebar.jsp" %>
         
-        <div class="page-wrapper" style="margin-top:-20px;">
+        <div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->

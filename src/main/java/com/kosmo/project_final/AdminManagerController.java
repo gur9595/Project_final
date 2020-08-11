@@ -16,9 +16,10 @@ import mybatis.AdminDAOImpl;
 import mybatis.ClubDTO;
 import mybatis.ManagerRequestDTO;
 import mybatis.MemberDTO;
+import mybatis.StadiumDTO;
 
 @Controller
-public class AdminManagerController {
+public class AdminManagerController { 
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -58,12 +59,6 @@ public class AdminManagerController {
 		sqlSession.getMapper(AdminDAOImpl.class).managerDelete(m_id);
 		
 		return "redirect:adminManager.do";
-	}
-	
-	@RequestMapping("/admin/adminStadium.do")
-	public String adminStadium() {
-		
-		return "admin/adminStadium";
 	}
 	
 	@RequestMapping("/admin/adminLogin.do")
@@ -115,4 +110,31 @@ public class AdminManagerController {
 		return "admin/adminBoard";
 	}
 	
+	@RequestMapping("/admin/adminStadium.do")
+	public String adminStadium(Model model) { 
+		
+		ArrayList<StadiumDTO> lists = sqlSession.getMapper(AdminDAOImpl.class).adminStadium();
+		
+		for(StadiumDTO dto : lists) {
+			String memo = dto.getS_memo();
+			memo = memo.replaceAll("(\r\n|\r|\n|\n\r)", "</br>");
+			dto.setS_memo(memo);
+		}
+		
+		model.addAttribute("lists", lists);
+		
+		return "admin/adminStadium";
+	}
+	
+	@RequestMapping("/admin/adminStadiumApply.do")
+	public String adminStadiumApply(Model model,HttpServletRequest req) { 
+		
+		String s_id = req.getParameter("s_id");
+		
+		sqlSession.getMapper(AdminDAOImpl.class).adminStadiumApply(s_id);
+		
+		return "admin/adminStadium";
+	}
+	
 }
+

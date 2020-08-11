@@ -32,10 +32,20 @@ function getParam(sname) {
 
 
 $(document).ready(function(){
+	
+	var check = getParam("check");
 	var c_idx = getParam("c_idx");
+	if(check=='0'){
 	window.open("../club/clubViewMatch.do?c_idx="+c_idx, '_blank',
-			"width=1280,height=720, toolbar=no, menubar=no, resizable=no");
+			"width=1200,height=720, toolbar=no, menubar=no, resizable=no");
 	location.href="../";
+	}
+	else{
+	window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
+		"width=1200,height=720, toolbar=no, menubar=no, resizable=no");
+	location.href="../";
+	}
+	
 });
 </script>
 </head>

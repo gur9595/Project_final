@@ -48,7 +48,7 @@
     	<%@ include file="./club_view_header.jsp" %>
     	<%@ include file="./club_view_sidebar.jsp" %>
         
-		<div class="page-wrapper" style="margin-top:-20px;">     
+		<div class="page-wrapper" style="margin-left:200px;margin-top:-20px;">     
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
@@ -115,12 +115,12 @@
 	function openFormMake(g_idx){
 		
 		window.open("../club/clubMakeFormation.do?g_idx="+g_idx, '_blank', 
-				"width=800,height=650, toolbar=no, menubar=no, resizable=no");
+				"width=700,height=650, toolbar=no, menubar=no, resizable=no");
 	}
 	function openFormCheck(g_idx){
 		
 		window.open("../club/clubCheckFormation.do?g_idx="+g_idx, '_blank',
-				"width=800,height=650, toolbar=no, menubar=no, resizable=no");
+				"width=700,height=650, toolbar=no, menubar=no, resizable=no");
 	}
 </script>
 </html>

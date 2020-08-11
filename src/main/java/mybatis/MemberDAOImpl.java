@@ -30,4 +30,16 @@ public interface MemberDAOImpl {
 	public int ballHistory(String m_id);
 	
 	public ArrayList<MemberDTO> ballList(String m_id);
+	
+	// 개인 전적 용
+	
+	public int myTotal(String m_id);
+	
+	public int myGoalList(String m_id);
+	public ArrayList<GoalHistoryDTO> myGoalAssistList(String m_id);
+	
+	public int myAssistList(String m_id);
+	public ArrayList<GoalHistoryDTO> myAssistGoalList(String m_id);
+	
+	public MemberDTO myInfo(String m_id);
 }

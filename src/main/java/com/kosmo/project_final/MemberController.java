@@ -39,7 +39,7 @@ import org.json.simple.parser.ParseException;
 import mybatis.CashDAOImpl;
 import mybatis.CashDTO;
 import mybatis.ClubDAOImpl;
-
+import mybatis.GoalHistoryDTO;
 import mybatis.MemberDAOImpl;
 import mybatis.MemberDTO;
 import mybatis.StadiumDAOImpl;
@@ -385,15 +385,23 @@ public class MemberController {
    
    //경기장 등록
    @RequestMapping("/member/member_stadiumInsert.do")
-   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req) {
+   public String member_stadiumInsert(HttpSession session, StadiumDTO dto,HttpServletRequest req, Model model) {
       
       String s_addr1 = req.getParameter("s_addr1");
       String s_addr2 = req.getParameter("s_addr2");
       String s_addr = s_addr1+" "+s_addr2;
       
-      //좌표값 받기
+      //좌표값 받기 
       String latitude = req.getParameter("latitude"); //위도
       String longitude = req.getParameter("longitude"); //경도
+      
+      String[] s_cvs = req.getParameterValues("s_cv");
+      String s_cv = "";
+      for(int i = 0; i < s_cvs.length; i++) {
+    	  s_cv += s_cvs[i];
+    	  System.out.println("s_cv : " + s_cv);
+      }
+      dto.setS_cv(s_cv);
       
       dto.setS_addr(s_addr);
       dto.setS_lat(latitude);
@@ -403,9 +411,23 @@ public class MemberController {
       System.out.println("s_lat : " + dto.getS_lat());
       System.out.println("s_lng : " + dto.getS_lng());
       
-      sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
-      
-      return"member/member_select";
+      int insert_ok = sqlSession.getMapper(StadiumDAOImpl.class).stadiumInsert(dto);
+      String result = "";
+      if(insert_ok == 0) {
+    	  result = "fail";
+      }
+      else if(insert_ok == 1) {
+    	  result = "success";
+      }
+      model.addAttribute("result", result);
+      return"member/stadium_create_check";
+   }
+   
+   //경기장 등록체크페이지
+   @RequestMapping("/member/stadium_create_check.do")
+   public String stadium_create_check() {
+	   
+	   return"member/stadium_create_check";
    }
    
    //접근 에러
@@ -547,6 +569,35 @@ public class MemberController {
 		
 		return "member/ball_history";
    
+   }
+   
+   // 마이페이지 경기기록 부분 추가
+   @RequestMapping("/member/memberHistory.do")
+   public String playHistory(Principal principal, HttpServletRequest req, Model model) {
+
+		String m_id = principal.getName();
+	   
+
+	   MemberDTO dto = sqlSession.getMapper(MemberDAOImpl.class).myInfo(m_id);
+	   
+	   int total = sqlSession.getMapper(MemberDAOImpl.class).myTotal(m_id);
+	   int goal = sqlSession.getMapper(MemberDAOImpl.class).myGoalList(m_id);
+	   ArrayList<GoalHistoryDTO> goalAssistLists = sqlSession.getMapper(MemberDAOImpl.class).myGoalAssistList(m_id);
+	   int assist = sqlSession.getMapper(MemberDAOImpl.class).myAssistList(m_id);
+	   ArrayList<GoalHistoryDTO> assistGoalLists = sqlSession.getMapper(MemberDAOImpl.class).myAssistGoalList(m_id);
+	   
+	   System.out.println(total);
+	   System.out.println(goal);
+	   System.out.println(assist);
+	   
+	   model.addAttribute("total", total);
+	   model.addAttribute("goal", goal);
+	   model.addAttribute("goalAssistLists", goalAssistLists);
+	   model.addAttribute("assist", assist);
+	   model.addAttribute("assistGoalLists", assistGoalLists);
+	   model.addAttribute("dto", dto);
+	   
+	   return "member/memberHistory";
    }
 
    @RequestMapping("/member/mypageMain.do")

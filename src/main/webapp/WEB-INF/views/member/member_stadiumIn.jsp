@@ -36,19 +36,19 @@
 	            </header>
    
 	            <h2>사업자등록번호(아이디)</h2>
-	               <input type="text" class="txtBox31" id="s_id" name="s_id" placeholder="사업자등록번호" maxlength="20" >
+	               <input type="text" class="txtBox31" id="s_id" name="s_id" placeholder="사업자등록번호" value="2014470030" maxlength="20" >
 	   
 	            <h2>비밀번호</h2>
-	               <input type="password" class="txtBox31" id="s_pw" name="s_pw" maxlength="20"
+	               <input type="password" class="txtBox31" id="s_pw" name="s_pw" value="ehdrjs13!" maxlength="20"
 	                   placeholder="비밀번호(숫자,영문,특수문자 조합 최소8자)">
 
 	            <h2>비밀번호 확인</h2>
 	               <input type="password" class="txtBox31" 
-	                  id="confirmPassword" name="confirmPassword" maxlength="20" placeholder="비밀번호 확인">
+	                  id="confirmPassword" name="confirmPassword" maxlength="20" value="ehdrjs13!" placeholder="비밀번호 확인">
 	   
 	            <h2>구장 이름</h2>
-	               <input type="text" class="txtBox31" id="s_name" maxlength="20" name="s_name" placeholder="구장이름입력">
-    	
+	               <input type="text" class="txtBox31" id="s_name" maxlength="20" value="서울디지털운동장" name="s_name" placeholder="구장이름입력">
+    	 
 	            <h2>주소</h2>
 	               <input class="form-control" type="text" id="postcode" name="zip1" placeholder="우편번호"maxlength="20"
 	                  style="width: 322px; height: 50px; margin-top: 5px; display:inline;" readonly />
@@ -70,21 +70,21 @@
 	   
 	   
 	            <h2>휴대전화</h2> <input class="txtBox31"maxlength="20"
-	               type="tel" id="s_phone" name="s_phone" style="font-size:25px;"
+	               type="tel" id="s_phone" value="01048939337" name="s_phone" style="font-size:25px;"
 	               placeholder="휴대전화 입력(-없이)" maxlength="11">
 	   
 	            <h2>구장크기</h2> <input class="txtBox31"maxlength="20"
-	               type="tel" id="s_size" name="s_size" style="font-size:25px;"
+	               type="tel" id="s_size" value="104x68" name="s_size" style="font-size:25px;"
 	               placeholder="00x00으로 입력" maxlength="11">
 	   
 	            <h2>구장 대표 사진</h2> 
 	               <input type="file" class="txtBox31" id="s_pic" name="s_pic" font-size:25px;>
 	   
 	            <h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="font-size:25px;"
-	               placeholder="00:00" maxlength="11">
+	               placeholder="00:00" value="07:00" maxlength="11">
 	               
 	            <h2>마감시간</h2> <input type="tel" class="txtBox31" id="s_endtime" name="s_endtime"style="font-size:25px;"
-	               placeholder="00:00" maxlength="11">
+	               placeholder="00:00" value="23:00" maxlength="11">
 	   
 	            <h2>구장 종류</h2>
 
@@ -95,13 +95,13 @@
 
 	         
 	            <h2>편의 시설</h2>
-	                  <input type="checkbox" name="s_cv" id="shower" value="샤워장" style="display:inline;" />
+	                  <input type="checkbox" name="s_cv" id="shower" value="샤워장||" style="display:inline;" />
 	                  <label for="shower" style="padding-right: 35px;">샤워장</label>
 	                  
-	                  <input type="checkbox" name="s_cv" id="parking" value="주차장" style="display:inline;" />
+	                  <input type="checkbox" name="s_cv" id="parking" value="주차장||" style="display:inline;" />
 	                  <label for="parking" style="padding-right: 35px;">주차장</label>
 	                  
-	                  <input type="checkbox" name="s_cv" id="shose" value="신발대여" style="display:inline;"/>
+	                  <input type="checkbox" name="s_cv" id="shose" value="신발대여||" style="display:inline;"/>
 	                  <label for="shose" style="padding-right: 35px;">신발대여</label>
 	                  
 	                  <input type="checkbox" name="s_cv" id="sportswear" value="운동복대여" style="display:inline;"/>
@@ -109,11 +109,15 @@
 
 	
 	            <h2>상세 내용</h2> 
-	            <textarea style=" width: 100%; height: 200px;" name="s_memo"></textarea>
+	            <textarea style=" width: 100%; height: 200px;" name="s_memo">서울디지털운동장은 서울디지털산업단지 입주기업 근로자의 스포츠 활동을 통한 체력증진과 스트레스 해소를 위해 한국산업단지공 단이 건립·운영하고 있는 체육시설입니다.
+
+서울디지털운동장은 국제규격의 인조잔디 축구장과 풋살(미니축구) 경기장 그리고 농구·배구·족구를 즐길 수 있는 다목적 경기장으 로 구성되어 있으며 부대시설로 탈의실과 주차장을 구비하고 있습니다.
+
+한국산업단지공단은 서울디지털산업단지가 건강하고 생동감 넘치는 산업 단지로 거듭나기 위해 입주기업과 근로자들이 문화·체육활동을 즐기며 참여할 수 있는 어울림의 장이 되도록 정성을 다하겠습니다.</textarea>
 	   
 	            <h2>가격</h2> <input
 	               type="tel" class="txtBox31" id="s_price" name="s_price" 
-	               placeholder=",없이 숫자만 입력" maxlength="11" style="font-size:25px;">
+	               placeholder=",없이 숫자만 입력" value="100000" maxlength="11" style="font-size:25px;">
 	            
 	            <br/> <br/>
 	

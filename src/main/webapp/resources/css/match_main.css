@@ -261,6 +261,47 @@ tr:hover.game_list, tr:hover.extra_list, tr:hover.stadium_list {
   width:100%;
   transition:800ms ease all;
 }
+
+
+.reserve{
+  background:#2E64FE;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.3em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  font-weight:700;
+  border-radius: 3px;
+}
+
+.reserve:hover {
+  background:#fff;
+  color:#2E64FE;
+}
+
+.reserve:before,.reserve:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #2E64FE;
+  transition:400ms ease all;
+}
+.reserve:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.reserve:hover:before, .reserve:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
 .snip {
   background-color: #FF8000;
   border: none;
@@ -362,6 +403,10 @@ tr:hover.game_list, tr:hover.extra_list, tr:hover.stadium_list {
 
 tr, td {
     padding: 15px;
+}
+h2{
+	font-size: 22px !important; text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.2); font-weight:900;
+	padding: 3px 5px; margin: 5px 0; BACKGROUND-COLOR: #FFF;  BORDER-LEFT: #FF8000 8px solid; 
 }
 
 
