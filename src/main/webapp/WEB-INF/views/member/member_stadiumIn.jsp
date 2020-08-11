@@ -83,7 +83,7 @@
 	               type="tel" id="s_size" value="104x68" name="s_size" style="font-size:25px;"
 	               placeholder="00x00으로 입력" maxlength="11"/>
 	   
-	            <h2>구장 대표 사진</h2> 
+	            <h2>구장 대표 사진</h2>  
 	               <input type="file" class="txtBox31" id="s_pic" name="file" style="padding:5px" multiple="multiple"/>
 	   
 	            <h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="font-size:25px;"
