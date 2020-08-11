@@ -155,7 +155,8 @@ function match_insert(f){
 		return false;
 	}
 	if(cash.value < 0){
-		alert("보유금액이 부족하여 예약할 수 없습니다.");
+		alert("보유금액이 부족하여 예약할 수 없습니다.\n결제페이지로 이동합니다.");
+		location.href="../payment/paymentMain.do";		
 		return false;
 	}
 	

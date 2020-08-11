@@ -14,7 +14,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script type="text/javascript"
 	src="http://static.footballuser.com/javascripts/jquery.json-2.3.min.js"></script>
-<script type="text/javascript" src="./../resources/js/formation2.js"></script>
+<script type="text/javascript" src="./../resources/js/formation.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="./../resources/css/framework.css">
 <script type="text/javascript"
