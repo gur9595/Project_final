@@ -108,7 +108,7 @@ public class AdminManagerController {
 	public String adminBoard() {
 		
 		return "admin/adminBoard";
-	}
+	} 
 	
 	@RequestMapping("/admin/adminStadium.do")
 	public String adminStadium(Model model) { 
