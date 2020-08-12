@@ -632,7 +632,20 @@
    <select id="select_qrcheckA" resultType="mybatis.AndroidMatchDTO">
    		select g_qrcheck, g_num from game where g_idx=#{g_idx}
    </select>   
-  
+   
+   <select id="myClubName" resultType="String" parameterType="int">
+     	select c_name from game g inner join club c on g.c_idx = c.c_idx where g_idx=#{param1}
+   </select>
+    <select id="myYourName" resultType="String" parameterType="int">
+     	select c_name from game g inner join club c on g.c_idx = c.c_idx where g_idx = (select g_idx from game where g_num=#{param2} and g_idx !=#{param1})
+   </select>
+    <select id="myScore" resultType="int" parameterType="int">
+     	select count(*) goal from goalhistory where g_idx=#{param1}
+   </select>
+    <select id="yourScore" resultType="int" parameterType="int">
+     	select count(*) goal from goalhistory where g_idx = (select g_idx from game where g_num=#{param2} and g_idx !=#{param1})
+     	
+   </select>
 </mapper>
  
 
