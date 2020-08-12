@@ -231,7 +231,7 @@ function modal(idx, name, ability, age, gender, area) {
 
 function openClubView(c_idx){
    window.open("../club/clubView.do?c_idx="+c_idx, '_blank',
-         "width=1200,height=800, toolbar=no, menubar=no, resizable=no");
+         "width=1280,height=800, toolbar=no, menubar=no, resizable=no");
 }
 
 $('#writeFrm').submit(function(){

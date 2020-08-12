@@ -128,32 +128,51 @@ public class AndroidMatchController {
 		return "redirect:/android/clubTacticBoard.do?g_idx="+g_idx;
 	}
 	
-	@RequestMapping("/match/my_ratingmemo.do")
+	@RequestMapping("/android/my_ratingmemo.do")
 	public String my_ratingmemo (HttpServletRequest req,AndroidMatchDTO androidMatchDTO) {
 		
 		String g_idx=req.getParameter("g_idx");
 		String g_num=req.getParameter("g_num");
+		String g_rating1=req.getParameter("star-input");
+		String g_ratingmemo=req.getParameter("g_ratingmemo");
+		int g_rating=Integer.parseInt(g_rating1);
 		androidMatchDTO.setG_idx(g_idx);
 		androidMatchDTO.setG_num(g_num);
+		androidMatchDTO.setG_rating(g_rating);
+		androidMatchDTO.setG_ratingmemo(g_ratingmemo);
 		System.out.println("g_idx : "+g_idx);
 		System.out.println("g_num : "+g_num);
+		System.out.println("g_rating : "+g_rating);
+		System.out.println("g_ratingmemo : "+g_ratingmemo);
 		sqlSession.getMapper(MatchDAOImpl.class).my_ratingmemo(androidMatchDTO);
 		
-		return "match/android_QR_success";
+		return "android/android_QR_success";
 	}
 	
-	@RequestMapping("/match/your_ratingmemo.do")
+	@RequestMapping("/android/your_ratingmemo.do")
 	public String your_ratingmemo (HttpServletRequest req,AndroidMatchDTO androidMatchDTO) {
 		
 		String g_idx=req.getParameter("g_idx");
 		String g_num=req.getParameter("g_num");
-		androidMatchDTO.setG_idx(g_idx);
-		androidMatchDTO.setG_num(g_num);
+		String g_rating1=req.getParameter("star-input");
+		String g_ratingmemo=req.getParameter("g_ratingmemo");
 		System.out.println("g_idx : "+g_idx);
 		System.out.println("g_num : "+g_num);
+		System.out.println("g_ratingmemo : "+g_ratingmemo);
+		System.out.println("g_rating : "+g_rating1);
+		int g_rating=Integer.parseInt(g_rating1);
+		
+		androidMatchDTO.setG_idx(g_idx);
+		androidMatchDTO.setG_num(g_num);
+		androidMatchDTO.setG_rating(g_rating);
+		androidMatchDTO.setG_ratingmemo(g_ratingmemo);
+		System.out.println("g_idx : "+g_idx);
+		System.out.println("g_num : "+g_num);
+		System.out.println("g_rating : "+g_rating);
+		System.out.println("g_ratingmemo : "+g_ratingmemo);
 		sqlSession.getMapper(MatchDAOImpl.class).your_ratingmemo(androidMatchDTO);
 		
-		return "match/android_QR_success";
+		return "android/android_QR_success";
 	}
 	
 	

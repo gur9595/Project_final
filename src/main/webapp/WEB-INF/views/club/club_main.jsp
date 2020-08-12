@@ -65,8 +65,6 @@
               <img src="./../resources/img/rank.png" style="width: 50%; height: 50%;"/> <br />
               <br>
               <h3 class="text-uppercase h4 mb-3">클럽 랭킹</h3>
-              <span style="cursor: pointer;" class="link" id="clubTotalRanking">전체 랭킹</span>/
-              <span style="cursor: pointer;" class="link" id="clubGuRanking">구별 랭킹</span>
             </div>
           </div>
         </div>

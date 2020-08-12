@@ -366,7 +366,8 @@ public class AndroidClubController {
 		String g_idx1 = req.getParameter("g_idx");
 		int g_idx = Integer.parseInt(g_idx1);
 		
-		String g_num = req.getParameter("g_num");
+		String g_num1 = req.getParameter("g_num");
+		int g_num = Integer.parseInt(g_num1);
 		
 		System.out.println("g_idx : "+g_idx);
 		System.out.println("g_num : "+g_num);
@@ -377,10 +378,21 @@ public class AndroidClubController {
 		//check바꾸기
 		sqlSession.getMapper(ClubDAOImpl.class).qrCheck(gameDTO);
 		
+		String cName1=sqlSession.getMapper(ClubDAOImpl.class).myClubName(g_idx);
+		String cName2=sqlSession.getMapper(ClubDAOImpl.class).myYourName(g_idx,g_num);		
+		int goal1=sqlSession.getMapper(ClubDAOImpl.class).myScore(g_idx);
+		int goal2=sqlSession.getMapper(ClubDAOImpl.class).yourScore(g_idx,g_num);
+		
+		
+		
 		model.addAttribute("g_idx",g_idx);
 		model.addAttribute("g_num",g_num);
+		model.addAttribute("cName1",cName1);
+		model.addAttribute("cName2",cName2);
+		model.addAttribute("goal1",goal1);
+		model.addAttribute("goal2",goal2);
 		
-		return "match/my_QR_Check";
+		return "android/my_QR_Check";
 	}
 	
 	//QR스캔하고 상대가 평가(상대->나)
@@ -391,7 +403,8 @@ public class AndroidClubController {
 		String g_idx1 = req.getParameter("g_idx");
 		int g_idx = Integer.parseInt(g_idx1);
 		
-		String g_num = req.getParameter("g_num");
+		String g_num1 = req.getParameter("g_num");
+		int g_num = Integer.parseInt(g_num1);
 		
 		System.out.println("g_idx : "+g_idx);
 		System.out.println("g_num : "+g_num);
@@ -402,11 +415,20 @@ public class AndroidClubController {
 		
 		//check바꾸기
 		sqlSession.getMapper(ClubDAOImpl.class).qrCheck(gameDTO);
+		
+		String cName1=sqlSession.getMapper(ClubDAOImpl.class).myClubName(g_idx);
+		String cName2=sqlSession.getMapper(ClubDAOImpl.class).myYourName(g_idx,g_num);		
+		int goal1=sqlSession.getMapper(ClubDAOImpl.class).myScore(g_idx);
+		int goal2=sqlSession.getMapper(ClubDAOImpl.class).yourScore(g_idx,g_num);
 
 		model.addAttribute("g_idx",g_idx);
 		model.addAttribute("g_num",g_num);
+		model.addAttribute("cName1",cName1);
+		model.addAttribute("cName2",cName2);
+		model.addAttribute("goal1",goal1);
+		model.addAttribute("goal2",goal2);
 		
-		return "match/your_QR_Check";
+		return "android/your_QR_Check";
 	}
 	
 	

@@ -11,20 +11,6 @@ request.setCharacterEncoding("UTF-8");
 <div class="hoc container clear" style="max-width:1300px;">
 	<div class="sub--tabs--wrapper">
         <div class="sub--tabs--container">
-            <div class="card--category">
-                <ul>
-                    <li>
-                        <a :class="{ 'is--selected': season_id == 1 && pageType === 'ranks' }" href="javascript:">
-                           	전체 랭킹
-                        </a>
-                    </li>
-                    <li>
-                        <a :class="{ 'is--selected': season_id == 2 && pageType === 'ranks' }" href="javascript:">
-                            구별 랭킹
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
     

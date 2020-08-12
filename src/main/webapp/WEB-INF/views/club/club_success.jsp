@@ -13,7 +13,6 @@
 
 $(document).ready(function(){
 	var result = document.getElementById("result").value;
-	var idx = document.getElementById("idx").value;
 	
 	if(result == "fail"){
 		alert("신청 실패.\n다시 시도해주세요.");
@@ -29,8 +28,6 @@ $(document).ready(function(){
 	}
 	else if(result == "success2"){
 		alert("클럽 생성 성공!");
-		window.open("../club/clubView.do?c_idx="+idx, '_blank',
-		"width=1280,height=800, toolbar=no, menubar=no, resizable=no");
 		location.href="../club/clubMain.do";
 	}
 	

@@ -10,10 +10,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
 h2 { 
-	font-size : 30px; color:#000066; line-height:30px;
+	font-size : 30px; color:#000066;
 	margin:35px auto 10px 0px;
 	padding : 2px 10px 2px 0px;
-	border-bottom : 3px solid #000066;
+	border-bottom: 0;
 }
 .box select {
   background-color: #FFFFFF;
@@ -120,7 +120,25 @@ label {
   width: 100%;
 }
 
-
+.star-input>.input,
+.star-input>.input>label:hover,
+.star-input>.input>input:focus+label,
+.star-input>.input>input:checked+label{display: inline-block;vertical-align:middle;background:url('./../resources/img/grade_img.png')no-repeat;}
+.star-input{display:inline-block; white-space:nowrap;width:225px;height:40px;padding:25px;line-height:30px;}
+.star-input>.input{display:inline-block;width:150px;background-size:150px;height:28px;white-space:nowrap;overflow:hidden;position: relative;}
+.star-input>.input>input{position:absolute;width:1px;height:1px;opacity:0;}
+star-input>.input.focus{outline:1px dotted #ddd;}
+.star-input>.input>label{width:30px;height:0;padding:28px 0 0 0;overflow: hidden;float:left;cursor: pointer;position: absolute;top: 0;left: 0;}
+.star-input>.input>label:hover,
+.star-input>.input>input:focus+label,
+.star-input>.input>input:checked+label{background-size: 150px;background-position: 0 bottom;}
+.star-input>.input>label:hover~label{background-image: none;}
+.star-input>.input>label[for="p1"]{width:30px;z-index:5;}
+.star-input>.input>label[for="p2"]{width:60px;z-index:4;}
+.star-input>.input>label[for="p3"]{width:90px;z-index:3;}
+.star-input>.input>label[for="p4"]{width:120px;z-index:2;}
+.star-input>.input>label[for="p5"]{width:150px;z-index:1;}
+.star-input>output{display:inline-block;width:60px; font-size:18px;text-align:right; vertical-align:middle;}
 
 </style>
 <%
@@ -134,23 +152,43 @@ String keyword = request.getParameter("keyword");
 	<br /><br />
 	
 		
-		<form method="get" action="<c:url value="/match/your_ratingmemo.do" />">
+		<form method="get" action="<c:url value="/android/my_ratingmemo.do" />">
 			<input type="hidden" name="g_idx" value="<%=request.getAttribute("g_idx")%>"/>
 			<input type="hidden" name="g_num" value="<%=request.getAttribute("g_num")%>"/>
-			<h2>평가</h2>
+			<h2><%=request.getAttribute("cName1") %> : <%=request.getAttribute("goal1") %> VS <%=request.getAttribute("cName2") %> : <%=request.getAttribute("goal2") %></h2>
 			
+			<h3>별점주기</h3>
+			
+			<span class="star-input">
+				<span class="input">
+			    	<input type="radio" name="star-input" value="1" id="p1">
+			    	<label for="p1">1</label>
+			    	<input type="radio" name="star-input" value="2" id="p2">
+			    	<label for="p2">2</label>
+			    	<input type="radio" name="star-input" value="3" id="p3">
+			    	<label for="p3">3</label>
+			    	<input type="radio" name="star-input" value="4" id="p4">
+			    	<label for="p4">4</label>
+			    	<input type="radio" name="star-input" value="5" id="p5">
+			    	<label for="p5">5</label>
+			  	</span>
+			  	<output for="star-input"><b>0</b>점</output>						
+			</span>
+			
+			<br/>
 			<div>
 				<input type="text" class="txtBox31" placeholder="상대팀을 평가해주세요" id="c_momo" name="g_ratingmemo" >
 			</div>
-			<br /><br />
+			<br />
 			<div style="text-align:center;">
 				<Button type="submit" id="joinBtn" class="snip1535" >완료</Button>
 			</div>
 			
 		</form>
-		
 
 	</div>
 </div>
 </body>
+<script src="./../resources/js/jquery-1.11.3.min.js"></script>
+<script src="./../resources/js/star.js"></script>
 </html>
