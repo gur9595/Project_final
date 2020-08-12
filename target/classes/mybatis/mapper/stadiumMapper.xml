@@ -5,6 +5,11 @@
 
 <mapper namespace="mybatis.StadiumDAOImpl">
    
+   <!-- 경기장로그인 -->
+   <select id="login" resultType="mybatis.StadiumDTO">
+   		SELECT * FROM stadium WHERE s_id=#{0} and s_pw=#{1}
+   </select>
+   
    <!-- 전체 경기장 갯수 -->
    <select id="getTotalCount" resultType="int" parameterType="mybatis.StadiumDTO">
       SELECT COUNT(*) FROM stadium
@@ -51,6 +56,7 @@
      <select id="stadiumlist" parameterType="int" resultType="mybatis.StadiumDTO">
         select * from stadium where s_idx = #{s_idx}
      </select>
+     
   
    <!-- 경기장상세보기 리스트 -->
    <select id="s_gamelist" parameterType="int" resultType="mybatis.StadiumGameDTO">
@@ -75,6 +81,38 @@
       select c_name from club where c_idx = #{c_idx}
    </select>
    
+   <!-- 경기장 정보 수정 -->
+   <select id="stEdit" resultType="mybatis.StadiumDTO">
+   		select * from stadium where s_idx=#{s_idx}
+   </select>
+
+   
+   <update id="stEditAction" parameterType="mybatis.StadiumDTO">
+   		update stadium set s_pw=#{s_pw}, s_name=#{s_name}, s_phone=#{s_phone}, s_type=#{s_type}, s_size=#{s_size}, s_cv=#{s_cv}, s_price=#{s_price}, s_memo=#{s_memo}, s_starttime=#{s_starttime}, s_endtime=#{s_endtime}
+   			where s_id=#{s_id}
+   </update>
+   
+   <!-- 예약자 불러오기 -->
+   <select id="reservelist" parameterType="mybatis.ParameterDTO" resultType="mybatis.StadiumGameDTO">
+   	select c.*,g.* from club c inner join game g on c.c_idx = g.c_idx where g.s_idx = #{s_idx}
+   		order by g.g_date desc
+   </select>
+   <!-- <select id="reservation_get" resultType="">
+   		select c_name from club where c_idx = #{c_idx}
+   </select> -->
+   
+   <!-- <select id="gnumCount" parameterType="int" resultType="mybatis.StadiumGameDTO">
+   	select count(*) from game where g_num = #{g_num}
+   </select> -->
+   
+   <!-- 경기장 정보 -->
+      <select id="StadiumInfo" resultType="mybatis.StadiumDTO" parameterType="mybatis.ParameterDTO">
+   		select * from stadium where s_idx=#{s_idx}
+   </select>
+   <!-- 구글차트 -->
+	<select id="GoogleCharts" parameterType="mybatis.ParameterDTO" resultType="mybatis.StadiumGameDTO">
+		select * from game where s_idx = #{s_idx}
+	</select>
 </mapper>
 
 
