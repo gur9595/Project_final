@@ -154,7 +154,7 @@ String keyword = request.getParameter("keyword");
 				<option placeholder="" value="">선택해 주세요</option>
 				<option value="유소년부">유소년부</option>
 				<option value="청소년부">청소년부</option>
-				<option value="쳥년부" selected>청년부</option>
+				<option value="청년부" selected>청년부</option>
 				<option value="중년부">중년부</option>
 		    </select>
 		</div>

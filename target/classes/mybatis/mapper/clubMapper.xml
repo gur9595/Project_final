@@ -87,9 +87,7 @@
       
       <!-- 클럽 상세보기 접수현황 -->
       <select id="clubViewAccept" resultType="mybatis.GameDTO">
-         select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
-         where g.g_num in ( select g_num from game where c_idx=#{c_idx} )
-         and g.g_check = 'no' 
+          select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx where g.g_num in (select g2.g_num from game g2 where g2.c_idx = #{param1} and g2.g_check = 'owner') and  g.g_check like 'no' and  g.c_idx != #{param1}
          and to_char(g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')
          order by g.g_date 
       </select>
@@ -118,11 +116,12 @@
       </select>
       
       <select id="clubViewMyApply" resultType="mybatis.GameDTO">
-         select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
-         where g.c_idx = #{c_idx}
-         and g.g_check = 'no' 
-         and to_char(g_date, 'YY-MM-DD') <![CDATA[ >= ]]> to_char(sysdate, 'YY-MM-DD')
-         order by g.g_date 
+	    select g1.*,g2.c_idx from game g1 inner join game g2 on g1.g_num = g2.g_num 
+	    where g1.c_idx = #{param1}
+	    and g2.c_idx != #{param1}
+	    and g1.g_check = 'no'
+	    and to_char(g1.g_date, 'YY-MM-DD') <![CDATA[ >= ]]>  to_char(sysdate, 'YY-MM-DD')
+	        
       </select>
       
       <!-- 클럽 상세보기 권한관리 -->
@@ -455,7 +454,7 @@
    <!-- 클럽 상세보기 접수현황 -->
    <select id="clubViewAcceptA" resultType="mybatis.GameDTO">
       select g.*, c.c_name from game g inner join club c on g.c_idx = c.c_idx
-      where g.g_num in ( select g_num from game where c_idx=#{c_idx} and g_check ='owner' )
+      where g.g_num in ( select g_num from game where c_idx = #{c_idx} and g_check ='owner' )
       and g.g_check = 'no' order by g.g_date 
    </select>
    

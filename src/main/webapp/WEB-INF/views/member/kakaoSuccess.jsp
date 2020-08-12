@@ -35,7 +35,7 @@ h3 {
 </head>
 <body>
   <div
-    style="background-color: #fff480; width: 100%; height: 50px; text-align: center; color: black;">
+    style="background-color: #fff480; top:50%; width: 100%; height: 50px; text-align: center; color: black;">
     <h3>KakaoLogin Success</h3>
   </div>
   <br>
