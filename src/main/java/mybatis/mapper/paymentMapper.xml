@@ -27,4 +27,16 @@
 		from member 
 		where m_id = #{param1}
 	</select>
+	
+	<!-- Ball 구매자 가져오기 -->
+	<select id="ballBuyer" resultType="mybatis.MemberDTO">
+		<!-- 
+			이런 방법도 있다.
+				select c.m_id, m.m_name 
+				from cash c inner join member m on c.m_id = m.m_id 
+				where m.m_id = #{param1} 
+		-->
+		select * from member where m_id= #{param1} 
+		
+	</select>
 </mapper>  

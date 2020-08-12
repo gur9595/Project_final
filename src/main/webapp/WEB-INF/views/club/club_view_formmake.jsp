@@ -189,7 +189,7 @@
 					<table id="player_table"  
 					style="overflow:hidden; height:auto;  cellspacing:0; cellpadding:0; border:0">
 						<tbody>
-							<c:forEach items="${bench }" var="row" varStatus="status">
+							<c:forEach items="${lists }" var="row" varStatus="status">
 								<tr>
 									<td align="left" class="player_header"  style="height:40px;">
 										<div class="player ui-draggable" style="font-size: 20px;"

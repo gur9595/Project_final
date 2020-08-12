@@ -33,7 +33,7 @@
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded overlay" style="background-image:url('./../resources/img/축구공배너1.png');">
+<div class="bgded overlay" style="background-image:url('./../resources/img/idpw.jpg'); background-position: 0 50%;">
   <div id="breadcrumb" class="hoc clear"> 
   
     <!--이미지 위에 글쓰는곳-->
@@ -87,7 +87,7 @@
                   </form:form>
                <br /><br />
                <div class="login100-api">
-               <h5 style="font-style:bold; padding-left:130px; ">소셜 로그인</h5>
+               <h5 style="font-style:bold; padding-left:120px; ">Social Login</h5>
 <!--                <img src="./../resources/img/naver.png" alt="naverAPI" /><br><img src="./../resources/img/kakao.png" alt="kakaoAPI" width="320px" /> -->
 				<br />
               <div id="naver_id_login"><a href="${url }">
@@ -103,7 +103,7 @@
                   <!-- <span class="txt1">
                      Don’t have an account?
                   </span> -->
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;
                   <a class="txt2" href="./../member/memberSelect.do">
                      Sign Up
                   </a>

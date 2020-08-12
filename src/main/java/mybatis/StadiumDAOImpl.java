@@ -21,4 +21,17 @@ public interface StadiumDAOImpl {
 	
 	public String c_name_get(int c_idx);
 	
+	public StadiumDTO login(String id, String pass);
+	
+	public StadiumDTO stEdit(ParameterDTO parameterDTO);
+	
+	public int stEditAction(StadiumDTO stadiumDTO);
+	
+	public ArrayList<StadiumGameDTO> reservelist(ParameterDTO parameterDTO);
+	
+	//public int gnumCount(int g_num);
+	
+	public StadiumGameDTO GoogleCharts(ParameterDTO parameterDTO);
+	
+	public StadiumDTO StadiumInfo(ParameterDTO parameterDTO);
 }

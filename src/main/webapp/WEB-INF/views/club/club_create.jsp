@@ -81,7 +81,7 @@ String keyword = request.getParameter("keyword");
 	<form name="creFrm" id="creFrm" enctype="multipart/form-data" action="<c:url value="/club/clubCreate.do" />" method="post" onsubmit="return isValidate(creFrm);">
 		<h2>팀명</h2>
 		<div>
-			<input type="text" class="txtBox31" placeholder="팀명을 입력해주세요" id="c_name" name="c_name">
+			<input type="text" class="txtBox31" value="팀 비프로" placeholder="팀명을 입력해주세요" id="c_name" name="c_name">
 		</div>
 		
         <h2>엠블럼 등록하기</h2>
@@ -100,7 +100,7 @@ String keyword = request.getParameter("keyword");
 		<h2>주 활동지역</h2>
 		<div class="box">
 		    <select id="c_area" name="c_area">
-		        <option selected="" value="">선택해 주세요</option>
+		        <option value="">선택해 주세요</option>
 		        <option value="강남구">강남구</option>
 		        <option value="강동구">강동구</option>
 		        <option value="강북구">강북구</option>
@@ -108,7 +108,7 @@ String keyword = request.getParameter("keyword");
 		        <option value="관악구">관악구</option>
 		        <option value="광진구">광진구</option>
 		        <option value="구로구">구로구</option>
-		        <option value="금천구">금천구</option>
+		        <option selected="selected" value="금천구">금천구</option>
 		        <option value="노원구">노원구</option>
 		        <option value="도봉구">도봉구</option>
 		        <option value="동대문구">동대문구</option>
@@ -135,16 +135,16 @@ String keyword = request.getParameter("keyword");
 		<label for="man" style="padding-right:200px;">남자</label>
 		<input type="radio" name="c_gender" id="wowan" value="여자" style="display:inline;">
 		<label for="wowan" style="padding-right:200px;">여자</label>
-		<input type="radio" name="c_gender" id="c_mixed" value="혼성" style="display:inline;">
+		<input type="radio" name="c_gender" id="c_mixed" checked value="혼성" style="display:inline;">
 		<label for="c_mixed">혼성</label>
 		
 		<h2>인원수 제한</h2>
 		<div class="box">
 		    <select id="c_memlimit" name="c_memlimit">
-				<option placeholder="" value="">선택해 주세요</option>
-				<option>30</option>
-				<option>40</option>
-				<option>50</option>
+				<option value="">선택해 주세요</option>
+				<option value="30">30</option>
+				<option value="40" selected>40</option>
+				<option value="50">50</option>
 		    </select>
 		</div>
 		
@@ -152,29 +152,29 @@ String keyword = request.getParameter("keyword");
 		<div class="box">
 		    <select id="c_age" name="c_age">
 				<option placeholder="" value="">선택해 주세요</option>
-				<option>유소년부</option>
-				<option>청소년부</option>
-				<option>청년부</option>
-				<option>중년부</option>
+				<option value="유소년부">유소년부</option>
+				<option value="청소년부">청소년부</option>
+				<option value="쳥년부" selected>청년부</option>
+				<option value="중년부">중년부</option>
 		    </select>
 		</div>
 		
 		<h2>실력</h2>
 		<div class="box">
 			<select id="c_ability" name="c_ability" >
-				<option selected="" value="">선택해 주세요</option>
-				<option>최상</option>
-				<option>상</option>
-				<option>중상</option>
-				<option>중</option>
-				<option>중하</option>
-				<option>하</option>
+				<option value="">선택해 주세요</option>
+				<option value="최상" selected>최상</option>
+				<option value="상">상</option>
+				<option value="중상">중상</option>
+				<option value="중">중</option>
+				<option value="중하">중하</option>
+				<option value="하">하</option>
 			</select>
 		</div>
 		
 		<h2>선호 종목</h2>
 
-			<input type="radio" name="c_type" id="c_soccer" value="축구" style="display:inline;">
+			<input type="radio" name="c_type" id="c_soccer" checked value="축구" style="display:inline;">
 			<label for="c_soccer" style="padding-right:200px;">축구</label>
 			<input type="radio" name="c_type" id="c_footsal" value="풋살" style="display:inline;">
 			<label for="c_footsal" style="padding-right:200px;">풋살</label>
@@ -184,7 +184,7 @@ String keyword = request.getParameter("keyword");
 		
 		<h2>클럽 소개글</h2>
 		<div>
-			<input type="text" class="txtBox31" placeholder="클럽을 자유롭게 소개해 주세요" id="c_momo" name="c_memo" >
+			<input type="text" value="뭐든지 할 수 있습니다. 열심히 하는 팀 비프로." class="txtBox31" placeholder="클럽을 자유롭게 소개해 주세요" id="c_momo" name="c_memo" >
 		</div>
 		<br /><br />
 		<div style="text-align:center;">

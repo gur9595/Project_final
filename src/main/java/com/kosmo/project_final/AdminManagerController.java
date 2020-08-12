@@ -108,7 +108,7 @@ public class AdminManagerController {
 	public String adminBoard() {
 		
 		return "admin/adminBoard";
-	}
+	} 
 	
 	@RequestMapping("/admin/adminStadium.do")
 	public String adminStadium(Model model) { 
@@ -133,7 +133,7 @@ public class AdminManagerController {
 		
 		sqlSession.getMapper(AdminDAOImpl.class).adminStadiumApply(s_id);
 		
-		return "admin/adminStadium";
+		return "redirect:./adminStadium.do";
 	}
 	
 }

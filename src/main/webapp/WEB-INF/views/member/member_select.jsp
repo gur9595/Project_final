@@ -230,7 +230,7 @@
 <!--top-->
 <%@ include file="./../include/top.jsp"%>
 <!--각 페이지 이미지-->
-<div class="bgded" style="background-image:url('./../resources/img/team2.jpg');">
+<div class="bgded overlay" style="background-image:url('./../resources/img/signup.jpg'); background-position: 0 55%;"> 
   <div id="breadcrumb" class="hoc clear"> 
     <!--이미지 위에 글쓰는곳-->
   </div>
