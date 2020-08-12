@@ -101,6 +101,15 @@ function game_modal(date, time, name, addr, memo, idx, c_name) {
   	document.getElementById("list_memo").value = memo;
   	document.getElementById("list_idx").value = idx;
   	document.getElementById("list_c_name").innerHTML = c_name;
+  	cash = document.getElementById("cash").value;
+  	if(cash == null){
+  		cash = 0;
+  	}
+  	document.getElementById("result").value = cash - 50000;
+  	price = "50000";
+  	
+  	document.getElementById("list_price").innerHTML = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ball";
+	document.getElementById("list_ball").innerHTML = cash.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ball";
 }
 
 //용병 리스트 모달 창 값 전송
@@ -194,6 +203,7 @@ function match_insert(f){
 	
 	var c_idx = document.getElementById("c_idx");
 	var list_idx = document.getElementById("list_idx");
+	var cash = document.getElementById("result");
 	
 	if(c_idx.options[c_idx.selectedIndex].value==""){
 		alert("클럽을 선택해주세요.");
@@ -202,6 +212,12 @@ function match_insert(f){
 	}
 	if(list_idx.value==""){
 		alert("잘못된 접근입니다.");
+		return false;
+	}
+
+	if(cash.value < 0){
+		alert("보유금액이 부족하여 예약할 수 없습니다.\n결제페이지로 이동합니다.");
+		location.href="../payment/paymentMain.do";		
 		return false;
 	}
 	
