@@ -100,7 +100,7 @@ th {
 }
 </style>
 
-<body  onresize="parent.resizeTo(1280,720)" onload="parent.resizeTo(1280,720)">
+<body onresize="parent.resizeTo(1280,800)" onload="parent.resizeTo(1280,800)">
 	<div id="main-wrapper">
 		<%@ include file="./club_view_header.jsp"%>
 		<%@ include file="./club_view_sidebar.jsp"%>
@@ -122,18 +122,18 @@ th {
 											<div>
 												<h4 style="margin-left: 80px;">경기 일정</h4>
 											</div>
-											<div class="tb_wrap">
-												<div class="tb_box">
-													<table style="width: 800px;" class="tb">
-														<tr style="border-bottom: 3px solid rgb(59, 209, 116)" class="fixed_top">
-															<th class="cell1" scope="col" >날짜</th>
-															<th class="cell2" scope="col">시간</th>
-															<th class="cell3" scope="col">구장 이름</th>
-															<th class="cell4" scope="col" >상대팀</th>
-															<th class="cell5" scope="col">공유</th>
-															<th  colspan="2" class="cell6" scope="col">참가여부</th>
+											<div>
+												<div>
+													<table style="width: 800px;">
+														<tr style="border-bottom: 3px solid rgb(59, 209, 116)">
+															<th >날짜</th>
+															<th >시간</th>
+															<th>구장 이름</th>
+															<th>상대팀</th>
+															<th>공유</th>
+															<th colspan="2">참가여부</th>
 															<c:if test="${getCmgrade.cm_grade =! 'player'}">
-																<th colspan="2" class="cell7" scope="col">임원전용</th>
+																<th>임원전용</th>
 															</c:if>
 														</tr>
 	
@@ -141,36 +141,32 @@ th {
 	
 															<tr>
 																<input type="hidden" value="${row.g_num }" />
-																<th class="cell1" scope="row">${row.g_date }</th>
-																<th class="cell2">${row.g_time }</th>
-																<th class="cell3">${row.g_sname }</th>
-																<th class="cell4"><c:choose>
+																<th>${row.g_date }</th>
+																<th>${row.g_time }</th>
+																<th>${row.g_sname }</th>
+																<th><c:choose>
 																		<c:when test="${row.c_name == '' }">없음</c:when>
 																		<c:otherwise>
 																			<a href="javascript:openClubView(${row.c_idx})">${row.c_name }</a>
 																		</c:otherwise>
 																	</c:choose></th>
-																<th class="cell5"><a id="kakao-link-btn"
+																<th><a id="kakao-link-btn"
 																	href="javascript:sendLink('${row.g_saddr }','${row.g_sname }','${row.g_date }',${param.c_idx})">
 																		<img
 																		src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" />
 																</a></th>
-																<th class="cell6"><input type="button"
+																<th><input type="button"
 																	onclick="javascript:gameMemberApply(${param.c_idx},${row.g_idx},${m_id })"
 																	class="btn btn-outline-success"
 																	style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
 																	value="참가"></th>
-																<th class="cell6"><input type="button"
+																<th><input type="button"
 																	onclick="javascript:gameMemberDrop(${param.c_idx},${row.g_idx},${m_id })"
 																	class="btn btn-outline-danger"
 																	style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
 																	value="불참"></th>
 																<c:if test="${getCmgrade.cm_grade =! 'player'}">
-																	<th class="cell7"><input type="button"
-																		class="btn btn-outline-primary"
-																		style="width: 65px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 16px;"
-																		value="용병고용"></th>
-																	<th class="cell7"><input type="button" id="cancel"
+																	<th><input type="button" id="cancel"
 																		class="btn btn-outline-secondary"
 																		style="width: 50px; height: 30px; text-align: center; padding: 0; font-weight: 900; font-size: 17px;"
 																		value="취소"></th>
@@ -224,6 +220,7 @@ th {
 													</div>
 												</c:otherwise>
 											</c:choose>
+											<br /><br />
 											<c:choose>
 												<c:when test="${getCmgrade.cm_grade == 'player' }">
 

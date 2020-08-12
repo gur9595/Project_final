@@ -43,7 +43,7 @@
         border-bottom: 1px solid #444444;
     }
 </style>
-<body  onresize="parent.resizeTo(1280,720)" onload="parent.resizeTo(1280,720)">
+<body  onresize="parent.resizeTo(1280,800)" onload="parent.resizeTo(1280,800)">
     <div id="main-wrapper">
     	<%@ include file="./club_view_header.jsp" %>
     	<%@ include file="./club_view_sidebar.jsp" %>

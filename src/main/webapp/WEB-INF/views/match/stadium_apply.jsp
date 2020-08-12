@@ -114,6 +114,7 @@ function apply(time, c_name, c_idx, g_idx) {
 	s_name = document.getElementById("s_name").value;
 	addr = document.getElementById("s_addr").value;
 	price = document.getElementById("price").value;
+	price = price / 2;
 	ball = document.getElementById("ball").value;
 	type = document.getElementById("type").value;
 	

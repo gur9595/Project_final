@@ -175,7 +175,7 @@ function send(){
 		});
 }
 </script> -->
-<body onresize="parent.resizeTo(1280,720)" onload="parent.resizeTo(1280,720)"> 
+<body onresize="parent.resizeTo(1280,800)" onload="parent.resizeTo(1280,800)"> 
 	<div id="main-wrapper">
 		<%@ include file="./club_view_header.jsp"%> 
 		<%@ include file="./club_view_sidebar.jsp"%>
@@ -264,7 +264,7 @@ function send(){
 																			<h6
 																				style="margin: 0; padding: 0; color: #BFBFBF; font-size: 20px; font-weight: 600; margin-bottom: 15px;">팀소개</h6>
 																			<div
-																				style="margin: 0; padding: 0; background-color: #ADADAD; height: 165px; width: 300px; border-radius: 15px; padding: 10px; overflow-x: hidden;">
+																				style="margin: 0; padding: 0; color:#000; background-color: #ADADAD; height: 165px; width: 300px; border-radius: 15px; padding: 10px; overflow-x: hidden;">
 																				${clubDTO.c_memo }</div>
 																		</div>
 																	</div>

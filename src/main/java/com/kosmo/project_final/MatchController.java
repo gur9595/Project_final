@@ -633,9 +633,11 @@ public class MatchController {
 		String m_id = (String)principal.getName();
 		
 		ArrayList<ClubDTO> c_list =  sqlSession.getMapper(MatchDAOImpl.class).getC_name(m_id);
+		int cash = sqlSession.getMapper(MatchDAOImpl.class).getCash(m_id);
 		
 		model.addAttribute("c_list", c_list);
 		model.addAttribute("lists", lists);
+		model.addAttribute("cash", cash);
 
 		return "match/game_list";
 	}
@@ -710,11 +712,16 @@ public class MatchController {
 			
 	//게임리스트 모달창에서 매치신청
 	@RequestMapping("/match/matchApply.do")
-	public String matchApply(Model model, HttpServletRequest req) {
+	public String matchApply(Model model, HttpServletRequest req, Principal principal) {
 				
 		GameDTO gameDTO = new GameDTO();
 		gameDTO.setG_idx(Integer.parseInt(req.getParameter("g_idx")));
-		gameDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));		
+		gameDTO.setC_idx(Integer.parseInt(req.getParameter("c_idx")));
+		
+		MemberDTO memberDTO = new MemberDTO();
+		int cash = Integer.parseInt(req.getParameter("result"));
+		String m_id = principal.getName();
+		sqlSession.getMapper(MatchDAOImpl.class).setCash(cash, m_id);
 		
 		sqlSession.getMapper(MatchDAOImpl.class).matchApply(gameDTO);
 				

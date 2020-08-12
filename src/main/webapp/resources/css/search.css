@@ -1128,7 +1128,7 @@ legend {
 
 /* 클럽 리스트 */
 .one_half{
-	margin-left:0px;
+   margin-left:0px;
 }
 .responsive-table li {
   border-radius: 3px;
@@ -1204,7 +1204,7 @@ legend {
 }
 
 .center{
-	font-size : 50px;
+   font-size : 50px;
 }
 
 @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
@@ -1309,10 +1309,61 @@ legend {
   height: 100%;
   width: 100%;
 }
+h2{
+   font-size: 22px !important; text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.2); font-weight:900;
+   padding: 3px 5px; margin: 5px 0; BACKGROUND-COLOR: #FFF;  BORDER-LEFT: #FF8000 8px solid; 
+}
 
 
-
-
+.req {
+  background-color: #2E64FE;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'BenchNine', Arial, sans-serif;
+  font-size: 1.3em;
+  line-height: 1em;
+  outline: none;
+  padding: 6px 10px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.req:before,
+.req:after {
+  border-color: transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.req:before {
+  border-color: #2E64FE;
+  border-right-width: 2px;
+  border-top-width: 2px;
+  right: -5px;
+  top: -5px;
+}
+.req:after {
+  border-bottom-width: 2px;
+  border-color: #2E64FE;
+  border-left-width: 2px;
+  bottom: -5px;
+  left: -5px;
+}
+.req:hover {
+  background-color: #2E64FE;
+}
+.req:hover:before,
+.req:hover:after {
+  height: 100%;
+  width: 100%;
+}
 
 
 

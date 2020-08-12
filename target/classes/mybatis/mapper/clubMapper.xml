@@ -116,11 +116,12 @@
       </select>
       
       <select id="clubViewMyApply" resultType="mybatis.GameDTO">
-	    select g1.*,g2.c_idx from game g1 inner join game g2 on g1.g_num = g2.g_num 
-	    where g1.c_idx = #{param1}
-	    and g2.c_idx != #{param1}
-	    and g1.g_check = 'no'
-	    and to_char(g1.g_date, 'YY-MM-DD') <![CDATA[ >= ]]>  to_char(sysdate, 'YY-MM-DD')
+	    select g1.*, c.c_name from game g1 
+        inner join game g2 on g1.g_num = g2.g_num 
+        inner join club c on c.c_idx = g2.c_idx
+        where g1.c_idx = #{param1} and g2.c_idx != #{param1} and g2.g_check = 'owner' and g1.g_check = 'no' 
+        and to_char(g1.g_date, 'YY-MM-DD') <![CDATA[ >= ]]>  to_char(sysdate, 'YY-MM-DD')
+        order by g1.g_date
 	        
       </select>
       

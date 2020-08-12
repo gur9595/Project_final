@@ -13,7 +13,8 @@
 			style="color: black; width: 40%; margin-left: 30%; margin-right: 30%;">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
-	
+					<input type="hidden" id="cash" name="cash" value="${cash }" />
+					<input type="hidden" id="result" name="result" />
 					<div class="modal-header">
 						<h2 class="modal-title" id="myModalLabel">경기신청하기</h2>
 	
@@ -23,7 +24,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<input type="hidd en" id="list_idx" name="g_idx" />
+						<input type="hidden" id="list_idx" name="g_idx" />
 						<span style="line-height: 30px;">우리 클럽 : </span>
 						<select class="form-control" name="c_idx" id="c_idx" style="width: 250px; display: inline; line-height: 30px;">
 							<option value="" selected="selected">클럽을 선택하세요.</option>
@@ -41,10 +42,10 @@
 							style="width: 100%; height: 100px; background: #ffffff; line-height: 30px;"
 							readonly="readonly">
 						</textarea>	
-					</div> 
-					<div class="modal-footer">
-						<button type="submit" class="req" >신청하기</button>
+						사용 금액 : <span id="list_price" style="line-height: 30px;"></span><br /><br />
+						<div align="center">보유중인 ball : <span id="list_ball"></span><br /></div> 
 					</div>
+					<button type="submit" class="req" >신청하기</button>
 				</div>
 			</div>
 		</div>

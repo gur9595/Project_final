@@ -190,7 +190,7 @@ public class ClubController {
 		return "club/club_search";
 	}
 
-	@RequestMapping(value = "/club/clubApplyAction.do", method = RequestMethod.POST)
+	@RequestMapping(value ="/club/clubApplyAction.do", method = RequestMethod.POST)
 	public String clubApplyAction(Principal principal, HttpServletRequest req, Model model) {
 		String m_id = principal.getName();
 
@@ -1045,6 +1045,7 @@ public class ClubController {
 				} else if (ok == 1) {
 					result = "success2";
 				}
+				model.addAttribute("idx", idx);
 				model.addAttribute("result", result);
 			}
 			returnObj.put("files", resultList);
