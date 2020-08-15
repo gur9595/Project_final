@@ -174,7 +174,7 @@ public class AndroidMatchController {
 		
 		return "android/android_QR_success";
 	}
-	
+	   
 	
 		
 }
