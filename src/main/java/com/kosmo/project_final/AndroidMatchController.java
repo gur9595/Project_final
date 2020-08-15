@@ -100,7 +100,7 @@ public class AndroidMatchController {
 		model.addAttribute("lists", lists);
 		model.addAttribute("goalLists", goalLists);
 		model.addAttribute("squad", squad);
-		model.addAttribute("bench", bench);
+		model.addAttribute("bench", lists);
 
 		return "club/club_tacticboard";
 	}

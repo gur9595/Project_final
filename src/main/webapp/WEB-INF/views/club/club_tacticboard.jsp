@@ -54,7 +54,7 @@
                      <tbody>
                         <c:forEach items="${bench }" var="row" varStatus="status" >
                            <tr>
-                              <td height="22" align="left" class="player_header">
+                              <td height="22" padding="10px" align="left" class="player_header">
                                  <div class = "my_player player ui-draggable" style="20px" value="${row.m_id }">${row.m_name }</div>
                               </td>
                            </tr>

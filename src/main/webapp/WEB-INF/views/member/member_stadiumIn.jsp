@@ -87,10 +87,10 @@
 	               <input type="file" class="txtBox31" id="s_pic" name="file" style="padding:5px" multiple="multiple"/>
 	   
 	            <h2>오픈시간</h2> <input type="tel" class="txtBox31"id="s_starttime" name="s_starttime"style="font-size:25px;"
-	               placeholder="00:00" value="07:00" maxlength="11">
+	               placeholder="00:00" value="00:00" maxlength="11">
 	               
 	            <h2>마감시간</h2> <input type="tel" class="txtBox31" id="s_endtime" name="s_endtime"style="font-size:25px;"
-	               placeholder="00:00" value="23:00" maxlength="11">
+	               placeholder="00:00" value="24:00" maxlength="11">
 	   
 	            <h2>구장 종류</h2>
 

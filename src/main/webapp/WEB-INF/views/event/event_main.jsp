@@ -283,6 +283,22 @@ $(function(){
 	                				</div>
 	                				</li>
 								</c:when>
+								<c:when test="${(loop.index+1) % 3 != 1 }"> 
+									<li>
+									<div class="contents-box">
+		                				<a href="./eventView.do?e_idx=${row.e_idx }">
+			                				<img src="../resources/img/event/event1.jpg"  /> 
+		                				</a>
+		                				<a href="javascript:void(0);">
+			                				<div class="content-text">
+			                					<div class="content-type">[${row.e_type }]</div>
+			                					<div class="content-title">${row.e_title }</div>
+			                					<div class="content-date">${row.e_start } ~ ${row.e_end }</div>
+			                				</div>
+		                				</a>
+	                				</div>
+	                				</li>
+								</c:when>
 								<c:when test="${loop.count%3==0 }">
 									</ul><ul>
 								</c:when>
